@@ -59,48 +59,46 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
           child: EzElevatedIconButton(
             onPressed: () => ezModal(
               context: context,
-              builder: (BuildContext mCon) => EzScrollView(
-                children: <Widget>[
-                  EzWrap(
-                    children: locales
-                        .map(
-                          (Locale locale) => Padding(
-                            padding: EzInsets.wrap(EzConfig.spacing),
-                            child: EzElevatedIconButton(
-                              onPressed: () async {
-                                // Check for no change
-                                if (locale == EzConfig.locale) {
-                                  Navigator.of(mCon).pop();
-                                  return;
-                                }
+              builder: (BuildContext mCon) => ezModalScroll(<Widget>[
+                EzWrap(
+                  children: locales
+                      .map(
+                        (Locale locale) => Padding(
+                          padding: EzInsets.wrap(EzConfig.spacing),
+                          child: EzElevatedIconButton(
+                            onPressed: () async {
+                              // Check for no change
+                              if (locale == EzConfig.locale) {
+                                Navigator.of(mCon).pop();
+                                return;
+                              }
 
-                                // Gather && set data
-                                final List<String> localeData = <String>[locale.languageCode];
-                                if (locale.countryCode != null) {
-                                  localeData.add(locale.countryCode!);
-                                }
-                                await EzConfig.setStringList(
-                                  appLocaleKey,
-                                  localeData,
-                                );
+                              // Gather && set data
+                              final List<String> localeData = <String>[locale.languageCode];
+                              if (locale.countryCode != null) {
+                                localeData.add(locale.countryCode!);
+                              }
+                              await EzConfig.setStringList(
+                                appLocaleKey,
+                                localeData,
+                              );
 
-                                // Refresh the UI
-                                await EzConfig.rebuildLocale();
-                              },
-                              icon: ezFlag(
-                                locale,
-                                inDistress: widget.inDistress.contains(locale.countryCode),
-                              ),
-                              label: ezLocaleName(locale, mCon),
-                              labelPadding: false,
+                              // Refresh the UI
+                              await EzConfig.rebuildLocale();
+                            },
+                            icon: ezFlag(
+                              locale,
+                              inDistress: widget.inDistress.contains(locale.countryCode),
                             ),
+                            label: ezLocaleName(locale, mCon),
+                            labelPadding: false,
                           ),
-                        )
-                        .toList(),
-                  ),
-                  EzConfig.spacer,
-                ],
-              ),
+                        ),
+                      )
+                      .toList(),
+                ),
+                EzConfig.spacer,
+              ]),
             ),
             icon: ezFlag(
               EzConfig.locale,

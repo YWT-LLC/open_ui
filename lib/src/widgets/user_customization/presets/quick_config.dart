@@ -52,7 +52,7 @@ class EzQuickConfig extends StatelessWidget {
   Widget build(BuildContext context) => EzElevatedIconButton(
         onPressed: () => ezModal(
           context: context,
-          builder: (_) => EzScrollView(children: <Widget>[
+          builder: (_) => ezModalScroll(<Widget>[
             // Choices
             EzWrap(children: <Widget>[
               // Important

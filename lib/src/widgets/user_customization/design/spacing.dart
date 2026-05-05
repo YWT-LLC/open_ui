@@ -55,106 +55,104 @@ class EzSpacingSetting extends StatelessWidget {
         await ezModal(
           context: context,
           builder: (_) => StatefulBuilder(
-            builder: (_, StateSetter setModal) => EzScrollView(
-              children: <Widget>[
-                // Preview
-                Semantics(
-                  button: false,
-                  readOnly: true,
-                  label: EzConfig.l10n.gSetToValue(
-                    EzConfig.l10n.dsSpacing,
-                    currValue.toStringAsFixed(decimals),
-                  ),
-                  child: ExcludeSemantics(
-                    child: EzCol(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        // Title
-                        Text(
-                          EzConfig.l10n.dsSpacing,
-                          style: titleStyle ?? EzConfig.styles.titleLarge,
-                          textAlign: TextAlign.center,
-                        ),
-                        EzSpacer(space: currValue),
+            builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+              // Preview
+              Semantics(
+                button: false,
+                readOnly: true,
+                label: EzConfig.l10n.gSetToValue(
+                  EzConfig.l10n.dsSpacing,
+                  currValue.toStringAsFixed(decimals),
+                ),
+                child: ExcludeSemantics(
+                  child: EzCol(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // Title
+                      Text(
+                        EzConfig.l10n.dsSpacing,
+                        style: titleStyle ?? EzConfig.styles.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                      EzSpacer(space: currValue),
 
-                        // Vertical preview
-                        EzElevatedButton(
-                          enabled: false,
-                          text: EzConfig.l10n.gValue,
-                        ),
+                      // Vertical preview
+                      EzElevatedButton(
+                        enabled: false,
+                        text: EzConfig.l10n.gValue,
+                      ),
 
-                        // Divider preview
-                        EzDivider(height: currValue * 3),
+                      // Divider preview
+                      EzDivider(height: currValue * 3),
 
-                        // Horizontal preview
-                        EzScrollView(
-                          scrollDirection: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            EzElevatedButton(
-                              enabled: false,
-                              text: EzConfig.l10n.gCurrently,
+                      // Horizontal preview
+                      EzScrollView(
+                        scrollDirection: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          EzElevatedButton(
+                            enabled: false,
+                            text: EzConfig.l10n.gCurrently,
+                          ),
+                          EzSpacer(space: currValue, vertical: false),
+                          EzElevatedButton(
+                            enabled: false,
+                            style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
                             ),
-                            EzSpacer(space: currValue, vertical: false),
-                            EzElevatedButton(
-                              enabled: false,
-                              style: ElevatedButton.styleFrom(
-                                shape: const CircleBorder(),
-                              ),
-                              text: currValue.toStringAsFixed(decimals),
-                            ),
-                          ],
-                        ),
-                        EzSpacer(space: currValue),
-                      ],
-                    ),
+                            text: currValue.toStringAsFixed(decimals),
+                          ),
+                        ],
+                      ),
+                      EzSpacer(space: currValue),
+                    ],
                   ),
                 ),
+              ),
 
-                // Slider
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                  child: Slider(
-                    // Slider values
-                    value: currValue,
-                    min: min,
-                    max: max,
-                    divisions: steps,
+              // Slider
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                child: Slider(
+                  // Slider values
+                  value: currValue,
+                  min: min,
+                  max: max,
+                  divisions: steps,
 
-                    // Slider functions
-                    onChanged: (double value) => setModal(() => currValue = value),
-                    onChangeEnd: (double value) async {
-                      await EzConfig.setDouble(configKey, value);
+                  // Slider functions
+                  onChanged: (double value) => setModal(() => currValue = value),
+                  onChangeEnd: (double value) async {
+                    await EzConfig.setDouble(configKey, value);
 
-                      if (EzConfig.updateBoth) {
-                        await EzConfig.setDouble(
-                          EzConfig.isDark ? lightSpacingKey : darkSpacingKey,
-                          value,
-                        );
-                      }
-                    },
-
-                    // Slider semantics
-                    semanticFormatterCallback: (double value) => value.toStringAsFixed(decimals),
-                  ),
-                ),
-                EzConfig.spacer,
-
-                // Reset button
-                EzElevatedIconButton(
-                  onPressed: () async {
-                    await EzConfig.remove(configKey);
                     if (EzConfig.updateBoth) {
-                      await EzConfig.remove(EzConfig.isDark ? lightSpacingKey : darkSpacingKey);
+                      await EzConfig.setDouble(
+                        EzConfig.isDark ? lightSpacingKey : darkSpacingKey,
+                        value,
+                      );
                     }
-                    setModal(() => currValue = defaultValue);
                   },
-                  icon: const Icon(Icons.refresh),
-                  label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(decimals)}',
+
+                  // Slider semantics
+                  semanticFormatterCallback: (double value) => value.toStringAsFixed(decimals),
                 ),
-                EzConfig.separator,
-              ],
-            ),
+              ),
+              EzConfig.spacer,
+
+              // Reset button
+              EzElevatedIconButton(
+                onPressed: () async {
+                  await EzConfig.remove(configKey);
+                  if (EzConfig.updateBoth) {
+                    await EzConfig.remove(EzConfig.isDark ? lightSpacingKey : darkSpacingKey);
+                  }
+                  setModal(() => currValue = defaultValue);
+                },
+                icon: const Icon(Icons.refresh),
+                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(decimals)}',
+              ),
+              EzConfig.separator,
+            ]),
           ),
         );
 
