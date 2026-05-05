@@ -29,6 +29,21 @@ class EzGlobalSettings extends StatelessWidget {
   /// If null, [EzQuickConfig] will not be included
   final Widget? quickConfigSpacer;
 
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function()? extraBig;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function()? extraVis;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function()? extraChalk;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function()? extraNebula;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function()? extraWall;
+
   /// Spacer before the [EzConfigRandomizer]
   /// If null, [EzConfigRandomizer] will not be included
   final Widget? randomSpacer;
@@ -58,6 +73,11 @@ class EzGlobalSettings extends StatelessWidget {
     this.additionalSettings,
     this.saveSkip,
     this.quickConfigSpacer = const EzSeparator(),
+    this.extraBig,
+    this.extraVis,
+    this.extraChalk,
+    this.extraNebula,
+    this.extraWall,
     this.randomSpacer = const EzSpacer(),
     this.resetSpacer = const EzSeparator(),
     this.resetSkip,
@@ -91,7 +111,13 @@ class EzGlobalSettings extends StatelessWidget {
         // Quick config
         if (quickConfigSpacer != null) ...<Widget>[
           quickConfigSpacer!,
-          const EzQuickConfig(),
+          EzQuickConfig(
+            extraBig: extraBig,
+            extraVis: extraVis,
+            extraChalk: extraChalk,
+            extraNebula: extraNebula,
+            extraWall: extraWall,
+          ),
         ],
 
         // Feeling lucky
