@@ -8,10 +8,13 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzChalkboardConfig extends StatelessWidget {
+  /// Optional extra changes
+  final Future<void> Function()? extra;
+
   /// Dark theme only config; sets [ThemeMode.dark], resets it, and...
   /// Sets a [ColorScheme] similar to [ezHighContrastDark], but with a [chalkboardGreen] surface and [empathSand] accents
   /// Has mostly default design settings, but a [fingerPaint] based [TextTheme]
-  const EzChalkboardConfig({super.key});
+  const EzChalkboardConfig(this.extra, {super.key});
 
   static Future<bool> onPressed(BuildContext context) async {
     // If the current theme is not dark, show a warning dialog
@@ -104,36 +107,33 @@ class EzChalkboardConfig extends StatelessWidget {
     await EzConfig.setBool(darkTransitionFadeKey, false);
 
     await EzConfig.setString(darkButtonShapeKey, EzButtonShape.rect.value);
-
     await EzConfig.setDouble(darkBorderOpacityKey, 0.0);
 
-    await EzConfig.setBool(darkShowBackFABKey, false);
+    await EzConfig.setString(darkBackgroundImageKey, chalkboardGreen.toString());
 
+    await EzConfig.setBool(darkShowBackFABKey, false);
     await EzConfig.setBool(darkShowScrollKey, false);
 
     // Text settings //
 
-    // Display
     await EzConfig.setString(darkDisplayFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkDisplayItalicizedKey, false);
 
-    // Headline
     await EzConfig.setString(darkHeadlineFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkHeadlineItalicizedKey, false);
 
-    // Title
     await EzConfig.setString(darkTitleFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkTitleItalicizedKey, false);
 
-    // Body
     await EzConfig.setString(darkBodyFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkBodyItalicizedKey, false);
 
-    // Label
     await EzConfig.setString(darkLabelFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkLabelItalicizedKey, false);
 
     await EzConfig.setDouble(darkTextBackgroundOpacityKey, 0.0);
+
+    // Fin //
 
     return true;
   }
@@ -170,7 +170,10 @@ class EzChalkboardConfig extends StatelessWidget {
       ),
       onPressed: () async {
         final bool confirmed = await onPressed(context);
-        if (confirmed) await EzConfig.rebuildUI();
+        if (confirmed) {
+          await extra?.call();
+          await EzConfig.rebuildUI();
+        }
       },
       text: EzConfig.l10n.ssChalkboard,
       textStyle: localBody,
