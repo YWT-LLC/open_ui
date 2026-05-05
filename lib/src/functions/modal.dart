@@ -39,3 +39,19 @@ Future<T?> ezModal<T>({
         reverseDuration: ezAnimDuration(mod: animMod),
       ),
     );
+
+Widget ezModalScroll(
+  List<Widget> children, {
+  ScrollController? controller,
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+}) =>
+    Padding(
+      padding: EdgeInsets.symmetric(horizontal: EzConfig.marginVal),
+      child: EzScrollView(
+        controller: controller,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: children,
+      ),
+    );
