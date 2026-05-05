@@ -156,63 +156,61 @@ class _AnimDurSetting extends StatelessWidget {
           await ezModal(
             context: context,
             builder: (_) => StatefulBuilder(
-              builder: (_, StateSetter setModal) => EzScrollView(
-                children: <Widget>[
-                  // Preview
-                  SizedBox(
-                    height: EzConfig.iconSize + (EzConfig.padding * 2),
-                    child: _AnimationPreview(animDuration.toInt()),
-                  ),
-                  EzConfig.spacer,
+              builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+                // Preview
+                SizedBox(
+                  height: EzConfig.iconSize + (EzConfig.padding * 2),
+                  child: _AnimationPreview(animDuration.toInt()),
+                ),
+                EzConfig.spacer,
 
-                  // Slider
-                  Text(
-                    EzConfig.l10n.dsMilliseconds,
-                    style: EzConfig.styles.bodyLarge,
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                    child: Slider(
-                      value: animDuration,
-                      min: minAnimationDuration.toDouble(),
-                      max: maxAnimationDuration.toDouble(),
-                      divisions: 20,
-                      label: animDuration.toStringAsFixed(0),
-                      onChanged: (double value) => setModal(() => animDuration = value),
-                      onChangeEnd: (double value) async {
-                        if (EzConfig.updateBoth || EzConfig.isDark) {
-                          await EzConfig.setInt(darkAnimationDurationKey, value.toInt());
-                        }
-
-                        if (EzConfig.updateBoth || !EzConfig.isDark) {
-                          await EzConfig.setInt(lightAnimationDurationKey, value.toInt());
-                        }
-                      },
-                    ),
-                  ),
-                  EzConfig.spacer,
-
-                  // Reset button
-                  EzElevatedIconButton(
-                    onPressed: () async {
+                // Slider
+                Text(
+                  EzConfig.l10n.dsMilliseconds,
+                  style: EzConfig.styles.bodyLarge,
+                ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                  child: Slider(
+                    value: animDuration,
+                    min: minAnimationDuration.toDouble(),
+                    max: maxAnimationDuration.toDouble(),
+                    divisions: 20,
+                    label: animDuration.toStringAsFixed(0),
+                    onChanged: (double value) => setModal(() => animDuration = value),
+                    onChangeEnd: (double value) async {
                       if (EzConfig.updateBoth || EzConfig.isDark) {
-                        await EzConfig.remove(darkAnimationDurationKey);
-                        setModal(() => animDuration =
-                            (EzConfig.getDefault(darkAnimationDurationKey) as int).toDouble());
+                        await EzConfig.setInt(darkAnimationDurationKey, value.toInt());
                       }
 
                       if (EzConfig.updateBoth || !EzConfig.isDark) {
-                        await EzConfig.remove(lightAnimationDurationKey);
-                        setModal(() => animDuration =
-                            (EzConfig.getDefault(lightAnimationDurationKey) as int).toDouble());
+                        await EzConfig.setInt(lightAnimationDurationKey, value.toInt());
                       }
                     },
-                    icon: const Icon(Icons.refresh),
-                    label: EzConfig.l10n.gReset,
                   ),
-                  EzConfig.separator,
-                ],
-              ),
+                ),
+                EzConfig.spacer,
+
+                // Reset button
+                EzElevatedIconButton(
+                  onPressed: () async {
+                    if (EzConfig.updateBoth || EzConfig.isDark) {
+                      await EzConfig.remove(darkAnimationDurationKey);
+                      setModal(() => animDuration =
+                          (EzConfig.getDefault(darkAnimationDurationKey) as int).toDouble());
+                    }
+
+                    if (EzConfig.updateBoth || !EzConfig.isDark) {
+                      await EzConfig.remove(lightAnimationDurationKey);
+                      setModal(() => animDuration =
+                          (EzConfig.getDefault(lightAnimationDurationKey) as int).toDouble());
+                    }
+                  },
+                  icon: const Icon(Icons.refresh),
+                  label: EzConfig.l10n.gReset,
+                ),
+                EzConfig.separator,
+              ]),
             ),
           );
 

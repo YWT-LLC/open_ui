@@ -55,98 +55,96 @@ class EzPaddingSetting extends StatelessWidget {
         await ezModal(
           context: context,
           builder: (_) => StatefulBuilder(
-            builder: (_, StateSetter setModal) => EzScrollView(
-              children: <Widget>[
-                // Preview
-                Semantics(
-                  button: false,
-                  readOnly: true,
-                  label: EzConfig.l10n.gSetToValue(
-                    EzConfig.l10n.dsPadding,
-                    currValue.toStringAsFixed(decimals),
-                  ),
-                  child: ExcludeSemantics(
-                    child: EzCol(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        // Title
-                        Text(
-                          EzConfig.l10n.dsPadding,
-                          style: titleStyle ?? EzConfig.styles.titleLarge,
-                          textAlign: TextAlign.center,
-                        ),
+            builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+              // Preview
+              Semantics(
+                button: false,
+                readOnly: true,
+                label: EzConfig.l10n.gSetToValue(
+                  EzConfig.l10n.dsPadding,
+                  currValue.toStringAsFixed(decimals),
+                ),
+                child: ExcludeSemantics(
+                  child: EzCol(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // Title
+                      Text(
+                        EzConfig.l10n.dsPadding,
+                        style: titleStyle ?? EzConfig.styles.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
 
-                        // Preview
-                        EzConfig.spacer,
-                        EzScrollView(
-                          scrollDirection: Axis.horizontal,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            EzElevatedButton(
-                              enabled: false,
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.all(currValue),
-                              ),
-                              text: EzConfig.l10n.gCurrently,
+                      // Preview
+                      EzConfig.spacer,
+                      EzScrollView(
+                        scrollDirection: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          EzElevatedButton(
+                            enabled: false,
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(currValue),
                             ),
-                            EzConfig.rowSpacer,
-                            EzElevatedButton(
-                              enabled: false,
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.all(currValue),
-                                shape: const CircleBorder(),
-                              ),
-                              text: currValue.toStringAsFixed(decimals),
+                            text: EzConfig.l10n.gCurrently,
+                          ),
+                          EzConfig.rowSpacer,
+                          EzElevatedButton(
+                            enabled: false,
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(currValue),
+                              shape: const CircleBorder(),
                             ),
-                          ],
-                        ),
-                        EzConfig.spacer,
-                      ],
-                    ),
+                            text: currValue.toStringAsFixed(decimals),
+                          ),
+                        ],
+                      ),
+                      EzConfig.spacer,
+                    ],
                   ),
                 ),
+              ),
 
-                // Slider
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                  child: Slider(
-                    // Slider values
-                    value: currValue,
-                    min: min,
-                    max: max,
-                    divisions: steps,
+              // Slider
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                child: Slider(
+                  // Slider values
+                  value: currValue,
+                  min: min,
+                  max: max,
+                  divisions: steps,
 
-                    // Slider functions
-                    onChanged: (double value) => setModal(() => currValue = value),
-                    onChangeEnd: (double value) async {
-                      await EzConfig.setDouble(configKey, value);
-                      if (EzConfig.updateBoth) {
-                        await EzConfig.setDouble(
-                            EzConfig.isDark ? lightPaddingKey : darkPaddingKey, value);
-                      }
-                    },
-
-                    // Slider semantics
-                    semanticFormatterCallback: (double value) => value.toStringAsFixed(decimals),
-                  ),
-                ),
-                EzConfig.spacer,
-
-                // Reset button
-                EzElevatedIconButton(
-                  onPressed: () async {
-                    await EzConfig.remove(configKey);
+                  // Slider functions
+                  onChanged: (double value) => setModal(() => currValue = value),
+                  onChangeEnd: (double value) async {
+                    await EzConfig.setDouble(configKey, value);
                     if (EzConfig.updateBoth) {
-                      await EzConfig.remove(EzConfig.isDark ? lightPaddingKey : darkPaddingKey);
+                      await EzConfig.setDouble(
+                          EzConfig.isDark ? lightPaddingKey : darkPaddingKey, value);
                     }
-                    setModal(() => currValue = defaultValue);
                   },
-                  icon: const Icon(Icons.refresh),
-                  label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(decimals)}',
+
+                  // Slider semantics
+                  semanticFormatterCallback: (double value) => value.toStringAsFixed(decimals),
                 ),
-                EzConfig.separator,
-              ],
-            ),
+              ),
+              EzConfig.spacer,
+
+              // Reset button
+              EzElevatedIconButton(
+                onPressed: () async {
+                  await EzConfig.remove(configKey);
+                  if (EzConfig.updateBoth) {
+                    await EzConfig.remove(EzConfig.isDark ? lightPaddingKey : darkPaddingKey);
+                  }
+                  setModal(() => currValue = defaultValue);
+                },
+                icon: const Icon(Icons.refresh),
+                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(decimals)}',
+              ),
+              EzConfig.separator,
+            ]),
           ),
         );
 

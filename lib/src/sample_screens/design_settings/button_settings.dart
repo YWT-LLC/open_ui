@@ -128,106 +128,104 @@ class _ButtonStyleSetting extends StatelessWidget {
           await ezModal(
             context: context,
             builder: (_) => StatefulBuilder(
-              builder: (_, StateSetter setModal) => EzScrollView(
-                children: <Widget>[
-                  // Shape choices
-                  RadioGroup<EzButtonShape>(
-                    groupValue: currShape,
-                    onChanged: (EzButtonShape? choice) {
-                      if (choice != null) setModal(() => currShape = choice);
-                    },
-                    child: EzScrollView(
-                      scrollDirection: Axis.horizontal,
-                      thumbVisibility: false,
-                      showScrollHint: true,
-                      children: EzButtonShape.values
-                          .map(
-                            (EzButtonShape shape) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: EzConfig.spacing,
-                                horizontal: EzConfig.spacing / 2,
-                              ),
-                              child: EzCol(children: <Widget>[
-                                EzElevatedButton(
-                                  text: shape.name,
-                                  style: ElevatedButton.styleFrom(
-                                    side: currWidth == 0
-                                        ? BorderSide.none
-                                        : BorderSide(
-                                            color: EzConfig.colors.primaryContainer,
-                                            width: currWidth,
-                                          ),
-                                    shape: shape.shape,
-                                  ),
-                                  onPressed: () => setModal(() => currShape = shape),
-                                ),
-                                EzConfig.margin,
-                                ExcludeSemantics(
-                                  child: EzRadio<EzButtonShape>(value: shape),
-                                ),
-                              ]),
+              builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+                // Shape choices
+                RadioGroup<EzButtonShape>(
+                  groupValue: currShape,
+                  onChanged: (EzButtonShape? choice) {
+                    if (choice != null) setModal(() => currShape = choice);
+                  },
+                  child: EzScrollView(
+                    scrollDirection: Axis.horizontal,
+                    thumbVisibility: false,
+                    showScrollHint: true,
+                    children: EzButtonShape.values
+                        .map(
+                          (EzButtonShape shape) => Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: EzConfig.spacing,
+                              horizontal: EzConfig.spacing / 2,
                             ),
-                          )
-                          .toList(),
-                    ),
+                            child: EzCol(children: <Widget>[
+                              EzElevatedButton(
+                                text: shape.name,
+                                style: ElevatedButton.styleFrom(
+                                  side: currWidth == 0
+                                      ? BorderSide.none
+                                      : BorderSide(
+                                          color: EzConfig.colors.primaryContainer,
+                                          width: currWidth,
+                                        ),
+                                  shape: shape.shape,
+                                ),
+                                onPressed: () => setModal(() => currShape = shape),
+                              ),
+                              EzConfig.margin,
+                              ExcludeSemantics(
+                                child: EzRadio<EzButtonShape>(value: shape),
+                              ),
+                            ]),
+                          ),
+                        )
+                        .toList(),
                   ),
-                  EzConfig.spacer,
+                ),
+                EzConfig.spacer,
 
-                  // Border width slider
-                  Text(
-                    EzConfig.l10n.dsBorderWidth,
-                    style: EzConfig.styles.bodyLarge,
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                    child: Slider(
-                      // Slider values
-                      value: currWidth,
-                      min: minBorderWidth,
-                      max: maxBorderWidth,
-                      divisions: 30,
-                      label: currWidth.toStringAsFixed(2),
+                // Border width slider
+                Text(
+                  EzConfig.l10n.dsBorderWidth,
+                  style: EzConfig.styles.bodyLarge,
+                ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                  child: Slider(
+                    // Slider values
+                    value: currWidth,
+                    min: minBorderWidth,
+                    max: maxBorderWidth,
+                    divisions: 30,
+                    label: currWidth.toStringAsFixed(2),
 
-                      // Slider functions
-                      onChanged: (double value) => setModal(() => currWidth = value),
-                      onChangeEnd: (double value) async {
-                        if (EzConfig.updateBoth || EzConfig.isDark) {
-                          await EzConfig.setDouble(darkBorderWidthKey, value);
-                        }
-
-                        if (EzConfig.updateBoth || !EzConfig.isDark) {
-                          await EzConfig.setDouble(lightBorderWidthKey, value);
-                        }
-                      },
-                    ),
-                  ),
-                  EzConfig.spacer,
-
-                  // Reset button
-                  EzElevatedIconButton(
-                    onPressed: () async {
+                    // Slider functions
+                    onChanged: (double value) => setModal(() => currWidth = value),
+                    onChangeEnd: (double value) async {
                       if (EzConfig.updateBoth || EzConfig.isDark) {
-                        await EzConfig.remove(darkButtonShapeKey);
-                        await EzConfig.remove(darkBorderWidthKey);
-                      }
-                      if (EzConfig.updateBoth || !EzConfig.isDark) {
-                        await EzConfig.remove(lightButtonShapeKey);
-                        await EzConfig.remove(lightBorderWidthKey);
+                        await EzConfig.setDouble(darkBorderWidthKey, value);
                       }
 
-                      setModal(() {
-                        currShape = EBSConfig.lookup(EzConfig.getDefault(
-                            EzConfig.isDark ? darkButtonShapeKey : lightButtonShapeKey));
-                        currWidth = EzConfig.getDefault(
-                            EzConfig.isDark ? darkBorderWidthKey : lightBorderWidthKey);
-                      });
+                      if (EzConfig.updateBoth || !EzConfig.isDark) {
+                        await EzConfig.setDouble(lightBorderWidthKey, value);
+                      }
                     },
-                    icon: const Icon(Icons.refresh),
-                    label: EzConfig.l10n.gReset,
                   ),
-                  EzConfig.separator,
-                ],
-              ),
+                ),
+                EzConfig.spacer,
+
+                // Reset button
+                EzElevatedIconButton(
+                  onPressed: () async {
+                    if (EzConfig.updateBoth || EzConfig.isDark) {
+                      await EzConfig.remove(darkButtonShapeKey);
+                      await EzConfig.remove(darkBorderWidthKey);
+                    }
+                    if (EzConfig.updateBoth || !EzConfig.isDark) {
+                      await EzConfig.remove(lightButtonShapeKey);
+                      await EzConfig.remove(lightBorderWidthKey);
+                    }
+
+                    setModal(() {
+                      currShape = EBSConfig.lookup(EzConfig.getDefault(
+                          EzConfig.isDark ? darkButtonShapeKey : lightButtonShapeKey));
+                      currWidth = EzConfig.getDefault(
+                          EzConfig.isDark ? darkBorderWidthKey : lightBorderWidthKey);
+                    });
+                  },
+                  icon: const Icon(Icons.refresh),
+                  label: EzConfig.l10n.gReset,
+                ),
+                EzConfig.separator,
+              ]),
             ),
           );
 
@@ -290,133 +288,131 @@ class _ButtonOpacitySetting extends StatelessWidget {
                   WidgetStatePropertyAll<Color> trackOutline =
                       WidgetStatePropertyAll<Color>(buttonOutline);
 
-                  return EzScrollView(
-                    children: <Widget>[
-                      // Preview
-                      EzWrap(children: <Widget>[
-                        Padding(
-                          padding: EzInsets.wrap(EzConfig.spacing),
-                          child: EzElevatedButton(
-                            text: EzConfig.l10n.dsPreview,
-                            onPressed: doNothing,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: buttonBackground,
-                              shadowColor: buttonShadow,
-                              side: EzConfig.borderSide(buttonOutline),
-                            ),
+                  return ezModalScroll(<Widget>[
+                    // Preview
+                    EzWrap(children: <Widget>[
+                      Padding(
+                        padding: EzInsets.wrap(EzConfig.spacing),
+                        child: EzElevatedButton(
+                          text: EzConfig.l10n.dsPreview,
+                          onPressed: doNothing,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: buttonBackground,
+                            shadowColor: buttonShadow,
+                            side: EzConfig.borderSide(buttonOutline),
                           ),
                         ),
-                        Padding(
-                          padding: EzInsets.wrap(EzConfig.spacing),
-                          child: Transform.scale(
-                            scale: ezIconRatio(),
-                            child: Switch(
-                              value: dummyBool,
-                              onChanged: (bool v) => setModal(() => dummyBool = v),
-                              activeTrackColor: trackColor,
-                              inactiveTrackColor: trackColor,
-                              trackOutlineColor: trackOutline,
-                            ),
+                      ),
+                      Padding(
+                        padding: EzInsets.wrap(EzConfig.spacing),
+                        child: Transform.scale(
+                          scale: ezIconRatio(),
+                          child: Switch(
+                            value: dummyBool,
+                            onChanged: (bool v) => setModal(() => dummyBool = v),
+                            activeTrackColor: trackColor,
+                            inactiveTrackColor: trackColor,
+                            trackOutlineColor: trackOutline,
                           ),
                         ),
-                      ]),
-                      EzConfig.spacer,
-
-                      // Background slider
-                      Text(
-                        EzConfig.l10n.dsBackground,
-                        style: EzConfig.styles.bodyLarge,
                       ),
-                      ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                        child: Slider(
-                          // Slider values
-                          value: buttonOpacity,
-                          min: minOpacity,
-                          max: maxOpacity,
-                          divisions: 20,
-                          label: buttonOpacity.toStringAsFixed(2),
+                    ]),
+                    EzConfig.spacer,
 
-                          // Slider functions
-                          onChanged: (double value) => setModal(() => buttonOpacity = value),
-                          onChangeEnd: (double value) async {
-                            if (EzConfig.updateBoth || EzConfig.isDark) {
-                              await EzConfig.setDouble(darkButtonOpacityKey, value);
-                            }
-                            if (EzConfig.updateBoth || !EzConfig.isDark) {
-                              await EzConfig.setDouble(lightButtonOpacityKey, value);
-                            }
-                          },
-                        ),
-                      ),
-                      EzConfig.spacer,
+                    // Background slider
+                    Text(
+                      EzConfig.l10n.dsBackground,
+                      style: EzConfig.styles.bodyLarge,
+                    ),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                      child: Slider(
+                        // Slider values
+                        value: buttonOpacity,
+                        min: minOpacity,
+                        max: maxOpacity,
+                        divisions: 20,
+                        label: buttonOpacity.toStringAsFixed(2),
 
-                      // Outline slider
-                      Text(
-                        EzConfig.l10n.dsOutline,
-                        style: EzConfig.styles.bodyLarge,
-                      ),
-                      ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                        child: Slider(
-                          // Slider values
-                          value: borderOpacity,
-                          min: minOpacity,
-                          max: maxOpacity,
-                          divisions: 20,
-                          label: borderOpacity.toStringAsFixed(2),
-
-                          // Slider functions
-                          onChanged: (double value) => setModal(() => borderOpacity = value),
-                          onChangeEnd: (double value) async {
-                            if (EzConfig.updateBoth || EzConfig.isDark) {
-                              await EzConfig.setDouble(darkBorderOpacityKey, value);
-                            }
-
-                            if (EzConfig.updateBoth || !EzConfig.isDark) {
-                              await EzConfig.setDouble(lightBorderOpacityKey, value);
-                            }
-                          },
-                        ),
-                      ),
-                      EzConfig.spacer,
-
-                      // Reset button
-                      EzElevatedIconButton(
-                        onPressed: () async {
+                        // Slider functions
+                        onChanged: (double value) => setModal(() => buttonOpacity = value),
+                        onChangeEnd: (double value) async {
                           if (EzConfig.updateBoth || EzConfig.isDark) {
-                            await EzConfig.remove(darkButtonOpacityKey);
-                            await EzConfig.remove(darkBorderOpacityKey);
+                            await EzConfig.setDouble(darkButtonOpacityKey, value);
                           }
                           if (EzConfig.updateBoth || !EzConfig.isDark) {
-                            await EzConfig.remove(lightButtonOpacityKey);
-                            await EzConfig.remove(lightBorderOpacityKey);
+                            await EzConfig.setDouble(lightButtonOpacityKey, value);
+                          }
+                        },
+                      ),
+                    ),
+                    EzConfig.spacer,
+
+                    // Outline slider
+                    Text(
+                      EzConfig.l10n.dsOutline,
+                      style: EzConfig.styles.bodyLarge,
+                    ),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                      child: Slider(
+                        // Slider values
+                        value: borderOpacity,
+                        min: minOpacity,
+                        max: maxOpacity,
+                        divisions: 20,
+                        label: borderOpacity.toStringAsFixed(2),
+
+                        // Slider functions
+                        onChanged: (double value) => setModal(() => borderOpacity = value),
+                        onChangeEnd: (double value) async {
+                          if (EzConfig.updateBoth || EzConfig.isDark) {
+                            await EzConfig.setDouble(darkBorderOpacityKey, value);
                           }
 
-                          setModal(() {
-                            buttonOpacity = EzConfig.getDefault(
-                                EzConfig.isDark ? darkButtonOpacityKey : lightButtonOpacityKey);
-                            borderOpacity = EzConfig.getDefault(
-                                EzConfig.isDark ? darkBorderOpacityKey : lightBorderOpacityKey);
-
-                            buttonBackground =
-                                EzConfig.colors.surface.withValues(alpha: buttonOpacity);
-                            buttonShadow =
-                                EzConfig.colors.shadow.withValues(alpha: buttonOpacity * shadowMod);
-                            buttonOutline =
-                                EzConfig.colors.primaryContainer.withValues(alpha: borderOpacity);
-
-                            trackColor = EzConfig.colors.surface
-                                .withValues(alpha: max(focusOpacity, buttonOpacity));
-                            trackOutline = WidgetStatePropertyAll<Color>(buttonOutline);
-                          });
+                          if (EzConfig.updateBoth || !EzConfig.isDark) {
+                            await EzConfig.setDouble(lightBorderOpacityKey, value);
+                          }
                         },
-                        icon: const Icon(Icons.refresh),
-                        label: EzConfig.l10n.gReset,
                       ),
-                      EzConfig.separator,
-                    ],
-                  );
+                    ),
+                    EzConfig.spacer,
+
+                    // Reset button
+                    EzElevatedIconButton(
+                      onPressed: () async {
+                        if (EzConfig.updateBoth || EzConfig.isDark) {
+                          await EzConfig.remove(darkButtonOpacityKey);
+                          await EzConfig.remove(darkBorderOpacityKey);
+                        }
+                        if (EzConfig.updateBoth || !EzConfig.isDark) {
+                          await EzConfig.remove(lightButtonOpacityKey);
+                          await EzConfig.remove(lightBorderOpacityKey);
+                        }
+
+                        setModal(() {
+                          buttonOpacity = EzConfig.getDefault(
+                              EzConfig.isDark ? darkButtonOpacityKey : lightButtonOpacityKey);
+                          borderOpacity = EzConfig.getDefault(
+                              EzConfig.isDark ? darkBorderOpacityKey : lightBorderOpacityKey);
+
+                          buttonBackground =
+                              EzConfig.colors.surface.withValues(alpha: buttonOpacity);
+                          buttonShadow =
+                              EzConfig.colors.shadow.withValues(alpha: buttonOpacity * shadowMod);
+                          buttonOutline =
+                              EzConfig.colors.primaryContainer.withValues(alpha: borderOpacity);
+
+                          trackColor = EzConfig.colors.surface
+                              .withValues(alpha: max(focusOpacity, buttonOpacity));
+                          trackOutline = WidgetStatePropertyAll<Color>(buttonOutline);
+                        });
+                      },
+                      icon: const Icon(Icons.refresh),
+                      label: EzConfig.l10n.gReset,
+                    ),
+                    EzConfig.separator,
+                  ]);
                 },
               );
             },

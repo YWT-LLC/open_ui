@@ -146,25 +146,23 @@ class _AdvancedColorSettingsState extends State<AdvancedColorSettings> {
             await ezModal(
               context: context,
               builder: (_) => StatefulBuilder(
-                builder: (_, StateSetter setModalState) => EzScrollView(
-                  children: <Widget>[
-                    // Tutorial link
-                    EzLink(
-                      EzConfig.l10n.gHowThisWorks,
-                      style: EzConfig.styles.labelLarge!,
-                      textAlign: TextAlign.center,
-                      padding: EdgeInsets.all(EzConfig.marginVal),
-                      buttonShape: true,
-                      url: Uri.parse('https://m3.material.io/styles/color/roles'),
-                      hint: EzConfig.l10n.gHowThisWorksHint,
-                      tooltip: 'https://m3.material.io/styles/color/roles',
-                    ),
+                builder: (_, StateSetter setModalState) => ezModalScroll(<Widget>[
+                  // Tutorial link
+                  EzLink(
+                    EzConfig.l10n.gHowThisWorks,
+                    style: EzConfig.styles.labelLarge!,
+                    textAlign: TextAlign.center,
+                    padding: EdgeInsets.all(EzConfig.marginVal),
+                    buttonShape: true,
+                    url: Uri.parse('https://m3.material.io/styles/color/roles'),
+                    hint: EzConfig.l10n.gHowThisWorksHint,
+                    tooltip: 'https://m3.material.io/styles/color/roles',
+                  ),
 
-                    // Color options
-                    EzWrap(children: getUntrackedColors(setModalState)),
-                    EzConfig.spacer,
-                  ],
-                ),
+                  // Color options
+                  EzWrap(children: getUntrackedColors(setModalState)),
+                  EzConfig.spacer,
+                ]),
               ),
             );
 
