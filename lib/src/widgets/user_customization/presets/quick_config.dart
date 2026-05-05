@@ -21,12 +21,30 @@ class TryTip extends StatelessWidget {
 }
 
 class EzQuickConfig extends StatelessWidget {
-  /// When true, just includes...
-  /// [EzBigButtonsConfig], [EzHighVisibilityConfig], [EzChalkboardConfig]
-  final bool simple;
+  /// Extra changes for [EzBigButtonsConfig]
+  final Future<void> Function()? extraBig;
+
+  /// Extra changes for [EzHighVisibilityConfig]
+  final Future<void> Function()? extraVis;
+
+  /// Extra changes for [EzChalkboardConfig]
+  final Future<void> Function()? extraChalk;
+
+  /// Extra changes for [EzNebulaConfig]
+  final Future<void> Function()? extraNebula;
+
+  /// Extra changes for [EzWallHolesConfig]
+  final Future<void> Function()? extraWall;
 
   /// Opens a [BottomSheet] with [EzElevatedIconButton]s for different [EzConfig] presets
-  const EzQuickConfig({super.key, this.simple = false});
+  const EzQuickConfig({
+    super.key,
+    this.extraBig,
+    this.extraVis,
+    this.extraChalk,
+    this.extraNebula,
+    this.extraWall,
+  });
 
   Widget wrapIt(Widget child) => Padding(padding: EzInsets.wrap(EzConfig.spacing), child: child);
 
@@ -38,15 +56,13 @@ class EzQuickConfig extends StatelessWidget {
             // Choices
             EzWrap(children: <Widget>[
               // Important
-              wrapIt(const EzBigButtonsConfig()),
-              wrapIt(const EzHighVisibilityConfig()),
-              wrapIt(const EzChalkboardConfig()), // segue
+              wrapIt(EzBigButtonsConfig(extraBig)),
+              wrapIt(EzHighVisibilityConfig(extraVis)),
+              wrapIt(EzChalkboardConfig(extraChalk)), // segue
 
               // Fun
-              if (!simple) ...<Widget>[
-                wrapIt(const EzNebulaConfig()),
-                wrapIt(const EzWallHolesConfig()),
-              ],
+              wrapIt(EzNebulaConfig(extraNebula)),
+              wrapIt(EzWallHolesConfig(extraWall)),
             ]),
             EzConfig.spacer,
           ]),

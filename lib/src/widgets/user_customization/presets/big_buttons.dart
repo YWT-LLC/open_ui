@@ -8,9 +8,12 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzBigButtonsConfig extends StatelessWidget {
+  /// Optional extra changes
+  final Future<void> Function()? extra;
+
   /// Doesn't replace, only modifies: larger touch points from default
   /// Slight bump to all layout values, for easier tapping
-  const EzBigButtonsConfig({super.key});
+  const EzBigButtonsConfig(this.extra, {super.key});
 
   static Future<void> onPressed() async {
     // Don't reset //
@@ -74,6 +77,7 @@ class EzBigButtonsConfig extends StatelessWidget {
         ),
         onPressed: () async {
           await onPressed();
+          await extra?.call();
           await EzConfig.rebuildUI();
         },
         text: EzConfig.l10n.ssBigButtons,

@@ -8,8 +8,11 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzNebulaConfig extends StatelessWidget {
+  /// Optional extra changes
+  final Future<void> Function()? extra;
+
   /// Dark theme only config, will set [ThemeMode.dark]
-  const EzNebulaConfig({super.key});
+  const EzNebulaConfig(this.extra, {super.key});
 
   /// When true, skips the "This is a dark theme only..." dialog
   static Future<bool> onPressed(BuildContext context) async {
@@ -148,7 +151,10 @@ class EzNebulaConfig extends StatelessWidget {
         ),
         onPressed: () async {
           final bool confirmed = await onPressed(context);
-          if (confirmed) await EzConfig.rebuildUI();
+          if (confirmed) {
+            await extra?.call();
+            await EzConfig.rebuildUI();
+          }
         },
         text: EzConfig.l10n.ssNebula,
         textStyle: localBody,

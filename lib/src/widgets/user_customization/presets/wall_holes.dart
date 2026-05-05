@@ -8,8 +8,11 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzWallHolesConfig extends StatelessWidget {
+  /// Optional extra changes
+  final Future<void> Function()? extra;
+
   /// !Not Windows
-  const EzWallHolesConfig({super.key});
+  const EzWallHolesConfig(this.extra, {super.key});
 
   static Future<bool> onPressed(BuildContext context) async {
     // If the current theme is not light, show a warning dialog
@@ -133,7 +136,10 @@ class EzWallHolesConfig extends StatelessWidget {
       ),
       onPressed: () async {
         final bool confirmed = await onPressed(context);
-        if (confirmed) await EzConfig.rebuildUI();
+        if (confirmed) {
+          await extra?.call();
+          await EzConfig.rebuildUI();
+        }
       },
       text: EzConfig.l10n.ssWallHoles,
       textStyle: localBody,

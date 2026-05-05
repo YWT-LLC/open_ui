@@ -8,10 +8,13 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzHighVisibilityConfig extends StatelessWidget {
+  /// Optional extra changes
+  final Future<void> Function()? extra;
+
   /// Resets the current config and applies the [ezHighContrastLight] | [ezHighContrastDark] color scheme
   /// With text theme built with [atkinsonHyperlegible] and is slightly larger than the default
   /// Spacing is also increased, but not as much as [EzBigButtonsConfig]
-  const EzHighVisibilityConfig({super.key});
+  const EzHighVisibilityConfig(this.extra, {super.key});
 
   static Future<void> onPressed({bool monoChrome = false}) async {
     if (EzConfig.updateBoth || EzConfig.isDark) {
@@ -242,6 +245,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
             ),
       onPressed: () async {
         await onPressed();
+        await extra?.call();
         await EzConfig.rebuildUI();
       },
       text: EzConfig.l10n.ssHighVisibility,
