@@ -24,7 +24,7 @@ class ResetFAB extends StatelessWidget {
   final void Function() clearForms;
 
   /// Opens an [EzAlertDialog] for resetting the form fields, app settings, both, or none
-  const ResetFAB({super.key, required this.clearForms});
+  const ResetFAB(this.clearForms, {super.key});
 
   @override
   Widget build(BuildContext context) => Tooltip(
