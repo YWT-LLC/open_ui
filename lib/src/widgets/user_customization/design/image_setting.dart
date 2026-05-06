@@ -41,7 +41,7 @@ class EzImageSetting extends StatefulWidget {
   final String? credits;
 
   /// null will display a choice to the user
-  final bool? allowThemeUpdate;
+  final bool? setColors;
 
   /// Whether the [EzImageEditor] should be displayed upon successful image selection
   /// [AssetImage]s cannot be edited/will be skipped
@@ -65,7 +65,7 @@ class EzImageSetting extends StatefulWidget {
     this.allowClear = true,
     this.clearLabel,
     this.credits,
-    this.allowThemeUpdate,
+    this.setColors,
     this.showEditor = true,
     this.defaultFit,
     this.showFitOption = true,
@@ -82,7 +82,7 @@ class _ImageSettingState extends State<EzImageSetting> {
   bool inProgress = false;
 
   bool fromLocal = false;
-  late bool updateTheme = widget.allowThemeUpdate ?? false;
+  late bool updateTheme = widget.setColors ?? false;
   late BoxFit? selectedFit = widget.defaultFit;
 
   late final TextEditingController urlController = TextEditingController();
@@ -463,7 +463,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Return the options, with the conditional update theme switch
     return <Widget>[
       EzWrap(children: options),
-      if (widget.allowThemeUpdate == null)
+      if (widget.setColors == null)
         Padding(
           padding: EdgeInsets.symmetric(vertical: EzConfig.spacing / 2),
           child: EzSwitchPair(
