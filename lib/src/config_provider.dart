@@ -81,8 +81,6 @@ class EzConfigProvider extends ChangeNotifier {
         padding: EzConfig.get(darkPaddingKey),
         buttonShape: EBSConfig.lookup(EzConfig.get(darkButtonShapeKey)),
         borderWidth: EzConfig.get(darkBorderWidthKey),
-        buttonOpacity: EzConfig.get(darkButtonOpacityKey),
-        borderOpacity: EzConfig.get(darkBorderOpacityKey),
         lineLinks: EzConfig.get(darkLineLinksKey),
         showBackFAB: EzConfig.get(darkShowBackFABKey),
         margin: EzConfig.get(darkMarginKey),
@@ -119,8 +117,6 @@ class EzConfigProvider extends ChangeNotifier {
         padding: EzConfig.get(lightPaddingKey),
         buttonShape: EBSConfig.lookup(EzConfig.get(lightButtonShapeKey)),
         borderWidth: EzConfig.get(lightBorderWidthKey),
-        buttonOpacity: EzConfig.get(lightButtonOpacityKey),
-        borderOpacity: EzConfig.get(lightBorderOpacityKey),
         lineLinks: EzConfig.get(lightLineLinksKey),
         showBackFAB: EzConfig.get(lightShowBackFABKey),
         margin: EzConfig.get(lightMarginKey),
@@ -341,8 +337,6 @@ class EzDesignCache {
 
   final EzButtonShape buttonShape;
   final double borderWidth;
-  final double buttonOpacity;
-  final double borderOpacity;
 
   final bool lineLinks;
   final bool showBackFAB;
@@ -367,8 +361,6 @@ class EzDesignCache {
     required this.padding,
     required this.buttonShape,
     required this.borderWidth,
-    required this.buttonOpacity,
-    required this.borderOpacity,
     required this.lineLinks,
     required this.showBackFAB,
     required this.margin,
