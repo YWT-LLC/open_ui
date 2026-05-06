@@ -98,8 +98,6 @@ class EzWallHolesConfig extends StatelessWidget {
     await EzConfig.setString(lightButtonShapeKey, EzButtonShape.rect.value);
     await EzConfig.setDouble(lightBorderWidthKey, 2.0);
 
-    await EzConfig.setDouble(lightBorderOpacityKey, 1.0);
-
     await EzConfig.setBool(lightLineLinksKey, true);
     await EzConfig.setBool(lightShowBackFABKey, true);
 

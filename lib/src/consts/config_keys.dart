@@ -234,41 +234,31 @@ const Map<String, Type> allColorKeys = <String, Type>{
 const String darkPaddingKey = 'darkPadding';
 const String darkButtonShapeKey = 'darkButtonShape';
 const String darkBorderWidthKey = 'darkBorderWidth';
-const String darkButtonOpacityKey = 'darkButtonOpacity';
-const String darkBorderOpacityKey = 'darkBorderOpacity';
 const String darkLineLinksKey = 'darkLineLinks';
 const String darkShowBackFABKey = 'darkShowBackFAB';
 
 const String lightPaddingKey = 'lightPadding';
 const String lightButtonShapeKey = 'lightButtonShape';
 const String lightBorderWidthKey = 'lightBorderWidth';
-const String lightButtonOpacityKey = 'lightButtonOpacity';
-const String lightBorderOpacityKey = 'lightBorderOpacity';
 const String lightLineLinksKey = 'lightLineLinks';
 const String lightShowBackFABKey = 'lightShowBackFAB';
 
 /// [darkPaddingKey], [darkButtonShapeKey], [darkBorderWidthKey],
-/// [darkButtonOpacityKey], [darkBorderOpacityKey], [darkLineLinksKey],
 /// [darkLineLinksKey], [darkShowBackFABKey]
 const Map<String, Type> darkButtonDesignKeys = <String, Type>{
   darkPaddingKey: double,
   darkButtonShapeKey: String,
   darkBorderWidthKey: double,
-  darkButtonOpacityKey: double,
-  darkBorderOpacityKey: double,
   darkLineLinksKey: bool,
   darkShowBackFABKey: bool,
 };
 
 /// [lightPaddingKey], [lightButtonShapeKey], [lightBorderWidthKey],
-/// [lightButtonOpacityKey], [lightBorderOpacityKey], [lightLineLinksKey],
 /// [lightLineLinksKey], [lightShowBackFABKey]
 const Map<String, Type> lightButtonDesignKeys = <String, Type>{
   lightPaddingKey: double,
   lightButtonShapeKey: String,
   lightBorderWidthKey: double,
-  lightButtonOpacityKey: double,
-  lightBorderOpacityKey: double,
   lightLineLinksKey: bool,
   lightShowBackFABKey: bool,
 };

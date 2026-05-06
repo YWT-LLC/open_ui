@@ -5,7 +5,6 @@
 
 import '../../../empathetech_flutter_ui.dart';
 
-import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzResetButton extends StatelessWidget {
@@ -52,8 +51,9 @@ class EzResetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              EzConfig.colors.surface.withValues(alpha: max(EzConfig.buttonOpacity, focusOpacity)),
+          backgroundColor: EzConfig.colors.surface.a < focusOpacity
+              ? EzConfig.colors.surface.withValues(alpha: focusOpacity)
+              : EzConfig.colors.surface,
         ),
         onPressed: () => showDialog(
           context: context,
