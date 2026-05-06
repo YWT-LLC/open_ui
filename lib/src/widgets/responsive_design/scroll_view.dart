@@ -201,11 +201,7 @@ class _EzScrollViewState extends State<EzScrollView> {
     );
 
     if (widget.thumbVisibility ?? EzConfig.showScroll) {
-      core = Scrollbar(
-        controller: controller,
-        thumbVisibility: true,
-        child: core,
-      );
+      core = Scrollbar(controller: controller, thumbVisibility: true, child: core);
     }
 
     // Return the build //
