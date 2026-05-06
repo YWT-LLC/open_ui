@@ -383,14 +383,6 @@ class $classCaseAppName extends StatelessWidget {
                   '${entry.key}Key: <String>${entry.value.toString().replaceAll('[', "['").replaceAll(']', "']")},';
               break;
 
-            case userDarkColorsKey:
-            case userLightColorsKey:
-              // Updates to which colors are default in the advanced color settings screen
-              final String colorList = entry.value.toString().replaceAll(',', 'Key,');
-              result +=
-                  '${entry.key}Key: <String>${colorList.replaceRange(colorList.length - 1, null, 'Key,]')},';
-              break;
-
             default:
               final String val = entry.value.toString();
 
