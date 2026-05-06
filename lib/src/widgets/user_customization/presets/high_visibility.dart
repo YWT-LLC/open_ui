@@ -34,8 +34,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
 
       // Default padding
 
-      // Default button shape, border width, and surface opacity
-      await EzConfig.setDouble(darkBorderOpacityKey, 0.5);
+      // Default button shape && border width
 
       await EzConfig.setBool(darkLineLinksKey, true);
       await EzConfig.setBool(darkShowBackFABKey, false);
@@ -123,8 +122,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
 
       // Default padding
 
-      // Default button shape, border width, and surface opacity
-      await EzConfig.setDouble(lightBorderOpacityKey, 0.5);
+      // Default button shape && border width
 
       await EzConfig.setBool(lightLineLinksKey, true);
       await EzConfig.setBool(lightShowBackFABKey, false);

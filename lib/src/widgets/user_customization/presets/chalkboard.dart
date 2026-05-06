@@ -107,7 +107,6 @@ class EzChalkboardConfig extends StatelessWidget {
     await EzConfig.setBool(darkTransitionFadeKey, false);
 
     await EzConfig.setString(darkButtonShapeKey, EzButtonShape.rect.value);
-    await EzConfig.setDouble(darkBorderOpacityKey, 0.0);
 
     await EzConfig.setString(darkBackgroundImageKey, chalkboardGreen.toString());
 

@@ -95,9 +95,6 @@ class EzNebulaConfig extends StatelessWidget {
     await EzConfig.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
     await EzConfig.setDouble(darkBorderWidthKey, 1.0);
 
-    await EzConfig.setDouble(darkButtonOpacityKey, 0.333);
-    await EzConfig.setDouble(darkBorderOpacityKey, 0.5);
-
     await EzConfig.setString(darkBackgroundImageKey, nebulaPath);
     await EzConfig.setString('$darkBackgroundImageKey$boxFitSuffix', BoxFit.cover.name);
 

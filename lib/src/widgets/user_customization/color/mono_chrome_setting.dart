@@ -111,7 +111,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.white,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.white,
-                side: EzConfig.borderSide(darkOutline.withValues(alpha: EzConfig.borderOpacity)),
+                side: EzConfig.borderSide(color: darkOutline),
                 textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
@@ -120,7 +120,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.black,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.black,
-                side: EzConfig.borderSide(lightOutline.withValues(alpha: EzConfig.borderOpacity)),
+                side: EzConfig.borderSide(color: lightOutline),
                 textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.black),
               ),
         onPressed: () async {
