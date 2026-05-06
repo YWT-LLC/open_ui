@@ -77,26 +77,19 @@ class EzIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final double iSize = iconSize ?? EzConfig.iconSize;
 
-    late final Color buttonBackground =
-        EzConfig.colors.surface.withValues(alpha: EzConfig.buttonOpacity);
-    late final Color enabledOutline =
-        EzConfig.colors.primaryContainer.withValues(alpha: EzConfig.borderOpacity);
-    late final Color disabledOutline =
-        EzConfig.colors.outlineVariant.withValues(alpha: EzConfig.borderOpacity);
-
     late final ButtonStyle buttonStyle = style ??
         ((enabled && !fauxDisabled)
             ? IconButton.styleFrom(
-                backgroundColor: buttonBackground,
-                side: EzConfig.borderSide(enabledOutline),
+                backgroundColor: EzConfig.colors.surface,
+                side: EzConfig.borderSide(),
                 iconSize: iSize,
               )
             : IconButton.styleFrom(
-                backgroundColor: buttonBackground,
+                backgroundColor: EzConfig.colors.surface,
                 foregroundColor: EzConfig.colors.outline,
                 overlayColor: EzConfig.colors.outline,
                 shadowColor: Colors.transparent,
-                side: EzConfig.borderSide(disabledOutline),
+                side: EzConfig.borderSide(color: EzConfig.colors.outlineVariant),
                 iconSize: iSize,
               ));
 

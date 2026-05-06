@@ -448,7 +448,7 @@ Must be one of [int, bool, double, String, List<String>]''');
     final Color onTertiary = getTextColor(tertiary);
 
     if (isDark) {
-      // Update color settings //
+      // Update color settings // TODO: make it a lil weirder?
 
       await loadColorScheme(
         ColorScheme.fromSeed(
@@ -499,8 +499,6 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setString(darkButtonShapeKey,
           EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value);
       await setDouble(darkBorderWidthKey, random.nextDouble() * 3);
-      await setDouble(darkButtonOpacityKey, random.nextDouble());
-      await setDouble(darkBorderOpacityKey, random.nextDouble());
 
       await setBool(darkLineLinksKey, random.nextBool());
       await setBool(darkShowBackFABKey, random.nextBool());
@@ -641,8 +639,6 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setString(lightButtonShapeKey,
           EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value);
       await setDouble(lightBorderWidthKey, random.nextDouble() * 3);
-      await setDouble(lightButtonOpacityKey, random.nextDouble());
-      await setDouble(lightBorderOpacityKey, random.nextDouble());
 
       await setBool(lightLineLinksKey, random.nextBool());
       await setBool(lightShowBackFABKey, random.nextBool());
@@ -888,9 +884,6 @@ Must be one of [int, bool, double, String, List<String>]''');
   static EzButtonShape get buttonShape => _provPoint.design.buttonShape;
   static double get borderWidth => _provPoint.design.borderWidth;
 
-  static double get buttonOpacity => _provPoint.design.buttonOpacity;
-  static double get borderOpacity => _provPoint.design.borderOpacity;
-
   static bool get lineLinks => _provPoint.design.lineLinks;
   static bool get showBackFAB => _provPoint.design.showBackFAB;
 
@@ -908,8 +901,9 @@ Must be one of [int, bool, double, String, List<String>]''');
   static bool get showScroll => _provPoint.design.showScroll;
 
   // Helpers
-  static BorderSide borderSide(Color color) =>
-      borderWidth == 0 ? BorderSide.none : BorderSide(color: color, width: borderWidth);
+  static BorderSide borderSide({Color? color}) => borderWidth == 0
+      ? BorderSide.none
+      : BorderSide(color: color ?? colors.primaryContainer, width: borderWidth);
 
   static DecorationImage get backgroundImage => DecorationImage(
         image: ezImageProvider(backgroundImagePath),

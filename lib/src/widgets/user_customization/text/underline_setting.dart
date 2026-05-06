@@ -31,10 +31,8 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
   @override
   Widget build(BuildContext context) => EzIconButton(
         style: IconButton.styleFrom(
-          foregroundColor:
-              isUnderlined ? EzConfig.colors.primary : EzConfig.colors.outline,
-          side: EzConfig.borderSide(EzConfig.colors.primaryContainer
-              .withValues(alpha: EzConfig.borderOpacity)),
+          foregroundColor: isUnderlined ? EzConfig.colors.primary : EzConfig.colors.outline,
+          side: EzConfig.borderSide(),
           iconSize: EzConfig.iconSize,
         ),
         onPressed: () async {
