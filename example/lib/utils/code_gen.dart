@@ -763,8 +763,6 @@ class SettingsHubScreen extends StatelessWidget {
   /// Optionally override the starting position
   final int? targetPass;
 
-
-
   SettingsHubScreen({this.targetPass}) : super(key: ValueKey<int>(EzConfig.seed));
 
   @override
