@@ -88,6 +88,9 @@ class EzText extends StatelessWidget {
   /// [EzTextBackground.buttonShape] passthrough
   final bool buttonShape;
 
+  /// [EzTextBackground.baseColor] passthrough
+  final Color? baseColor;
+
   /// [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
 
@@ -103,6 +106,7 @@ class EzText extends StatelessWidget {
     this.padding,
     this.borderRadius,
     this.buttonShape = false,
+    this.baseColor,
     this.backgroundColor,
   });
 
@@ -118,6 +122,7 @@ class EzText extends StatelessWidget {
         padding: padding,
         borderRadius: borderRadius,
         buttonShape: buttonShape,
+        baseColor: baseColor,
         backgroundColor: backgroundColor,
       );
 }
