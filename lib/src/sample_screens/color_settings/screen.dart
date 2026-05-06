@@ -42,19 +42,15 @@ class EzColorSettings extends StatelessWidget {
   /// BYO leading spacer, trailing is [resetSpacer]
   final List<Widget>? quickFooter;
 
-  final String _userColorsKey;
+  /// Extra dark theme color keys
+  final List<String>? extraDark;
 
-  /// Initial set of [Brightness.dark] configKeys to display in the advanced settings
-  final List<String> darkStarterSet;
-
-  /// Initial set of [Brightness.light] configKeys to display in the advanced settings
-  final List<String> lightStarterSet;
-
-  final List<String> _defaultList;
+  /// Extra light theme color keys
+  final List<String>? extraLight;
 
   /// Empathetech color settings
   /// Recommended to use as a [Scaffold.body]
-  EzColorSettings({
+  const EzColorSettings({
     // Shared
     super.key,
     required this.target,
@@ -69,26 +65,9 @@ class EzColorSettings extends StatelessWidget {
     this.quickFooter,
 
     // Advanced
-    this.darkStarterSet = const <String>[
-      darkPrimaryKey,
-      darkSecondaryKey,
-      darkTertiaryKey,
-      darkSurfaceKey,
-      darkOnSurfaceKey,
-      darkSurfaceContainerKey,
-      darkSurfaceTintKey,
-    ],
-    this.lightStarterSet = const <String>[
-      lightPrimaryKey,
-      lightSecondaryKey,
-      lightTertiaryKey,
-      lightSurfaceKey,
-      lightOnSurfaceKey,
-      lightSurfaceContainerKey,
-      lightSurfaceTintKey,
-    ],
-  })  : _userColorsKey = EzConfig.isDark ? userDarkColorsKey : userLightColorsKey,
-        _defaultList = EzConfig.isDark ? darkStarterSet : lightStarterSet;
+    this.extraDark,
+    this.extraLight,
+  });
 
   @override
   Widget build(BuildContext context) => EzFauxCarousel(
@@ -106,12 +85,9 @@ class EzColorSettings extends StatelessWidget {
                 saveSkip: saveSkip,
               )
             : AdvancedColorSettings(
-                userColorsKey: _userColorsKey,
-                defaultList: _defaultList,
-                currList: EzConfig.get(_userColorsKey) ?? List<String>.from(_defaultList),
+                extraDark: extraDark,
+                extraLight: extraLight,
                 resetSpacer: resetSpacer,
-                resetExtraDark: resetExtraDark,
-                resetExtraLight: resetExtraLight,
                 resetSkip: resetSkip,
                 saveSkip: saveSkip,
               ),
