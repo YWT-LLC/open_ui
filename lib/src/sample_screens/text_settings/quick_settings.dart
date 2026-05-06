@@ -15,18 +15,6 @@ class QuickTextSettings extends StatefulWidget {
   final EzBodyStyleProvider bodyProvider;
   final EzLabelStyleProvider labelProvider;
 
-  // Settings config
-  final List<Widget>? moreQuickHeaderSettings;
-  final Widget textBlockHeader;
-  final Widget textBlockFooter;
-  final bool showOpacity;
-  final List<Widget>? moreQuickFooterSettings;
-  final Widget resetSpacer;
-  final Set<String>? extraDark;
-  final Set<String>? extraLight;
-  final Set<String>? resetSkip;
-  final Set<String>? saveSkip;
-
   const QuickTextSettings({
     super.key,
     required this.displayProvider,
@@ -34,16 +22,6 @@ class QuickTextSettings extends StatefulWidget {
     required this.titleProvider,
     required this.bodyProvider,
     required this.labelProvider,
-    required this.moreQuickHeaderSettings,
-    required this.textBlockHeader,
-    required this.textBlockFooter,
-    required this.showOpacity,
-    required this.moreQuickFooterSettings,
-    required this.resetSpacer,
-    required this.extraDark,
-    required this.extraLight,
-    required this.resetSkip,
-    required this.saveSkip,
   });
 
   @override
@@ -102,10 +80,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         ),
       ]),
 
-      // Optional additional settings
-      if (widget.moreQuickHeaderSettings != null) ...widget.moreQuickHeaderSettings!,
-
-      widget.textBlockHeader,
+      EzConfig.spacer,
       // Display preview
       EzTextBackground(
         Text(
@@ -164,68 +139,60 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         backgroundColor: backgroundColor,
         padding: colMargin,
       ),
-      widget.textBlockFooter,
+      EzConfig.divider,
 
       // Text background opacity
-      if (widget.showOpacity) ...<Widget>[
-        // Label
-        EzTextBackground(
-          Text(
-            EzConfig.l10n.tsTextBackground,
-            style: widget.labelProvider.value,
-            textAlign: TextAlign.center,
-          ),
-          backgroundColor: backgroundColor,
-          padding: colMargin,
+      EzTextBackground(
+        Text(
+          EzConfig.l10n.tsTextBackground,
+          style: widget.labelProvider.value,
+          textAlign: TextAlign.center,
         ),
+        backgroundColor: backgroundColor,
+        padding: colMargin,
+      ),
+      ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+        child: Slider(
+          // Slider values
+          value: backOpacity,
+          min: minOpacity,
+          max: maxOpacity,
+          divisions: 20,
+          label: backOpacity.toStringAsFixed(2),
 
-        // Slider
-        ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-          child: Slider(
-            // Slider values
-            value: backOpacity,
-            min: minOpacity,
-            max: maxOpacity,
-            divisions: 20,
-            label: backOpacity.toStringAsFixed(2),
+          // Slider functions
+          onChanged: (double value) {
+            setState(() {
+              backOpacity = value;
+              backgroundColor = EzConfig.colors.surface.withValues(alpha: backOpacity);
+            });
+          },
+          onChangeEnd: (double value) async {
+            if (EzConfig.updateBoth || EzConfig.isDark) {
+              await EzConfig.setDouble(darkTextBackgroundOpacityKey, value);
+            }
+            if (EzConfig.updateBoth || !EzConfig.isDark) {
+              await EzConfig.setDouble(lightTextBackgroundOpacityKey, value);
+            }
 
-            // Slider functions
-            onChanged: (double value) {
-              setState(() {
-                backOpacity = value;
-                backgroundColor = EzConfig.colors.surface.withValues(alpha: backOpacity);
-              });
-            },
-            onChangeEnd: (double value) async {
-              if (EzConfig.updateBoth || EzConfig.isDark) {
-                await EzConfig.setDouble(darkTextBackgroundOpacityKey, value);
-              }
-              if (EzConfig.updateBoth || !EzConfig.isDark) {
-                await EzConfig.setDouble(lightTextBackgroundOpacityKey, value);
-              }
+            if (context.mounted) {
+              EzConfig.pingRebuild(
+                  ezTextRebuildCheck(context) || (value != EzConfig.textBackgroundOpacity));
+            }
+          },
 
-              if (context.mounted) {
-                EzConfig.pingRebuild(
-                    ezTextRebuildCheck(context) || (value != EzConfig.textBackgroundOpacity));
-              }
-            },
-
-            // Slider semantics
-            semanticFormatterCallback: (double value) => value.toStringAsFixed(2),
-          ),
+          // Slider semantics
+          semanticFormatterCallback: (double value) => value.toStringAsFixed(2),
         ),
-        EzConfig.spacer,
-      ],
+      ),
+      EzConfig.spacer,
 
       // Icon size
       const EzIconSizeSetting(),
 
-      // Optional additional settings
-      if (widget.moreQuickFooterSettings != null) ...widget.moreQuickFooterSettings!,
-
       // Reset all
-      widget.resetSpacer,
+      EzConfig.separator,
       EzResetButton(
         all: false,
         dynamicTitle: () => EzConfig.l10n.tsReset(ezThemeString(true)),
@@ -233,23 +200,13 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           if (EzConfig.updateBoth || EzConfig.isDark) {
             await EzConfig.removeKeys(darkTextKeys.keys.toSet());
             await EzConfig.remove(darkOnSurfaceKey);
-
-            if (widget.extraDark != null) {
-              await EzConfig.removeKeys(widget.extraDark!);
-            }
           }
 
           if (EzConfig.updateBoth || !EzConfig.isDark) {
             await EzConfig.removeKeys(lightTextKeys.keys.toSet());
             await EzConfig.remove(lightOnSurfaceKey);
-
-            if (widget.extraLight != null) {
-              await EzConfig.removeKeys(widget.extraLight!);
-            }
           }
         },
-        resetSkip: widget.resetSkip,
-        saveSkip: widget.saveSkip,
       ),
     ]);
   }
