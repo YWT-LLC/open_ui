@@ -9,22 +9,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class PageDesign extends StatelessWidget {
+  /// Optional settings to add to the start of the sub-page
   final List<Widget>? prepend;
-  final bool? includePageTransitions;
+
+  /// Always false if [kIsWeb]
+  final bool includePageTransitions;
+
   final bool includeBackgroundImage;
   final String? darkBackgroundCredits;
   final String? lightBackgroundCredits;
+
+  /// Optional settings to add to the end o the sub-page
   final List<Widget>? append;
+
+  /// How much space between the settings and the local [EzResetButton]
   final Widget resetSpacer;
+
+  /// Optional extra keys to reset (when [EzConfig.isDark])
   final Set<String>? resetExtraDark;
+
+  /// Optional extra keys to reset (when ![EzConfig.isDark])
   final Set<String>? resetExtraLight;
+
+  /// Keys that shouldn't be reset by the local [EzResetButton]
   final Set<String>? resetSkip;
+
+  /// Keys that shouldn't be saved by (save option in) the local [EzResetButton]
   final Set<String>? saveSkip;
 
   const PageDesign({
     super.key,
     required this.prepend,
-    required this.includePageTransitions,
+    this.includePageTransitions = true,
     this.includeBackgroundImage = true,
     required this.darkBackgroundCredits,
     required this.lightBackgroundCredits,
@@ -82,7 +98,7 @@ class PageDesign extends StatelessWidget {
         EzConfig.separator,
 
         // Page transition
-        if ((includePageTransitions == null) ? !kIsWeb : includePageTransitions!) ...<Widget>[
+        if (includePageTransitions && !kIsWeb) ...<Widget>[
           const _PageTransitionSetting(),
           EzConfig.spacer,
         ],
