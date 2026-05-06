@@ -25,9 +25,8 @@ class EzDesignSettings extends StatelessWidget {
   /// Optionally re-label the button style button
   final String? styleLabel;
 
-  /// Whether to include the page transition setting
-  /// null (default) will become a [kIsWeb] check
-  final bool? includePageTransitions;
+  /// Always false if [kIsWeb]
+  final bool includePageTransitions;
 
   /// Whether to include the background image setting
   /// When true, pairs well with [EzScreen], specifically [EzScreen.useImageDecoration]
@@ -102,7 +101,7 @@ class EzDesignSettings extends StatelessWidget {
     // Page
     this.prependPage,
     this.appendPage,
-    this.includePageTransitions,
+    this.includePageTransitions = true,
     this.includeBackgroundImage = true,
     this.darkBackgroundCredits,
     this.lightBackgroundCredits,
