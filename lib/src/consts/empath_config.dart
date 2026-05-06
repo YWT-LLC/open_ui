@@ -415,8 +415,6 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   darkButtonShapeKey: EzButtonShape.pill.value,
   darkBorderWidthKey: defaultBorderWidth,
-  darkButtonOpacityKey: maxOpacity,
-  darkBorderOpacityKey: defaultBorderOpacity,
 
   // padding and spacing defined in mobile/desktop configs
 
@@ -437,8 +435,6 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   lightButtonShapeKey: EzButtonShape.pill.value,
   lightBorderWidthKey: defaultBorderWidth,
-  lightButtonOpacityKey: maxOpacity,
-  lightBorderOpacityKey: defaultBorderOpacity,
 
   lightLineLinksKey: false,
   // backFab defined in mobile/desktop configs
