@@ -71,9 +71,6 @@
   "gCaptionsHint": "Maintenez pour les polices",
   "gFullScreen": "Plein écran",
 
-  "gHowThisWorks": "Comment ça marche",
-  "gHowThisWorksHint": "Ouvre la documentation utile",
-
   "gMachineTranslated": "Traduction automatique",
 
   "gUpdates": "Mises à jour disponibles",
@@ -168,23 +165,37 @@
 
   "csPageTitle": "Paramètres de couleur",
 
-  "csPickerHint": "Ouvre un sélecteur de couleurs. Appuyer longuement pour plus d'options.",
+  "csSchemeBase": "Construire le schéma\nà partir de l'image",
+  "csFromImage": "Un schéma de couleurs sera généré à partir de l'image.",
 
   "csMonoChrome": "Utiliser un schéma monochrome",
   "csHighContrast": "Utiliser un schéma à contraste élevé",
 
+  "csPrimary": "Principal",
+  "csPrimaryContainer": "Conteneur principal",
+  "csSecondary": "Secondaire",
+  "csSecondaryContainer": "Conteneur secondaire",
+  "csTertiary": "Tertiaire",
+  "csTertiaryContainer": "Conteneur tertiaire",
+  "csError": "Erreur",
+  "csErrorContainer": "Conteneur d'erreur",
+  "csOutline": "Contour",
+  "csOutlineVariant": "Conteneur de contour",
+  "csSurface": "Arrière-plan du bouton",
+  "csSurfaceDim": "Arrière-plan de l'alerte && app bar",
+  "csSurfaceContainer": "Arrière-plan de la page && modale",
+  "csOnSurface": "Texte",
+  "csShadow": "Ombre",
+  "csSurfaceTint": "Teinte de surface",
+
   "csPickerTitle": "Choisissez une couleur",
+  "csPickerHint": "Ouvre un sélecteur de couleurs. Appuyer longuement pour plus d'options.",
   "csRecommended": "Utiliser la recommandation de contraste ?",
   "csUseCustom": "Utiliser personnalisé",
-
-  "csAddColor": "Ajouter une couleur",
   "csCurrVal": "Valeur de couleur actuelle :",
-
-  "csSchemeBase": "Construire le schéma\nà partir de l'image",
-  "csFromImage": "Un schéma de couleurs sera généré à partir de l'image.",
-  "csColorScheme": "schéma de couleurs",
-
+  
   "csReset": "Réinitialiser les couleurs du {themeType} ?",
+  "csColorScheme": "schéma de couleurs",
 
 
 

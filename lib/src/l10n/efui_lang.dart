@@ -453,18 +453,6 @@ abstract class EFUILang {
   /// **'Fullscreen'**
   String get gFullScreen;
 
-  /// No description provided for @gHowThisWorks.
-  ///
-  /// In en, this message translates to:
-  /// **'How this works'**
-  String get gHowThisWorks;
-
-  /// No description provided for @gHowThisWorksHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Open helpful documentation'**
-  String get gHowThisWorksHint;
-
   /// No description provided for @gMachineTranslated.
   ///
   /// In en, this message translates to:
@@ -891,11 +879,17 @@ abstract class EFUILang {
   /// **'Color settings'**
   String get csPageTitle;
 
-  /// No description provided for @csPickerHint.
+  /// No description provided for @csSchemeBase.
   ///
   /// In en, this message translates to:
-  /// **'Open a color picker. Long press for more options.'**
-  String get csPickerHint;
+  /// **'Build scheme\nfrom image'**
+  String get csSchemeBase;
+
+  /// No description provided for @csFromImage.
+  ///
+  /// In en, this message translates to:
+  /// **'A color scheme will be generated from the image.'**
+  String get csFromImage;
 
   /// No description provided for @csMonoChrome.
   ///
@@ -909,11 +903,113 @@ abstract class EFUILang {
   /// **'Use high contrast scheme'**
   String get csHighContrast;
 
+  /// No description provided for @csPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary'**
+  String get csPrimary;
+
+  /// No description provided for @csPrimaryContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary container'**
+  String get csPrimaryContainer;
+
+  /// No description provided for @csSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'Secondary'**
+  String get csSecondary;
+
+  /// No description provided for @csSecondaryContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Secondary container'**
+  String get csSecondaryContainer;
+
+  /// No description provided for @csTertiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Tertiary'**
+  String get csTertiary;
+
+  /// No description provided for @csTertiaryContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tertiary container'**
+  String get csTertiaryContainer;
+
+  /// No description provided for @csError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get csError;
+
+  /// No description provided for @csErrorContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Error container'**
+  String get csErrorContainer;
+
+  /// No description provided for @csOutline.
+  ///
+  /// In en, this message translates to:
+  /// **'Outline'**
+  String get csOutline;
+
+  /// No description provided for @csOutlineVariant.
+  ///
+  /// In en, this message translates to:
+  /// **'Outline container'**
+  String get csOutlineVariant;
+
+  /// No description provided for @csSurface.
+  ///
+  /// In en, this message translates to:
+  /// **'Button background'**
+  String get csSurface;
+
+  /// No description provided for @csSurfaceDim.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert && app bar background'**
+  String get csSurfaceDim;
+
+  /// No description provided for @csSurfaceContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Page && modal background'**
+  String get csSurfaceContainer;
+
+  /// No description provided for @csOnSurface.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get csOnSurface;
+
+  /// No description provided for @csShadow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadow'**
+  String get csShadow;
+
+  /// No description provided for @csSurfaceTint.
+  ///
+  /// In en, this message translates to:
+  /// **'Surface tint'**
+  String get csSurfaceTint;
+
   /// No description provided for @csPickerTitle.
   ///
   /// In en, this message translates to:
   /// **'Pick a color'**
   String get csPickerTitle;
+
+  /// No description provided for @csPickerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a color picker. Long press for more options.'**
+  String get csPickerHint;
 
   /// No description provided for @csRecommended.
   ///
@@ -927,41 +1023,23 @@ abstract class EFUILang {
   /// **'Use custom'**
   String get csUseCustom;
 
-  /// No description provided for @csAddColor.
-  ///
-  /// In en, this message translates to:
-  /// **'Add a color'**
-  String get csAddColor;
-
   /// No description provided for @csCurrVal.
   ///
   /// In en, this message translates to:
   /// **'Current color value:'**
   String get csCurrVal;
 
-  /// No description provided for @csSchemeBase.
+  /// No description provided for @csReset.
   ///
   /// In en, this message translates to:
-  /// **'Build scheme\nfrom image'**
-  String get csSchemeBase;
-
-  /// No description provided for @csFromImage.
-  ///
-  /// In en, this message translates to:
-  /// **'A color scheme will be generated from the image.'**
-  String get csFromImage;
+  /// **'Reset {themeType} colors?'**
+  String csReset(Object themeType);
 
   /// No description provided for @csColorScheme.
   ///
   /// In en, this message translates to:
   /// **'color scheme'**
   String get csColorScheme;
-
-  /// No description provided for @csReset.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset {themeType} colors?'**
-  String csReset(Object themeType);
 
   /// No description provided for @dsPageTitle.
   ///

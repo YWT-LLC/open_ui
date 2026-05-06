@@ -187,12 +187,6 @@ class EFUILangEn extends EFUILang {
   String get gFullScreen => 'Fullscreen';
 
   @override
-  String get gHowThisWorks => 'How this works';
-
-  @override
-  String get gHowThisWorksHint => 'Open helpful documentation';
-
-  @override
   String get gMachineTranslated => 'Machine translated';
 
   @override
@@ -429,8 +423,10 @@ class EFUILangEn extends EFUILang {
   String get csPageTitle => 'Color settings';
 
   @override
-  String get csPickerHint =>
-      'Open a color picker. Long press for more options.';
+  String get csSchemeBase => 'Build scheme\nfrom image';
+
+  @override
+  String get csFromImage => 'A color scheme will be generated from the image.';
 
   @override
   String get csMonoChrome => 'Use monochrome scheme';
@@ -439,7 +435,59 @@ class EFUILangEn extends EFUILang {
   String get csHighContrast => 'Use high contrast scheme';
 
   @override
+  String get csPrimary => 'Primary';
+
+  @override
+  String get csPrimaryContainer => 'Primary container';
+
+  @override
+  String get csSecondary => 'Secondary';
+
+  @override
+  String get csSecondaryContainer => 'Secondary container';
+
+  @override
+  String get csTertiary => 'Tertiary';
+
+  @override
+  String get csTertiaryContainer => 'Tertiary container';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Error container';
+
+  @override
+  String get csOutline => 'Outline';
+
+  @override
+  String get csOutlineVariant => 'Outline container';
+
+  @override
+  String get csSurface => 'Button background';
+
+  @override
+  String get csSurfaceDim => 'Alert && app bar background';
+
+  @override
+  String get csSurfaceContainer => 'Page && modal background';
+
+  @override
+  String get csOnSurface => 'Text';
+
+  @override
+  String get csShadow => 'Shadow';
+
+  @override
+  String get csSurfaceTint => 'Surface tint';
+
+  @override
   String get csPickerTitle => 'Pick a color';
+
+  @override
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
 
   @override
   String get csRecommended => 'Use contrast recommendation?';
@@ -448,24 +496,15 @@ class EFUILangEn extends EFUILang {
   String get csUseCustom => 'Use custom';
 
   @override
-  String get csAddColor => 'Add a color';
-
-  @override
   String get csCurrVal => 'Current color value:';
-
-  @override
-  String get csSchemeBase => 'Build scheme\nfrom image';
-
-  @override
-  String get csFromImage => 'A color scheme will be generated from the image.';
-
-  @override
-  String get csColorScheme => 'color scheme';
 
   @override
   String csReset(Object themeType) {
     return 'Reset $themeType colors?';
   }
+
+  @override
+  String get csColorScheme => 'color scheme';
 
   @override
   String get dsPageTitle => 'Design settings';
@@ -952,12 +991,6 @@ class EFUILangEnUs extends EFUILangEn {
   String get gFullScreen => 'Fullscreen';
 
   @override
-  String get gHowThisWorks => 'How this works';
-
-  @override
-  String get gHowThisWorksHint => 'Open helpful documentation';
-
-  @override
   String get gMachineTranslated => 'Machine translated';
 
   @override
@@ -1194,8 +1227,10 @@ class EFUILangEnUs extends EFUILangEn {
   String get csPageTitle => 'Color settings';
 
   @override
-  String get csPickerHint =>
-      'Open a color picker. Long press for more options.';
+  String get csSchemeBase => 'Build scheme\nfrom image';
+
+  @override
+  String get csFromImage => 'A color scheme will be generated from the image.';
 
   @override
   String get csMonoChrome => 'Use monochrome scheme';
@@ -1204,7 +1239,59 @@ class EFUILangEnUs extends EFUILangEn {
   String get csHighContrast => 'Use high contrast scheme';
 
   @override
+  String get csPrimary => 'Primary';
+
+  @override
+  String get csPrimaryContainer => 'Primary container';
+
+  @override
+  String get csSecondary => 'Secondary';
+
+  @override
+  String get csSecondaryContainer => 'Secondary container';
+
+  @override
+  String get csTertiary => 'Tertiary';
+
+  @override
+  String get csTertiaryContainer => 'Tertiary container';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Error container';
+
+  @override
+  String get csOutline => 'Outline';
+
+  @override
+  String get csOutlineVariant => 'Outline container';
+
+  @override
+  String get csSurface => 'Button background';
+
+  @override
+  String get csSurfaceDim => 'Alert && app bar background';
+
+  @override
+  String get csSurfaceContainer => 'Page && modal background';
+
+  @override
+  String get csOnSurface => 'Text';
+
+  @override
+  String get csShadow => 'Shadow';
+
+  @override
+  String get csSurfaceTint => 'Surface tint';
+
+  @override
   String get csPickerTitle => 'Pick a color';
+
+  @override
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
 
   @override
   String get csRecommended => 'Use contrast recommendation?';
@@ -1213,24 +1300,15 @@ class EFUILangEnUs extends EFUILangEn {
   String get csUseCustom => 'Use custom';
 
   @override
-  String get csAddColor => 'Add a color';
-
-  @override
   String get csCurrVal => 'Current color value:';
-
-  @override
-  String get csSchemeBase => 'Build scheme\nfrom image';
-
-  @override
-  String get csFromImage => 'A color scheme will be generated from the image.';
-
-  @override
-  String get csColorScheme => 'color scheme';
 
   @override
   String csReset(Object themeType) {
     return 'Reset $themeType colors?';
   }
+
+  @override
+  String get csColorScheme => 'color scheme';
 
   @override
   String get dsPageTitle => 'Design settings';

@@ -187,12 +187,6 @@ class EFUILangEs extends EFUILang {
   String get gFullScreen => 'Pantalla completa';
 
   @override
-  String get gHowThisWorks => 'Cómo funciona';
-
-  @override
-  String get gHowThisWorksHint => 'Abrir documentación útil';
-
-  @override
   String get gMachineTranslated => 'Traducción automática';
 
   @override
@@ -432,8 +426,11 @@ class EFUILangEs extends EFUILang {
   String get csPageTitle => 'Configuración de color';
 
   @override
-  String get csPickerHint =>
-      'Abre un selector de color. Mantén pulsado para ver más opciones.';
+  String get csSchemeBase => 'Crear tema\nusando imagen';
+
+  @override
+  String get csFromImage =>
+      'Se generará un esquema de color a partir de la imagen.';
 
   @override
   String get csMonoChrome => 'Usar esquema monocromático';
@@ -442,7 +439,59 @@ class EFUILangEs extends EFUILang {
   String get csHighContrast => 'Usar esquema de alto contraste';
 
   @override
+  String get csPrimary => 'Principal';
+
+  @override
+  String get csPrimaryContainer => 'Contenedor principal';
+
+  @override
+  String get csSecondary => 'Secundario';
+
+  @override
+  String get csSecondaryContainer => 'Contenedor secundario';
+
+  @override
+  String get csTertiary => 'Terciario';
+
+  @override
+  String get csTertiaryContainer => 'Contenedor terciario';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Contenedor de error';
+
+  @override
+  String get csOutline => 'Contorno';
+
+  @override
+  String get csOutlineVariant => 'Contenedor de contorno';
+
+  @override
+  String get csSurface => 'Fondo de botón';
+
+  @override
+  String get csSurfaceDim => 'Fondo de alerta && app bar';
+
+  @override
+  String get csSurfaceContainer => 'Fondo de página && modal';
+
+  @override
+  String get csOnSurface => 'Texto';
+
+  @override
+  String get csShadow => 'Sombra';
+
+  @override
+  String get csSurfaceTint => 'Tinte de superficie';
+
+  @override
   String get csPickerTitle => 'Selecciona un color';
+
+  @override
+  String get csPickerHint =>
+      'Abre un selector de color. Mantén pulsado para ver más opciones.';
 
   @override
   String get csRecommended => '¿Usar contraste recomendado?';
@@ -451,25 +500,15 @@ class EFUILangEs extends EFUILang {
   String get csUseCustom => 'Usar personalizado';
 
   @override
-  String get csAddColor => 'Añadir un color';
-
-  @override
   String get csCurrVal => 'Valor de color actual:';
-
-  @override
-  String get csSchemeBase => 'Crear tema\nusando imagen';
-
-  @override
-  String get csFromImage =>
-      'Se generará un esquema de color a partir de la imagen.';
-
-  @override
-  String get csColorScheme => 'esquema de color';
 
   @override
   String csReset(Object themeType) {
     return 'Restablecer los colores de $themeType?';
   }
+
+  @override
+  String get csColorScheme => 'esquema de color';
 
   @override
   String get dsPageTitle => 'Configuración de diseño';

@@ -71,9 +71,6 @@
   "gCaptionsHint": "Hold for fonts",
   "gFullScreen": "Fullscreen",
 
-  "gHowThisWorks": "How this works",
-  "gHowThisWorksHint": "Open helpful documentation",
-
   "gMachineTranslated": "Machine translated",
 
   "gUpdates": "Updates available",
@@ -168,23 +165,37 @@
 
   "csPageTitle": "Color settings",
 
-  "csPickerHint": "Open a color picker. Long press for more options.",
+  "csSchemeBase": "Build scheme\nfrom image",
+  "csFromImage": "A color scheme will be generated from the image.",
 
   "csMonoChrome": "Use monochrome scheme",
   "csHighContrast": "Use high contrast scheme",
 
+  "csPrimary": "Primary",
+  "csPrimaryContainer": "Primary container",
+  "csSecondary": "Secondary",
+  "csSecondaryContainer": "Secondary container",
+  "csTertiary": "Tertiary",
+  "csTertiaryContainer": "Tertiary container",
+  "csError": "Error",
+  "csErrorContainer": "Error container",
+  "csOutline": "Outline",
+  "csOutlineVariant": "Outline container",
+  "csSurface": "Button background",
+  "csSurfaceDim": "Alert && app bar background",
+  "csSurfaceContainer": "Page && modal background",
+  "csOnSurface": "Text",
+  "csShadow": "Shadow",
+  "csSurfaceTint": "Surface tint",
+
   "csPickerTitle": "Pick a color",
+  "csPickerHint": "Open a color picker. Long press for more options.",
   "csRecommended": "Use contrast recommendation?",
   "csUseCustom": "Use custom",
-
-  "csAddColor": "Add a color",
   "csCurrVal": "Current color value:",
 
-  "csSchemeBase": "Build scheme\nfrom image",
-  "csFromImage": "A color scheme will be generated from the image.",
-  "csColorScheme": "color scheme",
-
   "csReset": "Reset {themeType} colors?",
+  "csColorScheme": "color scheme",
 
 
 

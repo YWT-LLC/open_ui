@@ -71,9 +71,6 @@
   "gCaptionsHint": "Mantén pulsado para fuentes",
   "gFullScreen": "Pantalla completa",
 
-  "gHowThisWorks": "Cómo funciona",
-  "gHowThisWorksHint": "Abrir documentación útil",
-
   "gMachineTranslated": "Traducción automática",
 
   "gUpdates": "Actualizaciones disponibles",
@@ -168,23 +165,37 @@
 
   "csPageTitle": "Configuración de color",
 
-  "csPickerHint": "Abre un selector de color. Mantén pulsado para ver más opciones.",
+  "csSchemeBase": "Crear tema\nusando imagen",
+  "csFromImage": "Se generará un esquema de color a partir de la imagen.",
 
   "csMonoChrome": "Usar esquema monocromático",
   "csHighContrast": "Usar esquema de alto contraste",
 
+  "csPrimary": "Principal",
+  "csPrimaryContainer": "Contenedor principal",
+  "csSecondary": "Secundario",
+  "csSecondaryContainer": "Contenedor secundario",
+  "csTertiary": "Terciario",
+  "csTertiaryContainer": "Contenedor terciario",
+  "csError": "Error",
+  "csErrorContainer": "Contenedor de error",
+  "csOutline": "Contorno",
+  "csOutlineVariant": "Contenedor de contorno",
+  "csSurface": "Fondo de botón",
+  "csSurfaceDim": "Fondo de alerta && app bar",
+  "csSurfaceContainer": "Fondo de página && modal",
+  "csOnSurface": "Texto",
+  "csShadow": "Sombra",
+  "csSurfaceTint": "Tinte de superficie",
+
   "csPickerTitle": "Selecciona un color",
+  "csPickerHint": "Abre un selector de color. Mantén pulsado para ver más opciones.",
   "csRecommended": "¿Usar contraste recomendado?",
   "csUseCustom": "Usar personalizado",
-
-  "csAddColor": "Añadir un color",
   "csCurrVal": "Valor de color actual:",
-
-  "csSchemeBase": "Crear tema\nusando imagen",
-  "csFromImage": "Se generará un esquema de color a partir de la imagen.",
-  "csColorScheme": "esquema de color",
-
+  
   "csReset": "Restablecer los colores de {themeType}?",
+  "csColorScheme": "esquema de color",
 
 
 
