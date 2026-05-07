@@ -33,15 +33,9 @@ class EzTextSettings extends StatelessWidget {
   /// Shared for both themes
   final Set<String>? saveSkip;
 
-  /// Optional additional quick settings
-  /// Will appear just above the text block
-  /// BYO leading spacer, trailing will be [textBlockHeader]
-  final List<Widget>? moreQuickHeaderSettings;
-
   /// Empathetech text settings
   /// Recommended to use as a [Scaffold.body]
   const EzTextSettings({
-    // Shared
     super.key,
     required this.target,
     this.resetSpacer = const EzSeparator(),
@@ -49,9 +43,6 @@ class EzTextSettings extends StatelessWidget {
     this.resetExtraLight,
     this.resetSkip,
     this.saveSkip,
-
-    // Quick
-    this.moreQuickHeaderSettings,
   });
 
   // Set the page title //
