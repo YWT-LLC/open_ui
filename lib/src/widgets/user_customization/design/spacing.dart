@@ -8,34 +8,13 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzSpacingSetting extends StatelessWidget {
-  /// Smallest value that can be set
-  final double min;
-
-  /// Largest value that can be set
-  final double max;
-
-  /// Number of divisions between [min] and [max]
-  final int steps;
-
-  /// Number of significant figures to display after the decimal point
-  final int decimals;
-
-  /// Defaults to [TextTheme.titleLarge]
-  final TextStyle? titleStyle;
-
-  /// Defaults to [TextTheme.bodyLarge]
-  final TextStyle? bodyStyle;
+  final int _steps;
+  final int _decimals;
 
   /// An easy to use spacing setting
-  const EzSpacingSetting({
-    super.key,
-    required this.min,
-    required this.max,
-    required this.steps,
-    required this.decimals,
-    this.titleStyle,
-    this.bodyStyle,
-  });
+  const EzSpacingSetting({super.key})
+      : _steps = 26,
+        _decimals = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +41,7 @@ class EzSpacingSetting extends StatelessWidget {
                 readOnly: true,
                 label: EzConfig.l10n.gSetToValue(
                   EzConfig.l10n.dsSpacing,
-                  currValue.toStringAsFixed(decimals),
+                  currValue.toStringAsFixed(_decimals),
                 ),
                 child: ExcludeSemantics(
                   child: EzCol(
@@ -71,7 +50,7 @@ class EzSpacingSetting extends StatelessWidget {
                       // Title
                       Text(
                         EzConfig.l10n.dsSpacing,
-                        style: titleStyle ?? EzConfig.styles.titleLarge,
+                        style: EzConfig.styles.titleLarge,
                         textAlign: TextAlign.center,
                       ),
                       EzSpacer(space: currValue),
@@ -100,7 +79,7 @@ class EzSpacingSetting extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               shape: const CircleBorder(),
                             ),
-                            text: currValue.toStringAsFixed(decimals),
+                            text: currValue.toStringAsFixed(_decimals),
                           ),
                         ],
                       ),
@@ -116,9 +95,9 @@ class EzSpacingSetting extends StatelessWidget {
                 child: Slider(
                   // Slider values
                   value: currValue,
-                  min: min,
-                  max: max,
-                  divisions: steps,
+                  min: minSpacing,
+                  max: maxSpacing,
+                  divisions: _steps,
 
                   // Slider functions
                   onChanged: (double value) => setModal(() => currValue = value),
@@ -134,7 +113,7 @@ class EzSpacingSetting extends StatelessWidget {
                   },
 
                   // Slider semantics
-                  semanticFormatterCallback: (double value) => value.toStringAsFixed(decimals),
+                  semanticFormatterCallback: (double value) => value.toStringAsFixed(_decimals),
                 ),
               ),
               EzConfig.spacer,
@@ -149,7 +128,7 @@ class EzSpacingSetting extends StatelessWidget {
                   setModal(() => currValue = defaultValue);
                 },
                 icon: const Icon(Icons.refresh),
-                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(decimals)}',
+                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
               ),
               EzConfig.separator,
             ]),

@@ -119,17 +119,18 @@ class DeleteOption extends StatelessWidget {
 }
 
 class LinkOption extends StatelessWidget {
-  /// [TextStyle] for 'would you like to...'
-  final TextStyle? style;
-
   /// Iterable [Widget] containing a [EzElevatedIconButton] for wiping the partial build
-  const LinkOption(this.style, {super.key});
+  const LinkOption({super.key});
 
   @override
   Widget build(BuildContext context) => EzCol(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          EzText(l10n.rsWouldYou, style: style, textAlign: TextAlign.center),
+          EzText(
+            l10n.rsWouldYou,
+            style: ezSubTitleStyle(),
+            textAlign: TextAlign.center,
+          ),
           EzConfig.spacer,
           EzElevatedIconLink(
             url: Uri.parse(installFlutter),

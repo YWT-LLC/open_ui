@@ -12,9 +12,6 @@ class PageDesign extends StatelessWidget {
   /// Optional settings to add to the start of the sub-page
   final List<Widget>? prepend;
 
-  /// Always false if [kIsWeb]
-  final bool includePageTransitions;
-
   final bool includeBackgroundImage;
   final String? darkBackgroundCredits;
   final String? lightBackgroundCredits;
@@ -40,7 +37,6 @@ class PageDesign extends StatelessWidget {
   const PageDesign({
     super.key,
     required this.prepend,
-    this.includePageTransitions = true,
     this.includeBackgroundImage = true,
     required this.darkBackgroundCredits,
     required this.lightBackgroundCredits,
@@ -60,21 +56,11 @@ class PageDesign extends StatelessWidget {
         if (prepend != null) ...prepend!,
 
         // Margin
-        const EzMarginSetting(
-          min: minMargin,
-          max: maxMargin,
-          steps: 20,
-          decimals: 1,
-        ),
+        const EzMarginSetting(),
         EzConfig.spacer,
 
         // Spacing
-        const EzSpacingSetting(
-          min: minSpacing,
-          max: maxSpacing,
-          steps: 26,
-          decimals: 1,
-        ),
+        const EzSpacingSetting(),
 
         // Background image
         if (includeBackgroundImage) ...<Widget>[
@@ -98,7 +84,7 @@ class PageDesign extends StatelessWidget {
         EzConfig.separator,
 
         // Page transition
-        if (includePageTransitions && !kIsWeb) ...<Widget>[
+        if (!kIsWeb) ...<Widget>[
           const _PageTransitionSetting(),
           EzConfig.spacer,
         ],

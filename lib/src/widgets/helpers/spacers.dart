@@ -131,14 +131,8 @@ class EzDivider extends StatelessWidget {
   /// [Divider.thickness] passthrough
   final double? thickness;
 
-  /// [Divider.indent] passthrough
-  final double? indent;
-
   /// [Divider.color] passthrough
   final Color? color;
-
-  /// [Divider.endIndent] passthrough
-  final double? endIndent;
 
   /// [Divider.radius] passthrough
   final BorderRadius? radius;
@@ -154,9 +148,7 @@ class EzDivider extends StatelessWidget {
     this.title,
     this.height,
     this.thickness,
-    this.indent,
     this.color,
-    this.endIndent,
     this.radius,
   });
 
@@ -168,8 +160,6 @@ class EzDivider extends StatelessWidget {
         child: Divider(
           height: height,
           thickness: thickness,
-          indent: indent,
-          endIndent: endIndent,
           color: color,
           radius: radius,
         ),
@@ -185,8 +175,6 @@ class EzDivider extends StatelessWidget {
         Divider(
           height: EzConfig.marginVal,
           thickness: thickness,
-          indent: indent,
-          endIndent: endIndent,
           color: color,
           radius: radius,
         ),

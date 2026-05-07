@@ -29,11 +29,10 @@ class SettingsButton extends StatelessWidget {
 }
 
 class UploadButton extends StatelessWidget {
-  final BuildContext parentContext;
   final Future<void> Function(EAGConfig) onUpload;
 
   /// [EzMenuButton] for uploading a config
-  const UploadButton(this.parentContext, {super.key, required this.onUpload});
+  const UploadButton(this.onUpload, {super.key});
 
   @override
   Widget build(BuildContext context) => EzMenuButton(

@@ -325,7 +325,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
               ],
               if (showDelete == null) ...<Widget>[
                 EzConfig.spacer,
-                LinkOption(ezSubTitleStyle()),
+                const LinkOption(),
               ],
             ],
           ),

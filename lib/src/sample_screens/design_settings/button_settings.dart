@@ -36,12 +36,7 @@ class ButtonDesign extends StatelessWidget {
         if (prepend != null) ...prepend!,
 
         // Padding
-        const EzPaddingSetting(
-          min: minPadding,
-          max: maxPadding,
-          steps: 20,
-          decimals: 0,
-        ),
+        const EzPaddingSetting(),
         EzConfig.spacer,
 
         // Button style

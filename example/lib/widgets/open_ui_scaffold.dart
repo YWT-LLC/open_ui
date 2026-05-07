@@ -57,7 +57,7 @@ class OpenUIScaffold extends StatelessWidget {
       ),
       menuChildren: <Widget>[
         if (showSettings) SettingsButton(context),
-        if (onUpload != null) UploadButton(context, onUpload: onUpload!),
+        if (onUpload != null) UploadButton(onUpload!),
         const OpenSourceButton(),
       ],
     );

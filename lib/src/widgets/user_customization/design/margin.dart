@@ -8,26 +8,13 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzMarginSetting extends StatelessWidget {
-  /// Smallest value that can be set
-  final double min;
-
-  /// Largest value that can be set
-  final double max;
-
-  /// Number of divisions between [min] and [max]
-  final int steps;
-
-  /// Number of significant figures to display after the decimal point
-  final int decimals;
+  final int _steps;
+  final int _decimals;
 
   /// An ez to use margin setting
-  const EzMarginSetting({
-    super.key,
-    required this.min,
-    required this.max,
-    required this.steps,
-    required this.decimals,
-  });
+  const EzMarginSetting({super.key})
+      : _steps = 20,
+        _decimals = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +41,7 @@ class EzMarginSetting extends StatelessWidget {
                 readOnly: true,
                 label: EzConfig.l10n.gSetToValue(
                   EzConfig.l10n.dsMargin,
-                  currValue.toStringAsFixed(decimals),
+                  currValue.toStringAsFixed(_decimals),
                 ),
                 child: ExcludeSemantics(
                   child: EzCol(
@@ -71,7 +58,7 @@ class EzMarginSetting extends StatelessWidget {
                       EzConfig.spacer,
                       EzTextBackground(
                         Text(
-                          currValue.toStringAsFixed(decimals),
+                          currValue.toStringAsFixed(_decimals),
                           style: EzConfig.styles.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
@@ -103,9 +90,9 @@ class EzMarginSetting extends StatelessWidget {
                 child: Slider(
                   // Slider values
                   value: currValue,
-                  min: min,
-                  max: max,
-                  divisions: steps,
+                  min: minMargin,
+                  max: maxMargin,
+                  divisions: _steps,
 
                   // Slider functions
                   onChanged: (double value) => setModal(() => currValue = value),
@@ -118,7 +105,7 @@ class EzMarginSetting extends StatelessWidget {
                   },
 
                   // Slider semantics
-                  semanticFormatterCallback: (double value) => value.toStringAsFixed(decimals),
+                  semanticFormatterCallback: (double value) => value.toStringAsFixed(_decimals),
                 ),
               ),
               EzConfig.spacer,
@@ -133,7 +120,7 @@ class EzMarginSetting extends StatelessWidget {
                   setModal(() => currValue = defaultValue);
                 },
                 icon: const Icon(Icons.refresh),
-                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(decimals)}',
+                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
               ),
               EzConfig.separator,
             ]),

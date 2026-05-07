@@ -8,18 +8,8 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzDominantHandSwitch extends StatelessWidget {
-  /// Defaults to [TextTheme.bodyLarge]
-  final TextStyle? labelStyle;
-
-  /// Defaults to [ColorScheme.surface]
-  final Color? backgroundColor;
-
   /// Standardized tool for updating [EzConfig]s [isLeftyKey]
-  const EzDominantHandSwitch({
-    super.key,
-    this.labelStyle,
-    this.backgroundColor,
-  });
+  const EzDominantHandSwitch({super.key});
 
   // Return the build //
 
@@ -31,7 +21,6 @@ class EzDominantHandSwitch extends StatelessWidget {
           // Label
           EzText(
             EzConfig.l10n.ssDominantHand,
-            style: labelStyle,
             textAlign: TextAlign.center,
           ),
           EzConfig.margin,

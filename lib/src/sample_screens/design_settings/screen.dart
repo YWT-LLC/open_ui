@@ -8,7 +8,6 @@ import 'page_settings.dart';
 import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
 class EzDesignSettings extends StatelessWidget {
   /// Current sub-page
@@ -24,9 +23,6 @@ class EzDesignSettings extends StatelessWidget {
 
   /// Optionally re-label the button style button
   final String? styleLabel;
-
-  /// Always false if [kIsWeb]
-  final bool includePageTransitions;
 
   /// Whether to include the background image setting
   /// When true, pairs well with [EzScreen], specifically [EzScreen.useImageDecoration]
@@ -101,7 +97,6 @@ class EzDesignSettings extends StatelessWidget {
     // Page
     this.prependPage,
     this.appendPage,
-    this.includePageTransitions = true,
     this.includeBackgroundImage = true,
     this.darkBackgroundCredits,
     this.lightBackgroundCredits,
@@ -130,7 +125,6 @@ class EzDesignSettings extends StatelessWidget {
               )
             : PageDesign(
                 prepend: prependPage,
-                includePageTransitions: includePageTransitions,
                 includeBackgroundImage: includeBackgroundImage,
                 darkBackgroundCredits: darkBackgroundCredits,
                 lightBackgroundCredits: lightBackgroundCredits,
