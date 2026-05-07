@@ -448,8 +448,7 @@ Must be one of [int, bool, double, String, List<String>]''');
     final Color onTertiary = getTextColor(tertiary);
 
     if (isDark) {
-      // Update color settings // TODO: make it a lil weirder?
-
+      // Update color settings //
       await loadColorScheme(
         ColorScheme.fromSeed(
           brightness: Brightness.dark,
