@@ -37,12 +37,6 @@ class EzSwitchPair extends StatefulWidget {
   /// When true, the [text] will be a clickable link (toggles the switch)
   final bool clickable;
 
-  /// [EzText.useSurface] passthrough
-  /// true: [ColorScheme.surface]
-  /// false: [ColorScheme.surfaceContainer]
-  /// null: [ColorScheme.surfaceDim]
-  final bool? useSurface;
-
   /// [EzText.style] passthrough
   final TextStyle? style;
 
@@ -51,6 +45,9 @@ class EzSwitchPair extends StatefulWidget {
 
   /// [EzText.semanticsLabel] passthrough
   final String? semanticsLabel;
+
+  /// [EzText.baseColor] passthrough
+  final Color? baseColor;
 
   /// [EzText.backgroundColor] passthrough
   final Color? backgroundColor;
@@ -109,10 +106,10 @@ class EzSwitchPair extends StatefulWidget {
     // Text
     required this.text,
     this.clickable = false,
-    this.useSurface = false,
     this.style,
     this.textAlign,
     this.semanticsLabel,
+    this.baseColor,
     this.backgroundColor,
 
     // Switch
@@ -202,7 +199,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                   )
                 : EzText(
                     widget.text,
-                    useSurface: widget.useSurface,
+                    baseColor: widget.baseColor,
                     backgroundColor: widget.backgroundColor,
                     style: widget.style,
                     textAlign: widget.textAlign,
