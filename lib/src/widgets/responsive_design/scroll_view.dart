@@ -49,15 +49,6 @@ class EzScrollView extends StatefulWidget {
   /// [EzRow.crossAxisAlignment]/[Column.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// [EzRow.textDirection]/[Column.textDirection] passthrough
-  final TextDirection? textDirection;
-
-  /// [EzRow.textBaseline]/[Column.textBaseline] passthrough
-  final TextBaseline? textBaseline;
-
-  /// [EzRow.verticalDirection]/[Column.verticalDirection] passthrough
-  final VerticalDirection verticalDirection;
-
   /// Optionally jump to the center of the scroll upon creation
   final bool startCentered;
 
@@ -90,9 +81,6 @@ class EzScrollView extends StatefulWidget {
     this.mainAxisSize = MainAxisSize.min,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.textDirection,
-    this.textBaseline,
-    this.verticalDirection = VerticalDirection.down,
     this.startCentered = false,
     this.children,
   }) : assert(
@@ -183,18 +171,12 @@ class _EzScrollViewState extends State<EzScrollView> {
                   mainAxisSize: widget.mainAxisSize,
                   mainAxisAlignment: widget.mainAxisAlignment,
                   crossAxisAlignment: widget.crossAxisAlignment,
-                  textDirection: widget.textDirection,
-                  verticalDirection: widget.verticalDirection,
-                  textBaseline: widget.textBaseline,
                   children: widget.children!,
                 )
               : EzRow(
                   mainAxisSize: widget.mainAxisSize,
                   mainAxisAlignment: widget.mainAxisAlignment,
                   crossAxisAlignment: widget.crossAxisAlignment,
-                  textDirection: widget.textDirection,
-                  verticalDirection: widget.verticalDirection,
-                  textBaseline: widget.textBaseline,
                   reverseHands: widget.reverseHands,
                   children: widget.children!,
                 ),

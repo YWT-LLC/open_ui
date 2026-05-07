@@ -7,19 +7,6 @@ import '../../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class TryTip extends StatelessWidget {
-  final Widget child;
-
-  const TryTip({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) => Tooltip(
-        message: EzConfig.l10n.ssTryMe,
-        excludeFromSemantics: true,
-        child: child,
-      );
-}
-
 class EzQuickConfig extends StatelessWidget {
   /// Extra changes for [EzBigButtonsConfig]
   final Future<void> Function()? extraBig;
