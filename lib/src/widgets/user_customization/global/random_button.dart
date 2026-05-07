@@ -9,17 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
 class EzConfigRandomizer extends StatelessWidget {
-  /// [EzElevatedIconButton.label] passthrough
-  /// Defaults to [EFUILang.ssRandom]
-  final String? label;
-
   /// [EzAlertDialog.title] that shows on click
   /// Defaults to [EFUILang.ssRandomize]
   final String? dialogTitle;
-
-  /// Optional override for [EzAlertDialog.content] that shows on click
-  /// Defaults to [ezRichUndoWarning]
-  final Widget? dialogContent;
 
   /// [ezRichUndoWarning] passthrough
   final Set<String>? saveSkip;
@@ -27,9 +19,7 @@ class EzConfigRandomizer extends StatelessWidget {
   /// [EzElevatedIconButton] for randomizing [EzConfig]
   const EzConfigRandomizer({
     super.key,
-    this.label,
     this.dialogTitle,
-    this.dialogContent,
     this.saveSkip,
   });
 
@@ -45,7 +35,7 @@ class EzConfigRandomizer extends StatelessWidget {
                       : EzConfig.l10n.gLight.toLowerCase()),
               textAlign: TextAlign.center,
             ),
-            content: dialogContent ?? ezRichUndoWarning(context, skip: saveSkip),
+            content: ezRichUndoWarning(context, skip: saveSkip),
             actions: ezActionPair(
               onConfirm: () async {
                 await EzConfig.randomize();
@@ -58,6 +48,6 @@ class EzConfigRandomizer extends StatelessWidget {
           ),
         ),
         icon: const Icon(LineIcons.diceD6),
-        label: label ?? EzConfig.l10n.ssRandom,
+        label: EzConfig.l10n.ssRandom,
       );
 }

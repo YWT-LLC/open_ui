@@ -8,18 +8,8 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzThemeModeSwitch extends StatelessWidget {
-  /// Defaults to [TextTheme.bodyLarge]
-  final TextStyle? labelStyle;
-
-  /// Defaults to [ColorScheme.surface]
-  final Color? backgroundColor;
-
   /// Standardized tool for changing the [ThemeMode]
-  const EzThemeModeSwitch({
-    super.key,
-    this.labelStyle,
-    this.backgroundColor,
-  });
+  const EzThemeModeSwitch({super.key});
 
   @override
   Widget build(BuildContext context) => EzScrollView(
@@ -29,7 +19,6 @@ class EzThemeModeSwitch extends StatelessWidget {
           // Label
           EzText(
             EzConfig.l10n.ssThemeMode,
-            style: labelStyle,
             textAlign: TextAlign.center,
           ),
           EzConfig.margin,
