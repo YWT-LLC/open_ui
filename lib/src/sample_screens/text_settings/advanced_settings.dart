@@ -15,14 +15,6 @@ class AdvancedTextSettings extends StatefulWidget {
   final EzBodyStyleProvider bodyProvider;
   final EzLabelStyleProvider labelProvider;
 
-  // Settings config
-  final bool showSpacing;
-  final Widget resetSpacer;
-  final Set<String>? extraDark;
-  final Set<String>? extraLight;
-  final Set<String>? resetSkip;
-  final Set<String>? saveSkip;
-
   const AdvancedTextSettings({
     super.key,
     required this.displayProvider,
@@ -30,12 +22,6 @@ class AdvancedTextSettings extends StatefulWidget {
     required this.titleProvider,
     required this.bodyProvider,
     required this.labelProvider,
-    required this.showSpacing,
-    required this.resetSpacer,
-    required this.extraDark,
-    required this.extraLight,
-    required this.resetSkip,
-    required this.saveSkip,
   });
 
   @override
@@ -590,21 +576,19 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             ],
           ),
 
-          // Letter, word, and line EzConfig.spacing
-          if (widget.showSpacing) ...<Widget>[
-            swapSpacer,
-            EzScrollView(
-              scrollDirection: Axis.horizontal,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                letterSpacingController(editing),
-                EzConfig.rowSpacer,
-                wordSpacingController(editing),
-                EzConfig.rowSpacer,
-                lineHeightController(editing),
-              ],
-            ),
-          ],
+          // Letter, word, and line spacing
+          swapSpacer,
+          EzScrollView(
+            scrollDirection: Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              letterSpacingController(editing),
+              EzConfig.rowSpacer,
+              wordSpacingController(editing),
+              EzConfig.rowSpacer,
+              lineHeightController(editing),
+            ],
+          ),
         ],
       ),
       EzConfig.separator,
@@ -627,7 +611,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.displayProvider.value,
           textAlign: TextAlign.center,
         ),
-        useSurface: true,
+        baseColor: EzConfig.colors.surface,
         padding: colMargin,
         borderRadius: ezPillEdge,
       ),
@@ -651,7 +635,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.headlineProvider.value,
           textAlign: TextAlign.center,
         ),
-        useSurface: true,
+        baseColor: EzConfig.colors.surface,
         padding: colMargin,
         borderRadius: ezPillEdge,
       ),
@@ -674,7 +658,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.titleProvider.value,
           textAlign: TextAlign.center,
         ),
-        useSurface: true,
+        baseColor: EzConfig.colors.surface,
         padding: colMargin,
         borderRadius: ezPillEdge,
       ),
@@ -698,7 +682,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.bodyProvider.value,
           textAlign: TextAlign.center,
         ),
-        useSurface: true,
+        baseColor: EzConfig.colors.surface,
         padding: colMargin,
         borderRadius: ezPillEdge,
       ),
@@ -722,13 +706,12 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.labelProvider.value,
           textAlign: TextAlign.center,
         ),
-        useSurface: true,
         padding: colMargin,
         borderRadius: ezPillEdge,
       ),
 
       // Reset all
-      widget.resetSpacer,
+      EzConfig.separator,
       EzResetButton(
         all: false,
         dynamicTitle: () => EzConfig.l10n.tsReset(ezThemeString(false)),
@@ -736,23 +719,13 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           if (EzConfig.isDark) {
             await EzConfig.removeKeys(darkTextKeys.keys.toSet());
             await EzConfig.remove(darkOnSurfaceKey);
-
-            if (widget.extraDark != null) {
-              await EzConfig.removeKeys(widget.extraDark!);
-            }
           } else {
             await EzConfig.removeKeys(lightTextKeys.keys.toSet());
             await EzConfig.remove(lightOnSurfaceKey);
-
-            if (widget.extraLight != null) {
-              await EzConfig.removeKeys(widget.extraLight!);
-            }
           }
 
           setState(() => editing = EzTextSettingType.display);
         },
-        resetSkip: widget.resetSkip,
-        saveSkip: widget.saveSkip,
       ),
     ]);
   }
