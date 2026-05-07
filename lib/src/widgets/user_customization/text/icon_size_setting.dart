@@ -35,8 +35,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
               setState(() => iconSize = defaultIconSize);
 
               if (widget.fullCheck && context.mounted) {
-                EzConfig.pingRebuild(iconSize != EzConfig.iconSize ||
-                    ezTextRebuildCheck(context));
+                EzConfig.pingRebuild(iconSize != EzConfig.iconSize || ezTextRebuildCheck(context));
               } else {
                 EzConfig.pingRebuild(iconSize != EzConfig.iconSize);
               }
@@ -66,8 +65,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         setState(() {});
 
                         if (widget.fullCheck && context.mounted) {
-                          EzConfig.pingRebuild(iconSize != EzConfig.iconSize ||
-                              ezTextRebuildCheck(context));
+                          EzConfig.pingRebuild(
+                              iconSize != EzConfig.iconSize || ezTextRebuildCheck(context));
                         } else {
                           EzConfig.pingRebuild(iconSize != EzConfig.iconSize);
                         }
@@ -101,8 +100,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                   setState(() => iconSize = defaultIconSize);
 
                   if (widget.fullCheck && context.mounted) {
-                    EzConfig.pingRebuild(iconSize != EzConfig.iconSize ||
-                        ezTextRebuildCheck(context));
+                    EzConfig.pingRebuild(
+                        iconSize != EzConfig.iconSize || ezTextRebuildCheck(context));
                   } else {
                     EzConfig.pingRebuild(iconSize != EzConfig.iconSize);
                   }
@@ -130,8 +129,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         setState(() {});
 
                         if (widget.fullCheck && context.mounted) {
-                          EzConfig.pingRebuild(iconSize != EzConfig.iconSize ||
-                              ezTextRebuildCheck(context));
+                          EzConfig.pingRebuild(
+                              iconSize != EzConfig.iconSize || ezTextRebuildCheck(context));
                         } else {
                           EzConfig.pingRebuild(iconSize != EzConfig.iconSize);
                         }
@@ -152,7 +151,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                     ),
             ],
           ),
-          useSurface: true,
+          baseColor: EzConfig.colors.surface,
           buttonShape: true,
           padding: EdgeInsets.zero,
         ),

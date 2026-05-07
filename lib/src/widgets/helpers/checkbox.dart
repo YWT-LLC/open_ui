@@ -68,12 +68,6 @@ class EzCheckboxPair extends StatelessWidget {
   /// [EzText.data] passthrough
   final String text;
 
-  /// [EzText.useSurface] passthrough
-  /// true: [ColorScheme.surface]
-  /// false: [ColorScheme.surfaceContainer]
-  /// null: [ColorScheme.surfaceDim]
-  final bool? useSurface;
-
   /// [EzText.style] passthrough
   final TextStyle? style;
 
@@ -82,6 +76,9 @@ class EzCheckboxPair extends StatelessWidget {
 
   /// [EzText.semanticsLabel] passthrough
   final String? semanticsLabel;
+
+  /// [EzText.baseColor] passthrough
+  final Color? baseColor;
 
   /// [EzText.backgroundColor] passthrough
   final Color? backgroundColor;
@@ -94,9 +91,6 @@ class EzCheckboxPair extends StatelessWidget {
 
   /// [Checkbox.onChanged] passthrough
   final ValueChanged<bool?>? onChanged;
-
-  /// [Checkbox.isError] passthrough
-  final bool isError;
 
   /// [Checkbox.semanticLabel] passthrough
   final String? semanticLabel;
@@ -111,17 +105,16 @@ class EzCheckboxPair extends StatelessWidget {
 
     // EzText
     required this.text,
-    this.useSurface = false,
     this.style,
     this.textAlign,
     this.semanticsLabel,
+    this.baseColor,
     this.backgroundColor,
 
     // EzCheckbox
     this.padding,
     this.value,
     this.onChanged,
-    this.isError = false,
     this.semanticLabel,
   });
 
@@ -135,10 +128,10 @@ class EzCheckboxPair extends StatelessWidget {
           Flexible(
             child: EzText(
               text,
-              useSurface: useSurface,
               style: style,
               textAlign: textAlign,
               semanticsLabel: semanticsLabel,
+              baseColor: baseColor,
               backgroundColor: backgroundColor,
             ),
           ),
@@ -146,7 +139,6 @@ class EzCheckboxPair extends StatelessWidget {
             padding: padding,
             value: value,
             onChanged: onChanged,
-            isError: isError,
             semanticLabel: semanticLabel,
           ),
         ],
