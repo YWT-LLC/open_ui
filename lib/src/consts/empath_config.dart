@@ -32,7 +32,7 @@ const int empathSandDimHex = 0x33DAA520;
 
 /// 0x33DAA520
 /// Open source consumers: DO NOT USE
-const Color empathSandDim = Color(empathSandHex);
+const Color empathSandDim = Color(empathSandDimHex);
 
 // Dark:Primary | Light:Tertiary //
 
@@ -50,7 +50,7 @@ const int empathEucalyptusDimHex = 0x3320DAA5;
 
 /// 0x3320DAA5
 /// Open source consumers: DO NOT USE
-const Color empathEucalyptusDim = Color(empathEucalyptusHex);
+const Color empathEucalyptusDim = Color(empathEucalyptusDimHex);
 
 // Dark:Tertiary | Light:Primary //
 
