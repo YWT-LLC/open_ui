@@ -74,17 +74,20 @@ class EzNebulaConfig extends StatelessWidget {
         // Error
         error: Colors.red,
         onError: Colors.white,
-        errorContainer: Colors.red,
+        errorContainer: _dimRed,
         onErrorContainer: Colors.white,
 
         // Surface
-        surface: Color(0x19A520DA),
+        surface: _empathPurpleDimmer,
         onSurface: Colors.white,
-        surfaceContainer: Color(0xFF0C0C0C),
-        surfaceDim: Color(0xFF0C0C0C),
+        surfaceContainer: _hintOPurple,
+        surfaceDim: _hintOPurple,
 
         // Misc
+        outline: halfWhite,
+        outlineVariant: dimWhite,
         scrim: Colors.black,
+        shadow: _empathPurpleDimmer,
         surfaceTint: Colors.transparent,
       ),
       Brightness.dark,
@@ -159,3 +162,12 @@ class EzNebulaConfig extends StatelessWidget {
     );
   }
 }
+
+/// 0x33FF0000
+const Color _dimRed = Color(0x33FF0000);
+
+/// 0x19A520DA
+const Color _empathPurpleDimmer = Color(0x19A520DA);
+
+/// 0x0CA520DA
+const Color _hintOPurple = Color(0xFF100010);
