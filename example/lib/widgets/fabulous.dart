@@ -46,9 +46,9 @@ class ResetFAB extends StatelessWidget {
                   actions: <Widget>[
                     // Builder/forms
                     EzMaterialAction(
-                      onPressed: () {
+                      onPressed: () async {
                         clearForms();
-                        Navigator.of(dCon).pop();
+                        await EzConfig.redrawUI();
                       },
                       text: l10n.csResetBuilder,
                       isDefaultAction: true,
