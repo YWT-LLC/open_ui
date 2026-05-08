@@ -362,8 +362,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
               onExpansionChanged: (_) => setState(() {}),
               expandedAlignment: Alignment.topCenter,
               expandedCrossAxisAlignment: CrossAxisAlignment.center,
-              backgroundColor: EzConfig.colors.surfaceContainer,
-              collapsedBackgroundColor: EzConfig.colors.surfaceContainer,
               showTrailingIcon: false,
               title: EzRow(
                 mainAxisAlignment: MainAxisAlignment.center,

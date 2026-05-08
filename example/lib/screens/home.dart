@@ -277,8 +277,6 @@ class _HomeScreenState extends State<HomeScreen> {
               // Advanced settings //
 
               ExpansionTile(
-                backgroundColor: EzConfig.colors.surfaceContainer,
-                collapsedBackgroundColor: EzConfig.colors.surfaceContainer,
                 controller: advancedEC,
                 onExpansionChanged: (_) => setState(() {}),
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -899,8 +897,6 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
           ),
         ),
         child: ExpansionTile(
-          backgroundColor: EzConfig.colors.surfaceContainer,
-          collapsedBackgroundColor: EzConfig.colors.surfaceContainer,
           controller: widget.ec,
           onExpansionChanged: (_) => setState(() {}),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -989,8 +985,6 @@ class _LicensePickerState extends State<_LicensePicker> {
           ),
         ),
         child: ExpansionTile(
-          backgroundColor: EzConfig.colors.surfaceContainer,
-          collapsedBackgroundColor: EzConfig.colors.surfaceContainer,
           controller: widget.ec,
           onExpansionChanged: (_) => setState(() {}),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
