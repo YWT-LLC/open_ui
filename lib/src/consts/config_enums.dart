@@ -387,6 +387,22 @@ extension EACConfig on EzAnimationCurve {
     }
   }
 
+  Curve get curve {
+    switch (this) {
+      case EzAnimationCurve.bounce:
+        return Curves.bounceInOut;
+
+      case EzAnimationCurve.ease:
+        return Curves.easeInOut;
+
+      case EzAnimationCurve.elastic:
+        return Curves.elasticInOut;
+
+      case EzAnimationCurve.linear:
+        return Curves.linear;
+    }
+  }
+
   String get name {
     switch (this) {
       case EzAnimationCurve.bounce:
@@ -403,7 +419,24 @@ extension EACConfig on EzAnimationCurve {
     }
   }
 
-  static Curve lookup(String? value) {
+  static EzAnimationCurve lookup(String? value) {
+    switch (value) {
+      case esBounce:
+        return EzAnimationCurve.bounce;
+
+      case esElastic:
+        return EzAnimationCurve.elastic;
+
+      case esLinear:
+        return EzAnimationCurve.linear;
+
+      case esEase:
+      default:
+        return EzAnimationCurve.ease;
+    }
+  }
+
+  static Curve translate(String? value) {
     switch (value) {
       case esBounce:
         return Curves.bounceInOut;
