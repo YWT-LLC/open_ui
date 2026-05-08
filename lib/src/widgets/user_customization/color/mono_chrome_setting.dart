@@ -7,86 +7,6 @@ import '../../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-/// Custom [ColorScheme.highContrastDark]
-const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
-  // Primary
-  primary: Colors.white,
-  onPrimary: Colors.black,
-  primaryContainer: darkOutline,
-  onPrimaryContainer: Colors.black,
-
-  // Secondary
-  secondary: Colors.white,
-  onSecondary: Colors.black,
-  secondaryContainer: darkOutline,
-  onSecondaryContainer: Colors.black,
-
-  // Tertiary
-  tertiary: Colors.white,
-  onTertiary: Colors.black,
-  tertiaryContainer: darkOutline,
-  onTertiaryContainer: Colors.black,
-
-  // Error
-  error: Colors.red,
-  onError: Colors.white,
-  errorContainer: Colors.redAccent,
-  onErrorContainer: Colors.white,
-
-  // Surface
-  surfaceContainer: darkSurfaceContainer,
-  surfaceDim: darkSurfaceDim,
-  surface: darkSurface,
-  onSurface: Colors.white,
-
-  // Misc
-  outline: darkOutline,
-  outlineVariant: darkOutlineVariant,
-  scrim: Colors.black,
-  shadow: Colors.transparent,
-  surfaceTint: Colors.transparent,
-);
-
-/// Custom [ColorScheme.highContrastLight]
-const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
-  // Primary
-  primary: Colors.black,
-  onPrimary: Colors.white,
-  primaryContainer: lightOutline,
-  onPrimaryContainer: Colors.white,
-
-  // Secondary
-  secondary: Colors.black,
-  onSecondary: Colors.white,
-  secondaryContainer: lightOutline,
-  onSecondaryContainer: Colors.white,
-
-  // Tertiary
-  tertiary: Colors.black,
-  onTertiary: Colors.white,
-  tertiaryContainer: lightOutline,
-  onTertiaryContainer: Colors.white,
-
-  // Error
-  error: Colors.red,
-  onError: Colors.white,
-  errorContainer: Colors.redAccent,
-  onErrorContainer: Colors.white,
-
-  // Surface
-  surfaceContainer: lightSurfaceContainer,
-  surfaceDim: lightSurfaceDim,
-  surface: lightSurface,
-  onSurface: Colors.black,
-
-  // Misc
-  outline: lightOutline,
-  outlineVariant: lightOutlineVariant,
-  scrim: Colors.white,
-  shadow: Colors.transparent,
-  surfaceTint: Colors.transparent,
-);
-
 class EzMonoChromeColorsSetting extends StatelessWidget {
   /// [ThemeData.colorScheme] for [Brightness.dark]
   final ColorScheme dark;
@@ -111,7 +31,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.white,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.white,
-                side: EzConfig.borderSide(color: darkOutline),
+                side: EzConfig.borderSide(color: dimWhite),
                 textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
@@ -120,7 +40,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.black,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.black,
-                side: EzConfig.borderSide(color: lightOutline),
+                side: EzConfig.borderSide(color: dimBlack),
                 textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.black),
               ),
         onPressed: () async {
@@ -137,3 +57,89 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
         label: EzConfig.l10n.csMonoChrome,
       );
 }
+
+/// 0x33FFFFFF
+const Color dimWhite = Color(0x33FFFFFF);
+
+/// 0x33FFFFFF
+const Color dimBlack = Color(0x33000000);
+
+/// Custom [ColorScheme.highContrastDark]
+const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
+  // Primary
+  primary: Colors.white,
+  onPrimary: Colors.black,
+  primaryContainer: dimWhite,
+  onPrimaryContainer: Colors.black,
+
+  // Secondary
+  secondary: Colors.white,
+  onSecondary: Colors.black,
+  secondaryContainer: dimWhite,
+  onSecondaryContainer: Colors.black,
+
+  // Tertiary
+  tertiary: Colors.white,
+  onTertiary: Colors.black,
+  tertiaryContainer: dimWhite,
+  onTertiaryContainer: Colors.black,
+
+  // Error
+  error: Colors.red,
+  onError: Colors.white,
+  errorContainer: dimWhite,
+  onErrorContainer: Colors.black,
+
+  // Surface
+  surfaceContainer: darkSurfaceContainer,
+  surfaceDim: darkSurfaceDim,
+  surface: darkSurface,
+  onSurface: Colors.white,
+
+  // Misc
+  outline: halfWhite,
+  outlineVariant: dimWhite,
+  scrim: Colors.black,
+  shadow: Colors.transparent,
+  surfaceTint: Colors.transparent,
+);
+
+/// Custom [ColorScheme.highContrastLight]
+const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
+  // Primary
+  primary: Colors.black,
+  onPrimary: Colors.white,
+  primaryContainer: dimBlack,
+  onPrimaryContainer: Colors.white,
+
+  // Secondary
+  secondary: Colors.black,
+  onSecondary: Colors.white,
+  secondaryContainer: dimBlack,
+  onSecondaryContainer: Colors.white,
+
+  // Tertiary
+  tertiary: Colors.black,
+  onTertiary: Colors.white,
+  tertiaryContainer: dimBlack,
+  onTertiaryContainer: Colors.white,
+
+  // Error
+  error: Colors.red,
+  onError: Colors.white,
+  errorContainer: dimBlack,
+  onErrorContainer: Colors.white,
+
+  // Surface
+  surfaceContainer: lightSurfaceContainer,
+  surfaceDim: lightSurfaceDim,
+  surface: lightSurface,
+  onSurface: Colors.black,
+
+  // Misc
+  outline: halfBlack,
+  outlineVariant: dimBlack,
+  scrim: Colors.white,
+  shadow: Colors.transparent,
+  surfaceTint: Colors.transparent,
+);
