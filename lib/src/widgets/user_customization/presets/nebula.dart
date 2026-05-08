@@ -143,7 +143,7 @@ class EzNebulaConfig extends StatelessWidget {
           backgroundColor: empathPurpleDim,
           foregroundColor: Colors.white,
           shadowColor: empathPurpleDim,
-          overlayColor: empathSandDim,
+          overlayColor: empathSand,
           side: const BorderSide(color: empathSandDim, width: 1.0),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
