@@ -24,7 +24,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       colorScheme.surface.withValues(alpha: max(colorScheme.surface.a, focusOpacity));
   final Color crucialPrimaryBackground =
       colorScheme.primary.withValues(alpha: max(colorScheme.primary.a, focusOpacity));
-  final Color crucialButtonBorder = colorScheme.primaryContainer
+  final Color crucialPrimaryBorder = colorScheme.primaryContainer
       .withValues(alpha: max(colorScheme.primaryContainer.a, focusOpacity));
   final Color crucialDisabledBorder =
       colorScheme.outlineVariant.withValues(alpha: max(colorScheme.outlineVariant.a, focusOpacity));
@@ -52,30 +52,31 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
   // Design (page) //
 
-  final double margin = isDark ? EzConfig.get(darkMarginKey) : EzConfig.get(lightMarginKey);
-  final double spacing = isDark ? EzConfig.get(darkSpacingKey) : EzConfig.get(lightSpacingKey);
+  final double margin = EzConfig.get(isDark ? darkMarginKey : lightMarginKey);
+  final double spacing = EzConfig.get(isDark ? darkSpacingKey : lightSpacingKey);
 
   final int animDuration =
-      isDark ? EzConfig.get(darkAnimationDurationKey) : EzConfig.get(lightAnimationDurationKey);
+      EzConfig.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
   final int threeQAnim = (animDuration * 0.75).toInt();
 
   // Text //
 
   final TextTheme textTheme = ezTextTheme(colorScheme.onSurface, isDark: isDark);
 
-  final double textBackgroundOpacity =
+  final double textOpacity =
       EzConfig.get(isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey);
+  final double crucialTextOpacity = max(textOpacity, focusOpacity);
 
-  final Color textBackgroundColor = colorScheme.surface.withValues(alpha: textBackgroundOpacity);
-  final double crucialTextBackgroundOpacity = max(textBackgroundOpacity, focusOpacity);
+  final Color linkTextBackground = colorScheme.surface.withValues(alpha: textOpacity);
+  final Color richTextBackground = colorScheme.surfaceContainer.withValues(alpha: textOpacity);
 
-  final Color inputBackgroundColor = colorScheme.surface
-      .withValues(alpha: max(colorScheme.surface.a, crucialTextBackgroundOpacity));
-  final Color crucialTextShadow = crucialTextBackgroundOpacity < 1.0
-      ? colorScheme.shadow.withValues(alpha: crucialTextBackgroundOpacity * shadowMod)
+  final Color inputBackground =
+      colorScheme.surface.withValues(alpha: max(colorScheme.surface.a, crucialTextOpacity));
+  final Color crucialTextShadow = crucialTextOpacity < 1.0
+      ? colorScheme.shadow.withValues(alpha: crucialTextOpacity * shadowMod)
       : colorScheme.shadow;
 
-  final double iconSize = isDark ? EzConfig.get(darkIconSizeKey) : EzConfig.get(lightIconSizeKey);
+  final double iconSize = EzConfig.get(isDark ? darkIconSizeKey : lightIconSizeKey);
 
   final IconThemeData iconData = IconThemeData(
     color: colorScheme.primary,
@@ -145,7 +146,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
     // Card
     cardTheme: CardThemeData(
-      color: colorScheme.surfaceDim.withValues(alpha: crucialTextBackgroundOpacity),
+      color: colorScheme.surfaceDim.withValues(alpha: crucialTextOpacity),
       shadowColor: crucialTextShadow,
       margin: EdgeInsets.zero,
     ),
@@ -246,8 +247,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
     // Expansion tile
     expansionTileTheme: ExpansionTileThemeData(
-      backgroundColor: textBackgroundColor,
-      collapsedBackgroundColor: textBackgroundColor,
+      backgroundColor: richTextBackground,
+      collapsedBackgroundColor: richTextBackground,
       iconColor: colorScheme.primary,
       collapsedIconColor: colorScheme.primary,
       tilePadding: EdgeInsets.symmetric(vertical: margin),
@@ -301,7 +302,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     // Input decoration
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: inputBackgroundColor,
+      fillColor: inputBackground,
       prefixIconColor: colorScheme.primary,
       iconColor: colorScheme.primary,
       suffixIconColor: colorScheme.primary,
@@ -310,11 +311,11 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       helperStyle: textTheme.labelLarge,
       errorStyle: textTheme.labelLarge!.copyWith(color: colorScheme.error),
       errorMaxLines: 1,
-      border: UnderlineInputBorder(borderSide: buildBorder(crucialButtonBorder)),
+      border: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
       disabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialDisabledBorder)),
-      enabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialButtonBorder)),
+      enabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
       errorBorder: UnderlineInputBorder(borderSide: buildBorder(colorScheme.error)),
-      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(crucialButtonBorder)),
+      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
       focusedErrorBorder: UnderlineInputBorder(borderSide: buildBorder(colorScheme.error)),
     ),
 
@@ -407,7 +408,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     // Text button
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: textBackgroundColor,
+        backgroundColor: linkTextBackground,
         foregroundColor: colorScheme.onSurface,
         disabledForegroundColor: colorScheme.outline,
         iconColor: colorScheme.primary,
