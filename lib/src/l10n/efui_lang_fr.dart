@@ -441,49 +441,52 @@ class EFUILangFr extends EFUILang {
   String get csPrimary => 'Principal';
 
   @override
-  String get csPrimaryContainer => 'Conteneur principal';
+  String get csPrimaryContainer => 'Contour\nprincipal';
 
   @override
   String get csSecondary => 'Secondaire';
 
   @override
-  String get csSecondaryContainer => 'Conteneur secondaire';
+  String get csSecondaryContainer => 'Contour\nsecondaire';
 
   @override
   String get csTertiary => 'Tertiaire';
 
   @override
-  String get csTertiaryContainer => 'Conteneur tertiaire';
+  String get csTertiaryContainer => 'Contour\ntertiaire';
 
   @override
   String get csError => 'Erreur';
 
   @override
-  String get csErrorContainer => 'Conteneur d\'erreur';
+  String get csErrorContainer => 'Contour\nd\'erreur';
 
   @override
-  String get csOutline => 'Contour';
+  String get csOutline => 'Texte\nd\'aide';
 
   @override
-  String get csOutlineVariant => 'Conteneur de contour';
+  String get csOutlineVariant => 'Contour\nd\'aide';
 
   @override
-  String get csSurface => 'Arrière-plan du bouton';
+  String get csSurface => 'Arrière-plan du\nbouton';
 
   @override
-  String get csSurfaceDim => 'Arrière-plan de l\'alerte && app bar';
+  String get csSurfaceDim => 'Arrière-plan de\nl\'alerte && app bar';
 
   @override
-  String get csSurfaceContainer => 'Arrière-plan de la page && modale';
+  String get csSurfaceContainer => 'Arrière-plan de\nla page && modale';
 
   @override
   String get csOnSurface => 'Texte';
 
   @override
+  String get csScrim => 'Couverture\nmodale';
+
+  @override
   String get csShadow => 'Ombre';
 
   @override
-  String get csSurfaceTint => 'Teinte de surface';
+  String get csSurfaceTint => 'Teinte de\nsurface';
 
   @override
   String get csPickerTitle => 'Choisissez une couleur';

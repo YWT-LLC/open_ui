@@ -912,7 +912,7 @@ abstract class EFUILang {
   /// No description provided for @csPrimaryContainer.
   ///
   /// In en, this message translates to:
-  /// **'Primary container'**
+  /// **'Primary\noutline'**
   String get csPrimaryContainer;
 
   /// No description provided for @csSecondary.
@@ -924,7 +924,7 @@ abstract class EFUILang {
   /// No description provided for @csSecondaryContainer.
   ///
   /// In en, this message translates to:
-  /// **'Secondary container'**
+  /// **'Secondary\noutline'**
   String get csSecondaryContainer;
 
   /// No description provided for @csTertiary.
@@ -936,7 +936,7 @@ abstract class EFUILang {
   /// No description provided for @csTertiaryContainer.
   ///
   /// In en, this message translates to:
-  /// **'Tertiary container'**
+  /// **'Tertiary\noutline'**
   String get csTertiaryContainer;
 
   /// No description provided for @csError.
@@ -948,37 +948,37 @@ abstract class EFUILang {
   /// No description provided for @csErrorContainer.
   ///
   /// In en, this message translates to:
-  /// **'Error container'**
+  /// **'Error\noutline'**
   String get csErrorContainer;
 
   /// No description provided for @csOutline.
   ///
   /// In en, this message translates to:
-  /// **'Outline'**
+  /// **'Hint\ntext'**
   String get csOutline;
 
   /// No description provided for @csOutlineVariant.
   ///
   /// In en, this message translates to:
-  /// **'Outline container'**
+  /// **'Hint\noutline'**
   String get csOutlineVariant;
 
   /// No description provided for @csSurface.
   ///
   /// In en, this message translates to:
-  /// **'Button background'**
+  /// **'Button\nbackground'**
   String get csSurface;
 
   /// No description provided for @csSurfaceDim.
   ///
   /// In en, this message translates to:
-  /// **'Alert && app bar background'**
+  /// **'Alert && app bar\nbackground'**
   String get csSurfaceDim;
 
   /// No description provided for @csSurfaceContainer.
   ///
   /// In en, this message translates to:
-  /// **'Page && modal background'**
+  /// **'Page && modal\nbackground'**
   String get csSurfaceContainer;
 
   /// No description provided for @csOnSurface.
@@ -986,6 +986,12 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Text'**
   String get csOnSurface;
+
+  /// No description provided for @csScrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Modal\ncover'**
+  String get csScrim;
 
   /// No description provided for @csShadow.
   ///
@@ -996,7 +1002,7 @@ abstract class EFUILang {
   /// No description provided for @csSurfaceTint.
   ///
   /// In en, this message translates to:
-  /// **'Surface tint'**
+  /// **'Surface\ntint'**
   String get csSurfaceTint;
 
   /// No description provided for @csPickerTitle.

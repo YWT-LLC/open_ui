@@ -438,49 +438,52 @@ class EFUILangEn extends EFUILang {
   String get csPrimary => 'Primary';
 
   @override
-  String get csPrimaryContainer => 'Primary container';
+  String get csPrimaryContainer => 'Primary\noutline';
 
   @override
   String get csSecondary => 'Secondary';
 
   @override
-  String get csSecondaryContainer => 'Secondary container';
+  String get csSecondaryContainer => 'Secondary\noutline';
 
   @override
   String get csTertiary => 'Tertiary';
 
   @override
-  String get csTertiaryContainer => 'Tertiary container';
+  String get csTertiaryContainer => 'Tertiary\noutline';
 
   @override
   String get csError => 'Error';
 
   @override
-  String get csErrorContainer => 'Error container';
+  String get csErrorContainer => 'Error\noutline';
 
   @override
-  String get csOutline => 'Outline';
+  String get csOutline => 'Hint\ntext';
 
   @override
-  String get csOutlineVariant => 'Outline container';
+  String get csOutlineVariant => 'Hint\noutline';
 
   @override
-  String get csSurface => 'Button background';
+  String get csSurface => 'Button\nbackground';
 
   @override
-  String get csSurfaceDim => 'Alert && app bar background';
+  String get csSurfaceDim => 'Alert && app bar\nbackground';
 
   @override
-  String get csSurfaceContainer => 'Page && modal background';
+  String get csSurfaceContainer => 'Page && modal\nbackground';
 
   @override
   String get csOnSurface => 'Text';
 
   @override
+  String get csScrim => 'Modal\ncover';
+
+  @override
   String get csShadow => 'Shadow';
 
   @override
-  String get csSurfaceTint => 'Surface tint';
+  String get csSurfaceTint => 'Surface\ntint';
 
   @override
   String get csPickerTitle => 'Pick a color';
@@ -1242,49 +1245,52 @@ class EFUILangEnUs extends EFUILangEn {
   String get csPrimary => 'Primary';
 
   @override
-  String get csPrimaryContainer => 'Primary container';
+  String get csPrimaryContainer => 'Primary\noutline';
 
   @override
   String get csSecondary => 'Secondary';
 
   @override
-  String get csSecondaryContainer => 'Secondary container';
+  String get csSecondaryContainer => 'Secondary\noutline';
 
   @override
   String get csTertiary => 'Tertiary';
 
   @override
-  String get csTertiaryContainer => 'Tertiary container';
+  String get csTertiaryContainer => 'Tertiary\noutline';
 
   @override
   String get csError => 'Error';
 
   @override
-  String get csErrorContainer => 'Error container';
+  String get csErrorContainer => 'Error\noutline';
 
   @override
-  String get csOutline => 'Outline';
+  String get csOutline => 'Hint\ntext';
 
   @override
-  String get csOutlineVariant => 'Outline container';
+  String get csOutlineVariant => 'Hint\noutline';
 
   @override
-  String get csSurface => 'Button background';
+  String get csSurface => 'Button\nbackground';
 
   @override
-  String get csSurfaceDim => 'Alert && app bar background';
+  String get csSurfaceDim => 'Alert && app bar\nbackground';
 
   @override
-  String get csSurfaceContainer => 'Page && modal background';
+  String get csSurfaceContainer => 'Page && modal\nbackground';
 
   @override
   String get csOnSurface => 'Text';
 
   @override
+  String get csScrim => 'Modal\ncover';
+
+  @override
   String get csShadow => 'Shadow';
 
   @override
-  String get csSurfaceTint => 'Surface tint';
+  String get csSurfaceTint => 'Surface\ntint';
 
   @override
   String get csPickerTitle => 'Pick a color';

@@ -442,49 +442,52 @@ class EFUILangEs extends EFUILang {
   String get csPrimary => 'Principal';
 
   @override
-  String get csPrimaryContainer => 'Contenedor principal';
+  String get csPrimaryContainer => 'Esquema\nprincipal';
 
   @override
   String get csSecondary => 'Secundario';
 
   @override
-  String get csSecondaryContainer => 'Contenedor secundario';
+  String get csSecondaryContainer => 'Esquema\nsecundario';
 
   @override
   String get csTertiary => 'Terciario';
 
   @override
-  String get csTertiaryContainer => 'Contenedor terciario';
+  String get csTertiaryContainer => 'Esquema\nterciario';
 
   @override
   String get csError => 'Error';
 
   @override
-  String get csErrorContainer => 'Contenedor de error';
+  String get csErrorContainer => 'Esquema de\nerror';
 
   @override
-  String get csOutline => 'Contorno';
+  String get csOutline => 'Texto de\nsugerencia';
 
   @override
-  String get csOutlineVariant => 'Contenedor de contorno';
+  String get csOutlineVariant => 'Esquema de\nsugerencia';
 
   @override
-  String get csSurface => 'Fondo de botón';
+  String get csSurface => 'Fondo de\nbotón';
 
   @override
-  String get csSurfaceDim => 'Fondo de alerta && app bar';
+  String get csSurfaceDim => 'Fondo de\nalerta && app bar';
 
   @override
-  String get csSurfaceContainer => 'Fondo de página && modal';
+  String get csSurfaceContainer => 'Fondo de\npágina && modal';
 
   @override
   String get csOnSurface => 'Texto';
 
   @override
+  String get csScrim => 'Cubierta\nmodal';
+
+  @override
   String get csShadow => 'Sombra';
 
   @override
-  String get csSurfaceTint => 'Tinte de superficie';
+  String get csSurfaceTint => 'Tinte de\nsuperficie';
 
   @override
   String get csPickerTitle => 'Selecciona un color';
