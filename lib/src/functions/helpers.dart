@@ -481,10 +481,7 @@ Widget ezTransitionBuilder(
             scale: Tween<double>(
               begin: reverse ? 2.0 : 0.0,
               end: 1.0,
-            ).animate(CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOut,
-            )),
+            ).animate(CurvedAnimation(parent: animation, curve: EzConfig.animCurve)),
             alignment: Alignment.center,
             child: smartFade(child),
           );
@@ -495,10 +492,7 @@ Widget ezTransitionBuilder(
             position: Tween<Offset>(
               begin: Offset((EzConfig.isLTR ? 1.0 : -1.0) * mod, 0.0),
               end: Offset.zero,
-            ).animate(CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOut,
-            )),
+            ).animate(CurvedAnimation(parent: animation, curve: EzConfig.animCurve)),
             child: smartFade(child),
           );
       }
@@ -545,10 +539,7 @@ Widget ezTransitionBuilder(
         turns: Tween<double>(
           begin: 0.0,
           end: mod,
-        ).animate(CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        )),
+        ).animate(CurvedAnimation(parent: animation, curve: EzConfig.animCurve)),
         child: smartFade(child),
       );
 
@@ -558,10 +549,7 @@ Widget ezTransitionBuilder(
         position: Tween<Offset>(
           begin: Offset((EzConfig.isLTR ? 1.0 : -1.0) * mod, 0.0),
           end: Offset.zero,
-        ).animate(CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        )),
+        ).animate(CurvedAnimation(parent: animation, curve: EzConfig.animCurve)),
         child: smartFade(child),
       );
 
@@ -571,10 +559,7 @@ Widget ezTransitionBuilder(
         position: Tween<Offset>(
           begin: Offset(0.0, mod),
           end: Offset.zero,
-        ).animate(CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        )),
+        ).animate(CurvedAnimation(parent: animation, curve: EzConfig.animCurve)),
         child: smartFade(child),
       );
 
@@ -584,10 +569,7 @@ Widget ezTransitionBuilder(
         scale: Tween<double>(
           begin: reverse ? 2.0 : 0.0,
           end: 1.0,
-        ).animate(CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        )),
+        ).animate(CurvedAnimation(parent: animation, curve: EzConfig.animCurve)),
         alignment: Alignment.center,
         child: smartFade(child),
       );

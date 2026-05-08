@@ -25,14 +25,14 @@ class EzAnimSwitch extends AnimatedSwitcher {
     super.key,
     this.mod = 1.0,
     super.reverseDuration,
-    super.switchInCurve = Curves.easeInOut,
-    super.switchOutCurve = Curves.easeInOut,
     super.layoutBuilder,
     this.forceType,
     this.forceFade,
     this.reverse = false,
     super.child,
   }) : super(
+          switchInCurve: EzConfig.animCurve,
+          switchOutCurve: EzConfig.animCurve,
           duration: ezAnimDuration(mod: mod),
           transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
             a,
@@ -56,8 +56,6 @@ class EzAnimVis extends EzAnimSwitch {
     super.key,
     super.mod,
     super.reverseDuration,
-    super.switchInCurve = Curves.easeInOut,
-    super.switchOutCurve = Curves.easeInOut,
     super.layoutBuilder,
     super.forceType,
     super.forceFade,
@@ -85,8 +83,6 @@ class EzAnimHide extends EzAnimSwitch {
     super.key,
     super.mod,
     super.reverseDuration,
-    super.switchInCurve = Curves.easeInOut,
-    super.switchOutCurve = Curves.easeInOut,
     super.layoutBuilder,
     super.forceType = EzTransitionType.none,
     super.forceFade = true,
@@ -122,8 +118,8 @@ class EzFauxCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AnimatedSwitcher(
         duration: ezAnimDuration(mod: animMod),
-        switchInCurve: Curves.easeInOut,
-        switchOutCurve: Curves.easeInOut,
+        switchInCurve: EzConfig.animCurve,
+        switchOutCurve: EzConfig.animCurve,
         transitionBuilder: (Widget w, Animation<double> a) {
           final double sign = (w.key == ValueKey<int>(position)) ? 1.0 : -1.0;
           final double direction = (EzConfig.isLTR ? 1.0 : -1.0) * delta.sign;
@@ -132,10 +128,7 @@ class EzFauxCarousel extends StatelessWidget {
             position: Tween<Offset>(
               begin: Offset(direction * sign, 0.0),
               end: Offset.zero,
-            ).animate(CurvedAnimation(
-              parent: a,
-              curve: Curves.easeInOut,
-            )),
+            ).animate(CurvedAnimation(parent: a, curve: EzConfig.animCurve)),
             child: FadeTransition(opacity: a, child: w),
           );
         },

@@ -258,8 +258,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       ),
       expandedAlignment: ltr ? Alignment.centerLeft : Alignment.centerRight,
       expansionAnimationStyle: AnimationStyle(
-        curve: Curves.easeInOut,
-        reverseCurve: Curves.easeInOut,
+        curve: EzConfig.animCurve,
+        reverseCurve: EzConfig.animCurve,
         duration: Duration(milliseconds: threeQAnim),
         reverseDuration: Duration(milliseconds: threeQAnim),
       ),

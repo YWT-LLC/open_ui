@@ -33,8 +33,8 @@ Future<T?> ezModal<T>({
       useSafeArea: useSafeArea,
       anchorPoint: anchorPoint,
       sheetAnimationStyle: AnimationStyle(
-        curve: Curves.easeInOut,
-        reverseCurve: Curves.easeInOut,
+        curve: EzConfig.animCurve,
+        reverseCurve: EzConfig.animCurve,
         duration: ezAnimDuration(mod: animMod),
         reverseDuration: ezAnimDuration(mod: animMod),
       ),

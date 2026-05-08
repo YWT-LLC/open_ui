@@ -109,7 +109,7 @@ class _EzScrollViewState extends State<EzScrollView> {
     controller.animateTo(
       forward ? controller.position.maxScrollExtent : 0.0,
       duration: Duration(milliseconds: EzConfig.animDur),
-      curve: Curves.linear,
+      curve: EzConfig.animCurve,
     );
   }
 
