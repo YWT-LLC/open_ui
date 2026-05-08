@@ -219,7 +219,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
               shadowColor: Colors.transparent,
               overlayColor: Colors.white,
               side: const BorderSide(
-                color: darkOutline,
+                color: halfWhite,
                 width: defaultBorderWidth,
               ),
               shape: EzButtonShape.pill.shape,
@@ -233,7 +233,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
               shadowColor: Colors.transparent,
               overlayColor: Colors.black,
               side: const BorderSide(
-                color: lightOutline,
+                color: halfBlack,
                 width: defaultBorderWidth,
               ),
               shape: EzButtonShape.pill.shape,
