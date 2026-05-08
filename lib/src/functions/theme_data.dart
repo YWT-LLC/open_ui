@@ -245,37 +245,24 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     ),
 
     // Expansion tile
-    expansionTileTheme: ltr
-        ? ExpansionTileThemeData(
-            backgroundColor: colorScheme.surface,
-            collapsedBackgroundColor: colorScheme.surfaceContainer,
-            iconColor: colorScheme.primary,
-            collapsedIconColor: colorScheme.primary,
-            tilePadding: EdgeInsets.symmetric(vertical: margin),
-            childrenPadding: EdgeInsets.only(left: margin * 2),
-            expandedAlignment: Alignment.centerLeft,
-            expansionAnimationStyle: AnimationStyle(
-              curve: Curves.easeInOut,
-              reverseCurve: Curves.easeInOut,
-              duration: Duration(milliseconds: threeQAnim),
-              reverseDuration: Duration(milliseconds: threeQAnim),
-            ),
-          )
-        : ExpansionTileThemeData(
-            backgroundColor: colorScheme.surface,
-            collapsedBackgroundColor: colorScheme.surfaceContainer,
-            iconColor: colorScheme.primary,
-            collapsedIconColor: colorScheme.primary,
-            tilePadding: EdgeInsets.symmetric(vertical: margin),
-            childrenPadding: EdgeInsets.only(left: margin * 2),
-            expandedAlignment: Alignment.centerRight,
-            expansionAnimationStyle: AnimationStyle(
-              curve: Curves.easeInOut,
-              reverseCurve: Curves.easeInOut,
-              duration: Duration(milliseconds: threeQAnim),
-              reverseDuration: Duration(milliseconds: threeQAnim),
-            ),
-          ),
+    expansionTileTheme: ExpansionTileThemeData(
+      backgroundColor: textBackgroundColor,
+      collapsedBackgroundColor: textBackgroundColor,
+      iconColor: colorScheme.primary,
+      collapsedIconColor: colorScheme.primary,
+      tilePadding: EdgeInsets.symmetric(vertical: margin),
+      childrenPadding: EdgeInsets.only(
+        left: ltr ? margin * 2 : 0,
+        right: ltr ? 0 : margin * 2,
+      ),
+      expandedAlignment: ltr ? Alignment.centerLeft : Alignment.centerRight,
+      expansionAnimationStyle: AnimationStyle(
+        curve: Curves.easeInOut,
+        reverseCurve: Curves.easeInOut,
+        duration: Duration(milliseconds: threeQAnim),
+        reverseDuration: Duration(milliseconds: threeQAnim),
+      ),
+    ),
 
     // Floating action button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
