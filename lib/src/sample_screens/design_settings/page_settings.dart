@@ -145,6 +145,7 @@ class _AnimDurSetting extends StatelessWidget {
               builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
                 // Preview
                 SizedBox(
+                  key: ValueKey<String>('$animDuration:${curve.curve}'),
                   height: EzConfig.iconSize + (EzConfig.padding * 2),
                   child: _AnimationPreview(animDuration.toInt(), curve.curve),
                 ),
@@ -196,16 +197,16 @@ class _AnimDurSetting extends StatelessWidget {
                     enableSearch: false,
                     initialSelection: curve,
                     onSelected: (EzAnimationCurve? value) async {
-                      if (value != null) {
-                        if (EzConfig.updateBoth || EzConfig.isDark) {
-                          await EzConfig.setString(darkAnimationCurveKey, value.value);
-                        }
-                        if (EzConfig.updateBoth || !EzConfig.isDark) {
-                          await EzConfig.setString(lightAnimationCurveKey, value.value);
-                        }
+                      if (value == null) return;
 
-                        setModal(() => curve = value);
+                      if (EzConfig.updateBoth || EzConfig.isDark) {
+                        await EzConfig.setString(darkAnimationCurveKey, value.value);
                       }
+                      if (EzConfig.updateBoth || !EzConfig.isDark) {
+                        await EzConfig.setString(lightAnimationCurveKey, value.value);
+                      }
+
+                      setModal(() => curve = value);
                     },
                   ),
                 ]),
@@ -216,15 +217,22 @@ class _AnimDurSetting extends StatelessWidget {
                   onPressed: () async {
                     if (EzConfig.updateBoth || EzConfig.isDark) {
                       await EzConfig.remove(darkAnimationDurationKey);
-                      setModal(() => animDuration =
-                          (EzConfig.getDefault(darkAnimationDurationKey) as int).toDouble());
-                    }
+                      await EzConfig.remove(darkAnimationCurveKey);
 
+                      animDuration =
+                          (EzConfig.getDefault(darkAnimationDurationKey) as int).toDouble();
+                      curve = EACConfig.lookup(EzConfig.getDefault(darkAnimationCurveKey));
+                    }
                     if (EzConfig.updateBoth || !EzConfig.isDark) {
                       await EzConfig.remove(lightAnimationDurationKey);
-                      setModal(() => animDuration =
-                          (EzConfig.getDefault(lightAnimationDurationKey) as int).toDouble());
+                      await EzConfig.remove(lightAnimationCurveKey);
+
+                      animDuration =
+                          (EzConfig.getDefault(lightAnimationDurationKey) as int).toDouble();
+                      curve = EACConfig.lookup(EzConfig.getDefault(lightAnimationCurveKey));
                     }
+
+                    setModal(() {});
                   },
                   icon: const Icon(Icons.refresh),
                   label: EzConfig.l10n.gReset,
