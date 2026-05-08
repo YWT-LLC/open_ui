@@ -57,36 +57,31 @@ class EzChalkboardConfig extends StatelessWidget {
         // Primary
         primary: empathSand,
         onPrimary: Colors.black,
-        primaryContainer: Colors.white,
+        primaryContainer: dimWhite,
         onPrimaryContainer: Colors.black,
 
         // Secondary
         secondary: halfWhite,
         onSecondary: Colors.black,
-        secondaryContainer: Colors.white,
+        secondaryContainer: dimWhite,
         onSecondaryContainer: Colors.black,
 
         // Tertiary
-        tertiary: Colors.white,
+        tertiary: empathSand,
         onTertiary: Colors.black,
-        tertiaryContainer: Colors.white,
+        tertiaryContainer: dimWhite,
         onTertiaryContainer: Colors.black,
 
         // Error
-        error: Colors.red,
+        error: hcError,
         onError: Colors.white,
-        errorContainer: Colors.white,
+        errorContainer: dimWhite,
         onErrorContainer: Colors.black,
 
         // Surface
         surface: chalkboardGreen,
         onSurface: Colors.white,
-        surfaceBright: chalkboardGreen,
-        surfaceContainerLowest: chalkboardGreen,
-        surfaceContainerLow: chalkboardGreen,
         surfaceContainer: chalkboardGreen,
-        surfaceContainerHigh: chalkboardGreen,
-        surfaceContainerHighest: chalkboardGreen,
         surfaceDim: chalkboardGreen,
 
         // Misc
@@ -95,6 +90,13 @@ class EzChalkboardConfig extends StatelessWidget {
         scrim: Colors.black,
         shadow: Colors.transparent,
         surfaceTint: Colors.transparent,
+
+        // Extra
+        surfaceContainerLowest: chalkboardGreen,
+        surfaceContainerLow: chalkboardGreen,
+        surfaceContainerHigh: chalkboardGreen,
+        surfaceContainerHighest: chalkboardGreen,
+        surfaceBright: chalkboardGreen,
       ),
       Brightness.dark,
     );
