@@ -56,19 +56,19 @@ class EzNebulaConfig extends StatelessWidget {
         // Primary
         primary: empathSand,
         onPrimary: Colors.black,
-        primaryContainer: empathSandDim,
+        primaryContainer: _halfSand,
         onPrimaryContainer: Colors.black,
 
         // Secondary
         secondary: empathEucalyptus,
         onSecondary: Colors.black,
-        secondaryContainer: empathEucalyptusDim,
+        secondaryContainer: _halfEucalyptus,
         onSecondaryContainer: Colors.black,
 
         // Tertiary
         tertiary: empathPurple,
         onTertiary: Colors.white,
-        tertiaryContainer: empathPurpleDim,
+        tertiaryContainer: _halfPurple,
         onTertiaryContainer: Colors.white,
 
         // Error
@@ -135,16 +135,16 @@ class EzNebulaConfig extends StatelessWidget {
 
     return Container(
       decoration: ShapeDecoration(
-        color: darkSurface,
+        color: _hintOPurple,
         shape: EzButtonShape.jewel.shape,
       ),
       child: EzElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: empathPurpleDim,
+          backgroundColor: _empathPurpleDimmer,
           foregroundColor: Colors.white,
-          shadowColor: empathPurpleDim,
+          shadowColor: _empathPurpleDimmer,
           overlayColor: empathSand,
-          side: const BorderSide(color: empathSandDim, width: 1.0),
+          side: const BorderSide(color: _halfSand, width: 1.0),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
           padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
@@ -163,11 +163,20 @@ class EzNebulaConfig extends StatelessWidget {
   }
 }
 
+/// 0x80DAA520
+const Color _halfSand = Color(0x80DAA520);
+
+/// 0x8020DAA5
+const Color _halfEucalyptus = Color(0x8020DAA5);
+
+/// 0x80A520DA
+const Color _halfPurple = Color(0x80A520DA);
+
 /// 0x33FF0000
 const Color _dimRed = Color(0x33FF0000);
 
 /// 0x19A520DA
 const Color _empathPurpleDimmer = Color(0x19A520DA);
 
-/// 0x0CA520DA
+/// 0xFF100010
 const Color _hintOPurple = Color(0xFF100010);
