@@ -27,36 +27,47 @@ const String textColorPrefix = 'On';
 
 // Dark theme //
 
-const String darkPrimaryKey = 'darkPrimary';
-const String darkPrimaryContainerKey = 'darkPrimaryContainer';
-
-const String darkSecondaryKey = 'darkSecondary';
-const String darkSecondaryContainerKey = 'darkSecondaryContainer';
-
-const String darkTertiaryKey = 'darkTertiary';
-const String darkTertiaryContainerKey = 'darkTertiaryContainer';
-
-const String darkErrorKey = 'darkError';
-const String darkErrorContainerKey = 'darkErrorContainer';
-
-const String darkOutlineKey = 'darkOutline';
-const String darkOutlineVariantKey = 'darkOutlineVariant';
-
+// Backgrounds
 const String darkSurfaceKey = 'darkSurface';
 const String darkSurfaceDimKey = 'darkSurfaceDim';
 const String darkSurfaceContainerKey = 'darkSurfaceContainer';
-const String darkOnSurfaceKey = 'darkOnSurface';
 
+// Text
+const String darkOnSurfaceKey = 'darkOnSurface';
+const String darkOutlineKey = 'darkOutline';
+
+// Primary
+const String darkPrimaryKey = 'darkPrimary';
+const String darkPrimaryContainerKey = 'darkPrimaryContainer';
+
+// Secondary
+const String darkSecondaryKey = 'darkSecondary';
+const String darkSecondaryContainerKey = 'darkSecondaryContainer';
+
+// Tertiary
+const String darkTertiaryKey = 'darkTertiary';
+const String darkTertiaryContainerKey = 'darkTertiaryContainer';
+
+// Erriary
+const String darkErrorKey = 'darkError';
+const String darkErrorContainerKey = 'darkErrorContainer';
+
+// Misc
+const String darkOutlineVariantKey = 'darkOutlineVariant';
 const String darkShadowKey = 'darkShadow';
 const String darkSurfaceTintKey = 'darkSurfaceTint';
+const String darkScrimKey = 'darkScrim';
 
 /// Ordered [List] for populating color setting screen(s)
 const List<String> darkColorOrder = <String>[
-  // Surface
+  // Backgrounds
   darkSurfaceKey,
-  darkOnSurfaceKey,
   darkSurfaceDimKey,
   darkSurfaceContainerKey,
+
+  // Text
+  darkOnSurfaceKey,
+  darkOutlineKey,
 
   // Primary
   darkPrimaryKey,
@@ -71,16 +82,16 @@ const List<String> darkColorOrder = <String>[
   darkTertiaryContainerKey,
 
   // Outline
-  darkOutlineKey,
-  darkOutlineVariantKey,
 
   // Erriary
   darkErrorKey,
   darkErrorContainerKey,
 
   // Misc
+  darkOutlineVariantKey,
   darkShadowKey,
   darkSurfaceTintKey,
+  darkScrimKey,
 ];
 
 const String darkColorSchemeImageKey = 'darkColorSchemeImage';
@@ -88,6 +99,15 @@ const String darkColorSchemeImageKey = 'darkColorSchemeImage';
 /// [darkColorOrder], [darkColorSchemeImageKey]
 const Map<String, Type> darkColorKeys = <String, Type>{
   darkColorSchemeImageKey: String,
+
+  // Backgrounds
+  darkSurfaceKey: int,
+  darkSurfaceDimKey: int,
+  darkSurfaceContainerKey: int,
+
+  // Text
+  darkOnSurfaceKey: int,
+  darkOutlineKey: int,
 
   // Primary
   darkPrimaryKey: int,
@@ -105,53 +125,56 @@ const Map<String, Type> darkColorKeys = <String, Type>{
   darkErrorKey: int,
   darkErrorContainerKey: int,
 
-  // Outline
-  darkOutlineKey: int,
-  darkOutlineVariantKey: int,
-
-  // Surface
-  darkSurfaceKey: int,
-  darkOnSurfaceKey: int,
-  darkSurfaceDimKey: int,
-  darkSurfaceContainerKey: int,
-
   // Misc
+  darkOutlineVariantKey: int,
   darkShadowKey: int,
   darkSurfaceTintKey: int,
+  darkScrimKey: int,
 };
 
 // Light theme //
 
-const String lightPrimaryKey = 'lightPrimary';
-const String lightPrimaryContainerKey = 'lightPrimaryContainer';
-
-const String lightSecondaryKey = 'lightSecondary';
-const String lightSecondaryContainerKey = 'lightSecondaryContainer';
-
-const String lightTertiaryKey = 'lightTertiary';
-const String lightTertiaryContainerKey = 'lightTertiaryContainer';
-
-const String lightErrorKey = 'lightError';
-const String lightErrorContainerKey = 'lightErrorContainer';
-
-const String lightOutlineKey = 'lightOutline';
-const String lightOutlineVariantKey = 'lightOutlineVariant';
-
+// Backgrounds
 const String lightSurfaceKey = 'lightSurface';
 const String lightSurfaceDimKey = 'lightSurfaceDim';
 const String lightSurfaceContainerKey = 'lightSurfaceContainer';
-const String lightOnSurfaceKey = 'lightOnSurface';
 
+// Text
+const String lightOnSurfaceKey = 'lightOnSurface';
+const String lightOutlineKey = 'lightOutline';
+
+// Primary
+const String lightPrimaryKey = 'lightPrimary';
+const String lightPrimaryContainerKey = 'lightPrimaryContainer';
+
+// Secondary
+const String lightSecondaryKey = 'lightSecondary';
+const String lightSecondaryContainerKey = 'lightSecondaryContainer';
+
+// Tertiary
+const String lightTertiaryKey = 'lightTertiary';
+const String lightTertiaryContainerKey = 'lightTertiaryContainer';
+
+// Erriary
+const String lightErrorKey = 'lightError';
+const String lightErrorContainerKey = 'lightErrorContainer';
+
+// Misc
+const String lightOutlineVariantKey = 'lightOutlineVariant';
 const String lightShadowKey = 'lightShadow';
 const String lightSurfaceTintKey = 'lightSurfaceTint';
+const String lightScrimKey = 'lightScrim';
 
 /// Ordered [List] for populating color setting screen(s)
 const List<String> lightColorOrder = <String>[
-  // Surface
+  // Backgrounds
   lightSurfaceKey,
-  lightOnSurfaceKey,
   lightSurfaceDimKey,
   lightSurfaceContainerKey,
+
+  // Outline
+  lightOnSurfaceKey,
+  lightOutlineKey,
 
   // Primary
   lightPrimaryKey,
@@ -165,17 +188,15 @@ const List<String> lightColorOrder = <String>[
   lightTertiaryKey,
   lightTertiaryContainerKey,
 
-  // Outline
-  lightOutlineKey,
-  lightOutlineVariantKey,
-
   // Erriary
   lightErrorKey,
   lightErrorContainerKey,
 
   // Misc
+  lightOutlineVariantKey,
   lightShadowKey,
   lightSurfaceTintKey,
+  lightScrimKey,
 ];
 
 const String lightColorSchemeImageKey = 'lightColorSchemeImage';
@@ -183,6 +204,15 @@ const String lightColorSchemeImageKey = 'lightColorSchemeImage';
 /// [lightColorOrder], [lightColorSchemeImageKey]
 const Map<String, Type> lightColorKeys = <String, Type>{
   lightColorSchemeImageKey: String,
+
+  // Backgrounds
+  lightSurfaceKey: int,
+  lightSurfaceDimKey: int,
+  lightSurfaceContainerKey: int,
+
+  // Text
+  lightOnSurfaceKey: int,
+  lightOutlineKey: int,
 
   // Primary
   lightPrimaryKey: int,
@@ -200,19 +230,11 @@ const Map<String, Type> lightColorKeys = <String, Type>{
   lightErrorKey: int,
   lightErrorContainerKey: int,
 
-  // Outline
-  lightOutlineKey: int,
-  lightOutlineVariantKey: int,
-
-  // Surface
-  lightSurfaceKey: int,
-  lightOnSurfaceKey: int,
-  lightSurfaceDimKey: int,
-  lightSurfaceContainerKey: int,
-
   // Misc
+  lightOutlineVariantKey: int,
   lightShadowKey: int,
   lightSurfaceTintKey: int,
+  lightScrimKey: int,
 };
 
 // Shared //
