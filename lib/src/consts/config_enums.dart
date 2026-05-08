@@ -7,7 +7,35 @@ import '../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// Box Fit //
+//* Shared *//
+
+// EzConfig values //
+
+/// enum [String] 'none'
+const String esNone = 'none';
+
+/// enum [String] 'system'
+const String esSystem = 'system';
+
+const Set<String> ezEnumVals = <String>{
+  esNone,
+  esSystem,
+  esPill,
+  esRect,
+  esRoundRect,
+  esLeftGram,
+  esRightGram,
+  esGem,
+  esJewel,
+  esTurnX,
+  esTurnY,
+  esRotate,
+  esSlideX,
+  esSlideY,
+  esZoom,
+};
+
+//* Box Fit *//
 
 /// Library for getting a [BoxFit] from its name
 /// '' && `null` both map to `null`
@@ -37,25 +65,25 @@ enum EzButtonShape {
 
 // EzConfig values //
 
-/// enum String 'pill'
+/// enum [String] 'pill'
 const String esPill = 'pill';
 
-/// enum String 'rect'
+/// enum [String] 'rect'
 const String esRect = 'rect';
 
-/// enum String 'roundRect'
+/// enum [String] 'roundRect'
 const String esRoundRect = 'roundRect';
 
-/// enum String 'leftGram'
+/// enum [String] 'leftGram'
 const String esLeftGram = 'leftGram';
 
-/// enum String 'rightGram'
+/// enum [String] 'rightGram'
 const String esRightGram = 'rightGram';
 
-/// enum String 'gem'
+/// enum [String] 'gem'
 const String esGem = 'gem';
 
-/// enum String 'jewel'
+/// enum [String] 'jewel'
 const String esJewel = 'jewel';
 
 // enum Config //
@@ -137,6 +165,7 @@ extension EBSConfig on EzButtonShape {
       case esJewel:
         return EzButtonShape.jewel;
 
+      case esPill:
       default:
         return EzButtonShape.pill;
     }
@@ -178,28 +207,27 @@ enum EzTransitionType {
   rotate,
   slideX,
   slideY,
-
   zoom,
 }
 
 // EzConfig values //
 
-/// enum String 'turnX'
+/// enum [String] 'turnX'
 const String esTurnX = 'turnX';
 
-/// enum String 'turnY'
+/// enum [String] 'turnY'
 const String esTurnY = 'turnY';
 
-/// enum String 'rotate'
+/// enum [String] 'rotate'
 const String esRotate = 'rotate';
 
-/// enum String 'slideX'
+/// enum [String] 'slideX'
 const String esSlideX = 'slideX';
 
-/// enum String 'slideY'
+/// enum [String] 'slideY'
 const String esSlideY = 'slideY';
 
-/// enum String 'zoom'
+/// enum [String] 'zoom'
 const String esZoom = 'zoom';
 
 // enum Config //
@@ -228,9 +256,8 @@ extension ETTConfig on EzTransitionType {
         return const Icon(Icons.rotate_90_degrees_cw);
 
       case EzTransitionType.slideX:
-        return Icon(EzConfig.isLTR
-            ? Icons.keyboard_double_arrow_left
-            : Icons.keyboard_double_arrow_right);
+        return Icon(
+            EzConfig.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right);
 
       case EzTransitionType.slideY:
         return const Icon(Icons.keyboard_double_arrow_up);
@@ -292,6 +319,7 @@ extension ETTConfig on EzTransitionType {
       case esZoom:
         return EzTransitionType.zoom;
 
+      case esSystem:
       default:
         return EzTransitionType.system;
     }
@@ -326,30 +354,69 @@ extension ETTConfig on EzTransitionType {
   }
 }
 
-//* Shared *//
+//* Animation curve *//
 
-// EzConfig values //
+/// enum [String] 'bounce'
+const String esBounce = 'bounce';
 
-/// enum String 'none'
-const String esNone = 'none';
+/// enum [String] 'ease'
+const String esEase = 'ease';
 
-/// enum String 'system'
-const String esSystem = 'system';
+/// enum [String] 'elastic'
+const String esElastic = 'elastic';
 
-const Set<String> ezEnumVals = <String>{
-  esNone,
-  esSystem,
-  esPill,
-  esRect,
-  esRoundRect,
-  esLeftGram,
-  esRightGram,
-  esGem,
-  esJewel,
-  esTurnX,
-  esTurnY,
-  esRotate,
-  esSlideX,
-  esSlideY,
-  esZoom,
-};
+/// enum [String] 'linear'
+const String esLinear = 'linear';
+
+enum EzAnimationCurve { bounce, ease, elastic, linear }
+
+extension EACConfig on EzAnimationCurve {
+  String get value {
+    switch (this) {
+      case EzAnimationCurve.bounce:
+        return esBounce;
+
+      case EzAnimationCurve.ease:
+        return esEase;
+
+      case EzAnimationCurve.elastic:
+        return esElastic;
+
+      case EzAnimationCurve.linear:
+        return esLinear;
+    }
+  }
+
+  String get name {
+    switch (this) {
+      case EzAnimationCurve.bounce:
+        return EzConfig.l10n.dsBounce;
+
+      case EzAnimationCurve.ease:
+        return EzConfig.l10n.dsEase;
+
+      case EzAnimationCurve.elastic:
+        return EzConfig.l10n.dsElastic;
+
+      case EzAnimationCurve.linear:
+        return EzConfig.l10n.dsLinear;
+    }
+  }
+
+  static Curve lookup(String? value) {
+    switch (value) {
+      case esBounce:
+        return Curves.bounceInOut;
+
+      case esElastic:
+        return Curves.elasticInOut;
+
+      case esLinear:
+        return Curves.linear;
+
+      case esEase:
+      default:
+        return Curves.easeInOut;
+    }
+  }
+}
