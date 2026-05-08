@@ -518,28 +518,12 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           EzDropdownMenu<EzTextSettingType>(
             widthEntry: EzConfig.l10n.tsHeadline,
             textStyle: widget.labelProvider.value,
-            dropdownMenuEntries: <DropdownMenuEntry<EzTextSettingType>>[
-              DropdownMenuEntry<EzTextSettingType>(
-                value: EzTextSettingType.display,
-                label: EzConfig.l10n.tsDisplay.toLowerCase(),
-              ),
-              DropdownMenuEntry<EzTextSettingType>(
-                value: EzTextSettingType.headline,
-                label: EzConfig.l10n.tsHeadline.toLowerCase(),
-              ),
-              DropdownMenuEntry<EzTextSettingType>(
-                value: EzTextSettingType.title,
-                label: EzConfig.l10n.tsTitle.toLowerCase(),
-              ),
-              DropdownMenuEntry<EzTextSettingType>(
-                value: EzTextSettingType.body,
-                label: EzConfig.l10n.tsBody.toLowerCase(),
-              ),
-              DropdownMenuEntry<EzTextSettingType>(
-                value: EzTextSettingType.label,
-                label: EzConfig.l10n.tsLabel.toLowerCase(),
-              ),
-            ],
+            dropdownMenuEntries: EzTextSettingType.values
+                .map((EzTextSettingType type) => DropdownMenuEntry<EzTextSettingType>(
+                      value: type,
+                      label: type.label,
+                    ))
+                .toList(),
             enableSearch: false,
             initialSelection: editing,
             onSelected: (EzTextSettingType? value) {
