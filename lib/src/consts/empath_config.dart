@@ -26,11 +26,11 @@ const int empathSandHex = 0xFFDAA520;
 /// Open source consumers: DO NOT USE
 const Color empathSand = Color(empathSandHex);
 
-/// 0x45DAA520
+/// 0x33DAA520
 /// Open source consumers: DO NOT USE
-const int empathSandDimHex = 0x45DAA520;
+const int empathSandDimHex = 0x33DAA520;
 
-/// 0x45DAA520
+/// 0x33DAA520
 /// Open source consumers: DO NOT USE
 const Color empathSandDim = Color(empathSandHex);
 
@@ -44,11 +44,11 @@ const int empathEucalyptusHex = 0xFF20DAA5;
 /// Open source consumers: DO NOT USE
 const Color empathEucalyptus = Color(empathEucalyptusHex);
 
-/// 0x4520DAA5
+/// 0x3320DAA5
 /// Open source consumers: DO NOT USE
-const int empathEucalyptusDimHex = 0x4520DAA5;
+const int empathEucalyptusDimHex = 0x3320DAA5;
 
-/// 0x4520DAA5
+/// 0x3320DAA5
 /// Open source consumers: DO NOT USE
 const Color empathEucalyptusDim = Color(empathEucalyptusHex);
 
@@ -62,11 +62,11 @@ const int empathPurpleHex = 0xFFA520DA;
 /// Open source consumers: DO NOT USE
 const Color empathPurple = Color(empathPurpleHex);
 
-/// 0x45A520DA
+/// 0x33A520DA
 /// Open source consumers: DO NOT USE
-const int empathPurpleDimHex = 0x45A520DA;
+const int empathPurpleDimHex = 0x33A520DA;
 
-/// 0x45A520DA
+/// 0x33A520DA
 /// Open source consumers: DO NOT USE
 const Color empathPurpleDim = Color(empathPurpleDimHex);
 
@@ -90,17 +90,17 @@ const int darkSurfaceHex = 0xFF222222;
 /// 0xFF222222 == 34 of each
 const Color darkSurface = Color(darkSurfaceHex);
 
-/// 0x80FFFFFF == white w/ [defaultOutlineOpacity]
-const int darkOutlineHex = 0x80FFFFFF;
+/// 0x80FFFFFF
+const int halfWhiteHex = 0x80FFFFFF;
 
-/// 0x80FFFFFF == white w/ [defaultOutlineOpacity]
-const Color darkOutline = Color(darkOutlineHex);
+/// 0x80FFFFFF
+const Color halfWhite = Color(halfWhiteHex);
 
-/// 0x33FFFFFF == white w/ [defaultBorderOpacity]
-const int darkOutlineVariantHex = 0x33FFFFFF;
+/// 0x33FFFFFF
+const int dimWhiteHex = 0x33FFFFFF;
 
-/// 0x33FFFFFF == white w/ [defaultBorderOpacity]
-const Color darkOutlineVariant = Color(darkOutlineVariantHex);
+/// 0x33FFFFFF
+const Color dimWhite = Color(dimWhiteHex);
 
 // Light //
 
@@ -122,17 +122,17 @@ const int lightSurfaceHex = whiteHex;
 /// 0xFFFFFFFF == white
 const Color lightSurface = Color(lightSurfaceHex);
 
-/// 0x80000000 == black w/ double [defaultOutlineOpacity]
-const int lightOutlineHex = 0x80000000;
+/// 0x80000000
+const int halfBlackHex = 0x80000000;
 
-/// 0x80000000 == black w/ double [defaultOutlineOpacity]
-const Color lightOutline = Color(lightOutlineHex);
+/// 0x80000000
+const Color halfBlack = Color(halfBlackHex);
 
-/// 0x33000000 == black w/ [defaultBorderOpacity]
-const int lightOutlineVariantHex = 0x33000000;
+/// 0x33000000
+const int dimBlackHex = 0x33000000;
 
-/// 0x33000000 == black w/ [defaultBorderOpacity]
-const Color lightOutlineVariant = Color(lightOutlineVariantHex);
+/// 0x33FFFFFF
+const Color dimBlack = Color(dimBlackHex);
 
 //* Design settings *//
 
@@ -147,9 +147,6 @@ const double defaultBorderWidth = 1.5;
 
 /// 0.2 == 0x33
 const double defaultBorderOpacity = 0.2;
-
-/// 0.5 == 0x80
-const double defaultOutlineOpacity = 0.5;
 
 /// 7.5
 const double defaultMobileMargin = 7.5;
@@ -375,8 +372,8 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   darkTertiaryKey: empathPurpleHex,
   darkTertiaryContainerKey: empathPurpleDimHex,
 
-  darkOutlineKey: darkOutlineHex,
-  darkOutlineVariantKey: darkOutlineVariantHex,
+  darkOutlineKey: halfWhite,
+  darkOutlineVariantKey: dimWhite,
 
   darkSurfaceKey: darkSurfaceHex,
   darkOnSurfaceKey: whiteHex,
@@ -397,8 +394,8 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   lightTertiaryKey: empathEucalyptusHex,
   lightTertiaryContainerKey: empathEucalyptusDimHex,
 
-  lightOutlineKey: lightOutlineHex,
-  lightOutlineVariantKey: lightOutlineVariantHex,
+  lightOutlineKey: halfBlack,
+  lightOutlineVariantKey: dimBlack,
 
   lightSurfaceKey: lightSurfaceHex,
   lightOnSurfaceKey: blackHex,
