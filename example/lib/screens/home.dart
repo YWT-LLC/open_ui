@@ -674,40 +674,40 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         fabs: <Widget>[
           EzConfig.spacer,
-          ResetFAB(() => setState(() {
-                nameTC.clear();
-                namePreview = l10n.csNamePreview;
-                validName = false;
+          ResetFAB(() {
+            nameTC.clear();
+            namePreview = l10n.csNamePreview;
+            validName = false;
 
-                publisherTC.clear();
-                pubPreview = l10n.csPubPreview;
+            publisherTC.clear();
+            pubPreview = l10n.csPubPreview;
 
-                descriptionTC.clear();
+            descriptionTC.clear();
 
-                domainTC.clear();
-                exampleDomain = false;
+            domainTC.clear();
+            exampleDomain = false;
 
-                flutterPathTC.clear();
+            flutterPathTC.clear();
 
-                advancedEC.collapse();
+            advancedEC.collapse();
 
-                workPathTC.text = docsPath;
+            workPathTC.text = docsPath;
 
-                copyrightEC.collapse();
-                copyrightTC.text = copyrightDefault;
+            copyrightEC.collapse();
+            copyrightTC.text = copyrightDefault;
 
-                licenseEC.collapse();
-                license = gnuKey;
+            licenseEC.collapse();
+            license = gnuKey;
 
-                l10nEC.collapse();
-                l10nTC.text = l10nDefault;
+            l10nEC.collapse();
+            l10nTC.text = l10nDefault;
 
-                analysisEC.collapse();
-                analysisTC.text = analysisDefault;
+            analysisEC.collapse();
+            analysisTC.text = analysisDefault;
 
-                launchEC.collapse();
-                launchTC.text = vscDefault;
-              })),
+            launchEC.collapse();
+            launchTC.text = vscDefault;
+          }),
         ],
       );
 
