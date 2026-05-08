@@ -53,7 +53,15 @@ class EzChalkboardConfig extends StatelessWidget {
 
     await loadColorScheme(
       const ColorScheme(
-        brightness: Brightness.dark,
+        // Backgrounds
+        surface: chalkboardGreen,
+        surfaceDim: chalkboardGreen,
+        surfaceContainer: chalkboardGreen,
+
+        // Text
+        onSurface: Colors.white,
+        outline: halfWhite,
+
         // Primary
         primary: empathSand,
         onPrimary: Colors.black,
@@ -78,20 +86,14 @@ class EzChalkboardConfig extends StatelessWidget {
         errorContainer: halfWhite,
         onErrorContainer: Colors.black,
 
-        // Surface
-        surface: chalkboardGreen,
-        onSurface: Colors.white,
-        surfaceContainer: chalkboardGreen,
-        surfaceDim: chalkboardGreen,
-
         // Misc
-        outline: halfWhite,
         outlineVariant: chalkboardGreen,
-        scrim: Colors.black,
         shadow: Colors.transparent,
         surfaceTint: Colors.transparent,
+        scrim: Colors.black,
 
         // Extra
+        brightness: Brightness.dark,
         surfaceContainerLowest: chalkboardGreen,
         surfaceContainerLow: chalkboardGreen,
         surfaceContainerHigh: chalkboardGreen,

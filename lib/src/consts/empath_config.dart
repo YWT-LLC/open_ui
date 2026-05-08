@@ -399,6 +399,7 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   // Dark misc
   darkOutlineVariantKey: dimWhiteHex,
+  // darkShadowKey
   darkSurfaceTintKey: transparentHex,
   darkScrimKey: blackHex,
 
@@ -438,6 +439,7 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   // Light misc
   lightOutlineVariantKey: dimBlackHex,
+  // lightShadowKey
   lightSurfaceTintKey: transparentHex,
   lightScrimKey: whiteHex,
 

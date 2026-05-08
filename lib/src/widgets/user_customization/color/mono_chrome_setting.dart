@@ -60,6 +60,15 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
 
 /// Custom [ColorScheme.highContrastDark]
 const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
+  // Backgrounds
+  surface: darkSurface,
+  surfaceDim: darkSurfaceDim,
+  surfaceContainer: darkSurfaceContainer,
+
+  // Text
+  onSurface: Colors.white,
+  outline: halfWhite,
+
   // Primary
   primary: Colors.white,
   onPrimary: Colors.black,
@@ -78,28 +87,30 @@ const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
   tertiaryContainer: dimWhite,
   onTertiaryContainer: Colors.black,
 
-  // Error
+  // Erriary
   error: Colors.red,
   onError: Colors.white,
   errorContainer: dimWhite,
   onErrorContainer: Colors.black,
 
-  // Surface
-  surfaceContainer: darkSurfaceContainer,
-  surfaceDim: darkSurfaceDim,
-  surface: darkSurface,
-  onSurface: Colors.white,
-
   // Misc
-  outline: halfWhite,
   outlineVariant: dimWhite,
-  scrim: Colors.black,
   shadow: Colors.transparent,
   surfaceTint: Colors.transparent,
+  scrim: Colors.black,
 );
 
 /// Custom [ColorScheme.highContrastLight]
 const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
+  // Surface
+  surface: lightSurface,
+  surfaceDim: lightSurfaceDim,
+  surfaceContainer: lightSurfaceContainer,
+
+  // Text
+  onSurface: Colors.black,
+  outline: halfBlack,
+
   // Primary
   primary: Colors.black,
   onPrimary: Colors.white,
@@ -118,22 +129,15 @@ const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
   tertiaryContainer: dimBlack,
   onTertiaryContainer: Colors.white,
 
-  // Error
+  // Erriary
   error: Colors.red,
   onError: Colors.white,
   errorContainer: dimBlack,
   onErrorContainer: Colors.white,
 
-  // Surface
-  surfaceContainer: lightSurfaceContainer,
-  surfaceDim: lightSurfaceDim,
-  surface: lightSurface,
-  onSurface: Colors.black,
-
   // Misc
-  outline: halfBlack,
   outlineVariant: dimBlack,
-  scrim: Colors.white,
   shadow: Colors.transparent,
   surfaceTint: Colors.transparent,
+  scrim: Colors.white,
 );

@@ -51,7 +51,14 @@ class EzWallHolesConfig extends StatelessWidget {
 
     await loadColorScheme(
       const ColorScheme(
-        brightness: Brightness.light,
+        // Backgrounds
+        surface: lightSurface,
+        surfaceDim: Color(0xFFDAE4F8),
+        surfaceContainer: Color(0xFFDAE4F8),
+
+        // Text
+        onSurface: Colors.black,
+        outline: halfBlack,
 
         // Primary
         primary: Color(0xFF3B77BC),
@@ -77,18 +84,12 @@ class EzWallHolesConfig extends StatelessWidget {
         errorContainer: Colors.black,
         onErrorContainer: Colors.white,
 
-        // Surface
-        surface: lightSurface,
-        onSurface: Colors.black,
-        surfaceContainer: Color(0xFFDAE4F8),
-        surfaceDim: Color(0xFFDAE4F8),
-
         // Misc
-        outline: halfBlack,
         outlineVariant: dimBlack,
         shadow: Colors.transparent,
-        scrim: Colors.white,
         surfaceTint: Colors.transparent,
+        scrim: Colors.white,
+        brightness: Brightness.light,
       ),
       Brightness.light,
     );

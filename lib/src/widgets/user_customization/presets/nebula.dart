@@ -52,7 +52,15 @@ class EzNebulaConfig extends StatelessWidget {
 
     await loadColorScheme(
       const ColorScheme(
-        brightness: Brightness.dark,
+        // Surface
+        surface: _empathPurpleDimmer,
+        surfaceDim: _hintOPurple,
+        surfaceContainer: _hintOPurple,
+
+        // Text
+        onSurface: Colors.white,
+        outline: halfWhite,
+
         // Primary
         primary: empathSand,
         onPrimary: Colors.black,
@@ -77,18 +85,12 @@ class EzNebulaConfig extends StatelessWidget {
         errorContainer: _dimRed,
         onErrorContainer: Colors.white,
 
-        // Surface
-        surface: _empathPurpleDimmer,
-        onSurface: Colors.white,
-        surfaceContainer: _hintOPurple,
-        surfaceDim: _hintOPurple,
-
         // Misc
-        outline: halfWhite,
         outlineVariant: dimWhite,
-        scrim: Colors.black,
         shadow: _empathPurpleDimmer,
         surfaceTint: Colors.transparent,
+        scrim: Colors.black,
+        brightness: Brightness.dark,
       ),
       Brightness.dark,
     );
