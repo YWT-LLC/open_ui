@@ -59,8 +59,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       EzConfig.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
   final int threeQAnim = (animDuration * 0.75).toInt();
 
-  final Curve animCurve = EACConfig.translate(
-      EzConfig.get(EzConfig.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
+  final Curve animCurve =
+      EACConfig.translate(EzConfig.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
 
   // Text //
 
