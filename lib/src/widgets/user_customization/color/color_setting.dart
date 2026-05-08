@@ -12,15 +12,10 @@ class EzColorSetting extends StatefulWidget {
   /// [EzConfig] key whose [Color] will be updated
   final String configKey;
 
-  /// Optional callback for when the [configKey] is removed, if it is part of a dynamic set/list
-  /// If null, the remove button will not be shown
-  /// DO NOT include a pop() for the dialog, this is included automatically
-  final void Function()? onRemove;
-
   /// Creates a tool for [configKey] ColorScheme values via [EzConfig]
   /// When [configKey] is a text color (has [textColorPrefix]), the base color will be used to generate a recommendation via [getTextColor]
   /// [EzColorSetting] inherits styling from the [ElevatedButton] and [AlertDialog] values in your [ThemeData]
-  const EzColorSetting({super.key, required this.configKey, this.onRemove});
+  const EzColorSetting({super.key, required this.configKey});
 
   @override
   State<EzColorSetting> createState() => _ColorSettingState();
@@ -171,36 +166,6 @@ class _ColorSettingState extends State<EzColorSetting> {
         },
       );
 
-  /// Opens an [EzAlertDialog] with the all optional actions
-  /// Currently: remove from list and reset to default
-  Future<dynamic> options() async => (widget.onRemove == null)
-      ? await reset()
-      : await showDialog(
-          context: context,
-          builder: (BuildContext dCon) => EzAlertDialog(
-            title: Text(EzConfig.l10n.gOptions, textAlign: TextAlign.center),
-            contents: <Widget>[
-              // Remove from list
-              EzElevatedIconButton(
-                onPressed: () {
-                  widget.onRemove!();
-                  Navigator.of(dCon).pop();
-                },
-                icon: const Icon(Icons.delete),
-                label: EzConfig.l10n.gRemove,
-              ),
-              EzConfig.spacer,
-
-              // Reset to default
-              EzElevatedIconButton(
-                onPressed: reset,
-                icon: const Icon(Icons.refresh),
-                label: EzConfig.l10n.gReset,
-              ),
-            ],
-          ),
-        );
-
   // Return the build //
 
   @override
@@ -218,7 +183,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             padding: EdgeInsets.all(EzConfig.padding * 0.75),
           ),
           onPressed: changeColor,
-          onLongPress: options,
+          onLongPress: reset,
           icon: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -240,6 +205,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                   ),
           ),
           label: label,
+          textAlign: TextAlign.center,
         ),
       ),
     );
