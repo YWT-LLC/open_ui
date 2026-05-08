@@ -904,6 +904,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   static bool get fadedTransition => _provPoint.design.fadedTransition;
 
   static int get animDur => _provPoint.design.animDur;
+  static Curve get animCurve => _provPoint.design.animCurve;
 
   static bool get showScroll => _provPoint.design.showScroll;
 

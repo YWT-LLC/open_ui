@@ -86,6 +86,7 @@ class EzConfigProvider extends ChangeNotifier {
         margin: EzConfig.get(darkMarginKey),
         spacing: EzConfig.get(darkSpacingKey),
         animDur: EzConfig.get(darkAnimationDurationKey),
+        animCurve: EzConfig.get(darkAnimationCurveKey),
         transitionType: ETTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
         fadedTransition: EzConfig.get(darkTransitionFadeKey),
         backgroundImagePath: EzConfig.get(darkBackgroundImageKey),
@@ -122,6 +123,7 @@ class EzConfigProvider extends ChangeNotifier {
         margin: EzConfig.get(lightMarginKey),
         spacing: EzConfig.get(lightSpacingKey),
         animDur: EzConfig.get(lightAnimationDurationKey),
+        animCurve: EzConfig.get(lightAnimationCurveKey),
         transitionType: ETTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
         fadedTransition: EzConfig.get(lightTransitionFadeKey),
         backgroundImagePath: EzConfig.get(lightBackgroundImageKey),
@@ -347,6 +349,7 @@ class EzDesignCache {
   final double spacing;
 
   final int animDur;
+  final Curve animCurve;
   final EzTransitionType transitionType;
   final bool fadedTransition;
 
@@ -366,6 +369,7 @@ class EzDesignCache {
     required this.margin,
     required this.spacing,
     required this.animDur,
+    required this.animCurve,
     required this.transitionType,
     required this.fadedTransition,
     required this.backgroundImagePath,
