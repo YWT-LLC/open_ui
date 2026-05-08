@@ -284,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: EzRow(
                   children: <Widget>[
                     Flexible(
-                      child: EzText(
+                      child: Text(
                         l10n.csAdvanced,
                         style: EzConfig.styles.titleLarge,
                         textAlign: TextAlign.start,
@@ -311,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // Work path picker
                   if (isDesktop) ...<Widget>[
-                    EzText(
+                    Text(
                       l10n.csOutputPath,
                       style: EzConfig.styles.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
@@ -904,7 +904,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
           title: EzRow(
             children: <Widget>[
               Flexible(
-                child: EzText(
+                child: Text(
                   widget.title,
                   textAlign: TextAlign.start,
                 ),
@@ -991,7 +991,7 @@ class _LicensePickerState extends State<_LicensePicker> {
           showTrailingIcon: false,
           title: EzRow(
             children: <Widget>[
-              const Flexible(child: EzText('LICENSE', textAlign: TextAlign.start)),
+              const Flexible(child: Text('LICENSE', textAlign: TextAlign.start)),
               EzConfig.rowMargin,
               Semantics(
                 label: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,

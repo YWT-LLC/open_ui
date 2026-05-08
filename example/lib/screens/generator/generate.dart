@@ -367,7 +367,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Flexible(
-                    child: EzText(
+                    child: Text(
                       l10n.gsConsole,
                       style: EzConfig.styles.titleLarge,
                       textAlign: TextAlign.center,
