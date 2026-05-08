@@ -368,6 +368,7 @@ const Map<String, Type> lightButtonDesignKeys = <String, Type>{
 const String darkMarginKey = 'darkMargin';
 const String darkSpacingKey = 'darkSpacing';
 const String darkAnimationDurationKey = 'darkAnimationDuration';
+const String darkAnimationCurveKey = 'darkAnimationCurve';
 const String darkTransitionTypeKey = 'darkTransitionType';
 const String darkTransitionFadeKey = 'darkTransitionFade';
 const String darkBackgroundImageKey = 'darkBackgroundImage';
@@ -376,6 +377,7 @@ const String darkShowScrollKey = 'darkShowScroll';
 const String lightMarginKey = 'lightMargin';
 const String lightSpacingKey = 'lightSpacing';
 const String lightAnimationDurationKey = 'lightAnimationDuration';
+const String lightAnimationCurveKey = 'lightAnimationCurve';
 const String lightTransitionTypeKey = 'lightTransitionType';
 const String lightTransitionFadeKey = 'lightTransitionFade';
 const String lightBackgroundImageKey = 'lightBackgroundImage';
@@ -385,9 +387,10 @@ const String lightShowScrollKey = 'lightShowScroll';
 const Map<String, Type> darkPageDesignKeys = <String, Type>{
   darkMarginKey: double,
   darkSpacingKey: double,
-  darkAnimationDurationKey: int,
   darkTransitionTypeKey: String,
   darkTransitionFadeKey: bool,
+  darkAnimationDurationKey: int,
+  darkAnimationCurveKey: String,
   darkBackgroundImageKey: String,
   darkShowScrollKey: bool,
 };
@@ -396,9 +399,10 @@ const Map<String, Type> darkPageDesignKeys = <String, Type>{
 const Map<String, Type> lightPageDesignKeys = <String, Type>{
   lightMarginKey: double,
   lightSpacingKey: double,
-  lightAnimationDurationKey: int,
   lightTransitionTypeKey: String,
   lightTransitionFadeKey: bool,
+  lightAnimationDurationKey: int,
+  lightAnimationCurveKey: String,
   lightBackgroundImageKey: String,
   lightShowScrollKey: bool,
 };
