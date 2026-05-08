@@ -91,23 +91,6 @@ class PageDesign extends StatelessWidget {
 
         // Animation duration
         const _AnimDurSetting(),
-        EzConfig.separator,
-
-        // Show scroll
-        EzSwitchPair(
-          valueKey: EzConfig.isDark ? darkShowScrollKey : lightShowScrollKey,
-          afterChanged: (bool? value) async {
-            if (value == null) return;
-
-            if (EzConfig.updateBoth) {
-              await EzConfig.setBool(
-                  EzConfig.isDark ? lightShowScrollKey : darkShowScrollKey, value);
-            }
-
-            await EzConfig.rebuildUI();
-          },
-          text: EzConfig.l10n.dsShowScroll,
-        ),
 
         // After background
         if (append != null) ...append!,

@@ -72,6 +72,23 @@ class ButtonDesign extends StatelessWidget {
           },
           text: EzConfig.l10n.dsShowBack,
         ),
+        EzConfig.spacer,
+
+        // Show scroll
+        EzSwitchPair(
+          valueKey: EzConfig.isDark ? darkShowScrollKey : lightShowScrollKey,
+          afterChanged: (bool? value) async {
+            if (value == null) return;
+
+            if (EzConfig.updateBoth) {
+              await EzConfig.setBool(
+                  EzConfig.isDark ? lightShowScrollKey : darkShowScrollKey, value);
+            }
+
+            await EzConfig.rebuildUI();
+          },
+          text: EzConfig.l10n.dsShowScroll,
+        ),
 
         if (append != null) ...append!,
 
