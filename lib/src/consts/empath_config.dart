@@ -372,8 +372,8 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   darkTertiaryKey: empathPurpleHex,
   darkTertiaryContainerKey: empathPurpleDimHex,
 
-  darkOutlineKey: halfWhite,
-  darkOutlineVariantKey: dimWhite,
+  darkOutlineKey: halfWhiteHex,
+  darkOutlineVariantKey: dimWhiteHex,
 
   darkSurfaceKey: darkSurfaceHex,
   darkOnSurfaceKey: whiteHex,
@@ -394,8 +394,8 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   lightTertiaryKey: empathEucalyptusHex,
   lightTertiaryContainerKey: empathEucalyptusDimHex,
 
-  lightOutlineKey: halfBlack,
-  lightOutlineVariantKey: dimBlack,
+  lightOutlineKey: halfBlackHex,
+  lightOutlineVariantKey: dimBlackHex,
 
   lightSurfaceKey: lightSurfaceHex,
   lightOnSurfaceKey: blackHex,
