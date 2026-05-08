@@ -58,12 +58,6 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
       );
 }
 
-/// 0x33FFFFFF
-const Color dimWhite = Color(0x33FFFFFF);
-
-/// 0x33FFFFFF
-const Color dimBlack = Color(0x33000000);
-
 /// Custom [ColorScheme.highContrastDark]
 const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
   // Primary
