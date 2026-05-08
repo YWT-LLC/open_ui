@@ -231,7 +231,7 @@
   "dsMargin": "Margin",
   "dsSpacing": "Spacing",
 
-  "dsAnimDuration": "Animation duration",
+  "dsAnimStyle": "Animation style",
   "dsPlay": "Play animation",
   "dsMilliseconds": "Milliseconds",
 

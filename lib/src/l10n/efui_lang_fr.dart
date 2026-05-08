@@ -582,7 +582,7 @@ class EFUILangFr extends EFUILang {
   String get dsSpacing => 'Espacement';
 
   @override
-  String get dsAnimDuration => 'Durée de l\'animation';
+  String get dsAnimStyle => 'Style de l\'animation';
 
   @override
   String get dsPlay => 'Lancer l\'animation';

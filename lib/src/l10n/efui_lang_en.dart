@@ -579,7 +579,7 @@ class EFUILangEn extends EFUILang {
   String get dsSpacing => 'Spacing';
 
   @override
-  String get dsAnimDuration => 'Animation duration';
+  String get dsAnimStyle => 'Animation style';
 
   @override
   String get dsPlay => 'Play animation';
@@ -1386,7 +1386,7 @@ class EFUILangEnUs extends EFUILangEn {
   String get dsSpacing => 'Spacing';
 
   @override
-  String get dsAnimDuration => 'Animation duration';
+  String get dsAnimStyle => 'Animation style';
 
   @override
   String get dsPlay => 'Play animation';

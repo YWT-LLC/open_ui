@@ -1185,11 +1185,11 @@ abstract class EFUILang {
   /// **'Spacing'**
   String get dsSpacing;
 
-  /// No description provided for @dsAnimDuration.
+  /// No description provided for @dsAnimStyle.
   ///
   /// In en, this message translates to:
-  /// **'Animation duration'**
-  String get dsAnimDuration;
+  /// **'Animation style'**
+  String get dsAnimStyle;
 
   /// No description provided for @dsPlay.
   ///

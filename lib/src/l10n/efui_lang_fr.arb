@@ -231,7 +231,7 @@
   "dsMargin": "Marge extérieure",
   "dsSpacing": "Espacement",
 
-  "dsAnimDuration": "Durée de l'animation",
+  "dsAnimStyle": "Style de l'animation",
   "dsPlay": "Lancer l'animation",
   "dsMilliseconds": "Millisecondes",
 
