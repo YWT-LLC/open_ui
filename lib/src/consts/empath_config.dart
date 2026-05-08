@@ -14,6 +14,9 @@ import 'package:flutter/material.dart';
 
 const int blackHex = 0xFF000000;
 const int whiteHex = 0xFFFFFFFF;
+const int redHex = 0xFFFF0000;
+
+const int halfRedHex = 0x80FF0000;
 const int transparentHex = 0x00000000;
 
 // Secondary //
@@ -360,49 +363,83 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   // Color settings //
   advancedColorsKey: false,
 
-  // Dark
+  // Dark backgrounds
   darkColorSchemeImageKey: noImageValue,
-
-  darkPrimaryKey: empathEucalyptusHex,
-  darkPrimaryContainerKey: empathEucalyptusDimHex,
-
-  darkSecondaryKey: empathSandHex,
-  darkSecondaryContainerKey: empathSandDimHex,
-
-  darkTertiaryKey: empathPurpleHex,
-  darkTertiaryContainerKey: empathPurpleDimHex,
-
-  darkOutlineKey: halfWhiteHex,
-  darkOutlineVariantKey: dimWhiteHex,
-
   darkSurfaceKey: darkSurfaceHex,
-  darkOnSurfaceKey: whiteHex,
   darkSurfaceDimKey: darkSurfaceDimHex,
   darkSurfaceContainerKey: darkSurfaceContainerHex,
 
+  // Dark text
+  darkOnSurfaceKey: whiteHex,
+  darkOutlineKey: halfWhiteHex,
+
+  // Dark primary
+  darkPrimaryKey: empathEucalyptusHex,
+  darkOnPrimaryKey: blackHex,
+  darkPrimaryContainerKey: empathEucalyptusDimHex,
+  darkOnPrimaryContainerKey: blackHex,
+
+  // Dark secondary
+  darkSecondaryKey: empathSandHex,
+  darkOnSecondaryKey: blackHex,
+  darkSecondaryContainerKey: empathSandDimHex,
+  darkOnSecondaryContainerKey: blackHex,
+
+  // Dark tertiary
+  darkTertiaryKey: empathPurpleHex,
+  darkOnTertiaryKey: whiteHex,
+  darkTertiaryContainerKey: empathPurpleDimHex,
+  darkOnTertiaryContainerKey: whiteHex,
+
+  // Dark erriary
+  darkErrorKey: redHex,
+  darkOnErrorKey: whiteHex,
+  darkErrorContainerKey: halfRedHex,
+  darkOnErrorContainerKey: whiteHex,
+
+  // Dark misc
+  darkOutlineVariantKey: dimWhiteHex,
   darkSurfaceTintKey: transparentHex,
+  darkScrimKey: blackHex,
 
-  // Light
+  // Light backgrounds
   lightColorSchemeImageKey: noImageValue,
-
-  lightPrimaryKey: empathPurpleHex,
-  lightPrimaryContainerKey: empathPurpleDimHex,
-
-  lightSecondaryKey: empathSandHex,
-  lightSecondaryContainerKey: empathSandDimHex,
-
-  lightTertiaryKey: empathEucalyptusHex,
-  lightTertiaryContainerKey: empathEucalyptusDimHex,
-
-  lightOutlineKey: halfBlackHex,
-  lightOutlineVariantKey: dimBlackHex,
-
   lightSurfaceKey: lightSurfaceHex,
-  lightOnSurfaceKey: blackHex,
   lightSurfaceDimKey: lightSurfaceDimHex,
   lightSurfaceContainerKey: lightSurfaceContainerHex,
 
+  // Light text
+  lightOnSurfaceKey: blackHex,
+  lightOutlineKey: halfBlackHex,
+
+  // Light primary
+  lightPrimaryKey: empathPurpleHex,
+  lightOnPrimaryKey: whiteHex,
+  lightPrimaryContainerKey: empathPurpleDimHex,
+  lightOnPrimaryContainerKey: whiteHex,
+
+  // Light secondary
+  lightSecondaryKey: empathSandHex,
+  lightOnSecondaryKey: blackHex,
+  lightSecondaryContainerKey: empathSandDimHex,
+  lightOnSecondaryContainerKey: blackHex,
+
+  // Light tertiary
+  lightTertiaryKey: empathEucalyptusHex,
+  lightOnTertiaryKey: blackHex,
+  lightTertiaryContainerKey: empathEucalyptusDimHex,
+  lightOnTertiaryContainerKey: blackHex,
+
+  // Light erriary
+  lightErrorKey: redHex,
+  lightOnErrorKey: whiteHex,
+  lightErrorContainerKey: halfRedHex,
+  lightOnErrorContainerKey: whiteHex,
+
+  // Light misc
+  lightOutlineVariantKey: dimBlackHex,
   lightSurfaceTintKey: transparentHex,
+  lightScrimKey: whiteHex,
 
   // Design settings //
   pageTabKey: false,
