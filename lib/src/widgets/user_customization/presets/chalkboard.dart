@@ -61,7 +61,7 @@ class EzChalkboardConfig extends StatelessWidget {
         onPrimaryContainer: Colors.black,
 
         // Secondary
-        secondary: darkOutline,
+        secondary: halfWhite,
         onSecondary: Colors.black,
         secondaryContainer: Colors.white,
         onSecondaryContainer: Colors.black,
@@ -90,8 +90,8 @@ class EzChalkboardConfig extends StatelessWidget {
         surfaceDim: chalkboardGreen,
 
         // Misc
-        outline: darkOutline,
-        outlineVariant: darkOutlineVariant,
+        outline: halfWhite,
+        outlineVariant: dimWhite,
         scrim: Colors.black,
         shadow: Colors.transparent,
         surfaceTint: Colors.transparent,

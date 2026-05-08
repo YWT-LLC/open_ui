@@ -84,8 +84,8 @@ class EzWallHolesConfig extends StatelessWidget {
         surfaceDim: Color(0xFFDAE4F8),
 
         // Misc
-        outline: lightOutline,
-        outlineVariant: lightOutlineVariant,
+        outline: halfBlack,
+        outlineVariant: dimBlack,
         shadow: Colors.transparent,
         scrim: Colors.white,
         surfaceTint: Colors.transparent,
