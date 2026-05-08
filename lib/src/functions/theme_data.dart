@@ -59,6 +59,9 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       EzConfig.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
   final int threeQAnim = (animDuration * 0.75).toInt();
 
+  final Curve animCurve = EACConfig.translate(
+      EzConfig.get(EzConfig.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
+
   // Text //
 
   final TextTheme textTheme = ezTextTheme(colorScheme.onSurface, isDark: isDark);
@@ -258,8 +261,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       ),
       expandedAlignment: ltr ? Alignment.centerLeft : Alignment.centerRight,
       expansionAnimationStyle: AnimationStyle(
-        curve: EzConfig.animCurve,
-        reverseCurve: EzConfig.animCurve,
+        curve: animCurve,
+        reverseCurve: animCurve,
         duration: Duration(milliseconds: threeQAnim),
         reverseDuration: Duration(milliseconds: threeQAnim),
       ),
