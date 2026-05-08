@@ -201,7 +201,7 @@ class _AnimDurSetting extends StatelessWidget {
 
           if (animDuration != backup) await EzConfig.rebuildUI();
         },
-        label: EzConfig.l10n.dsAnimDuration,
+        label: EzConfig.l10n.dsAnimStyle,
         icon: const Icon(Icons.timer_outlined),
       );
 }
