@@ -72,7 +72,15 @@ const Color hcError = Color(0xFFFF6700);
 
 /// Custom [ColorScheme.highContrastDark]
 const ColorScheme ezHighContrastDark = ColorScheme(
-  brightness: Brightness.dark,
+  // Backgrounds
+  surface: darkSurfaceDim,
+  surfaceDim: darkSurfaceContainer,
+  surfaceContainer: Colors.black,
+
+  // Text
+  onSurface: Colors.white,
+  outline: Colors.white,
+
   // Primary
   primary: hceGreen,
   onPrimary: Colors.black,
@@ -91,29 +99,31 @@ const ColorScheme ezHighContrastDark = ColorScheme(
   tertiaryContainer: halfWhite,
   onTertiaryContainer: Colors.black,
 
-  // Error
+  // Erriary
   error: hcError,
   onError: Colors.white,
   errorContainer: halfWhite,
   onErrorContainer: Colors.black,
 
-  // Surface
-  surfaceContainer: Colors.black,
-  surfaceDim: darkSurfaceContainer,
-  surface: darkSurfaceDim,
-  onSurface: Colors.white,
-
   // Misc
-  outline: Colors.white,
   outlineVariant: halfWhite,
-  scrim: Colors.black,
   shadow: Colors.transparent,
   surfaceTint: Colors.transparent,
+  scrim: Colors.black,
+  brightness: Brightness.dark,
 );
 
 /// Custom [ColorScheme.highContrastLight]
 const ColorScheme ezHighContrastLight = ColorScheme(
-  brightness: Brightness.light,
+  // Backgrounds
+  surface: Colors.white,
+  surfaceDim: lightSurfaceDim,
+  surfaceContainer: lightSurfaceContainer,
+
+  // Text
+  onSurface: Colors.black,
+  outline: Colors.black,
+
   // Primary
   primary: hcePurple,
   onPrimary: Colors.white,
@@ -138,16 +148,10 @@ const ColorScheme ezHighContrastLight = ColorScheme(
   errorContainer: halfBlack,
   onErrorContainer: Colors.white,
 
-  // Surface
-  surfaceContainer: lightSurfaceContainer,
-  surfaceDim: lightSurfaceDim,
-  surface: Colors.white,
-  onSurface: Colors.black,
-
   // Misc
-  outline: Colors.black,
   outlineVariant: halfBlack,
-  scrim: Colors.white,
   shadow: Colors.transparent,
   surfaceTint: Colors.transparent,
+  scrim: Colors.white,
+  brightness: Brightness.light,
 );

@@ -451,8 +451,11 @@ Must be one of [int, bool, double, String, List<String>]''');
       // Update color settings //
       await loadColorScheme(
         ColorScheme.fromSeed(
-          brightness: Brightness.dark,
-          seedColor: primary,
+          // Backgrounds: generated
+
+          // Text
+          onSurface: Colors.white,
+          outline: halfWhite,
 
           // Primary
           primary: primary,
@@ -472,18 +475,19 @@ Must be one of [int, bool, double, String, List<String>]''');
           tertiaryContainer: tertiary.withValues(alpha: defaultBorderOpacity),
           onTertiaryContainer: onTertiary,
 
-          // Error
+          // Erriary
           error: Colors.red,
           onError: Colors.white,
-          errorContainer: Colors.redAccent,
+          errorContainer: const Color(0x33FF0000),
           onErrorContainer: Colors.white,
 
-          // Surface
-          onSurface: Colors.white,
-
           // Misc
-          scrim: Colors.black,
+          // outlineVariant
+          // shadow
           surfaceTint: Colors.transparent,
+          scrim: Colors.black,
+          brightness: Brightness.dark,
+          seedColor: primary,
         ),
         Brightness.dark,
       );
@@ -591,8 +595,11 @@ Must be one of [int, bool, double, String, List<String>]''');
 
       await loadColorScheme(
         ColorScheme.fromSeed(
-          brightness: Brightness.light,
-          seedColor: primary,
+          // Backgrounds: generated
+
+          // Text
+          onSurface: Colors.black,
+          outline: halfBlack,
 
           // Primary
           primary: primary,
@@ -615,15 +622,16 @@ Must be one of [int, bool, double, String, List<String>]''');
           // Error
           error: Colors.red,
           onError: Colors.white,
-          errorContainer: Colors.redAccent,
+          errorContainer: const Color(0x33FF0000),
           onErrorContainer: Colors.white,
 
-          // Surface
-          onSurface: Colors.black,
-
           // Misc
-          scrim: Colors.white,
+          // outlineVariant
+          // shadow
           surfaceTint: Colors.transparent,
+          scrim: Colors.white,
+          brightness: Brightness.light,
+          seedColor: primary,
         ),
         Brightness.light,
       );
