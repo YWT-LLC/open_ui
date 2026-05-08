@@ -579,15 +579,6 @@ class EFUILangEn extends EFUILang {
   String get dsSpacing => 'Spacing';
 
   @override
-  String get dsAnimStyle => 'Animation style';
-
-  @override
-  String get dsPlay => 'Play animation';
-
-  @override
-  String get dsMilliseconds => 'Milliseconds';
-
-  @override
   String get dsPageTransition => 'Page transition';
 
   @override
@@ -610,6 +601,30 @@ class EFUILangEn extends EFUILang {
 
   @override
   String get dsFadeTransition => 'Fade transition';
+
+  @override
+  String get dsAnimStyle => 'Animation style';
+
+  @override
+  String get dsPlay => 'Play animation';
+
+  @override
+  String get dsMilliseconds => 'Milliseconds';
+
+  @override
+  String get dsCurve => 'Curve';
+
+  @override
+  String get dsBounce => 'Bounce';
+
+  @override
+  String get dsEase => 'Ease';
+
+  @override
+  String get dsElastic => 'Elastic';
+
+  @override
+  String get dsLinear => 'Linear';
 
   @override
   String get dsBackgroundImg => 'Background image';
@@ -1386,15 +1401,6 @@ class EFUILangEnUs extends EFUILangEn {
   String get dsSpacing => 'Spacing';
 
   @override
-  String get dsAnimStyle => 'Animation style';
-
-  @override
-  String get dsPlay => 'Play animation';
-
-  @override
-  String get dsMilliseconds => 'Milliseconds';
-
-  @override
   String get dsPageTransition => 'Page transition';
 
   @override
@@ -1417,6 +1423,30 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get dsFadeTransition => 'Fade transition';
+
+  @override
+  String get dsAnimStyle => 'Animation style';
+
+  @override
+  String get dsPlay => 'Play animation';
+
+  @override
+  String get dsMilliseconds => 'Milliseconds';
+
+  @override
+  String get dsCurve => 'Curve';
+
+  @override
+  String get dsBounce => 'Bounce';
+
+  @override
+  String get dsEase => 'Ease';
+
+  @override
+  String get dsElastic => 'Elastic';
+
+  @override
+  String get dsLinear => 'Linear';
 
   @override
   String get dsBackgroundImg => 'Background image';

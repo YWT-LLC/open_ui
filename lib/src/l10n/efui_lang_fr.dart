@@ -582,15 +582,6 @@ class EFUILangFr extends EFUILang {
   String get dsSpacing => 'Espacement';
 
   @override
-  String get dsAnimStyle => 'Style de l\'animation';
-
-  @override
-  String get dsPlay => 'Lancer l\'animation';
-
-  @override
-  String get dsMilliseconds => 'Millisecondes';
-
-  @override
   String get dsPageTransition => 'Transition de page';
 
   @override
@@ -613,6 +604,30 @@ class EFUILangFr extends EFUILang {
 
   @override
   String get dsFadeTransition => 'Transition en fondu';
+
+  @override
+  String get dsAnimStyle => 'Style de l\'animation';
+
+  @override
+  String get dsPlay => 'Lancer l\'animation';
+
+  @override
+  String get dsMilliseconds => 'Millisecondes';
+
+  @override
+  String get dsCurve => 'Courbe';
+
+  @override
+  String get dsBounce => 'Rebond';
+
+  @override
+  String get dsEase => 'Faciliter';
+
+  @override
+  String get dsElastic => 'Élastique';
+
+  @override
+  String get dsLinear => 'Linéaire';
 
   @override
   String get dsBackgroundImg => 'Arrière-plan de l\'image';

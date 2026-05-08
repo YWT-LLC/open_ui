@@ -1185,24 +1185,6 @@ abstract class EFUILang {
   /// **'Spacing'**
   String get dsSpacing;
 
-  /// No description provided for @dsAnimStyle.
-  ///
-  /// In en, this message translates to:
-  /// **'Animation style'**
-  String get dsAnimStyle;
-
-  /// No description provided for @dsPlay.
-  ///
-  /// In en, this message translates to:
-  /// **'Play animation'**
-  String get dsPlay;
-
-  /// No description provided for @dsMilliseconds.
-  ///
-  /// In en, this message translates to:
-  /// **'Milliseconds'**
-  String get dsMilliseconds;
-
   /// No description provided for @dsPageTransition.
   ///
   /// In en, this message translates to:
@@ -1250,6 +1232,54 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Fade transition'**
   String get dsFadeTransition;
+
+  /// No description provided for @dsAnimStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Animation style'**
+  String get dsAnimStyle;
+
+  /// No description provided for @dsPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play animation'**
+  String get dsPlay;
+
+  /// No description provided for @dsMilliseconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Milliseconds'**
+  String get dsMilliseconds;
+
+  /// No description provided for @dsCurve.
+  ///
+  /// In en, this message translates to:
+  /// **'Curve'**
+  String get dsCurve;
+
+  /// No description provided for @dsBounce.
+  ///
+  /// In en, this message translates to:
+  /// **'Bounce'**
+  String get dsBounce;
+
+  /// No description provided for @dsEase.
+  ///
+  /// In en, this message translates to:
+  /// **'Ease'**
+  String get dsEase;
+
+  /// No description provided for @dsElastic.
+  ///
+  /// In en, this message translates to:
+  /// **'Elastic'**
+  String get dsElastic;
+
+  /// No description provided for @dsLinear.
+  ///
+  /// In en, this message translates to:
+  /// **'Linear'**
+  String get dsLinear;
 
   /// No description provided for @dsBackgroundImg.
   ///

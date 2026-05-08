@@ -231,10 +231,6 @@
   "dsMargin": "Margin",
   "dsSpacing": "Spacing",
 
-  "dsAnimStyle": "Animation style",
-  "dsPlay": "Play animation",
-  "dsMilliseconds": "Milliseconds",
-
   "dsPageTransition": "Page transition",
   "dsTurnX": "Horizontal turn",
   "dsTurnY": "Vertical turn",
@@ -243,6 +239,15 @@
   "dsSlideY": "Vertical slide",
   "dsZoom": "Zoom",
   "dsFadeTransition": "Fade transition",  
+
+  "dsAnimStyle": "Animation style",
+  "dsPlay": "Play animation",
+  "dsMilliseconds": "Milliseconds",
+  "dsCurve": "Curve",
+  "dsBounce": "Bounce",
+  "dsEase": "Ease",
+  "dsElastic": "Elastic",
+  "dsLinear": "Linear",
 
   "dsBackgroundImg": "Background image",
   "dsImgSettingHint": "Update the {title} image",

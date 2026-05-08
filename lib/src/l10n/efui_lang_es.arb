@@ -231,10 +231,6 @@
   "dsMargin": "Margen",
   "dsSpacing": "Espaciado",
 
-  "dsAnimStyle": "Estilo de la animación",
-  "dsPlay": "Reproducir animación",
-  "dsMilliseconds": "Milisegundos",
-
   "dsPageTransition": "Transición de página",
   "dsTurnX": "Giro horizontal",
   "dsTurnY": "Giro vertical",
@@ -243,6 +239,15 @@
   "dsSlideY": "Diapositiva vertical",
   "dsZoom": "Zoom",
   "dsFadeTransition": "Transición de desvanecimiento",
+
+  "dsAnimStyle": "Estilo de la animación",
+  "dsPlay": "Reproducir animación",
+  "dsMilliseconds": "Milisegundos",
+  "dsCurve": "Curva",
+  "dsBounce": "Rebotar",
+  "dsEase": "Aliviar",
+  "dsElastic": "Elástico",
+  "dsLinear": "Lineal",
 
   "dsBackgroundImg": "Imagen de fondo",
   "dsImgSettingHint": "Actualizar la imagen {title}",
