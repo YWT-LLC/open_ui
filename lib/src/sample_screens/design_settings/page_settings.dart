@@ -136,7 +136,8 @@ class _AnimDurSetting extends StatelessWidget {
   Widget build(BuildContext context) => EzElevatedIconButton(
         onPressed: () async {
           double animDuration = EzConfig.animDur.toDouble();
-          final double backup = animDuration;
+          EzAnimationCurve curve = EACConfig.lookup(
+              EzConfig.get(EzConfig.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
 
           await ezModal(
             context: context,
@@ -145,9 +146,9 @@ class _AnimDurSetting extends StatelessWidget {
                 // Preview
                 SizedBox(
                   height: EzConfig.iconSize + (EzConfig.padding * 2),
-                  child: _AnimationPreview(animDuration.toInt()),
+                  child: _AnimationPreview(animDuration.toInt(), curve.curve),
                 ),
-                EzConfig.spacer,
+                EzConfig.separator,
 
                 // Slider
                 Text(
@@ -176,6 +177,40 @@ class _AnimDurSetting extends StatelessWidget {
                 ),
                 EzConfig.spacer,
 
+                EzRow(children: <Widget>[
+                  Flexible(
+                    child: Text(
+                      EzConfig.l10n.dsCurve,
+                      style: EzConfig.styles.bodyLarge,
+                    ),
+                  ),
+                  EzConfig.margin,
+                  EzDropdownMenu<EzAnimationCurve>(
+                    widthEntry: EzAnimationCurve.elastic.name,
+                    dropdownMenuEntries: EzAnimationCurve.values
+                        .map((EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
+                              value: type,
+                              label: type.name,
+                            ))
+                        .toList(),
+                    enableSearch: false,
+                    initialSelection: curve,
+                    onSelected: (EzAnimationCurve? value) async {
+                      if (value != null) {
+                        if (EzConfig.updateBoth || EzConfig.isDark) {
+                          await EzConfig.setString(darkAnimationCurveKey, value.value);
+                        }
+                        if (EzConfig.updateBoth || !EzConfig.isDark) {
+                          await EzConfig.setString(lightAnimationCurveKey, value.value);
+                        }
+
+                        setModal(() => curve = value);
+                      }
+                    },
+                  ),
+                ]),
+                EzConfig.separator,
+
                 // Reset button
                 EzElevatedIconButton(
                   onPressed: () async {
@@ -199,7 +234,9 @@ class _AnimDurSetting extends StatelessWidget {
             ),
           );
 
-          if (animDuration != backup) await EzConfig.rebuildUI();
+          if (animDuration != EzConfig.animDur.toDouble() || curve.curve != EzConfig.animCurve) {
+            await EzConfig.rebuildUI();
+          }
         },
         label: EzConfig.l10n.dsAnimStyle,
         icon: const Icon(Icons.timer_outlined),
@@ -208,8 +245,9 @@ class _AnimDurSetting extends StatelessWidget {
 
 class _AnimationPreview extends StatefulWidget {
   final int duration;
+  final Curve curve;
 
-  const _AnimationPreview(this.duration);
+  const _AnimationPreview(this.duration, this.curve);
 
   @override
   State<_AnimationPreview> createState() => _AnimationPreviewState();
@@ -229,7 +267,7 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
       vsync: this,
     );
     _animation = Tween<double>(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
+        .animate(CurvedAnimation(parent: _controller, curve: widget.curve));
   }
 
   @override
