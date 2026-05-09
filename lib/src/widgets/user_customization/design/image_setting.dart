@@ -19,11 +19,6 @@ class EzImageSetting extends StatefulWidget {
   /// [EzElevatedIconButton.label] passthrough
   final String label;
 
-  /// [EzElevatedButton.style] passthrough
-  /// If provided, recommended to include the default settings...
-  ///   padding: EdgeInsets.all(EzConfig.padding * 0.75),
-  final ButtonStyle? style;
-
   /// If true, opens an [ezColorPicker] for the user, and saves the hex value (string) as the image path
   final bool allowSolidColor;
 
@@ -60,7 +55,6 @@ class EzImageSetting extends StatefulWidget {
     super.key,
     required this.configKey,
     required this.label,
-    this.style,
     this.allowSolidColor = false,
     this.allowClear = true,
     this.clearLabel,
@@ -714,8 +708,6 @@ class _ImageSettingState extends State<EzImageSetting> {
       hint: EzConfig.l10n.dsImgSettingHint(widget.label),
       child: ExcludeSemantics(
         child: EzElevatedIconButton(
-          style: widget.style ??
-              ElevatedButton.styleFrom(padding: EdgeInsets.all(EzConfig.padding * 0.75)),
           onPressed: () async {
             if (inProgress) return;
 
