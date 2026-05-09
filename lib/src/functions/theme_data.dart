@@ -26,6 +26,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       colorScheme.primary.withValues(alpha: max(colorScheme.primary.a, focusOpacity));
   final Color crucialPrimaryBorder = colorScheme.primaryContainer
       .withValues(alpha: max(colorScheme.primaryContainer.a, focusOpacity));
+  final Color crucialSecondaryBorder = colorScheme.secondaryContainer
+      .withValues(alpha: max(colorScheme.secondaryContainer.a, focusOpacity));
   final Color crucialDisabledBorder =
       colorScheme.outlineVariant.withValues(alpha: max(colorScheme.outlineVariant.a, focusOpacity));
 
@@ -318,7 +320,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       disabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialDisabledBorder)),
       enabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
       errorBorder: UnderlineInputBorder(borderSide: buildBorder(colorScheme.error)),
-      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
+      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(crucialSecondaryBorder)),
       focusedErrorBorder: UnderlineInputBorder(borderSide: buildBorder(colorScheme.error)),
     ),
 
