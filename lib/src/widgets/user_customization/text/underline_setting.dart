@@ -30,11 +30,6 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
 
   @override
   Widget build(BuildContext context) => EzIconButton(
-        style: IconButton.styleFrom(
-          foregroundColor: isUnderlined ? EzConfig.colors.primary : EzConfig.colors.outline,
-          side: EzConfig.borderSide(),
-          iconSize: EzConfig.iconSize,
-        ),
         onPressed: () async {
           isUnderlined = !isUnderlined;
 
@@ -51,6 +46,9 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
           setState(() {});
         },
         tooltip: EzConfig.l10n.tsUnderline,
-        icon: const Icon(Icons.format_underline),
+        icon: Icon(
+          Icons.format_underline,
+          color: isUnderlined ? EzConfig.colors.primary : EzConfig.colors.outline,
+        ),
       );
 }
