@@ -241,11 +241,10 @@ class EzHighVisibilityConfig extends StatelessWidget {
               padding:
                   EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
             ),
-      onPressed: () async {
+      onPressed: () => EzConfig.rebuildUI(changes: () async {
         await onPressed();
         await extra?.call();
-        await EzConfig.rebuildUI();
-      },
+      }),
       text: EzConfig.l10n.ssHighVisibility,
       textStyle: localBody,
     );

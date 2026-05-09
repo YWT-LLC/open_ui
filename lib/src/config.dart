@@ -856,7 +856,8 @@ Must be one of [int, bool, double, String, List<String>]''');
   static Future<void> rebuildThemeMode() => _provPoint.rebuildThemeMode();
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
-  static Future<void> rebuildUI() => _provPoint.rebuildUI();
+  static Future<void> rebuildUI({Future<void> Function()? changes}) =>
+      _provPoint.rebuildUI(changes: changes);
 
   /// Randomizes the [seed] and notifies listeners
   static Future<void> redrawUI() => _provPoint.redrawUI();

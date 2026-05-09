@@ -16,9 +16,16 @@ class EzNebulaConfig extends StatelessWidget {
 
   /// When true, skips the "This is a dark theme only..." dialog
   static Future<bool> onPressed(BuildContext context) async {
-    // If the current theme is not dark, show a warning dialog
     if (EzConfig.themeMode != ThemeMode.dark) {
-      final bool doIt = await showDialog(
+      final bool uSure = await _confirm(context) ?? false;
+      if (!uSure) return false;
+    }
+
+    await _makeItSo();
+    return true;
+  }
+
+  static Future<bool?> _confirm(BuildContext context) => showDialog(
         context: context,
         builder: (BuildContext dCon) => EzAlertDialog(
           title: Text(EzConfig.l10n.gAttention, textAlign: TextAlign.center),
@@ -35,9 +42,7 @@ class EzNebulaConfig extends StatelessWidget {
         ),
       );
 
-      if (!doIt) return false;
-    }
-
+  static Future<void> _makeItSo() async {
     // Reset //
 
     await EzConfig.removeKeys(darkColorKeys.keys.toSet());
@@ -114,8 +119,6 @@ class EzNebulaConfig extends StatelessWidget {
 
     // Background opacity
     await EzConfig.setDouble(darkTextBackgroundOpacityKey, 0.333);
-
-    return true;
   }
 
   @override
@@ -152,10 +155,12 @@ class EzNebulaConfig extends StatelessWidget {
           padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
         ),
         onPressed: () async {
-          final bool confirmed = await onPressed(context);
-          if (confirmed) {
-            await extra?.call();
-            await EzConfig.rebuildUI();
+          final bool uSure = await _confirm(context) ?? false;
+          if (uSure) {
+            await EzConfig.rebuildUI(changes: () async {
+              await _makeItSo();
+              await extra?.call();
+            });
           }
         },
         text: EzConfig.l10n.ssNebula,

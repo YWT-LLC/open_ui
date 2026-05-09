@@ -37,10 +37,7 @@ class EzConfigRandomizer extends StatelessWidget {
             ),
             content: ezRichUndoWarning(context, skip: saveSkip),
             actions: ezActionPair(
-              onConfirm: () async {
-                await EzConfig.randomize();
-                await EzConfig.rebuildUI();
-              },
+              onConfirm: () => EzConfig.rebuildUI(changes: () => EzConfig.randomize()),
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),
             ),

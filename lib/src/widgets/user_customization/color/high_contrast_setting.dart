@@ -43,16 +43,14 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 side: EzConfig.borderSide(color: halfBlack),
                 textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.black),
               ),
-        onPressed: () async {
+        onPressed: () => EzConfig.rebuildUI(changes: () async {
           if (EzConfig.updateBoth || EzConfig.isDark) {
             await loadColorScheme(dark, Brightness.dark);
           }
           if (EzConfig.updateBoth || !EzConfig.isDark) {
             await loadColorScheme(light, Brightness.light);
           }
-
-          await EzConfig.rebuildUI();
-        },
+        }),
         icon: const Icon(Icons.contrast),
         label: EzConfig.l10n.csHighContrast,
       );

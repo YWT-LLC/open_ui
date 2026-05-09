@@ -261,7 +261,7 @@ class EzConfigProvider extends ChangeNotifier {
   }
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
-  Future<void> rebuildUI() async {
+  Future<void> rebuildUI({Future<dynamic> Function()? changes}) async {
     unawaited(ezRootNav.currentState!.push(
       // Open progress layer
       PageRouteBuilder<Widget>(
@@ -273,6 +273,7 @@ class EzConfigProvider extends ChangeNotifier {
       ),
     ));
 
+    if (changes != null) await changes();
     final ThemeMode newMode = _buildThemeMode();
 
     switch (newMode) {

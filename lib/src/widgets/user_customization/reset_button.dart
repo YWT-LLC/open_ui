@@ -87,7 +87,7 @@ class EzResetButton extends StatelessWidget {
                         : null)
                     : null,
                 actions: ezActionPair(
-                  onConfirm: () async {
+                  onConfirm: () => EzConfig.rebuildUI(changes: () async {
                     if (onConfirm == null) {
                       await EzConfig.reset(
                         skip: resetSkip,
@@ -97,9 +97,7 @@ class EzResetButton extends StatelessWidget {
                     } else {
                       await onConfirm!.call();
                     }
-
-                    await EzConfig.rebuildUI();
-                  },
+                  }),
                   confirmIsDestructive: true,
                   onDeny: () {
                     if (onDeny == null) {
