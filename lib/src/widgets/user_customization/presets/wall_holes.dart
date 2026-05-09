@@ -138,7 +138,8 @@ class EzWallHolesConfig extends StatelessWidget {
         padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
       ),
       onPressed: () async {
-        final bool uSure = await _confirm(context) ?? false;
+        final bool uSure =
+            (EzConfig.themeMode != ThemeMode.light) || (await _confirm(context) ?? false);
         if (uSure) {
           await EzConfig.rebuildUI(changes: () async {
             await _makeItSo();

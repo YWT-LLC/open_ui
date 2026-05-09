@@ -173,7 +173,8 @@ class EzChalkboardConfig extends StatelessWidget {
         ),
       ),
       onPressed: () async {
-        final bool uSure = await _confirm(context) ?? false;
+        final bool uSure =
+            (EzConfig.themeMode == ThemeMode.dark) || (await _confirm(context) ?? false);
         if (uSure) {
           await EzConfig.rebuildUI(changes: () async {
             await _makeItSo();
