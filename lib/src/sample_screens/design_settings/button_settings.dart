@@ -50,8 +50,12 @@ class ButtonDesign extends StatelessWidget {
           style: EzConfig.styles.bodyLarge?.copyWith(
               decoration: EzConfig.lineLinks ? TextDecoration.underline : TextDecoration.none),
           valueKey: EzConfig.isDark ? darkLineLinksKey : lightLineLinksKey,
-          afterChanged: (bool? changed) async {
-            if (changed == null) return;
+          afterChanged: (bool? value) async {
+            if (value == null) return;
+            if (EzConfig.updateBoth) {
+              await EzConfig.setBool(EzConfig.isDark ? lightLineLinksKey : darkLineLinksKey, value);
+            }
+
             await EzConfig.rebuildUI();
           },
         ),
@@ -59,10 +63,10 @@ class ButtonDesign extends StatelessWidget {
 
         // Show back FAB
         EzSwitchPair(
+          text: EzConfig.l10n.dsShowBack,
           valueKey: EzConfig.isDark ? darkShowBackFABKey : lightShowBackFABKey,
           afterChanged: (bool? value) async {
             if (value == null) return;
-
             if (EzConfig.updateBoth) {
               await EzConfig.setBool(
                   EzConfig.isDark ? lightShowBackFABKey : darkShowBackFABKey, value);
@@ -70,7 +74,6 @@ class ButtonDesign extends StatelessWidget {
 
             await EzConfig.rebuildUI();
           },
-          text: EzConfig.l10n.dsShowBack,
         ),
         EzConfig.spacer,
 
@@ -79,7 +82,6 @@ class ButtonDesign extends StatelessWidget {
           valueKey: EzConfig.isDark ? darkShowScrollKey : lightShowScrollKey,
           afterChanged: (bool? value) async {
             if (value == null) return;
-
             if (EzConfig.updateBoth) {
               await EzConfig.setBool(
                   EzConfig.isDark ? lightShowScrollKey : darkShowScrollKey, value);
