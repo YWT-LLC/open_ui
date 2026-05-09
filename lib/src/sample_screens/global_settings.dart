@@ -27,7 +27,7 @@ class EzGlobalSettings extends StatelessWidget {
 
   /// Spacer before the [EzQuickConfig]
   /// If null, [EzQuickConfig] will not be included
-  final Widget? quickConfigSpacer;
+  final Widget quickConfigSpacer;
 
   /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function()? extraBig;
@@ -44,23 +44,11 @@ class EzGlobalSettings extends StatelessWidget {
   /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function()? extraWall;
 
-  /// Spacer before the [EzConfigRandomizer]
-  /// If null, [EzConfigRandomizer] will not be included
-  final Widget? randomSpacer;
-
-  /// Spacer before the [EzResetButton]
-  /// [EzResetButton] is always included
-  final Widget resetSpacer;
-
   /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkip;
 
   /// [EzResetButton.dynamicTitle] passthrough
   final String Function()? resetTitle;
-
-  /// Widgets to be added below the [EzResetButton]
-  /// Defaults to an [EzSeparator], if provided BYO trailing spacer
-  final List<Widget> footer;
 
   /// Empathetech settings landing page
   /// Contains global settings and [EzElevatedIconButton]s that lead to the rest of the settings pages
@@ -78,25 +66,16 @@ class EzGlobalSettings extends StatelessWidget {
     this.extraChalk,
     this.extraNebula,
     this.extraWall,
-    this.randomSpacer = const EzSpacer(),
-    this.resetSpacer = const EzSeparator(),
     this.resetSkip,
     this.resetTitle,
-    this.footer = const <Widget>[EzSeparator()],
   });
 
   @override
   Widget build(BuildContext context) => EzCol(children: <Widget>[
         EzConfig.spacer,
-
-        // Right/left
         const EzDominantHandSwitch(),
         EzConfig.spacer,
-
-        // Theme mode
         const EzThemeModeSwitch(),
-
-        // Language
         if (!excludeLocaleSetting) ...<Widget>[
           EzConfig.spacer,
           EzLocaleSetting(
@@ -104,30 +83,18 @@ class EzGlobalSettings extends StatelessWidget {
             inDistress: inDistress,
           ),
         ],
-
-        // Additional settings
         if (additionalSettings != null) ...additionalSettings!,
-
-        // Quick config
-        if (quickConfigSpacer != null) ...<Widget>[
-          quickConfigSpacer!,
-          EzQuickConfig(
-            extraBig: extraBig,
-            extraVis: extraVis,
-            extraChalk: extraChalk,
-            extraNebula: extraNebula,
-            extraWall: extraWall,
-          ),
-        ],
-
-        // Feeling lucky
-        if (randomSpacer != null) ...<Widget>[
-          randomSpacer!,
-          EzConfigRandomizer(saveSkip: saveSkip),
-        ],
-
-        // Reset button
-        resetSpacer,
+        quickConfigSpacer,
+        EzQuickConfig(
+          extraBig: extraBig,
+          extraVis: extraVis,
+          extraChalk: extraChalk,
+          extraNebula: extraNebula,
+          extraWall: extraWall,
+        ),
+        EzConfig.spacer,
+        EzConfigRandomizer(saveSkip: saveSkip),
+        EzConfig.separator,
         EzResetButton(
           resetSkip: resetSkip,
           saveSkip: saveSkip,
