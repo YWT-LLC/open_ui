@@ -906,7 +906,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
               Flexible(
                 child: Text(
                   widget.title,
-                  style: ezSubTitleStyle(),
+                  style: EzConfig.styles.bodyLarge,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -996,7 +996,7 @@ class _LicensePickerState extends State<_LicensePicker> {
                 child: Text(
                   'LICENSE',
                   textAlign: TextAlign.start,
-                  style: ezSubTitleStyle(),
+                  style: EzConfig.styles.bodyLarge,
                 ),
               ),
               EzConfig.rowMargin,
