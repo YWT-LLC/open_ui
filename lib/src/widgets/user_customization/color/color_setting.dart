@@ -179,9 +179,6 @@ class _ColorSettingState extends State<EzColorSetting> {
       hint: EzConfig.l10n.csPickerHint,
       child: ExcludeSemantics(
         child: EzElevatedIconButton(
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(EzConfig.padding * 0.75),
-          ),
           onPressed: changeColor,
           onLongPress: reset,
           icon: Container(
