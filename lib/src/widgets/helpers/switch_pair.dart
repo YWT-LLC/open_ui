@@ -16,7 +16,6 @@ class EzSwitchPair extends StatefulWidget {
 
   /// Switches to disabled styling when true
   /// The switch is unchanged
-  /// Overriding [style] makes [fauxDisabled] moot
   final bool fauxDisabled;
 
   /// [EzRow.reverseHands] passthrough
@@ -37,20 +36,11 @@ class EzSwitchPair extends StatefulWidget {
   /// When true, the [text] will be a clickable link (toggles the switch)
   final bool clickable;
 
-  /// [EzText.style] passthrough
-  final TextStyle? style;
-
   /// [EzText.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [EzText.semanticsLabel] passthrough
   final String? semanticsLabel;
-
-  /// [EzText.baseColor] passthrough
-  final Color? baseColor;
-
-  /// [EzText.backgroundColor] passthrough
-  final Color? backgroundColor;
 
   /// [Switch.value] passthrough
   /// Provide [value] OR [valueKey]
@@ -80,14 +70,8 @@ class EzSwitchPair extends StatefulWidget {
   /// Pairs with [valueKey]
   final void Function(bool?)? afterChanged;
 
-  /// Defaults to [ezIconRatio]
-  final double? scale;
-
   /// [Switch.trackOutlineWidth] passthrough
   final WidgetStateProperty<double?>? trackOutlineWidth;
-
-  /// [Switch.padding] passthrough
-  final EdgeInsetsGeometry? padding;
 
   /// [EzRow] with flexible [EzText] and a [Switch]
   /// Provide the traditional [value] and [onChanged]
@@ -106,11 +90,8 @@ class EzSwitchPair extends StatefulWidget {
     // Text
     required this.text,
     this.clickable = false,
-    this.style,
     this.textAlign,
     this.semanticsLabel,
-    this.baseColor,
-    this.backgroundColor,
 
     // Switch
     this.value,
@@ -119,9 +100,7 @@ class EzSwitchPair extends StatefulWidget {
     this.onChanged,
     this.canChange,
     this.afterChanged,
-    this.scale,
     this.trackOutlineWidth,
-    this.padding,
   })  : assert((value == null) != (valueKey == null), 'Provide value OR valueKey, but not both'),
         assert((value == null) == (onChanged == null), 'Must pair value and onChanged'),
         assert((valueKey == null) != (onChanged == null), 'Cannot use onChanged with valueKey'),
@@ -190,24 +169,21 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                 ? EzLink(
                     widget.text,
                     padding: EzInsets.wrap(EzConfig.marginVal),
-                    backgroundColor: widget.backgroundColor,
                     textColor: EzConfig.colors.onSurface,
-                    style: widget.style,
+                    style: EzConfig.styles.bodyLarge,
                     textAlign: widget.textAlign,
                     hint: widget.semanticsLabel ?? EzConfig.l10n.gSwitchHint,
                     onTap: () => onChanged(!value),
                   )
                 : EzText(
                     widget.text,
-                    baseColor: widget.baseColor,
-                    backgroundColor: widget.backgroundColor,
-                    style: widget.style,
+                    style: EzConfig.styles.bodyLarge,
                     textAlign: widget.textAlign,
                     semanticsLabel: widget.semanticsLabel,
                   ),
           ),
           Transform.scale(
-            scale: max(1.0, widget.scale ?? ezIconRatio()),
+            scale: max(1.0, ezIconRatio()),
             // Could be PlatformSwitch
             // Dev's opinion: Material switches are better
             child: Switch(
