@@ -139,7 +139,7 @@ class EzWallHolesConfig extends StatelessWidget {
       ),
       onPressed: () async {
         final bool uSure =
-            (EzConfig.themeMode != ThemeMode.light) || (await _confirm(context) ?? false);
+            (EzConfig.themeMode == ThemeMode.light) || (await _confirm(context) ?? false);
         if (uSure) {
           await EzConfig.rebuildUI(changes: () async {
             await _makeItSo();
