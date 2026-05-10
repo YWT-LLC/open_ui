@@ -94,16 +94,14 @@ int _getDaysInMonth(int year, int month) {
 
 //* Cupertino *//
 
-class _CreoleCupertinoLocalizationsDelegate
-    extends LocalizationsDelegate<CupertinoLocalizations> {
+class _CreoleCupertinoLocalizationsDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
   const _CreoleCupertinoLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) => locale.languageCode == 'ht';
 
   @override
-  Future<CupertinoLocalizations> load(Locale locale) =>
-      CreoleCupertinoLocalizations.load(locale);
+  Future<CupertinoLocalizations> load(Locale locale) => CreoleCupertinoLocalizations.load(locale);
 
   @override
   bool shouldReload(LocalizationsDelegate<CupertinoLocalizations> old) => false;
@@ -281,8 +279,7 @@ class CreoleCupertinoLocalizations implements CupertinoLocalizations {
 
 //* Material *//
 
-class _CreoleMaterialLocalizationsDelegate
-    extends LocalizationsDelegate<MaterialLocalizations> {
+class _CreoleMaterialLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
   const _CreoleMaterialLocalizationsDelegate();
 
   @override
@@ -721,8 +718,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
   String dateRangeEndDateSemanticLabel(String formattedDate) => 'Dat fen $formattedDate';
 
   @override
-  String dateRangeStartDateSemanticLabel(String formattedDate) =>
-      'Dat kòmansman $formattedDate';
+  String dateRangeStartDateSemanticLabel(String formattedDate) => 'Dat kòmansman $formattedDate';
 
   @override
   String formatCompactDate(DateTime date) {
@@ -759,8 +755,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
 
   @override
   String formatHour(TimeOfDay timeOfDay, {bool alwaysUse24HourFormat = false}) {
-    final TimeOfDayFormat format =
-        timeOfDayFormat(alwaysUse24HourFormat: alwaysUse24HourFormat);
+    final TimeOfDayFormat format = timeOfDayFormat(alwaysUse24HourFormat: alwaysUse24HourFormat);
     switch (format) {
       case TimeOfDayFormat.h_colon_mm_space_a:
         return formatDecimal(timeOfDay.hourOfPeriod == 0 ? 12 : timeOfDay.hourOfPeriod);
@@ -841,8 +836,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
   }
 
   @override
-  String pageRowsInfoTitle(
-      int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate) {
+  String pageRowsInfoTitle(int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate) {
     return rowCountIsApproximate
         ? '$firstRow-$lastRow sou apeprè $rowCount'
         : '$firstRow-$lastRow sou $rowCount';
@@ -903,9 +897,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
 
   @override
   TimeOfDayFormat timeOfDayFormat({bool alwaysUse24HourFormat = false}) {
-    return alwaysUse24HourFormat
-        ? TimeOfDayFormat.HH_colon_mm
-        : TimeOfDayFormat.h_colon_mm_space_a;
+    return alwaysUse24HourFormat ? TimeOfDayFormat.HH_colon_mm : TimeOfDayFormat.h_colon_mm_space_a;
   }
 }
 
