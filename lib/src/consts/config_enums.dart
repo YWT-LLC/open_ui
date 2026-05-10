@@ -90,111 +90,50 @@ const String esJewel = 'jewel';
 
 /// EzButtonShape config
 extension EBSConfig on EzButtonShape {
-  OutlinedBorder get shape {
-    switch (this) {
-      case EzButtonShape.pill:
-        return const RoundedSuperellipseBorder(borderRadius: ezPillEdge);
+  OutlinedBorder get shape => switch (this) {
+        EzButtonShape.pill => const RoundedSuperellipseBorder(borderRadius: ezPillEdge),
+        EzButtonShape.rect => const RoundedRectangleBorder(
+            borderRadius: BorderRadiusGeometry.zero,
+          ),
+        EzButtonShape.roundRect => const RoundedRectangleBorder(borderRadius: ezRoundEdge),
+        EzButtonShape.leftGram => const ParallelogramBorder(lefty: true),
+        EzButtonShape.rightGram => const ParallelogramBorder(lefty: false),
+        EzButtonShape.gem => const GemBorder(),
+        EzButtonShape.jewel => BeveledRectangleBorder(
+            borderRadius: BorderRadius.circular(gemSlope),
+          ),
+      };
 
-      case EzButtonShape.rect:
-        return const RoundedRectangleBorder(
-          borderRadius: BorderRadiusGeometry.zero,
-        );
-
-      case EzButtonShape.roundRect:
-        return const RoundedRectangleBorder(borderRadius: ezRoundEdge);
-
-      case EzButtonShape.leftGram:
-        return const ParallelogramBorder(lefty: true);
-
-      case EzButtonShape.rightGram:
-        return const ParallelogramBorder(lefty: false);
-
-      case EzButtonShape.gem:
-        return const GemBorder();
-
-      case EzButtonShape.jewel:
-        return BeveledRectangleBorder(
-          borderRadius: BorderRadius.circular(gemSlope),
-        );
-    }
-  }
-
-  String get value {
-    switch (this) {
-      case EzButtonShape.pill:
-        return esPill;
-
-      case EzButtonShape.rect:
-        return esRect;
-
-      case EzButtonShape.roundRect:
-        return esRoundRect;
-
-      case EzButtonShape.leftGram:
-        return esLeftGram;
-
-      case EzButtonShape.rightGram:
-        return esRightGram;
-
-      case EzButtonShape.gem:
-        return esGem;
-
-      case EzButtonShape.jewel:
-        return esJewel;
-    }
-  }
+  String get value => switch (this) {
+        EzButtonShape.pill => esPill,
+        EzButtonShape.rect => esRect,
+        EzButtonShape.roundRect => esRoundRect,
+        EzButtonShape.leftGram => esLeftGram,
+        EzButtonShape.rightGram => esRightGram,
+        EzButtonShape.gem => esGem,
+        EzButtonShape.jewel => esJewel,
+      };
 
   /// Defaults to [EzTransitionType.system]
-  static EzButtonShape lookup(String? value) {
-    switch (value) {
-      case esRect:
-        return EzButtonShape.rect;
+  static EzButtonShape lookup(String? value) => switch (value) {
+        esRect => EzButtonShape.rect,
+        esRoundRect => EzButtonShape.roundRect,
+        esLeftGram => EzButtonShape.leftGram,
+        esRightGram => EzButtonShape.rightGram,
+        esGem => EzButtonShape.gem,
+        esJewel => EzButtonShape.jewel,
+        esPill || _ => EzButtonShape.pill,
+      };
 
-      case esRoundRect:
-        return EzButtonShape.roundRect;
-
-      case esLeftGram:
-        return EzButtonShape.leftGram;
-
-      case esRightGram:
-        return EzButtonShape.rightGram;
-
-      case esGem:
-        return EzButtonShape.gem;
-
-      case esJewel:
-        return EzButtonShape.jewel;
-
-      case esPill:
-      default:
-        return EzButtonShape.pill;
-    }
-  }
-
-  String get name {
-    switch (this) {
-      case EzButtonShape.pill:
-        return EzConfig.l10n.dsPill;
-
-      case EzButtonShape.rect:
-        return EzConfig.l10n.dsRectangle;
-
-      case EzButtonShape.roundRect:
-        return EzConfig.l10n.dsRoundRectangle;
-
-      case EzButtonShape.leftGram:
-        return EzConfig.l10n.dsLeftGram;
-
-      case EzButtonShape.rightGram:
-        return EzConfig.l10n.dsRightGram;
-
-      case EzButtonShape.gem:
-        return EzConfig.l10n.dsGem;
-
-      case EzButtonShape.jewel:
-        return EzConfig.l10n.dsJewel;
-    }
-  }
+  String get name => switch (this) {
+        EzButtonShape.pill => EzConfig.l10n.dsPill,
+        EzButtonShape.rect => EzConfig.l10n.dsRectangle,
+        EzButtonShape.roundRect => EzConfig.l10n.dsRoundRectangle,
+        EzButtonShape.leftGram => EzConfig.l10n.dsLeftGram,
+        EzButtonShape.rightGram => EzConfig.l10n.dsRightGram,
+        EzButtonShape.gem => EzConfig.l10n.dsGem,
+        EzButtonShape.jewel => EzConfig.l10n.dsJewel,
+      };
 }
 
 //* Page transitions *//
@@ -234,124 +173,55 @@ const String esZoom = 'zoom';
 
 /// EzTransitionType config
 extension ETTConfig on EzTransitionType {
-  Icon get icon {
-    switch (this) {
-      case EzTransitionType.none:
-        return const Icon(Icons.cancel);
-
-      case EzTransitionType.system:
-        return Icon(EzConfig.onMobile
+  Icon get icon => switch (this) {
+        EzTransitionType.none => const Icon(Icons.cancel),
+        EzTransitionType.system => Icon(EzConfig.onMobile
             ? EzConfig.platform == TargetPlatform.iOS
                 ? Icons.phone_iphone
                 : Icons.phone_android
-            : Icons.computer);
+            : Icons.computer),
+        EzTransitionType.turnX => const Icon(Icons.flip),
+        EzTransitionType.turnY => const Icon(Icons.u_turn_left),
+        EzTransitionType.rotate => const Icon(Icons.rotate_90_degrees_cw),
+        EzTransitionType.slideX => Icon(
+            EzConfig.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
+        EzTransitionType.slideY => const Icon(Icons.keyboard_double_arrow_up),
+        EzTransitionType.zoom => const Icon(Icons.zoom_in),
+      };
 
-      case EzTransitionType.turnX:
-        return const Icon(Icons.flip);
-
-      case EzTransitionType.turnY:
-        return const Icon(Icons.u_turn_left);
-
-      case EzTransitionType.rotate:
-        return const Icon(Icons.rotate_90_degrees_cw);
-
-      case EzTransitionType.slideX:
-        return Icon(
-            EzConfig.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right);
-
-      case EzTransitionType.slideY:
-        return const Icon(Icons.keyboard_double_arrow_up);
-
-      case EzTransitionType.zoom:
-        return const Icon(Icons.zoom_in);
-    }
-  }
-
-  String get value {
-    switch (this) {
-      case EzTransitionType.none:
-        return esNone;
-
-      case EzTransitionType.system:
-        return esSystem;
-
-      case EzTransitionType.turnX:
-        return esTurnX;
-
-      case EzTransitionType.turnY:
-        return esTurnY;
-
-      case EzTransitionType.rotate:
-        return esRotate;
-
-      case EzTransitionType.slideX:
-        return esSlideX;
-
-      case EzTransitionType.slideY:
-        return esSlideY;
-
-      case EzTransitionType.zoom:
-        return esZoom;
-    }
-  }
+  String get value => switch (this) {
+        EzTransitionType.none => esNone,
+        EzTransitionType.system => esSystem,
+        EzTransitionType.turnX => esTurnX,
+        EzTransitionType.turnY => esTurnY,
+        EzTransitionType.rotate => esRotate,
+        EzTransitionType.slideX => esSlideX,
+        EzTransitionType.slideY => esSlideY,
+        EzTransitionType.zoom => esZoom,
+      };
 
   /// Defaults to [EzTransitionType.system]
-  static EzTransitionType lookup(String? value) {
-    switch (value) {
-      case esNone:
-        return EzTransitionType.none;
+  static EzTransitionType lookup(String? value) => switch (value) {
+        esNone => EzTransitionType.none,
+        esTurnX => EzTransitionType.turnX,
+        esTurnY => EzTransitionType.turnY,
+        esRotate => EzTransitionType.rotate,
+        esSlideX => EzTransitionType.slideX,
+        esSlideY => EzTransitionType.slideY,
+        esZoom => EzTransitionType.zoom,
+        esSystem || _ => EzTransitionType.system,
+      };
 
-      case esTurnX:
-        return EzTransitionType.turnX;
-
-      case esTurnY:
-        return EzTransitionType.turnY;
-
-      case esRotate:
-        return EzTransitionType.rotate;
-
-      case esSlideX:
-        return EzTransitionType.slideX;
-
-      case esSlideY:
-        return EzTransitionType.slideY;
-
-      case esZoom:
-        return EzTransitionType.zoom;
-
-      case esSystem:
-      default:
-        return EzTransitionType.system;
-    }
-  }
-
-  String get name {
-    switch (this) {
-      case EzTransitionType.none:
-        return EzConfig.l10n.dsNone;
-
-      case EzTransitionType.system:
-        return EzConfig.l10n.dsSystem;
-
-      case EzTransitionType.turnX:
-        return EzConfig.l10n.dsTurnX;
-
-      case EzTransitionType.turnY:
-        return EzConfig.l10n.dsTurnY;
-
-      case EzTransitionType.rotate:
-        return EzConfig.l10n.dsRotate;
-
-      case EzTransitionType.slideX:
-        return EzConfig.l10n.dsSlideX;
-
-      case EzTransitionType.slideY:
-        return EzConfig.l10n.dsSlideY;
-
-      case EzTransitionType.zoom:
-        return EzConfig.l10n.dsZoom;
-    }
-  }
+  String get name => switch (this) {
+        EzTransitionType.none => EzConfig.l10n.dsNone,
+        EzTransitionType.system => EzConfig.l10n.dsSystem,
+        EzTransitionType.turnX => EzConfig.l10n.dsTurnX,
+        EzTransitionType.turnY => EzConfig.l10n.dsTurnY,
+        EzTransitionType.rotate => EzConfig.l10n.dsRotate,
+        EzTransitionType.slideX => EzConfig.l10n.dsSlideX,
+        EzTransitionType.slideY => EzConfig.l10n.dsSlideY,
+        EzTransitionType.zoom => EzConfig.l10n.dsZoom,
+      };
 }
 
 //* Animation curve *//
@@ -371,85 +241,38 @@ const String esLinear = 'linear';
 enum EzAnimationCurve { bounce, ease, elastic, linear }
 
 extension EACConfig on EzAnimationCurve {
-  String get value {
-    switch (this) {
-      case EzAnimationCurve.bounce:
-        return esBounce;
+  String get value => switch (this) {
+        EzAnimationCurve.bounce => esBounce,
+        EzAnimationCurve.ease => esEase,
+        EzAnimationCurve.elastic => esElastic,
+        EzAnimationCurve.linear => esLinear,
+      };
 
-      case EzAnimationCurve.ease:
-        return esEase;
+  Curve get curve => switch (this) {
+        EzAnimationCurve.bounce => Curves.bounceInOut,
+        EzAnimationCurve.ease => Curves.easeInOut,
+        EzAnimationCurve.elastic => Curves.elasticInOut,
+        EzAnimationCurve.linear => Curves.linear,
+      };
 
-      case EzAnimationCurve.elastic:
-        return esElastic;
+  String get name => switch (this) {
+        EzAnimationCurve.bounce => EzConfig.l10n.dsBounce,
+        EzAnimationCurve.ease => EzConfig.l10n.dsEase,
+        EzAnimationCurve.elastic => EzConfig.l10n.dsElastic,
+        EzAnimationCurve.linear => EzConfig.l10n.dsLinear,
+      };
 
-      case EzAnimationCurve.linear:
-        return esLinear;
-    }
-  }
+  static EzAnimationCurve lookup(String? value) => switch (value) {
+        esBounce => EzAnimationCurve.bounce,
+        esElastic => EzAnimationCurve.elastic,
+        esLinear => EzAnimationCurve.linear,
+        esEase || _ => EzAnimationCurve.ease,
+      };
 
-  Curve get curve {
-    switch (this) {
-      case EzAnimationCurve.bounce:
-        return Curves.bounceInOut;
-
-      case EzAnimationCurve.ease:
-        return Curves.easeInOut;
-
-      case EzAnimationCurve.elastic:
-        return Curves.elasticInOut;
-
-      case EzAnimationCurve.linear:
-        return Curves.linear;
-    }
-  }
-
-  String get name {
-    switch (this) {
-      case EzAnimationCurve.bounce:
-        return EzConfig.l10n.dsBounce;
-
-      case EzAnimationCurve.ease:
-        return EzConfig.l10n.dsEase;
-
-      case EzAnimationCurve.elastic:
-        return EzConfig.l10n.dsElastic;
-
-      case EzAnimationCurve.linear:
-        return EzConfig.l10n.dsLinear;
-    }
-  }
-
-  static EzAnimationCurve lookup(String? value) {
-    switch (value) {
-      case esBounce:
-        return EzAnimationCurve.bounce;
-
-      case esElastic:
-        return EzAnimationCurve.elastic;
-
-      case esLinear:
-        return EzAnimationCurve.linear;
-
-      case esEase:
-      default:
-        return EzAnimationCurve.ease;
-    }
-  }
-
-  static Curve translate(String? value) {
-    switch (value) {
-      case esBounce:
-        return Curves.bounceInOut;
-
-      case esElastic:
-        return Curves.elasticInOut;
-
-      case esLinear:
-        return Curves.linear;
-
-      case esEase:
-      default:
-        return Curves.easeInOut;
-    }
-  }
+  static Curve translate(String? value) => switch (value) {
+        esBounce => Curves.bounceInOut,
+        esElastic => Curves.elasticInOut,
+        esLinear => Curves.linear,
+        esEase || _ => Curves.easeInOut,
+      };
 }

@@ -57,41 +57,36 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
           });
   }
 
-  Widget header() {
-    switch (genState) {
-      case GeneratorState.running:
-        return SizedBox(
-          height: heightOf(context) / 3,
-          width: double.infinity,
-          child: EmpathyLoading(semantics: EzConfig.l10n.gLoadingAnim),
-        );
-      case GeneratorState.successful:
-        return Center(
-          child: SuccessHeader(
-            richMessage: EzRichText(
-              <InlineSpan>[
-                EzPlainText(text: EzConfig.l10n.ssConfigSaved(archivePath())),
-                if (!isDesktop) ...<InlineSpan>[
-                  EzPlainText(text: l10n.asUseIt),
-                  EzInlineLink(
-                    thisAppName,
-                    style: ezSubTitleStyle(),
-                    textAlign: TextAlign.center,
-                    url: Uri.parse(openUIReleases),
-                    hint: EzConfig.l10n.gOpenUIReleases,
-                  ),
-                  EzPlainText(text: l10n.asToGen(widget.config.appName)),
-                ]
-              ],
-              style: ezSubTitleStyle(),
-              textAlign: TextAlign.center,
+  Widget header() => switch (genState) {
+        GeneratorState.running => SizedBox(
+            height: heightOf(context) / 3,
+            width: double.infinity,
+            child: EmpathyLoading(semantics: EzConfig.l10n.gLoadingAnim),
+          ),
+        GeneratorState.successful => Center(
+            child: SuccessHeader(
+              richMessage: EzRichText(
+                <InlineSpan>[
+                  EzPlainText(text: EzConfig.l10n.ssConfigSaved(archivePath())),
+                  if (!isDesktop) ...<InlineSpan>[
+                    EzPlainText(text: l10n.asUseIt),
+                    EzInlineLink(
+                      thisAppName,
+                      style: ezSubTitleStyle(),
+                      textAlign: TextAlign.center,
+                      url: Uri.parse(openUIReleases),
+                      hint: EzConfig.l10n.gOpenUIReleases,
+                    ),
+                    EzPlainText(text: l10n.asToGen(widget.config.appName)),
+                  ]
+                ],
+                style: ezSubTitleStyle(),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
-        );
-      case GeneratorState.failed:
-        return Center(child: FailureHeader(message: failureMessage));
-    }
-  }
+        GeneratorState.failed => Center(child: FailureHeader(message: failureMessage)),
+      };
 
   // Init //
 

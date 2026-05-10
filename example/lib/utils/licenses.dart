@@ -9,24 +9,16 @@ String pickLicense({
   required String publisher,
   required String description,
   required String year,
-}) {
-  switch (license) {
-    case mitKey:
-      return genMIT(publisher, year);
-    case iscKey:
-      return genISC(publisher, year);
-    case apacheKey:
-      return genApache(publisher, year);
-    case mozillaKey:
-      return genMozilla();
-    case unlicenseKey:
-      return genUnlicense();
-    case dwtfywKey:
-      return genDWTFYW();
-    default:
-      return genGNU(appName, publisher, description, year);
-  }
-}
+}) =>
+    switch (license) {
+      mitKey => genMIT(publisher, year),
+      iscKey => genISC(publisher, year),
+      apacheKey => genApache(publisher, year),
+      mozillaKey => genMozilla(),
+      unlicenseKey => genUnlicense(),
+      dwtfywKey => genDWTFYW(),
+      _ => genGNU(appName, publisher, description, year),
+    };
 
 /// GNU General Public License v3.0
 const String gnuKey = 'GNU General Public License v3.0';
@@ -1353,8 +1345,7 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
 const String unlicenseKey = 'The Unlicense';
 
 /// The Unlicense
-String genUnlicense() =>
-    '''This is free and unencumbered software released into the public domain.
+String genUnlicense() => '''This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or
 distribute this software, either in source code form or as a compiled
