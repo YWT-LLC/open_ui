@@ -53,7 +53,6 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
 
               currSection = choice;
               currSubSec = choice.fromStorage();
-
               setState(() {});
             },
           ),
