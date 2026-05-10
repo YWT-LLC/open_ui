@@ -51,18 +51,14 @@ double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom
 
 /// Button combo for taking a screenshot on the current (desktop) [TargetPlatform]
 /// Defaults to an empty string on mobile (and unknown) platforms
-String screenshotHint() {
-  switch (EzConfig.platform) {
-    case TargetPlatform.linux:
-    case TargetPlatform.fuchsia:
-    case TargetPlatform.windows:
-      return ' (Alt + Print Screen)';
-    case TargetPlatform.macOS:
-      return ' (Command + Shift + 5)';
-    default:
-      return '';
-  }
-}
+String screenshotHint() => switch (EzConfig.platform) {
+      TargetPlatform.linux ||
+      TargetPlatform.fuchsia ||
+      TargetPlatform.windows =>
+        ' (Alt + Print Screen)',
+      TargetPlatform.macOS => ' (Command + Shift + 5)',
+      _ => '',
+    };
 
 // Readability //
 

@@ -16,27 +16,17 @@ import 'package:provider/provider.dart';
 enum ScreenSize { small, medium, large }
 
 extension ScreenSizeConfig on ScreenSize {
-  double get size {
-    switch (this) {
-      case ScreenSize.small:
-        return 700.0;
-      case ScreenSize.medium:
-        return 1000.0;
-      case ScreenSize.large:
-        return 1300.0;
-    }
-  }
+  double get size => switch (this) {
+        ScreenSize.small => 700.0,
+        ScreenSize.medium => 1000.0,
+        ScreenSize.large => 1300.0,
+      };
 
-  int get order {
-    switch (this) {
-      case ScreenSize.small:
-        return 0;
-      case ScreenSize.medium:
-        return 1;
-      case ScreenSize.large:
-        return 2;
-    }
-  }
+  int get order => switch (this) {
+        ScreenSize.small => 0,
+        ScreenSize.medium => 1,
+        ScreenSize.large => 2,
+      };
 }
 
 // BTS class //

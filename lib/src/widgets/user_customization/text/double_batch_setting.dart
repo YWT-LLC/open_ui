@@ -72,27 +72,14 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
 
   // Define custom functions //
 
-  EzTextStyleProvider providerFromKey(String key) {
-    switch (key) {
-      case darkDisplayFontSizeKey:
-      case lightDisplayFontSizeKey:
-        return displayProvider;
-      case darkHeadlineFontSizeKey:
-      case lightHeadlineFontSizeKey:
-        return headlineProvider;
-      case darkTitleFontSizeKey:
-      case lightTitleFontSizeKey:
-        return titleProvider;
-      case darkBodyFontSizeKey:
-      case lightBodyFontSizeKey:
-        return bodyProvider;
-      case darkLabelFontSizeKey:
-      case lightLabelFontSizeKey:
-        return labelProvider;
-      default:
-        throw Exception('Invalid key: $key');
-    }
-  }
+  EzTextStyleProvider providerFromKey(String key) => switch (key) {
+        darkDisplayFontSizeKey || lightDisplayFontSizeKey => displayProvider,
+        darkHeadlineFontSizeKey || lightHeadlineFontSizeKey => headlineProvider,
+        darkTitleFontSizeKey || lightTitleFontSizeKey => titleProvider,
+        darkBodyFontSizeKey || lightBodyFontSizeKey => bodyProvider,
+        darkLabelFontSizeKey || lightLabelFontSizeKey => labelProvider,
+        _ => throw Exception('Invalid key: $key'),
+      };
 
   // Return the build //
 

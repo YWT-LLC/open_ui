@@ -107,17 +107,11 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   String? url;
 
   /// Platform aware instructions
-  String hardRefresh() {
-    switch (EzConfig.platform) {
-      case TargetPlatform.android:
-      case TargetPlatform.iOS:
-        return EzConfig.l10n.gHardRefreshMobile;
-      case TargetPlatform.macOS:
-        return EzConfig.l10n.gHardRefreshMac;
-      default:
-        return EzConfig.l10n.gHardRefresh;
-    }
-  }
+  String hardRefresh() => switch (EzConfig.platform) {
+        TargetPlatform.android || TargetPlatform.iOS => EzConfig.l10n.gHardRefreshMobile,
+        TargetPlatform.macOS => EzConfig.l10n.gHardRefreshMac,
+        _ => EzConfig.l10n.gHardRefresh,
+      };
 
   // Init //
 
