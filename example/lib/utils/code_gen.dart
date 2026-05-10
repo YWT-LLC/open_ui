@@ -624,11 +624,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           floatingActionButton: EzCol(children: <Widget>[
             updater,
             if (fabs != null) ...fabs!,
-            if (config.design.showBackFAB &&
-                ezRootNav.currentState!.canPop()) ...<Widget>[
-              config.layout.spacer,
-              const EzBackFAB(),
-            ],
+            ...EzConfig.backFAB,
           ]),
           floatingActionButtonLocation: EzConfig.isLefty
               ? FloatingActionButtonLocation.startFloat
