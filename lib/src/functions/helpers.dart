@@ -25,16 +25,12 @@ import 'helpers_io.dart' if (dart.library.html) 'helpers_web.dart';
 // Platform checks //
 
 /// Where to find saved files on the current [TargetPlatform]
-String archivePath() {
-  switch (EzConfig.platform) {
-    case TargetPlatform.android:
-      return 'Root > Android > Data > ${EzConfig.androidPackage ?? 'com.example.app'} > files';
-    case TargetPlatform.iOS:
-      return 'Files > Browse > ${EzConfig.appName}';
-    default:
-      return 'Downloads';
-  }
-}
+String archivePath() => switch (EzConfig.platform) {
+      TargetPlatform.android =>
+        'Root > Android > Data > ${EzConfig.androidPackage ?? 'com.example.app'} > files',
+      TargetPlatform.iOS => 'Files > Browse > ${EzConfig.appName}',
+      _ => 'Downloads',
+    };
 
 /// Get the current [TargetPlatform]; "slow" but reliable
 /// Alias exists for [kIsWeb] support
@@ -71,16 +67,10 @@ String screenshotHint() {
 // Readability //
 
 /// Wide check, true if granted, limited, or provisional
-bool allowedPermCheck(PermissionStatus? status) {
-  switch (status) {
-    case PermissionStatus.granted:
-    case PermissionStatus.limited:
-    case PermissionStatus.provisional:
-      return true;
-    default:
-      return false;
-  }
-}
+bool allowedPermCheck(PermissionStatus? status) => switch (status) {
+      PermissionStatus.granted || PermissionStatus.limited || PermissionStatus.provisional => true,
+      _ => false,
+    };
 
 /// More readable than...
 /// FocusScope.of(context).unfocus();
@@ -91,17 +81,14 @@ void closeKeyboard(BuildContext context) => FocusScope.of(context).unfocus();
 void doNothing() {}
 
 /// Wide check, true if denied, restricted, or permanently denied, or null
-bool deniedPermCheck(PermissionStatus? status) {
-  switch (status) {
-    case null:
-    case PermissionStatus.denied:
-    case PermissionStatus.permanentlyDenied:
-    case PermissionStatus.restricted:
-      return true;
-    default:
-      return false;
-  }
-}
+bool deniedPermCheck(PermissionStatus? status) => switch (status) {
+      PermissionStatus.denied ||
+      PermissionStatus.permanentlyDenied ||
+      PermissionStatus.restricted ||
+      null =>
+        true,
+      _ => false,
+    };
 
 /// [EFUILang.gBothThemes], [EFUILang.gDarkTheme], or [EFUILang.gLightTheme]
 /// Based on [EzConfig.updateBoth] && [EzConfig.isDark]

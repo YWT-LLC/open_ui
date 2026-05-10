@@ -285,150 +285,75 @@ Future<String> loadImageColorScheme(String path, Brightness? brightness) async {
 }
 
 /// Get the human readable name of a [key]s color
-String getColorName(String key) {
-  switch (key) {
-    // Backgrounds
-    case darkSurfaceKey:
-    case lightSurfaceKey:
-      return EzConfig.l10n.csSurface;
-    case darkSurfaceDimKey:
-    case lightSurfaceDimKey:
-      return EzConfig.l10n.csSurfaceDim;
-    case darkSurfaceContainerKey:
-    case lightSurfaceContainerKey:
-      return EzConfig.l10n.csSurfaceContainer;
+String getColorName(String key) => switch (key) {
+      // Backgrounds
+      darkSurfaceKey || lightSurfaceKey => EzConfig.l10n.csSurface,
+      darkSurfaceDimKey || lightSurfaceDimKey => EzConfig.l10n.csSurfaceDim,
+      darkSurfaceContainerKey || lightSurfaceContainerKey => EzConfig.l10n.csSurfaceContainer,
 
-    // Text
-    case darkOnSurfaceKey:
-    case lightOnSurfaceKey:
-      return EzConfig.l10n.csOnSurface;
-    case darkOutlineKey:
-    case lightOutlineKey:
-      return EzConfig.l10n.csOutline;
+      // Text
+      darkOnSurfaceKey || lightOnSurfaceKey => EzConfig.l10n.csOnSurface,
+      darkOutlineKey || lightOutlineKey => EzConfig.l10n.csOutline,
 
-    // Primary
-    case darkPrimaryKey:
-    case lightPrimaryKey:
-      return EzConfig.l10n.csPrimary;
-    case darkPrimaryContainerKey:
-    case lightPrimaryContainerKey:
-      return EzConfig.l10n.csPrimaryContainer;
+      // Primary
+      darkPrimaryKey || lightPrimaryKey => EzConfig.l10n.csPrimary,
+      darkPrimaryContainerKey || lightPrimaryContainerKey => EzConfig.l10n.csPrimaryContainer,
 
-    // Secondary
-    case darkSecondaryKey:
-    case lightSecondaryKey:
-      return EzConfig.l10n.csSecondary;
-    case darkSecondaryContainerKey:
-    case lightSecondaryContainerKey:
-      return EzConfig.l10n.csSecondaryContainer;
+      // Secondary
+      darkSecondaryKey || lightSecondaryKey => EzConfig.l10n.csSecondary,
+      darkSecondaryContainerKey || lightSecondaryContainerKey => EzConfig.l10n.csSecondaryContainer,
 
-    // Tertiary
-    case darkTertiaryKey:
-    case lightTertiaryKey:
-      return EzConfig.l10n.csTertiary;
-    case darkTertiaryContainerKey:
-    case lightTertiaryContainerKey:
-      return EzConfig.l10n.csTertiaryContainer;
+      // Tertiary
+      darkTertiaryKey || lightTertiaryKey => EzConfig.l10n.csTertiary,
+      darkTertiaryContainerKey || lightTertiaryContainerKey => EzConfig.l10n.csTertiaryContainer,
 
-    // Erriary
-    case darkErrorKey:
-    case lightErrorKey:
-      return EzConfig.l10n.csError;
-    case darkErrorContainerKey:
-    case lightErrorContainerKey:
-      return EzConfig.l10n.csErrorContainer;
+      // Erriary
+      darkErrorKey || lightErrorKey => EzConfig.l10n.csError,
+      darkErrorContainerKey || lightErrorContainerKey => EzConfig.l10n.csErrorContainer,
 
-    // Misc
-    case darkOutlineVariantKey:
-    case lightOutlineVariantKey:
-      return EzConfig.l10n.csOutlineVariant;
-    case darkShadowKey:
-    case lightShadowKey:
-      return EzConfig.l10n.csShadow;
-    case darkSurfaceTintKey:
-    case lightSurfaceTintKey:
-      return EzConfig.l10n.csSurfaceTint;
-    case darkScrimKey:
-    case lightScrimKey:
-      return EzConfig.l10n.csScrim;
+      // Misc
+      darkOutlineVariantKey || lightOutlineVariantKey => EzConfig.l10n.csOutlineVariant,
+      darkShadowKey || lightShadowKey => EzConfig.l10n.csShadow,
+      darkSurfaceTintKey || lightSurfaceTintKey => EzConfig.l10n.csSurfaceTint,
+      darkScrimKey || lightScrimKey => EzConfig.l10n.csScrim,
 
-    // Catch
-    default:
-      final String readable = ezCamelToTitle(key);
-      return readable.replaceAll(RegExp('(Light|Dark) '), '');
-  }
-}
+      // Catch
+      _ => ezCamelToTitle(key).replaceAll(RegExp('(Light|Dark) '), ''),
+    };
 
 /// Get the live [ColorScheme] value of [key]
-Color getLiveColor(String key) {
-  switch (key) {
-    // Backgrounds
-    case darkSurfaceKey:
-    case lightSurfaceKey:
-      return EzConfig.colors.surface;
-    case darkSurfaceDimKey:
-    case lightSurfaceDimKey:
-      return EzConfig.colors.surfaceDim;
-    case darkSurfaceContainerKey:
-    case lightSurfaceContainerKey:
-      return EzConfig.colors.surfaceContainer;
+Color getLiveColor(String key) => switch (key) {
+      // Backgrounds
+      darkSurfaceKey || lightSurfaceKey => EzConfig.colors.surface,
+      darkSurfaceDimKey || lightSurfaceDimKey => EzConfig.colors.surfaceDim,
+      darkSurfaceContainerKey || lightSurfaceContainerKey => EzConfig.colors.surfaceContainer,
 
-    // Text
-    case darkOnSurfaceKey:
-    case lightOnSurfaceKey:
-      return EzConfig.colors.onSurface;
-    case darkOutlineKey:
-    case lightOutlineKey:
-      return EzConfig.colors.outline;
+      // Text
+      darkOnSurfaceKey || lightOnSurfaceKey => EzConfig.colors.onSurface,
+      darkOutlineKey || lightOutlineKey => EzConfig.colors.outline,
 
-    // Primary
-    case darkPrimaryKey:
-    case lightPrimaryKey:
-      return EzConfig.colors.primary;
-    case darkPrimaryContainerKey:
-    case lightPrimaryContainerKey:
-      return EzConfig.colors.onPrimaryContainer;
+      // Primary
+      darkPrimaryKey || lightPrimaryKey => EzConfig.colors.primary,
+      darkPrimaryContainerKey || lightPrimaryContainerKey => EzConfig.colors.onPrimaryContainer,
 
-    // Secondary
-    case darkSecondaryKey:
-    case lightSecondaryKey:
-      return EzConfig.colors.secondary;
-    case darkSecondaryContainerKey:
-    case lightSecondaryContainerKey:
-      return EzConfig.colors.secondaryContainer;
+      // Secondary
+      darkSecondaryKey || lightSecondaryKey => EzConfig.colors.secondary,
+      darkSecondaryContainerKey || lightSecondaryContainerKey => EzConfig.colors.secondaryContainer,
 
-    // Tertiary
-    case darkTertiaryKey:
-    case lightTertiaryKey:
-      return EzConfig.colors.tertiary;
-    case darkTertiaryContainerKey:
-    case lightTertiaryContainerKey:
-      return EzConfig.colors.tertiaryContainer;
+      // Tertiary
+      darkTertiaryKey || lightTertiaryKey => EzConfig.colors.tertiary,
+      darkTertiaryContainerKey || lightTertiaryContainerKey => EzConfig.colors.tertiaryContainer,
 
-    // Erriary
-    case darkErrorKey:
-    case lightErrorKey:
-      return EzConfig.colors.error;
-    case darkErrorContainerKey:
-    case lightErrorContainerKey:
-      return EzConfig.colors.errorContainer;
+      // Erriary
+      darkErrorKey || lightErrorKey => EzConfig.colors.error,
+      darkErrorContainerKey || lightErrorContainerKey => EzConfig.colors.errorContainer,
 
-    // Misc
-    case darkOutlineVariantKey:
-    case lightOutlineVariantKey:
-      return EzConfig.colors.outlineVariant;
-    case darkShadowKey:
-    case lightShadowKey:
-      return EzConfig.colors.shadow;
-    case darkSurfaceTintKey:
-    case lightSurfaceTintKey:
-      return EzConfig.colors.surfaceTint;
-    case darkScrimKey:
-    case lightScrimKey:
-      return EzConfig.colors.scrim;
+      // Misc
+      darkOutlineVariantKey || lightOutlineVariantKey => EzConfig.colors.outlineVariant,
+      darkShadowKey || lightShadowKey => EzConfig.colors.shadow,
+      darkSurfaceTintKey || lightSurfaceTintKey => EzConfig.colors.surfaceTint,
+      darkScrimKey || lightScrimKey => EzConfig.colors.scrim,
 
-    // Catch
-    default:
-      return Colors.transparent;
-  }
-}
+      // Catch
+      _ => Colors.transparent,
+    };

@@ -92,16 +92,13 @@ const String esJewel = 'jewel';
 extension EBSConfig on EzButtonShape {
   OutlinedBorder get shape => switch (this) {
         EzButtonShape.pill => const RoundedSuperellipseBorder(borderRadius: ezPillEdge),
-        EzButtonShape.rect => const RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.zero,
-          ),
+        EzButtonShape.rect => const RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.zero),
         EzButtonShape.roundRect => const RoundedRectangleBorder(borderRadius: ezRoundEdge),
         EzButtonShape.leftGram => const ParallelogramBorder(lefty: true),
         EzButtonShape.rightGram => const ParallelogramBorder(lefty: false),
         EzButtonShape.gem => const GemBorder(),
-        EzButtonShape.jewel => BeveledRectangleBorder(
-            borderRadius: BorderRadius.circular(gemSlope),
-          ),
+        EzButtonShape.jewel =>
+          BeveledRectangleBorder(borderRadius: BorderRadius.circular(gemSlope)),
       };
 
   String get value => switch (this) {

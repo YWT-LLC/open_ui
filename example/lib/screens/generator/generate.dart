@@ -33,18 +33,12 @@ class _GenerateScreenState extends State<GenerateScreen> {
   /// Quantum supremacy achieved
   bool? showDelete = true;
 
-  String device() {
-    switch (EzConfig.platform) {
-      case TargetPlatform.linux:
-        return 'linux';
-      case TargetPlatform.macOS:
-        return 'macos';
-      case TargetPlatform.windows:
-        return 'windows';
-      default:
-        return 'chrome';
-    }
-  }
+  String device() => switch (EzConfig.platform) {
+        TargetPlatform.linux => 'linux',
+        TargetPlatform.macOS => 'macos',
+        TargetPlatform.windows => 'windows',
+        _ => 'chrome',
+      };
 
   late final String workDir = widget.config.workPath!;
 
@@ -296,42 +290,37 @@ class _GenerateScreenState extends State<GenerateScreen> {
         : onFailure(l10n.gsPartialSuccess);
   }
 
-  Widget header(Lang l10n) {
-    switch (genState) {
-      case GeneratorState.running:
-        return EmpathyLoading(semantics: EzConfig.l10n.gLoadingAnim);
-      case GeneratorState.successful:
-        return Center(
-          child: SuccessHeader(
-            message: '${widget.config.appName} ${l10n.gsIsReadyIn}\n${widget.config.workPath}',
+  Widget header(Lang l10n) => switch (genState) {
+        GeneratorState.running => EmpathyLoading(semantics: EzConfig.l10n.gLoadingAnim),
+        GeneratorState.successful => Center(
+            child: SuccessHeader(
+              message: '${widget.config.appName} ${l10n.gsIsReadyIn}\n${widget.config.workPath}',
+            ),
           ),
-        );
-      case GeneratorState.failed:
-        return Center(
-          child: EzScrollView(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FailureHeader(
-                message: failureMessage,
-                richMessage: richFailureMessage,
-              ),
-              if (showDelete == true) ...<Widget>[
-                EzConfig.spacer,
-                DeleteOption(
-                  appName: widget.config.appName,
-                  dir: workDir,
-                  style: ezSubTitleStyle(),
+        GeneratorState.failed => Center(
+            child: EzScrollView(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FailureHeader(
+                  message: failureMessage,
+                  richMessage: richFailureMessage,
                 ),
+                if (showDelete == true) ...<Widget>[
+                  EzConfig.spacer,
+                  DeleteOption(
+                    appName: widget.config.appName,
+                    dir: workDir,
+                    style: ezSubTitleStyle(),
+                  ),
+                ],
+                if (showDelete == null) ...<Widget>[
+                  EzConfig.spacer,
+                  const LinkOption(),
+                ],
               ],
-              if (showDelete == null) ...<Widget>[
-                EzConfig.spacer,
-                const LinkOption(),
-              ],
-            ],
+            ),
           ),
-        );
-    }
-  }
+      };
 
   // Init //
 
