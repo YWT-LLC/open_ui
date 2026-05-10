@@ -11,148 +11,111 @@ import 'package:flutter/material.dart';
 enum EzTextSettingType { display, headline, title, body, label }
 
 extension EzTSTConfig on EzTextSettingType {
-  String get title {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.l10n.tsDisplay;
-      case EzTextSettingType.headline:
-        return EzConfig.l10n.tsHeadline;
-      case EzTextSettingType.title:
-        return EzConfig.l10n.tsTitle;
-      case EzTextSettingType.body:
-        return EzConfig.l10n.tsBody;
-      case EzTextSettingType.label:
-        return EzConfig.l10n.tsLabel;
-    }
-  }
+  String get title => switch (this) {
+        EzTextSettingType.display => EzConfig.l10n.tsDisplay,
+        EzTextSettingType.headline => EzConfig.l10n.tsHeadline,
+        EzTextSettingType.title => EzConfig.l10n.tsTitle,
+        EzTextSettingType.body => EzConfig.l10n.tsBody,
+        EzTextSettingType.label => EzConfig.l10n.tsLabel,
+      };
 
   String get label => title.toLowerCase();
 
   // Bold/weight //
 
-  String get boldKey {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? darkDisplayBoldedKey : lightDisplayBoldedKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? darkHeadlineBoldedKey : lightHeadlineBoldedKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? darkTitleBoldedKey : lightTitleBoldedKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? darkBodyBoldedKey : lightBodyBoldedKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? darkLabelBoldedKey : lightLabelBoldedKey;
-    }
-  }
+  String get boldKey => switch (this) {
+        EzTextSettingType.display => EzConfig.isDark ? darkDisplayBoldedKey : lightDisplayBoldedKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? darkHeadlineBoldedKey : lightHeadlineBoldedKey,
+        EzTextSettingType.title => EzConfig.isDark ? darkTitleBoldedKey : lightTitleBoldedKey,
+        EzTextSettingType.body => EzConfig.isDark ? darkBodyBoldedKey : lightBodyBoldedKey,
+        EzTextSettingType.label => EzConfig.isDark ? darkLabelBoldedKey : lightLabelBoldedKey,
+      };
 
-  String get boldMirror {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? lightDisplayBoldedKey : darkDisplayBoldedKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? lightHeadlineBoldedKey : darkHeadlineBoldedKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? lightTitleBoldedKey : darkTitleBoldedKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? lightBodyBoldedKey : darkBodyBoldedKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? lightLabelBoldedKey : darkLabelBoldedKey;
-    }
-  }
+  String get boldMirror => switch (this) {
+        EzTextSettingType.display => EzConfig.isDark ? lightDisplayBoldedKey : darkDisplayBoldedKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? lightHeadlineBoldedKey : darkHeadlineBoldedKey,
+        EzTextSettingType.title => EzConfig.isDark ? lightTitleBoldedKey : darkTitleBoldedKey,
+        EzTextSettingType.body => EzConfig.isDark ? lightBodyBoldedKey : darkBodyBoldedKey,
+        EzTextSettingType.label => EzConfig.isDark ? lightLabelBoldedKey : darkLabelBoldedKey,
+      };
 
   // Font family //
 
-  String get fontKey {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? darkDisplayFontFamilyKey : lightDisplayFontFamilyKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? darkHeadlineFontFamilyKey : lightHeadlineFontFamilyKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? darkTitleFontFamilyKey : lightTitleFontFamilyKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? darkBodyFontFamilyKey : lightBodyFontFamilyKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? darkLabelFontFamilyKey : lightLabelFontFamilyKey;
-    }
-  }
+  String get fontKey => switch (this) {
+        EzTextSettingType.display =>
+          EzConfig.isDark ? darkDisplayFontFamilyKey : lightDisplayFontFamilyKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? darkHeadlineFontFamilyKey : lightHeadlineFontFamilyKey,
+        EzTextSettingType.title =>
+          EzConfig.isDark ? darkTitleFontFamilyKey : lightTitleFontFamilyKey,
+        EzTextSettingType.body => EzConfig.isDark ? darkBodyFontFamilyKey : lightBodyFontFamilyKey,
+        EzTextSettingType.label =>
+          EzConfig.isDark ? darkLabelFontFamilyKey : lightLabelFontFamilyKey,
+      };
 
-  String get fontMirror {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? lightDisplayFontFamilyKey : darkDisplayFontFamilyKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? lightHeadlineFontFamilyKey : darkHeadlineFontFamilyKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? lightTitleFontFamilyKey : darkTitleFontFamilyKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? lightBodyFontFamilyKey : darkBodyFontFamilyKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? lightLabelFontFamilyKey : darkLabelFontFamilyKey;
-    }
-  }
+  String get fontMirror => switch (this) {
+        EzTextSettingType.display =>
+          EzConfig.isDark ? lightDisplayFontFamilyKey : darkDisplayFontFamilyKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? lightHeadlineFontFamilyKey : darkHeadlineFontFamilyKey,
+        EzTextSettingType.title =>
+          EzConfig.isDark ? lightTitleFontFamilyKey : darkTitleFontFamilyKey,
+        EzTextSettingType.body => EzConfig.isDark ? lightBodyFontFamilyKey : darkBodyFontFamilyKey,
+        EzTextSettingType.label =>
+          EzConfig.isDark ? lightLabelFontFamilyKey : darkLabelFontFamilyKey,
+      };
 
   // Italic/style //
 
-  String get italicKey {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? darkDisplayItalicizedKey : lightDisplayItalicizedKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? darkHeadlineItalicizedKey : lightHeadlineItalicizedKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? darkTitleItalicizedKey : lightTitleItalicizedKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? darkBodyItalicizedKey : lightBodyItalicizedKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? darkLabelItalicizedKey : lightLabelItalicizedKey;
-    }
-  }
+  String get italicKey => switch (this) {
+        EzTextSettingType.display =>
+          EzConfig.isDark ? darkDisplayItalicizedKey : lightDisplayItalicizedKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? darkHeadlineItalicizedKey : lightHeadlineItalicizedKey,
+        EzTextSettingType.title =>
+          EzConfig.isDark ? darkTitleItalicizedKey : lightTitleItalicizedKey,
+        EzTextSettingType.body => EzConfig.isDark ? darkBodyItalicizedKey : lightBodyItalicizedKey,
+        EzTextSettingType.label =>
+          EzConfig.isDark ? darkLabelItalicizedKey : lightLabelItalicizedKey,
+      };
 
-  String get italicMirror {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? lightDisplayItalicizedKey : darkDisplayItalicizedKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? lightHeadlineItalicizedKey : darkHeadlineItalicizedKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? lightTitleItalicizedKey : darkTitleItalicizedKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? lightBodyItalicizedKey : darkBodyItalicizedKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? lightLabelItalicizedKey : darkLabelItalicizedKey;
-    }
-  }
+  String get italicMirror => switch (this) {
+        EzTextSettingType.display =>
+          EzConfig.isDark ? lightDisplayItalicizedKey : darkDisplayItalicizedKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? lightHeadlineItalicizedKey : darkHeadlineItalicizedKey,
+        EzTextSettingType.title =>
+          EzConfig.isDark ? lightTitleItalicizedKey : darkTitleItalicizedKey,
+        EzTextSettingType.body => EzConfig.isDark ? lightBodyItalicizedKey : darkBodyItalicizedKey,
+        EzTextSettingType.label =>
+          EzConfig.isDark ? lightLabelItalicizedKey : darkLabelItalicizedKey,
+      };
 
   // Underline/decoration //
 
-  String get underlineKey {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? darkDisplayUnderlinedKey : lightDisplayUnderlinedKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? darkHeadlineUnderlinedKey : lightHeadlineUnderlinedKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? darkTitleUnderlinedKey : lightTitleUnderlinedKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? darkBodyUnderlinedKey : lightBodyUnderlinedKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? darkLabelUnderlinedKey : lightLabelUnderlinedKey;
-    }
-  }
+  String get underlineKey => switch (this) {
+        EzTextSettingType.display =>
+          EzConfig.isDark ? darkDisplayUnderlinedKey : lightDisplayUnderlinedKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? darkHeadlineUnderlinedKey : lightHeadlineUnderlinedKey,
+        EzTextSettingType.title =>
+          EzConfig.isDark ? darkTitleUnderlinedKey : lightTitleUnderlinedKey,
+        EzTextSettingType.body => EzConfig.isDark ? darkBodyUnderlinedKey : lightBodyUnderlinedKey,
+        EzTextSettingType.label =>
+          EzConfig.isDark ? darkLabelUnderlinedKey : lightLabelUnderlinedKey,
+      };
 
-  String get underlineMirror {
-    switch (this) {
-      case EzTextSettingType.display:
-        return EzConfig.isDark ? lightDisplayUnderlinedKey : darkDisplayUnderlinedKey;
-      case EzTextSettingType.headline:
-        return EzConfig.isDark ? lightHeadlineUnderlinedKey : darkHeadlineUnderlinedKey;
-      case EzTextSettingType.title:
-        return EzConfig.isDark ? lightTitleUnderlinedKey : darkTitleUnderlinedKey;
-      case EzTextSettingType.body:
-        return EzConfig.isDark ? lightBodyUnderlinedKey : darkBodyUnderlinedKey;
-      case EzTextSettingType.label:
-        return EzConfig.isDark ? lightLabelUnderlinedKey : darkLabelUnderlinedKey;
-    }
-  }
+  String get underlineMirror => switch (this) {
+        EzTextSettingType.display =>
+          EzConfig.isDark ? lightDisplayUnderlinedKey : darkDisplayUnderlinedKey,
+        EzTextSettingType.headline =>
+          EzConfig.isDark ? lightHeadlineUnderlinedKey : darkHeadlineUnderlinedKey,
+        EzTextSettingType.title =>
+          EzConfig.isDark ? lightTitleUnderlinedKey : darkTitleUnderlinedKey,
+        EzTextSettingType.body => EzConfig.isDark ? lightBodyUnderlinedKey : darkBodyUnderlinedKey,
+        EzTextSettingType.label =>
+          EzConfig.isDark ? lightLabelUnderlinedKey : darkLabelUnderlinedKey,
+      };
 }
