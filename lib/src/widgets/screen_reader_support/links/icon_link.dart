@@ -64,28 +64,18 @@ class EzIconLink extends StatefulWidget {
 }
 
 class _EzIconLinkState extends State<EzIconLink> {
-  // Define the build data //
-
   late final String semantics = '${widget.label}; ${widget.hint}';
 
   @override
   Widget build(BuildContext context) {
-    // Gather the contextual theme data //
-
     TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
       color: widget.textColor ?? EzConfig.colors.onSurface,
       decoration: TextDecoration.none,
       decorationColor: EzConfig.colors.primary,
     );
 
-    // Define custom functions //
-
-    void underline(bool addIt) {
-      textStyle = textStyle?.copyWith(
-        decoration: addIt ? TextDecoration.underline : TextDecoration.none,
-      );
-      setState(() {});
-    }
+    void underline(bool addIt) => setState(() => textStyle =
+        textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
 
     // Return the build //
 

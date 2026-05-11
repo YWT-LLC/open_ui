@@ -53,8 +53,6 @@ class EzTextButton extends StatefulWidget {
 class _EzTextButtonState extends State<EzTextButton> {
   @override
   Widget build(BuildContext context) {
-    // Gather the contextual theme data //
-
     TextStyle? textStyle = (widget.textStyle ?? EzConfig.styles.bodyLarge)
         ?.copyWith(decorationColor: EzConfig.colors.primary);
 
@@ -134,8 +132,6 @@ class EzTextIconButton extends StatefulWidget {
 class _EzTextIconButtonState extends State<EzTextIconButton> {
   @override
   Widget build(BuildContext context) {
-    // Gather the contextual theme data //
-
     TextStyle? textStyle = (widget.textStyle ?? EzConfig.styles.bodyLarge)
         ?.copyWith(decorationColor: EzConfig.colors.primary);
 

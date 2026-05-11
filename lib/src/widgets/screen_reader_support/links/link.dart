@@ -97,13 +97,10 @@ class _EzLinkState extends State<EzLink> {
 
     // Define custom functions //
 
-    void underline(bool addIt) {
-      if (EzConfig.lineLinks) return;
-
-      setState(() => textStyle = textStyle?.copyWith(
-            decoration: addIt ? TextDecoration.underline : TextDecoration.none,
-          ));
-    }
+    void underline(bool addIt) => (EzConfig.lineLinks)
+        ? doNothing()
+        : setState(() => textStyle = textStyle?.copyWith(
+            decoration: addIt ? TextDecoration.underline : TextDecoration.none));
 
     // Return the build //
 
