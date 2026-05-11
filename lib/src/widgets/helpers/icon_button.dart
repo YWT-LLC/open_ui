@@ -12,6 +12,7 @@ class EzIcon extends Icon {
   /// [ThemeData.iconTheme] does not seem to be consumed properly at time of writing
   /// Jan 2025
   EzIcon(
+    // TODO: test removing this - after finishing smush!!! don't do too much at once <3
     super.icon, {
     super.key,
     super.fill,
@@ -28,12 +29,11 @@ class EzIcon extends Icon {
 }
 
 class EzIconButton extends StatelessWidget {
-  /// [IconButton.iconSize] passthrough
-  /// Defaults to [EzConfig.iconSize]
-  final double? iconSize;
+  /// [IconButton.icon] passthrough
+  final Widget icon;
 
-  /// [IconButton.color] passthrough
-  final Color? color;
+  /// Optional [IconButton.iconSize] passthrough
+  final double? iconSize;
 
   /// [IconButton.onPressed] passthrough
   final VoidCallback? onPressed;
@@ -44,63 +44,45 @@ class EzIconButton extends StatelessWidget {
   /// [IconButton.tooltip] passthrough
   final String? tooltip;
 
-  /// [IconButton.style] passthrough
-  final ButtonStyle? style;
-
   /// Uses disabled styling and sets [onPressed] and [onLongPress] to [doNothing] when false
-  /// Overriding [style] makes [enabled] moot
   final bool enabled;
 
   /// Switches to disabled styling when true
   /// [onPressed] is unchanged
-  /// Overriding [style] makes [fauxDisabled] moot
   final bool fauxDisabled;
 
-  /// [IconButton.icon] passthrough
-  final Widget icon;
+  /// Optional [IconButton.style] passthrough
+  /// Clobbers [enabled] and [fauxDisabled] style changes (style only)
+  final ButtonStyle? style;
 
   /// [IconButton] wrapper with custom styling
   const EzIconButton({
     super.key,
+    required this.icon,
     this.iconSize,
-    this.color,
     this.onPressed,
     this.onLongPress,
     this.tooltip,
-    this.style,
     this.enabled = true,
     this.fauxDisabled = false,
-    required this.icon,
+    this.style,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final double iSize = iconSize ?? EzConfig.iconSize;
-
-    late final ButtonStyle buttonStyle = style ??
-        ((enabled && !fauxDisabled)
-            ? IconButton.styleFrom(
-                backgroundColor: EzConfig.colors.surface,
-                side: EzConfig.borderSide(),
-                iconSize: iSize,
-              )
-            : IconButton.styleFrom(
-                backgroundColor: EzConfig.colors.surface,
-                foregroundColor: EzConfig.colors.outline,
-                overlayColor: EzConfig.colors.outline,
-                shadowColor: Colors.transparent,
-                side: EzConfig.borderSide(color: EzConfig.colors.outlineVariant),
-                iconSize: iSize,
-              ));
-
-    return IconButton(
-      iconSize: iSize,
-      color: color,
-      onPressed: enabled ? onPressed : doNothing,
-      onLongPress: enabled ? onLongPress : doNothing,
-      tooltip: tooltip,
-      style: buttonStyle,
-      icon: icon,
-    );
-  }
+  Widget build(BuildContext context) => IconButton(
+        onPressed: enabled ? onPressed : doNothing,
+        onLongPress: enabled ? onLongPress : doNothing,
+        tooltip: tooltip,
+        style: style ??
+            ((!enabled || fauxDisabled)
+                ? IconButton.styleFrom(
+                    foregroundColor: EzConfig.colors.outline,
+                    side: EzConfig.borderSide(color: EzConfig.colors.outlineVariant),
+                    overlayColor: EzConfig.colors.outline,
+                    shadowColor: Colors.transparent,
+                    iconSize: iconSize ?? EzConfig.iconSize)
+                : null),
+        icon: icon,
+        iconSize: iconSize ?? EzConfig.iconSize,
+      );
 }
