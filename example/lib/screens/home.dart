@@ -967,7 +967,7 @@ class _LicensePickerState extends State<_LicensePicker> {
         EzTextButton(
           text: title,
           textAlign: TextAlign.center,
-          style: TextButton.styleFrom(padding: EzInsets.wrap(EzConfig.marginVal)),
+          wrapPadding: true,
           onPressed: () => widget.onChanged(value),
         ),
         ExcludeSemantics(child: EzRadio<String>(value: value)),
