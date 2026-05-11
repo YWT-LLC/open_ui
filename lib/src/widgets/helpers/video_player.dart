@@ -431,13 +431,11 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ? EzIconButton(
                                           onPressed: pause,
                                           tooltip: EzConfig.l10n.gPause,
-                                          color: EzConfig.colors.primary,
                                           icon: const Icon(Icons.pause),
                                         )
                                       : EzIconButton(
                                           onPressed: () => play(value),
                                           tooltip: EzConfig.l10n.gPlay,
-                                          color: EzConfig.colors.primary,
                                           icon: Icon(
                                               value.isCompleted ? Icons.replay : Icons.play_arrow),
                                         ),
@@ -449,13 +447,11 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ? EzIconButton(
                                           onPressed: unMute,
                                           tooltip: EzConfig.l10n.gUnMute,
-                                          color: EzConfig.colors.primary,
                                           icon: const Icon(Icons.volume_mute),
                                         )
                                       : EzIconButton(
                                           onPressed: () => mute(value),
                                           tooltip: EzConfig.l10n.gMute,
-                                          color: EzConfig.colors.primary,
                                           icon: const Icon(Icons.volume_up),
                                         ),
 
@@ -564,9 +560,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                             : subMenuControl.open(),
                                         tooltip:
                                             '${EzConfig.l10n.gCaptions}\n${EzConfig.l10n.gCaptionsHint}',
-                                        color: showCaptions
-                                            ? EzConfig.colors.primary
-                                            : EzConfig.colors.outline,
+                                        fauxDisabled: !showCaptions,
                                         icon: const Icon(Icons.subtitles),
                                       ),
                                       menuChildren: <Widget>[

@@ -76,9 +76,7 @@ class EzSpacingSetting extends StatelessWidget {
                           EzSpacer(space: currValue, vertical: false),
                           EzElevatedButton(
                             enabled: false,
-                            style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(),
-                            ),
+                            style: ElevatedButton.styleFrom(shape: const CircleBorder()),
                             text: currValue.toStringAsFixed(_decimals),
                           ),
                         ],

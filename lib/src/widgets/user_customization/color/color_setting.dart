@@ -147,7 +147,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                 onPressed: () => Clipboard.setData(ClipboardData(text: currColorLabel)),
                 icon: const Icon(Icons.copy),
                 label: currColorLabel,
-                style: TextButton.styleFrom(padding: EzInsets.wrap(EzConfig.marginVal)),
+                wrapPadding: true,
               ),
             ],
             actions: ezActionPair(
