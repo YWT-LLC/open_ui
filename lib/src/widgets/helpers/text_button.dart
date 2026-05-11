@@ -27,7 +27,7 @@ class EzTextButton extends StatefulWidget {
   final TextAlign? textAlign;
 
   /// Enable [EzInsets.wrap] => [EzConfig.marginVal]
-  final bool textPadding;
+  final bool wrapPadding;
 
   /// [TextButton.style] passthrough
   final ButtonStyle? style;
@@ -42,7 +42,7 @@ class EzTextButton extends StatefulWidget {
     this.semantics,
     this.textStyle,
     this.textAlign,
-    this.textPadding = false,
+    this.wrapPadding = false,
     this.style,
   });
 
@@ -68,7 +68,12 @@ class _EzTextButtonState extends State<EzTextButton> {
       onLongPress: widget.onLongPress,
       onHover: (bool isHovering) => addUnderline(isHovering),
       onFocusChange: (bool isFocused) => addUnderline(isFocused),
-      style: widget.style,
+      style: widget.wrapPadding
+          ? widget.style
+          : (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
+              padding:
+                  WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
+            ),
       child: Text(
         widget.text,
         semanticsLabel: widget.semantics,
@@ -103,7 +108,7 @@ class EzTextIconButton extends StatefulWidget {
   final TextAlign? textAlign;
 
   /// Enable [EzInsets.wrap] => [EzConfig.marginVal]
-  final bool textPadding;
+  final bool wrapPadding;
 
   /// [TextButton.style] passthrough
   final ButtonStyle? style;
@@ -118,7 +123,7 @@ class EzTextIconButton extends StatefulWidget {
     this.semantics,
     this.textStyle,
     this.textAlign,
-    this.textPadding = false,
+    this.wrapPadding = false,
     this.style,
   });
 
