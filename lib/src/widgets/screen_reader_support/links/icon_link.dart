@@ -27,9 +27,6 @@ class EzIconLink extends StatefulWidget {
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
-  /// Optional padding override for [TextButton.style]
-  final EdgeInsets? padding;
-
   /// Destination function
   /// Provide [onTap] or [url], but not both
   final void Function()? onTap;
@@ -59,7 +56,6 @@ class EzIconLink extends StatefulWidget {
     this.textColor,
     this.decorationColor,
     this.textAlign,
-    this.padding,
     this.onTap,
     this.url,
     required this.hint,
@@ -88,11 +84,6 @@ class _EzIconLinkState extends State<EzIconLink> {
       decorationColor: widget.decorationColor ?? EzConfig.colors.primary,
     );
 
-    final ButtonStyle buttonStyle = TextButton.styleFrom(
-      padding: widget.padding,
-      overlayColor: widget.decorationColor ?? EzConfig.colors.primary,
-    );
-
     // Define custom functions //
 
     void underline(bool addIt) {
@@ -119,7 +110,6 @@ class _EzIconLinkState extends State<EzIconLink> {
         child: ExcludeSemantics(
           child: (widget.onTap != null)
               ? TextButton.icon(
-                  style: buttonStyle,
                   onPressed: widget.onTap,
                   onLongPress: null,
                   onHover: (bool isHovering) => underline(isHovering),
@@ -131,7 +121,6 @@ class _EzIconLinkState extends State<EzIconLink> {
               : Link(
                   uri: widget.url,
                   builder: (_, FollowLink? followLink) => TextButton.icon(
-                    style: buttonStyle,
                     onPressed: followLink,
                     onLongPress: null,
                     onHover: (bool isHovering) => underline(isHovering),

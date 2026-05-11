@@ -14,20 +14,11 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// [ezDropdownWidth] passthrough
   final String widthEntry;
 
-  /// [DropdownMenu.leadingIcon] passthrough
-  final Widget? leadingIcon;
-
-  /// [DropdownMenu.trailingIcon] passthrough
-  final Widget? trailingIcon;
-
   /// [DropdownMenu.label] passthrough
   final Widget? label;
 
   /// [DropdownMenu.hintText] passthrough
   final String? hintText;
-
-  /// [DropdownMenu.selectedTrailingIcon] passthrough
-  final Widget? selectedTrailingIcon;
 
   /// [DropdownMenu.enableFilter] passthrough
   final bool enableFilter;
@@ -60,11 +51,8 @@ class EzDropdownMenu<T> extends StatelessWidget {
   const EzDropdownMenu({
     super.key,
     this.enabled = true,
-    this.leadingIcon,
-    this.trailingIcon,
     this.label,
     this.hintText,
-    this.selectedTrailingIcon,
     this.enableFilter = false,
     this.enableSearch = true,
     this.keyboardType,
@@ -75,48 +63,24 @@ class EzDropdownMenu<T> extends StatelessWidget {
     this.onSelected,
     required this.dropdownMenuEntries,
     required this.widthEntry,
-  });
+  }); // TODO: check (you removed a layer)
 
   @override
-  Widget build(BuildContext context) => IconButtonTheme(
-        data: IconButtonThemeData(
-          style: IconButton.styleFrom(
-            backgroundColor: EzConfig.colors.surface,
-            foregroundColor: EzConfig.colors.primary,
-            disabledForegroundColor: EzConfig.colors.outline,
-            overlayColor: EzConfig.colors.primary,
-            side: null,
-            shape: EzConfig.buttonShape.shape,
-            iconSize: EzConfig.iconSize,
-            alignment: Alignment.center,
-            padding: EzInsets.wrap(EzConfig.padding),
-          ),
-        ),
-        child: DropdownMenu<T>(
-          enabled: enabled,
-          width: ezDropdownWidth(context, widthEntry),
-          leadingIcon: leadingIcon,
-          trailingIcon: trailingIcon ??
-              Icon(
-                Icons.arrow_drop_down,
-                size: EzConfig.iconSize,
-              ),
-          label: label,
-          hintText: hintText,
-          selectedTrailingIcon: selectedTrailingIcon ??
-              Icon(
-                Icons.arrow_drop_up,
-                size: EzConfig.iconSize,
-              ),
-          enableFilter: enableFilter,
-          enableSearch: enableSearch,
-          keyboardType: keyboardType,
-          textStyle: textStyle,
-          textAlign: textAlign,
-          controller: controller,
-          initialSelection: initialSelection,
-          onSelected: onSelected,
-          dropdownMenuEntries: dropdownMenuEntries,
-        ),
+  Widget build(BuildContext context) => DropdownMenu<T>(
+        enabled: enabled,
+        width: ezDropdownWidth(context, widthEntry),
+        trailingIcon: const Icon(Icons.arrow_drop_down),
+        label: label,
+        hintText: hintText,
+        selectedTrailingIcon: const Icon(Icons.arrow_drop_up),
+        enableFilter: enableFilter,
+        enableSearch: enableSearch,
+        keyboardType: keyboardType,
+        textStyle: textStyle,
+        textAlign: textAlign,
+        controller: controller,
+        initialSelection: initialSelection,
+        onSelected: onSelected,
+        dropdownMenuEntries: dropdownMenuEntries,
       );
 }
