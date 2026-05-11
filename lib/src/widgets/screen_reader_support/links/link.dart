@@ -76,75 +76,75 @@ class _EzLinkState extends State<EzLink> {
 
   late final String semantics = '${widget.text}; ${widget.hint}';
 
+  late TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
+    color: widget.textColor ?? EzConfig.colors.primary,
+    decoration: EzConfig.lineLinks ? TextDecoration.underline : TextDecoration.none,
+    decorationColor: EzConfig.colors.primary,
+  );
+
+  // Define custom functions //
+
+  void underline(bool addIt) => (EzConfig.lineLinks)
+      ? doNothing()
+      : setState(() => textStyle =
+          textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
+
+  // Return the build //
   @override
-  Widget build(BuildContext context) {
-    // Gather the contextual theme data //
-
-    TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
-      color: widget.textColor ?? EzConfig.colors.primary,
-      decoration: EzConfig.lineLinks ? TextDecoration.underline : TextDecoration.none,
-      decorationColor: EzConfig.colors.primary,
-    );
-
-    final ButtonStyle buttonStyle = TextButton.styleFrom(
-      padding: widget.padding,
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      visualDensity: VisualDensity.compact,
-      minimumSize: Size.zero,
-      overlayColor: EzConfig.colors.primary,
-      backgroundColor: widget.backgroundColor,
-    );
-
-    // Define custom functions //
-
-    void underline(bool addIt) => (EzConfig.lineLinks)
-        ? doNothing()
-        : setState(() => textStyle = textStyle?.copyWith(
-            decoration: addIt ? TextDecoration.underline : TextDecoration.none));
-
-    // Return the build //
-
-    final Text text = Text(
-      widget.text,
-      style: textStyle,
-      textAlign: widget.textAlign,
-    );
-
-    return Tooltip(
-      message: widget.tooltip ?? widget.hint,
-      excludeFromSemantics: true,
-      child: Semantics(
-        link: true,
-        hint: semantics,
-        child: ExcludeSemantics(
-          child: (widget.onTap != null)
-              ? TextButton(
-                  style: buttonStyle,
-                  onPressed: widget.onTap,
-                  onLongPress: null,
-                  onHover: (bool isHovering) {
-                    underline(isHovering);
-                    widget.onHover?.call(isHovering);
-                  },
-                  onFocusChange: (bool hasFocus) => underline(hasFocus),
-                  child: text,
-                )
-              : Link(
-                  uri: widget.url,
-                  builder: (_, FollowLink? followLink) => TextButton(
-                    style: buttonStyle,
-                    onPressed: followLink,
+  Widget build(BuildContext context) => Tooltip(
+        message: widget.tooltip ?? widget.hint,
+        excludeFromSemantics: true,
+        child: Semantics(
+          link: true,
+          hint: semantics,
+          child: ExcludeSemantics(
+            child: (widget.onTap != null)
+                ? TextButton(
+                    style: TextButton.styleFrom(
+                      padding: widget.padding,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity: VisualDensity.compact,
+                      minimumSize: Size.zero,
+                      backgroundColor: widget.backgroundColor,
+                    ),
+                    onPressed: widget.onTap,
                     onLongPress: null,
                     onHover: (bool isHovering) {
                       underline(isHovering);
                       widget.onHover?.call(isHovering);
                     },
                     onFocusChange: (bool hasFocus) => underline(hasFocus),
-                    child: text,
+                    child: Text(
+                      widget.text,
+                      style: textStyle,
+                      textAlign: widget.textAlign,
+                    ),
+                  )
+                : Link(
+                    uri: widget.url,
+                    builder: (_, FollowLink? followLink) => TextButton(
+                      style: TextButton.styleFrom(
+                        padding: widget.padding,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                        minimumSize: Size.zero,
+                        backgroundColor: widget.backgroundColor,
+                      ),
+                      onPressed: followLink,
+                      onLongPress: null,
+                      onHover: (bool isHovering) {
+                        underline(isHovering);
+                        widget.onHover?.call(isHovering);
+                      },
+                      onFocusChange: (bool hasFocus) => underline(hasFocus),
+                      child: Text(
+                        widget.text,
+                        style: textStyle,
+                        textAlign: widget.textAlign,
+                      ),
+                    ),
                   ),
-                ),
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

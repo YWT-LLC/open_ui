@@ -51,35 +51,31 @@ class EzTextButton extends StatefulWidget {
 }
 
 class _EzTextButtonState extends State<EzTextButton> {
+  late TextStyle? textStyle = (widget.textStyle ?? EzConfig.styles.bodyLarge)
+      ?.copyWith(decorationColor: EzConfig.colors.primary);
+
+  void addUnderline(bool addIt) => setState(() => textStyle =
+      textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
+
   @override
-  Widget build(BuildContext context) {
-    TextStyle? textStyle = (widget.textStyle ?? EzConfig.styles.bodyLarge)
-        ?.copyWith(decorationColor: EzConfig.colors.primary);
-
-    void addUnderline(bool addIt) => setState(() => textStyle =
-        textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
-
-    // Return the build //
-
-    return TextButton(
-      onPressed: widget.onPressed,
-      onLongPress: widget.onLongPress,
-      onHover: (bool isHovering) => addUnderline(isHovering),
-      onFocusChange: (bool isFocused) => addUnderline(isFocused),
-      style: widget.wrapPadding
-          ? widget.style
-          : (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
-              padding:
-                  WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
-            ),
-      child: Text(
-        widget.text,
-        semanticsLabel: widget.semantics,
-        style: textStyle,
-        textAlign: widget.textAlign,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => TextButton(
+        onPressed: widget.onPressed,
+        onLongPress: widget.onLongPress,
+        onHover: (bool isHovering) => addUnderline(isHovering),
+        onFocusChange: (bool isFocused) => addUnderline(isFocused),
+        style: widget.wrapPadding
+            ? widget.style
+            : (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
+                padding:
+                    WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
+              ),
+        child: Text(
+          widget.text,
+          semanticsLabel: widget.semantics,
+          style: textStyle,
+          textAlign: widget.textAlign,
+        ),
+      );
 }
 
 class EzTextIconButton extends StatefulWidget {
