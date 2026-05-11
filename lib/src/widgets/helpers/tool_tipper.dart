@@ -77,7 +77,7 @@ class EzToolTipper extends StatelessWidget {
         },
         child: Tooltip(
           waitDuration: Duration.zero,
-          exitDuration: ezAnimDuration(),
+          exitDuration: const Duration(milliseconds: 500),
           triggerMode: TooltipTriggerMode.tap,
           enableTapToDismiss: false,
           excludeFromSemantics: true,
