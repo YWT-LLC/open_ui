@@ -51,7 +51,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
             await loadColorScheme(light, Brightness.light);
           }
         }),
-        icon: const Icon(Icons.contrast),
+        icon: EzIcon(Icons.contrast),
         label: EzConfig.l10n.csHighContrast,
       );
 }

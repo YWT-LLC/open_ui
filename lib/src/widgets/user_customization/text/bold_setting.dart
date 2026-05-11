@@ -46,7 +46,7 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
           setState(() {});
         },
         tooltip: EzConfig.l10n.tsBold,
-        icon: Icon(
+        icon: EzIcon(
           Icons.format_bold_outlined,
           color: isBold ? EzConfig.colors.primary : EzConfig.colors.outline,
         ),

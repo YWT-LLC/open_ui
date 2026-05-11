@@ -232,7 +232,7 @@ class _AnimDurSetting extends StatelessWidget {
 
                     setModal(() {});
                   },
-                  icon: const Icon(Icons.refresh),
+                  icon: EzIcon(Icons.refresh),
                   label: EzConfig.l10n.gReset,
                 ),
                 EzConfig.separator,
@@ -245,7 +245,7 @@ class _AnimDurSetting extends StatelessWidget {
           }
         },
         label: EzConfig.l10n.dsAnimStyle,
-        icon: const Icon(Icons.timer_outlined),
+        icon: EzIcon(Icons.timer_outlined),
       );
 }
 
@@ -314,7 +314,7 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
             child: EzIconButton(
               onPressed: () =>
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
-              icon: Icon(
+              icon: EzIcon(
                 Icons.play_arrow,
                 semanticLabel: EzConfig.l10n.dsPlay,
               ),
@@ -428,7 +428,7 @@ class _PageTransitionSetting extends StatelessWidget {
 
           if (needsRebuild) await EzConfig.rebuildUI();
         },
-        icon: const Icon(Icons.slideshow),
+        icon: EzIcon(Icons.slideshow),
         label: EzConfig.l10n.dsPageTransition,
       );
 }

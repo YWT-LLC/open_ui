@@ -79,7 +79,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
         excludeFromSemantics: false,
         child: ExcludeSemantics(
           child: EzCol(children: <Widget>[
-            Icon(icon, color: color),
+            EzIcon(icon, color: color),
             EzConfig.margin,
             EzText(
               name,
@@ -161,7 +161,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       );
                       setState(() {});
                     },
-                    icon: const Icon(Icons.rotate_left),
+                    icon: EzIcon(Icons.rotate_left),
                   ),
                   EzConfig.rowSpacer,
 
@@ -178,7 +178,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       );
                       setState(() {});
                     },
-                    icon: const Icon(Icons.rotate_right),
+                    icon: EzIcon(Icons.rotate_right),
                   ),
 
                   // Div
@@ -198,7 +198,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       _editorController.reset();
                       setState(() {});
                     },
-                    icon: const Icon(Icons.refresh),
+                    icon: EzIcon(Icons.refresh),
                   ),
                   EzConfig.rowSpacer,
 
@@ -210,7 +210,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       _editorController.undo();
                       setState(() {});
                     },
-                    icon: const Icon(Icons.undo),
+                    icon: EzIcon(Icons.undo),
                   ),
                   EzConfig.rowSpacer,
 
@@ -222,7 +222,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       _editorController.redo();
                       setState(() {});
                     },
-                    icon: const Icon(Icons.redo),
+                    icon: EzIcon(Icons.redo),
                   ),
 
                   // Div
@@ -318,7 +318,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                         setState(() => processing = false);
                       }
                     },
-                    icon: processing ? const CircularProgressIndicator() : const Icon(Icons.check),
+                    icon: processing ? const CircularProgressIndicator() : EzIcon(Icons.check),
                   ),
                   EzConfig.rowSpacer,
 
@@ -326,7 +326,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   EzIconButton(
                     tooltip: EzConfig.l10n.gCancel,
                     onPressed: () => Navigator.pop(context, null),
-                    icon: const Icon(Icons.delete),
+                    icon: EzIcon(Icons.delete),
                   ),
                 ],
               ),

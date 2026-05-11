@@ -54,7 +54,7 @@ class EzQuickConfig extends StatelessWidget {
             EzConfig.spacer,
           ]),
         ),
-        icon: const Icon(Icons.edit),
+        icon: EzIcon(Icons.edit),
         label: EzConfig.l10n.ssLoadPreset,
       );
 }

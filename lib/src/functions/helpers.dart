@@ -209,7 +209,7 @@ Future<dynamic> ezColorPicker(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             EzTextIconButton(
-              icon: const Icon(Icons.cancel),
+              icon: EzIcon(Icons.cancel),
               label: denyMsg ?? EzConfig.l10n.gCancel,
               wrapPadding: true,
               onPressed: () {
@@ -219,7 +219,7 @@ Future<dynamic> ezColorPicker(
             ),
             EzConfig.rowSpacer,
             EzTextIconButton(
-              icon: const Icon(Icons.check),
+              icon: EzIcon(Icons.check),
               label: confirmMsg ?? EzConfig.l10n.gApply,
               wrapPadding: true,
               onPressed: () {

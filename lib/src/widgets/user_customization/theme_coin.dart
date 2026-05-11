@@ -41,7 +41,7 @@ class _EzThemeCoinState extends State<EzThemeCoin> {
           enabled: widget.enabled,
           icon: (widget.enabled && both)
               ? const FaIcon(FontAwesomeIcons.yinYang)
-              : Icon(EzConfig.isDark ? Icons.dark_mode : Icons.light_mode),
+              : EzIcon(EzConfig.isDark ? Icons.dark_mode : Icons.light_mode),
           onPressed: () async {
             await EzConfig.setBool(updateBothKey, !both);
             setState(() => both = !both);

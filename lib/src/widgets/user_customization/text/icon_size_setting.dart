@@ -73,13 +73,13 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       },
                       tooltip:
                           '${EzConfig.l10n.gDecrease} ${EzConfig.l10n.tsIconSize.toLowerCase()}',
-                      icon: const Icon(Icons.remove),
+                      icon: EzIcon(Icons.remove),
                       iconSize: iconSize,
                     )
                   : EzIconButton(
                       enabled: false,
                       tooltip: EzConfig.l10n.gMinimum,
-                      icon: Icon(
+                      icon: EzIcon(
                         Icons.remove,
                         color: EzConfig.colors.outline,
                       ),
@@ -137,13 +137,13 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       },
                       tooltip:
                           '${EzConfig.l10n.gIncrease} ${EzConfig.l10n.tsIconSize.toLowerCase()}',
-                      icon: const Icon(Icons.add),
+                      icon: EzIcon(Icons.add),
                       iconSize: iconSize,
                     )
                   : EzIconButton(
                       enabled: false,
                       tooltip: EzConfig.l10n.gMaximum,
-                      icon: Icon(
+                      icon: EzIcon(
                         Icons.add,
                         color: EzConfig.colors.outline,
                       ),

@@ -117,7 +117,7 @@ class EzPaddingSetting extends StatelessWidget {
                   }
                   setModal(() => currValue = defaultValue);
                 },
-                icon: const Icon(Icons.refresh),
+                icon: EzIcon(Icons.refresh),
                 label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
               ),
               EzConfig.separator,
@@ -127,7 +127,7 @@ class EzPaddingSetting extends StatelessWidget {
 
         if (currValue != backup) await EzConfig.rebuildUI();
       },
-      icon: const Icon(Icons.padding),
+      icon: EzIcon(Icons.padding),
       label: EzConfig.l10n.dsPadding,
     );
   }

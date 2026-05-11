@@ -145,7 +145,7 @@ class _ColorSettingState extends State<EzColorSetting> {
               // Copy-able value
               EzTextIconButton(
                 onPressed: () => Clipboard.setData(ClipboardData(text: currColorLabel)),
-                icon: const Icon(Icons.copy),
+                icon: EzIcon(Icons.copy),
                 label: currColorLabel,
                 wrapPadding: true,
               ),
@@ -195,7 +195,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                     backgroundColor: EzConfig.colors.surface,
                     foregroundColor: EzConfig.colors.onSurface,
                     radius: iconRadius + EzConfig.padding,
-                    child: const Icon(Icons.visibility_off),
+                    child: EzIcon(Icons.visibility_off),
                   )
                 : CircleAvatar(
                     backgroundColor: currColor,

@@ -113,7 +113,7 @@ class EzResetButton extends StatelessWidget {
             );
           },
         ),
-        icon: const Icon(Icons.refresh),
+        icon: EzIcon(Icons.refresh),
         label: all ? EzConfig.l10n.gResetAll : EzConfig.l10n.gReset,
       );
 }

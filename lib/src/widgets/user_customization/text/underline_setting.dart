@@ -46,7 +46,7 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
           setState(() {});
         },
         tooltip: EzConfig.l10n.tsUnderline,
-        icon: Icon(
+        icon: EzIcon(
           Icons.format_underline,
           color: isUnderlined ? EzConfig.colors.primary : EzConfig.colors.outline,
         ),

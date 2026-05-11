@@ -119,7 +119,7 @@ class EzMarginSetting extends StatelessWidget {
                   }
                   setModal(() => currValue = defaultValue);
                 },
-                icon: const Icon(Icons.refresh),
+                icon: EzIcon(Icons.refresh),
                 label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
               ),
               EzConfig.separator,
@@ -129,7 +129,7 @@ class EzMarginSetting extends StatelessWidget {
 
         if (currValue != backup) await EzConfig.rebuildUI();
       },
-      icon: const Icon(Icons.margin),
+      icon: EzIcon(Icons.margin),
       label: EzConfig.l10n.dsMargin,
     );
   }

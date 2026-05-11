@@ -71,10 +71,10 @@ class EzDropdownMenu<T> extends StatelessWidget {
         child: DropdownMenu<T>(
           enabled: enabled,
           width: ezDropdownWidth(context, widthEntry),
-          trailingIcon: const Icon(Icons.arrow_drop_down),
+          trailingIcon: EzIcon(Icons.arrow_drop_down),
           label: label,
           hintText: hintText,
-          selectedTrailingIcon: const Icon(Icons.arrow_drop_up),
+          selectedTrailingIcon: EzIcon(Icons.arrow_drop_up),
           enableFilter: enableFilter,
           enableSearch: enableSearch,
           keyboardType: keyboardType,

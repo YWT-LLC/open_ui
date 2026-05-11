@@ -171,19 +171,19 @@ const String esZoom = 'zoom';
 /// EzTransitionType config
 extension ETTConfig on EzTransitionType {
   Icon get icon => switch (this) {
-        EzTransitionType.none => const Icon(Icons.cancel),
-        EzTransitionType.system => Icon(EzConfig.onMobile
+        EzTransitionType.none => EzIcon(Icons.cancel),
+        EzTransitionType.system => EzIcon(EzConfig.onMobile
             ? EzConfig.platform == TargetPlatform.iOS
                 ? Icons.phone_iphone
                 : Icons.phone_android
             : Icons.computer),
-        EzTransitionType.turnX => const Icon(Icons.flip),
-        EzTransitionType.turnY => const Icon(Icons.u_turn_left),
-        EzTransitionType.rotate => const Icon(Icons.rotate_90_degrees_cw),
-        EzTransitionType.slideX => Icon(
+        EzTransitionType.turnX => EzIcon(Icons.flip),
+        EzTransitionType.turnY => EzIcon(Icons.u_turn_left),
+        EzTransitionType.rotate => EzIcon(Icons.rotate_90_degrees_cw),
+        EzTransitionType.slideX => EzIcon(
             EzConfig.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
-        EzTransitionType.slideY => const Icon(Icons.keyboard_double_arrow_up),
-        EzTransitionType.zoom => const Icon(Icons.zoom_in),
+        EzTransitionType.slideY => EzIcon(Icons.keyboard_double_arrow_up),
+        EzTransitionType.zoom => EzIcon(Icons.zoom_in),
       };
 
   String get value => switch (this) {

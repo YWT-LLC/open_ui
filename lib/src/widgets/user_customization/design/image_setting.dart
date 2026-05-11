@@ -276,7 +276,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             fromLocal = true;
             if (mCon.mounted) Navigator.of(mCon).pop(picked);
           },
-          icon: const Icon(Icons.camera),
+          icon: EzIcon(Icons.camera),
           label: EzConfig.l10n.dsFromCamera,
         ),
       ));
@@ -297,7 +297,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             fromLocal = true;
             if (mCon.mounted) Navigator.of(mCon).pop(picked);
           },
-          icon: const Icon(Icons.folder),
+          icon: EzIcon(Icons.folder),
           label: EzConfig.l10n.dsFromFile,
         ),
       ));
@@ -389,7 +389,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             needsClose: false,
           ),
         ),
-        icon: const Icon(Icons.computer_outlined),
+        icon: EzIcon(Icons.computer_outlined),
         label: EzConfig.l10n.dsFromNetwork,
       ),
     ));
@@ -420,7 +420,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               onDeny: doNothing,
             );
           },
-          icon: const Icon(Icons.color_lens),
+          icon: EzIcon(Icons.color_lens),
           label: EzConfig.l10n.dsSolidColor,
         ),
       ));
@@ -439,7 +439,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               Navigator.of(mCon).pop(defaultPath);
             }
           },
-          icon: const Icon(Icons.refresh),
+          icon: EzIcon(Icons.refresh),
           label: EzConfig.l10n.dsResetIt,
         ),
       ));
@@ -458,7 +458,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               Navigator.of(mCon).pop(noImageValue);
             }
           },
-          icon: const Icon(Icons.clear),
+          icon: EzIcon(Icons.clear),
           label: widget.clearLabel ?? EzConfig.l10n.dsClearIt,
         ),
       ));
@@ -475,7 +475,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             final bool? changed = await chooseFit(currPath!);
             if (changed == true) await EzConfig.rebuildUI();
           },
-          icon: const Icon(Icons.image_aspect_ratio),
+          icon: EzIcon(Icons.image_aspect_ratio),
           label: EzConfig.l10n.dsReFit,
         ),
         EzConfig.spacer,
@@ -757,7 +757,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               child: inProgress
                   ? const CircularProgressIndicator()
                   : (currPath == null || currPath == noImageValue)
-                      ? Icon(
+                      ? EzIcon(
                           Icons.image_search,
                           color: EzConfig.colors.primary,
                         )

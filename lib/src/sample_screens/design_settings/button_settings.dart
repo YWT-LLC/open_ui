@@ -228,7 +228,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                           EzConfig.isDark ? darkBorderWidthKey : lightBorderWidthKey);
                     });
                   },
-                  icon: const Icon(Icons.refresh),
+                  icon: EzIcon(Icons.refresh),
                   label: EzConfig.l10n.gReset,
                 ),
                 EzConfig.separator,
@@ -261,6 +261,6 @@ class _ButtonStyleSetting extends StatelessWidget {
           if (needsRebuild) await EzConfig.rebuildUI();
         },
         label: label ?? EzConfig.l10n.dsStyle,
-        icon: const Icon(Icons.edit),
+        icon: EzIcon(Icons.edit),
       );
 }

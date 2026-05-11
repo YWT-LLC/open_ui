@@ -223,7 +223,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 onEnter: (PointerEnterEvent event) =>
                                     hoverScroll(event, forward: false),
                                 onExit: stopScroll,
-                                child: Icon(
+                                child: EzIcon(
                                   Icons.arrow_upward,
                                   color: EzConfig.colors.secondary,
                                 ),
@@ -239,7 +239,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 onEnter: (PointerEnterEvent event) =>
                                     hoverScroll(event, forward: false),
                                 onExit: stopScroll,
-                                child: Icon(
+                                child: EzIcon(
                                   Icons.chevron_left,
                                   color: EzConfig.colors.secondary,
                                 ),
@@ -259,7 +259,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 onEnter: (PointerEnterEvent event) =>
                                     hoverScroll(event, forward: true),
                                 onExit: stopScroll,
-                                child: Icon(
+                                child: EzIcon(
                                   Icons.arrow_downward,
                                   color: EzConfig.colors.secondary,
                                 ),
@@ -275,7 +275,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 onEnter: (PointerEnterEvent event) =>
                                     hoverScroll(event, forward: true),
                                 onExit: stopScroll,
-                                child: Icon(
+                                child: EzIcon(
                                   Icons.chevron_right,
                                   color: EzConfig.colors.secondary,
                                 ),

@@ -364,7 +364,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   ),
                   EzConfig.rowMargin,
                   EzIconButton(
-                    icon: Icon(
+                    icon: EzIcon(
                       ezVisIcon(ec.isExpanded),
                       semanticLabel: ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
                     ),

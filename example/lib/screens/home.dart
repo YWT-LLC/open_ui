@@ -296,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       button: true,
                       child: ExcludeSemantics(
                         child: EzIconButton(
-                          icon: Icon(ezVisIcon(advancedEC.isExpanded)),
+                          icon: EzIcon(ezVisIcon(advancedEC.isExpanded)),
                           onPressed: () =>
                               advancedEC.isExpanded ? advancedEC.collapse() : advancedEC.expand(),
                           tooltip:
@@ -348,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             });
                           },
                           tooltip: l10n.csFileBrowser,
-                          icon: const Icon(Icons.folder_open),
+                          icon: EzIcon(Icons.folder_open),
                         ),
                       ],
                     ),
@@ -463,7 +463,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                       tooltip: l10n.csFileBrowser,
-                      icon: const Icon(Icons.folder_open),
+                      icon: EzIcon(Icons.folder_open),
                     ),
                   ],
                 ),
@@ -544,7 +544,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() => canGen = true);
                       }
                     },
-                    icon: const Icon(Icons.save),
+                    icon: EzIcon(Icons.save),
                     label: EzConfig.l10n.ssSaveConfig,
                   ),
 
@@ -597,7 +597,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() => canGen = true);
                         }
                       },
-                      icon: const Icon(Icons.build),
+                      icon: EzIcon(Icons.build),
                       label: l10n.csGenerate,
                     ),
                   ],
@@ -914,7 +914,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
                     onPressed: () =>
                         widget.ec.isExpanded ? widget.ec.collapse() : widget.ec.expand(),
                     tooltip: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
-                    icon: Icon(ezVisIcon(widget.ec.isExpanded)),
+                    icon: EzIcon(ezVisIcon(widget.ec.isExpanded)),
                   ),
                 ),
               ),
@@ -1004,7 +1004,7 @@ class _LicensePickerState extends State<_LicensePicker> {
                     onPressed: () =>
                         widget.ec.isExpanded ? widget.ec.collapse() : widget.ec.expand(),
                     tooltip: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
-                    icon: Icon(ezVisIcon(widget.ec.isExpanded)),
+                    icon: EzIcon(ezVisIcon(widget.ec.isExpanded)),
                   ),
                 ),
               ),

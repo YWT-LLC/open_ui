@@ -103,7 +103,7 @@ class DeleteOption extends StatelessWidget {
               },
               readout: readout,
             ),
-            icon: const Icon(Icons.delete),
+            icon: EzIcon(Icons.delete),
             label: l10n.rsWipe,
           ),
           EzConfig.spacer,
@@ -111,7 +111,7 @@ class DeleteOption extends StatelessWidget {
           // Leave
           EzElevatedIconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.arrow_back),
+            icon: EzIcon(Icons.arrow_back),
             label: l10n.rsLeave,
           ),
         ],
@@ -136,7 +136,7 @@ class LinkOption extends StatelessWidget {
             url: Uri.parse(installFlutter),
             tooltip: installFlutter,
             hint: l10n.rsInstallHint,
-            icon: const Icon(Icons.computer),
+            icon: EzIcon(Icons.computer),
             label: l10n.rsInstall,
           ),
         ],

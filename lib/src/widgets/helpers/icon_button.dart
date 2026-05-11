@@ -65,3 +65,22 @@ class EzIconButton extends StatelessWidget {
         iconSize: iconSize ?? EzConfig.iconSize,
       );
 }
+
+class EzIcon extends Icon {
+  /// [Icon] wrapper that responds to [EzConfig.iconSize]
+  /// [ThemeData.iconTheme] does not seem to be consumed properly
+  EzIcon(
+    super.icon, {
+    super.key,
+    super.fill,
+    super.weight,
+    super.grade,
+    super.opticalSize,
+    super.color,
+    super.shadows,
+    super.semanticLabel,
+    super.textDirection,
+    super.applyTextScaling,
+    super.blendMode,
+  }) : super(size: EzConfig.iconSize);
+}

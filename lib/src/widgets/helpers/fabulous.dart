@@ -20,7 +20,7 @@ class EzBackFAB extends StatelessWidget {
         heroTag: 'back_fab',
         tooltip: EzConfig.l10n.gBack,
         onPressed: () => Navigator.of(context).maybePop(),
-        child: Icon(showHome ? Icons.home : Icons.arrow_back),
+        child: EzIcon(showHome ? Icons.home : Icons.arrow_back),
       );
 }
 
@@ -38,7 +38,7 @@ class EzConfigFAB extends StatelessWidget {
             heroTag: 'config_fab',
             tooltip: EzConfig.l10n.ssConfigTip,
             onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
-            child: const Icon(Icons.save),
+            child: EzIcon(Icons.save),
           );
         },
         menuChildren: <Widget>[
@@ -183,7 +183,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
                 tooltip: EzConfig.l10n.gUpdates,
                 backgroundColor: EzConfig.colors.secondary,
                 foregroundColor: EzConfig.colors.onSecondary,
-                child: const Icon(Icons.update),
+                child: EzIcon(Icons.update),
               )
             : FloatingActionButton(
                 heroTag: 'updater_fab',
@@ -191,7 +191,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
                 tooltip: EzConfig.l10n.gUpdates,
                 backgroundColor: EzConfig.colors.secondary,
                 foregroundColor: EzConfig.colors.onSecondary,
-                child: const Icon(Icons.update),
+                child: EzIcon(Icons.update),
               ),
       );
 }
@@ -221,6 +221,6 @@ class EzRebuildFAB extends StatelessWidget {
         tooltip: tooltip ?? EzConfig.l10n.gApplyChanges,
         backgroundColor: EzConfig.colors.secondary,
         foregroundColor: EzConfig.colors.onSecondary,
-        child: Icon(icon ?? Icons.build),
+        child: EzIcon(icon ?? Icons.build),
       );
 }

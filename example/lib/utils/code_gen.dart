@@ -477,7 +477,7 @@ class CountFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FloatingActionButton(
         onPressed: count,
-        child: Icon(Icons.add),
+        child: EzIcon(Icons.add),
       );
 }
 
@@ -511,7 +511,7 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(_) => EzMenuButton(
         onPressed: () => parentContext.goNamed(settingsHubPath),
-        icon: Icon(Icons.settings),
+        icon: EzIcon(Icons.settings),
         label: EzConfig.l10n.gSettings,
       );
 }
@@ -531,7 +531,7 @@ class EFUICredits extends StatelessWidget {
       excludeFromSemantics: true,
       child: EzMenuLink(
         uri: Uri.parse('https://www.empathetech.net/#/products/open-ui'),
-        icon: Icon(Icons.settings),
+        icon: EzIcon(Icons.settings),
         label: label,
         semanticsLabel:
             '\${EzConfig.isLefty ? '\${EzConfig.l10n.gSettings} \$label' : '\$label \${EzConfig.l10n.gSettings}'}. \${EzConfig.l10n.gOpenEmpathetech}',
@@ -586,7 +586,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         onPressed: () =>
             controller.isOpen ? controller.close() : controller.open(),
         tooltip: EzConfig.l10n.gOptions,
-        icon: Icon(Icons.more_vert, semanticLabel: EzConfig.l10n.gOptions),
+        icon: EzIcon(Icons.more_vert, semanticLabel: EzConfig.l10n.gOptions),
       ),
       menuChildren: <Widget>[
         (showSettings) ? SettingsButton(context) : const EFUICredits(),
@@ -771,7 +771,7 @@ class SettingsHubScreen extends StatelessWidget {
             EzSettingsSection(
               position: 0,
               title: EzConfig.l10n.gGlobal,
-              icon: Icon(
+              icon: EzIcon(
                 config.onMobile
                     ? config.platform == TargetPlatform.iOS
                         ? Icons.phone_iphone
@@ -789,7 +789,7 @@ class SettingsHubScreen extends StatelessWidget {
             EzSettingsSection(
               position: 1,
               title: EzConfig.l10n.gColor,
-              icon: Icon(
+              icon: EzIcon(
                 Icons.palette,
                 semanticLabel: EzConfig.l10n.gColor,
               ),
@@ -808,7 +808,7 @@ class SettingsHubScreen extends StatelessWidget {
             EzSettingsSection(
               position: 2,
               title: EzConfig.l10n.gDesign,
-              icon: Icon(
+              icon: EzIcon(
                 Icons.design_services,
                 semanticLabel: EzConfig.l10n.gDesign,
               ),
@@ -827,7 +827,7 @@ class SettingsHubScreen extends StatelessWidget {
             EzSettingsSection(
               position: 3,
               title: EzConfig.l10n.gText,
-              icon: Icon(
+              icon: EzIcon(
                 Icons.text_format,
                 semanticLabel: EzConfig.l10n.gText,
               ),

@@ -418,12 +418,12 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ? EzIconButton(
                                           onPressed: pause,
                                           tooltip: EzConfig.l10n.gPause,
-                                          icon: const Icon(Icons.pause),
+                                          icon: EzIcon(Icons.pause),
                                         )
                                       : EzIconButton(
                                           onPressed: () => play(value),
                                           tooltip: EzConfig.l10n.gPlay,
-                                          icon: Icon(
+                                          icon: EzIcon(
                                               value.isCompleted ? Icons.replay : Icons.play_arrow),
                                         ),
                                 ),
@@ -434,12 +434,12 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ? EzIconButton(
                                           onPressed: unMute,
                                           tooltip: EzConfig.l10n.gUnMute,
-                                          icon: const Icon(Icons.volume_mute),
+                                          icon: EzIcon(Icons.volume_mute),
                                         )
                                       : EzIconButton(
                                           onPressed: () => mute(value),
                                           tooltip: EzConfig.l10n.gMute,
-                                          icon: const Icon(Icons.volume_up),
+                                          icon: EzIcon(Icons.volume_up),
                                         ),
 
                                   // Volume slider
@@ -495,7 +495,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         },
                                         tooltip:
                                             '${EzConfig.l10n.gDecrease} ${EzConfig.l10n.gPlaybackSpeed.toLowerCase()}',
-                                        icon: const Icon(Icons.remove),
+                                        icon: EzIcon(Icons.remove),
                                       ),
                                       EzConfig.rowMargin,
                                       Tooltip(
@@ -526,7 +526,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         },
                                         tooltip:
                                             '${EzConfig.l10n.gIncrease} ${EzConfig.l10n.gPlaybackSpeed.toLowerCase()}',
-                                        icon: const Icon(Icons.add),
+                                        icon: EzIcon(Icons.add),
                                       ),
                                     ],
                                   ),
@@ -548,7 +548,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         tooltip:
                                             '${EzConfig.l10n.gCaptions}\n${EzConfig.l10n.gCaptionsHint}',
                                         fauxDisabled: !showCaptions,
-                                        icon: const Icon(Icons.subtitles),
+                                        icon: EzIcon(Icons.subtitles),
                                       ),
                                       menuChildren: <Widget>[
                                         EzMenuButton(
