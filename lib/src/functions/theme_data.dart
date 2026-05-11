@@ -287,15 +287,14 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       ),
     ),
 
-    // Icon button; styled for Scaffolds
-    // EzIconButtons are styled for page content
+    // Icon button
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
-        backgroundColor: colorScheme.surfaceDim,
+        backgroundColor: colorScheme.surface,
         foregroundColor: colorScheme.primary,
         disabledForegroundColor: colorScheme.outline,
         overlayColor: colorScheme.primary,
-        side: BorderSide.none,
+        side: buildBorder(colorScheme.primaryContainer),
         enabledMouseCursor: SystemMouseCursors.click,
         shape: buttonShape,
         iconSize: iconSize,
