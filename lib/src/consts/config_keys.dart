@@ -377,6 +377,7 @@ const String darkTransitionTypeKey = 'darkTransitionType';
 const String darkTransitionFadeKey = 'darkTransitionFade';
 const String darkBackgroundImageKey = 'darkBackgroundImage';
 const String darkBackgroundFitKey = 'darkBackgroundFit';
+const String darkBackgroundSourceKey = 'darkBackgroundSourceKey';
 
 const String lightMarginKey = 'lightMargin';
 const String lightSpacingKey = 'lightSpacing';
@@ -386,6 +387,7 @@ const String lightTransitionTypeKey = 'lightTransitionType';
 const String lightTransitionFadeKey = 'lightTransitionFade';
 const String lightBackgroundImageKey = 'lightBackgroundImage';
 const String lightBackgroundFitKey = 'lightBackgroundFit';
+const String lightBackgroundSourceKey = 'lightBackgroundSourceKey';
 
 /// margin, spacing, animations && transitions, backgrounds, navigation, scrolling
 const Map<String, Type> darkPageDesignKeys = <String, Type>{
@@ -397,6 +399,7 @@ const Map<String, Type> darkPageDesignKeys = <String, Type>{
   darkAnimationCurveKey: String,
   darkBackgroundImageKey: String,
   darkBackgroundFitKey: String,
+  darkBackgroundSourceKey: String,
 };
 
 /// margin, spacing, animations && transitions, backgrounds, navigation, scrolling
@@ -409,6 +412,7 @@ const Map<String, Type> lightPageDesignKeys = <String, Type>{
   lightAnimationCurveKey: String,
   lightBackgroundImageKey: String,
   lightBackgroundFitKey: String,
+  lightBackgroundSourceKey: String,
 };
 
 // Shared //

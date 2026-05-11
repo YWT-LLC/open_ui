@@ -463,6 +463,7 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   darkBackgroundImageKey: noImageValue,
   // darkBackgroundFitKey: null,
+  // darkBackgroundSourceKey: null,
 
   // showScroll defined in mobile/desktop configs
 
@@ -481,6 +482,7 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   lightBackgroundImageKey: noImageValue,
   // lightBackgroundFitKey: null,
+  // lightBackgroundSourceKey: null,
 
   // showScroll defined in mobile/desktop configs
 

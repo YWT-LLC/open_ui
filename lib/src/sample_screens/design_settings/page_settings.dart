@@ -13,8 +13,6 @@ class PageDesign extends StatelessWidget {
   final List<Widget>? prepend;
 
   final bool includeBackgroundImage;
-  final String? darkBackgroundCredits;
-  final String? lightBackgroundCredits;
 
   /// Optional settings to add to the end o the sub-page
   final List<Widget>? append;
@@ -38,8 +36,6 @@ class PageDesign extends StatelessWidget {
     super.key,
     required this.prepend,
     this.includeBackgroundImage = true,
-    required this.darkBackgroundCredits,
-    required this.lightBackgroundCredits,
     required this.append,
     this.resetSpacer = const EzSeparator(),
     required this.resetExtraDark,
@@ -72,13 +68,13 @@ class PageDesign extends StatelessWidget {
                 ? EzImageSetting(
                     pathKey: darkBackgroundImageKey,
                     fitKey: darkBackgroundFitKey,
-                    credits: darkBackgroundCredits,
+                    sourceKey: darkBackgroundSourceKey,
                     label: EzConfig.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   )
                 : EzImageSetting(
                     pathKey: lightBackgroundImageKey,
                     fitKey: lightBackgroundFitKey,
-                    credits: lightBackgroundCredits,
+                    sourceKey: darkBackgroundSourceKey,
                     label: EzConfig.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   ),
           ),

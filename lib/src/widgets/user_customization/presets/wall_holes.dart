@@ -110,6 +110,8 @@ class EzWallHolesConfig extends StatelessWidget {
 
     await EzConfig.setString(lightBackgroundImageKey, wallHolesPath);
     await EzConfig.setString(lightBackgroundFitKey, BoxFit.cover.name);
+    await EzConfig.setString(
+        lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
 
     await EzConfig.setString(lightTransitionTypeKey, EzTransitionType.zoom.value);
     await EzConfig.setBool(lightTransitionFadeKey, false);

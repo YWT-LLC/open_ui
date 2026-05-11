@@ -23,12 +23,6 @@ const Set<String> efuiAssetPaths = <String>{
   wallHolesPath,
 };
 
-/// [nebulaPath], [wallHolesPath]
-const Map<String, String> efuiAssetCredits = <String, String>{
-  nebulaPath: 'https://www.pexels.com/@jmueller/',
-  wallHolesPath: 'https://www.pexels.com/@carl-wyatt-654792/',
-};
-
 // For use //
 
 /// [AssetImage] for [nebulaPath]

@@ -28,14 +28,6 @@ class EzDesignSettings extends StatelessWidget {
   /// When true, pairs well with [EzScreen], specifically [EzScreen.useImageDecoration]
   final bool includeBackgroundImage;
 
-  /// Optional credits for the dark background image
-  /// Moot if [includeBackgroundImage] is false
-  final String? darkBackgroundCredits;
-
-  /// Optional credits for the light background image
-  /// Moot if [includeBackgroundImage] is false
-  final String? lightBackgroundCredits;
-
   /// Optional additional settings at the bottom of the button design tab (above the reset button)
   /// BYO leading spacer, trailing is [resetSpacerButton]
   final List<Widget>? appendButton;
@@ -98,8 +90,6 @@ class EzDesignSettings extends StatelessWidget {
     this.prependPage,
     this.appendPage,
     this.includeBackgroundImage = true,
-    this.darkBackgroundCredits,
-    this.lightBackgroundCredits,
     this.resetSpacerPage = const EzSeparator(),
     this.resetExtraDarkPage,
     this.resetExtraLightPage,
@@ -126,8 +116,6 @@ class EzDesignSettings extends StatelessWidget {
             : PageDesign(
                 prepend: prependPage,
                 includeBackgroundImage: includeBackgroundImage,
-                darkBackgroundCredits: darkBackgroundCredits,
-                lightBackgroundCredits: lightBackgroundCredits,
                 append: appendPage,
                 resetSpacer: resetSpacerPage,
                 resetExtraDark: resetExtraDarkPage,

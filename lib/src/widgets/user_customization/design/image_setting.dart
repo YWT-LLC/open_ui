@@ -17,7 +17,11 @@ class EzImageSetting extends StatefulWidget {
   final String pathKey;
 
   /// [EzConfig] key for the [BoxFit]
+  /// Nullable - param is required to avoid confusion
   final String? fitKey;
+
+  /// Optional [EzConfig] key for the image source
+  final String? sourceKey;
 
   /// [EzElevatedIconButton.label] passthrough
   final String label;
@@ -34,10 +38,6 @@ class EzImageSetting extends StatefulWidget {
   /// Moot if [allowClear] is false
   final String? clearLabel;
 
-  /// Who made this/where did it come from?
-  /// [credits] will be displayed via [EzAlertDialog] on long press
-  final String? credits;
-
   /// null will display a choice to the user
   final bool? setColors;
 
@@ -53,11 +53,11 @@ class EzImageSetting extends StatefulWidget {
     super.key,
     required this.pathKey,
     required this.fitKey,
+    this.sourceKey,
     required this.label,
     this.allowSolidColor = false,
     this.allowClear = true,
     this.clearLabel,
-    this.credits,
     this.setColors,
     this.showEditor = true,
     this.showFitOption = true,
@@ -83,15 +83,20 @@ class _ImageSettingState extends State<EzImageSetting> {
   // Define custom widgets && functions //
 
   /// Open an [EzAlertDialog] with the [Image]s source information
-  Future<dynamic>? showCredits() => (widget.credits == null) // TODO: check
-      ? null
-      : showDialog(
-          context: context,
-          builder: (_) => EzAlertDialog(
-            title: Text(EzConfig.l10n.gCreditTo, textAlign: TextAlign.center),
-            content: Text(widget.credits!, textAlign: TextAlign.center),
-          ),
-        );
+  Future<void> showSource() async {
+    if (currPath == null || currPath == noImageValue) return;
+
+    final String credits =
+        (widget.sourceKey == null) ? currPath : EzConfig.get(widget.sourceKey!) ?? currPath;
+
+    return showDialog(
+      context: context,
+      builder: (_) => EzAlertDialog(
+        title: Text(EzConfig.l10n.gSource, textAlign: TextAlign.center),
+        content: Text(credits, textAlign: TextAlign.center),
+      ),
+    );
+  }
 
   /// Cleanup any custom [File]s
   Future<void> fileCleanup() async {
@@ -464,9 +469,9 @@ class _ImageSettingState extends State<EzImageSetting> {
             if (changed == true) await EzConfig.rebuildUI();
           },
           icon: const Icon(Icons.image_aspect_ratio),
-          label: 'Re-fit',
+          label: EzConfig.l10n.dsReFit,
         ),
-        EzConfig.spacer, // TODO: l10n
+        EzConfig.spacer,
       ],
       EzWrap(children: options),
       if (widget.setColors == null)
@@ -725,7 +730,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             if (changed) await EzConfig.rebuildUI();
             setState(() => inProgress = false);
           },
-          onLongPress: () => inProgress ? doNothing() : showCredits(),
+          onLongPress: inProgress ? doNothing : showSource,
           icon: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
