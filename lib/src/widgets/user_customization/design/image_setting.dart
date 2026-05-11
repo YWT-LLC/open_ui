@@ -67,7 +67,7 @@ class _ImageSettingState extends State<EzImageSetting> {
   // Define the build data //
 
   late String? currPath = EzConfig.get(widget.configKey);
-  late BoxFit? currFit = boxFitLib[EzConfig.get('${widget.configKey}$boxFitSuffix')];
+  late BoxFit? currFit = boxFitLib[EzConfig.get('${widget.configKey}$bfs')]; // TODO: fix
 
   bool fromLocal = false;
 
@@ -608,7 +608,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 EzTextButton(
                   onPressed: () async {
                     if (currFit != null) {
-                      await EzConfig.setString('${widget.configKey}$boxFitSuffix', currFit!.name);
+                      await EzConfig.setString('${widget.configKey}$bfs', currFit!.name);
                     }
                     if (fitContext.mounted) {
                       Navigator.of(fitContext).pop(true);
