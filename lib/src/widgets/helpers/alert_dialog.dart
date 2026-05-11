@@ -145,7 +145,7 @@ class EzMaterialAction extends StatelessWidget {
     return EzTextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: Colors.transparent,
+        backgroundColor: EzConfig.colors.surfaceDim,
         padding: EzInsets.wrap(EzConfig.spacing),
       ),
       text: text,
