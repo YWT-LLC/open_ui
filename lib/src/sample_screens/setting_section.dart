@@ -108,22 +108,11 @@ enum EzSubSetting {
 }
 
 extension ESSLookup on EzSubSetting {
-  String get label {
-    switch (this) {
-      case EzSubSetting.blank:
-        return 'null';
-
-      case EzSubSetting.qckText:
-      case EzSubSetting.qckColor:
-        return EzConfig.l10n.gQuick;
-      case EzSubSetting.advText:
-      case EzSubSetting.advColor:
-        return EzConfig.l10n.gAdvanced;
-
-      case EzSubSetting.butDesign:
-        return EzConfig.l10n.dsButton;
-      case EzSubSetting.pagDesign:
-        return EzConfig.l10n.dsPage;
-    }
-  }
+  String get label => switch (this) {
+        EzSubSetting.blank => 'null',
+        EzSubSetting.qckText || EzSubSetting.qckColor => EzConfig.l10n.gQuick,
+        EzSubSetting.advText || EzSubSetting.advColor => EzConfig.l10n.gAdvanced,
+        EzSubSetting.butDesign => EzConfig.l10n.dsButton,
+        EzSubSetting.pagDesign => EzConfig.l10n.dsPage,
+      };
 }

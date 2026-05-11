@@ -338,25 +338,20 @@ Page<dynamic> ezPageBuilder(
   Widget child, {
   Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transitionsBuilder,
 }) {
-  Widget swipeBackWrap(Widget child) {
-    switch (EzConfig.platform) {
-      case TargetPlatform.iOS:
-      case TargetPlatform.macOS:
-        return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onHorizontalDragEnd: (DragEndDetails details) {
-            if (details.primaryVelocity != null &&
-                details.primaryVelocity! > 250 &&
-                ezRootNav.currentState!.canPop()) {
-              ezRootNav.currentState!.pop();
-            }
-          },
-          child: child,
-        );
-      default:
-        return child;
-    }
-  }
+  Widget swipeBackWrap(Widget child) => switch (EzConfig.platform) {
+        TargetPlatform.iOS || TargetPlatform.macOS => GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onHorizontalDragEnd: (DragEndDetails details) {
+              if (details.primaryVelocity != null &&
+                  details.primaryVelocity! > 250 &&
+                  ezRootNav.currentState!.canPop()) {
+                ezRootNav.currentState!.pop();
+              }
+            },
+            child: child,
+          ),
+        _ => child,
+      };
 
   return CustomTransitionPage<dynamic>(
     key: state.pageKey,

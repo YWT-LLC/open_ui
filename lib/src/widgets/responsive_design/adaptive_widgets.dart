@@ -122,14 +122,9 @@ class EzAdaptiveWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    switch (EzScreenSize.of(context)?.screenSize.order) {
-      case 1:
-        return medium ?? small;
-      case 2:
-        return large ?? medium ?? small;
-      default:
-        return small;
-    }
-  }
+  Widget build(BuildContext context) => switch (EzScreenSize.of(context)?.screenSize.order) {
+        1 => medium ?? small,
+        2 => large ?? medium ?? small,
+        _ => small,
+      };
 }
