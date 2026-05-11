@@ -456,6 +456,14 @@ class _ImageSettingState extends State<EzImageSetting> {
 
     // Return the options, with the conditional update theme switch
     return <Widget>[
+      if (currPath != null && currPath != noImageValue) ...<Widget>[
+        const EzElevatedIconButton(
+          onPressed: doNothing,
+          icon: Icon(Icons.broken_image),
+          label: 'Re-fit',
+        ),
+        EzConfig.separator, // TODO: finish && fix first cancel
+      ],
       EzWrap(children: options),
       if (widget.setColors == null)
         Padding(
