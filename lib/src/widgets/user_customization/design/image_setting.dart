@@ -456,13 +456,16 @@ class _ImageSettingState extends State<EzImageSetting> {
 
     // Return the options, with the conditional update theme switch
     return <Widget>[
-      if (currPath != null && currPath != noImageValue) ...<Widget>[
-        const EzElevatedIconButton(
-          onPressed: doNothing,
-          icon: Icon(Icons.broken_image),
+      if (widget.showFitOption && currPath != null && currPath != noImageValue) ...<Widget>[
+        EzElevatedIconButton(
+          onPressed: () async {
+            final bool? changed = await chooseFit(currPath!);
+            if (changed == true) await EzConfig.rebuildUI();
+          },
+          icon: const Icon(Icons.image_aspect_ratio),
           label: 'Re-fit',
         ),
-        EzConfig.separator, // TODO: finish && fix first cancel
+        EzConfig.spacer, // TODO: l10n
       ],
       EzWrap(children: options),
       if (widget.setColors == null)
@@ -509,132 +512,129 @@ class _ImageSettingState extends State<EzImageSetting> {
     return ezModal<bool?>(
       context: context,
       builder: (_) => StatefulBuilder(
-        builder: (BuildContext fitContext, StateSetter fitState) {
-          return EzScrollView(
-            children: <Widget>[
-              Text(
-                EzConfig.l10n.dsFit,
-                style: EzConfig.styles.titleLarge,
-                textAlign: TextAlign.center,
-              ),
-              EzConfig.margin,
-              RadioGroup<BoxFit>(
-                groupValue: selectedFit,
-                onChanged: (BoxFit? value) {
-                  selectedFit = value;
-                  fitState(() {});
-                },
-                child: EzScrollView(
-                  scrollDirection: Axis.horizontal,
-                  showScrollHint: true,
-                  primary: false,
-                  children: <Widget>[
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.contain,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.cover,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.fill,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.fitWidth,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.fitHeight,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.none,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                    fitPreview(
-                      path: path,
-                      fit: BoxFit.scaleDown,
-                      width: width,
-                      height: height,
-                      modalContext: fitContext,
-                      setModal: fitState,
-                    ),
-                    EzConfig.rowSpacer,
-                  ],
-                ),
-              ),
-              EzConfig.spacer,
-              EzRow(
-                mainAxisAlignment:
-                    EzConfig.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
+        builder: (BuildContext fitContext, StateSetter fitState) => EzScrollView(
+          children: <Widget>[
+            Text(
+              EzConfig.l10n.dsFit,
+              style: EzConfig.styles.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            EzConfig.margin,
+            RadioGroup<BoxFit>(
+              groupValue: selectedFit,
+              onChanged: (BoxFit? value) {
+                selectedFit = value;
+                fitState(() {});
+              },
+              child: EzScrollView(
+                scrollDirection: Axis.horizontal,
+                showScrollHint: true,
+                primary: false,
                 children: <Widget>[
                   EzConfig.rowSpacer,
-                  EzTextButton(
-                    onPressed: () => Navigator.of(fitContext).pop(null),
-                    text: EzConfig.l10n.gCancel,
-                    textStyle: EzConfig.styles.bodyLarge,
-                    textAlign: TextAlign.center,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.contain,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
                   ),
                   EzConfig.rowSpacer,
-                  EzTextButton(
-                    onPressed: () async {
-                      if (selectedFit != null) {
-                        await EzConfig.setString(
-                          '${widget.configKey}$boxFitSuffix',
-                          selectedFit!.name,
-                        );
-                      }
-
-                      if (fitContext.mounted) {
-                        Navigator.of(fitContext).pop(true);
-                      }
-                    },
-                    text: selectedFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
-                    textStyle: EzConfig.styles.bodyLarge?.copyWith(
-                      color: EzConfig.colors.primary,
-                    ),
-                    textAlign: TextAlign.center,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.cover,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
+                  ),
+                  EzConfig.rowSpacer,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.fill,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
+                  ),
+                  EzConfig.rowSpacer,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.fitWidth,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
+                  ),
+                  EzConfig.rowSpacer,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.fitHeight,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
+                  ),
+                  EzConfig.rowSpacer,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.none,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
+                  ),
+                  EzConfig.rowSpacer,
+                  fitPreview(
+                    path: path,
+                    fit: BoxFit.scaleDown,
+                    width: width,
+                    height: height,
+                    modalContext: fitContext,
+                    setModal: fitState,
                   ),
                   EzConfig.rowSpacer,
                 ],
               ),
-              EzConfig.separator,
-            ],
-          );
-        },
+            ),
+            EzConfig.spacer,
+            EzRow(
+              mainAxisAlignment: EzConfig.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
+              children: <Widget>[
+                EzConfig.rowSpacer,
+                EzTextButton(
+                  onPressed: () => Navigator.of(fitContext).pop(null),
+                  text: EzConfig.l10n.gCancel,
+                  textStyle: EzConfig.styles.bodyLarge,
+                  textAlign: TextAlign.center,
+                ),
+                EzConfig.rowSpacer,
+                EzTextButton(
+                  onPressed: () async {
+                    if (selectedFit != null) {
+                      await EzConfig.setString(
+                        '${widget.configKey}$boxFitSuffix',
+                        selectedFit!.name,
+                      );
+                    }
+
+                    if (fitContext.mounted) {
+                      Navigator.of(fitContext).pop(true);
+                    }
+                  },
+                  text: selectedFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
+                  textStyle: EzConfig.styles.bodyLarge?.copyWith(
+                    color: EzConfig.colors.primary,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                EzConfig.rowSpacer,
+              ],
+            ),
+            EzConfig.separator,
+          ],
+        ),
       ),
     );
   }
