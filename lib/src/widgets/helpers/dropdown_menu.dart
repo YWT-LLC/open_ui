@@ -66,21 +66,24 @@ class EzDropdownMenu<T> extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => DropdownMenu<T>(
-        enabled: enabled,
-        width: ezDropdownWidth(context, widthEntry),
-        trailingIcon: const Icon(Icons.arrow_drop_down),
-        label: label,
-        hintText: hintText,
-        selectedTrailingIcon: const Icon(Icons.arrow_drop_up),
-        enableFilter: enableFilter,
-        enableSearch: enableSearch,
-        keyboardType: keyboardType,
-        textStyle: textStyle,
-        textAlign: textAlign,
-        controller: controller,
-        initialSelection: initialSelection,
-        onSelected: onSelected,
-        dropdownMenuEntries: dropdownMenuEntries,
+  Widget build(BuildContext context) => IconButtonTheme(
+        data: IconButtonThemeData(style: IconButton.styleFrom(side: (BorderSide.none))),
+        child: DropdownMenu<T>(
+          enabled: enabled,
+          width: ezDropdownWidth(context, widthEntry),
+          trailingIcon: const Icon(Icons.arrow_drop_down),
+          label: label,
+          hintText: hintText,
+          selectedTrailingIcon: const Icon(Icons.arrow_drop_up),
+          enableFilter: enableFilter,
+          enableSearch: enableSearch,
+          keyboardType: keyboardType,
+          textStyle: textStyle,
+          textAlign: textAlign,
+          controller: controller,
+          initialSelection: initialSelection,
+          onSelected: onSelected,
+          dropdownMenuEntries: dropdownMenuEntries,
+        ),
       );
 }
