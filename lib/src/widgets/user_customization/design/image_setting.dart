@@ -13,8 +13,11 @@ import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EzImageSetting extends StatefulWidget {
-  /// [EzConfig] key whose value is being updated
-  final String configKey;
+  /// [EzConfig] key for the path
+  final String pathKey;
+
+  /// [EzConfig] key for the [BoxFit]
+  final String? fitKey;
 
   /// [EzElevatedIconButton.label] passthrough
   final String label;
@@ -24,7 +27,7 @@ class EzImageSetting extends StatefulWidget {
 
   /// Effectively whether the image is nullable
   /// true is recommended
-  /// Note: if there is no default value for [configKey], the reset option will not appear
+  /// Note: if there is no default value for [pathKey], the reset option will not appear
   final bool allowClear;
 
   /// Optionally override the clear button label
@@ -45,10 +48,11 @@ class EzImageSetting extends StatefulWidget {
   /// Whether the [BoxFit] options dialog should be displayed upon successful image selection
   final bool showFitOption;
 
-  /// [EzElevatedIconButton] for updating the image at [configKey]'s path
+  /// [EzElevatedIconButton] for updating the image at [pathKey]'s path
   const EzImageSetting({
     super.key,
-    required this.configKey,
+    required this.pathKey,
+    required this.fitKey,
     required this.label,
     this.allowSolidColor = false,
     this.allowClear = true,
@@ -66,8 +70,8 @@ class EzImageSetting extends StatefulWidget {
 class _ImageSettingState extends State<EzImageSetting> {
   // Define the build data //
 
-  late String? currPath = EzConfig.get(widget.configKey);
-  late BoxFit? currFit = boxFitLib[EzConfig.get('${widget.configKey}$bfs')]; // TODO: fix
+  late String? currPath = EzConfig.get(widget.pathKey);
+  late BoxFit? currFit = (widget.fitKey == null) ? null : boxFitLib[EzConfig.get(widget.fitKey!)];
 
   bool fromLocal = false;
 
@@ -91,9 +95,9 @@ class _ImageSettingState extends State<EzImageSetting> {
 
   /// Cleanup any custom [File]s
   Future<void> fileCleanup() async {
-    if (!EzConfig.isKeyAsset(widget.configKey)) {
+    if (!EzConfig.isKeyAsset(widget.pathKey)) {
       try {
-        final File toDelete = File(widget.configKey);
+        final File toDelete = File(widget.pathKey);
         await toDelete.delete();
       } catch (e) {
         ezLog(e.toString());
@@ -168,13 +172,13 @@ class _ImageSettingState extends State<EzImageSetting> {
     }
 
     // Choose fit (when applicable)
-    if (!isInt && widget.showFitOption) {
+    if (!isInt && widget.showFitOption && widget.fitKey != null) {
       final bool canceled = (await chooseFit(newPath) == null);
       if (canceled) return false;
     }
 
     // Set the new path
-    final bool setPath = await EzConfig.setString(widget.configKey, newPath);
+    final bool setPath = await EzConfig.setString(widget.pathKey, newPath);
     if (!setPath) {
       (mounted)
           ? await ezLogAlert(context, message: EzConfig.l10n.dsImgSetFailed)
@@ -241,7 +245,7 @@ class _ImageSettingState extends State<EzImageSetting> {
   /// Build the list of [ImageSource] options
   List<Widget> sourceOptions(BuildContext mCon, StateSetter setModal) {
     final List<Widget> options = <Widget>[];
-    final String? defaultPath = EzConfig.getDefault(widget.configKey);
+    final String? defaultPath = EzConfig.getDefault(widget.pathKey);
 
     final EdgeInsets wrapPadding = EzInsets.wrap(EzConfig.spacing);
 
@@ -393,7 +397,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               onColorChange: (Color color) => setModal(() => currColor = color),
               onConfirm: () async {
                 await EzConfig.setString(
-                  widget.configKey,
+                  widget.pathKey,
                   currColor.toARGB32().toString(),
                 );
 
@@ -417,7 +421,7 @@ class _ImageSettingState extends State<EzImageSetting> {
         child: EzElevatedIconButton(
           onPressed: () async {
             await fileCleanup();
-            await EzConfig.remove(widget.configKey);
+            await EzConfig.remove(widget.pathKey);
 
             if (mCon.mounted) {
               Navigator.of(mCon).pop(defaultPath);
@@ -436,7 +440,7 @@ class _ImageSettingState extends State<EzImageSetting> {
         child: EzElevatedIconButton(
           onPressed: () async {
             await fileCleanup();
-            await EzConfig.setString(widget.configKey, noImageValue);
+            await EzConfig.setString(widget.pathKey, noImageValue);
 
             if (mCon.mounted) {
               Navigator.of(mCon).pop(noImageValue);
@@ -450,7 +454,10 @@ class _ImageSettingState extends State<EzImageSetting> {
 
     // Return the options, with the conditional update theme switch
     return <Widget>[
-      if (widget.showFitOption && currPath != null && currPath != noImageValue) ...<Widget>[
+      if (widget.showFitOption &&
+          widget.fitKey != null &&
+          currPath != null &&
+          currPath != noImageValue) ...<Widget>[
         EzElevatedIconButton(
           onPressed: () async {
             final bool? changed = await chooseFit(currPath!);
@@ -607,8 +614,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                 EzConfig.rowSpacer,
                 EzTextButton(
                   onPressed: () async {
-                    if (currFit != null) {
-                      await EzConfig.setString('${widget.configKey}$bfs', currFit!.name);
+                    if (currFit != null && widget.fitKey != null) {
+                      await EzConfig.setString(widget.fitKey!, currFit!.name);
                     }
                     if (fitContext.mounted) {
                       Navigator.of(fitContext).pop(true);

@@ -90,7 +90,7 @@ class EzConfigProvider extends ChangeNotifier {
         transitionType: ETTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
         fadedTransition: EzConfig.get(darkTransitionFadeKey),
         backgroundImagePath: EzConfig.get(darkBackgroundImageKey),
-        backgroundImageFit: boxFitLib[EzConfig.get('$darkBackgroundImageKey$bfs')],
+        backgroundImageFit: boxFitLib[EzConfig.get(darkBackgroundFitKey)],
         showScroll: EzConfig.get(darkShowScrollKey),
       );
       _layout = EzLayoutCache(
@@ -127,7 +127,7 @@ class EzConfigProvider extends ChangeNotifier {
         transitionType: ETTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
         fadedTransition: EzConfig.get(lightTransitionFadeKey),
         backgroundImagePath: EzConfig.get(lightBackgroundImageKey),
-        backgroundImageFit: boxFitLib[EzConfig.get('$lightBackgroundImageKey$bfs')],
+        backgroundImageFit: boxFitLib[EzConfig.get(lightBackgroundFitKey)],
         showScroll: EzConfig.get(lightShowScrollKey),
       );
       _layout = EzLayoutCache(

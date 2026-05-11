@@ -70,12 +70,14 @@ class PageDesign extends StatelessWidget {
             startCentered: true,
             child: EzConfig.isDark
                 ? EzImageSetting(
-                    configKey: darkBackgroundImageKey,
+                    pathKey: darkBackgroundImageKey,
+                    fitKey: darkBackgroundFitKey,
                     credits: darkBackgroundCredits,
                     label: EzConfig.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   )
                 : EzImageSetting(
-                    configKey: lightBackgroundImageKey,
+                    pathKey: lightBackgroundImageKey,
+                    fitKey: lightBackgroundFitKey,
                     credits: lightBackgroundCredits,
                     label: EzConfig.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   ),

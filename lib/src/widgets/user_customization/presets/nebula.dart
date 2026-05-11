@@ -106,7 +106,7 @@ class EzNebulaConfig extends StatelessWidget {
     await EzConfig.setDouble(darkBorderWidthKey, 1.0);
 
     await EzConfig.setString(darkBackgroundImageKey, nebulaPath);
-    await EzConfig.setString('$darkBackgroundImageKey$bfs', BoxFit.cover.name);
+    await EzConfig.setString(darkBackgroundFitKey, BoxFit.cover.name);
 
     // Text settings //
 

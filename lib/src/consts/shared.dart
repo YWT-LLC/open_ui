@@ -72,9 +72,6 @@ const Set<String> rtlLanguageCodes = <String>{
 
 //* Theme Data *//
 
-/// Box Fit Suffix == 'Fit'
-const String bfs = 'Fit';
-
 /// 0xFF264941
 const Color chalkboardGreen = Color(0xFF264941);
 

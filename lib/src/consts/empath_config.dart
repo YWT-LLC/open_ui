@@ -462,7 +462,7 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   // backFab defined in mobile/desktop configs
 
   darkBackgroundImageKey: noImageValue,
-  '$darkBackgroundImageKey$bfs': '',
+  // darkBackgroundFitKey: null,
 
   // showScroll defined in mobile/desktop configs
 
@@ -480,7 +480,7 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   lightTransitionFadeKey: true,
 
   lightBackgroundImageKey: noImageValue,
-  '$lightBackgroundImageKey$bfs': '',
+  // lightBackgroundFitKey: null,
 
   // showScroll defined in mobile/desktop configs
 
