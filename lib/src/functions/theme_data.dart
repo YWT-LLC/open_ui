@@ -256,7 +256,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       collapsedBackgroundColor: richTextBackground,
       iconColor: colorScheme.primary,
       collapsedIconColor: colorScheme.primary,
-      tilePadding: EdgeInsets.symmetric(vertical: margin),
+      tilePadding: EdgeInsets.zero,
       childrenPadding: EdgeInsets.only(
         left: ltr ? margin * 2 : 0,
         right: ltr ? 0 : margin * 2,
