@@ -42,11 +42,6 @@ class EzImageSetting extends StatefulWidget {
   /// [AssetImage]s cannot be edited/will be skipped
   final bool showEditor;
 
-  /// Optional default [BoxFit] for the image
-  /// Recommended if [showFitOption] is false
-  /// Note: If the user makes edits, the default will always be [BoxFit.contain]
-  final BoxFit? defaultFit;
-
   /// Whether the [BoxFit] options dialog should be displayed upon successful image selection
   final bool showFitOption;
 
@@ -61,7 +56,6 @@ class EzImageSetting extends StatefulWidget {
     this.credits,
     this.setColors,
     this.showEditor = true,
-    this.defaultFit,
     this.showFitOption = true,
   });
 
@@ -73,18 +67,19 @@ class _ImageSettingState extends State<EzImageSetting> {
   // Define the build data //
 
   late String? currPath = EzConfig.get(widget.configKey);
-  bool inProgress = false;
+  late BoxFit? currFit = EzConfig.get('${widget.configKey}$boxFitSuffix');
 
   bool fromLocal = false;
+
+  bool inProgress = false;
   late bool updateTheme = widget.setColors ?? false;
-  late BoxFit? selectedFit = widget.defaultFit;
 
   late final TextEditingController urlController = TextEditingController();
 
   // Define custom widgets && functions //
 
   /// Open an [EzAlertDialog] with the [Image]s source information
-  Future<dynamic>? showCredits() => (widget.credits == null)
+  Future<dynamic>? showCredits() => (widget.credits == null) // TODO: check
       ? null
       : showDialog(
           context: context,
@@ -161,7 +156,6 @@ class _ImageSettingState extends State<EzImageSetting> {
             break;
           case const (String):
             newPath = result;
-            selectedFit = BoxFit.contain;
             break;
           default:
             return false;
@@ -521,9 +515,9 @@ class _ImageSettingState extends State<EzImageSetting> {
             ),
             EzConfig.margin,
             RadioGroup<BoxFit>(
-              groupValue: selectedFit,
+              groupValue: currFit,
               onChanged: (BoxFit? value) {
-                selectedFit = value;
+                currFit = value;
                 fitState(() {});
               },
               child: EzScrollView(
@@ -612,21 +606,15 @@ class _ImageSettingState extends State<EzImageSetting> {
                 EzConfig.rowSpacer,
                 EzTextButton(
                   onPressed: () async {
-                    if (selectedFit != null) {
-                      await EzConfig.setString(
-                        '${widget.configKey}$boxFitSuffix',
-                        selectedFit!.name,
-                      );
+                    if (currFit != null) {
+                      await EzConfig.setString('${widget.configKey}$boxFitSuffix', currFit!.name);
                     }
-
                     if (fitContext.mounted) {
                       Navigator.of(fitContext).pop(true);
                     }
                   },
-                  text: selectedFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
-                  textStyle: EzConfig.styles.bodyLarge?.copyWith(
-                    color: EzConfig.colors.primary,
-                  ),
+                  text: currFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
+                  textStyle: EzConfig.styles.bodyLarge?.copyWith(color: EzConfig.colors.primary),
                   textAlign: TextAlign.center,
                 ),
                 EzConfig.rowSpacer,
@@ -655,7 +643,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     return EzCol(children: <Widget>[
       GestureDetector(
         onTap: () {
-          selectedFit = fit;
+          currFit = fit;
           setModal(() {});
         },
         child: Semantics(
