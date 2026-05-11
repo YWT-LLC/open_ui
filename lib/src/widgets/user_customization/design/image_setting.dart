@@ -600,6 +600,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 EzTextButton(
                   onPressed: () => Navigator.of(fitContext).pop(null),
                   text: EzConfig.l10n.gCancel,
+                  textPadding: true,
                   textStyle: EzConfig.styles.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -614,6 +615,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                     }
                   },
                   text: currFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
+                  textPadding: true,
                   textStyle: EzConfig.styles.bodyLarge?.copyWith(color: EzConfig.colors.primary),
                   textAlign: TextAlign.center,
                 ),
