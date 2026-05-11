@@ -33,7 +33,7 @@ dependencies:
   file_saver: ^0.4.0
   flex_color_picker: ^3.8.0
   flutter_localized_locales: ^2.0.5
-  flutter_secure_storage: ^10.1.0
+  flutter_secure_storage: ^10.2.0
   font_awesome_flutter: ^11.0.0
   image: ^4.8.0
   line_icons: ^2.0.3
