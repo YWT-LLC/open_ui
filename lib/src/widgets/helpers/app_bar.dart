@@ -29,6 +29,8 @@ class EzAppBar extends StatelessWidget {
         data: IconButtonThemeData(
           style: IconButton.styleFrom(
             side: BorderSide.none,
+            padding: EzInsets.wrap(EzConfig.marginVal),
+            iconSize: EzConfig.styles.headlineLarge!.fontSize,
             backgroundColor: EzConfig.colors.surfaceDim,
           ),
         ),
