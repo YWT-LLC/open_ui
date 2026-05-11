@@ -67,7 +67,7 @@ class _ImageSettingState extends State<EzImageSetting> {
   // Define the build data //
 
   late String? currPath = EzConfig.get(widget.configKey);
-  late BoxFit? currFit = EzConfig.get('${widget.configKey}$boxFitSuffix');
+  late BoxFit? currFit = boxFitLib[EzConfig.get('${widget.configKey}$boxFitSuffix')];
 
   bool fromLocal = false;
 

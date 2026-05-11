@@ -39,7 +39,7 @@ const Set<String> ezEnumVals = <String>{
 
 /// Library for getting a [BoxFit] from its name
 /// '' && `null` both map to `null`
-final Map<String?, BoxFit?> boxFitLookup = <String?, BoxFit?>{
+final Map<String?, BoxFit?> boxFitLib = <String?, BoxFit?>{
   BoxFit.contain.name: BoxFit.contain,
   BoxFit.cover.name: BoxFit.cover,
   BoxFit.fill.name: BoxFit.fill,
