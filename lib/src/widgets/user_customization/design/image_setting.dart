@@ -93,7 +93,14 @@ class _ImageSettingState extends State<EzImageSetting> {
       context: context,
       builder: (_) => EzAlertDialog(
         title: Text(EzConfig.l10n.gSource, textAlign: TextAlign.center),
-        content: Text(credits, textAlign: TextAlign.center),
+        content: ezUrlCheck(credits)
+            ? EzLink(
+                credits,
+                url: Uri.parse(credits),
+                backgroundColor: EzConfig.colors.surfaceDim,
+                hint: EzConfig.l10n.gOpenLink,
+              )
+            : Text(credits, textAlign: TextAlign.center),
       ),
     );
   }
