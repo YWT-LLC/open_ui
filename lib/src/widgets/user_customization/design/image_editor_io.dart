@@ -79,7 +79,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
         excludeFromSemantics: false,
         child: ExcludeSemantics(
           child: EzCol(children: <Widget>[
-            EzIcon(icon, color: color),
+            Icon(icon, color: color),
             EzConfig.margin,
             EzText(
               name,

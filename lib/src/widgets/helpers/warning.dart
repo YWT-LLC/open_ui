@@ -35,7 +35,7 @@ class EzWarning extends StatelessWidget {
                   startCentered: true,
                   children: <Widget>[
                     // Thing1
-                    EzIcon(Icons.warning, color: EzConfig.colors.secondary),
+                    Icon(Icons.warning, color: EzConfig.colors.secondary),
                     EzConfig.rowMargin,
 
                     Text(
@@ -46,7 +46,7 @@ class EzWarning extends StatelessWidget {
                     EzConfig.rowMargin,
 
                     // Thing 2
-                    EzIcon(Icons.warning, color: EzConfig.colors.secondary),
+                    Icon(Icons.warning, color: EzConfig.colors.secondary),
                   ],
                 ),
                 EzConfig.spacer,

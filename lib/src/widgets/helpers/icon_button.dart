@@ -7,27 +7,6 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class EzIcon extends Icon {
-  /// [Icon] wrapper that responds to [EzConfig.iconSize]
-  /// [ThemeData.iconTheme] does not seem to be consumed properly at time of writing
-  /// Jan 2025
-  EzIcon(
-    // TODO: test removing this - after finishing smush!!! don't do too much at once <3
-    super.icon, {
-    super.key,
-    super.fill,
-    super.weight,
-    super.grade,
-    super.opticalSize,
-    super.color,
-    super.shadows,
-    super.semanticLabel,
-    super.textDirection,
-    super.applyTextScaling,
-    super.blendMode,
-  }) : super(size: EzConfig.iconSize);
-}
-
 class EzIconButton extends StatelessWidget {
   /// [IconButton.icon] passthrough
   final Widget icon;

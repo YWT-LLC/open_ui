@@ -63,7 +63,7 @@ class EzDropdownMenu<T> extends StatelessWidget {
     this.onSelected,
     required this.dropdownMenuEntries,
     required this.widthEntry,
-  }); // TODO: check (you removed a layer)
+  });
 
   @override
   Widget build(BuildContext context) => DropdownMenu<T>(

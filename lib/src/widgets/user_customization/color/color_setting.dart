@@ -195,7 +195,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                     backgroundColor: EzConfig.colors.surface,
                     foregroundColor: EzConfig.colors.onSurface,
                     radius: iconRadius + EzConfig.padding,
-                    child: EzIcon(Icons.visibility_off),
+                    child: const Icon(Icons.visibility_off),
                   )
                 : CircleAvatar(
                     backgroundColor: currColor,

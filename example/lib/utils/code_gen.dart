@@ -477,7 +477,7 @@ class CountFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FloatingActionButton(
         onPressed: count,
-        child: EzIcon(Icons.add),
+        child: Icon(Icons.add),
       );
 }
 
@@ -511,7 +511,7 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(_) => EzMenuButton(
         onPressed: () => parentContext.goNamed(settingsHubPath),
-        icon: EzIcon(Icons.settings),
+        icon: Icon(Icons.settings),
         label: EzConfig.l10n.gSettings,
       );
 }
@@ -531,7 +531,7 @@ class EFUICredits extends StatelessWidget {
       excludeFromSemantics: true,
       child: EzMenuLink(
         uri: Uri.parse('https://www.empathetech.net/#/products/open-ui'),
-        icon: EzIcon(Icons.settings),
+        icon: Icon(Icons.settings),
         label: label,
         semanticsLabel:
             '\${EzConfig.isLefty ? '\${EzConfig.l10n.gSettings} \$label' : '\$label \${EzConfig.l10n.gSettings}'}. \${EzConfig.l10n.gOpenEmpathetech}',

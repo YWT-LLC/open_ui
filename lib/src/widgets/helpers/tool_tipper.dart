@@ -82,7 +82,7 @@ class EzToolTipper extends StatelessWidget {
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
-          child: EzIcon(
+          child: Icon(
             Icons.help_outline,
             color: EzConfig.colors.outline,
           ),

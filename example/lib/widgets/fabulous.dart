@@ -91,7 +91,7 @@ class ResetFAB extends StatelessWidget {
                   needsClose: false,
                 ),
               ),
-              child: EzIcon(Icons.refresh),
+              child: const Icon(Icons.refresh),
             ),
           ),
         ),
@@ -127,6 +127,6 @@ The full (free and open source) app generator can be downloaded from the ''',
         ),
         backgroundColor: EzConfig.colors.secondary,
         foregroundColor: EzConfig.colors.onSecondary,
-        child: EzIcon(Icons.update),
+        child: const Icon(Icons.update),
       );
 }

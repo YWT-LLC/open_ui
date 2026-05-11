@@ -757,7 +757,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               child: inProgress
                   ? const CircularProgressIndicator()
                   : (currPath == null || currPath == noImageValue)
-                      ? EzIcon(
+                      ? Icon(
                           Icons.image_search,
                           color: EzConfig.colors.primary,
                         )

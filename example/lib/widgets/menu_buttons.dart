@@ -23,7 +23,7 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzMenuButton(
         onPressed: () => parentContext.goNamed(settingsHubPath),
-        icon: EzIcon(Icons.settings),
+        icon: const Icon(Icons.settings),
         label: EzConfig.l10n.gSettings,
       );
 }
@@ -58,7 +58,7 @@ class UploadButton extends StatelessWidget {
             }
           }
         },
-        icon: EzIcon(Icons.upload),
+        icon: const Icon(Icons.upload),
         label: EzConfig.l10n.ssLoadConfig,
       );
 }
@@ -70,7 +70,7 @@ class OpenSourceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzMenuLink(
         uri: Uri.parse('https://github.com/Empathetech-LLC/empathetech_flutter_ui'),
-        icon: EzIcon(LineIcons.github),
+        icon: const Icon(LineIcons.github),
         label: EzConfig.l10n.gOpenSource,
         semanticsLabel: '${EzConfig.l10n.gOpenSource}: ${EzConfig.l10n.gEFUISourceHint}',
       );
