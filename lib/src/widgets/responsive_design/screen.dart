@@ -17,39 +17,25 @@ class EzScreen extends StatelessWidget {
   /// Margin around the screen content
   final EdgeInsetsGeometry? margin;
 
-  /// Whether [EzConfig.backgroundImagePath] should be used to decorate the screen
-  final bool useImageDecoration;
-
-  /// Optional [Decoration] background for the screen
-  /// If provided, must set [useImageDecoration] to false
-  final Decoration? decoration;
-
-  /// Screen width
-  final double width;
-
-  /// Screen height
-  final double height;
-
   /// Custom [Container] that creates a standard screen for [EzConfig] powered apps
   const EzScreen(
     this.child, {
     super.key,
     this.alignment,
     this.margin,
-    this.useImageDecoration = true,
-    this.decoration,
-    this.height = double.infinity,
-    this.width = double.infinity,
   });
 
   Decoration? buildDecoration() {
-    if (!useImageDecoration) return null;
-
     final String path = EzConfig.backgroundImagePath;
     if (path == noImageValue) return null;
 
     final int? isColor = int.tryParse(path);
     if (isColor != null) return BoxDecoration(color: Color(isColor));
+
+    debugPrint('CAW!');
+    debugPrint('Path:  ${EzConfig.backgroundImagePath}');
+    debugPrint('Fit:   ${EzConfig.backgroundImageFit.toString()}');
+    debugPrint('CAW!');
 
     return BoxDecoration(image: EzConfig.backgroundImage);
   }
@@ -58,9 +44,9 @@ class EzScreen extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         alignment: alignment,
         padding: margin ?? EdgeInsets.all(EzConfig.marginVal),
-        decoration: decoration ?? buildDecoration(),
-        height: height,
-        width: width,
+        decoration: buildDecoration(),
+        height: double.infinity,
+        width: double.infinity,
         child: child,
       );
 }
