@@ -586,7 +586,11 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         onPressed: () =>
             controller.isOpen ? controller.close() : controller.open(),
         tooltip: EzConfig.l10n.gOptions,
-        icon: Icon(Icons.more_vert, semanticLabel: EzConfig.l10n.gOptions),
+        icon: Icon(
+          Icons.more_vert,
+          semanticLabel: EzConfig.l10n.gOptions,
+          size: EzConfig.styles.titleLarge!.fontSize,
+        ),
       ),
       menuChildren: <Widget>[
         (showSettings) ? SettingsButton(context) : const EFUICredits(),
