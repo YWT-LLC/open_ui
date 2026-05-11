@@ -68,7 +68,7 @@ class EzToolTipper extends StatelessWidget {
               await SemanticsService.sendAnnouncement(
                 View.of(context),
                 message,
-                TextDirection.ltr,
+                EzConfig.isLTR ? TextDirection.ltr : TextDirection.rtl,
                 assertiveness: Assertiveness.assertive,
               );
             }
@@ -77,6 +77,7 @@ class EzToolTipper extends StatelessWidget {
         },
         child: Tooltip(
           waitDuration: Duration.zero,
+          exitDuration: ezAnimDuration(),
           triggerMode: TooltipTriggerMode.tap,
           enableTapToDismiss: false,
           excludeFromSemantics: true,
