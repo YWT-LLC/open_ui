@@ -303,7 +303,7 @@ class EFUILangFr extends EFUILang {
   String get gValue => 'Valeur';
 
   @override
-  String get gCreditTo => 'Crédits à :';
+  String get gSource => 'Source :';
 
   @override
   String get gCreator => 'Créateur de';
@@ -636,6 +636,9 @@ class EFUILangFr extends EFUILang {
   String dsImgSettingHint(Object title) {
     return 'Mettre à jour l\'image $title';
   }
+
+  @override
+  String get dsReFit => 'Réajuster';
 
   @override
   String get dsFromFile => 'Depuis un fichier';

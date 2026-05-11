@@ -113,7 +113,7 @@
   "gUndoWarn2": " su configuración actual para restaurarla manualmente.",
   "gValue": "Valor",
 
-  "gCreditTo": "Acreditando a:",
+  "gSource": "Fuente:",
   "gCreator": "Creador de",
   "gMadeBy": "Hecho por",
   "gYou": "Configurado por ti",
@@ -251,6 +251,7 @@
 
   "dsBackgroundImg": "Imagen de fondo",
   "dsImgSettingHint": "Actualizar la imagen {title}",
+  "dsReFit": "Reajustar",
   "dsFromFile": "Usando un archivo",
   "dsFromCamera": "Usando la cámara",
   "dsFromNetwork": "Usando un link",

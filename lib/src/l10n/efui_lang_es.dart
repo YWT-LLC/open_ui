@@ -304,7 +304,7 @@ class EFUILangEs extends EFUILang {
   String get gValue => 'Valor';
 
   @override
-  String get gCreditTo => 'Acreditando a:';
+  String get gSource => 'Fuente:';
 
   @override
   String get gCreator => 'Creador de';
@@ -637,6 +637,9 @@ class EFUILangEs extends EFUILang {
   String dsImgSettingHint(Object title) {
     return 'Actualizar la imagen $title';
   }
+
+  @override
+  String get dsReFit => 'Reajustar';
 
   @override
   String get dsFromFile => 'Usando un archivo';

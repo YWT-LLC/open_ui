@@ -302,7 +302,7 @@ class EFUILangEn extends EFUILang {
   String get gValue => 'Value';
 
   @override
-  String get gCreditTo => 'Credit to:';
+  String get gSource => 'Source:';
 
   @override
   String get gCreator => 'Creator of';
@@ -633,6 +633,9 @@ class EFUILangEn extends EFUILang {
   String dsImgSettingHint(Object title) {
     return 'Update the $title image';
   }
+
+  @override
+  String get dsReFit => 'Re-fit';
 
   @override
   String get dsFromFile => 'From file';
@@ -1124,7 +1127,7 @@ class EFUILangEnUs extends EFUILangEn {
   String get gValue => 'Value';
 
   @override
-  String get gCreditTo => 'Credit to:';
+  String get gSource => 'Source:';
 
   @override
   String get gCreator => 'Creator of';
@@ -1455,6 +1458,9 @@ class EFUILangEnUs extends EFUILangEn {
   String dsImgSettingHint(Object title) {
     return 'Update the $title image';
   }
+
+  @override
+  String get dsReFit => 'Re-fit';
 
   @override
   String get dsFromFile => 'From file';

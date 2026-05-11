@@ -657,11 +657,11 @@ abstract class EFUILang {
   /// **'Value'**
   String get gValue;
 
-  /// No description provided for @gCreditTo.
+  /// No description provided for @gSource.
   ///
   /// In en, this message translates to:
-  /// **'Credit to:'**
-  String get gCreditTo;
+  /// **'Source:'**
+  String get gSource;
 
   /// No description provided for @gCreator.
   ///
@@ -1292,6 +1292,12 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Update the {title} image'**
   String dsImgSettingHint(Object title);
+
+  /// No description provided for @dsReFit.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-fit'**
+  String get dsReFit;
 
   /// No description provided for @dsFromFile.
   ///
