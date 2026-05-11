@@ -766,7 +766,6 @@ class _ImageSettingState extends State<EzImageSetting> {
           ),
           label: widget.label,
           textAlign: TextAlign.center,
-          labelPadding: false,
         ),
       ),
     );

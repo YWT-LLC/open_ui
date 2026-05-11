@@ -313,9 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (isDesktop) ...<Widget>[
                     Text(
                       l10n.csOutputPath,
-                      style: EzConfig.styles.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: EzConfig.styles.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.start,
                     ),
                     EzScrollView(

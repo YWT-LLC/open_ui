@@ -91,7 +91,6 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
                               inDistress: widget.inDistress.contains(locale.countryCode),
                             ),
                             label: ezLocaleName(locale, mCon),
-                            labelPadding: false,
                           ),
                         ),
                       )
@@ -105,7 +104,6 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
               inDistress: widget.inDistress.contains(EzConfig.locale.countryCode),
             ),
             label: EzConfig.l10n.ssLanguage,
-            labelPadding: false,
           ),
         ),
       );
