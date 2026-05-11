@@ -70,22 +70,13 @@ class OpenUIScaffold extends StatelessWidget {
           key: ValueKey<int>(config.seed),
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, toolbarHeight),
-            child: AppBar(
-              excludeHeaderSemantics: true,
-              toolbarHeight: toolbarHeight,
-
-              // Leading (aka left)
+            child: EzAppBar(
+              height: toolbarHeight,
               leading: running
                   ? const SizedBox.shrink()
                   : (EzConfig.isLefty ? options : const EzBackAction()),
               leadingWidth: toolbarHeight,
-
-              // Title
               title: Text(title, textAlign: TextAlign.center),
-              centerTitle: true,
-              titleSpacing: 0,
-
-              // Actions (aka trailing aka right)
               actions: <Widget>[
                 running
                     ? const SizedBox.shrink()
