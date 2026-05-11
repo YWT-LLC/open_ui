@@ -148,48 +148,6 @@ class _EzImageEditorState extends State<EzImageEditor> {
                 startCentered: true,
                 showScrollHint: true,
                 children: <Widget>[
-                  // Drag
-                  keyIcon(
-                    icon: Icons.touch_app,
-                    color: EzConfig.colors.outline,
-                    name: EzConfig.l10n.dsDrag,
-                    tooltip: EzConfig.l10n.dsDragHint,
-                  ),
-                  EzConfig.rowSpacer,
-
-                  // Swipe
-                  keyIcon(
-                    icon: Icons.swipe,
-                    color: EzConfig.colors.outline,
-                    name: EzConfig.l10n.dsSwipe,
-                    tooltip: EzConfig.l10n.dsSwipeHint,
-                  ),
-                  EzConfig.rowSpacer,
-
-                  // Scroll
-                  keyIcon(
-                    icon: Icons.mouse,
-                    color: EzConfig.colors.outline,
-                    name: EzConfig.l10n.dsScroll,
-                    tooltip: EzConfig.l10n.dsScrollHint,
-                  ),
-                  EzConfig.rowSpacer,
-
-                  // Pinch
-                  keyIcon(
-                    icon: Icons.pinch,
-                    color: EzConfig.colors.outline,
-                    name: EzConfig.l10n.dsPinch,
-                    tooltip: EzConfig.l10n.dsPinchHint,
-                  ),
-                  SizedBox(
-                    height: EzConfig.iconSize + EzConfig.padding,
-                    child: VerticalDivider(
-                      width: EzConfig.spacing * 2,
-                      color: EzConfig.colors.secondary,
-                    ),
-                  ),
-
                   // Rotate left
                   EzIconButton(
                     tooltip: EzConfig.l10n.dsRotateLeft,
@@ -222,6 +180,26 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     },
                     icon: const Icon(Icons.rotate_right),
                   ),
+
+                  // Div
+                  SizedBox(
+                    height: EzConfig.iconSize + EzConfig.padding,
+                    child: VerticalDivider(
+                      width: EzConfig.spacing * 2,
+                      color: EzConfig.colors.secondary,
+                    ),
+                  ),
+
+                  // Reset
+                  EzIconButton(
+                    tooltip: EzConfig.l10n.gReset,
+                    enabled: !processing,
+                    onPressed: () {
+                      _editorController.reset();
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.refresh),
+                  ),
                   EzConfig.rowSpacer,
 
                   // Undo
@@ -246,18 +224,8 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     },
                     icon: const Icon(Icons.redo),
                   ),
-                  EzConfig.rowSpacer,
 
-                  // Reset
-                  EzIconButton(
-                    tooltip: EzConfig.l10n.gReset,
-                    enabled: !processing,
-                    onPressed: () {
-                      _editorController.reset();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.refresh),
-                  ),
+                  // Div
                   SizedBox(
                     height: EzConfig.iconSize + EzConfig.padding,
                     child: VerticalDivider(
