@@ -62,6 +62,7 @@ export 'src/sample_screens/settings_hub.dart';
 export 'src/widgets/helpers/alert_dialog.dart';
 export 'src/widgets/helpers/alignment.dart';
 export 'src/widgets/helpers/animations.dart';
+export 'src/widgets/helpers/app_bar.dart';
 export 'src/widgets/helpers/back_action.dart';
 export 'src/widgets/helpers/checkbox.dart';
 export 'src/widgets/helpers/cli.dart';
