@@ -44,10 +44,6 @@ class EzFontDoubleSetting extends StatefulWidget {
   /// [TextStyle] for the [TextFormField]
   final TextStyle? style;
 
-  /// Optionally provide a [String] for setting the [EzFontDoubleSetting]s size using the results of [ezTextSize] on [sizingString]
-  /// Defaults to [sampleString]
-  final String sizingString;
-
   /// Standardized tool for updating double [TextStyle] values for the passed [configKey]
   /// For example: [TextStyle.fontSize], [TextStyle.letterSpacing], [TextStyle.wordSpacing], and [TextStyle.height]
   const EzFontDoubleSetting({
@@ -63,7 +59,6 @@ class EzFontDoubleSetting extends StatefulWidget {
     required this.icon,
     required this.tooltip,
     required this.style,
-    this.sizingString = sampleString,
   });
 
   @override
@@ -77,15 +72,13 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
   final TextEditingController controller = TextEditingController();
 
   late final Size sizeLimit = ezTextSize(
-    widget.sizingString,
+    sampleString,
     context: context,
     style: widget.style,
   );
 
-  late double formFieldWidth =
-      max(sizeLimit.width + EzConfig.padding, kMinInteractiveDimension);
-  late double formFieldHeight =
-      max(sizeLimit.height + EzConfig.padding, kMinInteractiveDimension);
+  late double formFieldWidth = max(sizeLimit.width + EzConfig.padding, kMinInteractiveDimension);
+  late double formFieldHeight = max(sizeLimit.height + EzConfig.padding, kMinInteractiveDimension);
 
   // Init //
 
@@ -131,8 +124,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
 
                           setState(() {});
                         },
-                        tooltip:
-                            '${EzConfig.l10n.gDecrease} ${widget.tooltip.toLowerCase()}',
+                        tooltip: '${EzConfig.l10n.gDecrease} ${widget.tooltip.toLowerCase()}',
                         icon: const Icon(Icons.remove),
                       )
                     : EzIconButton(
@@ -165,14 +157,10 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                     if (value == null) return null;
                     final double? doubleVal = double.tryParse(value);
 
-                    if (doubleVal == null ||
-                        doubleVal < widget.min ||
-                        doubleVal > widget.max) {
+                    if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
                       setState(() {
-                        formFieldWidth =
-                            (sizeLimit.width + EzConfig.padding) * 1.75;
-                        formFieldHeight =
-                            (sizeLimit.height + EzConfig.padding) * 1.75;
+                        formFieldWidth = (sizeLimit.width + EzConfig.padding) * 1.75;
+                        formFieldHeight = (sizeLimit.height + EzConfig.padding) * 1.75;
                       });
                       return '${widget.min}  <->  ${widget.max}';
                     }
@@ -186,9 +174,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                   onFieldSubmitted: (String stringVal) async {
                     final double? doubleVal = double.tryParse(stringVal);
 
-                    if (doubleVal == null ||
-                        doubleVal < widget.min ||
-                        doubleVal > widget.max) {
+                    if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
                       return;
                     }
                     currValue = doubleVal;
@@ -236,8 +222,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
 
                           setState(() {});
                         },
-                        tooltip:
-                            '${EzConfig.l10n.gIncrease} ${widget.tooltip.toLowerCase()}',
+                        tooltip: '${EzConfig.l10n.gIncrease} ${widget.tooltip.toLowerCase()}',
                         icon: const Icon(Icons.add),
                       )
                     : EzIconButton(

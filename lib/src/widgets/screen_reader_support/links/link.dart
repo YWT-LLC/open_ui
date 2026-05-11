@@ -17,9 +17,6 @@ class EzLink extends StatefulWidget {
   /// Defaults to [ColorScheme.primary]
   final Color? textColor;
 
-  /// Defaults to [textColor]... which defaults to [ColorScheme.primary]
-  final Color? decorationColor;
-
   /// Optional override for [TextButton.style]
   final Color? backgroundColor;
 
@@ -28,9 +25,6 @@ class EzLink extends StatefulWidget {
 
   /// Optional padding override for [TextButton.style]
   final EdgeInsets? padding;
-
-  /// [EzTextBackground.buttonShape] passthrough
-  final bool buttonShape;
 
   /// Destination function
   /// Provide [onTap] or [url], but not both
@@ -56,17 +50,15 @@ class EzLink extends StatefulWidget {
   /// [TextButton] wrapper that either opens an internal link via [onTap]
   /// Or an external link to [url]
   /// Always has a [tooltip]; if one is not provided, it will default to [hint]
-  /// Automatically draws [text] with [decorationColor] and adds an [TextDecoration.underline] on hover/focus
+  /// Adds an [TextDecoration.underline] on hover/focus
   const EzLink(
     this.text, {
     super.key,
     this.style,
     this.textColor,
-    this.decorationColor,
     this.backgroundColor,
     this.textAlign,
     this.padding,
-    this.buttonShape = false,
     this.onTap,
     this.url,
     required this.hint,
@@ -88,21 +80,18 @@ class _EzLinkState extends State<EzLink> {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final Color textColor = widget.textColor ?? EzConfig.colors.primary;
-
     TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
-      color: textColor,
+      color: widget.textColor ?? EzConfig.colors.primary,
       decoration: EzConfig.lineLinks ? TextDecoration.underline : TextDecoration.none,
-      decorationColor: widget.decorationColor ?? textColor,
+      decorationColor: EzConfig.colors.primary,
     );
 
     final ButtonStyle buttonStyle = TextButton.styleFrom(
       padding: widget.padding,
-      shape: widget.buttonShape ? EzConfig.buttonShape.shape : null,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       visualDensity: VisualDensity.compact,
       minimumSize: Size.zero,
-      overlayColor: widget.decorationColor ?? EzConfig.colors.primary,
+      overlayColor: EzConfig.colors.primary,
       backgroundColor: widget.backgroundColor,
     );
 

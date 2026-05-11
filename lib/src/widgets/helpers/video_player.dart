@@ -23,9 +23,6 @@ class EzVideoPlayer extends StatefulWidget {
   /// [BoxConstraints.maxWidth] for the video
   final double maxWidth;
 
-  /// Defaults to [ColorScheme.surface]
-  final Color? backgroundColor;
-
   /// [String] label for screen readers
   final String semantics;
 
@@ -35,18 +32,11 @@ class EzVideoPlayer extends StatefulWidget {
   /// Seconds to skip forward/backward on arrow key press
   final int skipTime;
 
-  /// [Color] for the controls region [Container.decoration]
-  /// Defaults to black with 50% opacity -> 0x80000000
-  final Color controlsBackground;
-
   /// Include volume controls
   final bool hasAudio;
 
   /// Starting volume
   final double startingVolume;
-
-  /// Defaults to [Colors.white]
-  final Color textColor;
 
   /// Amount of seconds the controls should show on mobile after user interaction
   final int mobileDelay;
@@ -64,14 +54,11 @@ class EzVideoPlayer extends StatefulWidget {
     required this.aspectRatio,
     required this.maxHeight,
     required this.maxWidth,
-    this.backgroundColor,
     required this.semantics,
     this.hasCaptions = false,
     this.skipTime = 10,
-    this.controlsBackground = const Color(0x80000000),
     this.hasAudio = true,
     this.startingVolume = 0.0,
-    this.textColor = Colors.white,
     this.mobileDelay = 3,
     this.autoPlay = true,
     this.autoLoop = false,
@@ -185,11 +172,11 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     final double controlsHeight =
         (3 * EzConfig.marginVal + 2 * (EzConfig.iconSize + EzConfig.padding));
 
-    final TextStyle? labelStyle = EzConfig.styles.labelLarge?.copyWith(color: widget.textColor);
+    final TextStyle? labelStyle = EzConfig.styles.labelLarge?.copyWith(color: Colors.white);
 
     final SliderThemeData sliderTheme = SliderThemeData(
       activeTrackColor: EzConfig.colors.secondary,
-      inactiveTrackColor: widget.textColor.withValues(alpha: 0.5),
+      inactiveTrackColor: halfWhite,
       thumbColor: EzConfig.colors.primary,
     );
 
@@ -267,7 +254,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                       maxHeight: widget.maxHeight,
                       maxWidth: widget.maxWidth,
                     ),
-                    color: widget.backgroundColor ?? EzConfig.colors.surface,
+                    color: Colors.black,
                     child: AspectRatio(
                       aspectRatio: widget.aspectRatio,
                       child: VideoPlayer(widget.controller),
@@ -293,14 +280,14 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                           EzText(
                             '${(value.volume * 100).toStringAsFixed(0)}%',
                             style: switch (captionStyle) {
-                              4 => EzConfig.styles.displayLarge?.copyWith(color: widget.textColor),
-                              3 => EzConfig.styles.headlineLarge?.copyWith(color: widget.textColor),
-                              2 => EzConfig.styles.titleLarge?.copyWith(color: widget.textColor),
-                              1 => EzConfig.styles.bodyLarge?.copyWith(color: widget.textColor),
+                              4 => EzConfig.styles.displayLarge?.copyWith(color: Colors.white),
+                              3 => EzConfig.styles.headlineLarge?.copyWith(color: Colors.white),
+                              2 => EzConfig.styles.titleLarge?.copyWith(color: Colors.white),
+                              1 => EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
-                            backgroundColor: widget.controlsBackground,
+                            backgroundColor: halfBlack,
                           ),
                         ],
                       ),
@@ -356,14 +343,14 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                           child: EzText(
                             value.caption.text,
                             style: switch (captionStyle) {
-                              4 => EzConfig.styles.displayLarge?.copyWith(color: widget.textColor),
-                              3 => EzConfig.styles.headlineLarge?.copyWith(color: widget.textColor),
-                              2 => EzConfig.styles.titleLarge?.copyWith(color: widget.textColor),
-                              1 => EzConfig.styles.bodyLarge?.copyWith(color: widget.textColor),
+                              4 => EzConfig.styles.displayLarge?.copyWith(color: Colors.white),
+                              3 => EzConfig.styles.headlineLarge?.copyWith(color: Colors.white),
+                              2 => EzConfig.styles.titleLarge?.copyWith(color: Colors.white),
+                              1 => EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
-                            backgroundColor: widget.controlsBackground,
+                            backgroundColor: halfBlack,
                           ),
                         ),
                       ],
@@ -382,7 +369,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                     forceType: EzTransitionType.none,
                     forceFade: true,
                     kid: Container(
-                      decoration: BoxDecoration(color: widget.controlsBackground),
+                      decoration: const BoxDecoration(color: halfBlack),
                       child: EzCol(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -519,7 +506,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                             Icon(
                                               Icons.speed,
                                               size: EzConfig.iconSize * 0.75,
-                                              color: widget.textColor,
+                                              color: Colors.white,
                                             ),
                                             Text(
                                               currSpeed.toStringAsFixed(2),

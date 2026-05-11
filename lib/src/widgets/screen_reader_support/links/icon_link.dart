@@ -21,9 +21,6 @@ class EzIconLink extends StatefulWidget {
   /// Defaults to [ColorScheme.onSurface]
   final Color? textColor;
 
-  /// Defaults to [ColorScheme.primary]
-  final Color? decorationColor;
-
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
@@ -54,7 +51,6 @@ class EzIconLink extends StatefulWidget {
     this.style,
     required this.icon,
     this.textColor,
-    this.decorationColor,
     this.textAlign,
     this.onTap,
     this.url,
@@ -76,12 +72,10 @@ class _EzIconLinkState extends State<EzIconLink> {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final Color textColor = widget.textColor ?? EzConfig.colors.onSurface;
-
     TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
-      color: textColor,
+      color: widget.textColor ?? EzConfig.colors.onSurface,
       decoration: TextDecoration.none,
-      decorationColor: widget.decorationColor ?? EzConfig.colors.primary,
+      decorationColor: EzConfig.colors.primary,
     );
 
     // Define custom functions //
@@ -94,12 +88,6 @@ class _EzIconLinkState extends State<EzIconLink> {
     }
 
     // Return the build //
-
-    final Text text = Text(
-      widget.label,
-      style: textStyle,
-      textAlign: widget.textAlign,
-    );
 
     return Tooltip(
       message: widget.tooltip ?? widget.hint,
@@ -116,7 +104,11 @@ class _EzIconLinkState extends State<EzIconLink> {
                   onFocusChange: (bool hasFocus) => underline(hasFocus),
                   icon: widget.icon,
                   iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
-                  label: text,
+                  label: Text(
+                    widget.label,
+                    style: textStyle,
+                    textAlign: widget.textAlign,
+                  ),
                 )
               : Link(
                   uri: widget.url,
@@ -127,7 +119,11 @@ class _EzIconLinkState extends State<EzIconLink> {
                     onFocusChange: (bool hasFocus) => underline(hasFocus),
                     icon: widget.icon,
                     iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
-                    label: text,
+                    label: Text(
+                      widget.label,
+                      style: textStyle,
+                      textAlign: widget.textAlign,
+                    ),
                   ),
                 ),
         ),

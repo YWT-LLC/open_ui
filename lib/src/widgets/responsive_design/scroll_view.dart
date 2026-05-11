@@ -34,12 +34,6 @@ class EzScrollView extends StatefulWidget {
   /// [SingleChildScrollView.child] passthrough
   final Widget? child;
 
-  /// [SingleChildScrollView.dragStartBehavior] passthrough
-  final DragStartBehavior dragStartBehavior;
-
-  /// [SingleChildScrollView.keyboardDismissBehavior] passthrough
-  final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
-
   /// [EzRow.mainAxisSize]/[Column.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
 
@@ -74,8 +68,6 @@ class EzScrollView extends StatefulWidget {
     this.primary,
     this.physics = const BouncingScrollPhysics(),
     this.child,
-    this.dragStartBehavior = DragStartBehavior.start,
-    this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
 
     // EzRow/Column parameters
     this.mainAxisSize = MainAxisSize.min,
@@ -162,8 +154,7 @@ class _EzScrollViewState extends State<EzScrollView> {
       primary: widget.primary,
       physics: widget.physics,
       controller: controller,
-      dragStartBehavior: widget.dragStartBehavior,
-      keyboardDismissBehavior: widget.keyboardDismissBehavior,
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
       child: (widget.child != null)
           ? widget.child!
           : (widget.scrollDirection == Axis.vertical)
