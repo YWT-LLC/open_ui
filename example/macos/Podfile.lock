@@ -1,7 +1,7 @@
 PODS:
   - file_picker (0.0.1):
     - FlutterMacOS
-  - file_saver (0.0.1):
+  - file_saver (0.3.1):
     - FlutterMacOS
   - file_selector_macos (0.0.1):
     - FlutterMacOS
@@ -63,7 +63,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   file_picker: 7584aae6fa07a041af2b36a2655122d42f578c1a
-  file_saver: e35bd97de451dde55ff8c38862ed7ad0f3418d0f
+  file_saver: 0b49fcd0f67d6e24737b757ee1eb1d3d8ca392fb
   file_selector_macos: 9e9e068e90ebee155097d00e89ae91edb2374db7
   flutter_secure_storage_darwin: acdb3f316ed05a3e68f856e0353b133eec373a23
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
