@@ -126,11 +126,8 @@ class _ButtonStyleSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         onPressed: () async {
-          final EzButtonShape shapeBackup = EzConfig.buttonShape;
-          final double widthBackup = EzConfig.borderWidth;
-
-          EzButtonShape currShape = shapeBackup;
-          double currWidth = widthBackup;
+          EzButtonShape currShape = EzConfig.buttonShape;
+          double currWidth = EzConfig.borderWidth;
 
           await ezModal(
             context: context,
@@ -165,12 +162,19 @@ class _ButtonStyleSetting extends StatelessWidget {
                                         ),
                                   shape: shape.shape,
                                 ),
-                                onPressed: () => setModal(() => currShape = shape),
+                                onPressed: () async {
+                                  if (EzConfig.updateBoth || EzConfig.isDark) {
+                                    await EzConfig.setString(darkButtonShapeKey, shape.value);
+                                  }
+                                  if (EzConfig.updateBoth || !EzConfig.isDark) {
+                                    await EzConfig.setString(lightButtonShapeKey, shape.value);
+                                  }
+
+                                  setModal(() => currShape = shape);
+                                },
                               ),
                               EzConfig.margin,
-                              ExcludeSemantics(
-                                child: EzRadio<EzButtonShape>(value: shape),
-                              ),
+                              ExcludeSemantics(child: EzRadio<EzButtonShape>(value: shape)),
                             ]),
                           ),
                         )
@@ -236,29 +240,9 @@ class _ButtonStyleSetting extends StatelessWidget {
             ),
           );
 
-          bool needsRebuild = true;
-
-          if (currShape != shapeBackup) {
-            if (EzConfig.updateBoth || EzConfig.isDark) {
-              await EzConfig.setString(darkButtonShapeKey, currShape.value);
-            }
-            if (EzConfig.updateBoth || !EzConfig.isDark) {
-              await EzConfig.setString(lightButtonShapeKey, currShape.value);
-            }
-            needsRebuild = true;
+          if (currShape != EzConfig.buttonShape || currWidth != EzConfig.borderWidth) {
+            await EzConfig.rebuildUI();
           }
-
-          if (currWidth != widthBackup) {
-            if (EzConfig.updateBoth || EzConfig.isDark) {
-              await EzConfig.setDouble(darkBorderWidthKey, currWidth);
-            }
-            if (EzConfig.updateBoth || !EzConfig.isDark) {
-              await EzConfig.setDouble(lightBorderWidthKey, currWidth);
-            }
-            needsRebuild = true;
-          }
-
-          if (needsRebuild) await EzConfig.rebuildUI();
         },
         label: label ?? EzConfig.l10n.dsStyle,
         icon: EzIcon(Icons.edit),
