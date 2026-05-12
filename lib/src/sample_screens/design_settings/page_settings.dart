@@ -167,7 +167,6 @@ class _AnimDurSetting extends StatelessWidget {
                       if (EzConfig.updateBoth || EzConfig.isDark) {
                         await EzConfig.setInt(darkAnimationDurationKey, value.toInt());
                       }
-
                       if (EzConfig.updateBoth || !EzConfig.isDark) {
                         await EzConfig.setInt(lightAnimationDurationKey, value.toInt());
                       }
@@ -336,11 +335,8 @@ class _PageTransitionSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         onPressed: () async {
-          final EzTransitionType backupType = EzConfig.transitionType;
-          final bool backupFade = EzConfig.fadedTransition;
-
-          EzTransitionType currType = backupType;
-          bool currFade = backupFade;
+          EzTransitionType currType = EzConfig.transitionType;
+          bool currFade = EzConfig.fadedTransition;
 
           await ezModal(
             context: context,
@@ -349,8 +345,17 @@ class _PageTransitionSetting extends StatelessWidget {
                 // Type choices
                 RadioGroup<EzTransitionType>(
                   groupValue: currType,
-                  onChanged: (EzTransitionType? choice) {
-                    if (choice != null) setModal(() => currType = choice);
+                  onChanged: (EzTransitionType? choice) async {
+                    if (choice == null) return;
+
+                    if (EzConfig.updateBoth || EzConfig.isDark) {
+                      await EzConfig.setString(darkTransitionTypeKey, choice.value);
+                    }
+                    if (EzConfig.updateBoth || !EzConfig.isDark) {
+                      await EzConfig.setString(lightTransitionTypeKey, choice.value);
+                    }
+
+                    setModal(() => currType = choice);
                   },
                   child: EzScrollView(
                     scrollDirection: Axis.horizontal,
@@ -372,12 +377,30 @@ class _PageTransitionSetting extends StatelessWidget {
                                   backgroundColor: EzConfig.colors.surfaceContainer,
                                   padding: EzInsets.wrap(EzConfig.marginVal),
                                 ),
-                                onPressed: () => setModal(() => currType = type),
+                                onPressed: () async {
+                                  if (EzConfig.updateBoth || EzConfig.isDark) {
+                                    await EzConfig.setString(darkTransitionTypeKey, type.value);
+                                  }
+                                  if (EzConfig.updateBoth || !EzConfig.isDark) {
+                                    await EzConfig.setString(lightTransitionTypeKey, type.value);
+                                  }
+
+                                  setModal(() => currType = type);
+                                },
                               ),
                               ExcludeSemantics(
                                 child: EzIconButton(
                                   icon: type.icon,
-                                  onPressed: () => setModal(() => currType = type),
+                                  onPressed: () async {
+                                    if (EzConfig.updateBoth || EzConfig.isDark) {
+                                      await EzConfig.setString(darkTransitionTypeKey, type.value);
+                                    }
+                                    if (EzConfig.updateBoth || !EzConfig.isDark) {
+                                      await EzConfig.setString(lightTransitionTypeKey, type.value);
+                                    }
+
+                                    setModal(() => currType = type);
+                                  },
                                 ),
                               ),
                               ExcludeSemantics(
@@ -394,8 +417,17 @@ class _PageTransitionSetting extends StatelessWidget {
                 // Fade switch
                 EzSwitchPair(
                   valueKey: EzConfig.isDark ? darkTransitionFadeKey : lightTransitionFadeKey,
-                  afterChanged: (bool? choice) {
-                    if (choice != null) setModal(() => currFade = choice);
+                  afterChanged: (bool? choice) async {
+                    if (choice == null) return;
+
+                    if (EzConfig.updateBoth) {
+                      await EzConfig.setBool(
+                        EzConfig.isDark ? lightTransitionFadeKey : darkTransitionFadeKey,
+                        choice,
+                      );
+                    }
+
+                    setModal(() => currFade = choice);
                   },
                   text: EzConfig.l10n.dsFadeTransition,
                 ),
@@ -404,29 +436,9 @@ class _PageTransitionSetting extends StatelessWidget {
             ),
           );
 
-          bool needsRebuild = false;
-
-          if (currType != backupType) {
-            if (EzConfig.updateBoth || EzConfig.isDark) {
-              await EzConfig.setString(darkTransitionTypeKey, currType.value);
-            }
-            if (EzConfig.updateBoth || !EzConfig.isDark) {
-              await EzConfig.setString(lightTransitionTypeKey, currType.value);
-            }
-            needsRebuild = true;
+          if (currType != EzConfig.transitionType || currFade != EzConfig.fadedTransition) {
+            await EzConfig.rebuildUI();
           }
-
-          if (currFade != backupFade) {
-            if (EzConfig.updateBoth || EzConfig.isDark) {
-              await EzConfig.setBool(darkTransitionFadeKey, currFade);
-            }
-            if (EzConfig.updateBoth || !EzConfig.isDark) {
-              await EzConfig.setBool(lightTransitionFadeKey, currFade);
-            }
-            needsRebuild = true;
-          }
-
-          if (needsRebuild) await EzConfig.rebuildUI();
         },
         icon: EzIcon(Icons.slideshow),
         label: EzConfig.l10n.dsPageTransition,

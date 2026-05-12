@@ -136,8 +136,17 @@ class _ButtonStyleSetting extends StatelessWidget {
                 // Shape choices
                 RadioGroup<EzButtonShape>(
                   groupValue: currShape,
-                  onChanged: (EzButtonShape? choice) {
-                    if (choice != null) setModal(() => currShape = choice);
+                  onChanged: (EzButtonShape? choice) async {
+                    if (choice == null) return;
+
+                    if (EzConfig.updateBoth || EzConfig.isDark) {
+                      await EzConfig.setString(darkButtonShapeKey, choice.value);
+                    }
+                    if (EzConfig.updateBoth || !EzConfig.isDark) {
+                      await EzConfig.setString(lightButtonShapeKey, choice.value);
+                    }
+
+                    setModal(() => currShape = choice);
                   },
                   child: EzScrollView(
                     scrollDirection: Axis.horizontal,
