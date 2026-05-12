@@ -316,12 +316,10 @@ class _ImageSettingState extends State<EzImageSetting> {
               textAlign: TextAlign.center,
             ),
             content: Form(
-              child: TextFormField(
+              child: EzPasteField(
                 controller: urlController,
-                maxLines: 1,
                 autofillHints: const <String>[AutofillHints.url],
                 decoration: const InputDecoration(hintText: webImgHint),
-                autovalidateMode: AutovalidateMode.onUnfocus,
                 validator: validateUrl,
               ),
             ),
