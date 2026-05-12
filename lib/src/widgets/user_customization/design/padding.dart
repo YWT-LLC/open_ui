@@ -68,10 +68,7 @@ class EzPaddingSetting extends StatelessWidget {
                           EzConfig.rowSpacer,
                           EzElevatedButton(
                             enabled: false,
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(currValue),
-                              shape: const CircleBorder(),
-                            ),
+                            style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
                             text: currValue.toStringAsFixed(_decimals),
                           ),
                         ],
