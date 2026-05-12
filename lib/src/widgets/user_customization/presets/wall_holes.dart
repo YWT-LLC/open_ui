@@ -122,7 +122,7 @@ class EzWallHolesConfig extends StatelessWidget {
 
     // Text settings //
 
-    await EzConfig.setDouble(lightTextBackgroundOpacityKey, 0.65);
+    await EzConfig.setDouble(lightTextBackgroundOpacityKey, 0.80);
   }
 
   @override
