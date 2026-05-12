@@ -26,24 +26,29 @@ class EzPasteField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzRow(children: <Widget>[
-        GestureDetector(
-          onTap: () async {
+        // Field
+        Expanded(
+          child: TextFormField(
+            controller: controller,
+            enabled: true,
+            readOnly: false,
+            maxLines: 1,
+            textAlign: TextAlign.start,
+            style: style,
+            validator: validator,
+            autofillHints: autofillHints,
+            autovalidateMode: AutovalidateMode.onUnfocus,
+          ),
+        ),
+        EzConfig.rowMargin,
+
+        // Paste
+        EzIconButton(
+          onPressed: () async {
             final String? clipText = (await Clipboard.getData(Clipboard.kTextPlain))?.text;
             if (clipText != null) controller.text = clipText;
           },
-          child: EzIcon(Icons.paste),
-        ),
-        EzConfig.rowMargin,
-        TextFormField(
-          controller: controller,
-          enabled: true,
-          readOnly: false,
-          maxLines: 1,
-          textAlign: TextAlign.start,
-          style: style,
-          validator: validator,
-          autofillHints: autofillHints,
-          autovalidateMode: AutovalidateMode.onUnfocus,
+          icon: EzIcon(Icons.paste),
         ),
       ]);
 }
