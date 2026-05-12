@@ -56,11 +56,11 @@ class _EzTextButtonState extends State<EzTextButton> {
         onPressed: widget.onPressed,
         onLongPress: widget.onLongPress,
         style: widget.wrapPadding
-            ? widget.style
-            : (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
+            ? (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
                 padding:
                     WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
-              ),
+              )
+            : widget.style,
         child: Text(
           widget.text,
           semanticsLabel: widget.semantics,
@@ -120,29 +120,23 @@ class EzTextIconButton extends StatefulWidget {
 
 class _EzTextIconButtonState extends State<EzTextIconButton> {
   @override
-  Widget build(BuildContext context) {
-    TextStyle? textStyle = (widget.textStyle ?? EzConfig.styles.bodyLarge)
-        ?.copyWith(decorationColor: EzConfig.colors.primary);
-
-    void addUnderline(bool addIt) => setState(() => textStyle =
-        textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
-
-    // Return the build //
-
-    return TextButton.icon(
-      onPressed: widget.onPressed,
-      onLongPress: widget.onLongPress,
-      onHover: (bool isHovering) => addUnderline(isHovering),
-      onFocusChange: (bool isFocused) => addUnderline(isFocused),
-      style: widget.style,
-      icon: widget.icon,
-      iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
-      label: Text(
-        widget.label,
-        semanticsLabel: widget.semantics,
-        style: textStyle,
-        textAlign: widget.textAlign,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => TextButton.icon(
+        onPressed: widget.onPressed,
+        onLongPress: widget.onLongPress,
+        style: widget.wrapPadding
+            ? (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
+                padding:
+                    WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
+              )
+            : widget.style,
+        icon: widget.icon,
+        iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
+        label: Text(
+          widget.label,
+          semanticsLabel: widget.semantics,
+          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)
+              ?.copyWith(decorationColor: EzConfig.colors.primary),
+          textAlign: widget.textAlign,
+        ),
+      );
 }
