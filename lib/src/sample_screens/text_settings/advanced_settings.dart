@@ -633,6 +633,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.labelProvider.value,
           textAlign: TextAlign.center,
         ),
+        baseColor: EzConfig.colors.surface,
         padding: colMargin,
         borderRadius: ezPillEdge,
       ),

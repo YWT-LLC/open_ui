@@ -32,7 +32,9 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
   // Gather the build data //
 
   late double backOpacity = EzConfig.textBackgroundOpacity;
-  late Color backgroundColor = EzConfig.colors.surface.withValues(alpha: backOpacity);
+
+  late Color buttonBackground = EzConfig.colors.surface.withValues(alpha: backOpacity);
+  late Color textBackground = EzConfig.colors.surfaceContainer.withValues(alpha: backOpacity);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
               bodyProvider: widget.bodyProvider,
               labelProvider: widget.labelProvider,
             ),
-            backgroundColor: backgroundColor,
+            backgroundColor: buttonBackground,
             buttonShape: true,
             padding: EdgeInsets.zero,
           ),
@@ -88,7 +90,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           textAlign: TextAlign.center,
           style: widget.displayProvider.value,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: textBackground,
         padding: colMargin,
       ),
       EzConfig.spacer,
@@ -100,7 +102,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           textAlign: TextAlign.center,
           style: widget.headlineProvider.value,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: textBackground,
         padding: colMargin,
       ),
       EzConfig.spacer,
@@ -112,7 +114,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           textAlign: TextAlign.center,
           style: widget.titleProvider.value,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: textBackground,
         padding: colMargin,
       ),
       EzConfig.spacer,
@@ -124,7 +126,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           textAlign: TextAlign.center,
           style: widget.bodyProvider.value,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: textBackground,
         padding: colMargin,
       ),
       EzConfig.spacer,
@@ -136,7 +138,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           textAlign: TextAlign.center,
           style: widget.labelProvider.value,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: textBackground,
         padding: colMargin,
       ),
       EzConfig.divider,
@@ -148,7 +150,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           style: widget.labelProvider.value,
           textAlign: TextAlign.center,
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: textBackground,
         padding: colMargin,
       ),
       ConstrainedBox(
@@ -165,7 +167,8 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           onChanged: (double value) {
             setState(() {
               backOpacity = value;
-              backgroundColor = EzConfig.colors.surface.withValues(alpha: backOpacity);
+              buttonBackground = EzConfig.colors.surface.withValues(alpha: backOpacity);
+              textBackground = EzConfig.colors.surfaceContainer.withValues(alpha: backOpacity);
             });
           },
           onChangeEnd: (double value) async {
@@ -189,7 +192,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
       EzConfig.spacer,
 
       // Icon size
-      const EzIconSizeSetting(),
+      EzIconSizeSetting(backgroundColor: buttonBackground),
 
       // Reset all
       EzConfig.separator,
