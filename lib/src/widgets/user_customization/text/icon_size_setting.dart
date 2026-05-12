@@ -10,7 +10,13 @@ class EzIconSizeSetting extends StatefulWidget {
   /// Set to false when using this outside of [EzTextSettings]
   final bool fullCheck;
 
-  const EzIconSizeSetting({super.key, this.fullCheck = true});
+  final Color? backgroundColor;
+
+  const EzIconSizeSetting({
+    super.key,
+    this.fullCheck = true,
+    this.backgroundColor,
+  });
 
   @override
   State<EzIconSizeSetting> createState() => _EzIconSizeSettingState();
@@ -152,6 +158,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
             ],
           ),
           baseColor: EzConfig.colors.surface,
+          backgroundColor: widget.backgroundColor,
           buttonShape: true,
           padding: EdgeInsets.zero,
         ),
