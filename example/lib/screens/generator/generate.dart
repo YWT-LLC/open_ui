@@ -239,20 +239,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
       ezLog(runResult.stdout, buffer: readout);
       ezLog(runResult.stderr, buffer: readout);
 
-      ezLog('pub upgrade...', buffer: readout);
-      runResult = await Process.run(
-        '${flutterPath}flutter',
-        <String>[
-          'pub',
-          'upgrade',
-          '--major-versions',
-        ],
-        runInShell: true,
-        workingDirectory: projDir,
-      );
-      ezLog(runResult.stdout, buffer: readout);
-      ezLog(runResult.stderr, buffer: readout);
-
       ezLog('pub tighten...', buffer: readout);
       runResult = await Process.run(
         '${flutterPath}flutter',
