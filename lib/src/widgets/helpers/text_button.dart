@@ -8,17 +8,14 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzTextButton extends StatefulWidget {
+  /// [TextButton.child] will be [Text] with [text], [textStyle], and [textAlign]
+  final String text;
+
   /// [TextButton.onPressed] passthrough
   final void Function()? onPressed;
 
   /// [TextButton.onLongPress] passthrough
   final void Function()? onLongPress;
-
-  /// [TextButton.child] will be [Text] with [text], [textStyle], and [textAlign]
-  final String text;
-
-  /// Optional [Text.semanticsLabel] passthrough
-  final String? semantics;
 
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
@@ -26,14 +23,16 @@ class EzTextButton extends StatefulWidget {
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
-  /// Enable [EzInsets.wrap] => [EzConfig.marginVal]
-  final bool wrapPadding;
+  /// Optional [Text.semanticsLabel] passthrough
+  final String? semantics;
+
+  /// Dictates the padding
+  final bool inline;
 
   /// [TextButton.style] passthrough
   final ButtonStyle? style;
 
   /// [TextButton] with custom styling
-  /// Crucially: automatically underlines its text [onHover] and [onFocusChange]
   const EzTextButton({
     super.key,
     this.onPressed,
@@ -42,7 +41,7 @@ class EzTextButton extends StatefulWidget {
     this.semantics,
     this.textStyle,
     this.textAlign,
-    this.wrapPadding = false,
+    this.inline = false,
     this.style,
   });
 
@@ -55,10 +54,9 @@ class _EzTextButtonState extends State<EzTextButton> {
   Widget build(BuildContext context) => TextButton(
         onPressed: widget.onPressed,
         onLongPress: widget.onLongPress,
-        style: widget.wrapPadding
+        style: widget.inline
             ? (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
-                padding:
-                    WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
+                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
               )
             : widget.style,
         child: Text(
@@ -72,21 +70,18 @@ class _EzTextButtonState extends State<EzTextButton> {
 }
 
 class EzTextIconButton extends StatefulWidget {
-  /// [TextButton.onPressed] passthrough
-  final void Function()? onPressed;
-
-  /// [TextButton.onLongPress] passthrough
-  final void Function()? onLongPress;
+  /// [TextButton.icon] label will be [Text] with [label], [textStyle], and [textAlign]
+  final String label;
 
   /// [TextButton.icon] passthrough
   /// iconAlignment: [EzConfig.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget icon;
 
-  /// [TextButton.icon] label will be [Text] with [label], [textStyle], and [textAlign]
-  final String label;
+  /// [TextButton.onPressed] passthrough
+  final void Function()? onPressed;
 
-  /// Optional [Text.semanticsLabel] passthrough for [label]
-  final String? semantics;
+  /// [TextButton.onLongPress] passthrough
+  final void Function()? onLongPress;
 
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
@@ -94,23 +89,26 @@ class EzTextIconButton extends StatefulWidget {
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
-  /// Enable [EzInsets.wrap] => [EzConfig.marginVal]
-  final bool wrapPadding;
+  /// Optional [Text.semanticsLabel] passthrough for [label]
+  final String? semantics;
+
+  /// Dictates the padding
+  final bool inline;
 
   /// [TextButton.style] passthrough
   final ButtonStyle? style;
 
-  /// [TextButton.icon] with styling like an [EzTextButton] and the [icon] responds to [isLeftyKey]
+  /// [TextButton.icon] with custom styling
   const EzTextIconButton({
     super.key,
+    required this.label,
+    required this.icon,
     this.onPressed,
     this.onLongPress,
-    required this.icon,
-    required this.label,
-    this.semantics,
     this.textStyle,
     this.textAlign,
-    this.wrapPadding = false,
+    this.semantics,
+    this.inline = false,
     this.style,
   });
 
@@ -123,10 +121,9 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
   Widget build(BuildContext context) => TextButton.icon(
         onPressed: widget.onPressed,
         onLongPress: widget.onLongPress,
-        style: widget.wrapPadding
+        style: widget.inline
             ? (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
-                padding:
-                    WidgetStatePropertyAll<EdgeInsetsGeometry>(EzInsets.wrap(EzConfig.marginVal)),
+                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
               )
             : widget.style,
         icon: widget.icon,

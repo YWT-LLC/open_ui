@@ -65,7 +65,7 @@ class EzInlineLink extends WidgetSpan {
             textColor: textColor,
             backgroundColor: backgroundColor,
             textAlign: textAlign,
-            padding: EdgeInsets.zero,
+            inline: true,
             onTap: onTap,
             url: url,
             hint: hint,

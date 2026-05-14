@@ -424,7 +424,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
         shape: null,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
-        padding: EdgeInsets.zero,
+        padding: EzInsets.wrap(margin),
       ),
     ),
 

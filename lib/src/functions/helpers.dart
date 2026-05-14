@@ -211,7 +211,6 @@ Future<dynamic> ezColorPicker(
             EzTextIconButton(
               icon: EzIcon(Icons.cancel),
               label: denyMsg ?? EzConfig.l10n.gCancel,
-              wrapPadding: true,
               onPressed: () {
                 onDeny();
                 if (mCon.mounted) Navigator.of(mCon).pop();
@@ -221,7 +220,6 @@ Future<dynamic> ezColorPicker(
             EzTextIconButton(
               icon: EzIcon(Icons.check),
               label: confirmMsg ?? EzConfig.l10n.gApply,
-              wrapPadding: true,
               onPressed: () {
                 onConfirm();
                 if (mCon.mounted) Navigator.of(mCon).pop();

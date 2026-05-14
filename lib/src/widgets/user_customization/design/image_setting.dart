@@ -619,7 +619,6 @@ class _ImageSettingState extends State<EzImageSetting> {
                   text: EzConfig.l10n.gCancel,
                   textStyle: EzConfig.styles.bodyLarge,
                   textAlign: TextAlign.center,
-                  wrapPadding: true,
                 ),
                 EzConfig.rowSpacer,
                 EzTextButton(
@@ -634,7 +633,6 @@ class _ImageSettingState extends State<EzImageSetting> {
                   text: currFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
                   textStyle: EzConfig.styles.bodyLarge?.copyWith(color: EzConfig.colors.primary),
                   textAlign: TextAlign.center,
-                  wrapPadding: true,
                 ),
                 EzConfig.rowSpacer,
               ],

@@ -11,20 +11,20 @@ class EzLink extends StatefulWidget {
   /// The [TextButton.child] will be [Text] with [text] and all provided styling
   final String text;
 
+  /// Dictates the padding (none for inline)
+  final bool inline;
+
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
+
+  /// [Text.textAlign] passthrough
+  final TextAlign? textAlign;
 
   /// Defaults to [ColorScheme.primary]
   final Color? textColor;
 
   /// Optional override for [TextButton.style]
   final Color? backgroundColor;
-
-  /// [Text.textAlign] passthrough
-  final TextAlign? textAlign;
-
-  /// Optional padding override for [TextButton.style]
-  final EdgeInsets? padding;
 
   /// Destination function
   /// Provide [onTap] or [url], but not both
@@ -33,6 +33,10 @@ class EzLink extends StatefulWidget {
   /// Destination URL
   /// Provide [onTap] or [url], but not both
   final Uri? url;
+
+  /// Optional callback for hover events
+  /// Will run in addition to the built-in [EzLink] hover effects
+  final Function(bool hovering)? onHover;
 
   /// Message for screen readers
   /// Don't repeat [text] here, it is appended automatically
@@ -43,10 +47,6 @@ class EzLink extends StatefulWidget {
   /// Defaults to [hint]
   final String? tooltip;
 
-  /// Optional callback for hover events
-  /// Will run in addition to the built-in [EzLink] hover effects
-  final Function(bool hovering)? onHover;
-
   /// [TextButton] wrapper that either opens an internal link via [onTap]
   /// Or an external link to [url]
   /// Always has a [tooltip]; if one is not provided, it will default to [hint]
@@ -54,11 +54,11 @@ class EzLink extends StatefulWidget {
   const EzLink(
     this.text, {
     super.key,
+    this.inline = false,
     this.style,
     this.textColor,
     this.backgroundColor,
     this.textAlign,
-    this.padding,
     this.onTap,
     this.url,
     required this.hint,
@@ -101,7 +101,7 @@ class _EzLinkState extends State<EzLink> {
             child: (widget.onTap != null)
                 ? TextButton(
                     style: TextButton.styleFrom(
-                      padding: widget.padding,
+                      padding: widget.inline ? EdgeInsets.zero : EzInsets.wrap(EzConfig.marginVal),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       visualDensity: VisualDensity.compact,
                       minimumSize: Size.zero,
@@ -124,7 +124,8 @@ class _EzLinkState extends State<EzLink> {
                     uri: widget.url,
                     builder: (_, FollowLink? followLink) => TextButton(
                       style: TextButton.styleFrom(
-                        padding: widget.padding,
+                        padding:
+                            widget.inline ? EdgeInsets.zero : EzInsets.wrap(EzConfig.marginVal),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         visualDensity: VisualDensity.compact,
                         minimumSize: Size.zero,

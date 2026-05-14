@@ -168,7 +168,6 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             child: widget.clickable
                 ? EzLink(
                     widget.text,
-                    padding: EzInsets.wrap(EzConfig.marginVal),
                     textColor: EzConfig.colors.onSurface,
                     style: EzConfig.styles.bodyLarge,
                     textAlign: widget.textAlign,
