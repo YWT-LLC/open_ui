@@ -277,7 +277,10 @@ class _GenerateScreenState extends State<GenerateScreen> {
   }
 
   Widget header(Lang l10n) => switch (genState) {
-        GeneratorState.running => EmpathyLoading(semantics: EzConfig.l10n.gLoadingAnim),
+        GeneratorState.running => EmpathyLoading(
+            semantics: EzConfig.l10n.gLoadingAnim,
+            colorScheme: EzConfig.colors,
+          ),
         GeneratorState.successful => Center(
             child: SuccessHeader(
               message: '${widget.config.appName} ${l10n.gsIsReadyIn}\n${widget.config.workPath}',
