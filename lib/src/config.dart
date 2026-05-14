@@ -8,7 +8,6 @@ import '../empathetech_flutter_ui.dart';
 import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -896,9 +895,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   static bool get lineLinks => _provPoint.design.lineLinks;
   static bool get showBackFAB => _provPoint.design.showBackFAB;
 
-  static List<Widget> get backFABs => (showBackFAB &&
-          ezRootNav.currentState!.canPop() &&
-          GoRouterState.of(ezRootNav.currentContext!).path != homePath)
+  static List<Widget> get backFABs => (showBackFAB && ezRootNav.currentState!.canPop())
       ? <Widget>[_provPoint.layout.spacer, const EzBackFAB()]
       : <Widget>[];
 
