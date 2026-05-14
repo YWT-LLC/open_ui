@@ -678,7 +678,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                   color: EzConfig.colors.onSurface,
                   width: EzConfig.borderWidth,
                 ),
-                borderRadius: ezRoundEdge,
+                borderRadius: EzConfig.textRadius,
               ),
               child: EzCol(
                 children: <Widget>[
@@ -687,7 +687,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: EzConfig.colors.surface,
-                      borderRadius: ezTextFieldRadius,
+                      borderRadius: EzConfig.textFieldRadius,
                     ),
                     child: Text(
                       fit.name,

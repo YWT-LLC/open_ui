@@ -77,21 +77,28 @@ class EzConfigProvider extends ChangeNotifier {
     if (_isDark) {
       // Build new caches
       _color = EzColorCache(EzConfig.get(darkColorSchemeImageKey));
+
+      final EzButtonShape buttonShape = EBSConfig.lookup(EzConfig.get(darkButtonShapeKey));
       _design = EzDesignCache(
+        // Button
         padding: EzConfig.get(darkPaddingKey),
-        buttonShape: EBSConfig.lookup(EzConfig.get(darkButtonShapeKey)),
+        buttonShape: buttonShape,
         borderWidth: EzConfig.get(darkBorderWidthKey),
+        textRadius: buttonShape.radius,
+        textFieldRadius: buttonShape.fieldRadius,
         lineLinks: EzConfig.get(darkLineLinksKey),
         showBackFAB: EzConfig.get(darkShowBackFABKey),
+        showScroll: EzConfig.get(darkShowScrollKey),
+
+        // Page
         margin: EzConfig.get(darkMarginKey),
         spacing: EzConfig.get(darkSpacingKey),
-        animDur: EzConfig.get(darkAnimationDurationKey),
-        animCurve: EACConfig.translate(EzConfig.get(darkAnimationCurveKey)),
-        transitionType: ETTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
-        fadedTransition: EzConfig.get(darkTransitionFadeKey),
         backgroundImagePath: EzConfig.get(darkBackgroundImageKey),
         backgroundImageFit: boxFitLib[EzConfig.get(darkBackgroundFitKey)],
-        showScroll: EzConfig.get(darkShowScrollKey),
+        transitionType: ETTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
+        fadedTransition: EzConfig.get(darkTransitionFadeKey),
+        animDur: EzConfig.get(darkAnimationDurationKey),
+        animCurve: EACConfig.translate(EzConfig.get(darkAnimationCurveKey)),
       );
       _layout = EzLayoutCache(
         margin: EzMargin(isDark: true),
@@ -114,21 +121,28 @@ class EzConfigProvider extends ChangeNotifier {
     } else {
       // Build new caches
       _color = EzColorCache(EzConfig.get(lightColorSchemeImageKey));
+
+      final EzButtonShape buttonShape = EBSConfig.lookup(EzConfig.get(lightButtonShapeKey));
       _design = EzDesignCache(
+        // Button
         padding: EzConfig.get(lightPaddingKey),
-        buttonShape: EBSConfig.lookup(EzConfig.get(lightButtonShapeKey)),
+        buttonShape: buttonShape,
         borderWidth: EzConfig.get(lightBorderWidthKey),
+        textRadius: buttonShape.radius,
+        textFieldRadius: buttonShape.fieldRadius,
         lineLinks: EzConfig.get(lightLineLinksKey),
         showBackFAB: EzConfig.get(lightShowBackFABKey),
+        showScroll: EzConfig.get(lightShowScrollKey),
+
+        // Page
         margin: EzConfig.get(lightMarginKey),
         spacing: EzConfig.get(lightSpacingKey),
-        animDur: EzConfig.get(lightAnimationDurationKey),
-        animCurve: EACConfig.translate(EzConfig.get(lightAnimationCurveKey)),
-        transitionType: ETTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
-        fadedTransition: EzConfig.get(lightTransitionFadeKey),
         backgroundImagePath: EzConfig.get(lightBackgroundImageKey),
         backgroundImageFit: boxFitLib[EzConfig.get(lightBackgroundFitKey)],
-        showScroll: EzConfig.get(lightShowScrollKey),
+        transitionType: ETTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
+        fadedTransition: EzConfig.get(lightTransitionFadeKey),
+        animDur: EzConfig.get(lightAnimationDurationKey),
+        animCurve: EACConfig.translate(EzConfig.get(lightAnimationCurveKey)),
       );
       _layout = EzLayoutCache(
         margin: EzMargin(isDark: false),
@@ -341,8 +355,12 @@ class EzDesignCache {
   final EzButtonShape buttonShape;
   final double borderWidth;
 
+  final BorderRadius textRadius;
+  final BorderRadius textFieldRadius;
+
   final bool lineLinks;
   final bool showBackFAB;
+  final bool showScroll;
 
   // Page //
 
@@ -357,16 +375,20 @@ class EzDesignCache {
   final String backgroundImagePath;
   final BoxFit? backgroundImageFit;
 
-  final bool showScroll;
-
   /// Theme aware tracker for frequently used design values...
   /// Animation duration
   EzDesignCache({
+    // Button
     required this.padding,
     required this.buttonShape,
     required this.borderWidth,
+    required this.textRadius,
+    required this.textFieldRadius,
     required this.lineLinks,
     required this.showBackFAB,
+    required this.showScroll,
+
+    // Page
     required this.margin,
     required this.spacing,
     required this.animDur,
@@ -375,7 +397,6 @@ class EzDesignCache {
     required this.fadedTransition,
     required this.backgroundImagePath,
     required this.backgroundImageFit,
-    required this.showScroll,
   });
 }
 

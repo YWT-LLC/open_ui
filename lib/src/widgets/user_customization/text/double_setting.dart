@@ -144,7 +144,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                   maxWidth: formFieldWidth,
                   maxHeight: formFieldHeight,
                 ),
-                decoration: const BoxDecoration(borderRadius: ezRoundEdge),
+                decoration: BoxDecoration(borderRadius: EzConfig.textFieldRadius),
                 child: TextFormField(
                   controller: controller,
                   style: widget.style,

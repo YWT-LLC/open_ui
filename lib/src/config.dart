@@ -892,6 +892,9 @@ Must be one of [int, bool, double, String, List<String>]''');
   static EzButtonShape get buttonShape => _provPoint.design.buttonShape;
   static double get borderWidth => _provPoint.design.borderWidth;
 
+  static BorderRadius get textRadius => _provPoint.design.textRadius;
+  static BorderRadius get textFieldRadius => _provPoint.design.textFieldRadius;
+
   static bool get lineLinks => _provPoint.design.lineLinks;
   static bool get showBackFAB => _provPoint.design.showBackFAB;
 

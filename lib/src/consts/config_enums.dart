@@ -33,6 +33,10 @@ const Set<String> ezEnumVals = <String>{
   esSlideX,
   esSlideY,
   esZoom,
+  esBounce,
+  esEase,
+  esElastic,
+  esLinear,
 };
 
 //* Box Fit *//
@@ -63,6 +67,20 @@ enum EzButtonShape {
   jewel,
 }
 
+// enum values //
+
+/// 4.0
+const double ezRoundRadius = 4.0;
+
+/// 64.0
+const double ezPillRadius = 64.0;
+
+/// 12.0
+const double gramSlope = 12.0;
+
+/// 16.0
+const double jewelSlope = 16.0;
+
 // EzConfig values //
 
 /// enum [String] 'pill'
@@ -90,17 +108,6 @@ const String esJewel = 'jewel';
 
 /// EzButtonShape config
 extension EBSConfig on EzButtonShape {
-  OutlinedBorder get shape => switch (this) {
-        EzButtonShape.pill => const RoundedSuperellipseBorder(borderRadius: ezPillEdge),
-        EzButtonShape.rect => const RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.zero),
-        EzButtonShape.roundRect => const RoundedRectangleBorder(borderRadius: ezRoundEdge),
-        EzButtonShape.leftGram => const ParallelogramBorder(lefty: true),
-        EzButtonShape.rightGram => const ParallelogramBorder(lefty: false),
-        EzButtonShape.gem => const GemBorder(),
-        EzButtonShape.jewel =>
-          BeveledRectangleBorder(borderRadius: BorderRadius.circular(gemSlope)),
-      };
-
   String get value => switch (this) {
         EzButtonShape.pill => esPill,
         EzButtonShape.rect => esRect,
@@ -109,6 +116,55 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.rightGram => esRightGram,
         EzButtonShape.gem => esGem,
         EzButtonShape.jewel => esJewel,
+      };
+
+  String get name => switch (this) {
+        EzButtonShape.pill => EzConfig.l10n.dsPill,
+        EzButtonShape.rect => EzConfig.l10n.dsRectangle,
+        EzButtonShape.roundRect => EzConfig.l10n.dsRoundRectangle,
+        EzButtonShape.leftGram => EzConfig.l10n.dsLeftGram,
+        EzButtonShape.rightGram => EzConfig.l10n.dsRightGram,
+        EzButtonShape.gem => EzConfig.l10n.dsGem,
+        EzButtonShape.jewel => EzConfig.l10n.dsJewel,
+      };
+
+  BorderRadius get radius => switch (this) {
+        EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
+        EzButtonShape.rect => BorderRadius.zero,
+        EzButtonShape.roundRect => const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.leftGram => BorderRadius.zero,
+        EzButtonShape.rightGram => BorderRadius.zero,
+        EzButtonShape.gem => BorderRadius.zero,
+        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
+      };
+
+  OutlinedBorder get shape => switch (this) {
+        EzButtonShape.pill => RoundedSuperellipseBorder(borderRadius: radius),
+        EzButtonShape.rect => const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        EzButtonShape.roundRect => RoundedRectangleBorder(borderRadius: radius),
+        EzButtonShape.leftGram => const ParallelogramBorder(lefty: true),
+        EzButtonShape.rightGram => const ParallelogramBorder(lefty: false),
+        EzButtonShape.gem => const GemBorder(),
+        EzButtonShape.jewel => BeveledRectangleBorder(borderRadius: radius),
+      };
+
+  BorderRadius get fieldRadius => switch (this) {
+        EzButtonShape.pill => const BorderRadius.only(
+            topLeft: Radius.circular(ezRoundRadius),
+            topRight: Radius.circular(ezRoundRadius),
+          ),
+        EzButtonShape.rect => BorderRadius.zero,
+        EzButtonShape.roundRect => const BorderRadius.only(
+            topLeft: Radius.circular(ezRoundRadius),
+            topRight: Radius.circular(ezRoundRadius),
+          ),
+        EzButtonShape.leftGram => BorderRadius.zero,
+        EzButtonShape.rightGram => BorderRadius.zero,
+        EzButtonShape.gem => BorderRadius.zero,
+        EzButtonShape.jewel => const BorderRadius.only(
+            topLeft: Radius.circular(jewelSlope),
+            topRight: Radius.circular(jewelSlope),
+          ),
       };
 
   /// Defaults to [EzTransitionType.system]
@@ -120,16 +176,6 @@ extension EBSConfig on EzButtonShape {
         esGem => EzButtonShape.gem,
         esJewel => EzButtonShape.jewel,
         esPill || _ => EzButtonShape.pill,
-      };
-
-  String get name => switch (this) {
-        EzButtonShape.pill => EzConfig.l10n.dsPill,
-        EzButtonShape.rect => EzConfig.l10n.dsRectangle,
-        EzButtonShape.roundRect => EzConfig.l10n.dsRoundRectangle,
-        EzButtonShape.leftGram => EzConfig.l10n.dsLeftGram,
-        EzButtonShape.rightGram => EzConfig.l10n.dsRightGram,
-        EzButtonShape.gem => EzConfig.l10n.dsGem,
-        EzButtonShape.jewel => EzConfig.l10n.dsJewel,
       };
 }
 
@@ -170,6 +216,28 @@ const String esZoom = 'zoom';
 
 /// EzTransitionType config
 extension ETTConfig on EzTransitionType {
+  String get value => switch (this) {
+        EzTransitionType.none => esNone,
+        EzTransitionType.system => esSystem,
+        EzTransitionType.turnX => esTurnX,
+        EzTransitionType.turnY => esTurnY,
+        EzTransitionType.rotate => esRotate,
+        EzTransitionType.slideX => esSlideX,
+        EzTransitionType.slideY => esSlideY,
+        EzTransitionType.zoom => esZoom,
+      };
+
+  String get name => switch (this) {
+        EzTransitionType.none => EzConfig.l10n.dsNone,
+        EzTransitionType.system => EzConfig.l10n.dsSystem,
+        EzTransitionType.turnX => EzConfig.l10n.dsTurnX,
+        EzTransitionType.turnY => EzConfig.l10n.dsTurnY,
+        EzTransitionType.rotate => EzConfig.l10n.dsRotate,
+        EzTransitionType.slideX => EzConfig.l10n.dsSlideX,
+        EzTransitionType.slideY => EzConfig.l10n.dsSlideY,
+        EzTransitionType.zoom => EzConfig.l10n.dsZoom,
+      };
+
   Icon get icon => switch (this) {
         EzTransitionType.none => EzIcon(Icons.cancel),
         EzTransitionType.system => EzIcon(EzConfig.onMobile
@@ -186,17 +254,6 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.zoom => EzIcon(Icons.zoom_in),
       };
 
-  String get value => switch (this) {
-        EzTransitionType.none => esNone,
-        EzTransitionType.system => esSystem,
-        EzTransitionType.turnX => esTurnX,
-        EzTransitionType.turnY => esTurnY,
-        EzTransitionType.rotate => esRotate,
-        EzTransitionType.slideX => esSlideX,
-        EzTransitionType.slideY => esSlideY,
-        EzTransitionType.zoom => esZoom,
-      };
-
   /// Defaults to [EzTransitionType.system]
   static EzTransitionType lookup(String? value) => switch (value) {
         esNone => EzTransitionType.none,
@@ -207,17 +264,6 @@ extension ETTConfig on EzTransitionType {
         esSlideY => EzTransitionType.slideY,
         esZoom => EzTransitionType.zoom,
         esSystem || _ => EzTransitionType.system,
-      };
-
-  String get name => switch (this) {
-        EzTransitionType.none => EzConfig.l10n.dsNone,
-        EzTransitionType.system => EzConfig.l10n.dsSystem,
-        EzTransitionType.turnX => EzConfig.l10n.dsTurnX,
-        EzTransitionType.turnY => EzConfig.l10n.dsTurnY,
-        EzTransitionType.rotate => EzConfig.l10n.dsRotate,
-        EzTransitionType.slideX => EzConfig.l10n.dsSlideX,
-        EzTransitionType.slideY => EzConfig.l10n.dsSlideY,
-        EzTransitionType.zoom => EzConfig.l10n.dsZoom,
       };
 }
 
@@ -245,18 +291,18 @@ extension EACConfig on EzAnimationCurve {
         EzAnimationCurve.linear => esLinear,
       };
 
-  Curve get curve => switch (this) {
-        EzAnimationCurve.bounce => Curves.bounceInOut,
-        EzAnimationCurve.ease => Curves.easeInOut,
-        EzAnimationCurve.elastic => Curves.elasticInOut,
-        EzAnimationCurve.linear => Curves.linear,
-      };
-
   String get name => switch (this) {
         EzAnimationCurve.bounce => EzConfig.l10n.dsBounce,
         EzAnimationCurve.ease => EzConfig.l10n.dsEase,
         EzAnimationCurve.elastic => EzConfig.l10n.dsElastic,
         EzAnimationCurve.linear => EzConfig.l10n.dsLinear,
+      };
+
+  Curve get curve => switch (this) {
+        EzAnimationCurve.bounce => Curves.bounceInOut,
+        EzAnimationCurve.ease => Curves.easeInOut,
+        EzAnimationCurve.elastic => Curves.elasticInOut,
+        EzAnimationCurve.linear => Curves.linear,
       };
 
   static EzAnimationCurve lookup(String? value) => switch (value) {

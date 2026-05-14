@@ -79,7 +79,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: EzConfig.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: ezTextFieldRadius,
+        borderRadius: EzConfig.textFieldRadius,
       );
 
   /// Font size setting
@@ -239,7 +239,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: EzConfig.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: ezTextFieldRadius,
+        borderRadius: EzConfig.textFieldRadius,
       );
 
   /// Letter spacing setting
@@ -307,7 +307,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: EzConfig.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: ezTextFieldRadius,
+        borderRadius: EzConfig.textFieldRadius,
       );
 
   /// Word spacing setting
@@ -375,7 +375,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: EzConfig.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: ezTextFieldRadius,
+        borderRadius: EzConfig.textFieldRadius,
       );
 
   /// Line height setting
@@ -540,7 +540,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         ),
         baseColor: EzConfig.colors.surface,
         padding: colMargin,
-        borderRadius: ezPillEdge,
+        borderRadius: EzConfig.textRadius,
       ),
       EzConfig.spacer,
 
@@ -564,7 +564,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         ),
         baseColor: EzConfig.colors.surface,
         padding: colMargin,
-        borderRadius: ezPillEdge,
+        borderRadius: EzConfig.textRadius,
       ),
       EzConfig.spacer,
 
@@ -587,7 +587,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         ),
         baseColor: EzConfig.colors.surface,
         padding: colMargin,
-        borderRadius: ezPillEdge,
+        borderRadius: EzConfig.textRadius,
       ),
       EzConfig.spacer,
 
@@ -611,7 +611,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         ),
         baseColor: EzConfig.colors.surface,
         padding: colMargin,
-        borderRadius: ezPillEdge,
+        borderRadius: EzConfig.textRadius,
       ),
       EzConfig.spacer,
 
@@ -635,7 +635,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         ),
         baseColor: EzConfig.colors.surface,
         padding: colMargin,
-        borderRadius: ezPillEdge,
+        borderRadius: EzConfig.textRadius,
       ),
 
       // Reset all

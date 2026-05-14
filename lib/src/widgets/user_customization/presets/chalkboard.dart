@@ -187,3 +187,8 @@ class EzChalkboardConfig extends StatelessWidget {
     );
   }
 }
+
+// Local consts //
+
+/// 0xFF264941
+const Color chalkboardGreen = Color(0xFF264941);

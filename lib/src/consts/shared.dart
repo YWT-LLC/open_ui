@@ -66,20 +66,11 @@ const Set<String> rtlLanguageCodes = <String>{
 
 //* Theme Data *//
 
-/// 0xFF264941
-const Color chalkboardGreen = Color(0xFF264941);
-
 /// Opacity for highlight effects; on hover, on focus, etc
 /// Doubles as opacity minimum for crucial elements
 /// Some things are too important to be broken by user settings
 /// 0.12
 const double focusOpacity = 0.125;
-
-/// 16.0
-const double gemSlope = 16.0;
-
-/// 12.0
-const double gramSlope = 12.0;
 
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';

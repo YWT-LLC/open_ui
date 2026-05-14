@@ -435,7 +435,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
           color: colorScheme.secondary,
           width: borderWidth,
         ),
-        borderRadius: ezRoundEdge,
+        borderRadius: EzConfig.textRadius, // TODO: now self-ref
       ),
       textStyle: textTheme.bodyLarge,
       textAlign: TextAlign.center,

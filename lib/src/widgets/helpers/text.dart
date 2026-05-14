@@ -55,7 +55,7 @@ class EzTextBackground extends StatelessWidget {
                 color: backgroundColor ??
                     (baseColor ?? EzConfig.colors.surfaceContainer)
                         .withValues(alpha: EzConfig.textBackgroundOpacity),
-                borderRadius: borderRadius ?? ezRoundEdge,
+                borderRadius: borderRadius ?? EzConfig.textRadius,
               ),
         child: text,
       );

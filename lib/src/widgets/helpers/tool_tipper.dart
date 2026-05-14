@@ -90,7 +90,7 @@ class EzToolTipper extends StatelessWidget {
         ),
       ),
       baseColor: EzConfig.colors.surface,
-      borderRadius: ezPillEdge,
+      borderRadius: EzConfig.textRadius,
     );
   }
 }
