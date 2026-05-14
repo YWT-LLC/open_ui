@@ -110,9 +110,13 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangePlatformBrightness() {
+  void didChangePlatformBrightness() async {
     super.didChangePlatformBrightness();
-    EzConfig.redrawTheme();
+
+    if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
+        EzConfig.isDark) {
+      await EzConfig.rebuildUI();
+    }
   }
 
   // Return the build //

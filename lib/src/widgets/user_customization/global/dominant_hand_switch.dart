@@ -37,7 +37,7 @@ class EzDominantHandSwitch extends StatelessWidget {
             onSelected: (bool? makeLeft) async {
               if (makeLeft == null || makeLeft == EzConfig.isLefty) return;
               await EzConfig.setBool(isLeftyKey, makeLeft);
-              await EzConfig.redrawUI();
+              await EzConfig.rebuildUI();
             },
           ),
         ],

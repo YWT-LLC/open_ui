@@ -236,18 +236,12 @@ class EzConfigProvider extends ChangeNotifier {
     final (Locale, EFUILang) result = await ezStoredL10n();
     _locale = result.$1;
     _l10n = result.$2;
+    _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
 
-    final bool newLTR = !rtlLanguageCodes.contains(_locale.languageCode);
-
-    if (newLTR == _ltr) {
-      await redrawUI();
-    } else {
-      _ltr = newLTR;
-      await rebuildUI();
-    }
+    await rebuildUI();
   }
 
-  /// Reconfigure [ThemeMode] et al. from storage and [redrawUI]
+  /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
   Future<void> rebuildThemeMode() async {
     final ThemeMode newMode = _buildThemeMode();
 
@@ -271,7 +265,7 @@ class EzConfigProvider extends ChangeNotifier {
         break;
     }
 
-    await redrawUI();
+    await rebuildUI();
   }
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
@@ -305,35 +299,12 @@ class EzConfigProvider extends ChangeNotifier {
     }
     _buildThemeData();
 
-    _needsRebuild = false;
-    await redrawUI();
-
-    // Close progress layer
-    ezRootNav.currentState!.pop();
-    ezCloseAll(); // redraw's version is "blocked" by the progress layer
-  }
-
-  /// Randomizes the [seed] and notifies listeners
-  Future<void> redrawUI() async {
     _seed = Random().nextInt(rMax);
     await _appCache.rebuild();
+    _needsRebuild = false;
 
     ezCloseAll();
     notifyListeners();
-  }
-
-  /// Trigger [redrawUI] if/when the [ThemeMode] brightness changes
-  /// Used in [EzConfigurableApp], not normally called manually
-  /// For that reason, there is no passthrough for [redrawUI]
-  Future<void> redrawTheme() async {
-    final bool newIsDark =
-        (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark);
-
-    if (newIsDark != _isDark) {
-      _isDark = newIsDark;
-      _currTheme = newIsDark ? _darkTheme : _lightTheme;
-      await redrawUI();
-    }
   }
 }
 

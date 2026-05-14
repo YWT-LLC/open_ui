@@ -197,30 +197,19 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
 }
 
 class EzRebuildFAB extends StatelessWidget {
-  /// If true, calls [EzConfig.redrawUI] instead of [EzConfig.rebuildUI]
-  final bool justDraw;
-
   /// Optional override, defaults to 'Apply changes'
   final String? tooltip;
 
-  /// Optional override, defaults to [Icons.check]
-  final IconData? icon;
-
   /// [FloatingActionButton] that rebuilds the app when pressed
-  const EzRebuildFAB({
-    super.key,
-    this.justDraw = false,
-    this.tooltip,
-    this.icon,
-  });
+  const EzRebuildFAB({super.key, this.tooltip});
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
         heroTag: 'rebuild_fab',
-        onPressed: () => justDraw ? EzConfig.redrawUI() : EzConfig.rebuildUI(),
+        onPressed: EzConfig.rebuildUI,
         tooltip: tooltip ?? EzConfig.l10n.gApplyChanges,
         backgroundColor: EzConfig.colors.secondary,
         foregroundColor: EzConfig.colors.onSecondary,
-        child: EzIcon(icon ?? Icons.build),
+        child: EzIcon(Icons.build),
       );
 }

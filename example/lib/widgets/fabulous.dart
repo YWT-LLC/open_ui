@@ -52,7 +52,7 @@ class ResetFAB extends StatelessWidget {
                     EzMaterialAction(
                       onPressed: () async {
                         clear();
-                        await EzConfig.redrawUI();
+                        await EzConfig.rebuildUI();
                         state();
                       },
                       text: l10n.csResetBuilder,
