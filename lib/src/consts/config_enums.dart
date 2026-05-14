@@ -148,7 +148,9 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.jewel => BeveledRectangleBorder(borderRadius: radius),
       };
 
-  BorderRadius get fieldRadius => switch (this) {
+  BorderRadius get textRadius => radius;
+
+  BorderRadius get textFieldRadius => switch (this) {
         EzButtonShape.pill => const BorderRadius.only(
             topLeft: Radius.circular(ezRoundRadius),
             topRight: Radius.circular(ezRoundRadius),
