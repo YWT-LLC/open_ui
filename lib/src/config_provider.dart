@@ -303,6 +303,7 @@ class EzConfigProvider extends ChangeNotifier {
     await _appCache.rebuild();
     _needsRebuild = false;
 
+    ezRootNav.currentState!.pop();
     ezCloseAll();
     notifyListeners();
   }
