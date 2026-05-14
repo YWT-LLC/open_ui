@@ -92,7 +92,7 @@ class OpenUIScaffold extends StatelessWidget {
           floatingActionButton: EzCol(children: <Widget>[
             updater,
             if (fabs != null) ...fabs!,
-            ...EzConfig.backFAB,
+            ...EzConfig.backFABs,
           ]),
           floatingActionButtonLocation: EzConfig.isLefty
               ? FloatingActionButtonLocation.startFloat
