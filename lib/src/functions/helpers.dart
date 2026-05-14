@@ -337,8 +337,13 @@ Page<dynamic> ezPageBuilder(
   GoRouterState state,
   Widget child, {
   Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transitionsBuilder,
-}) {
-  Widget swipeBackWrap(Widget child) => switch (EzConfig.platform) {
+}) =>
+    CustomTransitionPage<dynamic>(
+      key: state.pageKey,
+      transitionsBuilder: transitionsBuilder ?? ezTransitionsBuilder,
+      transitionDuration: ezAnimDuration(),
+      reverseTransitionDuration: ezAnimDuration(),
+      child: switch (EzConfig.platform) {
         TargetPlatform.iOS || TargetPlatform.macOS => GestureDetector(
             behavior: HitTestBehavior.translucent,
             onHorizontalDragEnd: (DragEndDetails details) {
@@ -351,16 +356,8 @@ Page<dynamic> ezPageBuilder(
             child: child,
           ),
         _ => child,
-      };
-
-  return CustomTransitionPage<dynamic>(
-    key: state.pageKey,
-    transitionsBuilder: transitionsBuilder ?? ezTransitionsBuilder,
-    transitionDuration: ezAnimDuration(),
-    reverseTransitionDuration: ezAnimDuration(),
-    child: swipeBackWrap(child),
-  );
-}
+      },
+    );
 
 /// Returns the app's current [Locale] and it's corresponding [EFUILang]
 Future<(Locale, EFUILang)> ezStoredL10n() async {
