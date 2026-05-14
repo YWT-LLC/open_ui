@@ -17,12 +17,16 @@ class EzScreen extends StatelessWidget {
   /// Margin around the screen content
   final EdgeInsetsGeometry? margin;
 
+  /// Optional wrap [child] in a [SafeArea]
+  final bool safeArea;
+
   /// Custom [Container] that creates a standard screen for [EzConfig] powered apps
   const EzScreen(
     this.child, {
     super.key,
     this.alignment,
     this.margin,
+    this.safeArea = false,
   });
 
   Decoration? buildDecoration() {
@@ -42,6 +46,6 @@ class EzScreen extends StatelessWidget {
         decoration: buildDecoration(),
         height: double.infinity,
         width: double.infinity,
-        child: child,
+        child: safeArea ? SafeArea(child: child) : child,
       );
 }
