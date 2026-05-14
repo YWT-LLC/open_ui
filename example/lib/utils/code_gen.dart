@@ -564,12 +564,16 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
+  /// For [EzConfig.backFABs]
+  final bool home;
+
   /// Standardized [Scaffold] for all of the EFUI example app's screens
   const ${classCaseAppName}Scaffold(this.body, {
     super.key,
     this.title = appName,
     this.showSettings = true,
     this.fabs,
+    this.home = false,
   });
 
   @override
@@ -617,7 +621,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           fabs: <Widget>[
             updater,
             if (fabs != null) ...fabs!,
-            ...EzConfig.backFABs,
+            ...EzConfig.backFABs(home),
           ],
         ),
       ),
@@ -730,6 +734,7 @@ class _HomeScreenState extends State<HomeScreen> {
           EzConfig.spacer,
           CountFAB(() => setState(() => count += 1)),
         ],
+        home: true,
       );
 }
 """);

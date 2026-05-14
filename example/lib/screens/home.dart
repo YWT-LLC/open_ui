@@ -705,6 +705,7 @@ class _HomeScreenState extends State<HomeScreen> {
             state: () => setState(() {}),
           )
         ],
+        home: true,
       );
 
   @override

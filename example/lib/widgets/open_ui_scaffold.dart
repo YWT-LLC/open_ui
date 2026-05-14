@@ -30,6 +30,9 @@ class OpenUIScaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
+  /// For [EzConfig.backFABs]
+  final bool home;
+
   /// Standardized [Scaffold] for all of the EFUI example app's screens
   const OpenUIScaffold(
     this.body, {
@@ -39,6 +42,7 @@ class OpenUIScaffold extends StatelessWidget {
     this.showSettings = true,
     this.onUpload,
     this.fabs,
+    this.home = false,
   });
 
   @override
@@ -92,7 +96,7 @@ class OpenUIScaffold extends StatelessWidget {
           fabs: <Widget>[
             updater,
             if (fabs != null) ...fabs!,
-            ...EzConfig.backFABs,
+            ...EzConfig.backFABs(home),
           ],
         ),
       ),

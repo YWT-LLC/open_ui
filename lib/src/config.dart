@@ -895,9 +895,10 @@ Must be one of [int, bool, double, String, List<String>]''');
   static bool get lineLinks => _provPoint.design.lineLinks;
   static bool get showBackFAB => _provPoint.design.showBackFAB;
 
-  static List<Widget> get backFABs => (showBackFAB && ezRootNav.currentState!.canPop())
-      ? <Widget>[_provPoint.layout.spacer, const EzBackFAB()]
-      : <Widget>[];
+  static List<Widget> backFABs(bool home) =>
+      (showBackFAB && !home && ezRootNav.currentState!.canPop())
+          ? <Widget>[_provPoint.layout.spacer, const EzBackFAB()]
+          : <Widget>[];
 
   static double get marginVal => _provPoint.design.margin;
   static double get spacing => _provPoint.design.spacing;
