@@ -305,6 +305,18 @@ String ezLocaleName(Locale locale, BuildContext context) {
   }
 }
 
+/// Required if you want to use Haitian Creole (ht)
+Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
+        List<LocalizationsDelegate<dynamic>> local) =>
+    <LocalizationsDelegate<dynamic>>{
+      const LocaleNamesLocalizationsDelegate(),
+      CreoleMaterialLocalizations.delegate,
+      CreoleCupertinoLocalizations.delegate,
+      const CreoleWidgetsLocalizationsDelegate(),
+      ...EFUILang.localizationsDelegates,
+      ...local,
+    };
+
 /// [ezLog] the passed message and display an [EzAlertDialog] to notify the user
 Future<dynamic> ezLogAlert(
   BuildContext context, {
