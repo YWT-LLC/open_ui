@@ -1,0 +1,93 @@
+{
+  "@@locale": "ko",
+
+  "csPageTitle": "빌더",
+
+  "csAppName": "앱 이름",
+  "csNamePreview": "example_app",
+  "csNameTip": "최고의 앱",
+  "csBecomes": "변경됨",
+  "csInvalidName": "소문자, 숫자, 밑줄(_)만 허용됩니다.",
+  "csYourApp": "내 앱",
+  "csPubName": "게시자 이름",
+  "csPubPreview": "예시 조직",
+  "csPubTip": "또는 예시 담당자",
+  "csDescription": "설명",
+  "csDescPreview": "앱에 대한 한두 문장의 설명입니다.",
+  "csDomainName": "도메인 이름",
+  "csDomainTip": "역순으로는 다음과 같습니다",
+  "csInvalidDomain": "'domain.name' 형식만 가능합니다. 정규식: RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+  "csInclude": "포함",
+  "csEasy": "나중에 쉽게 변경 가능",
+
+  "csGenApp": "{app_name}을(를) 생성할 때, 현재 ",
+  "csTheApp": "앱",
+  "csTheConfig": "구성",
+  "csSetColors": " (이미지 제외)이(가) {app_name}의 기본 구성이 됩니다.\n\n사용자 지정 색상표를 설정하는 것을 권장합니다. 설정에 도움이 필요하시다면 다음에서 시작해 보세요. ",
+  "csHere": "여기.",
+  "csHereHint": "온라인 색상표 빌더 열기",
+
+  "csFileBrowser": "파일 탐색기 열기",
+  "csFlutterPath": "Flutter 경로",
+  "csNoSpaces": "경로에는 공백이 포함될 수 없습니다",
+  "csNotInstalled": "설치되지 않았나요?",
+  "csPathRequired": "경로가 필요합니다. 루트 폴더는 사용할 수 없습니다.",
+  "csBadPath": "잘못된 경로",
+
+  "csAdvanced": "고급 설정",
+  "csRestore": "{setting} 복원",
+  "csOutputPath": "출력 경로",
+  "csCopyright": "저작권 고지",
+  "csCopyrightTip": "모든 Dart 파일의 상단에 포함됩니다",
+  "csLicenseDocs": "오픈소스 라이선스에 대한 문서 열기",
+  "csL10nTip": "현지화(번역) 구성",
+  "csLintTip": "Lint 규칙",
+  "csLaunchTip": "VS Code의 디버그 메뉴에 실행 옵션 추가",
+
+  "csGenerate": "앱 생성",
+  "csInvalidFields": "일부 필드가 잘못되었습니다",
+  "csRequired": "모든 필드는 필수 항목입니다",
+
+  "csResetHint": "초기화할 항목을 활성화하고 확인하세요.",
+  "csResetBuilder": "빌더 값",
+  "csResetApp": "앱 설정",
+  "csResetBoth": "둘 다",
+  "csResetNothing": "없음",
+
+
+
+  "asPageTitle": "아카이버",
+
+  "asUseIt": "\n\n다음에 사용하세요: ",
+  "asToGen": " 데스크톱용을 사용하여 {app_name}의 코드를 생성합니다",
+
+  
+
+  "gsPageTitle": "생성기",
+
+  "gsConsole": "콘솔 출력",
+
+  "gsIsReadyIn": "준비 완료:",
+  "gsFirstRun": "첫 실행은 일반적으로 시간이 조금 걸립니다",
+
+  "gsNeedPermission": "Open UI에 전체 디스크 접근 권한이 필요합니다.\n\n다음으로 이동하여...\n시스템 설정 > 개인정보 보호 및 보안 > 전체 디스크 접근 권한 > Open UI 활성화; 후 다시 시도해 주세요.",
+  "gsSeeNBelieve": "Open UI가 수행하는 작업을 확인하려면 다음으로 이동하세요. ",
+  "gsSeeNBelieveHint": "Open UI의 코드 생성 코드를 엽니다.",
+  "gsNotInstalled": "Flutter가 설치되지 않았습니다",
+  "gsPartialSuccess": "코드가 성공적으로 생성되었지만 일부 프로젝트 설정에 실패했습니다.",
+
+
+
+  "rsWouldYou": "다음 작업을 하시겠습니까...",
+
+  "rsInstall": "설치하기",
+  "rsInstallHint": "Flutter 설치 가이드 열기",
+
+  "rsRun": "실행하기",
+
+  "rsWipe": "초기화하기",
+  "rsNextTime": "성공입니다! 다음번에도 행운을 빕니다!",
+  "rsAnotherOne": "또 실패했습니다. 직접 확인해 보시는 것이 좋겠습니다...",
+
+  "rsLeave": "그대로 두기"
+}

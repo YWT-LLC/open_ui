@@ -1,0 +1,93 @@
+{
+  "@@locale": "ja",
+
+  "csPageTitle": "ビルダー",
+
+  "csAppName": "アプリ名",
+  "csNamePreview": "example_app",
+  "csNameTip": "最高のアプリ",
+  "csBecomes": "になります",
+  "csInvalidName": "小文字、数字、アンダースコアのみ使用可能です。",
+  "csYourApp": "あなたのアプリ",
+  "csPubName": "パブリッシャー名",
+  "csPubPreview": "Example Organization",
+  "csPubTip": "または、個人の名前",
+  "csDescription": "説明",
+  "csDescPreview": "アプリに関する1〜2文の説明。",
+  "csDomainName": "ドメイン名",
+  "csDomainTip": "逆にすると、次のようになります:",
+  "csInvalidDomain": "'domain.name' の形式のみ; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+  "csInclude": "含める",
+  "csEasy": "後から簡単に変更可能",
+
+  "csGenApp": "{app_name} を生成すると、現在の",
+  "csTheApp": "アプリの",
+  "csTheConfig": "設定",
+  "csSetColors": "（画像を除く）が {app_name} のデフォルト設定になります。\n\nカスタムカラースキームを設定することをお勧めします。作成のヒントが必要な場合は、ここから始めてみてください: ",
+  "csHere": "こちら",
+  "csHereHint": "オンラインのカラースキームビルダーを開く",
+
+  "csFileBrowser": "ファイルブラウザを開く",
+  "csFlutterPath": "Flutterのパス",
+  "csNoSpaces": "パスにスペースを含めることはできません",
+  "csNotInstalled": "インストールされていませんか？",
+  "csPathRequired": "パスが必要です。ルートフォルダは使用できません。",
+  "csBadPath": "無効なパス",
+
+  "csAdvanced": "詳細設定",
+  "csRestore": "{setting} を復元",
+  "csOutputPath": "出力パス",
+  "csCopyright": "著作権表示",
+  "csCopyrightTip": "すべてのDartファイルの先頭に含まれます",
+  "csLicenseDocs": "オープンソースライセンスに関するドキュメントを開く",
+  "csL10nTip": "ローカリゼーション（翻訳）設定",
+  "csLintTip": "Lintルール",
+  "csLaunchTip": "VS Codeのデバッグメニューに起動オプションを追加します",
+
+  "csGenerate": "アプリを生成",
+  "csInvalidFields": "一部のフィールドが無効です",
+  "csRequired": "すべてのフィールドが必須です",
+
+  "csResetHint": "リセットする項目を有効にして確認してください。",
+  "csResetBuilder": "ビルダーの値",
+  "csResetApp": "アプリの設定",
+  "csResetBoth": "両方",
+  "csResetNothing": "なし",
+
+
+
+  "asPageTitle": "アーカイバー",
+
+  "asUseIt": "\n\n以下で使用してください: ",
+  "asToGen": " (デスクトップ版) を使用して {app_name} のコードを生成します",
+
+  
+
+  "gsPageTitle": "ジェネレーター",
+
+  "gsConsole": "コンソール出力",
+
+  "gsIsReadyIn": "で準備完了",
+  "gsFirstRun": "通常、初回起動には時間がかかります",
+
+  "gsNeedPermission": "Open UI にはフルディスクアクセスが必要です。\n\nシステム設定 > プライバシーとセキュリティ > フルディスクアクセス に移動し、Open UI を有効にしてからもう一度お試しください。",
+  "gsSeeNBelieve": "Open UI の動作を確認したい場合は、こちらへ: ",
+  "gsSeeNBelieveHint": "Open UI のコード生成コードを開く",
+  "gsNotInstalled": "Flutterがインストールされていません",
+  "gsPartialSuccess": "コードは正常に生成されましたが、プロジェクトのセットアップの一部が失敗しました。",
+
+
+
+  "rsWouldYou": "次は何をしますか...",
+
+  "rsInstall": "インストールする",
+  "rsInstallHint": "Flutterのインストールガイドを開く",
+
+  "rsRun": "実行する",
+
+  "rsWipe": "ワイプする",
+  "rsNextTime": "成功です、次回もうまくいくことを祈りましょう！",
+  "rsAnotherOne": "また失敗しました。手動で対応したほうがいいかもしれません...",
+
+  "rsLeave": "そのままにする"
+}

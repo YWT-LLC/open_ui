@@ -1,0 +1,93 @@
+{
+  "@@locale": "fil",
+
+  "csPageTitle": "Tagabuo",
+
+  "csAppName": "Pangalan ng app",
+  "csNamePreview": "halimbawang_app",
+  "csNameTip": "Pinakamagandang App Kailanman",
+  "csBecomes": "ay nagiging",
+  "csInvalidName": "Maliit na titik, numero, at mga underscore lang ang pinapayagan.",
+  "csYourApp": "iyong app",
+  "csPubName": "Pangalan ng publisher",
+  "csPubPreview": "Halimbawang Organisasyon",
+  "csPubTip": "O kaya, Halimbawang Tao",
+  "csDescription": "Paglalarawan",
+  "csDescPreview": "Isa o dalawang pangungusap tungkol sa iyong app.",
+  "csDomainName": "Pangalan ng domain",
+  "csDomainTip": "Pabaligtad, ito ay",
+  "csInvalidDomain": "'domain.name' lamang; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+  "csInclude": "Isama",
+  "csEasy": "Madaling palitan mamaya",
+
+  "csGenApp": "Kapag binuo mo ang {app_name}, ang kasalukuyang ",
+  "csTheApp": "ang app",
+  "csTheConfig": "ang config",
+  "csSetColors": " (maliban sa mga larawan) ay magiging default na config para sa {app_name}.\n\nInirerekomenda na magtakda ng custom na color scheme. Kung kailangan mo ng tulong sa pagbuo nito, subukang magsimula ",
+  "csHere": "dito.",
+  "csHereHint": "Magbukas ng online na tagabuo ng color scheme",
+
+  "csFileBrowser": "Buksan ang file browser",
+  "csFlutterPath": "Path ng Flutter",
+  "csNoSpaces": "Hindi maaaring magkaroon ng mga espasyo ang path",
+  "csNotInstalled": "Hindi naka-install?",
+  "csPathRequired": "Kinakailangan ang path. Hindi magagamit ang root folder.",
+  "csBadPath": "Hindi wastong path",
+
+  "csAdvanced": "Mga advanced na setting",
+  "csRestore": "I-restore ang {setting}",
+  "csOutputPath": "Output path",
+  "csCopyright": "Pabatid sa copyright",
+  "csCopyrightTip": "Isasama sa itaas ng bawat Dart file",
+  "csLicenseDocs": "Buksan ang dokumentasyon tungkol sa mga open source na lisensya",
+  "csL10nTip": "Config ng lokalisasyon (o mga pagsasalin)",
+  "csLintTip": "Mga panuntunan ng lint",
+  "csLaunchTip": "Nagdaragdag ng mga opsyon sa paglunsad sa debug menu ng VS Code",
+
+  "csGenerate": "Bumuo ng app",
+  "csInvalidFields": "May mga field na hindi wasto",
+  "csRequired": "Kinakailangan ang lahat ng field",
+
+  "csResetHint": "I-activate at kumpirmahin kung ano ang dapat i-reset.",
+  "csResetBuilder": "Mga value ng tagabuo",
+  "csResetApp": "Mga setting ng app",
+  "csResetBoth": "Pareho",
+  "csResetNothing": "Wala",
+
+
+
+  "asPageTitle": "Taga-archive",
+
+  "asUseIt": "\n\nGamitin ito sa ",
+  "asToGen": " para sa desktop upang mabuo ang code para sa {app_name}",
+
+  
+
+  "gsPageTitle": "Generator",
+
+  "gsConsole": "Output sa console",
+
+  "gsIsReadyIn": "ay handa na sa loob ng",
+  "gsFirstRun": "Karaniwang matagal ang unang pagpapatakbo",
+
+  "gsNeedPermission": "Kailangan ng Open UI ng Full Disk Access.\n\nMangyaring pumunta sa...\nSystem Settings > Privacy & Security > Full Disk Access > I-enable ang Open UI; pagkatapos ay subukang muli.",
+  "gsSeeNBelieve": "Kung gusto mong suriin kung ano ang ginagawa ng Open UI, pumunta ",
+  "gsSeeNBelieveHint": "Buksan ang code ng pagbuo ng code ng Open UI.",
+  "gsNotInstalled": "Hindi naka-install ang Flutter",
+  "gsPartialSuccess": "Matagumpay na nabuo ang code, ngunit nabigo ang ilan sa pag-setup ng proyekto.",
+
+
+
+  "rsWouldYou": "gusto mo bang...",
+
+  "rsInstall": "I-install ito",
+  "rsInstallHint": "Buksan ang gabay sa pag-install ng Flutter",
+
+  "rsRun": "Patakbuhin ito",
+
+  "rsWipe": "Burahin ito",
+  "rsNextTime": "Tagumpay, umasa tayong maayos ulit sa susunod!",
+  "rsAnotherOne": "Panibagong pagkabigo; baka dapat ikaw na ang mag-ayos...",
+
+  "rsLeave": "Iwanan ito"
+}

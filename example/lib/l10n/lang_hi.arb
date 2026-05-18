@@ -1,0 +1,93 @@
+{
+  "@@locale": "hi",
+
+  "csPageTitle": "बिल्डर",
+
+  "csAppName": "ऐप का नाम",
+  "csNamePreview": "example_app",
+  "csNameTip": "अब तक का सबसे अच्छा ऐप",
+  "csBecomes": "बन जाता है",
+  "csInvalidName": "लोअरकेस अक्षर, संख्याएं और अंडरस्कोर की अनुमति है।",
+  "csYourApp": "आपका ऐप",
+  "csPubName": "प्रकाशक का नाम",
+  "csPubPreview": "उदाहरण संगठन",
+  "csPubTip": "या, उदाहरण व्यक्ति",
+  "csDescription": "विवरण",
+  "csDescPreview": "आपके ऐप के बारे में एक या दो वाक्य।",
+  "csDomainName": "डोमेन नाम",
+  "csDomainTip": "उल्टे क्रम में, यह है",
+  "csInvalidDomain": "केवल 'domain.name'; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+  "csInclude": "शामिल करें",
+  "csEasy": "बाद में बदलना आसान है",
+
+  "csGenApp": "जब आप {app_name} जनरेट करते हैं, तो वर्तमान ",
+  "csTheApp": "ऐप",
+  "csTheConfig": "कॉन्फ़िगरेशन",
+  "csSetColors": " (छवियों को छोड़कर) {app_name} के लिए डिफ़ॉल्ट कॉन्फ़िगरेशन बन जाएगा।\n\nएक कस्टम रंग योजना (color scheme) सेट करने की अनुशंसा की जाती है। यदि आपको इसे बनाने में सहायता चाहिए, तो यहां से शुरू करने का प्रयास करें ",
+  "csHere": "यहां।",
+  "csHereHint": "एक ऑनलाइन कलर स्कीम बिल्डर खोलें",
+
+  "csFileBrowser": "फ़ाइल ब्राउज़र खोलें",
+  "csFlutterPath": "फ़्लटर (Flutter) पथ",
+  "csNoSpaces": "पथ में रिक्त स्थान (spaces) नहीं हो सकते",
+  "csNotInstalled": "इंस्टॉल नहीं है?",
+  "csPathRequired": "पथ आवश्यक है। रूट फ़ोल्डर का उपयोग नहीं किया जा सकता।",
+  "csBadPath": "अमान्य पथ",
+
+  "csAdvanced": "उन्नत सेटिंग्स",
+  "csRestore": "{setting} को पुनर्स्थापित करें",
+  "csOutputPath": "आउटपुट पथ",
+  "csCopyright": "कॉपीराइट नोटिस",
+  "csCopyrightTip": "प्रत्येक Dart फ़ाइल के शीर्ष पर शामिल किया जाएगा",
+  "csLicenseDocs": "ओपन सोर्स लाइसेंस पर दस्तावेज़ खोलें",
+  "csL10nTip": "स्थानीयकरण (अर्थात अनुवाद) कॉन्फ़िगरेशन",
+  "csLintTip": "लिंट (Lint) नियम",
+  "csLaunchTip": "VS Code के डीबग मेनू में लॉन्च विकल्प जोड़ता है",
+
+  "csGenerate": "ऐप जनरेट करें",
+  "csInvalidFields": "कुछ फ़ील्ड अमान्य हैं",
+  "csRequired": "सभी फ़ील्ड आवश्यक हैं",
+
+  "csResetHint": "सक्रिय करें और पुष्टि करें कि क्या रीसेट किया जाना चाहिए।",
+  "csResetBuilder": "बिल्डर मान",
+  "csResetApp": "ऐप सेटिंग्स",
+  "csResetBoth": "दोनों",
+  "csResetNothing": "कुछ नहीं",
+
+
+
+  "asPageTitle": "आर्काइवर",
+
+  "asUseIt": "\n\nइसका उपयोग ",
+  "asToGen": " पर डेस्कटॉप के लिए करें ताकि {app_name} के लिए कोड जनरेट किया जा सके",
+
+  
+
+  "gsPageTitle": "जनरेटर",
+
+  "gsConsole": "कंसोल आउटपुट",
+
+  "gsIsReadyIn": "में तैयार है",
+  "gsFirstRun": "पहली बार चलने में आमतौर पर कुछ समय लगता है",
+
+  "gsNeedPermission": "Open UI को पूर्ण डिस्क एक्सेस (Full Disk Access) की आवश्यकता है।\n\nकृपया यहां जाएं...\nसिस्टम सेटिंग्स > गोपनीयता और सुरक्षा > पूर्ण डिस्क एक्सेस > Open UI सक्षम करें; फिर पुनः प्रयास करें।",
+  "gsSeeNBelieve": "यदि आप सत्यापित करना चाहते हैं कि Open UI क्या करता है, तो जाएं ",
+  "gsSeeNBelieveHint": "Open UI का कोड जनरेशन कोड खोलें।",
+  "gsNotInstalled": "फ़्लटर (Flutter) इंस्टॉल नहीं है",
+  "gsPartialSuccess": "कोड सफलतापूर्वक जनरेट हो गया था, लेकिन प्रोजेक्ट का कुछ सेटअप विफल रहा।",
+
+
+
+  "rsWouldYou": "क्या आप चाहेंगे कि...",
+
+  "rsInstall": "इसे इंस्टॉल करें",
+  "rsInstallHint": "फ़्लटर (Flutter) की इंस्टॉलेशन गाइड खोलें",
+
+  "rsRun": "इसे चलाएं",
+
+  "rsWipe": "इसे मिटाएं",
+  "rsNextTime": "सफलता, अगली बार के लिए शुभकामनाएँ!",
+  "rsAnotherOne": "एक और विफलता; संभवतः अब आपको कमान संभाल लेनी चाहिए...",
+
+  "rsLeave": "इसे छोड़ दें"
+}

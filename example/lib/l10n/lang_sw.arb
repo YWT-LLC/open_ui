@@ -1,0 +1,93 @@
+{
+  "@@locale": "sw",
+
+  "csPageTitle": "Mjenzi",
+
+  "csAppName": "Jina la programu",
+  "csNamePreview": "programu_mfano",
+  "csNameTip": "Programu Bora Zaidi",
+  "csBecomes": "inakuwa",
+  "csInvalidName": "Herufi ndogo, nambari, na mistari chini zinaruhusiwa.",
+  "csYourApp": "programu yako",
+  "csPubName": "Jina la mchapishaji",
+  "csPubPreview": "Shirika la Mfano",
+  "csPubTip": "Au, Mtu wa Mfano",
+  "csDescription": "Maelezo",
+  "csDescPreview": "Sentensi moja au mbili kuhusu programu yako.",
+  "csDomainName": "Jina la kikoa",
+  "csDomainTip": "Kinyume chake, ni",
+  "csInvalidDomain": "'domain.name' pekee; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+  "csInclude": "Jumuisha",
+  "csEasy": "Rahisi kubadilisha baadaye",
+
+  "csGenApp": "Unapotengeneza {app_name}, ",
+  "csTheApp": "programu",
+  "csTheConfig": "usanidi",
+  "csSetColors": " ya sasa (isipokuwa picha) itakuwa usanidi chaguomsingi kwa {app_name}.\n\nInapendekezwa kuweka mpangilio maalum wa rangi. Ikiwa unahitaji msaada wa kuunda mmoja, jaribu kuanzia ",
+  "csHere": "hapa.",
+  "csHereHint": "Fungua mjenzi wa mpangilio wa rangi mtandaoni",
+
+  "csFileBrowser": "Fungua kivinjari cha faili",
+  "csFlutterPath": "Njia ya Flutter",
+  "csNoSpaces": "Njia haiwezi kuwa na nafasi",
+  "csNotInstalled": "Haijasakinishwa?",
+  "csPathRequired": "Njia inahitajika. Huwezi kutumia folda ya msingi (root).",
+  "csBadPath": "Njia batili",
+
+  "csAdvanced": "Mipangilio ya kina",
+  "csRestore": "Rejesha {setting}",
+  "csOutputPath": "Njia ya pato",
+  "csCopyright": "Taarifa ya hakimiliki",
+  "csCopyrightTip": "Itajumuishwa juu ya kila faili la Dart",
+  "csLicenseDocs": "Fungua nyaraka kuhusu leseni za programu huria",
+  "csL10nTip": "Usanidi wa ujanibishaji (yaani tafsiri)",
+  "csLintTip": "Sheria za lint",
+  "csLaunchTip": "Inaongeza chaguo za kuanzisha kwenye menyu ya utatuzi (debug) ya VS Code",
+
+  "csGenerate": "Tengeneza programu",
+  "csInvalidFields": "Baadhi ya nyanja ni batili",
+  "csRequired": "Nyanja zote zinahitajika",
+
+  "csResetHint": "Washa na uthibitishe kile kinachopaswa kuwekwa upya.",
+  "csResetBuilder": "Thamani za mjenzi",
+  "csResetApp": "Mipangilio ya programu",
+  "csResetBoth": "Zote mbili",
+  "csResetNothing": "Hakuna chochote",
+
+
+
+  "asPageTitle": "Kihifadhi",
+
+  "asUseIt": "\n\nItumie kwenye ",
+  "asToGen": " kwa eneo-kazi ili kutengeneza msimbo wa {app_name}",
+
+
+
+  "gsPageTitle": "Kizalishi",
+
+  "gsConsole": "Pato la kiweko",
+
+  "gsIsReadyIn": "iko tayari baada ya",
+  "gsFirstRun": "Kuendesha kwa mara ya kwanza kwa kawaida huchukua muda kidogo",
+
+  "gsNeedPermission": "Open UI inahitaji Ufikiaji Kamili wa Diski.\n\nTafadhali nenda kwenye...\nMipangilio ya Mfumo > Faragha na Usalama > Ufikiaji Kamili wa Diski > Washa Open UI; kisha ujaribu tena.",
+  "gsSeeNBelieve": "Ikiwa unataka kuthibitisha kile Open UI inafanya, nenda ",
+  "gsSeeNBelieveHint": "Fungua msimbo wa kutengeneza msimbo wa Open UI.",
+  "gsNotInstalled": "Flutter haijasakinishwa",
+  "gsPartialSuccess": "Msimbo ulitengenezwa kikamilifu, lakini baadhi ya usanidi wa mradi ulishindwa.",
+
+
+
+  "rsWouldYou": "ungependa...",
+
+  "rsInstall": "Isakinishe",
+  "rsInstallHint": "Fungua mwongozo wa usakinishaji wa Flutter",
+
+  "rsRun": "Iendeshe",
+
+  "rsWipe": "Ifute",
+  "rsNextTime": "Imefaulu, tunatumai mambo yatakuwa sawa wakati ujao!",
+  "rsAnotherOne": "Kufeli kwingine; labda unapaswa kuchukua udhibiti...",
+
+  "rsLeave": "Iiache"
+}
