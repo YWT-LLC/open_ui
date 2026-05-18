@@ -15,7 +15,7 @@ class EzGlobalSettings extends StatelessWidget {
   final Set<String> inDistress;
 
   /// Locales to skip in the [EzLocaleSetting]
-  /// Defaults to [english] to not dupe [americanEnglish]
+  /// Defaults to {[arabic], [english], [chinese]} to avoid dupes
   final Set<Locale>? skipLocales;
 
   /// [Widget]s to be added below the [EzLocaleSetting]
@@ -79,7 +79,7 @@ class EzGlobalSettings extends StatelessWidget {
         if (!excludeLocaleSetting) ...<Widget>[
           EzConfig.spacer,
           EzLocaleSetting(
-            skip: skipLocales ?? <Locale>{english},
+            skip: skipLocales ?? <Locale>{arabic, english, chinese},
             inDistress: inDistress,
           ),
         ],
