@@ -898,10 +898,32 @@ Future<void> genL10n({
 
   // Make files
   try {
+    await File('$dir/$arbPath/${snakeName}_ar_EG.arb').writeAsString('''{
+  "@@locale": "ar_EG",
+
+  "hsCounterLabel": "لقد ضغطت على الزر هذا العدد من المرات:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_ar.arb').writeAsString('''{
+  "@@locale": "ar",
+
+  "hsCounterLabel": "لقد ضغطت على الزر هذا العدد من المرات:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_de.arb').writeAsString('''{
+  "@@locale": "de",
+
+  "hsCounterLabel": "Sie haben den Knopf so oft gedrückt:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_en_US.arb').writeAsString('''{
+  "@@locale": "en_US",
+
+  "hsCounterLabel": "You have pushed the button this many times:"
+}''');
+
     await File('$dir/$arbPath/${snakeName}_en.arb').writeAsString('''{
   "@@locale": "en",
-
-
 
   "hsCounterLabel": "You have pushed the button this many times:"
 }''');
@@ -909,17 +931,73 @@ Future<void> genL10n({
     await File('$dir/$arbPath/${snakeName}_es.arb').writeAsString('''{
   "@@locale": "es",
 
+  "hsCounterLabel": "Has presionado el botón esta cantidad de veces:"
+}''');
 
+    await File('$dir/$arbPath/${snakeName}_fil.arb').writeAsString('''{
+  "@@locale": "fil",
 
-  "hsCounterLabel": "Has pulsado el botón muchas veces:"
+  "hsCounterLabel": "Maraming beses mo nang pinindot ang buton na ito:"
 }''');
 
     await File('$dir/$arbPath/${snakeName}_fr.arb').writeAsString('''{
   "@@locale": "fr",
 
+  "hsCounterLabel": "Vous avez appuyé sur le bouton ce nombre de fois :"
+}''');
 
+    await File('$dir/$arbPath/${snakeName}_hi.arb').writeAsString('''{
+  "@@locale": "hi",
 
-  "hsCounterLabel": "Vous avez appuyé sur le bouton autant de fois que cela :"
+  "hsCounterLabel": "आपने बटन इतनी बार दबाया है:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_ht.arb').writeAsString('''{
+  "@@locale": "ht",
+
+  "hsCounterLabel": "Ou peze bouton an plizyè fwa deja:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_ja.arb').writeAsString('''{
+  "@@locale": "ja",
+
+  "hsCounterLabel": "ボタンをこれだけ押しました："
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_ko.arb').writeAsString('''{
+  "@@locale": "ko",
+
+  "hsCounterLabel": "버튼을 이만큼 눌렀습니다:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_ru.arb').writeAsString('''{
+  "@@locale": "ru",
+
+  "hsCounterLabel": "Вы нажали на кнопку столько раз:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_sw.arb').writeAsString('''{
+  "@@locale": "sw",
+
+  "hsCounterLabel": "Umebonyeza kitufe mara nyingi hivi:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_uk.arb').writeAsString('''{
+  "@@locale": "uk",
+
+  "hsCounterLabel": "Ви натискали кнопку стільки разів:"
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_zh_CN.arb').writeAsString('''{
+  "@@locale": "zh_CN",
+
+  "hsCounterLabel": "你按了这么多次按钮："
+}''');
+
+    await File('$dir/$arbPath/${snakeName}_zh.arb').writeAsString('''{
+  "@@locale": "zh",
+
+  "hsCounterLabel": "你按了这么多次按钮："
 }''');
 
     await File('$dir/l10n.yaml').writeAsString(config.l10nConfig);
