@@ -269,14 +269,6 @@
 
   "dsCrop": "Recortar",
   "dsNoWeb": "La edición de imágenes no es compatible en la web",
-  "dsDrag": "Arrastrar",
-  "dsDragHint": "Arrastra para mover la imagen",
-  "dsSwipe": "Deslizar",
-  "dsSwipeHint": "Desliza para mover la imagen",
-  "dsPinch": "Pellizcar",
-  "dsPinchHint": "Pellizca para acercar/alejar la imagen",
-  "dsScroll": "Desplazar",
-  "dsScrollHint": "Desplaza para acercar/alejar la imagen",
   "dsRotateLeft": "Girar a la izquierda",
   "dsRotateRight": "Girar a la derecha",
 

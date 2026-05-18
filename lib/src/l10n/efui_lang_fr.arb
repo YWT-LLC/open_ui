@@ -269,14 +269,6 @@
 
   "dsCrop": "Recadrer",
   "dsNoWeb": "L'édition d'images n'est pas prise en charge sur le web",
-  "dsDrag": "Glisser",
-  "dsDragHint": "Glissez pour repositionner l'image",
-  "dsSwipe": "Balayer",
-  "dsSwipeHint": "Balayez pour repositionner l'image",
-  "dsPinch": "Pincer",
-  "dsPinchHint": "Pincez pour zoomer/dézoomer l'image",
-  "dsScroll": "Faire défiler",
-  "dsScrollHint": "Faites défiler pour zoomer/dézoomer",
   "dsRotateLeft": "Tourner à gauche",
   "dsRotateRight": "Tourner à droite",
 

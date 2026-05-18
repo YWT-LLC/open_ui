@@ -269,14 +269,6 @@
 
   "dsCrop": "Crop",
   "dsNoWeb": "Image editing is not supported on web",
-  "dsDrag": "Drag",
-  "dsDragHint": "Drag to reposition the image",
-  "dsSwipe": "Swipe",
-  "dsSwipeHint": "Swipe to reposition the image",
-  "dsPinch": "Pinch",
-  "dsPinchHint": "Pinch to zoom in/out",
-  "dsScroll": "Scroll",
-  "dsScrollHint": "Scroll to zoom in/out",
   "dsRotateLeft": "Rotate left",
   "dsRotateRight": "Rotate right",
 
