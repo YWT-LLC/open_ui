@@ -686,30 +686,6 @@ class EFUILangEs extends EFUILang {
   String get dsNoWeb => 'La edición de imágenes no es compatible en la web';
 
   @override
-  String get dsDrag => 'Arrastrar';
-
-  @override
-  String get dsDragHint => 'Arrastra para mover la imagen';
-
-  @override
-  String get dsSwipe => 'Deslizar';
-
-  @override
-  String get dsSwipeHint => 'Desliza para mover la imagen';
-
-  @override
-  String get dsPinch => 'Pellizcar';
-
-  @override
-  String get dsPinchHint => 'Pellizca para acercar/alejar la imagen';
-
-  @override
-  String get dsScroll => 'Desplazar';
-
-  @override
-  String get dsScrollHint => 'Desplaza para acercar/alejar la imagen';
-
-  @override
   String get dsRotateLeft => 'Girar a la izquierda';
 
   @override

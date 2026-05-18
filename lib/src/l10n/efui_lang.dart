@@ -4,9 +4,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'efui_lang_ar.dart' deferred as efui_lang_ar;
+import 'efui_lang_de.dart' deferred as efui_lang_de;
 import 'efui_lang_en.dart' deferred as efui_lang_en;
 import 'efui_lang_es.dart' deferred as efui_lang_es;
+import 'efui_lang_fil.dart' deferred as efui_lang_fil;
 import 'efui_lang_fr.dart' deferred as efui_lang_fr;
+import 'efui_lang_hi.dart' deferred as efui_lang_hi;
+import 'efui_lang_ht.dart' deferred as efui_lang_ht;
+import 'efui_lang_ja.dart' deferred as efui_lang_ja;
+import 'efui_lang_ko.dart' deferred as efui_lang_ko;
+import 'efui_lang_ru.dart' deferred as efui_lang_ru;
+import 'efui_lang_sw.dart' deferred as efui_lang_sw;
+import 'efui_lang_uk.dart' deferred as efui_lang_uk;
+import 'efui_lang_zh.dart' deferred as efui_lang_zh;
 
 // ignore_for_file: type=lint
 
@@ -93,10 +104,23 @@ abstract class EFUILang {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('ar', 'EG'),
+    Locale('de'),
     Locale('en'),
     Locale('en', 'US'),
     Locale('es'),
-    Locale('fr')
+    Locale('fil'),
+    Locale('fr'),
+    Locale('hi'),
+    Locale('ht'),
+    Locale('ja'),
+    Locale('ko'),
+    Locale('ru'),
+    Locale('sw'),
+    Locale('uk'),
+    Locale('zh'),
+    Locale('zh', 'CN')
   ];
 
   /// No description provided for @gApply.
@@ -1383,54 +1407,6 @@ abstract class EFUILang {
   /// **'Image editing is not supported on web'**
   String get dsNoWeb;
 
-  /// No description provided for @dsDrag.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag'**
-  String get dsDrag;
-
-  /// No description provided for @dsDragHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag to reposition the image'**
-  String get dsDragHint;
-
-  /// No description provided for @dsSwipe.
-  ///
-  /// In en, this message translates to:
-  /// **'Swipe'**
-  String get dsSwipe;
-
-  /// No description provided for @dsSwipeHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Swipe to reposition the image'**
-  String get dsSwipeHint;
-
-  /// No description provided for @dsPinch.
-  ///
-  /// In en, this message translates to:
-  /// **'Pinch'**
-  String get dsPinch;
-
-  /// No description provided for @dsPinchHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Pinch to zoom in/out'**
-  String get dsPinchHint;
-
-  /// No description provided for @dsScroll.
-  ///
-  /// In en, this message translates to:
-  /// **'Scroll'**
-  String get dsScroll;
-
-  /// No description provided for @dsScrollHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Scroll to zoom in/out'**
-  String get dsScrollHint;
-
   /// No description provided for @dsRotateLeft.
   ///
   /// In en, this message translates to:
@@ -1669,8 +1645,22 @@ class _EFUILangDelegate extends LocalizationsDelegate<EFUILang> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'es', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'ar',
+        'de',
+        'en',
+        'es',
+        'fil',
+        'fr',
+        'hi',
+        'ht',
+        'ja',
+        'ko',
+        'ru',
+        'sw',
+        'uk',
+        'zh'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_EFUILangDelegate old) => false;
@@ -1679,6 +1669,16 @@ class _EFUILangDelegate extends LocalizationsDelegate<EFUILang> {
 Future<EFUILang> lookupEFUILang(Locale locale) {
   // Lookup logic when language+country codes are specified.
   switch (locale.languageCode) {
+    case 'ar':
+      {
+        switch (locale.countryCode) {
+          case 'EG':
+            return efui_lang_ar
+                .loadLibrary()
+                .then((dynamic _) => efui_lang_ar.EFUILangArEg());
+        }
+        break;
+      }
     case 'en':
       {
         switch (locale.countryCode) {
@@ -1689,10 +1689,28 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
         }
         break;
       }
+    case 'zh':
+      {
+        switch (locale.countryCode) {
+          case 'CN':
+            return efui_lang_zh
+                .loadLibrary()
+                .then((dynamic _) => efui_lang_zh.EFUILangZhCn());
+        }
+        break;
+      }
   }
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return efui_lang_ar
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ar.EFUILangAr());
+    case 'de':
+      return efui_lang_de
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_de.EFUILangDe());
     case 'en':
       return efui_lang_en
           .loadLibrary()
@@ -1701,10 +1719,46 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
       return efui_lang_es
           .loadLibrary()
           .then((dynamic _) => efui_lang_es.EFUILangEs());
+    case 'fil':
+      return efui_lang_fil
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_fil.EFUILangFil());
     case 'fr':
       return efui_lang_fr
           .loadLibrary()
           .then((dynamic _) => efui_lang_fr.EFUILangFr());
+    case 'hi':
+      return efui_lang_hi
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_hi.EFUILangHi());
+    case 'ht':
+      return efui_lang_ht
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ht.EFUILangHt());
+    case 'ja':
+      return efui_lang_ja
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ja.EFUILangJa());
+    case 'ko':
+      return efui_lang_ko
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ko.EFUILangKo());
+    case 'ru':
+      return efui_lang_ru
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ru.EFUILangRu());
+    case 'sw':
+      return efui_lang_sw
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_sw.EFUILangSw());
+    case 'uk':
+      return efui_lang_uk
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_uk.EFUILangUk());
+    case 'zh':
+      return efui_lang_zh
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_zh.EFUILangZh());
   }
 
   throw FlutterError(

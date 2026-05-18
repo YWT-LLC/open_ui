@@ -681,30 +681,6 @@ class EFUILangEn extends EFUILang {
   String get dsNoWeb => 'Image editing is not supported on web';
 
   @override
-  String get dsDrag => 'Drag';
-
-  @override
-  String get dsDragHint => 'Drag to reposition the image';
-
-  @override
-  String get dsSwipe => 'Swipe';
-
-  @override
-  String get dsSwipeHint => 'Swipe to reposition the image';
-
-  @override
-  String get dsPinch => 'Pinch';
-
-  @override
-  String get dsPinchHint => 'Pinch to zoom in/out';
-
-  @override
-  String get dsScroll => 'Scroll';
-
-  @override
-  String get dsScrollHint => 'Scroll to zoom in/out';
-
-  @override
   String get dsRotateLeft => 'Rotate left';
 
   @override
@@ -1504,30 +1480,6 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get dsNoWeb => 'Image editing is not supported on web';
-
-  @override
-  String get dsDrag => 'Drag';
-
-  @override
-  String get dsDragHint => 'Drag to reposition the image';
-
-  @override
-  String get dsSwipe => 'Swipe';
-
-  @override
-  String get dsSwipeHint => 'Swipe to reposition the image';
-
-  @override
-  String get dsPinch => 'Pinch';
-
-  @override
-  String get dsPinchHint => 'Pinch to zoom in/out';
-
-  @override
-  String get dsScroll => 'Scroll';
-
-  @override
-  String get dsScrollHint => 'Scroll to zoom in/out';
 
   @override
   String get dsRotateLeft => 'Rotate left';

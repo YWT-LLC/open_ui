@@ -686,30 +686,6 @@ class EFUILangFr extends EFUILang {
       'L\'édition d\'images n\'est pas prise en charge sur le web';
 
   @override
-  String get dsDrag => 'Glisser';
-
-  @override
-  String get dsDragHint => 'Glissez pour repositionner l\'image';
-
-  @override
-  String get dsSwipe => 'Balayer';
-
-  @override
-  String get dsSwipeHint => 'Balayez pour repositionner l\'image';
-
-  @override
-  String get dsPinch => 'Pincer';
-
-  @override
-  String get dsPinchHint => 'Pincez pour zoomer/dézoomer l\'image';
-
-  @override
-  String get dsScroll => 'Faire défiler';
-
-  @override
-  String get dsScrollHint => 'Faites défiler pour zoomer/dézoomer';
-
-  @override
   String get dsRotateLeft => 'Tourner à gauche';
 
   @override
