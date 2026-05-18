@@ -55,13 +55,17 @@ const String webImgHint = 'example.com/image.jpg';
 
 //* Localization *//
 
-/// Non-conclusive set containing...
-/// ar, fa, he, ur
+/// Non-conclusive set
 const Set<String> rtlLanguageCodes = <String>{
   'ar', // Arabic
-  'fa', // Persian (Farsi)
-  'he', // Hebrew
   'ur', // Urdu
+  'fa', // Persian (Farsi)
+  'ps', // Pashto
+  'sd', // Sindhi
+  'ug', // Uyghur
+  'he', // Hebrew
+  'yi', // Yiddish
+  'dv', // Divehi (Maldivian)
 };
 
 //* Theme Data *//
