@@ -8,21 +8,16 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzLocaleSetting extends StatefulWidget {
-  /// Override [EFUILang.supportedLocales] default
-  final List<Locale>? locales;
-
   /// [Locale]s to [skip]
-  /// Works for both default and custom [locales]
   final Set<Locale>? skip;
 
-  /// Set of [String] language codes you'd like to protest
+  /// Set of [String] language codes you'd like to flip the flag
   final Set<String> inDistress;
 
   /// [EzElevatedIconButton] for updating the current [Locale]
   /// Opens a [BottomSheet] with a [EzElevatedIconButton] for each supported [Locale]
   const EzLocaleSetting({
     super.key,
-    this.locales,
     this.skip,
     this.inDistress = const <String>{'US'},
   });
@@ -37,7 +32,7 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
   @override
   void initState() {
     super.initState();
-    locales = List<Locale>.from(widget.locales ?? EFUILang.supportedLocales);
+    locales = List<Locale>.from(EFUILang.supportedLocales);
 
     if (widget.skip != null && widget.skip!.isNotEmpty) {
       locales.removeWhere(
