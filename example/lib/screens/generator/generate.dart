@@ -111,7 +111,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
     await ezCmd(
       isWindows ? 'del /f /q $files' : 'rm -f $files',
       dir: projDir,
-      onSuccess: doNothing,
       onFailure: onFailure,
       readout: readout,
     );

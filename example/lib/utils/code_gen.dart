@@ -247,7 +247,6 @@ flutter:
 Future<void> genLib({
   required EAGConfig config,
   required String dir,
-  void Function() onSuccess = doNothing,
   required void Function(String) onFailure,
   required ValueNotifier<String> readout,
 }) async {
@@ -267,7 +266,6 @@ Future<void> genLib({
         ? 'mkdir lib lib\\utils lib\\widgets lib\\screens'
         : 'mkdir lib lib/utils lib/widgets lib/screens',
     dir: dir,
-    onSuccess: doNothing,
     onFailure: onFailure,
     readout: readout,
   );
@@ -869,14 +867,12 @@ const String settingsHubPath = 'settings-hub';
     onFailure(e.toString());
   }
   ezLog('Dart code successfully generated', buffer: readout);
-  onSuccess();
 }
 
 /// Localizations config
 Future<void> genL10n({
   required EAGConfig config,
   required String dir,
-  void Function() onSuccess = doNothing,
   required void Function(String) onFailure,
   required ValueNotifier<String> readout,
 }) async {
@@ -891,7 +887,6 @@ Future<void> genL10n({
   await ezCmd(
     'mkdir $arbPath',
     dir: dir,
-    onSuccess: doNothing,
     onFailure: onFailure,
     readout: readout,
   );
@@ -1005,14 +1000,12 @@ Future<void> genL10n({
     onFailure(e.toString());
   }
   ezLog('Localizations successfully generated', buffer: readout);
-  onSuccess();
 }
 
 /// analysis_options.yaml
 Future<void> genAnalysis({
   required EAGConfig config,
   required String dir,
-  void Function() onSuccess = doNothing,
   required void Function(String) onFailure,
   required ValueNotifier<String> readout,
 }) async {
@@ -1026,14 +1019,12 @@ Future<void> genAnalysis({
     'Analysis options (lint rules) successfully generated',
     buffer: readout,
   );
-  onSuccess();
 }
 
 /// Launch config
 Future<void> genVSCode({
   required EAGConfig config,
   required String dir,
-  void Function() onSuccess = doNothing,
   required void Function(String) onFailure,
   required ValueNotifier<String> readout,
 }) async {
@@ -1041,7 +1032,6 @@ Future<void> genVSCode({
   await ezCmd(
     'mkdir .vscode',
     dir: dir,
-    onSuccess: doNothing,
     onFailure: onFailure,
     readout: readout,
   );
@@ -1054,5 +1044,4 @@ Future<void> genVSCode({
   }
 
   ezLog('VS Code launch config successfully generated', buffer: readout);
-  onSuccess();
 }
