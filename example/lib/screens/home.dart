@@ -8,10 +8,12 @@ import '../utils/export.dart';
 import '../widgets/export.dart';
 
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:after_layout/after_layout.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +23,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScreen> {
   // Define the build data //
 
   final bool isDesktop = kIsWeb
@@ -111,6 +113,26 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     ezWindowNamer(thisAppName);
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) async {
+    if (!isMac) return;
+
+    final ValueNotifier<String> fPath = ValueNotifier<String>('');
+    await ezCmd(
+      'which flutter',
+      dir: '/',
+      debug: false,
+      readout: fPath,
+    );
+
+    final String success = fPath.value.split('\n').firstWhere(
+          (String line) => line.contains('bin/flutter'),
+          orElse: () => '',
+        );
+
+    if (success.isNotEmpty) setState(() => flutterPathTC.text = success);
   }
 
   // Return the build //
