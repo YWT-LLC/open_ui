@@ -19,8 +19,8 @@ void _log(String message, bool debug, ValueNotifier<String>? readout) {
 Future<void> ezCmd(
   String cmd, {
   required String dir,
-  required void Function() onSuccess,
-  required void Function(String message) onFailure,
+  void Function()? onSuccess,
+  void Function(String message)? onFailure,
   void Function(String message)? onError,
   bool debug = true,
   ValueNotifier<String>? readout,
@@ -38,7 +38,7 @@ Future<void> ezCmd(
     );
   } catch (e) {
     _log(e.toString(), debug, readout);
-    onError == null ? onFailure(e.toString()) : onError(e.toString());
+    onError == null ? onFailure?.call(e.toString()) : onError(e.toString());
     return;
   }
 
@@ -48,5 +48,5 @@ Future<void> ezCmd(
   _log(out, debug, readout);
   if (err.isNotEmpty) _log(err, debug, readout);
 
-  runResult.exitCode == 0 ? onSuccess() : onFailure(err);
+  runResult.exitCode == 0 ? onSuccess?.call() : onFailure?.call(err);
 }
