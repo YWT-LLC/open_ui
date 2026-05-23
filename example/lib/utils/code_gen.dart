@@ -664,7 +664,8 @@ class ErrorScreen extends StatelessWidget {
           EzConfig.l10n.g404Note,
           style: EzConfig.styles.labelLarge,
           textAlign: TextAlign.center,
-        ),            
+        ),
+        const EzFooter(spacing: 0),         
       ]),
     )));
 }
