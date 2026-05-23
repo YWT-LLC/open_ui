@@ -8,16 +8,26 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzHighVisibilityConfig extends StatelessWidget {
+  /// Whether both themes should be updated
+  final bool updateBoth;
+
   /// Optional extra changes
-  final Future<void> Function()? extra;
+  final Future<void> Function(bool)? extra;
 
   /// Resets the current config and applies the [ezHighContrastLight] | [ezHighContrastDark] color scheme
   /// With text theme built with [atkinsonHyperlegible] and is slightly larger than the default
   /// Spacing is also increased, but not as much as [EzBigButtonsConfig]
-  const EzHighVisibilityConfig(this.extra, {super.key});
+  const EzHighVisibilityConfig({
+    super.key,
+    required this.updateBoth,
+    this.extra,
+  });
 
-  static Future<void> onPressed({bool monoChrome = false}) async {
-    if (EzConfig.updateBoth || EzConfig.isDark) {
+  static Future<void> onPressed({
+    required bool updateBoth,
+    bool monoChrome = false,
+  }) async {
+    if (updateBoth || EzConfig.isDark) {
       // Reset //
 
       await EzConfig.removeKeys(darkColorKeys.keys.toSet());
@@ -105,7 +115,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
       await EzConfig.setDouble(darkIconSizeKey, 22.0);
     }
 
-    if (EzConfig.updateBoth || !EzConfig.isDark) {
+    if (updateBoth || !EzConfig.isDark) {
       // Reset //
 
       await EzConfig.removeKeys(lightColorKeys.keys.toSet());
@@ -242,8 +252,8 @@ class EzHighVisibilityConfig extends StatelessWidget {
                   EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
             ),
       onPressed: () => EzConfig.rebuildUI(changes: () async {
-        await onPressed();
-        await extra?.call();
+        await onPressed(updateBoth: updateBoth);
+        await extra?.call(updateBoth);
       }),
       text: EzConfig.l10n.ssHighVisibility,
       textStyle: localBody,

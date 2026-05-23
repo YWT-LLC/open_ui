@@ -8,15 +8,22 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzNebulaConfig extends StatelessWidget {
+  /// Like updateBoth, but smaller
+  final bool autoConfirm;
+
   /// Optional extra changes
-  final Future<void> Function()? extra;
+  final Future<void> Function(bool)? extra;
 
   /// Dark theme only config, will set [ThemeMode.dark]
-  const EzNebulaConfig(this.extra, {super.key});
+  const EzNebulaConfig({
+    super.key,
+    required this.autoConfirm,
+    this.extra,
+  });
 
   /// When true, skips the "This is a dark theme only..." dialog
-  static Future<bool> onPressed(BuildContext context) async {
-    if (EzConfig.themeMode != ThemeMode.dark) {
+  static Future<bool> onPressed(BuildContext context, bool autoConfirm) async {
+    if (!autoConfirm || EzConfig.themeMode != ThemeMode.dark) {
       final bool uSure = await _confirm(context) ?? false;
       if (!uSure) return false;
     }
@@ -156,12 +163,13 @@ class EzNebulaConfig extends StatelessWidget {
           padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
         ),
         onPressed: () async {
-          final bool uSure =
-              (EzConfig.themeMode == ThemeMode.dark) || (await _confirm(context) ?? false);
+          final bool uSure = autoConfirm ||
+              (EzConfig.themeMode == ThemeMode.dark) ||
+              (await _confirm(context) ?? false);
           if (uSure) {
             await EzConfig.rebuildUI(changes: () async {
               await _makeItSo();
-              await extra?.call();
+              await extra?.call(autoConfirm);
             });
           }
         },

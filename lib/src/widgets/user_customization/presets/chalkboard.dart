@@ -8,16 +8,23 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzChalkboardConfig extends StatelessWidget {
+  /// Like updateBoth, but smaller
+  final bool autoConfirm;
+
   /// Optional extra changes
-  final Future<void> Function()? extra;
+  final Future<void> Function(bool)? extra;
 
   /// Dark theme only config; sets [ThemeMode.dark], resets it, and...
   /// Sets a [ColorScheme] similar to [ezHighContrastDark], but with a [chalkboardGreen] surface and [empathSand] accents
   /// Has mostly default design settings, but a [fingerPaint] based [TextTheme]
-  const EzChalkboardConfig(this.extra, {super.key});
+  const EzChalkboardConfig({
+    super.key,
+    required this.autoConfirm,
+    this.extra,
+  });
 
-  static Future<bool> onPressed(BuildContext context) async {
-    if (EzConfig.themeMode != ThemeMode.dark) {
+  static Future<bool> onPressed(BuildContext context, bool autoConfirm) async {
+    if (!autoConfirm || EzConfig.themeMode != ThemeMode.dark) {
       final bool uSure = await _confirm(context) ?? false;
       if (!uSure) return false;
     }
@@ -173,12 +180,13 @@ class EzChalkboardConfig extends StatelessWidget {
         ),
       ),
       onPressed: () async {
-        final bool uSure =
-            (EzConfig.themeMode == ThemeMode.dark) || (await _confirm(context) ?? false);
+        final bool uSure = autoConfirm ||
+            (EzConfig.themeMode == ThemeMode.dark) ||
+            (await _confirm(context) ?? false);
         if (uSure) {
           await EzConfig.rebuildUI(changes: () async {
             await _makeItSo();
-            await extra?.call();
+            await extra?.call(autoConfirm);
           });
         }
       },

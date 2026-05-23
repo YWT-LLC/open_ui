@@ -8,15 +8,22 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzWallHolesConfig extends StatelessWidget {
+  /// Like updateBoth, but smaller
+  final bool autoConfirm;
+
   /// Optional extra changes
-  final Future<void> Function()? extra;
+  final Future<void> Function(bool)? extra;
 
   /// !Not Windows
-  const EzWallHolesConfig(this.extra, {super.key});
+  const EzWallHolesConfig({
+    super.key,
+    required this.autoConfirm,
+    this.extra,
+  });
 
-  static Future<bool> onPressed(BuildContext context) async {
+  static Future<bool> onPressed(BuildContext context, bool autoConfirm) async {
     // If the current theme is not light, show a warning dialog
-    if (EzConfig.themeMode != ThemeMode.light) {
+    if (!autoConfirm || EzConfig.themeMode != ThemeMode.light) {
       final bool uSure = await _confirm(context) ?? false;
       if (!uSure) return false;
     }
@@ -140,12 +147,13 @@ class EzWallHolesConfig extends StatelessWidget {
         padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
       ),
       onPressed: () async {
-        final bool uSure =
-            (EzConfig.themeMode == ThemeMode.light) || (await _confirm(context) ?? false);
+        final bool uSure = autoConfirm ||
+            (EzConfig.themeMode == ThemeMode.light) ||
+            (await _confirm(context) ?? false);
         if (uSure) {
           await EzConfig.rebuildUI(changes: () async {
             await _makeItSo();
-            await extra?.call();
+            await extra?.call(autoConfirm);
           });
         }
       },

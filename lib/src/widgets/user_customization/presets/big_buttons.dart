@@ -8,17 +8,24 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzBigButtonsConfig extends StatelessWidget {
+  /// Whether both themes should be updated
+  final bool updateBoth;
+
   /// Optional extra changes
-  final Future<void> Function()? extra;
+  final Future<void> Function(bool)? extra;
 
   /// Doesn't replace, only modifies: larger touch points from default
   /// Slight bump to all layout values, for easier tapping
-  const EzBigButtonsConfig(this.extra, {super.key});
+  const EzBigButtonsConfig({
+    super.key,
+    required this.updateBoth,
+    this.extra,
+  });
 
-  static Future<void> onPressed() async {
+  static Future<void> onPressed(bool updateBoth) async {
     // Don't reset //
 
-    if (EzConfig.updateBoth || EzConfig.isDark) {
+    if (updateBoth || EzConfig.isDark) {
       // Design settings //
 
       await EzConfig.setDouble(darkMarginKey, 12.0);
@@ -43,7 +50,7 @@ class EzBigButtonsConfig extends StatelessWidget {
       }
     }
 
-    if (EzConfig.updateBoth || !EzConfig.isDark) {
+    if (updateBoth || !EzConfig.isDark) {
       // Design settings //
 
       await EzConfig.setDouble(lightMarginKey, 12.0);
@@ -76,8 +83,8 @@ class EzBigButtonsConfig extends StatelessWidget {
           padding: EdgeInsets.all(EzConfig.onMobile ? 22.5 : 25.0),
         ),
         onPressed: () => EzConfig.rebuildUI(changes: () async {
-          await onPressed();
-          await extra?.call();
+          await onPressed(updateBoth);
+          await extra?.call(updateBoth);
         }),
         text: EzConfig.l10n.ssBigButtons,
       );
