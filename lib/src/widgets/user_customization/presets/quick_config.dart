@@ -46,11 +46,11 @@ class EzQuickConfig extends StatelessWidget {
               builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
                 // Update both/auto confirm toggle
                 EzSwitchPair(
+                  key: ValueKey<bool>(dewIt),
                   value: dewIt,
-                  text: 'Update both/auto confirm', // TODO: test && l10n
+                  text: 'Update both/auto confirm', // TODO: l10n
                   onChanged: (bool? value) {
                     if (value == null) return;
-
                     setModal(() => dewIt = value);
                   },
                 ),
