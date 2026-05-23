@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "Load preset",
   "ssLoadPresetHint": "Activate to show presets",
+  "ssDewIt": "Update both/auto confirm",
   "ssBigButtons": "Big buttons",
   "ssHighVisibility": "High visibility",
   "ssChalkboard": "Chalkboard",

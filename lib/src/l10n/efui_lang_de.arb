@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "Voreinstellung laden",
   "ssLoadPresetHint": "Aktivieren, um Voreinstellungen anzuzeigen",
+  "ssDewIt": "Beide aktualisieren/automatisch bestätigen",
   "ssBigButtons": "Große Schaltflächen",
   "ssHighVisibility": "Hohe Sichtbarkeit",
   "ssChalkboard": "Tafel",

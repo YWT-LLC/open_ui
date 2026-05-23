@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "Cargar preajuste",
   "ssLoadPresetHint": "Activar para mostrar ajustes preestablecidos",
+  "ssDewIt": "Actualizar ambos/confirmación automática",
   "ssBigButtons": "Botones grandes",
   "ssHighVisibility": "Alta visibilidad",
   "ssChalkboard": "Pizarra",

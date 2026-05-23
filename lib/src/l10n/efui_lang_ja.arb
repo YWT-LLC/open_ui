@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "プリセットを読み込む",
   "ssLoadPresetHint": "アクティブにしてプリセットを表示します",
+  "ssDewIt": "両方更新/自動確認",
   "ssBigButtons": "大きなボタン",
   "ssHighVisibility": "高視認性",
   "ssChalkboard": "黒板",

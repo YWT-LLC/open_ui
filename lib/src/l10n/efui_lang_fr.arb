@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "Charger un préréglage",
   "ssLoadPresetHint": "Activer pour afficher les préréglages",
+  "ssDewIt": "Mettre à jour les deux/confirmation automatique",
   "ssBigButtons": "Gros boutons",
   "ssHighVisibility": "Haute visibilité",
   "ssChalkboard": "Tableau noir",

@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "사전 설정 불러오기",
   "ssLoadPresetHint": "사전 설정을 보려면 활성화하세요",
+  "ssDewIt": "둘 다 업데이트/자동 확인",
   "ssBigButtons": "큰 버튼",
   "ssHighVisibility": "고대비 가시성",
   "ssChalkboard": "칠판",

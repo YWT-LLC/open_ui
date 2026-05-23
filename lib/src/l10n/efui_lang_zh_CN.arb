@@ -137,6 +137,7 @@
 
   "ssLoadPreset": "加载预设",
   "ssLoadPresetHint": "激活以显示预设",
+  "ssDewIt": "更新两者/自动确认",
   "ssBigButtons": "大按钮",
   "ssHighVisibility": "高可见度",
   "ssChalkboard": "黑板",
