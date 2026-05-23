@@ -356,6 +356,9 @@ class EFUILangUk extends EFUILang {
   String get ssLoadPresetHint => 'Активуйте, щоб показати пресети';
 
   @override
+  String get ssDewIt => 'Оновити обидва/автопідтвердження';
+
+  @override
   String get ssBigButtons => 'Великі кнопки';
 
   @override

@@ -357,6 +357,9 @@ class EFUILangDe extends EFUILang {
   String get ssLoadPresetHint => 'Aktivieren, um Voreinstellungen anzuzeigen';
 
   @override
+  String get ssDewIt => 'Beide aktualisieren/automatisch bestätigen';
+
+  @override
   String get ssBigButtons => 'Große Schaltflächen';
 
   @override

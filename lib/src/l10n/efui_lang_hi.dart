@@ -356,6 +356,9 @@ class EFUILangHi extends EFUILang {
   String get ssLoadPresetHint => 'प्रीसेट दिखाने के लिए सक्रिय करें';
 
   @override
+  String get ssDewIt => 'दोनों अपडेट करें/स्वतः पुष्टि करें';
+
+  @override
   String get ssBigButtons => 'बड़े बटन';
 
   @override

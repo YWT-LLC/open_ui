@@ -348,6 +348,9 @@ class EFUILangKo extends EFUILang {
   String get ssLoadPresetHint => '사전 설정을 보려면 활성화하세요';
 
   @override
+  String get ssDewIt => '둘 다 업데이트/자동 확인';
+
+  @override
   String get ssBigButtons => '큰 버튼';
 
   @override

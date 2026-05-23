@@ -357,6 +357,9 @@ class EFUILangRu extends EFUILang {
   String get ssLoadPresetHint => 'Активируйте для показа пресетов';
 
   @override
+  String get ssDewIt => 'Обновить оба/автоподтверждение';
+
+  @override
   String get ssBigButtons => 'Большие кнопки';
 
   @override

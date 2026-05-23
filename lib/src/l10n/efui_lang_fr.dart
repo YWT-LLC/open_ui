@@ -356,6 +356,9 @@ class EFUILangFr extends EFUILang {
   String get ssLoadPresetHint => 'Activer pour afficher les préréglages';
 
   @override
+  String get ssDewIt => 'Mettre à jour les deux/confirmation automatique';
+
+  @override
   String get ssBigButtons => 'Gros boutons';
 
   @override

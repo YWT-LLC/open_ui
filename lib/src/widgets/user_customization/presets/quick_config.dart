@@ -48,7 +48,7 @@ class EzQuickConfig extends StatelessWidget {
                 EzSwitchPair(
                   key: ValueKey<bool>(dewIt),
                   value: dewIt,
-                  text: 'Update both/auto confirm', // TODO: l10n
+                  text: EzConfig.l10n.ssDewIt,
                   onChanged: (bool? value) {
                     if (value == null) return;
                     setModal(() => dewIt = value);

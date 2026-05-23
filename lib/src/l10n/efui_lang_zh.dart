@@ -348,6 +348,9 @@ class EFUILangZh extends EFUILang {
   String get ssLoadPresetHint => '激活以显示预设';
 
   @override
+  String get ssDewIt => '更新两者/自动确认';
+
+  @override
   String get ssBigButtons => '大按钮';
 
   @override
@@ -1136,6 +1139,9 @@ class EFUILangZhCn extends EFUILangZh {
 
   @override
   String get ssLoadPresetHint => '激活以显示预设';
+
+  @override
+  String get ssDewIt => '更新两者/自动确认';
 
   @override
   String get ssBigButtons => '大按钮';

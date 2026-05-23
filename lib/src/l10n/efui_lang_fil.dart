@@ -356,6 +356,9 @@ class EFUILangFil extends EFUILang {
   String get ssLoadPresetHint => 'I-activate para ipakita ang mga preset';
 
   @override
+  String get ssDewIt => 'I-update pareho/awtomatikong kumpirmahin';
+
+  @override
   String get ssBigButtons => 'Malalaking button';
 
   @override

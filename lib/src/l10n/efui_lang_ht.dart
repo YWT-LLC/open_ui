@@ -355,6 +355,9 @@ class EFUILangHt extends EFUILang {
   String get ssLoadPresetHint => 'Aktive pou montre prereglaj yo';
 
   @override
+  String get ssDewIt => 'Mizajou tou de/otomatikman konfime';
+
+  @override
   String get ssBigButtons => 'Gwo bouton';
 
   @override

@@ -355,6 +355,9 @@ class EFUILangEn extends EFUILang {
   String get ssLoadPresetHint => 'Activate to show presets';
 
   @override
+  String get ssDewIt => 'Update both/auto confirm';
+
+  @override
   String get ssBigButtons => 'Big buttons';
 
   @override
@@ -1154,6 +1157,9 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get ssLoadPresetHint => 'Activate to show presets';
+
+  @override
+  String get ssDewIt => 'Update both/auto confirm';
 
   @override
   String get ssBigButtons => 'Big buttons';

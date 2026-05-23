@@ -355,6 +355,9 @@ class EFUILangSw extends EFUILang {
   String get ssLoadPresetHint => 'Washa ili kuonyesha zilizowekwa tayari';
 
   @override
+  String get ssDewIt => 'Sasisha zote mbili/thibitisha kiotomatiki';
+
+  @override
   String get ssBigButtons => 'Vifungo vikubwa';
 
   @override

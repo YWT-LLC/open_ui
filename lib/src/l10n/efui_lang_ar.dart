@@ -352,6 +352,9 @@ class EFUILangAr extends EFUILang {
   String get ssLoadPresetHint => 'تفعيل لإظهار الإعدادات المسبقة';
 
   @override
+  String get ssDewIt => 'تحديث كلاهما/تأكيد تلقائي';
+
+  @override
   String get ssBigButtons => 'أزرار كبيرة';
 
   @override
@@ -1147,6 +1150,9 @@ class EFUILangArEg extends EFUILangAr {
 
   @override
   String get ssLoadPresetHint => 'تفعيل لإظهار الإعدادات المسبقة';
+
+  @override
+  String get ssDewIt => 'تحديث كلاهما/تأكيد تلقائي';
 
   @override
   String get ssBigButtons => 'أزرار كبيرة';

@@ -348,6 +348,9 @@ class EFUILangJa extends EFUILang {
   String get ssLoadPresetHint => 'アクティブにしてプリセットを表示します';
 
   @override
+  String get ssDewIt => '両方更新/自動確認';
+
+  @override
   String get ssBigButtons => '大きなボタン';
 
   @override
