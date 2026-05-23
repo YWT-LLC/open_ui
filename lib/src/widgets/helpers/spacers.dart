@@ -260,3 +260,38 @@ class EzSwapSeparator extends StatelessWidget {
         : EzSeparator(space: space, isDark: isDark, vertical: false);
   }
 }
+
+class EzFooter extends StatelessWidget {
+  /// No [message] for this [Locale]
+  final Locale defaultLocale;
+
+  /// The current screen/page is human translated
+  final bool human;
+
+  /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
+  final TextAlign textAlign;
+
+  /// Optionally override [EFUILang.gMachineTranslated]
+  final String? message;
+
+  const EzFooter({
+    super.key,
+    this.defaultLocale = english,
+    this.human = false,
+    this.message,
+    this.textAlign = TextAlign.center,
+  });
+
+  @override
+  Widget build(BuildContext context) =>
+      (human || EzConfig.locale.languageCode == defaultLocale.languageCode)
+          ? const EzSeparator()
+          : Padding(
+              padding: EdgeInsets.only(bottom: EzConfig.spacing * 2),
+              child: Text(
+                message ?? EzConfig.l10n.gMachineTranslated,
+                style: EzConfig.styles.labelLarge,
+                textAlign: textAlign,
+              ),
+            );
+}
