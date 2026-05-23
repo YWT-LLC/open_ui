@@ -30,19 +30,19 @@ class EzGlobalSettings extends StatelessWidget {
   final Widget quickConfigSpacer;
 
   /// [EzBigButtonsConfig.extra] passthrough
-  final Future<void> Function()? extraBig;
+  final Future<void> Function(bool)? extraBig;
 
   /// [EzBigButtonsConfig.extra] passthrough
-  final Future<void> Function()? extraVis;
+  final Future<void> Function(bool)? extraVis;
 
   /// [EzBigButtonsConfig.extra] passthrough
-  final Future<void> Function()? extraChalk;
+  final Future<void> Function(bool)? extraChalk;
 
   /// [EzBigButtonsConfig.extra] passthrough
-  final Future<void> Function()? extraNebula;
+  final Future<void> Function(bool)? extraNebula;
 
   /// [EzBigButtonsConfig.extra] passthrough
-  final Future<void> Function()? extraWall;
+  final Future<void> Function(bool)? extraWall;
 
   /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkip;
