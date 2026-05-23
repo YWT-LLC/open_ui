@@ -274,12 +274,16 @@ class EzFooter extends StatelessWidget {
   /// Optionally override [EFUILang.gMachineTranslated]
   final String? message;
 
+  /// Optionally override [EzConfig.spacing] * 2
+  final double? spacing;
+
   const EzFooter({
     super.key,
     this.defaultLocale = english,
     this.human = false,
     this.message,
     this.textAlign = TextAlign.center,
+    this.spacing,
   });
 
   @override
@@ -287,7 +291,7 @@ class EzFooter extends StatelessWidget {
       (human || EzConfig.locale.languageCode == defaultLocale.languageCode)
           ? const EzSeparator()
           : Padding(
-              padding: EdgeInsets.only(bottom: EzConfig.spacing * 2),
+              padding: EdgeInsets.only(top: spacing ?? (EzConfig.spacing * 2)),
               child: Text(
                 message ?? EzConfig.l10n.gMachineTranslated,
                 style: EzConfig.styles.labelLarge,
