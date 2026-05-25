@@ -13,7 +13,7 @@ installed_size: 51200
 
 essential: false
 
-icon: linux/assets/settings-sandbox.png
+icon: linux/assets/app-icon.png
 
 keywords:
   - Open Source

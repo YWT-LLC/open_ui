@@ -45,27 +45,27 @@ flutter:
 
   assets:
     - assets/
-    - assets/images/
-    - assets/images/settings-sandbox.jpg
-    - assets/images/settings-sandbox-round.png
+    - assets/app-icon.png
 
 flutter_launcher_icons:
-  image_path: assets/images/settings-sandbox.jpg
-  adaptive_icon_foreground: assets/images/settings-sandbox-round.png
-  adaptive_icon_background: "#F5F5F5"
+  image_path: assets/app-icon.png
+  adaptive_icon_foreground: assets/app-icon.png
+  adaptive_icon_background: "#A520DA"
   android: true
   ios: true
+  background_color_ios: "#A520DA"
   remove_alpha_ios: true
   web:
     generate: true
+    background_color: "#A520DA"
   windows:
     generate: true
   macos:
     generate: true
 
 flutter_native_splash:
-  color: "#F5F5F5"
-  image: assets/images/settings-sandbox.jpg
+  color: "#A520DA"
+  image: assets/app-icon.png
   android: true
   ios: true
   web: true
