@@ -90,10 +90,6 @@
   "gEFUISourceHint": "EFUI용 GitHub 페이지 열기",
   "gOpenUIReleases": "Open UI의 릴리스 페이지 열기",
 
-  "gGiveFeedback": "피드백 보내기",
-  "gOpeningFeedback": "피드백 도구를 엽니다.",
-  "gAttachScreenshot": "스크린샷을 첨부하세요(다운로드 폴더에 있음)",
-
   "gSupportEmail": "고객 지원 이메일",
   "gClipboard": "{thing}이(가) 클립보드에 복사되었습니다.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "오른쪽 평행",
   "dsGem": "젬",
   "dsJewel": "주얼",
-
-  "dsPreview": "미리보기",
-  "dsOpacity": "불투명도",
-  "dsBackground": "배경 불투명도",
-  "dsOutline": "윤곽선 불투명도",
 
   "dsAlwaysUnderline": "링크에 항상 밑줄 표시",
   "dsShowBack": "뒤로 가기 버튼 표시",

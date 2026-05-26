@@ -232,16 +232,6 @@ class EFUILangAr extends EFUILang {
   String get gOpenUIReleases => 'فتح صفحة الإصدارات لـ Open UI';
 
   @override
-  String get gGiveFeedback => 'تقديم ملاحظات';
-
-  @override
-  String get gOpeningFeedback => 'جارٍ فتح أداة الملاحظات.';
-
-  @override
-  String get gAttachScreenshot =>
-      'يرجى إرفاق لقطة الشاشة (موجودة في مجلد التنزيلات)';
-
-  @override
   String get gSupportEmail => 'بريد الدعم الخاص بنا';
 
   @override
@@ -552,18 +542,6 @@ class EFUILangAr extends EFUILang {
 
   @override
   String get dsJewel => 'حجر كريم';
-
-  @override
-  String get dsPreview => 'معاينة';
-
-  @override
-  String get dsOpacity => 'التعتيم';
-
-  @override
-  String get dsBackground => 'تعتيم الخلفية';
-
-  @override
-  String get dsOutline => 'تعتيم الإطار';
 
   @override
   String get dsAlwaysUnderline => 'وضع خط دائماً تحت الروابط';
@@ -1032,16 +1010,6 @@ class EFUILangArEg extends EFUILangAr {
   String get gOpenUIReleases => 'فتح صفحة الإصدارات لـ Open UI';
 
   @override
-  String get gGiveFeedback => 'تقديم ملاحظات';
-
-  @override
-  String get gOpeningFeedback => 'جارٍ فتح أداة الملاحظات.';
-
-  @override
-  String get gAttachScreenshot =>
-      'يرجى إرفاق لقطة الشاشة (موجودة في مجلد التنزيلات)';
-
-  @override
   String get gSupportEmail => 'بريد الدعم الخاص بنا';
 
   @override
@@ -1352,18 +1320,6 @@ class EFUILangArEg extends EFUILangAr {
 
   @override
   String get dsJewel => 'حجر كريم';
-
-  @override
-  String get dsPreview => 'معاينة';
-
-  @override
-  String get dsOpacity => 'التعتيم';
-
-  @override
-  String get dsBackground => 'تعتيم الخلفية';
-
-  @override
-  String get dsOutline => 'تعتيم الإطار';
 
   @override
   String get dsAlwaysUnderline => 'وضع خط دائماً تحت الروابط';

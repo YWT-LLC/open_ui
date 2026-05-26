@@ -90,10 +90,6 @@
   "gEFUISourceHint": "Открыть страницу GitHub для EFUI",
   "gOpenUIReleases": "Открыть страницу релизов для Open UI",
 
-  "gGiveFeedback": "Оставить отзыв",
-  "gOpeningFeedback": "Открытие инструмента для отзывов.",
-  "gAttachScreenshot": "Пожалуйста, прикрепите ваш скриншот (в папке Загрузки)",
-
   "gSupportEmail": "Наш Email поддержки",
   "gClipboard": "{thing} скопировано в буфер обмена.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "Правый параллелограмм",
   "dsGem": "Самоцвет",
   "dsJewel": "Драгоценность",
-
-  "dsPreview": "Предпросмотр",
-  "dsOpacity": "Непрозрачность",
-  "dsBackground": "Непрозрачность фона",
-  "dsOutline": "Непрозрачность контура",
 
   "dsAlwaysUnderline": "Всегда подчеркивать ссылки",
   "dsShowBack": "Показывать кнопку \"Назад\"",

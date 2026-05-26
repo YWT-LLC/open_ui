@@ -561,24 +561,6 @@ abstract class EFUILang {
   /// **'Open the releases page for Open UI'**
   String get gOpenUIReleases;
 
-  /// No description provided for @gGiveFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Give feedback'**
-  String get gGiveFeedback;
-
-  /// No description provided for @gOpeningFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Opening the feedback tool.'**
-  String get gOpeningFeedback;
-
-  /// No description provided for @gAttachScreenshot.
-  ///
-  /// In en, this message translates to:
-  /// **'Please attach your screenshot (in Downloads folder)'**
-  String get gAttachScreenshot;
-
   /// No description provided for @gSupportEmail.
   ///
   /// In en, this message translates to:
@@ -1166,30 +1148,6 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Jewel'**
   String get dsJewel;
-
-  /// No description provided for @dsPreview.
-  ///
-  /// In en, this message translates to:
-  /// **'Preview'**
-  String get dsPreview;
-
-  /// No description provided for @dsOpacity.
-  ///
-  /// In en, this message translates to:
-  /// **'Opacity'**
-  String get dsOpacity;
-
-  /// No description provided for @dsBackground.
-  ///
-  /// In en, this message translates to:
-  /// **'Background opacity'**
-  String get dsBackground;
-
-  /// No description provided for @dsOutline.
-  ///
-  /// In en, this message translates to:
-  /// **'Outline opacity'**
-  String get dsOutline;
 
   /// No description provided for @dsAlwaysUnderline.
   ///

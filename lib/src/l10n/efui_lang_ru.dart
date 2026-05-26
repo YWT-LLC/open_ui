@@ -233,16 +233,6 @@ class EFUILangRu extends EFUILang {
   String get gOpenUIReleases => 'Открыть страницу релизов для Open UI';
 
   @override
-  String get gGiveFeedback => 'Оставить отзыв';
-
-  @override
-  String get gOpeningFeedback => 'Открытие инструмента для отзывов.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Пожалуйста, прикрепите ваш скриншот (в папке Загрузки)';
-
-  @override
   String get gSupportEmail => 'Наш Email поддержки';
 
   @override
@@ -559,18 +549,6 @@ class EFUILangRu extends EFUILang {
 
   @override
   String get dsJewel => 'Драгоценность';
-
-  @override
-  String get dsPreview => 'Предпросмотр';
-
-  @override
-  String get dsOpacity => 'Непрозрачность';
-
-  @override
-  String get dsBackground => 'Непрозрачность фона';
-
-  @override
-  String get dsOutline => 'Непрозрачность контура';
 
   @override
   String get dsAlwaysUnderline => 'Всегда подчеркивать ссылки';

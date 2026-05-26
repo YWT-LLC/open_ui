@@ -233,16 +233,6 @@ class EFUILangUk extends EFUILang {
   String get gOpenUIReleases => 'Відкрити сторінку релізів для Open UI';
 
   @override
-  String get gGiveFeedback => 'Залишити відгук';
-
-  @override
-  String get gOpeningFeedback => 'Відкриття інструменту для відгуків.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Будь ласка, прикріпіть ваш знімок екрана (у папці Завантаження)';
-
-  @override
   String get gSupportEmail => 'Наша електронна пошта підтримки';
 
   @override
@@ -558,18 +548,6 @@ class EFUILangUk extends EFUILang {
 
   @override
   String get dsJewel => 'Дорогоцінний камінь';
-
-  @override
-  String get dsPreview => 'Попередній перегляд';
-
-  @override
-  String get dsOpacity => 'Непрозорість';
-
-  @override
-  String get dsBackground => 'Непрозорість фону';
-
-  @override
-  String get dsOutline => 'Непрозорість контуру';
 
   @override
   String get dsAlwaysUnderline => 'Завжди підкреслювати посилання';

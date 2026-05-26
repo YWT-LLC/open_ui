@@ -233,16 +233,6 @@ class EFUILangEs extends EFUILang {
   String get gOpenUIReleases => 'Abrir la página de lanzamientos de Open UI';
 
   @override
-  String get gGiveFeedback => 'Dar feedback';
-
-  @override
-  String get gOpeningFeedback => 'Apertura de la herramienta de feedback.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Adjunte su captura de pantalla (en la carpeta de Descargas)';
-
-  @override
   String get gSupportEmail => 'Nuestro Email de soporte';
 
   @override
@@ -560,18 +550,6 @@ class EFUILangEs extends EFUILang {
 
   @override
   String get dsJewel => 'Joya';
-
-  @override
-  String get dsPreview => 'Avance';
-
-  @override
-  String get dsOpacity => 'Opacidad';
-
-  @override
-  String get dsBackground => 'Fondo del botón';
-
-  @override
-  String get dsOutline => 'Contorno del botón';
 
   @override
   String get dsAlwaysUnderline => 'Subraya siempre los enlaces';

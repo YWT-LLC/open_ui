@@ -90,10 +90,6 @@
   "gEFUISourceHint": "فتح صفحة GitHub لـ EFUI",
   "gOpenUIReleases": "فتح صفحة الإصدارات لـ Open UI",
 
-  "gGiveFeedback": "تقديم ملاحظات",
-  "gOpeningFeedback": "جارٍ فتح أداة الملاحظات.",
-  "gAttachScreenshot": "يرجى إرفاق لقطة الشاشة (موجودة في مجلد التنزيلات)",
-
   "gSupportEmail": "بريد الدعم الخاص بنا",
   "gClipboard": "تم نسخ {thing} إلى الحافظة.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "متوازي أيمن",
   "dsGem": "جوهرة",
   "dsJewel": "حجر كريم",
-
-  "dsPreview": "معاينة",
-  "dsOpacity": "التعتيم",
-  "dsBackground": "تعتيم الخلفية",
-  "dsOutline": "تعتيم الإطار",
 
   "dsAlwaysUnderline": "وضع خط دائماً تحت الروابط",
   "dsShowBack": "إظهار زر الرجوع",

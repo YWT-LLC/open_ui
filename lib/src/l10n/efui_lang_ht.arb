@@ -90,10 +90,6 @@
   "gEFUISourceHint": "Louvri paj GitHub pou EFUI",
   "gOpenUIReleases": "Louvri paj vèsyon yo pou Open UI",
 
-  "gGiveFeedback": "Bay kòmantè",
-  "gOpeningFeedback": "Ap louvri zouti pou kòmantè a.",
-  "gAttachScreenshot": "Tanpri atache piki ekran ou a (nan dosye Telechajman yo)",
-
   "gSupportEmail": "Imèl sipò nou an",
   "gClipboard": "Yo kopye {thing} nan près-papye a.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "Paralèl dwat",
   "dsGem": "Pyè presye",
   "dsJewel": "Bijou",
-
-  "dsPreview": "Apèsi",
-  "dsOpacity": "Opasite",
-  "dsBackground": "Opasite fon an",
-  "dsOutline": "Opasite kontou an",
 
   "dsAlwaysUnderline": "Toujou souliye lyen yo",
   "dsShowBack": "Montre bouton tounen",

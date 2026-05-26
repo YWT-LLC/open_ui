@@ -229,15 +229,6 @@ class EFUILangKo extends EFUILang {
   String get gOpenUIReleases => 'Open UI의 릴리스 페이지 열기';
 
   @override
-  String get gGiveFeedback => '피드백 보내기';
-
-  @override
-  String get gOpeningFeedback => '피드백 도구를 엽니다.';
-
-  @override
-  String get gAttachScreenshot => '스크린샷을 첨부하세요(다운로드 폴더에 있음)';
-
-  @override
   String get gSupportEmail => '고객 지원 이메일';
 
   @override
@@ -548,18 +539,6 @@ class EFUILangKo extends EFUILang {
 
   @override
   String get dsJewel => '주얼';
-
-  @override
-  String get dsPreview => '미리보기';
-
-  @override
-  String get dsOpacity => '불투명도';
-
-  @override
-  String get dsBackground => '배경 불투명도';
-
-  @override
-  String get dsOutline => '윤곽선 불투명도';
 
   @override
   String get dsAlwaysUnderline => '링크에 항상 밑줄 표시';

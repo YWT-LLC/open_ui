@@ -90,10 +90,6 @@
   "gEFUISourceHint": "Fungua ukurasa wa GitHub wa EFUI",
   "gOpenUIReleases": "Fungua ukurasa wa matoleo wa Open UI",
 
-  "gGiveFeedback": "Toa maoni",
-  "gOpeningFeedback": "Inafungua zana ya kutoa maoni.",
-  "gAttachScreenshot": "Tafadhali ambatisha picha yako ya skrini (katika folda ya Vipakuliwa)",
-
   "gSupportEmail": "Barua pepe yetu ya msaada",
   "gClipboard": "{thing} imenakiliwa kwenye ubao wa kunakili.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "Sambamba kulia",
   "dsGem": "Kito",
   "dsJewel": "Johari",
-
-  "dsPreview": "Kihakikisho",
-  "dsOpacity": "Uangavu",
-  "dsBackground": "Uangavu wa asili",
-  "dsOutline": "Uangavu wa muhtasari",
 
   "dsAlwaysUnderline": "Piga mstari chini ya viungo kila wakati",
   "dsShowBack": "Onyesha kitufe cha kurudi",

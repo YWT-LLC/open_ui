@@ -90,10 +90,6 @@
   "gEFUISourceHint": "EFUIのGitHubページを開く",
   "gOpenUIReleases": "Open UIのリリースぺージを開く",
 
-  "gGiveFeedback": "フィードバックを送信",
-  "gOpeningFeedback": "フィードバックツールを開いています。",
-  "gAttachScreenshot": "スクリーンショットを添付してください（ダウンロードフォルダにあります）",
-
   "gSupportEmail": "サポートメール",
   "gClipboard": "{thing} がクリップボードにコピーされました。",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "右平行四辺形",
   "dsGem": "宝石",
   "dsJewel": "ジュエル",
-
-  "dsPreview": "プレビュー",
-  "dsOpacity": "不透明度",
-  "dsBackground": "背景の不透明度",
-  "dsOutline": "アウトラインの不透明度",
 
   "dsAlwaysUnderline": "リンクに常に下線を引く",
   "dsShowBack": "戻るボタンを表示",

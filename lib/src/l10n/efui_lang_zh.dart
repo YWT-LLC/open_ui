@@ -229,15 +229,6 @@ class EFUILangZh extends EFUILang {
   String get gOpenUIReleases => '打开 Open UI 的发布页面';
 
   @override
-  String get gGiveFeedback => '提供反馈';
-
-  @override
-  String get gOpeningFeedback => '正在打开反馈工具。';
-
-  @override
-  String get gAttachScreenshot => '请附上您的截图（在下载文件夹中）';
-
-  @override
   String get gSupportEmail => '我们的支持电子邮件';
 
   @override
@@ -546,18 +537,6 @@ class EFUILangZh extends EFUILang {
 
   @override
   String get dsJewel => '珠宝';
-
-  @override
-  String get dsPreview => '预览';
-
-  @override
-  String get dsOpacity => '不透明度';
-
-  @override
-  String get dsBackground => '背景不透明度';
-
-  @override
-  String get dsOutline => '轮廓不透明度';
 
   @override
   String get dsAlwaysUnderline => '始终为链接加下划线';
@@ -1022,15 +1001,6 @@ class EFUILangZhCn extends EFUILangZh {
   String get gOpenUIReleases => '打开 Open UI 的发布页面';
 
   @override
-  String get gGiveFeedback => '提供反馈';
-
-  @override
-  String get gOpeningFeedback => '正在打开反馈工具。';
-
-  @override
-  String get gAttachScreenshot => '请附上您的截图（在下载文件夹中）';
-
-  @override
   String get gSupportEmail => '我们的支持电子邮件';
 
   @override
@@ -1339,18 +1309,6 @@ class EFUILangZhCn extends EFUILangZh {
 
   @override
   String get dsJewel => '珠宝';
-
-  @override
-  String get dsPreview => '预览';
-
-  @override
-  String get dsOpacity => '不透明度';
-
-  @override
-  String get dsBackground => '背景不透明度';
-
-  @override
-  String get dsOutline => '轮廓不透明度';
 
   @override
   String get dsAlwaysUnderline => '始终为链接加下划线';

@@ -90,10 +90,6 @@
   "gEFUISourceHint": "Buksan ang GitHub page para sa EFUI",
   "gOpenUIReleases": "Buksan ang releases page para sa Open UI",
 
-  "gGiveFeedback": "Magbigay ng feedback",
-  "gOpeningFeedback": "Binubuksan ang feedback tool.",
-  "gAttachScreenshot": "Mangyaring ilakip ang iyong screenshot (sa Downloads folder)",
-
   "gSupportEmail": "Ang aming support Email",
   "gClipboard": "Nakopya ang {thing} sa clipboard.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "Right parallel",
   "dsGem": "Gem",
   "dsJewel": "Jewel",
-
-  "dsPreview": "Preview",
-  "dsOpacity": "Opacity",
-  "dsBackground": "Opacity ng background",
-  "dsOutline": "Opacity ng outline",
 
   "dsAlwaysUnderline": "Palaging salungguhitan ang mga link",
   "dsShowBack": "Ipakita ang back button",

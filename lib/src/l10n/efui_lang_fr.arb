@@ -90,10 +90,6 @@
   "gEFUISourceHint": "Ouvre la page GitHub d'EFUI",
   "gOpenUIReleases": "Ouvre la page des versions d'Open UI",
 
-  "gGiveFeedback": "Partager des commentaires",
-  "gOpeningFeedback": "Ouverture de l'outil de feedback.",
-  "gAttachScreenshot": "Veuillez joindre votre capture d'écran (dans le dossier de Téléchargements)",
-
   "gSupportEmail": "Notre Email de support",
   "gClipboard": "{thing} a été copié dans le presse-papiers.",
 
@@ -220,11 +216,6 @@
   "dsRightGram": "Parallèle droit",
   "dsGem": "Gemme",
   "dsJewel": "Joyau",
-
-  "dsPreview": "Aperçu",
-  "dsOpacity": "Opacité",
-  "dsBackground": "L'arrière-plan du bouton",
-  "dsOutline": "Contour du bouton",
 
   "dsAlwaysUnderline": "Soulignez toujours les liens",
   "dsShowBack": "Afficher le bouton Retour",

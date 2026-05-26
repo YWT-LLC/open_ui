@@ -90,10 +90,6 @@
   "gEFUISourceHint": "Open the GitHub page for EFUI",
   "gOpenUIReleases": "Open the releases page for Open UI",
 
-  "gGiveFeedback": "Give feedback",
-  "gOpeningFeedback": "Opening the feedback tool.",
-  "gAttachScreenshot": "Please attach your screenshot (in Downloads folder)",
-
   "gSupportEmail": "Our support Email",
   "gClipboard": "{thing} has been copied to the clipboard.",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "Right parallel",
   "dsGem": "Gem",
   "dsJewel": "Jewel",
-
-  "dsPreview": "Preview",
-  "dsOpacity": "Opacity",
-  "dsBackground": "Background opacity",
-  "dsOutline": "Outline opacity",
 
   "dsAlwaysUnderline": "Always underline links",
   "dsShowBack": "Show back button",

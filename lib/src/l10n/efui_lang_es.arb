@@ -89,10 +89,6 @@
   "gOpenEmpathetech": "Abrir un enlace a Empathetic LLC",
   "gEFUISourceHint": "Abrir la página de GitHub de EFUI",
   "gOpenUIReleases": "Abrir la página de lanzamientos de Open UI",
-
-  "gGiveFeedback": "Dar feedback",
-  "gOpeningFeedback": "Apertura de la herramienta de feedback.",
-  "gAttachScreenshot": "Adjunte su captura de pantalla (en la carpeta de Descargas)",
   
   "gSupportEmail": "Nuestro Email de soporte",
   "gClipboard": "{thing} ha sido copiado al portapapeles.",
@@ -220,11 +216,6 @@
   "dsRightGram": "Paralelo derecho",
   "dsGem": "Gema",
   "dsJewel": "Joya",
-
-  "dsPreview": "Avance",
-  "dsOpacity": "Opacidad",
-  "dsBackground": "Fondo del botón",
-  "dsOutline": "Contorno del botón",
 
   "dsAlwaysUnderline": "Subraya siempre los enlaces",
   "dsShowBack": "Mostrar botón de retroceso",

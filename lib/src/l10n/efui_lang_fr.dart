@@ -232,16 +232,6 @@ class EFUILangFr extends EFUILang {
   String get gOpenUIReleases => 'Ouvre la page des versions d\'Open UI';
 
   @override
-  String get gGiveFeedback => 'Partager des commentaires';
-
-  @override
-  String get gOpeningFeedback => 'Ouverture de l\'outil de feedback.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Veuillez joindre votre capture d\'écran (dans le dossier de Téléchargements)';
-
-  @override
   String get gSupportEmail => 'Notre Email de support';
 
   @override
@@ -559,18 +549,6 @@ class EFUILangFr extends EFUILang {
 
   @override
   String get dsJewel => 'Joyau';
-
-  @override
-  String get dsPreview => 'Aperçu';
-
-  @override
-  String get dsOpacity => 'Opacité';
-
-  @override
-  String get dsBackground => 'L\'arrière-plan du bouton';
-
-  @override
-  String get dsOutline => 'Contour du bouton';
 
   @override
   String get dsAlwaysUnderline => 'Soulignez toujours les liens';

@@ -233,16 +233,6 @@ class EFUILangEn extends EFUILang {
   String get gOpenUIReleases => 'Open the releases page for Open UI';
 
   @override
-  String get gGiveFeedback => 'Give feedback';
-
-  @override
-  String get gOpeningFeedback => 'Opening the feedback tool.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Please attach your screenshot (in Downloads folder)';
-
-  @override
   String get gSupportEmail => 'Our support Email';
 
   @override
@@ -556,18 +546,6 @@ class EFUILangEn extends EFUILang {
 
   @override
   String get dsJewel => 'Jewel';
-
-  @override
-  String get dsPreview => 'Preview';
-
-  @override
-  String get dsOpacity => 'Opacity';
-
-  @override
-  String get dsBackground => 'Background opacity';
-
-  @override
-  String get dsOutline => 'Outline opacity';
 
   @override
   String get dsAlwaysUnderline => 'Always underline links';
@@ -1037,16 +1015,6 @@ class EFUILangEnUs extends EFUILangEn {
   String get gOpenUIReleases => 'Open the releases page for Open UI';
 
   @override
-  String get gGiveFeedback => 'Give feedback';
-
-  @override
-  String get gOpeningFeedback => 'Opening the feedback tool.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Please attach your screenshot (in Downloads folder)';
-
-  @override
   String get gSupportEmail => 'Our support Email';
 
   @override
@@ -1360,18 +1328,6 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get dsJewel => 'Jewel';
-
-  @override
-  String get dsPreview => 'Preview';
-
-  @override
-  String get dsOpacity => 'Opacity';
-
-  @override
-  String get dsBackground => 'Background opacity';
-
-  @override
-  String get dsOutline => 'Outline opacity';
 
   @override
   String get dsAlwaysUnderline => 'Always underline links';

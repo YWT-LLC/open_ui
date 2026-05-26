@@ -233,16 +233,6 @@ class EFUILangHi extends EFUILang {
   String get gOpenUIReleases => 'Open UI के लिए रिलीज़ पेज खोलें';
 
   @override
-  String get gGiveFeedback => 'प्रतिक्रिया दें';
-
-  @override
-  String get gOpeningFeedback => 'फीडबैक टूल खोला जा रहा है।';
-
-  @override
-  String get gAttachScreenshot =>
-      'कृपया अपना स्क्रीनशॉट संलग्न करें (डाउनलोड फ़ोल्डर में)';
-
-  @override
   String get gSupportEmail => 'हमारा सपोर्ट ईमेल';
 
   @override
@@ -559,18 +549,6 @@ class EFUILangHi extends EFUILang {
 
   @override
   String get dsJewel => 'गहना';
-
-  @override
-  String get dsPreview => 'पूर्वावलोकन';
-
-  @override
-  String get dsOpacity => 'अपारदर्शिता';
-
-  @override
-  String get dsBackground => 'पृष्ठभूमि की अपारदर्शिता';
-
-  @override
-  String get dsOutline => 'आउटलाइन की अपारदर्शिता';
 
   @override
   String get dsAlwaysUnderline => 'लिंक को हमेशा रेखांकित करें';

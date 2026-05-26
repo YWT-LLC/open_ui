@@ -232,16 +232,6 @@ class EFUILangHt extends EFUILang {
   String get gOpenUIReleases => 'Louvri paj vèsyon yo pou Open UI';
 
   @override
-  String get gGiveFeedback => 'Bay kòmantè';
-
-  @override
-  String get gOpeningFeedback => 'Ap louvri zouti pou kòmantè a.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Tanpri atache piki ekran ou a (nan dosye Telechajman yo)';
-
-  @override
   String get gSupportEmail => 'Imèl sipò nou an';
 
   @override
@@ -556,18 +546,6 @@ class EFUILangHt extends EFUILang {
 
   @override
   String get dsJewel => 'Bijou';
-
-  @override
-  String get dsPreview => 'Apèsi';
-
-  @override
-  String get dsOpacity => 'Opasite';
-
-  @override
-  String get dsBackground => 'Opasite fon an';
-
-  @override
-  String get dsOutline => 'Opasite kontou an';
 
   @override
   String get dsAlwaysUnderline => 'Toujou souliye lyen yo';

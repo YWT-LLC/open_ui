@@ -232,16 +232,6 @@ class EFUILangDe extends EFUILang {
   String get gOpenUIReleases => 'Releases-Seite für Open UI öffnen';
 
   @override
-  String get gGiveFeedback => 'Feedback geben';
-
-  @override
-  String get gOpeningFeedback => 'Feedback-Tool wird geöffnet.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Bitte fügen Sie Ihren Screenshot bei (im Downloads-Ordner)';
-
-  @override
   String get gSupportEmail => 'Unsere Support-E-Mail';
 
   @override
@@ -559,18 +549,6 @@ class EFUILangDe extends EFUILang {
 
   @override
   String get dsJewel => 'Juwel';
-
-  @override
-  String get dsPreview => 'Vorschau';
-
-  @override
-  String get dsOpacity => 'Deckkraft';
-
-  @override
-  String get dsBackground => 'Hintergrund-Deckkraft';
-
-  @override
-  String get dsOutline => 'Kontur-Deckkraft';
 
   @override
   String get dsAlwaysUnderline => 'Links immer unterstreichen';

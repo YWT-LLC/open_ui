@@ -233,16 +233,6 @@ class EFUILangSw extends EFUILang {
   String get gOpenUIReleases => 'Fungua ukurasa wa matoleo wa Open UI';
 
   @override
-  String get gGiveFeedback => 'Toa maoni';
-
-  @override
-  String get gOpeningFeedback => 'Inafungua zana ya kutoa maoni.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Tafadhali ambatisha picha yako ya skrini (katika folda ya Vipakuliwa)';
-
-  @override
   String get gSupportEmail => 'Barua pepe yetu ya msaada';
 
   @override
@@ -557,18 +547,6 @@ class EFUILangSw extends EFUILang {
 
   @override
   String get dsJewel => 'Johari';
-
-  @override
-  String get dsPreview => 'Kihakikisho';
-
-  @override
-  String get dsOpacity => 'Uangavu';
-
-  @override
-  String get dsBackground => 'Uangavu wa asili';
-
-  @override
-  String get dsOutline => 'Uangavu wa muhtasari';
 
   @override
   String get dsAlwaysUnderline => 'Piga mstari chini ya viungo kila wakati';

@@ -229,15 +229,6 @@ class EFUILangJa extends EFUILang {
   String get gOpenUIReleases => 'Open UIのリリースぺージを開く';
 
   @override
-  String get gGiveFeedback => 'フィードバックを送信';
-
-  @override
-  String get gOpeningFeedback => 'フィードバックツールを開いています。';
-
-  @override
-  String get gAttachScreenshot => 'スクリーンショットを添付してください（ダウンロードフォルダにあります）';
-
-  @override
   String get gSupportEmail => 'サポートメール';
 
   @override
@@ -548,18 +539,6 @@ class EFUILangJa extends EFUILang {
 
   @override
   String get dsJewel => 'ジュエル';
-
-  @override
-  String get dsPreview => 'プレビュー';
-
-  @override
-  String get dsOpacity => '不透明度';
-
-  @override
-  String get dsBackground => '背景の不透明度';
-
-  @override
-  String get dsOutline => 'アウトラインの不透明度';
 
   @override
   String get dsAlwaysUnderline => 'リンクに常に下線を引く';

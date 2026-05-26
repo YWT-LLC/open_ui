@@ -90,10 +90,6 @@
   "gEFUISourceHint": "打开 EFUI 的 GitHub 页面",
   "gOpenUIReleases": "打开 Open UI 的发布页面",
 
-  "gGiveFeedback": "提供反馈",
-  "gOpeningFeedback": "正在打开反馈工具。",
-  "gAttachScreenshot": "请附上您的截图（在下载文件夹中）",
-
   "gSupportEmail": "我们的支持电子邮件",
   "gClipboard": "{thing} 已复制到剪贴板。",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "右平行四边形",
   "dsGem": "宝石",
   "dsJewel": "珠宝",
-
-  "dsPreview": "预览",
-  "dsOpacity": "不透明度",
-  "dsBackground": "背景不透明度",
-  "dsOutline": "轮廓不透明度",
 
   "dsAlwaysUnderline": "始终为链接加下划线",
   "dsShowBack": "显示返回按钮",

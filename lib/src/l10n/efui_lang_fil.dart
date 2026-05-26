@@ -233,16 +233,6 @@ class EFUILangFil extends EFUILang {
   String get gOpenUIReleases => 'Buksan ang releases page para sa Open UI';
 
   @override
-  String get gGiveFeedback => 'Magbigay ng feedback';
-
-  @override
-  String get gOpeningFeedback => 'Binubuksan ang feedback tool.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Mangyaring ilakip ang iyong screenshot (sa Downloads folder)';
-
-  @override
   String get gSupportEmail => 'Ang aming support Email';
 
   @override
@@ -557,18 +547,6 @@ class EFUILangFil extends EFUILang {
 
   @override
   String get dsJewel => 'Jewel';
-
-  @override
-  String get dsPreview => 'Preview';
-
-  @override
-  String get dsOpacity => 'Opacity';
-
-  @override
-  String get dsBackground => 'Opacity ng background';
-
-  @override
-  String get dsOutline => 'Opacity ng outline';
 
   @override
   String get dsAlwaysUnderline => 'Palaging salungguhitan ang mga link';

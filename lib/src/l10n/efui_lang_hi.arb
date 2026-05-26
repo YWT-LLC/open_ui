@@ -90,10 +90,6 @@
   "gEFUISourceHint": "EFUI के लिए GitHub पेज खोलें",
   "gOpenUIReleases": "Open UI के लिए रिलीज़ पेज खोलें",
 
-  "gGiveFeedback": "प्रतिक्रिया दें",
-  "gOpeningFeedback": "फीडबैक टूल खोला जा रहा है।",
-  "gAttachScreenshot": "कृपया अपना स्क्रीनशॉट संलग्न करें (डाउनलोड फ़ोल्डर में)",
-
   "gSupportEmail": "हमारा सपोर्ट ईमेल",
   "gClipboard": "{thing} क्लिपबोर्ड पर कॉपी कर लिया गया है।",
   
@@ -220,11 +216,6 @@
   "dsRightGram": "दायां समानांतर",
   "dsGem": "रत्न",
   "dsJewel": "गहना",
-
-  "dsPreview": "पूर्वावलोकन",
-  "dsOpacity": "अपारदर्शिता",
-  "dsBackground": "पृष्ठभूमि की अपारदर्शिता",
-  "dsOutline": "आउटलाइन की अपारदर्शिता",
 
   "dsAlwaysUnderline": "लिंक को हमेशा रेखांकित करें",
   "dsShowBack": "बैक बटन दिखाएं",
