@@ -68,7 +68,7 @@ class LangDe extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (außer Bildern) zur Standardkonfiguration für $app_name.\n\nEs wird empfohlen, ein benutzerdefiniertes Farbschema festzulegen. Wenn du Hilfe bei der Erstellung benötigst, starte am besten ';
+    return ' (außer Bildern) zur Standardkonfiguration für $app_name.\n\nEs ist erforderlich, ein benutzerdefiniertes Farbschema festzulegen. Wenn du Hilfe bei der Erstellung benötigst, starte am besten ';
   }
 
   @override

@@ -68,7 +68,7 @@ class LangSw extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' ya sasa (isipokuwa picha) itakuwa usanidi chaguomsingi kwa $app_name.\n\nInapendekezwa kuweka mpangilio maalum wa rangi. Ikiwa unahitaji msaada wa kuunda mmoja, jaribu kuanzia ';
+    return ' ya sasa (isipokuwa picha) itakuwa usanidi chaguomsingi kwa $app_name.\n\nInahitajika kuweka mpango maalum wa rangi. Ikiwa unahitaji msaada wa kuunda mmoja, jaribu kuanzia ';
   }
 
   @override

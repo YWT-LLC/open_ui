@@ -21,7 +21,7 @@
   "csGenApp": "Wenn du {app_name} generierst, wird die aktuelle ",
   "csTheApp": "App",
   "csTheConfig": "Konfiguration",
-  "csSetColors": " (außer Bildern) zur Standardkonfiguration für {app_name}.\n\nEs wird empfohlen, ein benutzerdefiniertes Farbschema festzulegen. Wenn du Hilfe bei der Erstellung benötigst, starte am besten ",
+  "csSetColors": " (außer Bildern) zur Standardkonfiguration für {app_name}.\n\nEs ist erforderlich, ein benutzerdefiniertes Farbschema festzulegen. Wenn du Hilfe bei der Erstellung benötigst, starte am besten ",
   "csHere": "hier.",
   "csHereHint": "Öffne einen Online-Generator für Farbschemas",
 

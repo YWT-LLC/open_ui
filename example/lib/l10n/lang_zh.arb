@@ -21,7 +21,7 @@
   "csGenApp": "当你生成 {app_name} 时，当前的",
   "csTheApp": "应用",
   "csTheConfig": "配置",
-  "csSetColors": "（除图片外）将成为 {app_name} 的默认配置。\n\n建议设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从",
+  "csSetColors": "（除图片外）将成为 {app_name} 的默认配置。\n\n必须设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从",
   "csHere": "这里开始。",
   "csHereHint": "打开在线配色方案生成器",
 

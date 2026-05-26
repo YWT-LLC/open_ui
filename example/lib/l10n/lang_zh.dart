@@ -67,7 +67,7 @@ class LangZh extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return '（除图片外）将成为 $app_name 的默认配置。\n\n建议设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从';
+    return '（除图片外）将成为 $app_name 的默认配置。\n\n必须设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从';
   }
 
   @override
@@ -271,7 +271,7 @@ class LangZhCn extends LangZh {
 
   @override
   String csSetColors(Object app_name) {
-    return '（除图片外）将成为 $app_name 的默认配置。\n\n建议设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从';
+    return '（除图片外）将成为 $app_name 的默认配置。\n\n必须设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从';
   }
 
   @override

@@ -21,7 +21,7 @@
   "csGenApp": "Cuando generas {app_name}, el actual ",
   "csTheApp": "la aplicación",
   "csTheConfig": "la configuración",
-  "csSetColors": " (excepto imágenes) se convertirá en la configuración predeterminada para {app_name}.\n\nSe recomienda establecer un esquema de colores personalizado. Si necesitas ayuda para construir uno, intenta comenzar ",
+  "csSetColors": " (excepto imágenes) se convertirá en la configuración predeterminada para {app_name}.\n\nEs necesario establecer un esquema de colores personalizado. Si necesitas ayuda para construir uno, intenta comenzar ",
   "csHere": "aquí.",
   "csHereHint": "Abra un generador de esquemas de color en línea",
 

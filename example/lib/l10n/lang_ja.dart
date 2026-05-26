@@ -67,7 +67,7 @@ class LangJa extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return '（画像を除く）が $app_name のデフォルト設定になります。\n\nカスタムカラースキームを設定することをお勧めします。作成のヒントが必要な場合は、ここから始めてみてください: ';
+    return '（画像を除く）が $app_name のデフォルト設定になります。\n\nカスタム配色を設定する必要があります。作成のヒントが必要な場合は、ここから始めてみてください: ';
   }
 
   @override

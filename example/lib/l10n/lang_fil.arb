@@ -21,7 +21,7 @@
   "csGenApp": "Kapag binuo mo ang {app_name}, ang kasalukuyang ",
   "csTheApp": "ang app",
   "csTheConfig": "ang config",
-  "csSetColors": " (maliban sa mga larawan) ay magiging default na config para sa {app_name}.\n\nInirerekomenda na magtakda ng custom na color scheme. Kung kailangan mo ng tulong sa pagbuo nito, subukang magsimula ",
+  "csSetColors": " (maliban sa mga larawan) ay magiging default na config para sa {app_name}.\n\nKinakailangang magtakda ng custom na scheme ng kulay. Kung kailangan mo ng tulong sa pagbuo nito, subukang magsimula ",
   "csHere": "dito.",
   "csHereHint": "Magbukas ng online na tagabuo ng color scheme",
 

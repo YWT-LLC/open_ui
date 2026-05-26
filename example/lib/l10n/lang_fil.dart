@@ -69,7 +69,7 @@ class LangFil extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (maliban sa mga larawan) ay magiging default na config para sa $app_name.\n\nInirerekomenda na magtakda ng custom na color scheme. Kung kailangan mo ng tulong sa pagbuo nito, subukang magsimula ';
+    return ' (maliban sa mga larawan) ay magiging default na config para sa $app_name.\n\nKinakailangang magtakda ng custom na scheme ng kulay. Kung kailangan mo ng tulong sa pagbuo nito, subukang magsimula ';
   }
 
   @override

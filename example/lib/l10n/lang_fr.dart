@@ -68,7 +68,7 @@ class LangFr extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (sauf les images) deviendra la configuration par défaut pour $app_name.\n\nIl est recommandé de définir un schéma de couleurs personnalisé. Si vous avez besoin d\'aide pour en construire un, essayez de commencer ';
+    return ' (sauf les images) deviendra la configuration par défaut pour $app_name.\n\nIl est requis de définir un schéma de couleurs personnalisé. Si vous avez besoin d\'aide pour en construire un, essayez de commencer ';
   }
 
   @override

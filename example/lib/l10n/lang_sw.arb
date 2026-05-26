@@ -21,7 +21,7 @@
   "csGenApp": "Unapotengeneza {app_name}, ",
   "csTheApp": "programu",
   "csTheConfig": "usanidi",
-  "csSetColors": " ya sasa (isipokuwa picha) itakuwa usanidi chaguomsingi kwa {app_name}.\n\nInapendekezwa kuweka mpangilio maalum wa rangi. Ikiwa unahitaji msaada wa kuunda mmoja, jaribu kuanzia ",
+  "csSetColors": " ya sasa (isipokuwa picha) itakuwa usanidi chaguomsingi kwa {app_name}.\n\nInahitajika kuweka mpango maalum wa rangi. Ikiwa unahitaji msaada wa kuunda mmoja, jaribu kuanzia ",
   "csHere": "hapa.",
   "csHereHint": "Fungua mjenzi wa mpangilio wa rangi mtandaoni",
 

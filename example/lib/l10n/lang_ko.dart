@@ -67,7 +67,7 @@ class LangKo extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (이미지 제외)이(가) $app_name의 기본 구성이 됩니다.\n\n사용자 지정 색상표를 설정하는 것을 권장합니다. 설정에 도움이 필요하시다면 다음에서 시작해 보세요. ';
+    return ' (이미지 제외)이(가) $app_name의 기본 구성이 됩니다.\n\n사용자 지정 색상 테마를 설정해야 합니다. 설정에 도움이 필요하시다면 다음에서 시작해 보세요. ';
   }
 
   @override

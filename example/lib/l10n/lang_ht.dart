@@ -68,7 +68,7 @@ class LangHt extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (eksepte imaj yo) ap vin tounen konfigirasyon defo pou $app_name.\n\nNou rekòmande pou w mete yon plan koulè pèsonalize. Si w bezwen èd pou kreye youn, eseye kòmanse ';
+    return ' (eksepte imaj yo) ap vin tounen konfigirasyon defo pou $app_name.\n\nLi nesesè pou mete yon konbinezon koulè pèsonalize. Si w bezwen èd pou kreye youn, eseye kòmanse ';
   }
 
   @override
