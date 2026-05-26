@@ -114,7 +114,7 @@ class EFUILangAr extends EFUILang {
   String get gSystem => 'النظام';
 
   @override
-  String get gEditing => 'تعديل: ';
+  String get gEditing => 'التحرير:';
 
   @override
   String get gEditingHint => 'تفعيل للتعديل';
@@ -892,7 +892,7 @@ class EFUILangArEg extends EFUILangAr {
   String get gSystem => 'النظام';
 
   @override
-  String get gEditing => 'تعديل: ';
+  String get gEditing => 'التحرير:';
 
   @override
   String get gEditingHint => 'تفعيل للتعديل';
