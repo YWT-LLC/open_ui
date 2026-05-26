@@ -17,8 +17,6 @@
   "csDomainName": "ドメイン名",
   "csDomainTip": "逆にすると、次のようになります:",
   "csInvalidDomain": "'domain.name' の形式のみ; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "含める",
-  "csEasy": "後から簡単に変更可能",
 
   "csGenApp": "{app_name} を生成すると、現在の",
   "csTheApp": "アプリの",
@@ -68,7 +66,6 @@
   "gsConsole": "コンソール出力",
 
   "gsIsReadyIn": "で準備完了",
-  "gsFirstRun": "通常、初回起動には時間がかかります",
 
   "gsNeedPermission": "Open UI にはフルディスクアクセスが必要です。\n\nシステム設定 > プライバシーとセキュリティ > フルディスクアクセス に移動し、Open UI を有効にしてからもう一度お試しください。",
   "gsSeeNBelieve": "Open UI の動作を確認したい場合は、こちらへ: ",

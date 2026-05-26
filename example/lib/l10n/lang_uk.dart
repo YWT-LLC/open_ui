@@ -56,12 +56,6 @@ class LangUk extends Lang {
       'Лише \'domain.name\'; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Включити';
-
-  @override
-  String get csEasy => 'Легко змінити пізніше';
-
-  @override
   String csGenApp(Object app_name) {
     return 'Коли ви генеруєте $app_name, поточний ';
   }
@@ -177,9 +171,6 @@ class LangUk extends Lang {
 
   @override
   String get gsIsReadyIn => 'готово за';
-
-  @override
-  String get gsFirstRun => 'Перший запуск зазвичай займає деякий час';
 
   @override
   String get gsNeedPermission =>

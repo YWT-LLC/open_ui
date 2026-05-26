@@ -57,12 +57,6 @@ class LangFil extends Lang {
       '\'domain.name\' lamang; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Isama';
-
-  @override
-  String get csEasy => 'Madaling palitan mamaya';
-
-  @override
   String csGenApp(Object app_name) {
     return 'Kapag binuo mo ang $app_name, ang kasalukuyang ';
   }
@@ -178,9 +172,6 @@ class LangFil extends Lang {
 
   @override
   String get gsIsReadyIn => 'ay handa na sa loob ng';
-
-  @override
-  String get gsFirstRun => 'Karaniwang matagal ang unang pagpapatakbo';
 
   @override
   String get gsNeedPermission =>

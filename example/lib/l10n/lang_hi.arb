@@ -17,8 +17,6 @@
   "csDomainName": "डोमेन नाम",
   "csDomainTip": "उल्टे क्रम में, यह है",
   "csInvalidDomain": "केवल 'domain.name'; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "शामिल करें",
-  "csEasy": "बाद में बदलना आसान है",
 
   "csGenApp": "जब आप {app_name} जनरेट करते हैं, तो वर्तमान ",
   "csTheApp": "ऐप",
@@ -68,7 +66,6 @@
   "gsConsole": "कंसोल आउटपुट",
 
   "gsIsReadyIn": "में तैयार है",
-  "gsFirstRun": "पहली बार चलने में आमतौर पर कुछ समय लगता है",
 
   "gsNeedPermission": "Open UI को पूर्ण डिस्क एक्सेस (Full Disk Access) की आवश्यकता है।\n\nकृपया यहां जाएं...\nसिस्टम सेटिंग्स > गोपनीयता और सुरक्षा > पूर्ण डिस्क एक्सेस > Open UI सक्षम करें; फिर पुनः प्रयास करें।",
   "gsSeeNBelieve": "यदि आप सत्यापित करना चाहते हैं कि Open UI क्या करता है, तो जाएं ",

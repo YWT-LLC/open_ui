@@ -17,8 +17,6 @@
   "csDomainName": "Non domèn",
   "csDomainTip": "Lè l ekri pa dèyè, se",
   "csInvalidDomain": "'domèn.non' sèlman; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "Enkli",
-  "csEasy": "Fasil pou chanje pita",
 
   "csGenApp": "Lè w jenere {app_name}, sa k kounye a ",
   "csTheApp": "aplikasyon an",
@@ -68,7 +66,6 @@
   "gsConsole": "Rezilta konsole a",
 
   "gsIsReadyIn": "prè nan",
-  "gsFirstRun": "Premye fwa a anjeneral pran yon ti tan",
 
   "gsNeedPermission": "Open UI bezwen Aksè Konplè sou Disk la.\n\nTanpri ale nan...\nParamèt Sistèm > Konfidansyalite ak Sekirite > Aksè Konplè sou Disk > Pèmèt Open UI; apresa eseye ankò.",
   "gsSeeNBelieve": "Si ou vle verifye sa Open UI fè, ale ",

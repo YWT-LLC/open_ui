@@ -56,12 +56,6 @@ class LangAr extends Lang {
       '\'domain.name\' فقط؛ RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'تضمين';
-
-  @override
-  String get csEasy => 'سهل التغيير لاحقًا';
-
-  @override
   String csGenApp(Object app_name) {
     return 'عندما تقوم بإنشاء $app_name، فإن ';
   }
@@ -173,9 +167,6 @@ class LangAr extends Lang {
 
   @override
   String get gsIsReadyIn => 'جاهز في';
-
-  @override
-  String get gsFirstRun => 'عادة ما يستغرق التشغيل الأول بعض الوقت';
 
   @override
   String get gsNeedPermission =>
@@ -271,12 +262,6 @@ class LangArEg extends LangAr {
       '\'domain.name\' فقط؛ RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'تضمين';
-
-  @override
-  String get csEasy => 'سهل التغيير لاحقًا';
-
-  @override
   String csGenApp(Object app_name) {
     return 'عندما تقوم بإنشاء $app_name، فإن ';
   }
@@ -388,9 +373,6 @@ class LangArEg extends LangAr {
 
   @override
   String get gsIsReadyIn => 'جاهز في';
-
-  @override
-  String get gsFirstRun => 'عادة ما يستغرق التشغيل الأول بعض الوقت';
 
   @override
   String get gsNeedPermission =>

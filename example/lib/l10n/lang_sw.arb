@@ -17,8 +17,6 @@
   "csDomainName": "Jina la kikoa",
   "csDomainTip": "Kinyume chake, ni",
   "csInvalidDomain": "'domain.name' pekee; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "Jumuisha",
-  "csEasy": "Rahisi kubadilisha baadaye",
 
   "csGenApp": "Unapotengeneza {app_name}, ",
   "csTheApp": "programu",
@@ -68,7 +66,6 @@
   "gsConsole": "Pato la kiweko",
 
   "gsIsReadyIn": "iko tayari baada ya",
-  "gsFirstRun": "Kuendesha kwa mara ya kwanza kwa kawaida huchukua muda kidogo",
 
   "gsNeedPermission": "Open UI inahitaji Ufikiaji Kamili wa Diski.\n\nTafadhali nenda kwenye...\nMipangilio ya Mfumo > Faragha na Usalama > Ufikiaji Kamili wa Diski > Washa Open UI; kisha ujaribu tena.",
   "gsSeeNBelieve": "Ikiwa unataka kuthibitisha kile Open UI inafanya, nenda ",

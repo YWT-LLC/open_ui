@@ -17,8 +17,6 @@
   "csDomainName": "Pangalan ng domain",
   "csDomainTip": "Pabaligtad, ito ay",
   "csInvalidDomain": "'domain.name' lamang; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "Isama",
-  "csEasy": "Madaling palitan mamaya",
 
   "csGenApp": "Kapag binuo mo ang {app_name}, ang kasalukuyang ",
   "csTheApp": "ang app",
@@ -68,7 +66,6 @@
   "gsConsole": "Output sa console",
 
   "gsIsReadyIn": "ay handa na sa loob ng",
-  "gsFirstRun": "Karaniwang matagal ang unang pagpapatakbo",
 
   "gsNeedPermission": "Kailangan ng Open UI ng Full Disk Access.\n\nMangyaring pumunta sa...\nSystem Settings > Privacy & Security > Full Disk Access > I-enable ang Open UI; pagkatapos ay subukang muli.",
   "gsSeeNBelieve": "Kung gusto mong suriin kung ano ang ginagawa ng Open UI, pumunta ",

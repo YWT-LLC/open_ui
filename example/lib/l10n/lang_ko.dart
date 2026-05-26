@@ -55,12 +55,6 @@ class LangKo extends Lang {
       '\'domain.name\' 형식만 가능합니다. 정규식: RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => '포함';
-
-  @override
-  String get csEasy => '나중에 쉽게 변경 가능';
-
-  @override
   String csGenApp(Object app_name) {
     return '$app_name을(를) 생성할 때, 현재 ';
   }
@@ -172,9 +166,6 @@ class LangKo extends Lang {
 
   @override
   String get gsIsReadyIn => '준비 완료:';
-
-  @override
-  String get gsFirstRun => '첫 실행은 일반적으로 시간이 조금 걸립니다';
 
   @override
   String get gsNeedPermission =>

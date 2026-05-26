@@ -55,12 +55,6 @@ class LangZh extends Lang {
       '仅限 \'domain.name\' 格式；RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => '包含';
-
-  @override
-  String get csEasy => '方便以后更改';
-
-  @override
   String csGenApp(Object app_name) {
     return '当你生成 $app_name 时，当前的';
   }
@@ -172,9 +166,6 @@ class LangZh extends Lang {
 
   @override
   String get gsIsReadyIn => '已准备就绪，用时';
-
-  @override
-  String get gsFirstRun => '首次运行通常需要一些时间';
 
   @override
   String get gsNeedPermission =>
@@ -268,12 +259,6 @@ class LangZhCn extends LangZh {
       '仅限 \'domain.name\' 格式；RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => '包含';
-
-  @override
-  String get csEasy => '方便以后更改';
-
-  @override
   String csGenApp(Object app_name) {
     return '当你生成 $app_name 时，当前的';
   }
@@ -385,9 +370,6 @@ class LangZhCn extends LangZh {
 
   @override
   String get gsIsReadyIn => '已准备就绪，用时';
-
-  @override
-  String get gsFirstRun => '首次运行通常需要一些时间';
 
   @override
   String get gsNeedPermission =>

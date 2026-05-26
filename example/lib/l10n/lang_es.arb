@@ -17,8 +17,6 @@
   "csDomainName": "Nombre de dominio",
   "csDomainTip": "Revés, esta al",
   "csInvalidDomain": "'domain.name' solamente; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "Incluir",
-  "csEasy": "Fácil de cambiar más tarde",
 
   "csGenApp": "Cuando generas {app_name}, el actual ",
   "csTheApp": "la aplicación",
@@ -68,7 +66,6 @@
   "gsConsole": "Salida de la consola",
 
   "gsIsReadyIn": "está listo en",
-  "gsFirstRun": "La primera ejecución suele tardar un tiempo",
 
   "gsNeedPermission": "Open UI necesita Acceso Completo al Disco.\n\nPor favor, vaya a...\nConfiguración del Sistema > Privacidad y Seguridad > Acceso Completo al Disco > Habilite Open UI; entonces inténtalo de nuevo.",
   "gsSeeNBelieve": "Si quieres verificar qué hace Open UI, ve ",

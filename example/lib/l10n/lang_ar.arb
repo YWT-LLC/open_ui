@@ -17,8 +17,6 @@
   "csDomainName": "اسم النطاق",
   "csDomainTip": "بالعكس، يكون",
   "csInvalidDomain": "'domain.name' فقط؛ RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "تضمين",
-  "csEasy": "سهل التغيير لاحقًا",
 
   "csGenApp": "عندما تقوم بإنشاء {app_name}، فإن ",
   "csTheApp": "التطبيق الحالي",
@@ -68,7 +66,6 @@
   "gsConsole": "مخرجات وحدة التحكم",
 
   "gsIsReadyIn": "جاهز في",
-  "gsFirstRun": "عادة ما يستغرق التشغيل الأول بعض الوقت",
 
   "gsNeedPermission": "تحتاج Open UI إلى وصول كامل للقرص.\n\nيرجى الذهاب إلى...\nإعدادات النظام > الخصوصية والأمان > الوصول الكامل للقرص > تفعيل Open UI؛ ثم حاول مرة أخرى.",
   "gsSeeNBelieve": "إذا كنت تريد التحقق مما تفعله Open UI، اذهب ",

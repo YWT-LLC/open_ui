@@ -56,12 +56,6 @@ class LangHt extends Lang {
       '\'domèn.non\' sèlman; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Enkli';
-
-  @override
-  String get csEasy => 'Fasil pou chanje pita';
-
-  @override
   String csGenApp(Object app_name) {
     return 'Lè w jenere $app_name, sa k kounye a ';
   }
@@ -174,9 +168,6 @@ class LangHt extends Lang {
 
   @override
   String get gsIsReadyIn => 'prè nan';
-
-  @override
-  String get gsFirstRun => 'Premye fwa a anjeneral pran yon ti tan';
 
   @override
   String get gsNeedPermission =>

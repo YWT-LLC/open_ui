@@ -56,12 +56,6 @@ class LangEn extends Lang {
       '\'domain.name\' only; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Include';
-
-  @override
-  String get csEasy => 'Easy to change later';
-
-  @override
   String csGenApp(Object app_name) {
     return 'When you generate $app_name, the current ';
   }
@@ -74,7 +68,7 @@ class LangEn extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (except images) will become the default config for $app_name.\n\nIt is recommended to set a custom color scheme. If you need help building one, try starting ';
+    return ' (except images) will become the default config for $app_name.\n\nIt is required to set a custom color scheme. If you need help building one, try starting ';
   }
 
   @override
@@ -173,9 +167,6 @@ class LangEn extends Lang {
 
   @override
   String get gsIsReadyIn => 'is ready in';
-
-  @override
-  String get gsFirstRun => 'First run usually takes awhile';
 
   @override
   String get gsNeedPermission =>
@@ -272,12 +263,6 @@ class LangEnUs extends LangEn {
       '\'domain.name\' only; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Include';
-
-  @override
-  String get csEasy => 'Easy to change later';
-
-  @override
   String csGenApp(Object app_name) {
     return 'When you generate $app_name, the current ';
   }
@@ -290,7 +275,7 @@ class LangEnUs extends LangEn {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (except images) will become the default config for $app_name.\n\nIt is recommended to set a custom color scheme. If you need help building one, try starting ';
+    return ' (except images) will become the default config for $app_name.\n\nIt is required to set a custom color scheme. If you need help building one, try starting ';
   }
 
   @override
@@ -389,9 +374,6 @@ class LangEnUs extends LangEn {
 
   @override
   String get gsIsReadyIn => 'is ready in';
-
-  @override
-  String get gsFirstRun => 'First run usually takes awhile';
 
   @override
   String get gsNeedPermission =>

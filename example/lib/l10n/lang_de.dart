@@ -56,12 +56,6 @@ class LangDe extends Lang {
       'Nur \'domain.name\'; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Einschließen';
-
-  @override
-  String get csEasy => 'Später leicht zu ändern';
-
-  @override
   String csGenApp(Object app_name) {
     return 'Wenn du $app_name generierst, wird die aktuelle ';
   }
@@ -176,10 +170,6 @@ class LangDe extends Lang {
 
   @override
   String get gsIsReadyIn => 'ist fertig in';
-
-  @override
-  String get gsFirstRun =>
-      'Der erste Durchlauf dauert normalerweise etwas länger';
 
   @override
   String get gsNeedPermission =>

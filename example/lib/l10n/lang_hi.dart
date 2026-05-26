@@ -56,12 +56,6 @@ class LangHi extends Lang {
       'केवल \'domain.name\'; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'शामिल करें';
-
-  @override
-  String get csEasy => 'बाद में बदलना आसान है';
-
-  @override
   String csGenApp(Object app_name) {
     return 'जब आप $app_name जनरेट करते हैं, तो वर्तमान ';
   }
@@ -176,9 +170,6 @@ class LangHi extends Lang {
 
   @override
   String get gsIsReadyIn => 'में तैयार है';
-
-  @override
-  String get gsFirstRun => 'पहली बार चलने में आमतौर पर कुछ समय लगता है';
 
   @override
   String get gsNeedPermission =>

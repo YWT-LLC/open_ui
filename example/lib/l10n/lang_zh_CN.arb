@@ -17,8 +17,6 @@
   "csDomainName": "域名",
   "csDomainTip": "反过来是",
   "csInvalidDomain": "仅限 'domain.name' 格式；RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "包含",
-  "csEasy": "方便以后更改",
 
   "csGenApp": "当你生成 {app_name} 时，当前的",
   "csTheApp": "应用",
@@ -68,7 +66,6 @@
   "gsConsole": "控制台输出",
 
   "gsIsReadyIn": "已准备就绪，用时",
-  "gsFirstRun": "首次运行通常需要一些时间",
 
   "gsNeedPermission": "Open UI 需要完全磁盘访问权限。\n\n请前往...\n系统设置 > 隐私与安全性 > 完全磁盘访问权限 > 启用 Open UI；然后重试。",
   "gsSeeNBelieve": "如果你想验证 Open UI 的工作原理，请前往",

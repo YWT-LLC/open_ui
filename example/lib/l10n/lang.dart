@@ -213,18 +213,6 @@ abstract class Lang {
   /// **'\'domain.name\' only; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')'**
   String get csInvalidDomain;
 
-  /// No description provided for @csInclude.
-  ///
-  /// In en, this message translates to:
-  /// **'Include'**
-  String get csInclude;
-
-  /// No description provided for @csEasy.
-  ///
-  /// In en, this message translates to:
-  /// **'Easy to change later'**
-  String get csEasy;
-
   /// No description provided for @csGenApp.
   ///
   /// In en, this message translates to:
@@ -246,7 +234,7 @@ abstract class Lang {
   /// No description provided for @csSetColors.
   ///
   /// In en, this message translates to:
-  /// **' (except images) will become the default config for {app_name}.\n\nIt is recommended to set a custom color scheme. If you need help building one, try starting '**
+  /// **' (except images) will become the default config for {app_name}.\n\nIt is required to set a custom color scheme. If you need help building one, try starting '**
   String csSetColors(Object app_name);
 
   /// No description provided for @csHere.
@@ -434,12 +422,6 @@ abstract class Lang {
   /// In en, this message translates to:
   /// **'is ready in'**
   String get gsIsReadyIn;
-
-  /// No description provided for @gsFirstRun.
-  ///
-  /// In en, this message translates to:
-  /// **'First run usually takes awhile'**
-  String get gsFirstRun;
 
   /// No description provided for @gsNeedPermission.
   ///

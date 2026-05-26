@@ -55,12 +55,6 @@ class LangJa extends Lang {
       '\'domain.name\' の形式のみ; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => '含める';
-
-  @override
-  String get csEasy => '後から簡単に変更可能';
-
-  @override
   String csGenApp(Object app_name) {
     return '$app_name を生成すると、現在の';
   }
@@ -172,9 +166,6 @@ class LangJa extends Lang {
 
   @override
   String get gsIsReadyIn => 'で準備完了';
-
-  @override
-  String get gsFirstRun => '通常、初回起動には時間がかかります';
 
   @override
   String get gsNeedPermission =>

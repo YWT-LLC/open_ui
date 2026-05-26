@@ -17,8 +17,6 @@
   "csDomainName": "Domain-Name",
   "csDomainTip": "Rückwärts lautet sie",
   "csInvalidDomain": "Nur 'domain.name'; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "Einschließen",
-  "csEasy": "Später leicht zu ändern",
 
   "csGenApp": "Wenn du {app_name} generierst, wird die aktuelle ",
   "csTheApp": "App",
@@ -68,7 +66,6 @@
   "gsConsole": "Konsolenausgabe",
 
   "gsIsReadyIn": "ist fertig in",
-  "gsFirstRun": "Der erste Durchlauf dauert normalerweise etwas länger",
 
   "gsNeedPermission": "Open UI benötigt Festplattenvollzugriff.\n\nBitte gehe zu...\nSystemeinstellungen > Datenschutz & Sicherheit > Festplattenvollzugriff > Open UI aktivieren; versuche es dann erneut.",
   "gsSeeNBelieve": "Wenn du überprüfen möchtest, was Open UI tut, gehe ",

@@ -56,12 +56,6 @@ class LangSw extends Lang {
       '\'domain.name\' pekee; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Jumuisha';
-
-  @override
-  String get csEasy => 'Rahisi kubadilisha baadaye';
-
-  @override
   String csGenApp(Object app_name) {
     return 'Unapotengeneza $app_name, ';
   }
@@ -176,10 +170,6 @@ class LangSw extends Lang {
 
   @override
   String get gsIsReadyIn => 'iko tayari baada ya';
-
-  @override
-  String get gsFirstRun =>
-      'Kuendesha kwa mara ya kwanza kwa kawaida huchukua muda kidogo';
 
   @override
   String get gsNeedPermission =>

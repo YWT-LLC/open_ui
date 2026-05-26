@@ -17,8 +17,6 @@
   "csDomainName": "도메인 이름",
   "csDomainTip": "역순으로는 다음과 같습니다",
   "csInvalidDomain": "'domain.name' 형식만 가능합니다. 정규식: RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "포함",
-  "csEasy": "나중에 쉽게 변경 가능",
 
   "csGenApp": "{app_name}을(를) 생성할 때, 현재 ",
   "csTheApp": "앱",
@@ -68,7 +66,6 @@
   "gsConsole": "콘솔 출력",
 
   "gsIsReadyIn": "준비 완료:",
-  "gsFirstRun": "첫 실행은 일반적으로 시간이 조금 걸립니다",
 
   "gsNeedPermission": "Open UI에 전체 디스크 접근 권한이 필요합니다.\n\n다음으로 이동하여...\n시스템 설정 > 개인정보 보호 및 보안 > 전체 디스크 접근 권한 > Open UI 활성화; 후 다시 시도해 주세요.",
   "gsSeeNBelieve": "Open UI가 수행하는 작업을 확인하려면 다음으로 이동하세요. ",
