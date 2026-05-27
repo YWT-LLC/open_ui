@@ -293,7 +293,7 @@ void main() async {
 
   EzConfig.init(
     appName: appName,
-    androidPackage: packageName,
+    androidPackage: androidPackage,
     assetPaths: <String>{},
     defaults: ${camelCaseAppName}Config,
     localeFallback: americanEnglish,
