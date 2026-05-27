@@ -145,7 +145,7 @@ Future<void> ezConfigLoader(BuildContext context) async {
 }
 
 /// Close any open modals or dialogs
-/// Automatically consumed by [EzConfig.redrawUI]
+/// Automatically consumed by [EzConfig.rebuildUI]
 void ezCloseAll() {
   final NavigatorState? state = ezRootNav.currentState;
   if (state == null) return;
