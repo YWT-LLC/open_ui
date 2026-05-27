@@ -567,7 +567,12 @@ Widget ezTransitionBuilder(
 
 /// Relaxed reading time for a US tween: 100 words per minute
 Duration ezReadingTime(String passage) {
-  final int words = passage.split(' ').length;
+  if (passage.trim().isEmpty) return Duration.zero;
+
+  final int words = picLanguageCodes.contains(EzConfig.locale.languageCode)
+      ? passage.replaceAll(RegExp(r'\s+'), '').length
+      : passage.split(RegExp(r'\s+')).where((String w) => w.isNotEmpty).length;
+
   return Duration(milliseconds: ((words / 100) * 60 * 1000).ceil());
 }
 
