@@ -55,17 +55,24 @@ const String webImgHint = 'example.com/image.jpg';
 
 //* Localization *//
 
+/// AKA CJK
+const Set<String> picLanguageCodes = <String>{
+  'zh', // Chinese
+  'ja', // Japanese
+  'ko', // Korean
+};
+
 /// Non-conclusive set
 const Set<String> rtlLanguageCodes = <String>{
   'ar', // Arabic
-  'ur', // Urdu
+  'dv', // Divehi (Maldivian)
   'fa', // Persian (Farsi)
+  'he', // Hebrew
   'ps', // Pashto
   'sd', // Sindhi
   'ug', // Uyghur
-  'he', // Hebrew
+  'ur', // Urdu
   'yi', // Yiddish
-  'dv', // Divehi (Maldivian)
 };
 
 //* Theme Data *//
