@@ -93,7 +93,7 @@ class EzConfigProvider extends ChangeNotifier {
         // Page
         margin: EzConfig.get(darkMarginKey),
         spacing: EzConfig.get(darkSpacingKey),
-        backgroundImagePath: EzConfig.get(darkBackgroundImageKey),
+        backgroundImagePath: EzConfig.get(darkBackgroundImageKey) ?? noImageValue,
         backgroundImageFit: boxFitLib[EzConfig.get(darkBackgroundFitKey)],
         transitionType: ETTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
         fadedTransition: EzConfig.get(darkTransitionFadeKey),
@@ -137,7 +137,7 @@ class EzConfigProvider extends ChangeNotifier {
         // Page
         margin: EzConfig.get(lightMarginKey),
         spacing: EzConfig.get(lightSpacingKey),
-        backgroundImagePath: EzConfig.get(lightBackgroundImageKey),
+        backgroundImagePath: EzConfig.get(lightBackgroundImageKey) ?? noImageValue,
         backgroundImageFit: boxFitLib[EzConfig.get(lightBackgroundFitKey)],
         transitionType: ETTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
         fadedTransition: EzConfig.get(lightTransitionFadeKey),
