@@ -76,7 +76,7 @@ class EzConfigProvider extends ChangeNotifier {
 
     if (_isDark) {
       // Build new caches
-      _color = EzColorCache(EzConfig.get(darkColorSchemeImageKey));
+      _color = EzColorCache(EzConfig.get(darkColorSchemeImageKey) ?? noImageValue);
 
       final EzButtonShape buttonShape = EBSConfig.lookup(EzConfig.get(darkButtonShapeKey));
       _design = EzDesignCache(
@@ -120,7 +120,7 @@ class EzConfigProvider extends ChangeNotifier {
       _currTheme = _darkTheme;
     } else {
       // Build new caches
-      _color = EzColorCache(EzConfig.get(lightColorSchemeImageKey));
+      _color = EzColorCache(EzConfig.get(lightColorSchemeImageKey) ?? noImageValue);
 
       final EzButtonShape buttonShape = EBSConfig.lookup(EzConfig.get(lightButtonShapeKey));
       _design = EzDesignCache(
@@ -173,7 +173,7 @@ class EzConfigProvider extends ChangeNotifier {
   /// Whether the app is running on a mobile device
   bool get onMobile => _onMobile;
 
-  /// Track [redrawUI] and [rebuildUI] (randomized on each call)
+  /// Track [rebuildUI] (randomized on each call)
   int get seed => _seed;
 
   /// Toggleable bool for alerting the user to rebuild the UI
@@ -414,7 +414,7 @@ abstract class EzAppCache {
   /// Will run on app setup
   void init(bool isDark);
 
-  /// Will run on every call to [EzConfigProvider.redrawUI]
+  /// Will run on every call to [EzConfigProvider.rebuildUI]
   /// AKA when [EzConfig.seed] changes
   Future<void> rebuild();
 }
