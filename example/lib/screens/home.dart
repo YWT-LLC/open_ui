@@ -119,20 +119,23 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   FutureOr<void> afterFirstLayout(BuildContext context) async {
     if (!isMac) return;
 
-    final ValueNotifier<String> fPath = ValueNotifier<String>('');
+    final ValueNotifier<String> flutterPath = ValueNotifier<String>('');
     await ezCmd(
       'which flutter',
       dir: '/',
       debug: false,
-      readout: fPath,
+      readout: flutterPath,
     );
 
-    final String success = fPath.value.split('\n').firstWhere(
-          (String line) => line.contains('bin/flutter'),
+    final String success = flutterPath.value.split('\n').firstWhere(
+          (String line) => line.contains('flutter/bin'),
           orElse: () => '',
         );
 
-    if (success.isNotEmpty) setState(() => flutterPathTC.text = success);
+    if (success.isNotEmpty) {
+      final String finalPath = success.replaceAll('flutter/bin/flutter', 'flutter/bin');
+      setState(() => flutterPathTC.text = finalPath);
+    }
   }
 
   // Return the build //
