@@ -814,7 +814,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Whether the app is running on a mobile device
   static bool get onMobile => _provPoint.onMobile;
 
-  /// Track [redrawUI] and [rebuildUI] (randomized on each call)
+  /// Track [rebuildUI] (randomized on each call)
   static int get seed => _provPoint.seed;
 
   /// Toggleable bool for alerting the user to rebuild the UI
@@ -852,7 +852,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Set the apps [Locale] from storage and load corresponding localizations
   static Future<void> rebuildLocale() => _provPoint.rebuildLocale();
 
-  /// Reconfigure [ThemeMode] et al. from storage and [redrawUI]
+  /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
   static Future<void> rebuildThemeMode() => _provPoint.rebuildThemeMode();
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
