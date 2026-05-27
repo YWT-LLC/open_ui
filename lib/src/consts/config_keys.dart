@@ -119,7 +119,7 @@ const List<String> darkColorOrder = <String>[
 
 const String darkColorSchemeImageKey = 'darkColorSchemeImage';
 
-/// [darkColorOrder], [darkColorSchemeImageKey]
+/// [darkColorSchemeImageKey], [darkColorOrder]
 const Map<String, Type> darkColorKeys = <String, Type>{
   darkColorSchemeImageKey: String,
   darkPrimaryKey: int,
@@ -264,7 +264,7 @@ const List<String> lightColorOrder = <String>[
 
 const String lightColorSchemeImageKey = 'lightColorSchemeImage';
 
-/// [lightColorOrder], [lightColorSchemeImageKey]
+/// [lightColorSchemeImageKey], [lightColorOrder]
 const Map<String, Type> lightColorKeys = <String, Type>{
   lightColorSchemeImageKey: String,
   lightPrimaryKey: int,
