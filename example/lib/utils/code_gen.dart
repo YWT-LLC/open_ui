@@ -218,12 +218,12 @@ dependencies:
     sdk: flutter
 
   # Flutter (Google)
-  go_router: ^17.1.0
+  go_router: ^17.2.3
   intl: ^0.20.2
   shared_preferences: ^2.5.5
 
   # Community
-  empathetech_flutter_ui: ^11.1.1
+  empathetech_flutter_ui: ^12.0.0
   flutter_localized_locales: ^2.0.5
   provider: ^6.1.5+1
 
