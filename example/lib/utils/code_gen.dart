@@ -292,6 +292,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
 
   EzConfig.init(
+    appName: appName,
+    androidPackage: packageName,
     assetPaths: <String>{},
     defaults: ${camelCaseAppName}Config,
     localeFallback: americanEnglish,
@@ -336,7 +338,7 @@ class $classCaseAppName extends StatelessWidget {
       routerConfig: GoRouter(
         navigatorKey: ezRootNav,
         initialLocation: homePath,
-        errorBuilder: (_, GoRouterState state) => ErrorScreen(state.error),
+        errorBuilder: (_, GoRouterState state) => ErrorScreen(),
         routes: <RouteBase>[
           // Home
           GoRoute(
@@ -526,9 +528,9 @@ class EFUICredits extends StatelessWidget {
       child: EzMenuLink(
         uri: Uri.parse('https://www.empathetech.net/#/products/open-ui'),
         icon: EzIcon(Icons.settings),
-        label: label,
+        label: _label,
         semanticsLabel:
-            '\${EzConfig.isLefty ? '\${EzConfig.l10n.gSettings} \$label' : '\$label \${EzConfig.l10n.gSettings}'}. \${EzConfig.l10n.gOpenEmpathetech}',
+            '\${EzConfig.isLefty ? '\${EzConfig.l10n.gSettings} \$_label' : '\$_label \${EzConfig.l10n.gSettings}'}. \${EzConfig.l10n.gOpenEmpathetech}',
       ),
     );
 }
@@ -591,7 +593,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         ),
       ),
       menuChildren: <Widget>[
-        (showSettings) ? SettingsButton(context) : const EFUICredits(),
+        (showSettings) ? SettingsButton(context) : EFUICredits(),
       ],
     );
 
@@ -737,7 +739,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // home.dart
     await File('$dir/lib/screens/settings.dart').writeAsString("""$copyright
 
-import '../../utils/export.dart';
 import '../../widgets/export.dart';
 
 import 'package:flutter/material.dart';
@@ -838,7 +839,7 @@ class SettingsHubScreen extends StatelessWidget {
           // Rebuild (conditional)
           if (config.needsRebuild) ...<Widget>[
             config.layout.spacer,
-            const EzRebuildFAB(doNothing),
+            const EzRebuildFAB(),
           ],
 
           // Save/upload config
