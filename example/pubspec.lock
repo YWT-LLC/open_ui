@@ -338,7 +338,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_localized_locales:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_localized_locales
       sha256: "478d10535edf07292e34cb4c757882edeeaf96d5e3dbb04b42733038bd41dd3f"
