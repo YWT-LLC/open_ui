@@ -29,7 +29,7 @@ dependencies:
   # Community
   country_flags: ^4.1.2
   extended_image: ^10.0.1
-  file_picker: ^11.0.2
+  file_picker: ^12.0.0-beta.4
   file_saver: ^0.4.0
   flex_color_picker: ^3.8.0
   flutter_localized_locales: ^2.0.5
@@ -37,7 +37,7 @@ dependencies:
   font_awesome_flutter: ^11.0.0
   image: ^4.8.0
   line_icons: ^2.0.3
-  package_info_plus: ^9.0.1
+  package_info_plus: ^10.1.0
   permission_handler: ^12.0.1
   provider: ^6.1.5+1
   
