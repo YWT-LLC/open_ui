@@ -374,11 +374,11 @@ class $classCaseAppName extends StatelessWidget {
 
           switch (entry.key) {
             case appLocaleKey:
-              final String stringListString = entry.value.replaceAllMapped(
-                RegExp(r'\[\s*([a-zA-Z]+)\s*(?:,\s*([a-zA-Z]+)\s*)?\]'),
-                (Match m) =>
-                    m[2] != null ? "<String>['${m[1]}', '${m[2]}']" : "<String>['${m[1]}']",
-              );
+              final String stringListString = entry.value.toString().replaceAllMapped(
+                    RegExp(r'\[\s*([a-zA-Z]+)\s*(?:,\s*([a-zA-Z]+)\s*)?\]'),
+                    (Match m) =>
+                        m[2] != null ? "<String>['${m[1]}', '${m[2]}']" : "<String>['${m[1]}']",
+                  );
 
               result += '${entry.key}Key: $stringListString,';
               break;
