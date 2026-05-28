@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                 validator: (String? value) => validateDescription(
                   value,
                   onSuccess: () async {
-                    await EzConfig.setString(publisherBackupKey, publisherTC.text);
+                    await EzConfig.setString(descriptionBackupKey, descriptionTC.text);
                     setState(() {});
                   },
                 ),
