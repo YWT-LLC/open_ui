@@ -372,6 +372,12 @@ class $classCaseAppName extends StatelessWidget {
           // Handle specific cases //
 
           switch (entry.key) {
+            case hubPositionKey:
+            case advancedColorsKey:
+            case pageTabKey:
+            case advancedTextKey:
+              continue;
+
             case appLocaleKey:
               final String stringListString = entry.value.toString().replaceAllMapped(
                     RegExp(r'\[\s*([a-zA-Z]+)\s*(?:,\s*([a-zA-Z]+)\s*)?\]'),
