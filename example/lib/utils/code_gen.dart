@@ -373,10 +373,14 @@ class $classCaseAppName extends StatelessWidget {
 
           switch (entry.key) {
             case hubPositionKey:
+              result += '${entry.key}Key: 0';
+              break;
+
             case advancedColorsKey:
             case pageTabKey:
             case advancedTextKey:
-              continue;
+              result += '${entry.key}Key: false';
+              break;
 
             case appLocaleKey:
               final String stringListString = entry.value.toString().replaceAllMapped(
