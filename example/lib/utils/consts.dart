@@ -3,6 +3,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+
 // App config //
 
 /// Open UI
@@ -23,3 +25,27 @@ const String installFlutter = 'https://docs.flutter.dev/get-started/install';
 // App generator //
 
 enum GeneratorState { running, successful, failed }
+
+// EzConfig //
+
+const String nameBackupKey = 'nameBackup';
+const String publisherBackupKey = 'publisherBackup';
+const String descriptionBackupKey = 'descriptionBackup';
+const String domainBackupKey = 'domainBackup';
+
+const Map<String, Object> openUIDefaults = <String, Object>{
+  nameBackupKey: '',
+  publisherBackupKey: '',
+  descriptionBackupKey: '',
+  domainBackupKey: '',
+};
+
+final Map<String, Object> mobileDefaults = <String, Object>{
+  ...openUIDefaults,
+  ...empathMobileConfig
+};
+
+final Map<String, Object> desktopDefaults = <String, Object>{
+  ...openUIDefaults,
+  ...empathDesktopConfig
+};
