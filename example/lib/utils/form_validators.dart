@@ -8,8 +8,8 @@ import './export.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 /// Allows letters (upper and lower case) and underscores
-String? validateAppName({
-  required String? value,
+String? validateAppName(
+  String? value, {
   Function? onSuccess,
   Function? onFailure,
 }) {
@@ -25,13 +25,48 @@ String? validateAppName({
   }
 }
 
-/// Validates name.extension domains
-String? validateDomain(String? value) {
+String? validatePublisher(
+  String? value, {
+  Function? onSuccess,
+  Function? onFailure,
+}) {
   if (value == null || value.isEmpty) {
+    onFailure?.call();
+    return EzConfig.l10n.gRequired;
+  }
+
+  onSuccess?.call();
+  return null;
+}
+
+String? validateDescription(
+  String? value, {
+  Function? onSuccess,
+  Function? onFailure,
+}) {
+  if (value == null || value.isEmpty) {
+    onFailure?.call();
+    return EzConfig.l10n.gRequired;
+  }
+
+  onSuccess?.call();
+  return null;
+}
+
+/// Validates name.extension domains
+String? validateDomain(
+  String? value, {
+  Function? onSuccess,
+  Function? onFailure,
+}) {
+  if (value == null || value.isEmpty) {
+    onFailure?.call();
     return '${EzConfig.l10n.gRequired}; ${l10n.csInvalidName}';
   } else if (!domainPattern.hasMatch(value)) {
+    onFailure?.call();
     return l10n.csInvalidDomain;
   } else {
+    onSuccess?.call();
     return null;
   }
 }
