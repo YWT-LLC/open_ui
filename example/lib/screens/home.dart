@@ -91,6 +91,27 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   //* Define custom functions *//
 
+  void updateName(String name) {
+    final String previous = namePreview;
+    validName = true;
+    namePreview = name;
+
+    launchTC.text = launchTC.text.replaceAll(
+      previous.replaceAll('_', '-'),
+      namePreview.replaceAll('_', '-'),
+    );
+    copyrightTC.text = copyrightTC.text.replaceAll(previous, namePreview);
+    setState(() {});
+  }
+
+  void updatePublisher(String pub) {
+    final String previous = pubPreview;
+    pubPreview = pub;
+
+    copyrightTC.text = copyrightTC.text.replaceAll(previous, pubPreview);
+    setState(() {});
+  }
+
   /// Validate the code gen file path (Desktop only)
   Future<bool> checkPath(TextEditingController controller) async {
     if (await Directory(controller.text).exists()) return true;
@@ -123,6 +144,18 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) async {
+    // Shared changes from relevant backups
+    final String? bName = EzConfig.get(nameBackupKey);
+    final String? bPub = EzConfig.get(publisherBackupKey);
+
+    if (bName != null && bName.isNotEmpty) {
+      updateName(bName);
+    }
+    if (bPub != null && bPub.isNotEmpty) {
+      updatePublisher(bPub);
+    }
+
+    // Set path (for mac)
     if (!isMac) return;
 
     final ValueNotifier<String> flutterPath = ValueNotifier<String>('');
@@ -169,18 +202,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                 validator: (String? entry) => validateAppName(
                   entry,
                   onSuccess: () async {
-                    final String previous = namePreview;
-                    validName = true;
-                    namePreview = nameTC.text;
-
-                    launchTC.text = launchTC.text.replaceAll(
-                      previous.replaceAll('_', '-'),
-                      namePreview.replaceAll('_', '-'),
-                    );
-                    copyrightTC.text = copyrightTC.text.replaceAll(previous, namePreview);
-
                     await EzConfig.setString(nameBackupKey, nameTC.text);
-                    setState(() {});
+                    updateName(nameTC.text);
                   },
                   onFailure: () => setState(() => validName = false),
                 ),
@@ -196,13 +219,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                 validator: (String? value) => validatePublisher(
                   value,
                   onSuccess: () async {
-                    final String previous = pubPreview;
-                    pubPreview = publisherTC.text;
-
-                    copyrightTC.text = copyrightTC.text.replaceAll(previous, pubPreview);
-
                     await EzConfig.setString(publisherBackupKey, publisherTC.text);
-                    setState(() {});
+                    updatePublisher(publisherTC.text);
                   },
                 ),
                 hintText: l10n.csPubPreview,
