@@ -131,14 +131,8 @@ class EzDivider extends StatelessWidget {
   /// [Divider.thickness] passthrough
   final double? thickness;
 
-  /// [Divider.indent] passthrough
-  final double? indent;
-
   /// [Divider.color] passthrough
   final Color? color;
-
-  /// [Divider.endIndent] passthrough
-  final double? endIndent;
 
   /// [Divider.radius] passthrough
   final BorderRadius? radius;
@@ -154,9 +148,7 @@ class EzDivider extends StatelessWidget {
     this.title,
     this.height,
     this.thickness,
-    this.indent,
     this.color,
-    this.endIndent,
     this.radius,
   });
 
@@ -168,8 +160,6 @@ class EzDivider extends StatelessWidget {
         child: Divider(
           height: height,
           thickness: thickness,
-          indent: indent,
-          endIndent: endIndent,
           color: color,
           radius: radius,
         ),
@@ -180,22 +170,17 @@ class EzDivider extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: constraints,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          EzSpacer(space: space / 2),
-          Divider(
-            height: EzConfig.marginVal,
-            thickness: thickness,
-            indent: indent,
-            endIndent: endIndent,
-            color: color,
-            radius: radius,
-          ),
-          title!,
-          EzSpacer(space: space / 2),
-        ],
-      ),
+      child: EzCol(children: <Widget>[
+        EzSpacer(space: space / 2),
+        Divider(
+          height: EzConfig.marginVal,
+          thickness: thickness,
+          color: color,
+          radius: radius,
+        ),
+        title!,
+        EzSpacer(space: space / 2),
+      ]),
     );
   }
 }
@@ -274,4 +259,43 @@ class EzSwapSeparator extends StatelessWidget {
         ? EzSeparator(space: space, isDark: isDark, horizontal: false)
         : EzSeparator(space: space, isDark: isDark, vertical: false);
   }
+}
+
+class EzFooter extends StatelessWidget {
+  /// No [message] for this [Locale]
+  final Locale defaultLocale;
+
+  /// The current screen/page is human translated
+  final bool human;
+
+  /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
+  final TextAlign textAlign;
+
+  /// Optionally override [EFUILang.gMachineTranslated]
+  final String? message;
+
+  /// Optionally override [EzConfig.spacing] * 2
+  final double? spacing;
+
+  const EzFooter({
+    super.key,
+    this.defaultLocale = english,
+    this.human = false,
+    this.message,
+    this.textAlign = TextAlign.center,
+    this.spacing,
+  });
+
+  @override
+  Widget build(BuildContext context) =>
+      (human || EzConfig.locale.languageCode == defaultLocale.languageCode)
+          ? const EzSeparator()
+          : Padding(
+              padding: EdgeInsets.only(top: spacing ?? (EzConfig.spacing * 2)),
+              child: Text(
+                message ?? EzConfig.l10n.gMachineTranslated,
+                style: EzConfig.styles.labelLarge,
+                textAlign: textAlign,
+              ),
+            );
 }

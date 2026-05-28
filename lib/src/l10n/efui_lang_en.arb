@@ -1,8 +1,6 @@
 {
   "@@locale": "en",
 
-
-
   "gApply": "Apply",
   "gApplyChanges": "Apply changes",
   "gContinue": "Continue",
@@ -73,9 +71,6 @@
   "gCaptionsHint": "Hold for fonts",
   "gFullScreen": "Fullscreen",
 
-  "gHowThisWorks": "How this works",
-  "gHowThisWorksHint": "Open helpful documentation",
-
   "gMachineTranslated": "Machine translated",
 
   "gUpdates": "Updates available",
@@ -95,10 +90,6 @@
   "gEFUISourceHint": "Open the GitHub page for EFUI",
   "gOpenUIReleases": "Open the releases page for Open UI",
 
-  "gGiveFeedback": "Give feedback",
-  "gOpeningFeedback": "Opening the feedback tool.",
-  "gAttachScreenshot": "Please attach your screenshot (in Downloads folder)",
-
   "gSupportEmail": "Our support Email",
   "gClipboard": "{thing} has been copied to the clipboard.",
   
@@ -114,9 +105,11 @@
   "gUndoWarn1": "Cannot be undone automatically.\n",
   "gSave": "Save",
   "gSaveHint": "Activate to save a JSON config file.",
+  "gSwitchHint": "Flip switch",
   "gUndoWarn2": " your current config to restore it manually.",
+  "gValue": "Value",
 
-  "gCreditTo": "Credit to:",
+  "gSource": "Source:",
   "gCreator": "Creator of",
   "gMadeBy": "Made by",
   "gYou": "Set by you",
@@ -140,6 +133,7 @@
 
   "ssLoadPreset": "Load preset",
   "ssLoadPresetHint": "Activate to show presets",
+  "ssDewIt": "Update both/auto confirm",
   "ssBigButtons": "Big buttons",
   "ssHighVisibility": "High visibility",
   "ssChalkboard": "Chalkboard",
@@ -161,50 +155,59 @@
   "ssLoadConfig": "Load config",
 
   "ssResetAll": "Reset all settings?",
+  "ssResetAppearance": "Reset all appearance settings?",
   "ssResetBoth": "Reset both theme modes",
 
 
 
   "csPageTitle": "Color settings",
 
-  "csPickerHint": "Open a color picker. Long press for more options.",
+  "csSchemeBase": "Build scheme\nfrom image",
+  "csFromImage": "A color scheme will be generated from the image.",
 
   "csMonoChrome": "Use monochrome scheme",
   "csHighContrast": "Use high contrast scheme",
 
+  "csPrimary": "Primary",
+  "csPrimaryContainer": "Primary\noutline",
+  "csSecondary": "Secondary",
+  "csSecondaryContainer": "Secondary\noutline",
+  "csTertiary": "Tertiary",
+  "csTertiaryContainer": "Tertiary\noutline",
+  "csError": "Error",
+  "csErrorContainer": "Error\noutline",
+  "csOutline": "Hint\ntext",
+  "csOutlineVariant": "Hint\noutline",
+  "csSurface": "Button\nbackground",
+  "csSurfaceDim": "Alert && app bar\nbackground",
+  "csSurfaceContainer": "Page && modal\nbackground",
+  "csOnSurface": "Text",
+  "csScrim": "Modal\ncover",
+  "csShadow": "Shadow",
+  "csSurfaceTint": "Surface\ntint",
+
   "csPickerTitle": "Pick a color",
+  "csPickerHint": "Open a color picker. Long press for more options.",
   "csRecommended": "Use contrast recommendation?",
   "csUseCustom": "Use custom",
-
-  "csAddColor": "Add a color",
   "csCurrVal": "Current color value:",
 
-  "csSchemeBase": "Build scheme\nfrom image",
-  "csFromImage": "A color scheme will be generated from the image.",
-  "csColorScheme": "color scheme",
-
   "csReset": "Reset {themeType} colors?",
+  "csColorScheme": "color scheme",
 
 
 
   "dsPageTitle": "Design settings",
+
+  "dsButton": "Button",
+  "dsPage": "Page",
+
   "dsNone": "None",
   "dsSystem": "System",
 
-  "dsAnimDuration": "Animation duration",
-  "dsPlay": "Play animation",
-  "dsMilliseconds": "Milliseconds",
+  "dsPadding": "Padding",
 
-  "dsPageTransition": "Page transition",
-  "dsTurnX": "Horizontal turn",
-  "dsTurnY": "Vertical turn",
-  "dsRotate": "Rotate",
-  "dsSlideX": "Horizontal slide",
-  "dsSlideY": "Vertical slide",
-  "dsZoom": "Zoom",
-  "dsFadeTransition": "Fade transition",
-
-  "dsButtonStyle": "Button style",
+  "dsStyle": "Style",
   "dsBorderWidth": "Border width",
   "dsPill": "Pill",
   "dsRectangle": "Rectangle",
@@ -214,13 +217,33 @@
   "dsGem": "Gem",
   "dsJewel": "Jewel",
 
-  "dsPreview": "Preview",
-  "dsButtonOpacity": "Button opacity",
-  "dsBackground": "Background opacity",
-  "dsOutline": "Outline opacity",
+  "dsAlwaysUnderline": "Always underline links",
+  "dsShowBack": "Show back button",
+
+  "dsMargin": "Margin",
+  "dsSpacing": "Spacing",
+
+  "dsPageTransition": "Page transition",
+  "dsTurnX": "Horizontal turn",
+  "dsTurnY": "Vertical turn",
+  "dsRotate": "Rotate",
+  "dsSlideX": "Horizontal slide",
+  "dsSlideY": "Vertical slide",
+  "dsZoom": "Zoom",
+  "dsFadeTransition": "Fade transition",  
+
+  "dsAnimStyle": "Animation style",
+  "dsPlay": "Play animation",
+  "dsMilliseconds": "Milliseconds",
+  "dsCurve": "Curve",
+  "dsBounce": "Bounce",
+  "dsEase": "Ease",
+  "dsElastic": "Elastic",
+  "dsLinear": "Linear",
 
   "dsBackgroundImg": "Background image",
   "dsImgSettingHint": "Update the {title} image",
+  "dsReFit": "Re-fit",
   "dsFromFile": "From file",
   "dsFromCamera": "From camera",
   "dsFromNetwork": "From URL",
@@ -238,31 +261,13 @@
 
   "dsCrop": "Crop",
   "dsNoWeb": "Image editing is not supported on web",
-  "dsDrag": "Drag",
-  "dsDragHint": "Drag to reposition the image",
-  "dsSwipe": "Swipe",
-  "dsSwipeHint": "Swipe to reposition the image",
-  "dsPinch": "Pinch",
-  "dsPinchHint": "Pinch to zoom in/out",
-  "dsScroll": "Scroll",
-  "dsScrollHint": "Scroll to zoom in/out",
   "dsRotateLeft": "Rotate left",
   "dsRotateRight": "Rotate right",
 
-  "dsReset": "Reset {themeType} design?",
+  "dsShowScroll": "Show scrollbars",
 
-
-
-  "lsPageTitle": "Layout settings",
-
-  "lsMargin": "Margin",
-  "lsPadding": "Padding",
-  "lsSpacing": "Spacing",
-
-  "lsShowBack": "Show back button",
-  "lsShowScroll": "Show scrollbars",
-
-  "lsReset": "Reset {themeType} layout?",
+  "dsResetButton": "Reset {themeType} button design?",
+  "dsResetPage": "Reset {themeType} page design?",
 
 
 
@@ -304,8 +309,6 @@
   "tsLabelP1": "And ",
   "tsLabelLink": "the labels?",
   "tsLabelP2": " Not too big, not too small?",
-
-  "tsAlwaysUnderline": "Always underline links",
 
   "tsReset": "Reset {themeType} text styles?"
 }

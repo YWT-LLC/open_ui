@@ -29,16 +29,15 @@ class SettingsButton extends StatelessWidget {
 }
 
 class UploadButton extends StatelessWidget {
-  final BuildContext parentContext;
   final Future<void> Function(EAGConfig) onUpload;
 
   /// [EzMenuButton] for uploading a config
-  const UploadButton(this.parentContext, {super.key, required this.onUpload});
+  const UploadButton(this.onUpload, {super.key});
 
   @override
   Widget build(BuildContext context) => EzMenuButton(
         onPressed: () async {
-          final FilePickerResult? result = await FilePicker.platform.pickFiles(
+          final FilePickerResult? result = await FilePicker.pickFiles(
             type: FileType.custom,
             allowedExtensions: <String>['json'],
           );
@@ -70,11 +69,9 @@ class OpenSourceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzMenuLink(
-        uri: Uri.parse(
-            'https://github.com/Empathetech-LLC/empathetech_flutter_ui'),
+        uri: Uri.parse('https://github.com/Empathetech-LLC/empathetech_flutter_ui'),
         icon: EzIcon(LineIcons.github),
         label: EzConfig.l10n.gOpenSource,
-        semanticsLabel:
-            '${EzConfig.l10n.gOpenSource}: ${EzConfig.l10n.gEFUISourceHint}',
+        semanticsLabel: '${EzConfig.l10n.gOpenSource}: ${EzConfig.l10n.gEFUISourceHint}',
       );
 }

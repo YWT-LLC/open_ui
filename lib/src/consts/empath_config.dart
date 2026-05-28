@@ -14,6 +14,9 @@ import 'package:flutter/material.dart';
 
 const int blackHex = 0xFF000000;
 const int whiteHex = 0xFFFFFFFF;
+const int redHex = 0xFFFF0000;
+
+const int halfRedHex = 0x80FF0000;
 const int transparentHex = 0x00000000;
 
 // Secondary //
@@ -26,13 +29,13 @@ const int empathSandHex = 0xFFDAA520;
 /// Open source consumers: DO NOT USE
 const Color empathSand = Color(empathSandHex);
 
-/// 0x45DAA520
+/// 0x33DAA520
 /// Open source consumers: DO NOT USE
-const int empathSandDimHex = 0x45DAA520;
+const int empathSandDimHex = 0x33DAA520;
 
-/// 0x45DAA520
+/// 0x33DAA520
 /// Open source consumers: DO NOT USE
-const Color empathSandDim = Color(empathSandHex);
+const Color empathSandDim = Color(empathSandDimHex);
 
 // Dark:Primary | Light:Tertiary //
 
@@ -44,13 +47,13 @@ const int empathEucalyptusHex = 0xFF20DAA5;
 /// Open source consumers: DO NOT USE
 const Color empathEucalyptus = Color(empathEucalyptusHex);
 
-/// 0x4520DAA5
+/// 0x3320DAA5
 /// Open source consumers: DO NOT USE
-const int empathEucalyptusDimHex = 0x4520DAA5;
+const int empathEucalyptusDimHex = 0x3320DAA5;
 
-/// 0x4520DAA5
+/// 0x3320DAA5
 /// Open source consumers: DO NOT USE
-const Color empathEucalyptusDim = Color(empathEucalyptusHex);
+const Color empathEucalyptusDim = Color(empathEucalyptusDimHex);
 
 // Dark:Tertiary | Light:Primary //
 
@@ -62,11 +65,11 @@ const int empathPurpleHex = 0xFFA520DA;
 /// Open source consumers: DO NOT USE
 const Color empathPurple = Color(empathPurpleHex);
 
-/// 0x45A520DA
+/// 0x33A520DA
 /// Open source consumers: DO NOT USE
-const int empathPurpleDimHex = 0x45A520DA;
+const int empathPurpleDimHex = 0x33A520DA;
 
-/// 0x45A520DA
+/// 0x33A520DA
 /// Open source consumers: DO NOT USE
 const Color empathPurpleDim = Color(empathPurpleDimHex);
 
@@ -90,17 +93,17 @@ const int darkSurfaceHex = 0xFF222222;
 /// 0xFF222222 == 34 of each
 const Color darkSurface = Color(darkSurfaceHex);
 
-/// 0x8AFFFFFF == white w/ double [defaultBorderOpacity]
-const int darkOutlineHex = 0x8AFFFFFF;
+/// 0x80FFFFFF
+const int halfWhiteHex = 0x80FFFFFF;
 
-/// 0x8AFFFFFF == white w/ double [defaultBorderOpacity]
-const Color darkOutline = Color(darkOutlineHex);
+/// 0x80FFFFFF
+const Color halfWhite = Color(halfWhiteHex);
 
-/// 0x45FFFFFF == white w/ [defaultBorderOpacity]
-const int darkOutlineVariantHex = 0x45FFFFFF;
+/// 0x33FFFFFF
+const int dimWhiteHex = 0x33FFFFFF;
 
-/// 0x45FFFFFF == white w/ [defaultBorderOpacity]
-const Color darkOutlineVariant = Color(darkOutlineVariantHex);
+/// 0x33FFFFFF
+const Color dimWhite = Color(dimWhiteHex);
 
 // Light //
 
@@ -122,45 +125,46 @@ const int lightSurfaceHex = whiteHex;
 /// 0xFFFFFFFF == white
 const Color lightSurface = Color(lightSurfaceHex);
 
-/// 0x8A000000 == black w/ double [defaultBorderOpacity]
-const int lightOutlineHex = 0x8A000000;
+/// 0x80000000
+const int halfBlackHex = 0x80000000;
 
-/// 0x8A000000 == black w/ double [defaultBorderOpacity]
-const Color lightOutline = Color(lightOutlineHex);
+/// 0x80000000
+const Color halfBlack = Color(halfBlackHex);
 
-/// 0x45000000 == black w/ [defaultBorderOpacity]
-const int lightOutlineVariantHex = 0x45000000;
+/// 0x33000000
+const int dimBlackHex = 0x33000000;
 
-/// 0x45000000 == black w/ [defaultBorderOpacity]
-const Color lightOutlineVariant = Color(lightOutlineVariantHex);
+/// 0x33FFFFFF
+const Color dimBlack = Color(dimBlackHex);
 
 //* Design settings *//
 
-/// 400
-const int defaultAnimationDuration = 400;
+/// 15.0
+const double defaultMobilePadding = 15.0;
+
+/// 18.0
+const double defaultDesktopPadding = 18.0;
 
 /// 1.5
 const double defaultBorderWidth = 1.5;
 
-/// 0x45 / 255
-const double defaultBorderOpacity = 0.270588235294;
+/// 0.2 == 0x33
+const double defaultBorderOpacity = 0.2;
 
-//* Layout settings *//
+/// 7.5
+const double defaultMobileMargin = 7.5;
 
-/// 10.0
-const double defaultMargin = 10.0;
-
-/// 17.5
-const double defaultMobilePadding = 17.5;
-
-/// 17.5
-const double defaultDesktopPadding = 20.0;
+/// 9.0
+const double defaultDesktopMargin = 9.0;
 
 /// 25.0
 const double defaultMobileSpacing = 25.0;
 
-/// 25.0
+/// 30.0
 const double defaultDesktopSpacing = 30.0;
+
+/// 400
+const int defaultAnimationDuration = 400;
 
 //* Text settings *//
 
@@ -215,8 +219,8 @@ const double defaultWordSpacing = 1.0;
 
 // Design settings //
 
-/// 0
-const int minAnimationDuration = 0;
+/// 10.0
+const double minPadding = 10.0;
 
 /// 0.0
 const double minBorderWidth = 0.0;
@@ -224,16 +228,14 @@ const double minBorderWidth = 0.0;
 /// 0.0
 const double minOpacity = 0.0;
 
-// Layout settings //
-
 /// 5.0
 const double minMargin = 5.0;
 
 /// 10.0
-const double minPadding = 10.0;
-
-/// 10.0
 const double minSpacing = 10.0;
+
+/// 0
+const int minAnimationDuration = 0;
 
 // Text settings //
 
@@ -282,8 +284,8 @@ const double minFontHeight = 1.0;
 
 // Design settings //
 
-/// 1000
-const int maxAnimationDuration = 1000;
+/// 30.0
+const double maxPadding = 30.0;
 
 /// 3.0
 const double maxBorderWidth = 3.0;
@@ -291,16 +293,14 @@ const double maxBorderWidth = 3.0;
 /// 1.0
 const double maxOpacity = 1.0;
 
-// Layout settings //
+/// 15.0
+const double maxMargin = 15.0;
 
-/// 20.0
-const double maxMargin = 20.0;
-
-/// 40.0
-const double maxPadding = 40.0;
-
-/// 50.0
+/// 75.0
 const double maxSpacing = 75.0;
+
+/// 1000
+const int maxAnimationDuration = 1000;
 
 // Text settings //
 
@@ -361,110 +361,132 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
   updateBothKey: false,
 
   // Color settings //
-  // Selector
   advancedColorsKey: false,
 
-  // Dark
-  darkPrimaryKey: empathEucalyptusHex,
-  darkPrimaryContainerKey: empathEucalyptusDimHex,
-  darkOnPrimaryKey: blackHex,
-  darkOnPrimaryContainerKey: blackHex,
-
-  darkSecondaryKey: empathSandHex,
-  darkSecondaryContainerKey: empathSandDimHex,
-  darkOnSecondaryKey: blackHex,
-  darkOnSecondaryContainerKey: blackHex,
-
-  darkTertiaryKey: empathPurpleHex,
-  darkTertiaryContainerKey: empathPurpleDimHex,
-  darkOnTertiaryKey: whiteHex,
-  darkOnTertiaryContainerKey: whiteHex,
-
+  // Dark backgrounds
+  darkColorSchemeImageKey: noImageValue,
   darkSurfaceKey: darkSurfaceHex,
-  darkOnSurfaceKey: whiteHex,
   darkSurfaceDimKey: darkSurfaceDimHex,
   darkSurfaceContainerKey: darkSurfaceContainerHex,
-  darkOutlineKey: darkOutlineHex,
-  darkOutlineVariantKey: darkOutlineVariantHex,
-  darkInversePrimaryKey: empathEucalyptusHex,
+
+  // Dark text
+  darkOnSurfaceKey: whiteHex,
+  darkOutlineKey: halfWhiteHex,
+
+  // Dark primary
+  darkPrimaryKey: empathEucalyptusHex,
+  darkOnPrimaryKey: blackHex,
+  darkPrimaryContainerKey: empathEucalyptusDimHex,
+  darkOnPrimaryContainerKey: blackHex,
+
+  // Dark secondary
+  darkSecondaryKey: empathSandHex,
+  darkOnSecondaryKey: blackHex,
+  darkSecondaryContainerKey: empathSandDimHex,
+  darkOnSecondaryContainerKey: blackHex,
+
+  // Dark tertiary
+  darkTertiaryKey: empathPurpleHex,
+  darkOnTertiaryKey: whiteHex,
+  darkTertiaryContainerKey: empathPurpleDimHex,
+  darkOnTertiaryContainerKey: whiteHex,
+
+  // Dark erriary
+  darkErrorKey: redHex,
+  darkOnErrorKey: whiteHex,
+  darkErrorContainerKey: halfRedHex,
+  darkOnErrorContainerKey: whiteHex,
+
+  // Dark misc
+  darkOutlineVariantKey: dimWhiteHex,
+  // darkShadowKey
   darkSurfaceTintKey: transparentHex,
+  darkScrimKey: blackHex,
 
-  darkColorSchemeImageKey: noImageValue,
-  // userDarkColorsKey: null, default defined in EzColorSettings()
-
-  // Light
-  lightPrimaryKey: empathPurpleHex,
-  lightPrimaryContainerKey: empathPurpleDimHex,
-  lightOnPrimaryKey: whiteHex,
-  lightOnPrimaryContainerKey: whiteHex,
-
-  lightSecondaryKey: empathSandHex,
-  lightSecondaryContainerKey: empathSandDimHex,
-  lightOnSecondaryKey: blackHex,
-  lightOnSecondaryContainerKey: blackHex,
-
-  lightTertiaryKey: empathEucalyptusHex,
-  lightTertiaryContainerKey: empathEucalyptusDimHex,
-  lightOnTertiaryKey: blackHex,
-  lightOnTertiaryContainerKey: blackHex,
-
+  // Light backgrounds
+  lightColorSchemeImageKey: noImageValue,
   lightSurfaceKey: lightSurfaceHex,
-  lightOnSurfaceKey: blackHex,
   lightSurfaceDimKey: lightSurfaceDimHex,
   lightSurfaceContainerKey: lightSurfaceContainerHex,
-  lightOutlineKey: lightOutlineHex,
-  lightOutlineVariantKey: lightOutlineVariantHex,
-  lightInversePrimaryKey: empathPurpleHex,
-  lightSurfaceTintKey: transparentHex,
 
-  lightColorSchemeImageKey: noImageValue,
-  // userLightColorsKey: null, default defined in EzColorSettings()
-  // Unassigned colors are automatically generated by ColorScheme.fromSeed
+  // Light text
+  lightOnSurfaceKey: blackHex,
+  lightOutlineKey: halfBlackHex,
+
+  // Light primary
+  lightPrimaryKey: empathPurpleHex,
+  lightOnPrimaryKey: whiteHex,
+  lightPrimaryContainerKey: empathPurpleDimHex,
+  lightOnPrimaryContainerKey: whiteHex,
+
+  // Light secondary
+  lightSecondaryKey: empathSandHex,
+  lightOnSecondaryKey: blackHex,
+  lightSecondaryContainerKey: empathSandDimHex,
+  lightOnSecondaryContainerKey: blackHex,
+
+  // Light tertiary
+  lightTertiaryKey: empathEucalyptusHex,
+  lightOnTertiaryKey: blackHex,
+  lightTertiaryContainerKey: empathEucalyptusDimHex,
+  lightOnTertiaryContainerKey: blackHex,
+
+  // Light erriary
+  lightErrorKey: redHex,
+  lightOnErrorKey: whiteHex,
+  lightErrorContainerKey: halfRedHex,
+  lightOnErrorContainerKey: whiteHex,
+
+  // Light misc
+  lightOutlineVariantKey: dimBlackHex,
+  // lightShadowKey
+  lightSurfaceTintKey: transparentHex,
+  lightScrimKey: whiteHex,
 
   // Design settings //
+  pageTabKey: false,
 
   // Dark
-  darkAnimationDurationKey: defaultAnimationDuration,
-  // darkTransitionTypeKey: null (aka system),
-  darkTransitionFadeKey: false,
-
-  darkBackgroundImageKey: noImageValue,
-  '$darkBackgroundImageKey$boxFitSuffix': '',
+  // margin defined in mobile/desktop configs
 
   darkButtonShapeKey: EzButtonShape.pill.value,
   darkBorderWidthKey: defaultBorderWidth,
 
-  darkButtonOpacityKey: maxOpacity,
-  darkBorderOpacityKey: defaultBorderOpacity,
+  // padding and spacing defined in mobile/desktop configs
+
+  darkAnimationDurationKey: defaultAnimationDuration,
+  // darkTransitionTypeKey: null (aka system),
+  darkTransitionFadeKey: true,
+
+  darkLineLinksKey: false,
+  // backFab defined in mobile/desktop configs
+
+  darkBackgroundImageKey: noImageValue,
+  // darkBackgroundFitKey: null,
+  // darkBackgroundSourceKey: null,
+
+  // showScroll defined in mobile/desktop configs
 
   // Light
-  lightAnimationDurationKey: defaultAnimationDuration,
-  // lightTransitionTypeKey: null (aka system),
-  lightTransitionFadeKey: false,
-
-  lightBackgroundImageKey: noImageValue,
-  '$lightBackgroundImageKey$boxFitSuffix': '',
+  // margin defined in mobile/desktop configs
 
   lightButtonShapeKey: EzButtonShape.pill.value,
   lightBorderWidthKey: defaultBorderWidth,
 
-  lightButtonOpacityKey: maxOpacity,
-  lightBorderOpacityKey: defaultBorderOpacity,
+  lightLineLinksKey: false,
+  // backFab defined in mobile/desktop configs
 
-  // Layout settings //
+  lightAnimationDurationKey: defaultAnimationDuration,
+  // lightTransitionTypeKey: null (aka system),
+  lightTransitionFadeKey: true,
 
-  // Dark
-  darkMarginKey: defaultMargin,
-  // padding and spacing defined in mobile/desktop configs
+  lightBackgroundImageKey: noImageValue,
+  // lightBackgroundFitKey: null,
+  // lightBackgroundSourceKey: null,
 
-  // Light
-  lightMarginKey: defaultMargin,
-  // ditto
-
-  // hideScroll defined in mobile/desktop configs
+  // showScroll defined in mobile/desktop configs
 
   // Text settings //
-  // Selector
   advancedTextKey: false,
 
   // Dark
@@ -515,7 +537,6 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   darkTextBackgroundOpacityKey: defaultTextOpacity,
   darkIconSizeKey: defaultIconSize,
-  darkLineLinksKey: false,
 
   // Light
   lightDisplayFontFamilyKey: roboto,
@@ -565,7 +586,6 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 
   lightTextBackgroundOpacityKey: defaultTextOpacity,
   lightIconSizeKey: defaultIconSize,
-  lightLineLinksKey: false,
 };
 
 /// [baseEmpathConfig] with a more compact layout and hidden scrolls
@@ -575,18 +595,22 @@ final Map<String, Object> baseEmpathConfig = <String, Object>{
 final Map<String, Object> empathMobileConfig = <String, Object>{
   ...baseEmpathConfig,
 
-  // Layout //
+  // Design //
 
   // Dark
   darkPaddingKey: defaultMobilePadding,
-  darkSpacingKey: defaultMobileSpacing,
   darkShowBackFABKey: false,
+
+  darkMarginKey: defaultMobileMargin,
+  darkSpacingKey: defaultMobileSpacing,
   darkShowScrollKey: false,
 
   // Light
   lightPaddingKey: defaultMobilePadding,
-  lightSpacingKey: defaultMobileSpacing,
   lightShowBackFABKey: false,
+
+  lightMarginKey: defaultMobileMargin,
+  lightSpacingKey: defaultMobileSpacing,
   lightShowScrollKey: false,
 };
 
@@ -597,18 +621,22 @@ final Map<String, Object> empathMobileConfig = <String, Object>{
 final Map<String, Object> empathDesktopConfig = <String, Object>{
   ...baseEmpathConfig,
 
-  // Layout //
+  // Design //
 
   // Dark
   darkPaddingKey: defaultDesktopPadding,
-  darkSpacingKey: defaultDesktopSpacing,
   darkShowBackFABKey: false,
+
+  darkMarginKey: defaultDesktopMargin,
+  darkSpacingKey: defaultDesktopSpacing,
   darkShowScrollKey: true,
 
   // Light
   lightPaddingKey: defaultDesktopPadding,
-  lightSpacingKey: defaultDesktopSpacing,
   lightShowBackFABKey: false,
+
+  lightMarginKey: defaultDesktopMargin,
+  lightSpacingKey: defaultDesktopSpacing,
   lightShowScrollKey: true,
 };
 
@@ -621,20 +649,20 @@ final Map<String, Object> empathMaxConfig = <String, Object>{
 
   // Design settings //
 
-  darkAnimationDurationKey: maxAnimationDuration,
-  lightAnimationDurationKey: maxAnimationDuration,
-
-  // Layout settings //
-
-  darkMarginKey: maxMargin,
-  lightMarginKey: maxMargin,
   darkPaddingKey: maxPadding,
   lightPaddingKey: maxPadding,
-  darkSpacingKey: maxSpacing,
-  lightSpacingKey: maxSpacing,
 
   darkShowBackFABKey: true,
   lightShowBackFABKey: true,
+
+  darkMarginKey: maxMargin,
+  lightMarginKey: maxMargin,
+  darkSpacingKey: maxSpacing,
+  lightSpacingKey: maxSpacing,
+
+  darkAnimationDurationKey: maxAnimationDuration,
+  lightAnimationDurationKey: maxAnimationDuration,
+
   darkShowScrollKey: true,
   lightShowScrollKey: true,
 
@@ -703,20 +731,20 @@ final Map<String, Object> empathMinConfig = <String, Object>{
 
   // Design settings //
 
-  darkAnimationDurationKey: minAnimationDuration,
-  lightAnimationDurationKey: minAnimationDuration,
-
-  // Layout settings //
-
-  darkMarginKey: minMargin,
-  lightMarginKey: minMargin,
   darkPaddingKey: minPadding,
   lightPaddingKey: minPadding,
-  darkSpacingKey: minSpacing,
-  lightSpacingKey: minSpacing,
 
   darkShowBackFABKey: true,
   lightShowBackFABKey: true,
+
+  darkAnimationDurationKey: minAnimationDuration,
+  lightAnimationDurationKey: minAnimationDuration,
+
+  darkMarginKey: minMargin,
+  lightMarginKey: minMargin,
+  darkSpacingKey: minSpacing,
+  lightSpacingKey: minSpacing,
+
   darkShowScrollKey: true,
   lightShowScrollKey: true,
 

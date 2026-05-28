@@ -33,24 +33,17 @@ class _GenerateScreenState extends State<GenerateScreen> {
   /// Quantum supremacy achieved
   bool? showDelete = true;
 
-  String device() {
-    switch (EzConfig.platform) {
-      case TargetPlatform.linux:
-        return 'linux';
-      case TargetPlatform.macOS:
-        return 'macos';
-      case TargetPlatform.windows:
-        return 'windows';
-      default:
-        return 'chrome';
-    }
-  }
+  String device() => switch (EzConfig.platform) {
+        TargetPlatform.linux => 'linux',
+        TargetPlatform.macOS => 'macos',
+        TargetPlatform.windows => 'windows',
+        _ => 'chrome',
+      };
 
   late final String workDir = widget.config.workPath!;
 
-  late final String projDir = isWindows
-      ? '$workDir\\${widget.config.appName}'
-      : '$workDir/${widget.config.appName}';
+  late final String projDir =
+      isWindows ? '$workDir\\${widget.config.appName}' : '$workDir/${widget.config.appName}';
 
   late final String flutterPath = widget.config.flutterPath == null
       ? ''
@@ -59,7 +52,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
           : '${widget.config.flutterPath}/';
 
   ValueNotifier<String> readout = ValueNotifier<String>('');
-  bool showReadout = false;
+  final ExpansibleController ec = ExpansibleController();
 
   // Define custom functions //
 
@@ -75,8 +68,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
         dir: workDir,
         onSuccess: () => rmUnused(l10n),
         onFailure: (String message) {
-          if (message.contains('not permitted') &&
-              EzConfig.platform == TargetPlatform.macOS) {
+          if (message.contains('not permitted') && EzConfig.platform == TargetPlatform.macOS) {
             setState(() {
               showDelete = false;
               richFailureMessage = EzRichText(
@@ -112,15 +104,13 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
   /// Runs immediately after a successful [genStuff]
   Future<void> rmUnused(Lang l10n) async {
-    const String files =
-        'analysis_options.yaml pubspec.lock pubspec.yaml README.md';
+    const String files = 'analysis_options.yaml pubspec.lock pubspec.yaml README.md';
     const String dirs = 'lib test';
 
     // Files
     await ezCmd(
       isWindows ? 'del /f /q $files' : 'rm -f $files',
       dir: projDir,
-      onSuccess: doNothing,
       onFailure: onFailure,
       readout: readout,
     );
@@ -179,23 +169,19 @@ class _GenerateScreenState extends State<GenerateScreen> {
       readout: readout,
     );
 
-    if (widget.config.analysisOptions != null) {
-      await genAnalysis(
-        config: widget.config,
-        dir: projDir,
-        onFailure: onFailure,
-        readout: readout,
-      );
-    }
+    await genAnalysis(
+      config: widget.config,
+      dir: projDir,
+      onFailure: onFailure,
+      readout: readout,
+    );
 
-    if (widget.config.vsCodeConfig != null) {
-      await genVSCode(
-        config: widget.config,
-        dir: projDir,
-        onFailure: onFailure,
-        readout: readout,
-      );
-    }
+    await genVSCode(
+      config: widget.config,
+      dir: projDir,
+      onFailure: onFailure,
+      readout: readout,
+    );
 
     await runStuff(l10n);
   }
@@ -207,13 +193,10 @@ class _GenerateScreenState extends State<GenerateScreen> {
     try {
       // Update entitlements //
 
-      final File macOSDebugEntitlements =
-          File('$projDir/macos/Runner/DebugProfile.entitlements');
-      final File macOSReleaseEntitlements =
-          File('$projDir/macos/Runner/Release.entitlements');
+      final File macOSDebugEntitlements = File('$projDir/macos/Runner/DebugProfile.entitlements');
+      final File macOSReleaseEntitlements = File('$projDir/macos/Runner/Release.entitlements');
 
-      final XmlDocument debugDoc =
-          XmlDocument.parse(await macOSDebugEntitlements.readAsString());
+      final XmlDocument debugDoc = XmlDocument.parse(await macOSDebugEntitlements.readAsString());
       final XmlDocument releaseDoc =
           XmlDocument.parse(await macOSReleaseEntitlements.readAsString());
 
@@ -223,28 +206,24 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
       if (debugDoc.findAllElements(networkClientKey).isEmpty) {
         // Add the entitlement
-        final XmlElement dictionary =
-            debugDoc.rootElement.findElements('dict').first;
+        final XmlElement dictionary = debugDoc.rootElement.findElements('dict').first;
 
         dictionary.children.add(XmlElement(XmlName(networkClientKey)));
         dictionary.children.add(XmlElement(XmlName('true')));
 
         // Save the modified file
-        await macOSDebugEntitlements
-            .writeAsString(debugDoc.toXmlString(pretty: true));
+        await macOSDebugEntitlements.writeAsString(debugDoc.toXmlString(pretty: true));
       }
 
       if (releaseDoc.findAllElements(networkClientKey).isEmpty) {
         // Add the entitlement
-        final XmlElement dictionary =
-            releaseDoc.rootElement.findElements('dict').first;
+        final XmlElement dictionary = releaseDoc.rootElement.findElements('dict').first;
 
         dictionary.children.add(XmlElement(XmlName(networkClientKey)));
         dictionary.children.add(XmlElement(XmlName('true')));
 
         // Save the modified file
-        await macOSReleaseEntitlements
-            .writeAsString(releaseDoc.toXmlString(pretty: true));
+        await macOSReleaseEntitlements.writeAsString(releaseDoc.toXmlString(pretty: true));
       }
 
       // Make sure packages are in order //
@@ -310,55 +289,17 @@ class _GenerateScreenState extends State<GenerateScreen> {
         : onFailure(l10n.gsPartialSuccess);
   }
 
-  Widget header(Lang l10n) {
-    switch (genState) {
-      case GeneratorState.running:
-        return SizedBox(
-          height: (heightOf(context) / 3),
-          width: double.infinity,
-          child: EmpathyLoading(semantics: EzConfig.l10n.gLoadingAnim),
-        );
-      case GeneratorState.successful:
-        return SizedBox(
-          height: heightOf(context) / 3,
-          width: double.infinity,
-          child: Center(
-            child: EzScrollView(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SuccessHeader(
-                  message:
-                      '${widget.config.appName} ${l10n.gsIsReadyIn}\n${widget.config.workPath}',
-                ),
-                EzConfig.separator,
-                RunOption(
-                  projDir: projDir,
-                  style: ezSubTitleStyle(),
-                  emulate: () async {
-                    if (genState == GeneratorState.running) return;
-
-                    setState(() => genState = GeneratorState.running);
-                    ezSnackBar(context, message: l10n.gsFirstRun);
-
-                    await ezCmd(
-                      '${flutterPath}flutter run -d ${device()}',
-                      dir: projDir,
-                      onSuccess: () =>
-                          setState(() => genState = GeneratorState.successful),
-                      onFailure: onFailure,
-                      readout: readout,
-                    );
-                  },
-                ),
-              ],
+  Widget header(Lang l10n) => switch (genState) {
+        GeneratorState.running => EmpathyLoading(
+            semantics: EzConfig.l10n.gLoadingAnim,
+            colorScheme: EzConfig.colors,
+          ),
+        GeneratorState.successful => Center(
+            child: SuccessHeader(
+              message: '${widget.config.appName} ${l10n.gsIsReadyIn}\n${widget.config.workPath}',
             ),
           ),
-        );
-      case GeneratorState.failed:
-        return SizedBox(
-          height: heightOf(context) / 3,
-          width: double.infinity,
-          child: Center(
+        GeneratorState.failed => Center(
             child: EzScrollView(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -376,14 +317,12 @@ class _GenerateScreenState extends State<GenerateScreen> {
                 ],
                 if (showDelete == null) ...<Widget>[
                   EzConfig.spacer,
-                  LinkOption(ezSubTitleStyle()),
+                  const LinkOption(),
                 ],
               ],
             ),
           ),
-        );
-    }
-  }
+      };
 
   // Init //
 
@@ -398,56 +337,54 @@ class _GenerateScreenState extends State<GenerateScreen> {
   @override
   Widget build(BuildContext context) => OpenUIScaffold(
         EzScreen(EzScrollView(children: <Widget>[
-          header(l10n),
-          EzConfig.divider,
-
-          // Console output //
-
-          // Toggle
-          EzRow(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              EzText(
-                l10n.gsConsole,
-                style: EzConfig.styles.titleLarge,
-                textAlign: TextAlign.center,
-              ),
-              EzConfig.rowMargin,
-              EzIconButton(
-                onPressed: () => setState(() => showReadout = !showReadout),
-                icon: Icon(
-                  showReadout ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-                ),
-              ),
-            ],
+          SizedBox(
+            height: heightOf(context) / 3,
+            width: double.infinity,
+            child: header(l10n),
           ),
-          EzConfig.margin,
-
-          // Readout
-          Visibility(
-            visible: showReadout,
-            child: Container(
-              constraints: BoxConstraints(
-                minWidth: widthOf(context) * 0.667,
-                maxWidth: widthOf(context) * 0.667,
-                maxHeight: heightOf(context) / 2,
+          Container(
+            alignment: Alignment.topCenter,
+            constraints: BoxConstraints(
+              minWidth: widthOf(context) * 0.667,
+              maxWidth: widthOf(context) * 0.667,
+            ),
+            child: ExpansionTile(
+              controller: ec,
+              onExpansionChanged: (_) => setState(() {}),
+              expandedAlignment: Alignment.topCenter,
+              expandedCrossAxisAlignment: CrossAxisAlignment.center,
+              showTrailingIcon: false,
+              title: EzRow(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: Text(
+                      l10n.gsConsole,
+                      style: EzConfig.styles.titleLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  EzConfig.rowMargin,
+                  EzIconButton(
+                    icon: EzIcon(
+                      ezVisIcon(ec.isExpanded),
+                      semanticLabel: ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
+                    ),
+                    onPressed: () => ec.isExpanded ? ec.collapse() : ec.expand(),
+                    tooltip: ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
+                  ),
+                ],
               ),
-              padding: EdgeInsets.all(EzConfig.marginVal),
-              decoration: BoxDecoration(
-                color: EzConfig.colors.surfaceDim,
-                borderRadius: ezRoundEdge,
-              ),
-              child: ValueListenableBuilder<String>(
-                valueListenable: readout,
-                builder: (_, String value, __) => EzScrollView(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  child: Text(
+              children: <Widget>[
+                ValueListenableBuilder<String>(
+                  valueListenable: readout,
+                  builder: (_, String value, __) => Text(
                     value,
                     style: EzConfig.styles.bodyLarge,
                     textAlign: TextAlign.start,
                   ),
                 ),
-              ),
+              ],
             ),
           ),
           EzConfig.separator,

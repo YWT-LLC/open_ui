@@ -12,23 +12,10 @@ class EzColorSetting extends StatefulWidget {
   /// [EzConfig] key whose [Color] will be updated
   final String configKey;
 
-  /// [EzConfig.rebuildUI] passthrough
-  final void Function() onUpdate;
-
-  /// Optional callback for when the [configKey] is removed, if it is part of a dynamic set/list
-  /// If null, the remove button will not be shown
-  /// DO NOT include a pop() for the dialog, this is included automatically
-  final void Function()? onRemove;
-
   /// Creates a tool for [configKey] ColorScheme values via [EzConfig]
   /// When [configKey] is a text color (has [textColorPrefix]), the base color will be used to generate a recommendation via [getTextColor]
   /// [EzColorSetting] inherits styling from the [ElevatedButton] and [AlertDialog] values in your [ThemeData]
-  const EzColorSetting({
-    super.key,
-    required this.configKey,
-    required this.onUpdate,
-    this.onRemove,
-  });
+  const EzColorSetting({super.key, required this.configKey});
 
   @override
   State<EzColorSetting> createState() => _ColorSettingState();
@@ -51,11 +38,10 @@ class _ColorSettingState extends State<EzColorSetting> {
     return ezColorPicker(
       context,
       startColor: backup,
-      onColorChange: (Color chosenColor) =>
-          setState(() => currColor = chosenColor),
+      onColorChange: (Color chosenColor) => setState(() => currColor = chosenColor),
       onConfirm: () async {
         await EzConfig.setInt(widget.configKey, currColor.toARGB32());
-        await EzConfig.rebuildUI(widget.onUpdate);
+        await EzConfig.rebuildUI();
       },
       onDeny: () => setState(() => currColor = backup),
     );
@@ -80,9 +66,8 @@ class _ColorSettingState extends State<EzColorSetting> {
 
     // Find the recommended contrast color for the background
     final int? backgroundColorValue = EzConfig.get(backgroundKey);
-    final Color backgroundColor = (backgroundColorValue == null)
-        ? getLiveColor(backgroundKey)
-        : Color(backgroundColorValue);
+    final Color backgroundColor =
+        (backgroundColorValue == null) ? getLiveColor(backgroundKey) : Color(backgroundColorValue);
 
     final int recommended = getTextColor(backgroundColor).toARGB32();
 
@@ -93,7 +78,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     // Recommended, custom, or cancel (close)
     return showDialog(
       context: context,
-      builder: (BuildContext dContext) => EzAlertDialog(
+      builder: (BuildContext dCon) => EzAlertDialog(
         title: Text(
           EzConfig.l10n.csRecommended,
           textAlign: TextAlign.center,
@@ -121,7 +106,7 @@ class _ColorSettingState extends State<EzColorSetting> {
               // Update the user's configKey
               await EzConfig.setInt(widget.configKey, recommended);
               setState(() => currColor = Color(recommended));
-              await EzConfig.rebuildUI(widget.onUpdate);
+              await EzConfig.rebuildUI();
             },
             isDefaultAction: true,
           ),
@@ -129,7 +114,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             text: EzConfig.l10n.csUseCustom,
             onPressed: () async {
               final dynamic chosen = await openColorPicker();
-              if (dContext.mounted) Navigator.of(dContext).pop(chosen);
+              if (dCon.mounted) Navigator.of(dCon).pop(chosen);
             },
             isDestructiveAction: true,
           ),
@@ -143,15 +128,13 @@ class _ColorSettingState extends State<EzColorSetting> {
   /// If a value is found, a preview of the reset color is shown and the user can confirm/deny
   Future<dynamic> reset() => showDialog(
         context: context,
-        builder: (BuildContext dContext) {
+        builder: (BuildContext dCon) {
           final int? resetValue = EzConfig.getDefault(widget.configKey);
-          final String currColorLabel =
-              currColor.toARGB32().toRadixString(16).toUpperCase().substring(2);
+          final String currColorLabel = currColor.toARGB32().toRadixString(16).toUpperCase();
 
           return EzAlertDialog(
             title: Text(
-              EzConfig.l10n
-                  .gResetValue(getColorName(widget.configKey).toLowerCase()),
+              EzConfig.l10n.gResetValue(getColorName(widget.configKey).toLowerCase()),
               textAlign: TextAlign.center,
             ),
             contents: <Widget>[
@@ -161,59 +144,27 @@ class _ColorSettingState extends State<EzColorSetting> {
 
               // Copy-able value
               EzTextIconButton(
-                onPressed: () =>
-                    Clipboard.setData(ClipboardData(text: currColorLabel)),
-                icon: const Icon(Icons.copy),
+                onPressed: () => Clipboard.setData(ClipboardData(text: currColorLabel)),
+                icon: EzIcon(Icons.copy),
                 label: currColorLabel,
               ),
             ],
             actions: ezActionPair(
-              context: context,
               onConfirm: () async {
                 // Remove the user's configKey and reset the current state
                 await EzConfig.remove(widget.configKey);
                 if (resetValue != null) {
                   setState(() => currColor = Color(resetValue));
                 }
-                await EzConfig.rebuildUI(widget.onUpdate);
+                await EzConfig.rebuildUI();
               },
               confirmIsDestructive: true,
-              onDeny: () => Navigator.of(dContext).pop(),
+              onDeny: () => Navigator.of(dCon).pop(),
             ),
             needsClose: false,
           );
         },
       );
-
-  /// Opens an [EzAlertDialog] with the all optional actions
-  /// Currently: remove from list and reset to default
-  Future<dynamic> options() => (widget.onRemove == null)
-      ? reset()
-      : showDialog(
-          context: context,
-          builder: (BuildContext dContext) => EzAlertDialog(
-            title: Text(EzConfig.l10n.gOptions, textAlign: TextAlign.center),
-            contents: <Widget>[
-              // Remove from list
-              EzElevatedIconButton(
-                onPressed: () {
-                  widget.onRemove!();
-                  Navigator.of(dContext).pop();
-                },
-                icon: const Icon(Icons.delete),
-                label: EzConfig.l10n.gRemove,
-              ),
-              EzConfig.spacer,
-
-              // Reset to default
-              EzElevatedIconButton(
-                onPressed: () => reset(),
-                icon: const Icon(Icons.refresh),
-                label: EzConfig.l10n.gReset,
-              ),
-            ],
-          ),
-        );
 
   // Return the build //
 
@@ -228,11 +179,8 @@ class _ColorSettingState extends State<EzColorSetting> {
       hint: EzConfig.l10n.csPickerHint,
       child: ExcludeSemantics(
         child: EzElevatedIconButton(
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(EzConfig.padding * 0.75),
-          ),
-          onPressed: () => changeColor(),
-          onLongPress: () => options(),
+          onPressed: changeColor,
+          onLongPress: reset,
           icon: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -254,6 +202,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                   ),
           ),
           label: label,
+          textAlign: TextAlign.center,
         ),
       ),
     );

@@ -23,21 +23,13 @@ const Set<String> efuiAssetPaths = <String>{
   wallHolesPath,
 };
 
-/// [nebulaPath], [wallHolesPath]
-const Map<String, String> efuiAssetCredits = <String, String>{
-  nebulaPath: 'https://www.pexels.com/@jmueller/',
-  wallHolesPath: 'https://www.pexels.com/@carl-wyatt-654792/',
-};
-
 // For use //
 
 /// [AssetImage] for [nebulaPath]
-const AssetImage nebulaAsset =
-    AssetImage(nebulaPath, package: 'empathetech_flutter_ui');
+const AssetImage nebulaAsset = AssetImage(nebulaPath, package: 'empathetech_flutter_ui');
 
 /// [AssetImage] for [wallHolesPath]
-const AssetImage wallHolesAsset =
-    AssetImage(wallHolesPath, package: 'empathetech_flutter_ui');
+const AssetImage wallHolesAsset = AssetImage(wallHolesPath, package: 'empathetech_flutter_ui');
 
 /// [nebulaPath]
 const Map<String, AssetImage> efuiImageLookup = <String, AssetImage>{
@@ -63,34 +55,33 @@ const String webImgHint = 'example.com/image.jpg';
 
 //* Localization *//
 
-/// Non-conclusive set containing...
-/// ar, fa, he, ur
+/// AKA CJK
+const Set<String> picLanguageCodes = <String>{
+  'zh', // Chinese
+  'ja', // Japanese
+  'ko', // Korean
+};
+
+/// Non-conclusive set
 const Set<String> rtlLanguageCodes = <String>{
   'ar', // Arabic
+  'dv', // Divehi (Maldivian)
   'fa', // Persian (Farsi)
   'he', // Hebrew
+  'ps', // Pashto
+  'sd', // Sindhi
+  'ug', // Uyghur
   'ur', // Urdu
+  'yi', // Yiddish
 };
 
 //* Theme Data *//
-
-/// Fit
-const String boxFitSuffix = 'Fit';
-
-/// 0xFF264941
-const Color chalkboardGreen = Color(0xFF264941);
 
 /// Opacity for highlight effects; on hover, on focus, etc
 /// Doubles as opacity minimum for crucial elements
 /// Some things are too important to be broken by user settings
 /// 0.12
 const double focusOpacity = 0.125;
-
-/// 16.0
-const double gemSlope = 16.0;
-
-/// 12.0
-const double gramSlope = 12.0;
 
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';

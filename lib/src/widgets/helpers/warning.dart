@@ -11,80 +11,42 @@ class EzWarning extends StatelessWidget {
   /// What does the user need to know?
   final String body;
 
-  /// Defaults to [TextTheme.bodyLarge]
-  final TextStyle? bodyStyle;
-
   /// Warning [String] to grab the user's attention
   /// Defaults to [EFUILang.gAttention]
   final String? title;
 
-  /// Defaults to [TextTheme.titleLarge]
-  final TextStyle? titleStyle;
-
-  /// Defaults to [ColorScheme.secondary]
-  final Color? iconColor;
-
   /// [Card] wrapper designed to grab attention for warnings...
-  ///  /!\ [title] /!\
-  ///      [body]
-  const EzWarning(
-    this.body, {
-    this.bodyStyle,
-    this.title,
-    this.titleStyle,
-    this.iconColor,
-    super.key,
-  });
+  ///  /!\  [title]  /!\
+  ///       [body]
+  const EzWarning(this.body, {this.title, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Gather the contextual theme data //
-
-    final Color alertColor = iconColor ?? EzConfig.colors.secondary;
-
-    final TextStyle? tStyle = titleStyle ?? EzConfig.styles.titleLarge;
-
-    // Return the build //
-
-    final String warning = title ?? EzConfig.l10n.gAttention;
-
-    return Semantics(
-      label: '$warning: $body',
-      readOnly: true,
-      child: ExcludeSemantics(
-        child: Card(
-          child: Container(
-            padding: EdgeInsets.all(EzConfig.marginVal),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+  Widget build(BuildContext context) => Semantics(
+        label: '${title ?? EzConfig.l10n.gAttention}: $body',
+        readOnly: true,
+        child: ExcludeSemantics(
+          child: Card(
+            child: Container(
+              padding: EdgeInsets.all(EzConfig.marginVal),
+              child: EzCol(children: <Widget>[
                 // Title
                 EzScrollView(
                   scrollDirection: Axis.horizontal,
                   startCentered: true,
-                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     // Thing1
-                    Icon(
-                      Icons.warning,
-                      color: alertColor,
-                      size: tStyle?.fontSize,
-                    ),
+                    EzIcon(Icons.warning, color: EzConfig.colors.secondary),
                     EzConfig.rowMargin,
 
                     Text(
-                      warning,
-                      style: tStyle,
+                      title ?? EzConfig.l10n.gAttention,
+                      style: EzConfig.styles.titleLarge,
                       textAlign: TextAlign.center,
                     ),
                     EzConfig.rowMargin,
 
                     // Thing 2
-                    Icon(
-                      Icons.warning,
-                      color: alertColor,
-                      size: tStyle?.fontSize,
-                    ),
+                    EzIcon(Icons.warning, color: EzConfig.colors.secondary),
                   ],
                 ),
                 EzConfig.spacer,
@@ -92,14 +54,12 @@ class EzWarning extends StatelessWidget {
                 // Body
                 Text(
                   body,
-                  style: bodyStyle ?? EzConfig.styles.bodyLarge,
+                  style: EzConfig.styles.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
-              ],
+              ]),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

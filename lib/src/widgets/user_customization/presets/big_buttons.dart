@@ -8,26 +8,25 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzBigButtonsConfig extends StatelessWidget {
-  /// Only runs if you're using the rendered [Widget]
-  /// Calling [onPressed] does not trigger [onComplete]
-  final Future<void> Function() onComplete;
+  /// Whether both themes should be updated
+  final bool updateBoth;
 
-  /// Only modifies the layout settings and icon size
+  /// Optional extra changes
+  final Future<void> Function(bool)? extra;
+
+  /// Doesn't replace, only modifies: larger touch points from default
   /// Slight bump to all layout values, for easier tapping
-  const EzBigButtonsConfig(this.onComplete, {super.key});
+  const EzBigButtonsConfig({
+    super.key,
+    required this.updateBoth,
+    this.extra,
+  });
 
-  static Future<void> onPressed() async {
+  static Future<void> onPressed(bool updateBoth) async {
     // Don't reset //
 
-    if (EzConfig.updateBoth || EzConfig.isDark) {
-      // Default global && color settings //
-
+    if (updateBoth || EzConfig.isDark) {
       // Design settings //
-
-      await EzConfig.setString(
-          darkButtonShapeKey, EzButtonShape.roundRect.value);
-
-      // Layout settings //
 
       await EzConfig.setDouble(darkMarginKey, 12.0);
       if (EzConfig.onMobile) {
@@ -37,27 +36,22 @@ class EzBigButtonsConfig extends StatelessWidget {
         await EzConfig.setDouble(darkPaddingKey, 24.0);
         await EzConfig.setDouble(darkSpacingKey, 36.0);
       }
+
       await EzConfig.setBool(darkShowBackFABKey, true);
+
+      await EzConfig.setString(darkButtonShapeKey, EzButtonShape.roundRect.value);
+
       await EzConfig.setBool(darkShowScrollKey, true);
 
       // Text settings //
-
-      // Default styles
 
       if (EzConfig.iconSize < 25.0) {
         await EzConfig.setDouble(darkIconSizeKey, 25.0);
       }
     }
 
-    if (EzConfig.updateBoth || !EzConfig.isDark) {
-      // Default global && color settings //
-
+    if (updateBoth || !EzConfig.isDark) {
       // Design settings //
-
-      await EzConfig.setString(
-          lightButtonShapeKey, EzButtonShape.roundRect.value);
-
-      // Layout settings //
 
       await EzConfig.setDouble(lightMarginKey, 12.0);
       if (EzConfig.onMobile) {
@@ -67,12 +61,14 @@ class EzBigButtonsConfig extends StatelessWidget {
         await EzConfig.setDouble(lightPaddingKey, 24.0);
         await EzConfig.setDouble(lightSpacingKey, 36.0);
       }
+
       await EzConfig.setBool(lightShowBackFABKey, true);
+
+      await EzConfig.setString(lightButtonShapeKey, EzButtonShape.roundRect.value);
+
       await EzConfig.setBool(lightShowScrollKey, true);
 
       // Text settings //
-
-      // Default styles
 
       if (EzConfig.iconSize < 25.0) {
         await EzConfig.setDouble(lightIconSizeKey, 25.0);
@@ -86,10 +82,10 @@ class EzBigButtonsConfig extends StatelessWidget {
           shape: EzButtonShape.roundRect.shape,
           padding: EdgeInsets.all(EzConfig.onMobile ? 22.5 : 25.0),
         ),
-        onPressed: () async {
-          await onPressed();
-          await onComplete();
-        },
+        onPressed: () => EzConfig.rebuildUI(changes: () async {
+          await onPressed(updateBoth);
+          await extra?.call(updateBoth);
+        }),
         text: EzConfig.l10n.ssBigButtons,
       );
 }

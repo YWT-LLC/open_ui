@@ -16,27 +16,17 @@ import 'package:provider/provider.dart';
 enum ScreenSize { small, medium, large }
 
 extension ScreenSizeConfig on ScreenSize {
-  double get size {
-    switch (this) {
-      case ScreenSize.small:
-        return 700.0;
-      case ScreenSize.medium:
-        return 1000.0;
-      case ScreenSize.large:
-        return 1300.0;
-    }
-  }
+  double get size => switch (this) {
+        ScreenSize.small => 700.0,
+        ScreenSize.medium => 1000.0,
+        ScreenSize.large => 1300.0,
+      };
 
-  int get order {
-    switch (this) {
-      case ScreenSize.small:
-        return 0;
-      case ScreenSize.medium:
-        return 1;
-      case ScreenSize.large:
-        return 2;
-    }
-  }
+  int get order => switch (this) {
+        ScreenSize.small => 0,
+        ScreenSize.medium => 1,
+        ScreenSize.large => 2,
+      };
 }
 
 // BTS class //
@@ -56,8 +46,7 @@ class EzScreenSize extends InheritedWidget {
       context.dependOnInheritedWidgetOfExactType<EzScreenSize>();
 
   @override
-  bool updateShouldNotify(EzScreenSize oldWidget) =>
-      screenSize != oldWidget.screenSize;
+  bool updateShouldNotify(EzScreenSize oldWidget) => screenSize != oldWidget.screenSize;
 }
 
 // Parent Widget/Scaffold wrapper //
@@ -133,16 +122,9 @@ class EzAdaptiveWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final int? order = EzScreenSize.of(context)?.screenSize.order;
-
-    switch (order) {
-      case 1:
-        return medium ?? small;
-      case 2:
-        return large ?? medium ?? small;
-      default:
-        return small;
-    }
-  }
+  Widget build(BuildContext context) => switch (EzScreenSize.of(context)?.screenSize.order) {
+        1 => medium ?? small,
+        2 => large ?? medium ?? small,
+        _ => small,
+      };
 }

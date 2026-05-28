@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [12.0.0] - 2026-05-27
+### Added
+- 11 languages
+  - 4 missing from SOS and 7 new
+- Animations
+
+### Removed
+- Unneeded code (over-complex, unused, redundant, etc.)
+
+### Updated
+- Settings hub layout
+- Color names
+  - Localized descriptors rather than exact variable names
+
 ## [11.1.1] - 2026-04-01
 ### Fixed
 - UX pattern inconsistencies

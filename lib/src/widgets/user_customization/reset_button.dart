@@ -5,7 +5,6 @@
 
 import '../../../empathetech_flutter_ui.dart';
 
-import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzResetButton extends StatelessWidget {
@@ -20,15 +19,6 @@ class EzResetButton extends StatelessWidget {
   /// Optionally override [EzAlertDialog.content] that shows on click
   /// Defaults to [ezRichUndoWarning]
   final Widget? dialogContent;
-
-  /// [EzConfig.rebuildUI] passthrough
-  final void Function() onComplete;
-
-  /// [ezRichUndoWarning] passthrough
-  final String appName;
-
-  /// [ezRichUndoWarning] passthrough
-  final String? androidPackage;
 
   /// [EzConfig.reset] skip passthrough
   /// Moot if [onConfirm] is provided
@@ -47,12 +37,9 @@ class EzResetButton extends StatelessWidget {
   final void Function()? onDeny;
 
   /// [EzElevatedIconButton] for clearing user settings
-  const EzResetButton(
-    this.onComplete, {
+  const EzResetButton({
     super.key,
     this.all = true,
-    required this.appName,
-    this.androidPackage,
     this.saveSkip,
     this.dialogContent,
     this.dynamicTitle,
@@ -62,88 +49,71 @@ class EzResetButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return EzElevatedIconButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: EzConfig.colors.surface
-            .withValues(alpha: max(EzConfig.buttonOpacity, focusOpacity)),
-      ),
-      onPressed: () => showDialog(
-        context: context,
-        builder: (_) {
-          bool updateBoth = true;
+  Widget build(BuildContext context) => EzElevatedIconButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: EzConfig.colors.surface.a < focusOpacity
+              ? EzConfig.colors.surface.withValues(alpha: focusOpacity)
+              : EzConfig.colors.surface,
+        ),
+        onPressed: () => showDialog(
+          context: context,
+          builder: (_) {
+            bool updateBoth = true;
 
-          return StatefulBuilder(
-            builder: (BuildContext dContext, StateSetter setDialog) =>
-                EzAlertDialog(
-              title: Text(
-                dynamicTitle?.call() ?? EzConfig.l10n.ssResetAll,
-                textAlign: TextAlign.center,
+            return StatefulBuilder(
+              builder: (BuildContext dCon, StateSetter setDialog) => EzAlertDialog(
+                title: Text(
+                  dynamicTitle?.call() ?? EzConfig.l10n.ssResetAll,
+                  textAlign: TextAlign.center,
+                ),
+                content: (dialogContent == null)
+                    ? (all ? null : ezRichUndoWarning(context, standalone: false))
+                    : dialogContent,
+                contents: (dialogContent == null)
+                    ? (all
+                        ? <Widget>[
+                            ezRichUndoWarning(context, standalone: false),
+                            EzConfig.margin,
+                            EzSwitchPair(
+                              key: ValueKey<bool>(updateBoth),
+                              text: EzConfig.l10n.ssResetBoth,
+                              value: updateBoth,
+                              onChanged: (bool? choice) {
+                                if (choice == null) return;
+                                setDialog(() => updateBoth = choice);
+                              },
+                            ),
+                          ]
+                        : null)
+                    : null,
+                actions: ezActionPair(
+                  onConfirm: () => EzConfig.rebuildUI(changes: () async {
+                    if (onConfirm == null) {
+                      await EzConfig.reset(
+                        skip: resetSkip,
+                        forceOne: !updateBoth,
+                        forceBoth: updateBoth,
+                      );
+                    } else {
+                      await onConfirm!.call();
+                    }
+                  }),
+                  confirmIsDestructive: true,
+                  onDeny: () {
+                    if (onDeny == null) {
+                      doNothing();
+                    } else {
+                      onDeny!.call();
+                    }
+                    if (dCon.mounted) Navigator.of(dCon).pop();
+                  },
+                ),
+                needsClose: false,
               ),
-              content: (dialogContent == null)
-                  ? (all
-                      ? null
-                      : ezRichUndoWarning(
-                          context,
-                          standalone: false,
-                          appName: appName,
-                          androidPackage: androidPackage,
-                        ))
-                  : dialogContent,
-              contents: (dialogContent == null)
-                  ? (all
-                      ? <Widget>[
-                          ezRichUndoWarning(
-                            context,
-                            standalone: false,
-                            appName: appName,
-                            androidPackage: androidPackage,
-                          ),
-                          EzConfig.margin,
-                          EzSwitchPair(
-                            key: ValueKey<bool>(updateBoth),
-                            text: EzConfig.l10n.ssResetBoth,
-                            value: updateBoth,
-                            onChanged: (bool? choice) {
-                              if (choice == null) return;
-                              setDialog(() => updateBoth = choice);
-                            },
-                          ),
-                        ]
-                      : null)
-                  : null,
-              actions: ezActionPair(
-                context: context,
-                onConfirm: () async {
-                  if (onConfirm == null) {
-                    await EzConfig.reset(
-                      skip: resetSkip,
-                      forceOne: !updateBoth,
-                      forceBoth: updateBoth,
-                    );
-                  } else {
-                    await onConfirm!.call();
-                  }
-
-                  await EzConfig.rebuildUI(onComplete);
-                },
-                confirmIsDestructive: true,
-                onDeny: () {
-                  if (onDeny == null) {
-                    doNothing();
-                  } else {
-                    onDeny!.call();
-                  }
-                  if (dContext.mounted) Navigator.of(dContext).pop();
-                },
-              ),
-              needsClose: false,
-            ),
-          );
-        },
-      ),
-      icon: const Icon(Icons.refresh),
-      label: all ? EzConfig.l10n.gResetAll : EzConfig.l10n.gReset,
-    );
-  }
+            );
+          },
+        ),
+        icon: EzIcon(Icons.refresh),
+        label: all ? EzConfig.l10n.gResetAll : EzConfig.l10n.gReset,
+      );
 }

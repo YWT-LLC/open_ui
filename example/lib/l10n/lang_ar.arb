@@ -1,0 +1,90 @@
+{
+  "@@locale": "ar",
+
+  "csPageTitle": "أداة البناء",
+
+  "csAppName": "اسم التطبيق",
+  "csNamePreview": "example_app",
+  "csNameTip": "أفضل تطبيق على الإطلاق",
+  "csBecomes": "يصبح",
+  "csInvalidName": "يُسمح بالأحرف الصغيرة والأرقام والشرطات السفلية فقط.",
+  "csYourApp": "تطبيقك",
+  "csPubName": "اسم الناشر",
+  "csPubPreview": "مؤسسة تجريبية",
+  "csPubTip": "أو، شخص كمثال",
+  "csDescription": "الوصف",
+  "csDescPreview": "جملة أو جملتان عن تطبيقك.",
+  "csDomainName": "اسم النطاق",
+  "csDomainTip": "بالعكس، يكون",
+  "csInvalidDomain": "'domain.name' فقط؛ RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+
+  "csGenApp": "عندما تقوم بإنشاء {app_name}، فإن ",
+  "csTheApp": "التطبيق الحالي",
+  "csTheConfig": "الإعدادات الحالية",
+  "csSetColors": " (باستثناء الصور) ستصبح الإعدادات الافتراضية لـ {app_name}.\n\nيلزم تعيين نظام ألوان مخصص. وإذا كنت بحاجة إلى مساعدة في إنشائه، فحاول البدء",
+  "csHere": "هنا.",
+  "csHereHint": "فتح أداة بناء نظام ألوان عبر الإنترنت",
+
+  "csFileBrowser": "فتح متصفح الملفات",
+  "csFlutterPath": "مسار Flutter",
+  "csNoSpaces": "لا يمكن أن يحتوي المسار على مسافات",
+  "csNotInstalled": "غير مثبت؟",
+  "csPathRequired": "المسار مطلوب. لا يمكن استخدام المجلد الجذري.",
+  "csBadPath": "مسار غير صالح",
+
+  "csAdvanced": "إعدادات متقدمة",
+  "csRestore": "استعادة {setting}",
+  "csOutputPath": "مسار المخرجات",
+  "csCopyright": "إشعار حقوق الطبع والنشر",
+  "csCopyrightTip": "سيتم تضمينه في أعلى كل ملف Dart",
+  "csLicenseDocs": "فتح الوثائق الخاصة بتراخيص المصادر المفتوحة",
+  "csL10nTip": "إعدادات الأقلمة (أي الترجمات)",
+  "csLintTip": "قواعد Lint",
+  "csLaunchTip": "يضيف خيارات التشغيل إلى قائمة التصحيح في VS Code",
+
+  "csGenerate": "إنشاء التطبيق",
+  "csInvalidFields": "بعض الحقول غير صالحة",
+  "csRequired": "جميع الحقول مطلوبة",
+
+  "csResetHint": "قم بالتفعيل والتأكيد على ما يجب إعادة ضبطه.",
+  "csResetBuilder": "قيم أداة البناء",
+  "csResetApp": "إعدادات التطبيق",
+  "csResetBoth": "كلاهما",
+  "csResetNothing": "لا شيء",
+
+
+
+  "asPageTitle": "المؤرشف",
+
+  "asUseIt": "\n\nاستخدمه على ",
+  "asToGen": " لسطح المكتب لإنشاء الكود لـ {app_name}",
+
+  
+
+  "gsPageTitle": "المولد",
+
+  "gsConsole": "مخرجات وحدة التحكم",
+
+  "gsIsReadyIn": "جاهز في",
+
+  "gsNeedPermission": "تحتاج Open UI إلى وصول كامل للقرص.\n\nيرجى الذهاب إلى...\nإعدادات النظام > الخصوصية والأمان > الوصول الكامل للقرص > تفعيل Open UI؛ ثم حاول مرة أخرى.",
+  "gsSeeNBelieve": "إذا كنت تريد التحقق مما تفعله Open UI، اذهب ",
+  "gsSeeNBelieveHint": "فتح كود إنشاء الأكواد الخاص بـ Open UI.",
+  "gsNotInstalled": "Flutter غير مثبت",
+  "gsPartialSuccess": "تم إنشاء الكود بنجاح، ولكن فشل إعداد بعض أجزاء المشروع.",
+
+
+
+  "rsWouldYou": "هل ترغب في...",
+
+  "rsInstall": "تثبيته",
+  "rsInstallHint": "فتح دليل تثبيت Flutter",
+
+  "rsRun": "تشغيله",
+
+  "rsWipe": "مسحه",
+  "rsNextTime": "نجاح، نتمنى التوفيق في المرة القادمة!",
+  "rsAnotherOne": "فشل آخر؛ ربما يجب أن تتولى الأمر بنفسك...",
+
+  "rsLeave": "تركه"
+}

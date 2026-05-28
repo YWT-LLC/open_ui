@@ -19,8 +19,7 @@ class ParallelogramBorder extends OutlinedBorder {
   });
 
   @override
-  OutlinedBorder copyWith({BorderSide? side, double? slope, bool? lefty}) =>
-      ParallelogramBorder(
+  OutlinedBorder copyWith({BorderSide? side, double? slope, bool? lefty}) => ParallelogramBorder(
         side: side ?? this.side,
         lefty: lefty ?? this.lefty,
         slope: slope ?? this.slope,
@@ -74,7 +73,7 @@ class GemBorder extends OutlinedBorder {
 
   const GemBorder({
     super.side,
-    this.pointWidth = gemSlope,
+    this.pointWidth = jewelSlope,
   });
 
   @override

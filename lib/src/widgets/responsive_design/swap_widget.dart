@@ -30,9 +30,6 @@ class EzSwapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenSize? size = EzScreenSize.of(context)?.screenSize;
-
-    return (size == null || size.order <= breakpoint.order)
-        ? restricted
-        : expanded;
+    return (size == null || size.order <= breakpoint.order) ? restricted : expanded;
   }
 }

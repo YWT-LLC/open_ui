@@ -4,9 +4,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'efui_lang_ar.dart' deferred as efui_lang_ar;
+import 'efui_lang_de.dart' deferred as efui_lang_de;
 import 'efui_lang_en.dart' deferred as efui_lang_en;
 import 'efui_lang_es.dart' deferred as efui_lang_es;
+import 'efui_lang_fil.dart' deferred as efui_lang_fil;
 import 'efui_lang_fr.dart' deferred as efui_lang_fr;
+import 'efui_lang_hi.dart' deferred as efui_lang_hi;
+import 'efui_lang_ht.dart' deferred as efui_lang_ht;
+import 'efui_lang_ja.dart' deferred as efui_lang_ja;
+import 'efui_lang_ko.dart' deferred as efui_lang_ko;
+import 'efui_lang_ru.dart' deferred as efui_lang_ru;
+import 'efui_lang_sw.dart' deferred as efui_lang_sw;
+import 'efui_lang_uk.dart' deferred as efui_lang_uk;
+import 'efui_lang_zh.dart' deferred as efui_lang_zh;
 
 // ignore_for_file: type=lint
 
@@ -93,10 +104,23 @@ abstract class EFUILang {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('ar', 'EG'),
+    Locale('de'),
     Locale('en'),
     Locale('en', 'US'),
     Locale('es'),
-    Locale('fr')
+    Locale('fil'),
+    Locale('fr'),
+    Locale('hi'),
+    Locale('ht'),
+    Locale('ja'),
+    Locale('ko'),
+    Locale('ru'),
+    Locale('sw'),
+    Locale('uk'),
+    Locale('zh'),
+    Locale('zh', 'CN')
   ];
 
   /// No description provided for @gApply.
@@ -453,18 +477,6 @@ abstract class EFUILang {
   /// **'Fullscreen'**
   String get gFullScreen;
 
-  /// No description provided for @gHowThisWorks.
-  ///
-  /// In en, this message translates to:
-  /// **'How this works'**
-  String get gHowThisWorks;
-
-  /// No description provided for @gHowThisWorksHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Open helpful documentation'**
-  String get gHowThisWorksHint;
-
   /// No description provided for @gMachineTranslated.
   ///
   /// In en, this message translates to:
@@ -548,24 +560,6 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Open the releases page for Open UI'**
   String get gOpenUIReleases;
-
-  /// No description provided for @gGiveFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Give feedback'**
-  String get gGiveFeedback;
-
-  /// No description provided for @gOpeningFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Opening the feedback tool.'**
-  String get gOpeningFeedback;
-
-  /// No description provided for @gAttachScreenshot.
-  ///
-  /// In en, this message translates to:
-  /// **'Please attach your screenshot (in Downloads folder)'**
-  String get gAttachScreenshot;
 
   /// No description provided for @gSupportEmail.
   ///
@@ -651,17 +645,29 @@ abstract class EFUILang {
   /// **'Activate to save a JSON config file.'**
   String get gSaveHint;
 
+  /// No description provided for @gSwitchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Flip switch'**
+  String get gSwitchHint;
+
   /// No description provided for @gUndoWarn2.
   ///
   /// In en, this message translates to:
   /// **' your current config to restore it manually.'**
   String get gUndoWarn2;
 
-  /// No description provided for @gCreditTo.
+  /// No description provided for @gValue.
   ///
   /// In en, this message translates to:
-  /// **'Credit to:'**
-  String get gCreditTo;
+  /// **'Value'**
+  String get gValue;
+
+  /// No description provided for @gSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source:'**
+  String get gSource;
 
   /// No description provided for @gCreator.
   ///
@@ -758,6 +764,12 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Activate to show presets'**
   String get ssLoadPresetHint;
+
+  /// No description provided for @ssDewIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Update both/auto confirm'**
+  String get ssDewIt;
 
   /// No description provided for @ssBigButtons.
   ///
@@ -861,6 +873,12 @@ abstract class EFUILang {
   /// **'Reset all settings?'**
   String get ssResetAll;
 
+  /// No description provided for @ssResetAppearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all appearance settings?'**
+  String get ssResetAppearance;
+
   /// No description provided for @ssResetBoth.
   ///
   /// In en, this message translates to:
@@ -872,54 +890,6 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Color settings'**
   String get csPageTitle;
-
-  /// No description provided for @csPickerHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Open a color picker. Long press for more options.'**
-  String get csPickerHint;
-
-  /// No description provided for @csMonoChrome.
-  ///
-  /// In en, this message translates to:
-  /// **'Use monochrome scheme'**
-  String get csMonoChrome;
-
-  /// No description provided for @csHighContrast.
-  ///
-  /// In en, this message translates to:
-  /// **'Use high contrast scheme'**
-  String get csHighContrast;
-
-  /// No description provided for @csPickerTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick a color'**
-  String get csPickerTitle;
-
-  /// No description provided for @csRecommended.
-  ///
-  /// In en, this message translates to:
-  /// **'Use contrast recommendation?'**
-  String get csRecommended;
-
-  /// No description provided for @csUseCustom.
-  ///
-  /// In en, this message translates to:
-  /// **'Use custom'**
-  String get csUseCustom;
-
-  /// No description provided for @csAddColor.
-  ///
-  /// In en, this message translates to:
-  /// **'Add a color'**
-  String get csAddColor;
-
-  /// No description provided for @csCurrVal.
-  ///
-  /// In en, this message translates to:
-  /// **'Current color value:'**
-  String get csCurrVal;
 
   /// No description provided for @csSchemeBase.
   ///
@@ -933,11 +903,149 @@ abstract class EFUILang {
   /// **'A color scheme will be generated from the image.'**
   String get csFromImage;
 
-  /// No description provided for @csColorScheme.
+  /// No description provided for @csMonoChrome.
   ///
   /// In en, this message translates to:
-  /// **'color scheme'**
-  String get csColorScheme;
+  /// **'Use monochrome scheme'**
+  String get csMonoChrome;
+
+  /// No description provided for @csHighContrast.
+  ///
+  /// In en, this message translates to:
+  /// **'Use high contrast scheme'**
+  String get csHighContrast;
+
+  /// No description provided for @csPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary'**
+  String get csPrimary;
+
+  /// No description provided for @csPrimaryContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary\noutline'**
+  String get csPrimaryContainer;
+
+  /// No description provided for @csSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'Secondary'**
+  String get csSecondary;
+
+  /// No description provided for @csSecondaryContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Secondary\noutline'**
+  String get csSecondaryContainer;
+
+  /// No description provided for @csTertiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Tertiary'**
+  String get csTertiary;
+
+  /// No description provided for @csTertiaryContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tertiary\noutline'**
+  String get csTertiaryContainer;
+
+  /// No description provided for @csError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get csError;
+
+  /// No description provided for @csErrorContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Error\noutline'**
+  String get csErrorContainer;
+
+  /// No description provided for @csOutline.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint\ntext'**
+  String get csOutline;
+
+  /// No description provided for @csOutlineVariant.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint\noutline'**
+  String get csOutlineVariant;
+
+  /// No description provided for @csSurface.
+  ///
+  /// In en, this message translates to:
+  /// **'Button\nbackground'**
+  String get csSurface;
+
+  /// No description provided for @csSurfaceDim.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert && app bar\nbackground'**
+  String get csSurfaceDim;
+
+  /// No description provided for @csSurfaceContainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Page && modal\nbackground'**
+  String get csSurfaceContainer;
+
+  /// No description provided for @csOnSurface.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get csOnSurface;
+
+  /// No description provided for @csScrim.
+  ///
+  /// In en, this message translates to:
+  /// **'Modal\ncover'**
+  String get csScrim;
+
+  /// No description provided for @csShadow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadow'**
+  String get csShadow;
+
+  /// No description provided for @csSurfaceTint.
+  ///
+  /// In en, this message translates to:
+  /// **'Surface\ntint'**
+  String get csSurfaceTint;
+
+  /// No description provided for @csPickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a color'**
+  String get csPickerTitle;
+
+  /// No description provided for @csPickerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a color picker. Long press for more options.'**
+  String get csPickerHint;
+
+  /// No description provided for @csRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Use contrast recommendation?'**
+  String get csRecommended;
+
+  /// No description provided for @csUseCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Use custom'**
+  String get csUseCustom;
+
+  /// No description provided for @csCurrVal.
+  ///
+  /// In en, this message translates to:
+  /// **'Current color value:'**
+  String get csCurrVal;
 
   /// No description provided for @csReset.
   ///
@@ -945,11 +1053,29 @@ abstract class EFUILang {
   /// **'Reset {themeType} colors?'**
   String csReset(Object themeType);
 
+  /// No description provided for @csColorScheme.
+  ///
+  /// In en, this message translates to:
+  /// **'color scheme'**
+  String get csColorScheme;
+
   /// No description provided for @dsPageTitle.
   ///
   /// In en, this message translates to:
   /// **'Design settings'**
   String get dsPageTitle;
+
+  /// No description provided for @dsButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Button'**
+  String get dsButton;
+
+  /// No description provided for @dsPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Page'**
+  String get dsPage;
 
   /// No description provided for @dsNone.
   ///
@@ -963,77 +1089,17 @@ abstract class EFUILang {
   /// **'System'**
   String get dsSystem;
 
-  /// No description provided for @dsAnimDuration.
+  /// No description provided for @dsPadding.
   ///
   /// In en, this message translates to:
-  /// **'Animation duration'**
-  String get dsAnimDuration;
+  /// **'Padding'**
+  String get dsPadding;
 
-  /// No description provided for @dsPlay.
+  /// No description provided for @dsStyle.
   ///
   /// In en, this message translates to:
-  /// **'Play animation'**
-  String get dsPlay;
-
-  /// No description provided for @dsMilliseconds.
-  ///
-  /// In en, this message translates to:
-  /// **'Milliseconds'**
-  String get dsMilliseconds;
-
-  /// No description provided for @dsPageTransition.
-  ///
-  /// In en, this message translates to:
-  /// **'Page transition'**
-  String get dsPageTransition;
-
-  /// No description provided for @dsTurnX.
-  ///
-  /// In en, this message translates to:
-  /// **'Horizontal turn'**
-  String get dsTurnX;
-
-  /// No description provided for @dsTurnY.
-  ///
-  /// In en, this message translates to:
-  /// **'Vertical turn'**
-  String get dsTurnY;
-
-  /// No description provided for @dsRotate.
-  ///
-  /// In en, this message translates to:
-  /// **'Rotate'**
-  String get dsRotate;
-
-  /// No description provided for @dsSlideX.
-  ///
-  /// In en, this message translates to:
-  /// **'Horizontal slide'**
-  String get dsSlideX;
-
-  /// No description provided for @dsSlideY.
-  ///
-  /// In en, this message translates to:
-  /// **'Vertical slide'**
-  String get dsSlideY;
-
-  /// No description provided for @dsZoom.
-  ///
-  /// In en, this message translates to:
-  /// **'Zoom'**
-  String get dsZoom;
-
-  /// No description provided for @dsFadeTransition.
-  ///
-  /// In en, this message translates to:
-  /// **'Fade transition'**
-  String get dsFadeTransition;
-
-  /// No description provided for @dsButtonStyle.
-  ///
-  /// In en, this message translates to:
-  /// **'Button style'**
-  String get dsButtonStyle;
+  /// **'Style'**
+  String get dsStyle;
 
   /// No description provided for @dsBorderWidth.
   ///
@@ -1083,29 +1149,125 @@ abstract class EFUILang {
   /// **'Jewel'**
   String get dsJewel;
 
-  /// No description provided for @dsPreview.
+  /// No description provided for @dsAlwaysUnderline.
   ///
   /// In en, this message translates to:
-  /// **'Preview'**
-  String get dsPreview;
+  /// **'Always underline links'**
+  String get dsAlwaysUnderline;
 
-  /// No description provided for @dsButtonOpacity.
+  /// No description provided for @dsShowBack.
   ///
   /// In en, this message translates to:
-  /// **'Button opacity'**
-  String get dsButtonOpacity;
+  /// **'Show back button'**
+  String get dsShowBack;
 
-  /// No description provided for @dsBackground.
+  /// No description provided for @dsMargin.
   ///
   /// In en, this message translates to:
-  /// **'Background opacity'**
-  String get dsBackground;
+  /// **'Margin'**
+  String get dsMargin;
 
-  /// No description provided for @dsOutline.
+  /// No description provided for @dsSpacing.
   ///
   /// In en, this message translates to:
-  /// **'Outline opacity'**
-  String get dsOutline;
+  /// **'Spacing'**
+  String get dsSpacing;
+
+  /// No description provided for @dsPageTransition.
+  ///
+  /// In en, this message translates to:
+  /// **'Page transition'**
+  String get dsPageTransition;
+
+  /// No description provided for @dsTurnX.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizontal turn'**
+  String get dsTurnX;
+
+  /// No description provided for @dsTurnY.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical turn'**
+  String get dsTurnY;
+
+  /// No description provided for @dsRotate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rotate'**
+  String get dsRotate;
+
+  /// No description provided for @dsSlideX.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizontal slide'**
+  String get dsSlideX;
+
+  /// No description provided for @dsSlideY.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical slide'**
+  String get dsSlideY;
+
+  /// No description provided for @dsZoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Zoom'**
+  String get dsZoom;
+
+  /// No description provided for @dsFadeTransition.
+  ///
+  /// In en, this message translates to:
+  /// **'Fade transition'**
+  String get dsFadeTransition;
+
+  /// No description provided for @dsAnimStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Animation style'**
+  String get dsAnimStyle;
+
+  /// No description provided for @dsPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play animation'**
+  String get dsPlay;
+
+  /// No description provided for @dsMilliseconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Milliseconds'**
+  String get dsMilliseconds;
+
+  /// No description provided for @dsCurve.
+  ///
+  /// In en, this message translates to:
+  /// **'Curve'**
+  String get dsCurve;
+
+  /// No description provided for @dsBounce.
+  ///
+  /// In en, this message translates to:
+  /// **'Bounce'**
+  String get dsBounce;
+
+  /// No description provided for @dsEase.
+  ///
+  /// In en, this message translates to:
+  /// **'Ease'**
+  String get dsEase;
+
+  /// No description provided for @dsElastic.
+  ///
+  /// In en, this message translates to:
+  /// **'Elastic'**
+  String get dsElastic;
+
+  /// No description provided for @dsLinear.
+  ///
+  /// In en, this message translates to:
+  /// **'Linear'**
+  String get dsLinear;
 
   /// No description provided for @dsBackgroundImg.
   ///
@@ -1118,6 +1280,12 @@ abstract class EFUILang {
   /// In en, this message translates to:
   /// **'Update the {title} image'**
   String dsImgSettingHint(Object title);
+
+  /// No description provided for @dsReFit.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-fit'**
+  String get dsReFit;
 
   /// No description provided for @dsFromFile.
   ///
@@ -1203,54 +1371,6 @@ abstract class EFUILang {
   /// **'Image editing is not supported on web'**
   String get dsNoWeb;
 
-  /// No description provided for @dsDrag.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag'**
-  String get dsDrag;
-
-  /// No description provided for @dsDragHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag to reposition the image'**
-  String get dsDragHint;
-
-  /// No description provided for @dsSwipe.
-  ///
-  /// In en, this message translates to:
-  /// **'Swipe'**
-  String get dsSwipe;
-
-  /// No description provided for @dsSwipeHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Swipe to reposition the image'**
-  String get dsSwipeHint;
-
-  /// No description provided for @dsPinch.
-  ///
-  /// In en, this message translates to:
-  /// **'Pinch'**
-  String get dsPinch;
-
-  /// No description provided for @dsPinchHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Pinch to zoom in/out'**
-  String get dsPinchHint;
-
-  /// No description provided for @dsScroll.
-  ///
-  /// In en, this message translates to:
-  /// **'Scroll'**
-  String get dsScroll;
-
-  /// No description provided for @dsScrollHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Scroll to zoom in/out'**
-  String get dsScrollHint;
-
   /// No description provided for @dsRotateLeft.
   ///
   /// In en, this message translates to:
@@ -1263,53 +1383,23 @@ abstract class EFUILang {
   /// **'Rotate right'**
   String get dsRotateRight;
 
-  /// No description provided for @dsReset.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset {themeType} design?'**
-  String dsReset(Object themeType);
-
-  /// No description provided for @lsPageTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Layout settings'**
-  String get lsPageTitle;
-
-  /// No description provided for @lsMargin.
-  ///
-  /// In en, this message translates to:
-  /// **'Margin'**
-  String get lsMargin;
-
-  /// No description provided for @lsPadding.
-  ///
-  /// In en, this message translates to:
-  /// **'Padding'**
-  String get lsPadding;
-
-  /// No description provided for @lsSpacing.
-  ///
-  /// In en, this message translates to:
-  /// **'Spacing'**
-  String get lsSpacing;
-
-  /// No description provided for @lsShowBack.
-  ///
-  /// In en, this message translates to:
-  /// **'Show back button'**
-  String get lsShowBack;
-
-  /// No description provided for @lsShowScroll.
+  /// No description provided for @dsShowScroll.
   ///
   /// In en, this message translates to:
   /// **'Show scrollbars'**
-  String get lsShowScroll;
+  String get dsShowScroll;
 
-  /// No description provided for @lsReset.
+  /// No description provided for @dsResetButton.
   ///
   /// In en, this message translates to:
-  /// **'Reset {themeType} layout?'**
-  String lsReset(Object themeType);
+  /// **'Reset {themeType} button design?'**
+  String dsResetButton(Object themeType);
+
+  /// No description provided for @dsResetPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset {themeType} page design?'**
+  String dsResetPage(Object themeType);
 
   /// No description provided for @tsPageTitle.
   ///
@@ -1503,12 +1593,6 @@ abstract class EFUILang {
   /// **' Not too big, not too small?'**
   String get tsLabelP2;
 
-  /// No description provided for @tsAlwaysUnderline.
-  ///
-  /// In en, this message translates to:
-  /// **'Always underline links'**
-  String get tsAlwaysUnderline;
-
   /// No description provided for @tsReset.
   ///
   /// In en, this message translates to:
@@ -1525,8 +1609,22 @@ class _EFUILangDelegate extends LocalizationsDelegate<EFUILang> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'es', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'ar',
+        'de',
+        'en',
+        'es',
+        'fil',
+        'fr',
+        'hi',
+        'ht',
+        'ja',
+        'ko',
+        'ru',
+        'sw',
+        'uk',
+        'zh'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_EFUILangDelegate old) => false;
@@ -1535,6 +1633,16 @@ class _EFUILangDelegate extends LocalizationsDelegate<EFUILang> {
 Future<EFUILang> lookupEFUILang(Locale locale) {
   // Lookup logic when language+country codes are specified.
   switch (locale.languageCode) {
+    case 'ar':
+      {
+        switch (locale.countryCode) {
+          case 'EG':
+            return efui_lang_ar
+                .loadLibrary()
+                .then((dynamic _) => efui_lang_ar.EFUILangArEg());
+        }
+        break;
+      }
     case 'en':
       {
         switch (locale.countryCode) {
@@ -1545,10 +1653,28 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
         }
         break;
       }
+    case 'zh':
+      {
+        switch (locale.countryCode) {
+          case 'CN':
+            return efui_lang_zh
+                .loadLibrary()
+                .then((dynamic _) => efui_lang_zh.EFUILangZhCn());
+        }
+        break;
+      }
   }
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return efui_lang_ar
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ar.EFUILangAr());
+    case 'de':
+      return efui_lang_de
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_de.EFUILangDe());
     case 'en':
       return efui_lang_en
           .loadLibrary()
@@ -1557,10 +1683,46 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
       return efui_lang_es
           .loadLibrary()
           .then((dynamic _) => efui_lang_es.EFUILangEs());
+    case 'fil':
+      return efui_lang_fil
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_fil.EFUILangFil());
     case 'fr':
       return efui_lang_fr
           .loadLibrary()
           .then((dynamic _) => efui_lang_fr.EFUILangFr());
+    case 'hi':
+      return efui_lang_hi
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_hi.EFUILangHi());
+    case 'ht':
+      return efui_lang_ht
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ht.EFUILangHt());
+    case 'ja':
+      return efui_lang_ja
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ja.EFUILangJa());
+    case 'ko':
+      return efui_lang_ko
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ko.EFUILangKo());
+    case 'ru':
+      return efui_lang_ru
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_ru.EFUILangRu());
+    case 'sw':
+      return efui_lang_sw
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_sw.EFUILangSw());
+    case 'uk':
+      return efui_lang_uk
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_uk.EFUILangUk());
+    case 'zh':
+      return efui_lang_zh
+          .loadLibrary()
+          .then((dynamic _) => efui_lang_zh.EFUILangZh());
   }
 
   throw FlutterError(

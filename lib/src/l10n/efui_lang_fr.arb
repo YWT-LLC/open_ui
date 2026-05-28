@@ -1,8 +1,6 @@
 {
   "@@locale": "fr",
 
-
-
   "gApply": "Appliquer",
   "gApplyChanges": "Appliquer les modifications",
   "gContinue": "Continuer",
@@ -73,9 +71,6 @@
   "gCaptionsHint": "Maintenez pour les polices",
   "gFullScreen": "Plein écran",
 
-  "gHowThisWorks": "Comment ça marche",
-  "gHowThisWorksHint": "Ouvre la documentation utile",
-
   "gMachineTranslated": "Traduction automatique",
 
   "gUpdates": "Mises à jour disponibles",
@@ -95,10 +90,6 @@
   "gEFUISourceHint": "Ouvre la page GitHub d'EFUI",
   "gOpenUIReleases": "Ouvre la page des versions d'Open UI",
 
-  "gGiveFeedback": "Partager des commentaires",
-  "gOpeningFeedback": "Ouverture de l'outil de feedback.",
-  "gAttachScreenshot": "Veuillez joindre votre capture d'écran (dans le dossier de Téléchargements)",
-
   "gSupportEmail": "Notre Email de support",
   "gClipboard": "{thing} a été copié dans le presse-papiers.",
 
@@ -114,9 +105,11 @@
   "gUndoWarn1": "Impossible d'annuler automatiquement.\n",
   "gSave": "Enregistrez",
   "gSaveHint": "Activez pour enregistrer un fichier de configuration JSON.",
+  "gSwitchHint": "Actionner l'interrupteur",
   "gUndoWarn2": " votre configuration actuelle pour la restaurer manuellement.",
+  "gValue": "Valeur",
 
-  "gCreditTo": "Crédits à :",
+  "gSource": "Source :",
   "gCreator": "Créateur de",
   "gMadeBy": "Fait par",
   "gYou": "Défini par vous",
@@ -140,6 +133,7 @@
 
   "ssLoadPreset": "Charger un préréglage",
   "ssLoadPresetHint": "Activer pour afficher les préréglages",
+  "ssDewIt": "Mettre à jour les deux/confirmation automatique",
   "ssBigButtons": "Gros boutons",
   "ssHighVisibility": "Haute visibilité",
   "ssChalkboard": "Tableau noir",
@@ -161,39 +155,73 @@
   "ssWrongConfigExt": "Le fichier n'a pas été enregistré comme ",
 
   "ssResetAll": "Réinitialiser tous les paramètres ?",
+  "ssResetAppearance": "Réinitialiser tous les paramètres d'apparence ?",
   "ssResetBoth": "Réinitialiser les deux modes de thème",
 
 
 
   "csPageTitle": "Paramètres de couleur",
 
-  "csPickerHint": "Ouvre un sélecteur de couleurs. Appuyer longuement pour plus d'options.",
+  "csSchemeBase": "Construire le schéma\nà partir de l'image",
+  "csFromImage": "Un schéma de couleurs sera généré à partir de l'image.",
 
   "csMonoChrome": "Utiliser un schéma monochrome",
   "csHighContrast": "Utiliser un schéma à contraste élevé",
 
+  "csPrimary": "Principal",
+  "csPrimaryContainer": "Contour\nprincipal",
+  "csSecondary": "Secondaire",
+  "csSecondaryContainer": "Contour\nsecondaire",
+  "csTertiary": "Tertiaire",
+  "csTertiaryContainer": "Contour\ntertiaire",
+  "csError": "Erreur",
+  "csErrorContainer": "Contour\nd'erreur",
+  "csOutline": "Texte\nd'aide",
+  "csOutlineVariant": "Contour\nd'aide",
+  "csSurface": "Arrière-plan du\nbouton",
+  "csSurfaceDim": "Arrière-plan de\nl'alerte && app bar",
+  "csSurfaceContainer": "Arrière-plan de\nla page && modale",
+  "csOnSurface": "Texte",
+  "csScrim": "Couverture\nmodale",
+  "csShadow": "Ombre",
+  "csSurfaceTint": "Teinte de\nsurface",
+
   "csPickerTitle": "Choisissez une couleur",
+  "csPickerHint": "Ouvre un sélecteur de couleurs. Appuyer longuement pour plus d'options.",
   "csRecommended": "Utiliser la recommandation de contraste ?",
   "csUseCustom": "Utiliser personnalisé",
-
-  "csAddColor": "Ajouter une couleur",
   "csCurrVal": "Valeur de couleur actuelle :",
-
-  "csSchemeBase": "Construire le schéma\nà partir de l'image",
-  "csFromImage": "Un schéma de couleurs sera généré à partir de l'image.",
-  "csColorScheme": "schéma de couleurs",
-
+  
   "csReset": "Réinitialiser les couleurs du {themeType} ?",
+  "csColorScheme": "schéma de couleurs",
 
 
 
   "dsPageTitle": "Paramètres de conception",
+
+  "dsButton": "Bouton",
+  "dsPage": "Page",
+
   "dsNone": "Aucune",
   "dsSystem": "Système",
 
-  "dsAnimDuration": "Durée de l'animation",
-  "dsPlay": "Lancer l'animation",
-  "dsMilliseconds": "Millisecondes",
+  "dsPadding": "Marge intérieure",
+
+  "dsStyle": "Style",
+  "dsBorderWidth": "Épaisseur de la bordure",
+  "dsPill": "Pilule",
+  "dsRectangle": "Rectangle",
+  "dsRoundRectangle": "Rectangle arrondi",
+  "dsLeftGram": "Parallèle gauche",
+  "dsRightGram": "Parallèle droit",
+  "dsGem": "Gemme",
+  "dsJewel": "Joyau",
+
+  "dsAlwaysUnderline": "Soulignez toujours les liens",
+  "dsShowBack": "Afficher le bouton Retour",
+
+  "dsMargin": "Marge extérieure",
+  "dsSpacing": "Espacement",
 
   "dsPageTransition": "Transition de page",
   "dsTurnX": "Virage horizontal",
@@ -204,23 +232,18 @@
   "dsZoom": "Zoom",
   "dsFadeTransition": "Transition en fondu",
 
-  "dsButtonStyle": "Style de bouton",
-  "dsBorderWidth": "Épaisseur de la bordure",
-  "dsPill": "Pilule",
-  "dsRectangle": "Rectangle",
-  "dsRoundRectangle": "Rectangle arrondi",
-  "dsLeftGram": "Parallèle gauche",
-  "dsRightGram": "Parallèle droit",
-  "dsGem": "Gemme",
-  "dsJewel": "Joyau",
-
-  "dsPreview": "Aperçu",
-  "dsButtonOpacity": "Opacité du bouton",
-  "dsBackground": "L'arrière-plan du bouton",
-  "dsOutline": "Contour du bouton",
+  "dsAnimStyle": "Style de l'animation",
+  "dsPlay": "Lancer l'animation",
+  "dsMilliseconds": "Millisecondes",
+  "dsCurve": "Courbe",
+  "dsBounce": "Rebond",
+  "dsEase": "Faciliter",
+  "dsElastic": "Élastique",
+  "dsLinear": "Linéaire",
 
   "dsBackgroundImg": "Arrière-plan de l'image",
   "dsImgSettingHint": "Mettre à jour l'image {title}",
+  "dsReFit": "Réajuster",
   "dsFromFile": "Depuis un fichier",
   "dsFromCamera": "Depuis la caméra",
   "dsFromNetwork": "Depuis une URL",
@@ -238,31 +261,13 @@
 
   "dsCrop": "Recadrer",
   "dsNoWeb": "L'édition d'images n'est pas prise en charge sur le web",
-  "dsDrag": "Glisser",
-  "dsDragHint": "Glissez pour repositionner l'image",
-  "dsSwipe": "Balayer",
-  "dsSwipeHint": "Balayez pour repositionner l'image",
-  "dsPinch": "Pincer",
-  "dsPinchHint": "Pincez pour zoomer/dézoomer l'image",
-  "dsScroll": "Faire défiler",
-  "dsScrollHint": "Faites défiler pour zoomer/dézoomer",
   "dsRotateLeft": "Tourner à gauche",
   "dsRotateRight": "Tourner à droite",
 
-  "dsReset": "Réinitialiser le design de {themeType} ?",
+  "dsShowScroll": "Afficher les barres de défilement",
 
-
-
-  "lsPageTitle": "Paramètres de mise en page",
-
-  "lsMargin": "Marge extérieure",
-  "lsPadding": "Marge intérieure",
-  "lsSpacing": "Espacement",
-
-  "lsShowBack": "Afficher le bouton Retour",
-  "lsShowScroll": "Afficher les barres de défilement",
-
-  "lsReset": "Réinitialiser la mise en page du {themeType} ?",
+  "dsResetButton": "Réinitialiser le design du bouton du {themeType} ?",
+  "dsResetPage": "Réinitialiser le design de la page en {themeType} ?",
 
 
 
@@ -304,8 +309,6 @@
   "tsLabelP1": "Et ",
   "tsLabelLink": "les labels ?",
   "tsLabelP2": " Ni trop gros, ni trop petits ?",
-
-  "tsAlwaysUnderline": "Soulignez toujours les liens",
 
   "tsReset": "Réinitialiser les styles de texte de {themeType} ?"
 }

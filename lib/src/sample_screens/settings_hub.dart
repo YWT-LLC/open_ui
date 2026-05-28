@@ -23,37 +23,91 @@ class EzSettingsHub extends StatefulWidget {
 }
 
 class _EzSettingsHubState extends State<EzSettingsHub> {
-  late EzSettingsSection curr = widget.pages[widget.target ?? EzConfig.hubPos];
+  late EzSettingsSection currSection = widget.pages[widget.target ?? EzConfig.hubPos];
+  late EzSubSetting currSubSec = currSection.fromStorage();
+  int delta = 0;
 
   @override
-  Widget build(BuildContext context) {
-    return EzScrollView(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        // Navigation
-        EzText(
-          curr.title,
-          style: EzConfig.styles.labelLarge,
-          textAlign: TextAlign.center,
-        ),
-        SegmentedButton<EzSettingsSection>(
-          segments: widget.pages
-              .map((EzSettingsSection type) => ButtonSegment<EzSettingsSection>(
-                    value: type,
-                    icon: type.icon,
-                  ))
-              .toList(),
-          selected: <EzSettingsSection>{curr},
-          showSelectedIcon: false,
-          onSelectionChanged: (Set<EzSettingsSection> selected) async {
-            await EzConfig.setHubPos(selected.first.position);
-            setState(() => curr = selected.first);
-          },
-        ),
+  Widget build(BuildContext context) => EzScrollView(
+        children: <Widget>[
+          // Section nav
+          EzText(
+            currSection.title,
+            style: EzConfig.styles.labelLarge,
+            textAlign: TextAlign.center,
+          ),
+          SegmentedButton<EzSettingsSection>(
+            segments: widget.pages
+                .map((EzSettingsSection type) => ButtonSegment<EzSettingsSection>(
+                      value: type,
+                      icon: type.icon,
+                    ))
+                .toList(),
+            selected: <EzSettingsSection>{currSection},
+            showSelectedIcon: false,
+            onSelectionChanged: (Set<EzSettingsSection> selected) async {
+              final EzSettingsSection choice = selected.first;
+              delta = choice.position - currSection.position;
 
-        // Current section
-        curr.build,
-      ],
-    );
-  }
+              await EzConfig.setHubPos(choice.position);
+
+              currSection = choice;
+              currSubSec = choice.fromStorage();
+              setState(() {});
+            },
+          ),
+
+          // Sub-section nav (&& divider)
+          EzAnimSwitch(
+            // Don't use AnimVis, breaks on Global settings
+            mod: 0.75,
+            forceType: EzTransitionType.slideY,
+            forceFade: true,
+            reverse: true,
+            child: currSection.subSettings.isNotEmpty
+                ? EzCol(children: <Widget>[
+                    EzConfig.margin,
+                    EzScrollView(
+                      scrollDirection: Axis.horizontal,
+                      reverseHands: true,
+                      showScrollHint: true,
+                      children: <Widget>[
+                        // Quick/Advanced selector
+                        SegmentedButton<EzSubSetting>(
+                          segments: (currSection.subSettings)
+                              .map((EzSubSetting sub) => ButtonSegment<EzSubSetting>(
+                                    value: sub,
+                                    label: Text(sub.label),
+                                  ))
+                              .toList(),
+                          selected: <EzSubSetting>{currSubSec},
+                          showSelectedIcon: false,
+                          onSelectionChanged: (Set<EzSubSetting> selected) async {
+                            final EzSubSetting choice = selected.first;
+
+                            await EzConfig.setBool(choice.write.$1, choice.write.$2);
+                            setState(() => currSubSec = choice);
+                          },
+                        ),
+
+                        // Update both toggle
+                        EzConfig.rowMargin,
+                        EzThemeCoin(enabled: currSubSec.bothable),
+                      ],
+                    ),
+                    EzDivider(height: EzConfig.spacing),
+                    EzConfig.spacer,
+                  ])
+                : const SizedBox.shrink(),
+          ),
+
+          // Current section
+          EzFauxCarousel(
+            position: currSection.position,
+            delta: delta,
+            child: currSection.build(currSubSec),
+          ),
+          const EzFooter(),
+        ],
+      );
 }

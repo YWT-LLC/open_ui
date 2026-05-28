@@ -25,9 +25,7 @@ class EzRowCol extends StatelessWidget {
     required this.row,
     required this.col,
   })  : assert(
-          row.runtimeType == Row ||
-              row.runtimeType == EzRow ||
-              row.runtimeType == EzScrollView,
+          row.runtimeType == Row || row.runtimeType == EzRow || row.runtimeType == EzScrollView,
           'row Widget can be a Row, EzRow, or EzScrollView',
         ),
         assert(
@@ -38,7 +36,6 @@ class EzRowCol extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenSize? size = EzScreenSize.of(context)?.screenSize;
-
     return (size == null || size.order <= breakpoint.order) ? col : row;
   }
 
@@ -49,11 +46,8 @@ class EzRowCol extends StatelessWidget {
     this.breakpoint = ScreenSize.small,
     bool reverseHands = false,
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
-    MainAxisSize mainAxisSize = MainAxisSize.max,
+    MainAxisSize mainAxisSize = MainAxisSize.min,
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-    TextDirection? textDirection,
-    VerticalDirection verticalDirection = VerticalDirection.down,
-    TextBaseline? textBaseline,
     required List<Widget> children,
   })  : row = EzScrollView(
           scrollDirection: Axis.horizontal,
@@ -61,18 +55,12 @@ class EzRowCol extends StatelessWidget {
           mainAxisAlignment: mainAxisAlignment,
           mainAxisSize: mainAxisSize,
           crossAxisAlignment: crossAxisAlignment,
-          textDirection: textDirection,
-          verticalDirection: verticalDirection,
-          textBaseline: textBaseline,
           children: children,
         ),
-        col = Column(
+        col = EzCol(
           mainAxisAlignment: mainAxisAlignment,
           mainAxisSize: mainAxisSize,
           crossAxisAlignment: crossAxisAlignment,
-          textDirection: textDirection,
-          verticalDirection: verticalDirection,
-          textBaseline: textBaseline,
           children: children,
         );
 }

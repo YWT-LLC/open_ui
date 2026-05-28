@@ -30,13 +30,6 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
 
   @override
   Widget build(BuildContext context) => EzIconButton(
-        style: IconButton.styleFrom(
-          foregroundColor:
-              isBold ? EzConfig.colors.primary : EzConfig.colors.outline,
-          side: EzConfig.borderSide(EzConfig.colors.primaryContainer
-              .withValues(alpha: EzConfig.borderOpacity)),
-          iconSize: EzConfig.iconSize,
-        ),
         onPressed: () async {
           isBold = !isBold;
 
@@ -53,6 +46,9 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
           setState(() {});
         },
         tooltip: EzConfig.l10n.tsBold,
-        icon: const Icon(Icons.format_bold_outlined),
+        icon: EzIcon(
+          Icons.format_bold_outlined,
+          color: isBold ? EzConfig.colors.primary : EzConfig.colors.outline,
+        ),
       );
 }

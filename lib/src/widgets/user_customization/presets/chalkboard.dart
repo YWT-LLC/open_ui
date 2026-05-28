@@ -8,49 +8,56 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzChalkboardConfig extends StatelessWidget {
-  /// Only runs if you're using the rendered [Widget]
-  /// Calling [onPressed] does not trigger [onComplete]
-  final Future<void> Function() onComplete;
+  /// Like updateBoth, but smaller
+  final bool autoConfirm;
+
+  /// Optional extra changes
+  final Future<void> Function(bool)? extra;
 
   /// Dark theme only config; sets [ThemeMode.dark], resets it, and...
   /// Sets a [ColorScheme] similar to [ezHighContrastDark], but with a [chalkboardGreen] surface and [empathSand] accents
-  /// Has default design and layout settings, but a [fingerPaint] based [TextTheme]
-  const EzChalkboardConfig(this.onComplete, {super.key});
+  /// Has mostly default design settings, but a [fingerPaint] based [TextTheme]
+  const EzChalkboardConfig({
+    super.key,
+    required this.autoConfirm,
+    this.extra,
+  });
 
-  static Future<bool> onPressed(BuildContext context) async {
-    // If the current theme is not dark, show a warning dialog
-    if (EzConfig.themeMode != ThemeMode.dark) {
-      final bool doIt = await showDialog(
+  static Future<bool> onPressed(BuildContext context, bool autoConfirm) async {
+    if (!autoConfirm || EzConfig.themeMode != ThemeMode.dark) {
+      final bool uSure = await _confirm(context) ?? false;
+      if (!uSure) return false;
+    }
+
+    await _makeItSo();
+    return true;
+  }
+
+  static Future<bool?> _confirm(BuildContext context) => showDialog<bool>(
         context: context,
-        builder: (BuildContext dContext) => EzAlertDialog(
+        builder: (BuildContext dCon) => EzAlertDialog(
           title: Text(EzConfig.l10n.gAttention, textAlign: TextAlign.center),
           content: Text(
             EzConfig.l10n.ssDarkOnly,
             textAlign: TextAlign.center,
           ),
           actions: ezActionPair(
-            context: context,
-            onConfirm: () => Navigator.of(dContext).pop(true),
+            onConfirm: () => Navigator.of(dCon).pop(true),
             confirmIsDestructive: true,
-            onDeny: () => Navigator.of(dContext).pop(false),
+            onDeny: () => Navigator.of(dCon).pop(false),
           ),
           needsClose: false,
         ),
       );
 
-      if (!doIt) return false;
-    }
-
+  static Future<void> _makeItSo() async {
     // Reset //
 
     await EzConfig.removeKeys(darkColorKeys.keys.toSet());
     await EzConfig.removeKeys(darkDesignKeys.keys.toSet());
-    await EzConfig.removeKeys(darkLayoutKeys.keys.toSet());
     await EzConfig.removeKeys(darkTextKeys.keys.toSet());
 
     // Global settings //
-
-    // Default lefty and language
 
     await EzConfig.setBool(isDarkThemeKey, true);
 
@@ -58,93 +65,88 @@ class EzChalkboardConfig extends StatelessWidget {
 
     await loadColorScheme(
       const ColorScheme(
-        brightness: Brightness.dark,
+        // Backgrounds
+        surface: chalkboardGreen,
+        surfaceDim: chalkboardGreen,
+        surfaceContainer: chalkboardGreen,
+
+        // Text
+        onSurface: Colors.white,
+        outline: halfWhite,
+
         // Primary
         primary: empathSand,
         onPrimary: Colors.black,
-        primaryContainer: Colors.white,
+        primaryContainer: chalkboardGreen,
         onPrimaryContainer: Colors.black,
 
         // Secondary
-        secondary: darkOutline,
+        secondary: halfWhite,
         onSecondary: Colors.black,
-        secondaryContainer: Colors.white,
+        secondaryContainer: chalkboardGreen,
         onSecondaryContainer: Colors.black,
 
         // Tertiary
-        tertiary: Colors.white,
+        tertiary: empathSand,
         onTertiary: Colors.black,
-        tertiaryContainer: Colors.white,
+        tertiaryContainer: chalkboardGreen,
         onTertiaryContainer: Colors.black,
 
         // Error
-        error: Colors.red,
+        error: hcError,
         onError: Colors.white,
-        errorContainer: Colors.white,
+        errorContainer: halfWhite,
         onErrorContainer: Colors.black,
 
-        // Surface
-        surface: chalkboardGreen,
-        onSurface: Colors.white,
-        surfaceBright: chalkboardGreen,
-        surfaceContainerLowest: chalkboardGreen,
-        surfaceContainerLow: chalkboardGreen,
-        surfaceContainer: chalkboardGreen,
-        surfaceContainerHigh: chalkboardGreen,
-        surfaceContainerHighest: chalkboardGreen,
-        surfaceDim: chalkboardGreen,
-
         // Misc
-        outline: darkOutline,
-        outlineVariant: darkOutlineVariant,
-        scrim: Colors.black,
+        outlineVariant: chalkboardGreen,
         shadow: Colors.transparent,
         surfaceTint: Colors.transparent,
+        scrim: Colors.black,
+
+        // Extra
+        brightness: Brightness.dark,
+        surfaceContainerLowest: chalkboardGreen,
+        surfaceContainerLow: chalkboardGreen,
+        surfaceContainerHigh: chalkboardGreen,
+        surfaceContainerHighest: chalkboardGreen,
+        surfaceBright: chalkboardGreen,
       ),
       Brightness.dark,
     );
 
     // Design settings //
 
-    await EzConfig.setInt(darkAnimationDurationKey, 500);
+    await EzConfig.setInt(darkAnimationDurationKey, 450);
 
-    await EzConfig.setString(
-        darkTransitionTypeKey, EzPageTransition.slideY.value);
+    await EzConfig.setString(darkTransitionTypeKey, EzTransitionType.turnY.value);
+    await EzConfig.setBool(darkTransitionFadeKey, false);
 
     await EzConfig.setString(darkButtonShapeKey, EzButtonShape.rect.value);
 
-    await EzConfig.setDouble(darkBorderOpacityKey, 0.0);
+    await EzConfig.setString(darkBackgroundImageKey, chalkboardGreen.toARGB32().toString());
 
-    // Layout settings //
-
-    await EzConfig.setBool(darkShowScrollKey, false);
     await EzConfig.setBool(darkShowBackFABKey, false);
+    await EzConfig.setBool(darkShowScrollKey, false);
 
     // Text settings //
 
-    // Display
     await EzConfig.setString(darkDisplayFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkDisplayItalicizedKey, false);
 
-    // Headline
     await EzConfig.setString(darkHeadlineFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkHeadlineItalicizedKey, false);
 
-    // Title
     await EzConfig.setString(darkTitleFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkTitleItalicizedKey, false);
 
-    // Body
     await EzConfig.setString(darkBodyFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkBodyItalicizedKey, false);
 
-    // Label
     await EzConfig.setString(darkLabelFontFamilyKey, fingerPaint);
     await EzConfig.setBool(darkLabelItalicizedKey, false);
 
     await EzConfig.setDouble(darkTextBackgroundOpacityKey, 0.0);
-
-    return true;
   }
 
   @override
@@ -178,11 +180,23 @@ class EzChalkboardConfig extends StatelessWidget {
         ),
       ),
       onPressed: () async {
-        final bool confirmed = await onPressed(context);
-        if (confirmed) await onComplete();
+        final bool uSure = autoConfirm ||
+            (EzConfig.themeMode == ThemeMode.dark) ||
+            (await _confirm(context) ?? false);
+        if (uSure) {
+          await EzConfig.rebuildUI(changes: () async {
+            await _makeItSo();
+            await extra?.call(autoConfirm);
+          });
+        }
       },
       text: EzConfig.l10n.ssChalkboard,
       textStyle: localBody,
     );
   }
 }
+
+// Local consts //
+
+/// 0xFF264941
+const Color chalkboardGreen = Color(0xFF264941);

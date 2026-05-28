@@ -1,8 +1,6 @@
 {
   "@@locale": "es",
 
-  
-
   "csPageTitle": "Constructor",
 
   "csAppName": "Nombre de la aplicación",
@@ -19,13 +17,11 @@
   "csDomainName": "Nombre de dominio",
   "csDomainTip": "Revés, esta al",
   "csInvalidDomain": "'domain.name' solamente; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-  "csInclude": "Incluir",
-  "csEasy": "Fácil de cambiar más tarde",
 
   "csGenApp": "Cuando generas {app_name}, el actual ",
   "csTheApp": "la aplicación",
   "csTheConfig": "la configuración",
-  "csSetColors": " (excepto imágenes) se convertirá en la configuración predeterminada para {app_name}.\n\nSe recomienda establecer un esquema de colores personalizado. Si necesitas ayuda para construir uno, intenta comenzar ",
+  "csSetColors": " (excepto imágenes) se convertirá en la configuración predeterminada para {app_name}.\n\nEs necesario establecer un esquema de colores personalizado. Si necesitas ayuda para construir uno, intenta comenzar ",
   "csHere": "aquí.",
   "csHereHint": "Abra un generador de esquemas de color en línea",
 
@@ -70,7 +66,6 @@
   "gsConsole": "Salida de la consola",
 
   "gsIsReadyIn": "está listo en",
-  "gsFirstRun": "La primera ejecución suele tardar un tiempo",
 
   "gsNeedPermission": "Open UI necesita Acceso Completo al Disco.\n\nPor favor, vaya a...\nConfiguración del Sistema > Privacidad y Seguridad > Acceso Completo al Disco > Habilite Open UI; entonces inténtalo de nuevo.",
   "gsSeeNBelieve": "Si quieres verificar qué hace Open UI, ve ",

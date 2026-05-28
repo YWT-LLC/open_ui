@@ -28,31 +28,28 @@ class FailureHeader extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          // Headline
-          Flexible(
-            child: EzText(
-              EzConfig.l10n.gFailure,
-              style: EzConfig.styles.headlineLarge,
-              textAlign: TextAlign.center,
-            ),
+  Widget build(BuildContext context) => EzCol(children: <Widget>[
+        // Headline
+        Flexible(
+          child: EzText(
+            EzConfig.l10n.gFailure,
+            style: EzConfig.styles.headlineLarge,
+            textAlign: TextAlign.center,
           ),
-          EzConfig.spacer,
+        ),
+        EzConfig.spacer,
 
-          // Error message
-          message != null
-              ? Flexible(
-                  child: EzText(
-                    message!,
-                    style: ezSubTitleStyle(),
-                    textAlign: TextAlign.center,
-                  ),
-                )
-              : richMessage!,
-        ],
-      );
+        // Error message
+        message != null
+            ? Flexible(
+                child: EzText(
+                  message!,
+                  style: ezSubTitleStyle(),
+                  textAlign: TextAlign.center,
+                ),
+              )
+            : richMessage!,
+      ]);
 }
 
 class DeleteOption extends StatelessWidget {
@@ -78,8 +75,7 @@ class DeleteOption extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
+  Widget build(BuildContext context) => EzCol(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // Would you like to...
@@ -107,7 +103,7 @@ class DeleteOption extends StatelessWidget {
               },
               readout: readout,
             ),
-            icon: const Icon(Icons.delete),
+            icon: EzIcon(Icons.delete),
             label: l10n.rsWipe,
           ),
           EzConfig.spacer,
@@ -115,7 +111,7 @@ class DeleteOption extends StatelessWidget {
           // Leave
           EzElevatedIconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.arrow_back),
+            icon: EzIcon(Icons.arrow_back),
             label: l10n.rsLeave,
           ),
         ],
@@ -123,24 +119,24 @@ class DeleteOption extends StatelessWidget {
 }
 
 class LinkOption extends StatelessWidget {
-  /// [TextStyle] for 'would you like to...'
-  final TextStyle? style;
-
   /// Iterable [Widget] containing a [EzElevatedIconButton] for wiping the partial build
-  const LinkOption(this.style, {super.key});
+  const LinkOption({super.key});
 
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
+  Widget build(BuildContext context) => EzCol(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          EzText(l10n.rsWouldYou, style: style, textAlign: TextAlign.center),
+          EzText(
+            l10n.rsWouldYou,
+            style: ezSubTitleStyle(),
+            textAlign: TextAlign.center,
+          ),
           EzConfig.spacer,
           EzElevatedIconLink(
             url: Uri.parse(installFlutter),
             tooltip: installFlutter,
             hint: l10n.rsInstallHint,
-            icon: const Icon(Icons.computer),
+            icon: EzIcon(Icons.computer),
             label: l10n.rsInstall,
           ),
         ],

@@ -7,69 +7,69 @@ import '../../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class TryTip extends StatelessWidget {
-  final Widget child;
-
-  const TryTip({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) => Tooltip(
-        message: EzConfig.l10n.ssTryMe,
-        excludeFromSemantics: true,
-        child: child,
-      );
-}
-
 class EzQuickConfig extends StatelessWidget {
-  /// [EzConfigProvider.rebuildUI] passthrough
-  final void Function() onComplete;
+  /// Extra changes for [EzBigButtonsConfig]
+  final Future<void> Function(bool)? extraBig;
 
-  /// When true, just includes...
-  /// [EzBigButtonsConfig], [EzHighVisibilityConfig], [EzChalkboardConfig]
-  final bool simple;
+  /// Extra changes for [EzHighVisibilityConfig]
+  final Future<void> Function(bool)? extraVis;
+
+  /// Extra changes for [EzChalkboardConfig]
+  final Future<void> Function(bool)? extraChalk;
+
+  /// Extra changes for [EzNebulaConfig]
+  final Future<void> Function(bool)? extraNebula;
+
+  /// Extra changes for [EzWallHolesConfig]
+  final Future<void> Function(bool)? extraWall;
 
   /// Opens a [BottomSheet] with [EzElevatedIconButton]s for different [EzConfig] presets
-  const EzQuickConfig(this.onComplete, {super.key, this.simple = false});
+  const EzQuickConfig({
+    super.key,
+    this.extraBig,
+    this.extraVis,
+    this.extraChalk,
+    this.extraNebula,
+    this.extraWall,
+  });
 
-  // Define custom functions //
-
-  Widget wrapIt(Widget child) =>
-      Padding(padding: EzInsets.wrap(EzConfig.spacing), child: child);
-
-  Future<void> cleanRebuild() => EzConfig.rebuildUI(onComplete);
-
-  // Return the build //
+  Widget wrapIt(Widget child) => Padding(padding: EzInsets.wrap(EzConfig.spacing), child: child);
 
   @override
-  Widget build(BuildContext context) {
-    return EzElevatedIconButton(
-      onPressed: () => ezModal(
-        context: context,
-        builder: (_) =>
-            EzScrollView(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          // Choices
-          Wrap(
-            alignment: WrapAlignment.center,
-            runAlignment: WrapAlignment.center,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: <Widget>[
-              // Important
-              wrapIt(EzBigButtonsConfig(cleanRebuild)),
-              wrapIt(EzHighVisibilityConfig(cleanRebuild)),
-              wrapIt(EzChalkboardConfig(cleanRebuild)), // segue
+  Widget build(BuildContext context) => EzElevatedIconButton(
+        onPressed: () => ezModal(
+          context: context,
+          builder: (_) {
+            bool dewIt = EzConfig.updateBoth;
 
-              // Fun
-              if (!simple) ...<Widget>[
-                wrapIt(EzNebulaConfig(cleanRebuild)),
-                wrapIt(EzWallHolesConfig(cleanRebuild)),
-              ],
-            ],
-          ),
-          EzConfig.spacer,
-        ]),
-      ),
-      icon: const Icon(Icons.edit),
-      label: EzConfig.l10n.ssLoadPreset,
-    );
-  }
+            return StatefulBuilder(
+              builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+                // Update both/auto confirm toggle
+                EzSwitchPair(
+                  key: ValueKey<bool>(dewIt),
+                  value: dewIt,
+                  text: EzConfig.l10n.ssDewIt,
+                  onChanged: (bool? value) {
+                    if (value == null) return;
+                    setModal(() => dewIt = value);
+                  },
+                ),
+                EzSpacer(space: EzConfig.spacing * 0.5),
+
+                // Choices
+                EzWrap(children: <Widget>[
+                  wrapIt(EzBigButtonsConfig(updateBoth: dewIt, extra: extraBig)),
+                  wrapIt(EzHighVisibilityConfig(updateBoth: dewIt, extra: extraVis)),
+                  wrapIt(EzChalkboardConfig(autoConfirm: dewIt, extra: extraChalk)),
+                  wrapIt(EzNebulaConfig(autoConfirm: dewIt, extra: extraNebula)),
+                  wrapIt(EzWallHolesConfig(autoConfirm: dewIt, extra: extraWall)),
+                ]),
+                EzSpacer(space: EzConfig.spacing * 1.5),
+              ]),
+            );
+          },
+        ),
+        icon: EzIcon(Icons.edit),
+        label: EzConfig.l10n.ssLoadPreset,
+      );
 }

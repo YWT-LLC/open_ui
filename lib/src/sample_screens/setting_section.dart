@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 
 import '../../empathetech_flutter_ui.dart';
 
-// Shared //
-
 class EzSettingsSection {
   /// Ordered position amongst the tabs ([ButtonSegment]s)
   final int position;
@@ -19,71 +17,102 @@ class EzSettingsSection {
   /// What to display on the [SegmentedButton] in [EzSettingsHub]
   final Widget icon;
 
-  /// Page content for [EzSettingsHub]
-  final Widget build;
+  /// Quick/Advanced and the like
+  final List<EzSubSetting> subSettings;
 
-  /// Wrapper/helper class for building [EzSettingsHub]
+  final EzSubSetting Function() fromStorage;
+
+  /// Page content for [EzSettingsHub]
+  final Widget Function(EzSubSetting) build;
+
+  /// Custom class for building [EzSettingsHub]
   const EzSettingsSection({
     required this.position,
     required this.title,
     required this.icon,
+    required this.subSettings,
+    required this.fromStorage,
     required this.build,
-  });
+  }) : assert(subSettings.length == 0 || subSettings.length == 2, '0 or 2 sub settings.');
 }
 
 const String _quick = 'quick';
 const String _advanced = 'advanced';
 
-// Color settings //
+const String _button = 'button';
+const String _page = 'page';
 
-/// Color setting types
-/// [quick] || [advanced]
-enum EzCSType { quick, advanced }
+enum EzSubSetting {
+  // null
+  blank(
+    path: '',
+    isFirst: true,
+    bothable: false,
+    write: ('nullTab!Key', false),
+  ),
 
-/// [EzCSType] path name
-extension CSConfig on EzCSType {
-  String get path {
-    switch (this) {
-      case EzCSType.quick:
-        return _quick;
-      case EzCSType.advanced:
-        return _advanced;
-    }
-  }
+  // Color
+  qckColor(
+    path: _quick,
+    isFirst: true,
+    bothable: true,
+    write: (advancedColorsKey, false),
+  ),
+  advColor(
+    path: _advanced,
+    isFirst: false,
+    bothable: false,
+    write: (advancedColorsKey, true),
+  ),
 
-  String get name {
-    switch (this) {
-      case EzCSType.quick:
-        return 'quick_color_settings';
-      case EzCSType.advanced:
-        return 'advanced_color_settings';
-    }
-  }
+  // Design
+  butDesign(
+    path: _button,
+    isFirst: true,
+    bothable: true,
+    write: (pageTabKey, false),
+  ),
+  pagDesign(
+    path: _page,
+    isFirst: false,
+    bothable: true,
+    write: (pageTabKey, true),
+  ),
+
+  // Text
+  qckText(
+    path: _quick,
+    isFirst: true,
+    bothable: true,
+    write: (advancedTextKey, false),
+  ),
+  advText(
+    path: _advanced,
+    isFirst: false,
+    bothable: false,
+    write: (advancedTextKey, true),
+  );
+
+  final String path;
+  final bool isFirst;
+  final bool bothable;
+  final (String, bool) write;
+
+  /// Custom enum for populating [EzSettingsSection]
+  const EzSubSetting({
+    required this.path,
+    required this.isFirst,
+    required this.bothable,
+    required this.write,
+  });
 }
 
-// Text settings //
-
-/// Text setting types
-/// [quick] || [advanced]
-enum EzTSType { quick, advanced }
-
-/// [EzTSType] path name
-extension TSConfig on EzTSType {
-  String get path {
-    switch (this) {
-      case EzTSType.quick:
-        return _quick;
-      case EzTSType.advanced:
-        return _advanced;
-    }
-  }
-
-  String get name {
-    switch (this) {
-      case EzTSType.quick:
-        return 'quick_text_settings';
-      case EzTSType.advanced:
-        return 'advanced_text_settings';
-    }
-  }
+extension ESSLookup on EzSubSetting {
+  String get label => switch (this) {
+        EzSubSetting.blank => 'null',
+        EzSubSetting.qckText || EzSubSetting.qckColor => EzConfig.l10n.gQuick,
+        EzSubSetting.advText || EzSubSetting.advColor => EzConfig.l10n.gAdvanced,
+        EzSubSetting.butDesign => EzConfig.l10n.dsButton,
+        EzSubSetting.pagDesign => EzConfig.l10n.dsPage,
+      };
 }

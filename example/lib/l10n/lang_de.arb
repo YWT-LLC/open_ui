@@ -1,0 +1,90 @@
+{
+  "@@locale": "de",
+
+  "csPageTitle": "Builder",
+
+  "csAppName": "App-Name",
+  "csNamePreview": "beispiel_app",
+  "csNameTip": "Beste App aller Zeiten",
+  "csBecomes": "wird zu",
+  "csInvalidName": "Kleinbuchstaben, Zahlen und Unterstriche sind erlaubt.",
+  "csYourApp": "deine App",
+  "csPubName": "Name des Herausgebers",
+  "csPubPreview": "Beispiel-Organisation",
+  "csPubTip": "Oder eine Beispiel-Person",
+  "csDescription": "Beschreibung",
+  "csDescPreview": "Ein oder zwei Sätze über deine App.",
+  "csDomainName": "Domain-Name",
+  "csDomainTip": "Rückwärts lautet sie",
+  "csInvalidDomain": "Nur 'domain.name'; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+
+  "csGenApp": "Wenn du {app_name} generierst, wird die aktuelle ",
+  "csTheApp": "App",
+  "csTheConfig": "Konfiguration",
+  "csSetColors": " (außer Bildern) zur Standardkonfiguration für {app_name}.\n\nEs ist erforderlich, ein benutzerdefiniertes Farbschema festzulegen. Wenn du Hilfe bei der Erstellung benötigst, starte am besten ",
+  "csHere": "hier.",
+  "csHereHint": "Öffne einen Online-Generator für Farbschemas",
+
+  "csFileBrowser": "Dateibrowser öffnen",
+  "csFlutterPath": "Flutter-Pfad",
+  "csNoSpaces": "Der Pfad darf keine Leerzeichen enthalten",
+  "csNotInstalled": "Nicht installiert?",
+  "csPathRequired": "Pfad erforderlich. Der Stammordner kann nicht verwendet werden.",
+  "csBadPath": "Ungültiger Pfad",
+
+  "csAdvanced": "Erweiterte Einstellungen",
+  "csRestore": "{setting} wiederherstellen",
+  "csOutputPath": "Ausgabepfad",
+  "csCopyright": "Copyright-Hinweis",
+  "csCopyrightTip": "Wird am Anfang jeder Dart-Datei eingefügt",
+  "csLicenseDocs": "Dokumentation zu Open-Source-Lizenzen öffnen",
+  "csL10nTip": "Konfiguration für Lokalisierung (Übersetzungen)",
+  "csLintTip": "Lint-Regeln",
+  "csLaunchTip": "Fügt Startoptionen zum Debug-Menü von VS Code hinzu",
+
+  "csGenerate": "App generieren",
+  "csInvalidFields": "Einige Felder sind ungültig",
+  "csRequired": "Alle Felder sind erforderlich",
+
+  "csResetHint": "Aktiviere und bestätige, was zurückgesetzt werden soll.",
+  "csResetBuilder": "Builder-Werte",
+  "csResetApp": "App-Einstellungen",
+  "csResetBoth": "Beides",
+  "csResetNothing": "Nichts",
+
+
+
+  "asPageTitle": "Archivierer",
+
+  "asUseIt": "\n\nVerwende es auf ",
+  "asToGen": " für Desktop, um den Code für {app_name} zu generieren",
+
+  
+
+  "gsPageTitle": "Generator",
+
+  "gsConsole": "Konsolenausgabe",
+
+  "gsIsReadyIn": "ist fertig in",
+
+  "gsNeedPermission": "Open UI benötigt Festplattenvollzugriff.\n\nBitte gehe zu...\nSystemeinstellungen > Datenschutz & Sicherheit > Festplattenvollzugriff > Open UI aktivieren; versuche es dann erneut.",
+  "gsSeeNBelieve": "Wenn du überprüfen möchtest, was Open UI tut, gehe ",
+  "gsSeeNBelieveHint": "Öffne den Code-Generierungscode von Open UI.",
+  "gsNotInstalled": "Flutter ist nicht installiert",
+  "gsPartialSuccess": "Der Code wurde erfolgreich generiert, aber einige Teile der Projekteinrichtung sind fehlgeschlagen.",
+
+
+
+  "rsWouldYou": "möchtest du...",
+
+  "rsInstall": "Installieren",
+  "rsInstallHint": "Öffne die Installationsanleitung für Flutter",
+
+  "rsRun": "Ausführen",
+
+  "rsWipe": "Bereinigen",
+  "rsNextTime": "Erfolg, drücken wir die Daumen für das nächste Mal!",
+  "rsAnotherOne": "Ein weiterer Fehler; du solltest wahrscheinlich übernehmen...",
+
+  "rsLeave": "So lassen"
+}

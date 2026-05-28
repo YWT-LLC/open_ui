@@ -15,18 +15,6 @@ class EzScrollView extends StatefulWidget {
   /// [Scrollbar.thumbVisibility] passthrough
   final bool? thumbVisibility;
 
-  /// [Scrollbar.thickness] passthrough
-  final double? thickness;
-
-  /// [Scrollbar.radius] passthrough
-  final Radius? radius;
-
-  /// [Scrollbar.notificationPredicate] passthrough
-  final ScrollNotificationPredicate? notificationPredicate;
-
-  /// [Scrollbar.scrollbarOrientation] passthrough
-  final ScrollbarOrientation? scrollbarOrientation;
-
   /// If true, when there is scrollable content, a halo of [ColorScheme.secondary] will be shown
   final bool showScrollHint;
 
@@ -37,12 +25,6 @@ class EzScrollView extends StatefulWidget {
   /// Is passed to the [SingleChildScrollView]s [EzRow]
   final bool reverseHands;
 
-  /// [SingleChildScrollView.reverse] passthrough
-  final bool reverse;
-
-  /// [SingleChildScrollView.padding] passthrough
-  final EdgeInsetsGeometry? padding;
-
   /// [SingleChildScrollView.primary] passthrough
   final bool? primary;
 
@@ -52,18 +34,6 @@ class EzScrollView extends StatefulWidget {
   /// [SingleChildScrollView.child] passthrough
   final Widget? child;
 
-  /// [SingleChildScrollView.clipBehavior] passthrough
-  final Clip clipBehavior;
-
-  /// [SingleChildScrollView.dragStartBehavior] passthrough
-  final DragStartBehavior dragStartBehavior;
-
-  /// [SingleChildScrollView.restorationId] passthrough
-  final String? restorationId;
-
-  /// [SingleChildScrollView.keyboardDismissBehavior] passthrough
-  final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
-
   /// [EzRow.mainAxisSize]/[Column.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
 
@@ -72,15 +42,6 @@ class EzScrollView extends StatefulWidget {
 
   /// [EzRow.crossAxisAlignment]/[Column.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
-
-  /// [EzRow.textDirection]/[Column.textDirection] passthrough
-  final TextDirection? textDirection;
-
-  /// [EzRow.textBaseline]/[Column.textBaseline] passthrough
-  final TextBaseline? textBaseline;
-
-  /// [EzRow.verticalDirection]/[Column.verticalDirection] passthrough
-  final VerticalDirection verticalDirection;
 
   /// Optionally jump to the center of the scroll upon creation
   final bool startCentered;
@@ -99,32 +60,19 @@ class EzScrollView extends StatefulWidget {
     // Scrollbar
     this.controller,
     this.thumbVisibility,
-    this.thickness,
-    this.radius,
-    this.notificationPredicate,
-    this.scrollbarOrientation,
     this.showScrollHint = false,
 
     // SingleChildScrollView
     this.scrollDirection = Axis.vertical,
     this.reverseHands = false,
-    this.reverse = false,
-    this.padding,
     this.primary,
     this.physics = const BouncingScrollPhysics(),
     this.child,
-    this.clipBehavior = Clip.hardEdge,
-    this.dragStartBehavior = DragStartBehavior.start,
-    this.restorationId,
-    this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
 
     // EzRow/Column parameters
-    this.mainAxisSize = MainAxisSize.max,
+    this.mainAxisSize = MainAxisSize.min,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.textDirection,
-    this.textBaseline,
-    this.verticalDirection = VerticalDirection.down,
     this.startCentered = false,
     this.children,
   }) : assert(
@@ -153,7 +101,7 @@ class _EzScrollViewState extends State<EzScrollView> {
     controller.animateTo(
       forward ? controller.position.maxScrollExtent : 0.0,
       duration: Duration(milliseconds: EzConfig.animDur),
-      curve: Curves.linear,
+      curve: EzConfig.animCurve,
     );
   }
 
@@ -203,49 +151,30 @@ class _EzScrollViewState extends State<EzScrollView> {
 
     Widget core = SingleChildScrollView(
       scrollDirection: widget.scrollDirection,
-      reverse: widget.reverse,
-      padding: widget.padding,
       primary: widget.primary,
       physics: widget.physics,
       controller: controller,
-      dragStartBehavior: widget.dragStartBehavior,
-      clipBehavior: widget.clipBehavior,
-      restorationId: widget.restorationId,
-      keyboardDismissBehavior: widget.keyboardDismissBehavior,
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
       child: (widget.child != null)
           ? widget.child!
           : (widget.scrollDirection == Axis.vertical)
-              ? Column(
+              ? EzCol(
                   mainAxisSize: widget.mainAxisSize,
                   mainAxisAlignment: widget.mainAxisAlignment,
                   crossAxisAlignment: widget.crossAxisAlignment,
-                  textDirection: widget.textDirection,
-                  verticalDirection: widget.verticalDirection,
-                  textBaseline: widget.textBaseline,
                   children: widget.children!,
                 )
               : EzRow(
                   mainAxisSize: widget.mainAxisSize,
                   mainAxisAlignment: widget.mainAxisAlignment,
                   crossAxisAlignment: widget.crossAxisAlignment,
-                  textDirection: widget.textDirection,
-                  verticalDirection: widget.verticalDirection,
-                  textBaseline: widget.textBaseline,
                   reverseHands: widget.reverseHands,
                   children: widget.children!,
                 ),
     );
 
     if (widget.thumbVisibility ?? EzConfig.showScroll) {
-      core = Scrollbar(
-        controller: controller,
-        thumbVisibility: true,
-        thickness: widget.thickness,
-        radius: widget.radius,
-        notificationPredicate: widget.notificationPredicate,
-        scrollbarOrientation: widget.scrollbarOrientation,
-        child: core,
-      );
+      core = Scrollbar(controller: controller, thumbVisibility: true, child: core);
     }
 
     // Return the build //

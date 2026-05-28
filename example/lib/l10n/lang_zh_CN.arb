@@ -1,0 +1,90 @@
+{
+  "@@locale": "zh_CN",
+
+  "csPageTitle": "构建器",
+
+  "csAppName": "应用名称",
+  "csNamePreview": "example_app",
+  "csNameTip": "史上最佳应用",
+  "csBecomes": "变为",
+  "csInvalidName": "仅允许使用小写字母、数字和下划线。",
+  "csYourApp": "你的应用",
+  "csPubName": "发布者名称",
+  "csPubPreview": "示例组织",
+  "csPubTip": "或者，示例个人",
+  "csDescription": "描述",
+  "csDescPreview": "关于你的应用的一两句话。",
+  "csDomainName": "域名",
+  "csDomainTip": "反过来是",
+  "csInvalidDomain": "仅限 'domain.name' 格式；RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+
+  "csGenApp": "当你生成 {app_name} 时，当前的",
+  "csTheApp": "应用",
+  "csTheConfig": "配置",
+  "csSetColors": "（除图片外）将成为 {app_name} 的默认配置。\n\n必须设置自定义配色方案。如果你需要帮助来构建配色方案，可以尝试从",
+  "csHere": "这里开始。",
+  "csHereHint": "打开在线配色方案生成器",
+
+  "csFileBrowser": "打开文件浏览器",
+  "csFlutterPath": "Flutter 路径",
+  "csNoSpaces": "路径不能包含空格",
+  "csNotInstalled": "未安装？",
+  "csPathRequired": "需要路径。不能使用根目录。",
+  "csBadPath": "无效路径",
+
+  "csAdvanced": "高级设置",
+  "csRestore": "恢复 {setting}",
+  "csOutputPath": "输出路径",
+  "csCopyright": "版权声明",
+  "csCopyrightTip": "将包含在每个 Dart 文件的顶部",
+  "csLicenseDocs": "打开关于开源许可证的文档",
+  "csL10nTip": "本地化（即翻译）配置",
+  "csLintTip": "Lint 规则",
+  "csLaunchTip": "在 VS Code 的调试菜单中添加启动选项",
+
+  "csGenerate": "生成应用",
+  "csInvalidFields": "部分字段无效",
+  "csRequired": "所有字段均为必填项",
+
+  "csResetHint": "激活并确认要重置的内容。",
+  "csResetBuilder": "构建器值",
+  "csResetApp": "应用设置",
+  "csResetBoth": "全部",
+  "csResetNothing": "无",
+
+
+
+  "asPageTitle": "归档器",
+
+  "asUseIt": "\n\n在 ",
+  "asToGen": " 桌面版上使用它，为 {app_name} 生成代码",
+
+
+
+  "gsPageTitle": "生成器",
+
+  "gsConsole": "控制台输出",
+
+  "gsIsReadyIn": "已准备就绪，用时",
+
+  "gsNeedPermission": "Open UI 需要完全磁盘访问权限。\n\n请前往...\n系统设置 > 隐私与安全性 > 完全磁盘访问权限 > 启用 Open UI；然后重试。",
+  "gsSeeNBelieve": "如果你想验证 Open UI 的工作原理，请前往",
+  "gsSeeNBelieveHint": "打开 Open UI 的代码生成源码。",
+  "gsNotInstalled": "未安装 Flutter",
+  "gsPartialSuccess": "代码生成成功，但部分项目设置失败。",
+
+
+
+  "rsWouldYou": "你想...",
+
+  "rsInstall": "安装",
+  "rsInstallHint": "打开 Flutter 安装指南",
+
+  "rsRun": "运行它",
+
+  "rsWipe": "清除它",
+  "rsNextTime": "成功，希望下次也能顺利！",
+  "rsAnotherOne": "又失败了；你可能需要接手处理...",
+
+  "rsLeave": "保留它"
+}

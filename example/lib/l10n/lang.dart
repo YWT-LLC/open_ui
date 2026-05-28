@@ -4,9 +4,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'lang_ar.dart' deferred as lang_ar;
+import 'lang_de.dart' deferred as lang_de;
 import 'lang_en.dart' deferred as lang_en;
 import 'lang_es.dart' deferred as lang_es;
+import 'lang_fil.dart' deferred as lang_fil;
 import 'lang_fr.dart' deferred as lang_fr;
+import 'lang_hi.dart' deferred as lang_hi;
+import 'lang_ht.dart' deferred as lang_ht;
+import 'lang_ja.dart' deferred as lang_ja;
+import 'lang_ko.dart' deferred as lang_ko;
+import 'lang_ru.dart' deferred as lang_ru;
+import 'lang_sw.dart' deferred as lang_sw;
+import 'lang_uk.dart' deferred as lang_uk;
+import 'lang_zh.dart' deferred as lang_zh;
 
 // ignore_for_file: type=lint
 
@@ -93,10 +104,23 @@ abstract class Lang {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('ar', 'EG'),
+    Locale('de'),
     Locale('en'),
     Locale('en', 'US'),
     Locale('es'),
-    Locale('fr')
+    Locale('fil'),
+    Locale('fr'),
+    Locale('hi'),
+    Locale('ht'),
+    Locale('ja'),
+    Locale('ko'),
+    Locale('ru'),
+    Locale('sw'),
+    Locale('uk'),
+    Locale('zh'),
+    Locale('zh', 'CN')
   ];
 
   /// No description provided for @csPageTitle.
@@ -189,18 +213,6 @@ abstract class Lang {
   /// **'\'domain.name\' only; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')'**
   String get csInvalidDomain;
 
-  /// No description provided for @csInclude.
-  ///
-  /// In en, this message translates to:
-  /// **'Include'**
-  String get csInclude;
-
-  /// No description provided for @csEasy.
-  ///
-  /// In en, this message translates to:
-  /// **'Easy to change later'**
-  String get csEasy;
-
   /// No description provided for @csGenApp.
   ///
   /// In en, this message translates to:
@@ -222,7 +234,7 @@ abstract class Lang {
   /// No description provided for @csSetColors.
   ///
   /// In en, this message translates to:
-  /// **' (except images) will become the default config for {app_name}.\n\nIt is recommended to set a custom color scheme. If you need help building one, try starting '**
+  /// **' (except images) will become the default config for {app_name}.\n\nIt is required to set a custom color scheme. If you need help building one, try starting '**
   String csSetColors(Object app_name);
 
   /// No description provided for @csHere.
@@ -411,12 +423,6 @@ abstract class Lang {
   /// **'is ready in'**
   String get gsIsReadyIn;
 
-  /// No description provided for @gsFirstRun.
-  ///
-  /// In en, this message translates to:
-  /// **'First run usually takes awhile'**
-  String get gsFirstRun;
-
   /// No description provided for @gsNeedPermission.
   ///
   /// In en, this message translates to:
@@ -505,8 +511,22 @@ class _LangDelegate extends LocalizationsDelegate<Lang> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'es', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'ar',
+        'de',
+        'en',
+        'es',
+        'fil',
+        'fr',
+        'hi',
+        'ht',
+        'ja',
+        'ko',
+        'ru',
+        'sw',
+        'uk',
+        'zh'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_LangDelegate old) => false;
@@ -515,6 +535,16 @@ class _LangDelegate extends LocalizationsDelegate<Lang> {
 Future<Lang> lookupLang(Locale locale) {
   // Lookup logic when language+country codes are specified.
   switch (locale.languageCode) {
+    case 'ar':
+      {
+        switch (locale.countryCode) {
+          case 'EG':
+            return lang_ar
+                .loadLibrary()
+                .then((dynamic _) => lang_ar.LangArEg());
+        }
+        break;
+      }
     case 'en':
       {
         switch (locale.countryCode) {
@@ -525,16 +555,48 @@ Future<Lang> lookupLang(Locale locale) {
         }
         break;
       }
+    case 'zh':
+      {
+        switch (locale.countryCode) {
+          case 'CN':
+            return lang_zh
+                .loadLibrary()
+                .then((dynamic _) => lang_zh.LangZhCn());
+        }
+        break;
+      }
   }
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return lang_ar.loadLibrary().then((dynamic _) => lang_ar.LangAr());
+    case 'de':
+      return lang_de.loadLibrary().then((dynamic _) => lang_de.LangDe());
     case 'en':
       return lang_en.loadLibrary().then((dynamic _) => lang_en.LangEn());
     case 'es':
       return lang_es.loadLibrary().then((dynamic _) => lang_es.LangEs());
+    case 'fil':
+      return lang_fil.loadLibrary().then((dynamic _) => lang_fil.LangFil());
     case 'fr':
       return lang_fr.loadLibrary().then((dynamic _) => lang_fr.LangFr());
+    case 'hi':
+      return lang_hi.loadLibrary().then((dynamic _) => lang_hi.LangHi());
+    case 'ht':
+      return lang_ht.loadLibrary().then((dynamic _) => lang_ht.LangHt());
+    case 'ja':
+      return lang_ja.loadLibrary().then((dynamic _) => lang_ja.LangJa());
+    case 'ko':
+      return lang_ko.loadLibrary().then((dynamic _) => lang_ko.LangKo());
+    case 'ru':
+      return lang_ru.loadLibrary().then((dynamic _) => lang_ru.LangRu());
+    case 'sw':
+      return lang_sw.loadLibrary().then((dynamic _) => lang_sw.LangSw());
+    case 'uk':
+      return lang_uk.loadLibrary().then((dynamic _) => lang_uk.LangUk());
+    case 'zh':
+      return lang_zh.loadLibrary().then((dynamic _) => lang_zh.LangZh());
   }
 
   throw FlutterError(

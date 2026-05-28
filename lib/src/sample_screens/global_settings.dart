@@ -7,7 +7,7 @@ import '../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class EzGlobalSettings extends StatefulWidget {
+class EzGlobalSettings extends StatelessWidget {
   /// Optionally remove the locale setting
   final bool excludeLocaleSetting;
 
@@ -15,7 +15,7 @@ class EzGlobalSettings extends StatefulWidget {
   final Set<String> inDistress;
 
   /// Locales to skip in the [EzLocaleSetting]
-  /// Defaults to [english] to not dupe [americanEnglish]
+  /// Defaults to {[arabic], [english], [chinese]} to avoid dupes
   final Set<Locale>? skipLocales;
 
   /// [Widget]s to be added below the [EzLocaleSetting]
@@ -23,32 +23,32 @@ class EzGlobalSettings extends StatefulWidget {
   final List<Widget>? additionalSettings;
 
   /// [EzConfig.saveConfig] passthrough
-  final String appName;
-
-  /// [EzConfig.saveConfig] passthrough
-  final String? androidPackage;
-
-  /// [EzConfig.saveConfig] passthrough
   final Set<String>? saveSkip;
 
   /// Spacer before the [EzQuickConfig]
   /// If null, [EzQuickConfig] will not be included
-  final Widget? quickConfigSpacer;
+  final Widget quickConfigSpacer;
 
-  /// Spacer before the [EzConfigRandomizer]
-  /// If null, [EzConfigRandomizer] will not be included
-  final Widget? randomSpacer;
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function(bool)? extraBig;
 
-  /// Spacer before the [EzResetButton]
-  /// [EzResetButton] is always included
-  final Widget resetSpacer;
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function(bool)? extraVis;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function(bool)? extraChalk;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function(bool)? extraNebula;
+
+  /// [EzBigButtonsConfig.extra] passthrough
+  final Future<void> Function(bool)? extraWall;
 
   /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkip;
 
-  /// Widgets to be added below the [EzResetButton]
-  /// Defaults to an [EzSeparator], if provided BYO trailing spacer
-  final List<Widget> footer;
+  /// [EzResetButton.dynamicTitle] passthrough
+  final String Function()? resetTitle;
 
   /// Empathetech settings landing page
   /// Contains global settings and [EzElevatedIconButton]s that lead to the rest of the settings pages
@@ -59,86 +59,46 @@ class EzGlobalSettings extends StatefulWidget {
     this.skipLocales,
     this.inDistress = const <String>{'US'},
     this.additionalSettings,
-    required this.appName,
-    this.androidPackage,
     this.saveSkip,
     this.quickConfigSpacer = const EzSeparator(),
-    this.randomSpacer = const EzSpacer(),
-    this.resetSpacer = const EzSeparator(),
+    this.extraBig,
+    this.extraVis,
+    this.extraChalk,
+    this.extraNebula,
+    this.extraWall,
     this.resetSkip,
-    this.footer = const <Widget>[EzSeparator()],
+    this.resetTitle,
   });
 
   @override
-  State<EzGlobalSettings> createState() => _EzGlobalSettingsState();
-}
-
-class _EzGlobalSettingsState extends State<EzGlobalSettings> {
-  // Set the page title //
-
-  @override
-  void initState() {
-    super.initState();
-    ezWindowNamer(EzConfig.l10n.gSettings);
-  }
-
-  // Return the build //
-
-  void redraw() => setState(() {});
-
-  @override
-  Widget build(BuildContext context) => EzScrollView(children: <Widget>[
-        EzDivider(height: EzConfig.spacing),
+  Widget build(BuildContext context) => EzCol(children: <Widget>[
         EzConfig.spacer,
-
-        // Right/left
-        EzDominantHandSwitch(redraw),
+        const EzDominantHandSwitch(),
         EzConfig.spacer,
-
-        // Theme mode
-        EzThemeModeSwitch(redraw),
-
-        // Language
-        if (!widget.excludeLocaleSetting) ...<Widget>[
+        const EzThemeModeSwitch(),
+        if (!excludeLocaleSetting) ...<Widget>[
           EzConfig.spacer,
           EzLocaleSetting(
-            redraw,
-            skip: widget.skipLocales ?? <Locale>{english},
-            inDistress: widget.inDistress,
+            skip: skipLocales ?? <Locale>{arabic, english, chinese},
+            inDistress: inDistress,
           ),
         ],
-
-        // Additional settings
-        if (widget.additionalSettings != null) ...widget.additionalSettings!,
-
-        // Quick config
-        if (widget.quickConfigSpacer != null) ...<Widget>[
-          widget.quickConfigSpacer!,
-          EzQuickConfig(redraw),
-        ],
-
-        // Feeling lucky
-        if (widget.randomSpacer != null) ...<Widget>[
-          widget.randomSpacer!,
-          EzConfigRandomizer(
-            redraw,
-            appName: widget.appName,
-            androidPackage: widget.androidPackage,
-            saveSkip: widget.saveSkip,
-          ),
-        ],
-
-        // Reset button
-        widget.resetSpacer,
-        EzResetButton(
-          redraw,
-          appName: widget.appName,
-          androidPackage: widget.androidPackage,
-          resetSkip: widget.resetSkip,
-          saveSkip: widget.saveSkip,
+        if (additionalSettings != null) ...additionalSettings!,
+        quickConfigSpacer,
+        EzQuickConfig(
+          extraBig: extraBig,
+          extraVis: extraVis,
+          extraChalk: extraChalk,
+          extraNebula: extraNebula,
+          extraWall: extraWall,
         ),
-
-        // Footer
-        ...widget.footer,
+        EzConfig.spacer,
+        EzConfigRandomizer(saveSkip: saveSkip),
+        EzConfig.separator,
+        EzResetButton(
+          resetSkip: resetSkip,
+          saveSkip: saveSkip,
+          dynamicTitle: resetTitle,
+        ),
       ]);
 }

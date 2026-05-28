@@ -23,8 +23,7 @@ class EzAlertDialog extends AlertDialog {
     super.actions,
     this.needsClose = true,
   }) : assert(
-          (content == null && contents == null) ||
-              ((content == null) != (contents == null)),
+          (content == null && contents == null) || ((content == null) != (contents == null)),
           'Either content or contents should be provided, but not both.',
         );
 
@@ -32,8 +31,8 @@ class EzAlertDialog extends AlertDialog {
   Widget build(BuildContext context) {
     // Define the content //
 
-    final Widget? dialogContent = content ??
-        ((contents == null) ? null : EzScrollView(children: contents!));
+    final Widget? dialogContent =
+        content ?? ((contents == null) ? null : EzScrollView(children: contents!));
 
     late final Widget closeAction = EzMaterialAction(
       text: EzConfig.l10n.gClose,
@@ -81,8 +80,7 @@ class EzAlertDialog extends AlertDialog {
                     ? closedActions.reversed.toList()
                     : closedActions
                 : <Widget>[
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
+                    EzCol(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: closedActions,
@@ -147,7 +145,7 @@ class EzMaterialAction extends StatelessWidget {
     return EzTextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: Colors.transparent,
+        backgroundColor: EzConfig.colors.surfaceDim,
         padding: EzInsets.wrap(EzConfig.spacing),
       ),
       text: text,
@@ -159,7 +157,6 @@ class EzMaterialAction extends StatelessWidget {
 
 /// Pairs with [EzAlertDialog]
 List<EzMaterialAction> ezActionPair({
-  required BuildContext context,
   String? confirmMsg,
   required void Function() onConfirm,
   bool confirmIsDefault = false,

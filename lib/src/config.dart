@@ -10,18 +10,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+//* Config constructor(s) *//
 // There are few (if any) null checks in EzConfig
 // EFUI won't work at all (immediate runtime failure) if EzConfig isn't properly initialized, so they're moot
 
-//* Config constructor(s) *//
-
 class EzConfig {
+  /// Name of app
+  final String _appName;
+
+  /// Android package path (optional)
+  final String? _androidPackage;
+
   /// [AssetImage] paths for the app
   final Set<String> _assetPaths;
-
-  /// Default config
-  final Map<String, dynamic> _defaults;
 
   /// Fallback [Locale] for unsupported [Locale]s
   /// [english] or [americanEnglish] is recommended
@@ -35,51 +38,75 @@ class EzConfig {
   /// [SharedPreferencesAsync] instance
   final SharedPreferencesAsync _preferences;
 
+  /// Optional [FlutterSecureStorage] instance
+  final FlutterSecureStorage? _securePreferences;
+
+  /// Default config
+  final Map<String, dynamic> _defaults;
+
+  /// Optional protected keys
+  final Set<String> _neverReset;
+
   /// Live values in use
   final Map<String, dynamic> _prefs;
 
   /// [EzConfig] key : value runtime [Type] map
   final Map<String, Type> _typeMap;
 
-  /// Allows for [EzConfigProvider.rebuildUI] and hosts caches for [ThemeMode] aware [EzConfig] values
-  EzConfigProvider? _provider;
-
   /// Private instance
   static EzConfig? _instance;
+
+  /// Set post-init
+  /// Allows for [EzConfigProvider.rebuildUI] and hosts caches for [ThemeMode] aware [EzConfig] values
+  EzConfigProvider? _provider;
 
   /// Private/internal constructor
   EzConfig._({
     // External (factory parameters)
+    required String appName,
+    required String? androidPackage,
     required Set<String> assetPaths,
-    required Map<String, dynamic> defaults,
     required Locale localeFallback,
     required EFUILang l10nFallback,
     required SharedPreferencesAsync preferences,
+    FlutterSecureStorage? securePreferences,
+    required Map<String, dynamic> defaults,
+    Set<String>? neverReset,
 
     // Internal (built by factory)
     required Map<String, dynamic> prefs,
     required Map<String, Type> typeMap,
-  })  : _assetPaths = assetPaths,
-        _defaults = defaults,
+  })  : _appName = appName,
+        _androidPackage = androidPackage,
+        _assetPaths = assetPaths,
         _localeFallback = localeFallback,
         _l10nFallback = l10nFallback,
         _preferences = preferences,
+        _securePreferences = securePreferences,
+        _defaults = defaults,
+        _neverReset = neverReset ?? const <String>{appLocaleKey},
         _prefs = prefs,
         _typeMap = typeMap;
 
+  /// [appName] => provide the name of the app
+  /// [androidPackage] => provide the Android package String, when relevant
   /// [assetPaths] => provide the [AssetImage] paths for this app
-  /// [defaults] => provide your brand colors, text styles, layout settings, etc.
   /// [localeFallback] => provide a fallback [Locale] for [Locale]s that [EFUILang] doesn't support (yet)
   /// [l10nFallback] => provide a fallback [EFUILang] for [Locale]s that [EFUILang] doesn't support (yet)
   /// [preferences] => provide a [SharedPreferencesWithCache] instance
-  /// [provider] => Set by [EzConfigurableApp], recommended to leave null unless you are not using [EzConfigurableApp]
+  /// [securePreferences] => optionally provide a [FlutterSecureStorage] instance
+  /// [defaults] => provide your brand colors, text styles, design settings, etc.
+  /// [neverReset] => provide the set of keys that should never be reset by any [EzConfig] functions
   factory EzConfig.init({
+    required String appName,
+    required String? androidPackage,
     required Set<String> assetPaths,
-    required Map<String, dynamic> defaults,
     required Locale localeFallback,
     required EFUILang l10nFallback,
     required SharedPreferencesWithCache preferences,
-    EzConfigProvider? provider,
+    FlutterSecureStorage? securePreferences,
+    required Map<String, dynamic> defaults,
+    Set<String>? neverReset,
   }) {
     if (_instance == null) {
       // Get the value type for each key //
@@ -88,8 +115,7 @@ class EzConfig {
       final Map<String, Type> typeMap = Map<String, Type>.from(allEZConfigKeys);
 
       // Include defaults
-      final Set<String> uniqueDefaults =
-          defaults.keys.toSet().difference(typeMap.keys.toSet());
+      final Set<String> uniqueDefaults = defaults.keys.toSet().difference(typeMap.keys.toSet());
 
       for (final String key in uniqueDefaults) {
         typeMap[key] = defaults[key].runtimeType;
@@ -101,8 +127,7 @@ class EzConfig {
       final Map<String, dynamic> prefs = Map<String, dynamic>.from(defaults);
 
       // Find the keys that users have overwritten
-      final Set<String> overwritten =
-          preferences.keys.intersection(typeMap.keys.toSet());
+      final Set<String> overwritten = preferences.keys.intersection(typeMap.keys.toSet());
 
       // Get the updated values
       for (final String key in overwritten) {
@@ -142,11 +167,15 @@ Must be one of [int, bool, double, String, List<String>]''');
       // Build the EzConfig instance //
 
       _instance = EzConfig._(
+        appName: appName,
+        androidPackage: androidPackage,
         assetPaths: <String>{...assetPaths, ...efuiAssetPaths},
-        defaults: defaults,
         localeFallback: localeFallback,
         l10nFallback: l10nFallback,
         preferences: SharedPreferencesAsync(),
+        securePreferences: securePreferences,
+        defaults: defaults,
+        neverReset: neverReset,
         prefs: prefs,
         typeMap: typeMap,
       );
@@ -158,6 +187,12 @@ Must be one of [int, bool, double, String, List<String>]''');
   //* Config getters *//
 
   // Core //
+
+  /// Name of the app
+  static String get appName => _instance!._appName;
+
+  /// Android package String, if relevant
+  static String? get androidPackage => _instance!._androidPackage;
 
   /// Default/fallback for unsupported [Locale]s
   static Locale get localeFallback => _instance!._localeFallback;
@@ -172,13 +207,18 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// bool, int, double, String, String List, or null
   static dynamic get(String key) => _instance!._prefs[key] ?? getDefault(key);
 
+  /// [FlutterSecureStorage] only stores Strings
+  /// No null or error checking, assumes the proper instance was provided in [EzConfig.init]
+  /// Returns empty [String] on failure (not null)
+  static Future<String> secGet(String key) async =>
+      await _instance!._securePreferences!.read(key: key) ?? Future<String>.value('');
+
   /// Alias for [EzConfig.get] => [isLeftyKey]
   static bool get isLefty => get(isLeftyKey);
 
   /// Get the [key]s EzConfig (nullable) [bool] value
   /// Uses the stored values from [SharedPreferencesAsync]
-  static Future<bool?> getBool(String key) =>
-      _instance!._preferences.getBool(key);
+  static Future<bool?> getBool(String key) => _instance!._preferences.getBool(key);
 
   /// Get the [key]s EzConfig (nullable) [int] value
   /// Uses the stored values from [SharedPreferencesAsync]
@@ -186,13 +226,11 @@ Must be one of [int, bool, double, String, List<String>]''');
 
   /// Get the [key]s EzConfig (nullable) [double] value
   /// Uses the stored values from [SharedPreferencesAsync]
-  static Future<double?> getDouble(String key) =>
-      _instance!._preferences.getDouble(key);
+  static Future<double?> getDouble(String key) => _instance!._preferences.getDouble(key);
 
   /// Get the [key]s EzConfig (nullable) [String] value
   /// Uses the stored values from [SharedPreferencesAsync]
-  static Future<String?> getString(String key) =>
-      _instance!._preferences.getString(key);
+  static Future<String?> getString(String key) => _instance!._preferences.getString(key);
 
   /// Get the [key]s EzConfig (nullable) [List] value
   /// Uses the stored values from [SharedPreferencesAsync]
@@ -203,8 +241,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   static bool isPathAsset(String path) => _instance!._assetPaths.contains(path);
 
   /// Wether the [key] points to an [AssetImage] path
-  static bool isKeyAsset(String key) =>
-      _instance!._assetPaths.contains(_instance!._prefs[key]);
+  static bool isKeyAsset(String key) => _instance!._assetPaths.contains(_instance!._prefs[key]);
 
   //* Setters *//
 
@@ -267,6 +304,23 @@ Must be one of [int, bool, double, String, List<String>]''');
     }
   }
 
+  /// [setString] but with [FlutterSecureStorage]
+  /// ([FlutterSecureStorage] can only [setString])
+  static Future<bool> secSet(String key, String value) async {
+    if (_instance!._securePreferences == null) {
+      ezLog('Attempted to secSet without a secure storage instance');
+      return false;
+    }
+
+    try {
+      await _instance!._securePreferences!.write(key: key, value: value);
+      return true;
+    } catch (e) {
+      ezLog('Error in secSet: [$key]...\n$e');
+      return false;
+    }
+  }
+
   /// Set the EzConfig [key] to [value] with type [List]
   /// Defaults to both the live and [SharedPreferencesAsync] values
   static Future<bool> setStringList(String key, List<String> value) async {
@@ -281,14 +335,8 @@ Must be one of [int, bool, double, String, List<String>]''');
   }
 
   /// Save the current [EzConfig] to local storage
-  static Future<void> saveConfig(
-    BuildContext context, {
-    required String appName,
-    String? androidPackage,
-    Set<String>? skip,
-  }) async {
-    final Map<String, dynamic> config =
-        Map<String, dynamic>.from(_instance!._prefs);
+  static Future<void> saveConfig(BuildContext context, {Set<String>? skip}) async {
+    final Map<String, dynamic> config = Map<String, dynamic>.from(_instance!._prefs);
     if (skip != null) {
       for (final String key in skip) {
         config.remove(key);
@@ -302,19 +350,12 @@ Must be one of [int, bool, double, String, List<String>]''');
         mimeType: MimeType.json,
       );
     } catch (e) {
-      (context.mounted)
-          ? await ezLogAlert(context, message: e.toString())
-          : ezLog(e.toString());
+      (context.mounted) ? await ezLogAlert(context, message: e.toString()) : ezLog(e.toString());
       return;
     }
 
     if (context.mounted) {
-      ezSnackBar(
-        context,
-        message: EzConfig.l10n.ssConfigSaved(
-          archivePath(appName: appName, androidPackage: androidPackage),
-        ),
-      );
+      ezSnackBar(context, message: EzConfig.l10n.ssConfigSaved(archivePath()));
     }
   }
 
@@ -408,11 +449,13 @@ Must be one of [int, bool, double, String, List<String>]''');
 
     if (isDark) {
       // Update color settings //
-
       await loadColorScheme(
         ColorScheme.fromSeed(
-          brightness: Brightness.dark,
-          seedColor: primary,
+          // Backgrounds: generated
+
+          // Text
+          onSurface: Colors.white,
+          outline: halfWhite,
 
           // Primary
           primary: primary,
@@ -432,65 +475,60 @@ Must be one of [int, bool, double, String, List<String>]''');
           tertiaryContainer: tertiary.withValues(alpha: defaultBorderOpacity),
           onTertiaryContainer: onTertiary,
 
-          // Error
+          // Erriary
           error: Colors.red,
           onError: Colors.white,
-          errorContainer: Colors.redAccent,
+          errorContainer: const Color(0x33FF0000),
           onErrorContainer: Colors.white,
 
-          // Surface
-          onSurface: Colors.white,
-
           // Misc
-          scrim: Colors.black,
+          // outlineVariant
+          // shadow
           surfaceTint: Colors.transparent,
+          scrim: Colors.black,
+          brightness: Brightness.dark,
+          seedColor: primary,
         ),
         Brightness.dark,
       );
 
       // Update design settings //
 
-      await setInt(darkAnimationDurationKey, random.nextInt(1000));
-      await setString(
-          darkTransitionTypeKey,
-          EzPageTransition
-              .values[random.nextInt(EzPageTransition.values.length)].value);
-      await setBool(darkTransitionFadeKey, random.nextBool());
-
-      await setString(
-          darkButtonShapeKey,
-          EzButtonShape
-              .values[random.nextInt(EzButtonShape.values.length)].value);
-      await setDouble(darkBorderWidthKey, random.nextDouble() * 3);
-
-      await setDouble(darkButtonOpacityKey, random.nextDouble());
-      await setDouble(darkBorderOpacityKey, random.nextDouble());
-
-      // Update layout settings //
-
-      await setDouble(darkMarginKey, defaultMargin * getScalar());
       await setDouble(
         darkPaddingKey,
         (onMobile ? defaultMobilePadding : defaultDesktopPadding) * getScalar(),
       );
-      await setDouble(
-        darkSpacingKey,
-        (onMobile ? defaultMobileSpacing : defaultDesktopSpacing) * getScalar(),
-      );
 
+      await setString(darkButtonShapeKey,
+          EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value);
+      await setDouble(darkBorderWidthKey, random.nextDouble() * 3);
+
+      await setBool(darkLineLinksKey, random.nextBool());
       await setBool(darkShowBackFABKey, random.nextBool());
+
+      if (onMobile) {
+        await setDouble(darkMarginKey, defaultMobileMargin * getScalar());
+        await setDouble(darkSpacingKey, defaultMobileSpacing * getScalar());
+      } else {
+        await setDouble(darkMarginKey, defaultDesktopMargin * getScalar());
+        await setDouble(darkSpacingKey, defaultDesktopSpacing * getScalar());
+      }
+
+      await setInt(darkAnimationDurationKey, random.nextInt(1000));
+      await setString(darkTransitionTypeKey,
+          EzTransitionType.values[random.nextInt(EzTransitionType.values.length)].value);
+      await setBool(darkTransitionFadeKey, random.nextBool());
+
       await setBool(darkShowScrollKey, random.nextBool());
 
       // Update text settings //
 
       final List<String> styleOptions = googleStyles.keys.toList();
 
-      final String attentionStyle =
-          styleOptions[random.nextInt(styleOptions.length)];
+      final String attentionStyle = styleOptions[random.nextInt(styleOptions.length)];
       final double attentionScale = getScalar();
 
-      final String descriptionStyle =
-          styleOptions[random.nextInt(styleOptions.length)];
+      final String descriptionStyle = styleOptions[random.nextInt(styleOptions.length)];
       final double descriptionScale = getScalar();
 
       await setString(darkDisplayFontFamilyKey, attentionStyle);
@@ -552,14 +590,16 @@ Must be one of [int, bool, double, String, List<String>]''');
 
       await setDouble(darkTextBackgroundOpacityKey, random.nextDouble());
       await setDouble(darkIconSizeKey, defaultIconSize * getScalar());
-      await setBool(darkLineLinksKey, random.nextBool());
     } else {
       // Update color settings //
 
       await loadColorScheme(
         ColorScheme.fromSeed(
-          brightness: Brightness.light,
-          seedColor: primary,
+          // Backgrounds: generated
+
+          // Text
+          onSurface: Colors.black,
+          outline: halfBlack,
 
           // Primary
           primary: primary,
@@ -582,62 +622,57 @@ Must be one of [int, bool, double, String, List<String>]''');
           // Error
           error: Colors.red,
           onError: Colors.white,
-          errorContainer: Colors.redAccent,
+          errorContainer: const Color(0x33FF0000),
           onErrorContainer: Colors.white,
 
-          // Surface
-          onSurface: Colors.black,
-
           // Misc
-          scrim: Colors.white,
+          // outlineVariant
+          // shadow
           surfaceTint: Colors.transparent,
+          scrim: Colors.white,
+          brightness: Brightness.light,
+          seedColor: primary,
         ),
         Brightness.light,
       );
 
       // Update design settings //
 
-      await setInt(lightAnimationDurationKey, random.nextInt(1000));
-      await setString(
-          lightTransitionTypeKey,
-          EzPageTransition
-              .values[random.nextInt(EzPageTransition.values.length)].value);
-      await setBool(lightTransitionFadeKey, random.nextBool());
-
-      await setString(
-          lightButtonShapeKey,
-          EzButtonShape
-              .values[random.nextInt(EzButtonShape.values.length)].value);
-      await setDouble(lightBorderWidthKey, random.nextDouble() * 3);
-
-      await setDouble(lightButtonOpacityKey, random.nextDouble());
-      await setDouble(lightBorderOpacityKey, random.nextDouble());
-
-      // Update layout settings //
-
-      await setDouble(lightMarginKey, defaultMargin * getScalar());
       await setDouble(
         lightPaddingKey,
         (onMobile ? defaultMobilePadding : defaultDesktopPadding) * getScalar(),
       );
-      await setDouble(
-        lightSpacingKey,
-        (onMobile ? defaultMobileSpacing : defaultDesktopSpacing) * getScalar(),
-      );
 
+      await setString(lightButtonShapeKey,
+          EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value);
+      await setDouble(lightBorderWidthKey, random.nextDouble() * 3);
+
+      await setBool(lightLineLinksKey, random.nextBool());
       await setBool(lightShowBackFABKey, random.nextBool());
+
+      if (onMobile) {
+        await setDouble(lightMarginKey, defaultMobileMargin * getScalar());
+        await setDouble(lightSpacingKey, defaultMobileSpacing * getScalar());
+      } else {
+        await setDouble(lightMarginKey, defaultDesktopMargin * getScalar());
+        await setDouble(lightSpacingKey, defaultDesktopSpacing * getScalar());
+      }
+
+      await setInt(lightAnimationDurationKey, random.nextInt(1000));
+      await setString(lightTransitionTypeKey,
+          EzTransitionType.values[random.nextInt(EzTransitionType.values.length)].value);
+      await setBool(lightTransitionFadeKey, random.nextBool());
+
       await setBool(lightShowScrollKey, random.nextBool());
 
       // Update text settings //
 
       final List<String> styleOptions = googleStyles.keys.toList();
 
-      final String attentionStyle =
-          styleOptions[random.nextInt(styleOptions.length)];
+      final String attentionStyle = styleOptions[random.nextInt(styleOptions.length)];
       final double attentionScale = getScalar();
 
-      final String descriptionStyle =
-          styleOptions[random.nextInt(styleOptions.length)];
+      final String descriptionStyle = styleOptions[random.nextInt(styleOptions.length)];
       final double descriptionScale = getScalar();
 
       await setString(lightDisplayFontFamilyKey, attentionStyle);
@@ -699,7 +734,6 @@ Must be one of [int, bool, double, String, List<String>]''');
 
       await setDouble(lightTextBackgroundOpacityKey, random.nextDouble());
       await setDouble(lightIconSizeKey, defaultIconSize * getScalar());
-      await setBool(lightLineLinksKey, random.nextBool());
     }
   }
 
@@ -743,15 +777,17 @@ Must be one of [int, bool, double, String, List<String>]''');
   }
 
   /// [removeKeys], all (except those in [skip])
-  /// [skip] defaults to [appLocaleKey]
+  /// The neverReset keys from [EzConfig.init] will always be [skip]ed, provided keys will be appended
   /// Obviously, [forceOne] and [forceBoth] are not meant to be true at the same time
   /// If they are, forceOne takes precedence
   static Future<bool> reset({
-    Set<String>? skip = const <String>{appLocaleKey},
+    Set<String>? skip,
     bool forceOne = false,
     bool forceBoth = false,
   }) async {
     final Set<String> keys = Set<String>.from(_instance!._prefs.keys);
+
+    keys.removeAll(_instance!._neverReset);
     if (skip != null) keys.removeAll(skip);
 
     if (forceOne || (!forceBoth && !updateBoth)) {
@@ -767,11 +803,9 @@ Must be one of [int, bool, double, String, List<String>]''');
     return success;
   }
 
-  //* Provider aliases *//
+  //* Provider aliases (passthrough) *//
   // Getters //
 
-  /// Active [EzConfigProvider]
-  /// "Internal" use only; easier to have all pointers in one place
   static EzConfigProvider get _provPoint => _instance!._provider!;
 
   /// Current [TargetPlatform]
@@ -780,140 +814,33 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Whether the app is running on a mobile device
   static bool get onMobile => _provPoint.onMobile;
 
-  /// Tracks major changes to the config
+  /// Track [rebuildUI] (randomized on each call)
   static int get seed => _provPoint.seed;
 
+  /// Toggleable bool for alerting the user to rebuild the UI
+  /// Some settings would be too expensive to rebuild on every change, so they update locally and [pingRebuild]
+  /// Example: [EzIconSizeSetting]
   static bool get needsRebuild => _provPoint.needsRebuild;
 
-  /// Active [Locale]
+  /// Current language for the app
   static Locale get locale => _provPoint.locale;
 
-  /// EFUI localizations
+  /// EFUI localizations for the [locale]
   static EFUILang get l10n => _provPoint.l10n;
 
-  /// Whether the active [Locale] is a left-to-right language
+  /// Text direction for the [locale]
   static bool get isLTR => _provPoint.isLTR;
 
-  /// Active [ThemeMode]
+  /// Current [ThemeMode]
   static ThemeMode get themeMode => _provPoint.themeMode;
 
-  /// Whether the active [ThemeMode] is [Brightness.dark]
+  /// Whether the current [themeMode] uses [Brightness.dark]
   static bool get isDark => _provPoint.isDark;
 
-  /// [EzConfig.get] alias for [hubPositionKey]
-  static int get hubPos => get(hubPositionKey);
-
-  /// [EzConfig.setInt] alias for [hubPositionKey]
-  static Future<bool> setHubPos(int pos) => setInt(hubPositionKey, pos);
-
-  /// [EzConfig.get] alias for [updateBothKey]
-  static bool get updateBoth => get(updateBothKey);
-
-  /// Current, [ThemeMode] aware, [ColorScheme]
-  static ColorScheme get colors => _provPoint.theme.colorScheme;
-
-  /// Current, [ThemeMode] aware, [TextTheme]
-  static TextTheme get styles => _provPoint.theme.textTheme;
-
-  /// Theme aware [EzColorCache] alias
-  static String get schemeImagePath => _provPoint.color.schemeImagePath;
-
-  /// Theme aware [EzDesignCache] alias
-  static int get animDur => _provPoint.design.animDur;
-
-  /// Theme aware [EzDesignCache] alias
-  static EzPageTransition get pageTransition =>
-      _provPoint.design.pageTransition;
-
-  /// Theme aware [EzDesignCache] alias
-  static bool get fadedTransition => _provPoint.design.fadedTransition;
-
-  /// Theme aware [EzDesignCache] alias
-  static String get backgroundImagePath =>
-      _provPoint.design.backgroundImagePath;
-
-  /// Theme aware [EzDesignCache] alias
-  static BoxFit? get backgroundImageFit => _provPoint.design.backgroundImageFit;
-
-  /// Theme aware alias, built from [backgroundImagePath] && [backgroundImageFit]
-  static DecorationImage get backgroundImage => DecorationImage(
-        image: ezImageProvider(backgroundImagePath),
-        fit: EzConfig.backgroundImageFit,
-      );
-
-  /// Theme aware [EzDesignCache] alias
-  static EzButtonShape get buttonShape => _provPoint.design.buttonShape;
-
-  /// Theme aware [EzDesignCache] alias
-  static double get borderWidth => _provPoint.design.borderWidth;
-
-  /// Theme aware [BorderSide] function built from [borderWidth]
-  static BorderSide borderSide(Color color) => borderWidth == 0
-      ? BorderSide.none
-      : BorderSide(color: color, width: borderWidth);
-
-  /// Theme aware [EzDesignCache] alias
-  static double get buttonOpacity => _provPoint.design.buttonOpacity;
-
-  /// Theme aware [EzDesignCache] alias
-  static double get borderOpacity => _provPoint.design.borderOpacity;
-
-  /// Theme aware [EzLayoutCache] alias
-  static double get marginVal => _provPoint.layout.marginVal;
-
-  /// Theme aware [EzLayoutCache] alias
-  static double get padding => _provPoint.layout.padding;
-
-  /// Theme aware [EzLayoutCache] alias
-  static double get spacing => _provPoint.layout.spacing;
-
-  /// Theme aware [EzLayoutCache] alias (spacing + margin)
-  static double get spargin => marginVal + spacing;
-
-  /// Theme aware [EzLayoutCache] alias
-  static EzMargin get margin => _provPoint.layout.margin;
-
-  /// Theme aware [EzLayoutCache] alias
-  static EzMargin get rowMargin => _provPoint.layout.rowMargin;
-
-  /// Theme aware [EzLayoutCache] alias
-  static EzSpacer get spacer => _provPoint.layout.spacer;
-
-  /// Theme aware [EzLayoutCache] alias
-  static EzSpacer get rowSpacer => _provPoint.layout.rowSpacer;
-
-  /// Theme aware [EzLayoutCache] alias
-  static EzSeparator get separator => _provPoint.layout.separator;
-
-  /// Theme aware [EzLayoutCache] alias
-  static EzDivider get divider => _provPoint.layout.divider;
-
-  /// Theme aware [EzLayoutCache] alias
-  static bool get showBackFAB => _provPoint.layout.showBackFAB;
-
-  /// Theme aware [EzLayoutCache] alias
-  static bool get showScroll => _provPoint.layout.showScroll;
-
-  /// Theme aware [EzTextCache] alias
-  static double get textBackgroundOpacity => _provPoint.text.backgroundOpacity;
-
-  /// Theme aware [EzTextCache] alias
-  static double get iconSize => _provPoint.text.iconSize;
-
-  /// Theme aware [EzTextCache] alias
-  static bool get lineLinks => _provPoint.text.lineLinks;
-
-  /// Theme aware [EzTextCache] alias
-  static EzNewLine get startLine => _provPoint.text.startLine;
-
-  /// Theme aware [EzTextCache] alias
-  static EzNewLine get centerLine => _provPoint.text.centerLine;
-
-  /// Theme aware [EzTextCache] alias
-  static EzNewLine get endLine => _provPoint.text.endLine;
-
-  /// Live [EzAppCache] pointer
+  // App (EFUI consumer) cache
   static EzAppCache? get appCache => _provPoint.appCache;
+
+  static ThemeData get theme => _provPoint.theme;
 
   // Setters //
 
@@ -923,33 +850,93 @@ Must be one of [int, bool, double, String, List<String>]''');
   static void pingRebuild(bool status) => _provPoint.pingRebuild(status);
 
   /// Set the apps [Locale] from storage and load corresponding localizations
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  static Future<void> rebuildLocale(void Function() onComplete) =>
-      _provPoint.rebuildLocale(onComplete);
+  static Future<void> rebuildLocale() => _provPoint.rebuildLocale();
 
-  /// Reconfigure [ThemeMode] et al. from storage and [redrawUI] with [onComplete]
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  static Future<void> rebuildThemeMode(void Function() onComplete) =>
-      _provPoint.rebuildThemeMode(onComplete);
+  /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
+  static Future<void> rebuildThemeMode() => _provPoint.rebuildThemeMode();
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
-  /// Then calls [redrawUI] with [onComplete]
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  static Future<void> rebuildUI(void Function() onComplete) =>
-      _provPoint.rebuildUI(onComplete);
+  static Future<void> rebuildUI({Future<void> Function()? changes}) =>
+      _provPoint.rebuildUI(changes: changes);
 
-  /// Randomizes the [seed] and notifies listeners
-  /// Optionally calls [onComplete] after notifying
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  static Future<void> redrawUI(void Function() onComplete) =>
-      _provPoint.redrawUI(onComplete);
+  //* Provider aliases (custom) *//
+  // Hub //
 
-  /// Trigger [redrawUI] if/when the [ThemeMode] brightness changes
-  /// Used in [EzConfigurableApp], not normally called manually
-  /// For that reason, there is no passthrough for [redrawUI]
-  static Future<void> redrawTheme() => _provPoint.redrawTheme();
+  // Storage values
+  static int get hubPos => get(hubPositionKey);
+  static bool get updateBoth => get(updateBothKey);
+
+  // Helpers
+  static Future<bool> setHubPos(int pos) => setInt(hubPositionKey, pos);
+
+  // Color //
+
+  // Cache values
+  static ColorScheme get colors => _provPoint.theme.colorScheme;
+  static String get schemeImagePath => _provPoint.color.schemeImagePath;
+
+  // Design //
+
+  // Design cache
+
+  static double get padding => _provPoint.design.padding;
+
+  static EzButtonShape get buttonShape => _provPoint.design.buttonShape;
+  static double get borderWidth => _provPoint.design.borderWidth;
+
+  static BorderRadius get textRadius => _provPoint.design.textRadius;
+  static BorderRadius get textFieldRadius => _provPoint.design.textFieldRadius;
+
+  static bool get lineLinks => _provPoint.design.lineLinks;
+  static bool get showBackFAB => _provPoint.design.showBackFAB;
+
+  static List<Widget> backFABs(bool home) =>
+      (showBackFAB && !home && ezRootNav.currentState!.canPop())
+          ? <Widget>[_provPoint.layout.spacer, const EzBackFAB()]
+          : <Widget>[];
+
+  static double get marginVal => _provPoint.design.margin;
+  static double get spacing => _provPoint.design.spacing;
+
+  static String get backgroundImagePath => _provPoint.design.backgroundImagePath;
+  static BoxFit? get backgroundImageFit => _provPoint.design.backgroundImageFit;
+
+  static EzTransitionType get transitionType => _provPoint.design.transitionType;
+  static bool get fadedTransition => _provPoint.design.fadedTransition;
+
+  static int get animDur => _provPoint.design.animDur;
+  static Curve get animCurve => _provPoint.design.animCurve;
+
+  static bool get showScroll => _provPoint.design.showScroll;
+
+  // Helpers
+  static BorderSide borderSide({Color? color}) => borderWidth == 0
+      ? BorderSide.none
+      : BorderSide(color: color ?? colors.primaryContainer, width: borderWidth);
+
+  static DecorationImage get backgroundImage => DecorationImage(
+        image: ezImageProvider(backgroundImagePath),
+        fit: EzConfig.backgroundImageFit,
+      );
+
+  // Layout (Widgets) //
+
+  static EzMargin get margin => _provPoint.layout.margin;
+  static EzMargin get rowMargin => _provPoint.layout.rowMargin;
+
+  static EzSpacer get spacer => _provPoint.layout.spacer;
+  static EzSpacer get rowSpacer => _provPoint.layout.rowSpacer;
+
+  static EzSeparator get separator => _provPoint.layout.separator;
+  static EzDivider get divider => _provPoint.layout.divider;
+
+  static EzNewLine get startLine => _provPoint.layout.startLine;
+  static EzNewLine get centerLine => _provPoint.layout.centerLine;
+  static EzNewLine get endLine => _provPoint.layout.endLine;
+
+  // Text //
+
+  static TextTheme get styles => _provPoint.theme.textTheme;
+  static double get textBackgroundOpacity => _provPoint.text.backgroundOpacity;
+  static double get iconSize => _provPoint.text.iconSize;
 }

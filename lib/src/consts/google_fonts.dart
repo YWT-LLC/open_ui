@@ -55,29 +55,16 @@ final Map<String, TextStyle> googleStyles = <String, TextStyle>{
 
 /// Passes [starter] to the [gFont]'s textStyle param
 /// Returns [starter] if [gFont] is not found/supported
-TextStyle fuseWithGFont({required TextStyle starter, required String gFont}) {
-  switch (gFont) {
-    case alexBrush:
-      return GoogleFonts.alexBrush(textStyle: starter);
-    case atkinsonHyperlegible:
-      return GoogleFonts.atkinsonHyperlegible(textStyle: starter);
-    case fingerPaint:
-      return GoogleFonts.fingerPaint(textStyle: starter);
-    case lexend:
-      return GoogleFonts.lexend(textStyle: starter);
-    case noto:
-      return GoogleFonts.notoSans(textStyle: starter);
-    case openSans:
-      return GoogleFonts.openSans(textStyle: starter);
-    case pressStart2P:
-      return GoogleFonts.pressStart2p(textStyle: starter);
-    case readexPro:
-      return GoogleFonts.readexPro(textStyle: starter);
-    case roboto:
-      return GoogleFonts.roboto(textStyle: starter);
-    case sourceCodePro:
-      return GoogleFonts.sourceCodePro(textStyle: starter);
-    default:
-      return starter;
-  }
-}
+TextStyle fuseWithGFont({required TextStyle starter, required String gFont}) => switch (gFont) {
+      alexBrush => GoogleFonts.alexBrush(textStyle: starter),
+      atkinsonHyperlegible => GoogleFonts.atkinsonHyperlegible(textStyle: starter),
+      fingerPaint => GoogleFonts.fingerPaint(textStyle: starter),
+      lexend => GoogleFonts.lexend(textStyle: starter),
+      noto => GoogleFonts.notoSans(textStyle: starter),
+      openSans => GoogleFonts.openSans(textStyle: starter),
+      pressStart2P => GoogleFonts.pressStart2p(textStyle: starter),
+      readexPro => GoogleFonts.readexPro(textStyle: starter),
+      roboto => GoogleFonts.roboto(textStyle: starter),
+      sourceCodePro => GoogleFonts.sourceCodePro(textStyle: starter),
+      _ => starter,
+    };

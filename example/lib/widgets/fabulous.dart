@@ -11,27 +11,23 @@ import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 /// Track version updates
 const Widget updater = EzUpdaterFAB(
-  appVersion: '3.1.1',
+  appVersion: '4.0.0',
   versionSource:
       'https://raw.githubusercontent.com/Empathetech-LLC/empathetech_flutter_ui/refs/heads/main/example/APP_VERSION',
-  gPlay:
-      'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
+  gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
   appStore: 'https://apps.apple.com/us/app/open-ui/id6499560244',
   github: 'https://github.com/Empathetech-LLC/empathetech_flutter_ui/releases',
 );
 
 class ResetFAB extends StatelessWidget {
-  /// Function to execute with 'Builder values' and 'Both' options
-  final void Function() clearForms;
-
-  /// [EzConfig.reset] passthrough
-  final void Function() onComplete;
+  final void Function() clear;
+  final void Function() state;
 
   /// Opens an [EzAlertDialog] for resetting the form fields, app settings, both, or none
   const ResetFAB({
     super.key,
-    required this.clearForms,
-    required this.onComplete,
+    required this.clear,
+    required this.state,
   });
 
   @override
@@ -46,7 +42,7 @@ class ResetFAB extends StatelessWidget {
             child: FloatingActionButton(
               onPressed: () => showDialog(
                 context: context,
-                builder: (BuildContext dContext) => EzAlertDialog(
+                builder: (BuildContext dCon) => EzAlertDialog(
                   title: Text(
                     '${EzConfig.l10n.gReset}...',
                     textAlign: TextAlign.center,
@@ -54,9 +50,10 @@ class ResetFAB extends StatelessWidget {
                   actions: <Widget>[
                     // Builder/forms
                     EzMaterialAction(
-                      onPressed: () {
-                        clearForms();
-                        Navigator.of(dContext).pop();
+                      onPressed: () async {
+                        clear();
+                        await EzConfig.rebuildUI();
+                        state();
                       },
                       text: l10n.csResetBuilder,
                       isDefaultAction: true,
@@ -65,8 +62,8 @@ class ResetFAB extends StatelessWidget {
                     // App settings
                     EzMaterialAction(
                       onPressed: () async {
-                        await EzConfig.reset(forceBoth: true);
-                        await EzConfig.rebuildUI(onComplete);
+                        await EzConfig.rebuildUI(changes: () => EzConfig.reset(forceBoth: true));
+                        state();
                       },
                       text: l10n.csResetApp,
                       isDestructiveAction: true,
@@ -75,9 +72,11 @@ class ResetFAB extends StatelessWidget {
                     // Both
                     EzMaterialAction(
                       onPressed: () async {
-                        clearForms();
-                        await EzConfig.reset(forceBoth: true);
-                        await EzConfig.rebuildUI(onComplete);
+                        await EzConfig.rebuildUI(changes: () async {
+                          clear();
+                          await EzConfig.reset(forceBoth: true);
+                        });
+                        state();
                       },
                       text: l10n.csResetBoth,
                       isDestructiveAction: true,
@@ -85,7 +84,7 @@ class ResetFAB extends StatelessWidget {
 
                     // None
                     EzMaterialAction(
-                      onPressed: () => Navigator.of(dContext).pop(),
+                      onPressed: () => Navigator.of(dCon).pop(),
                       text: l10n.csResetNothing,
                     ),
                   ],
@@ -110,7 +109,7 @@ class MacStoreFAB extends StatelessWidget {
         tooltip: 'EoL',
         onPressed: () => showDialog(
           context: context,
-          builder: (BuildContext dContext) => EzAlertDialog(contents: <Widget>[
+          builder: (BuildContext dCon) => EzAlertDialog(contents: <Widget>[
             const Text(
               '''Good news: Open UI is now an app generator!
 

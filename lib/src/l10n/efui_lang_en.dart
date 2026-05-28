@@ -187,12 +187,6 @@ class EFUILangEn extends EFUILang {
   String get gFullScreen => 'Fullscreen';
 
   @override
-  String get gHowThisWorks => 'How this works';
-
-  @override
-  String get gHowThisWorksHint => 'Open helpful documentation';
-
-  @override
   String get gMachineTranslated => 'Machine translated';
 
   @override
@@ -237,16 +231,6 @@ class EFUILangEn extends EFUILang {
 
   @override
   String get gOpenUIReleases => 'Open the releases page for Open UI';
-
-  @override
-  String get gGiveFeedback => 'Give feedback';
-
-  @override
-  String get gOpeningFeedback => 'Opening the feedback tool.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Please attach your screenshot (in Downloads folder)';
 
   @override
   String get gSupportEmail => 'Our support Email';
@@ -299,10 +283,16 @@ class EFUILangEn extends EFUILang {
   String get gSaveHint => 'Activate to save a JSON config file.';
 
   @override
+  String get gSwitchHint => 'Flip switch';
+
+  @override
   String get gUndoWarn2 => ' your current config to restore it manually.';
 
   @override
-  String get gCreditTo => 'Credit to:';
+  String get gValue => 'Value';
+
+  @override
+  String get gSource => 'Source:';
 
   @override
   String get gCreator => 'Creator of';
@@ -353,6 +343,9 @@ class EFUILangEn extends EFUILang {
 
   @override
   String get ssLoadPresetHint => 'Activate to show presets';
+
+  @override
+  String get ssDewIt => 'Update both/auto confirm';
 
   @override
   String get ssBigButtons => 'Big buttons';
@@ -414,35 +407,13 @@ class EFUILangEn extends EFUILang {
   String get ssResetAll => 'Reset all settings?';
 
   @override
+  String get ssResetAppearance => 'Reset all appearance settings?';
+
+  @override
   String get ssResetBoth => 'Reset both theme modes';
 
   @override
   String get csPageTitle => 'Color settings';
-
-  @override
-  String get csPickerHint =>
-      'Open a color picker. Long press for more options.';
-
-  @override
-  String get csMonoChrome => 'Use monochrome scheme';
-
-  @override
-  String get csHighContrast => 'Use high contrast scheme';
-
-  @override
-  String get csPickerTitle => 'Pick a color';
-
-  @override
-  String get csRecommended => 'Use contrast recommendation?';
-
-  @override
-  String get csUseCustom => 'Use custom';
-
-  @override
-  String get csAddColor => 'Add a color';
-
-  @override
-  String get csCurrVal => 'Current color value:';
 
   @override
   String get csSchemeBase => 'Build scheme\nfrom image';
@@ -451,7 +422,77 @@ class EFUILangEn extends EFUILang {
   String get csFromImage => 'A color scheme will be generated from the image.';
 
   @override
-  String get csColorScheme => 'color scheme';
+  String get csMonoChrome => 'Use monochrome scheme';
+
+  @override
+  String get csHighContrast => 'Use high contrast scheme';
+
+  @override
+  String get csPrimary => 'Primary';
+
+  @override
+  String get csPrimaryContainer => 'Primary\noutline';
+
+  @override
+  String get csSecondary => 'Secondary';
+
+  @override
+  String get csSecondaryContainer => 'Secondary\noutline';
+
+  @override
+  String get csTertiary => 'Tertiary';
+
+  @override
+  String get csTertiaryContainer => 'Tertiary\noutline';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Error\noutline';
+
+  @override
+  String get csOutline => 'Hint\ntext';
+
+  @override
+  String get csOutlineVariant => 'Hint\noutline';
+
+  @override
+  String get csSurface => 'Button\nbackground';
+
+  @override
+  String get csSurfaceDim => 'Alert && app bar\nbackground';
+
+  @override
+  String get csSurfaceContainer => 'Page && modal\nbackground';
+
+  @override
+  String get csOnSurface => 'Text';
+
+  @override
+  String get csScrim => 'Modal\ncover';
+
+  @override
+  String get csShadow => 'Shadow';
+
+  @override
+  String get csSurfaceTint => 'Surface\ntint';
+
+  @override
+  String get csPickerTitle => 'Pick a color';
+
+  @override
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
+
+  @override
+  String get csRecommended => 'Use contrast recommendation?';
+
+  @override
+  String get csUseCustom => 'Use custom';
+
+  @override
+  String get csCurrVal => 'Current color value:';
 
   @override
   String csReset(Object themeType) {
@@ -459,7 +500,16 @@ class EFUILangEn extends EFUILang {
   }
 
   @override
+  String get csColorScheme => 'color scheme';
+
+  @override
   String get dsPageTitle => 'Design settings';
+
+  @override
+  String get dsButton => 'Button';
+
+  @override
+  String get dsPage => 'Page';
 
   @override
   String get dsNone => 'None';
@@ -468,40 +518,10 @@ class EFUILangEn extends EFUILang {
   String get dsSystem => 'System';
 
   @override
-  String get dsAnimDuration => 'Animation duration';
+  String get dsPadding => 'Padding';
 
   @override
-  String get dsPlay => 'Play animation';
-
-  @override
-  String get dsMilliseconds => 'Milliseconds';
-
-  @override
-  String get dsPageTransition => 'Page transition';
-
-  @override
-  String get dsTurnX => 'Horizontal turn';
-
-  @override
-  String get dsTurnY => 'Vertical turn';
-
-  @override
-  String get dsRotate => 'Rotate';
-
-  @override
-  String get dsSlideX => 'Horizontal slide';
-
-  @override
-  String get dsSlideY => 'Vertical slide';
-
-  @override
-  String get dsZoom => 'Zoom';
-
-  @override
-  String get dsFadeTransition => 'Fade transition';
-
-  @override
-  String get dsButtonStyle => 'Button style';
+  String get dsStyle => 'Style';
 
   @override
   String get dsBorderWidth => 'Border width';
@@ -528,16 +548,64 @@ class EFUILangEn extends EFUILang {
   String get dsJewel => 'Jewel';
 
   @override
-  String get dsPreview => 'Preview';
+  String get dsAlwaysUnderline => 'Always underline links';
 
   @override
-  String get dsButtonOpacity => 'Button opacity';
+  String get dsShowBack => 'Show back button';
 
   @override
-  String get dsBackground => 'Background opacity';
+  String get dsMargin => 'Margin';
 
   @override
-  String get dsOutline => 'Outline opacity';
+  String get dsSpacing => 'Spacing';
+
+  @override
+  String get dsPageTransition => 'Page transition';
+
+  @override
+  String get dsTurnX => 'Horizontal turn';
+
+  @override
+  String get dsTurnY => 'Vertical turn';
+
+  @override
+  String get dsRotate => 'Rotate';
+
+  @override
+  String get dsSlideX => 'Horizontal slide';
+
+  @override
+  String get dsSlideY => 'Vertical slide';
+
+  @override
+  String get dsZoom => 'Zoom';
+
+  @override
+  String get dsFadeTransition => 'Fade transition';
+
+  @override
+  String get dsAnimStyle => 'Animation style';
+
+  @override
+  String get dsPlay => 'Play animation';
+
+  @override
+  String get dsMilliseconds => 'Milliseconds';
+
+  @override
+  String get dsCurve => 'Curve';
+
+  @override
+  String get dsBounce => 'Bounce';
+
+  @override
+  String get dsEase => 'Ease';
+
+  @override
+  String get dsElastic => 'Elastic';
+
+  @override
+  String get dsLinear => 'Linear';
 
   @override
   String get dsBackgroundImg => 'Background image';
@@ -546,6 +614,9 @@ class EFUILangEn extends EFUILang {
   String dsImgSettingHint(Object title) {
     return 'Update the $title image';
   }
+
+  @override
+  String get dsReFit => 'Re-fit';
 
   @override
   String get dsFromFile => 'From file';
@@ -591,61 +662,22 @@ class EFUILangEn extends EFUILang {
   String get dsNoWeb => 'Image editing is not supported on web';
 
   @override
-  String get dsDrag => 'Drag';
-
-  @override
-  String get dsDragHint => 'Drag to reposition the image';
-
-  @override
-  String get dsSwipe => 'Swipe';
-
-  @override
-  String get dsSwipeHint => 'Swipe to reposition the image';
-
-  @override
-  String get dsPinch => 'Pinch';
-
-  @override
-  String get dsPinchHint => 'Pinch to zoom in/out';
-
-  @override
-  String get dsScroll => 'Scroll';
-
-  @override
-  String get dsScrollHint => 'Scroll to zoom in/out';
-
-  @override
   String get dsRotateLeft => 'Rotate left';
 
   @override
   String get dsRotateRight => 'Rotate right';
 
   @override
-  String dsReset(Object themeType) {
-    return 'Reset $themeType design?';
+  String get dsShowScroll => 'Show scrollbars';
+
+  @override
+  String dsResetButton(Object themeType) {
+    return 'Reset $themeType button design?';
   }
 
   @override
-  String get lsPageTitle => 'Layout settings';
-
-  @override
-  String get lsMargin => 'Margin';
-
-  @override
-  String get lsPadding => 'Padding';
-
-  @override
-  String get lsSpacing => 'Spacing';
-
-  @override
-  String get lsShowBack => 'Show back button';
-
-  @override
-  String get lsShowScroll => 'Show scrollbars';
-
-  @override
-  String lsReset(Object themeType) {
-    return 'Reset $themeType layout?';
+  String dsResetPage(Object themeType) {
+    return 'Reset $themeType page design?';
   }
 
   @override
@@ -747,9 +779,6 @@ class EFUILangEn extends EFUILang {
 
   @override
   String get tsLabelP2 => ' Not too big, not too small?';
-
-  @override
-  String get tsAlwaysUnderline => 'Always underline links';
 
   @override
   String tsReset(Object themeType) {
@@ -940,12 +969,6 @@ class EFUILangEnUs extends EFUILangEn {
   String get gFullScreen => 'Fullscreen';
 
   @override
-  String get gHowThisWorks => 'How this works';
-
-  @override
-  String get gHowThisWorksHint => 'Open helpful documentation';
-
-  @override
   String get gMachineTranslated => 'Machine translated';
 
   @override
@@ -990,16 +1013,6 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get gOpenUIReleases => 'Open the releases page for Open UI';
-
-  @override
-  String get gGiveFeedback => 'Give feedback';
-
-  @override
-  String get gOpeningFeedback => 'Opening the feedback tool.';
-
-  @override
-  String get gAttachScreenshot =>
-      'Please attach your screenshot (in Downloads folder)';
 
   @override
   String get gSupportEmail => 'Our support Email';
@@ -1052,10 +1065,16 @@ class EFUILangEnUs extends EFUILangEn {
   String get gSaveHint => 'Activate to save a JSON config file.';
 
   @override
+  String get gSwitchHint => 'Flip switch';
+
+  @override
   String get gUndoWarn2 => ' your current config to restore it manually.';
 
   @override
-  String get gCreditTo => 'Credit to:';
+  String get gValue => 'Value';
+
+  @override
+  String get gSource => 'Source:';
 
   @override
   String get gCreator => 'Creator of';
@@ -1106,6 +1125,9 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get ssLoadPresetHint => 'Activate to show presets';
+
+  @override
+  String get ssDewIt => 'Update both/auto confirm';
 
   @override
   String get ssBigButtons => 'Big buttons';
@@ -1167,35 +1189,13 @@ class EFUILangEnUs extends EFUILangEn {
   String get ssResetAll => 'Reset all settings?';
 
   @override
+  String get ssResetAppearance => 'Reset all appearance settings?';
+
+  @override
   String get ssResetBoth => 'Reset both theme modes';
 
   @override
   String get csPageTitle => 'Color settings';
-
-  @override
-  String get csPickerHint =>
-      'Open a color picker. Long press for more options.';
-
-  @override
-  String get csMonoChrome => 'Use monochrome scheme';
-
-  @override
-  String get csHighContrast => 'Use high contrast scheme';
-
-  @override
-  String get csPickerTitle => 'Pick a color';
-
-  @override
-  String get csRecommended => 'Use contrast recommendation?';
-
-  @override
-  String get csUseCustom => 'Use custom';
-
-  @override
-  String get csAddColor => 'Add a color';
-
-  @override
-  String get csCurrVal => 'Current color value:';
 
   @override
   String get csSchemeBase => 'Build scheme\nfrom image';
@@ -1204,7 +1204,77 @@ class EFUILangEnUs extends EFUILangEn {
   String get csFromImage => 'A color scheme will be generated from the image.';
 
   @override
-  String get csColorScheme => 'color scheme';
+  String get csMonoChrome => 'Use monochrome scheme';
+
+  @override
+  String get csHighContrast => 'Use high contrast scheme';
+
+  @override
+  String get csPrimary => 'Primary';
+
+  @override
+  String get csPrimaryContainer => 'Primary\noutline';
+
+  @override
+  String get csSecondary => 'Secondary';
+
+  @override
+  String get csSecondaryContainer => 'Secondary\noutline';
+
+  @override
+  String get csTertiary => 'Tertiary';
+
+  @override
+  String get csTertiaryContainer => 'Tertiary\noutline';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Error\noutline';
+
+  @override
+  String get csOutline => 'Hint\ntext';
+
+  @override
+  String get csOutlineVariant => 'Hint\noutline';
+
+  @override
+  String get csSurface => 'Button\nbackground';
+
+  @override
+  String get csSurfaceDim => 'Alert && app bar\nbackground';
+
+  @override
+  String get csSurfaceContainer => 'Page && modal\nbackground';
+
+  @override
+  String get csOnSurface => 'Text';
+
+  @override
+  String get csScrim => 'Modal\ncover';
+
+  @override
+  String get csShadow => 'Shadow';
+
+  @override
+  String get csSurfaceTint => 'Surface\ntint';
+
+  @override
+  String get csPickerTitle => 'Pick a color';
+
+  @override
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
+
+  @override
+  String get csRecommended => 'Use contrast recommendation?';
+
+  @override
+  String get csUseCustom => 'Use custom';
+
+  @override
+  String get csCurrVal => 'Current color value:';
 
   @override
   String csReset(Object themeType) {
@@ -1212,7 +1282,16 @@ class EFUILangEnUs extends EFUILangEn {
   }
 
   @override
+  String get csColorScheme => 'color scheme';
+
+  @override
   String get dsPageTitle => 'Design settings';
+
+  @override
+  String get dsButton => 'Button';
+
+  @override
+  String get dsPage => 'Page';
 
   @override
   String get dsNone => 'None';
@@ -1221,40 +1300,10 @@ class EFUILangEnUs extends EFUILangEn {
   String get dsSystem => 'System';
 
   @override
-  String get dsAnimDuration => 'Animation duration';
+  String get dsPadding => 'Padding';
 
   @override
-  String get dsPlay => 'Play animation';
-
-  @override
-  String get dsMilliseconds => 'Milliseconds';
-
-  @override
-  String get dsPageTransition => 'Page transition';
-
-  @override
-  String get dsTurnX => 'Horizontal turn';
-
-  @override
-  String get dsTurnY => 'Vertical turn';
-
-  @override
-  String get dsRotate => 'Rotate';
-
-  @override
-  String get dsSlideX => 'Horizontal slide';
-
-  @override
-  String get dsSlideY => 'Vertical slide';
-
-  @override
-  String get dsZoom => 'Zoom';
-
-  @override
-  String get dsFadeTransition => 'Fade transition';
-
-  @override
-  String get dsButtonStyle => 'Button style';
+  String get dsStyle => 'Style';
 
   @override
   String get dsBorderWidth => 'Border width';
@@ -1281,16 +1330,64 @@ class EFUILangEnUs extends EFUILangEn {
   String get dsJewel => 'Jewel';
 
   @override
-  String get dsPreview => 'Preview';
+  String get dsAlwaysUnderline => 'Always underline links';
 
   @override
-  String get dsButtonOpacity => 'Button opacity';
+  String get dsShowBack => 'Show back button';
 
   @override
-  String get dsBackground => 'Background opacity';
+  String get dsMargin => 'Margin';
 
   @override
-  String get dsOutline => 'Outline opacity';
+  String get dsSpacing => 'Spacing';
+
+  @override
+  String get dsPageTransition => 'Page transition';
+
+  @override
+  String get dsTurnX => 'Horizontal turn';
+
+  @override
+  String get dsTurnY => 'Vertical turn';
+
+  @override
+  String get dsRotate => 'Rotate';
+
+  @override
+  String get dsSlideX => 'Horizontal slide';
+
+  @override
+  String get dsSlideY => 'Vertical slide';
+
+  @override
+  String get dsZoom => 'Zoom';
+
+  @override
+  String get dsFadeTransition => 'Fade transition';
+
+  @override
+  String get dsAnimStyle => 'Animation style';
+
+  @override
+  String get dsPlay => 'Play animation';
+
+  @override
+  String get dsMilliseconds => 'Milliseconds';
+
+  @override
+  String get dsCurve => 'Curve';
+
+  @override
+  String get dsBounce => 'Bounce';
+
+  @override
+  String get dsEase => 'Ease';
+
+  @override
+  String get dsElastic => 'Elastic';
+
+  @override
+  String get dsLinear => 'Linear';
 
   @override
   String get dsBackgroundImg => 'Background image';
@@ -1299,6 +1396,9 @@ class EFUILangEnUs extends EFUILangEn {
   String dsImgSettingHint(Object title) {
     return 'Update the $title image';
   }
+
+  @override
+  String get dsReFit => 'Re-fit';
 
   @override
   String get dsFromFile => 'From file';
@@ -1344,61 +1444,22 @@ class EFUILangEnUs extends EFUILangEn {
   String get dsNoWeb => 'Image editing is not supported on web';
 
   @override
-  String get dsDrag => 'Drag';
-
-  @override
-  String get dsDragHint => 'Drag to reposition the image';
-
-  @override
-  String get dsSwipe => 'Swipe';
-
-  @override
-  String get dsSwipeHint => 'Swipe to reposition the image';
-
-  @override
-  String get dsPinch => 'Pinch';
-
-  @override
-  String get dsPinchHint => 'Pinch to zoom in/out';
-
-  @override
-  String get dsScroll => 'Scroll';
-
-  @override
-  String get dsScrollHint => 'Scroll to zoom in/out';
-
-  @override
   String get dsRotateLeft => 'Rotate left';
 
   @override
   String get dsRotateRight => 'Rotate right';
 
   @override
-  String dsReset(Object themeType) {
-    return 'Reset $themeType design?';
+  String get dsShowScroll => 'Show scrollbars';
+
+  @override
+  String dsResetButton(Object themeType) {
+    return 'Reset $themeType button design?';
   }
 
   @override
-  String get lsPageTitle => 'Layout settings';
-
-  @override
-  String get lsMargin => 'Margin';
-
-  @override
-  String get lsPadding => 'Padding';
-
-  @override
-  String get lsSpacing => 'Spacing';
-
-  @override
-  String get lsShowBack => 'Show back button';
-
-  @override
-  String get lsShowScroll => 'Show scrollbars';
-
-  @override
-  String lsReset(Object themeType) {
-    return 'Reset $themeType layout?';
+  String dsResetPage(Object themeType) {
+    return 'Reset $themeType page design?';
   }
 
   @override
@@ -1500,9 +1561,6 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get tsLabelP2 => ' Not too big, not too small?';
-
-  @override
-  String get tsAlwaysUnderline => 'Always underline links';
 
   @override
   String tsReset(Object themeType) {

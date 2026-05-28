@@ -21,14 +21,8 @@ class EzIconLink extends StatefulWidget {
   /// Defaults to [ColorScheme.onSurface]
   final Color? textColor;
 
-  /// Defaults to [ColorScheme.primary]
-  final Color? decorationColor;
-
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
-
-  /// Optional padding override for [TextButton.style]
-  final EdgeInsets? padding;
 
   /// Destination function
   /// Provide [onTap] or [url], but not both
@@ -57,9 +51,7 @@ class EzIconLink extends StatefulWidget {
     this.style,
     required this.icon,
     this.textColor,
-    this.decorationColor,
     this.textAlign,
-    this.padding,
     this.onTap,
     this.url,
     required this.hint,
@@ -72,44 +64,20 @@ class EzIconLink extends StatefulWidget {
 }
 
 class _EzIconLinkState extends State<EzIconLink> {
-  // Define the build data //
-
   late final String semantics = '${widget.label}; ${widget.hint}';
 
   @override
   Widget build(BuildContext context) {
-    // Gather the contextual theme data //
-
-    final Color textColor = widget.textColor ?? EzConfig.colors.onSurface;
-
-    TextStyle? textStyle =
-        (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
-      color: textColor,
+    TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
+      color: widget.textColor ?? EzConfig.colors.onSurface,
       decoration: TextDecoration.none,
-      decorationColor: widget.decorationColor ?? EzConfig.colors.primary,
+      decorationColor: EzConfig.colors.primary,
     );
 
-    final ButtonStyle buttonStyle = TextButton.styleFrom(
-      padding: widget.padding,
-      overlayColor: widget.decorationColor ?? EzConfig.colors.primary,
-    );
-
-    // Define custom functions //
-
-    void underline(bool addIt) {
-      textStyle = textStyle?.copyWith(
-        decoration: addIt ? TextDecoration.underline : TextDecoration.none,
-      );
-      setState(() {});
-    }
+    void underline(bool addIt) => setState(() => textStyle =
+        textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
 
     // Return the build //
-
-    final Text text = Text(
-      widget.label,
-      style: textStyle,
-      textAlign: widget.textAlign,
-    );
 
     return Tooltip(
       message: widget.tooltip ?? widget.hint,
@@ -120,30 +88,32 @@ class _EzIconLinkState extends State<EzIconLink> {
         child: ExcludeSemantics(
           child: (widget.onTap != null)
               ? TextButton.icon(
-                  style: buttonStyle,
                   onPressed: widget.onTap,
                   onLongPress: null,
                   onHover: (bool isHovering) => underline(isHovering),
                   onFocusChange: (bool hasFocus) => underline(hasFocus),
                   icon: widget.icon,
-                  iconAlignment: EzConfig.isLefty
-                      ? IconAlignment.start
-                      : IconAlignment.end,
-                  label: text,
+                  iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
+                  label: Text(
+                    widget.label,
+                    style: textStyle,
+                    textAlign: widget.textAlign,
+                  ),
                 )
               : Link(
                   uri: widget.url,
                   builder: (_, FollowLink? followLink) => TextButton.icon(
-                    style: buttonStyle,
                     onPressed: followLink,
                     onLongPress: null,
                     onHover: (bool isHovering) => underline(isHovering),
                     onFocusChange: (bool hasFocus) => underline(hasFocus),
                     icon: widget.icon,
-                    iconAlignment: EzConfig.isLefty
-                        ? IconAlignment.start
-                        : IconAlignment.end,
-                    label: text,
+                    iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
+                    label: Text(
+                      widget.label,
+                      style: textStyle,
+                      textAlign: widget.textAlign,
+                    ),
                   ),
                 ),
         ),

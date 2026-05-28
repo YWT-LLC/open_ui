@@ -23,14 +23,11 @@ class EzTextBackground extends StatelessWidget {
   /// Takes priority over [borderRadius]
   final bool buttonShape;
 
-  /// true: [ColorScheme.surface]
-  /// false (default): [ColorScheme.surfaceContainer]
-  /// null: [ColorScheme.surfaceDim]
-  /// Quantum supremacy achieved
-  final bool? useSurface;
+  /// Uses [EzConfig.textBackgroundOpacity]
+  /// Defaults to [ColorScheme.surfaceContainer]
+  final Color? baseColor;
 
-  /// Optional override
-  /// Will ignore [useSurface] if this is set
+  /// Full override
   final Color? backgroundColor;
 
   /// Create a [Container] for your [text] with a background color that automatically responds to [lightTextBackgroundOpacityKey]/[darkTextBackgroundOpacityKey]
@@ -40,43 +37,28 @@ class EzTextBackground extends StatelessWidget {
     this.padding,
     this.borderRadius,
     this.buttonShape = false,
-    this.useSurface = false,
+    this.baseColor,
     this.backgroundColor,
   });
 
-  Color _color(double percent) {
-    if (backgroundColor != null) {
-      return backgroundColor!;
-    }
-
-    late final Color baseColor;
-    switch (useSurface) {
-      case true:
-        baseColor = EzConfig.colors.surface;
-      case false:
-        baseColor = EzConfig.colors.surfaceContainer;
-      case null:
-        baseColor = EzConfig.colors.surfaceDim;
-    }
-
-    return baseColor.withValues(alpha: percent);
-  }
-
   @override
-  Widget build(BuildContext context) {
-    final Color color = _color(EzConfig.textBackgroundOpacity);
-
-    return Container(
-      padding: padding ?? EzInsets.wrap(EzConfig.marginVal),
-      decoration: buttonShape
-          ? ShapeDecoration(color: color, shape: EzConfig.buttonShape.shape)
-          : BoxDecoration(
-              color: color,
-              borderRadius: borderRadius ?? ezRoundEdge,
-            ),
-      child: text,
-    );
-  }
+  Widget build(BuildContext context) => Container(
+        padding: padding ?? EzInsets.wrap(EzConfig.marginVal),
+        decoration: buttonShape
+            ? ShapeDecoration(
+                color: backgroundColor ??
+                    (baseColor ?? EzConfig.colors.surfaceContainer)
+                        .withValues(alpha: EzConfig.textBackgroundOpacity),
+                shape: EzConfig.buttonShape.shape,
+              )
+            : BoxDecoration(
+                color: backgroundColor ??
+                    (baseColor ?? EzConfig.colors.surfaceContainer)
+                        .withValues(alpha: EzConfig.textBackgroundOpacity),
+                borderRadius: borderRadius ?? EzConfig.textRadius,
+              ),
+        child: text,
+      );
 }
 
 class EzText extends StatelessWidget {
@@ -93,35 +75,8 @@ class EzText extends StatelessWidget {
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
-  /// [Text.textDirection] passthrough
-  final TextDirection? textDirection;
-
-  /// [Text.locale] passthrough
-  final Locale? locale;
-
-  /// [Text.softWrap] passthrough
-  final bool? softWrap;
-
-  /// [Text.overflow] passthrough
-  final TextOverflow? overflow;
-
-  /// [Text.textScaler] passthrough
-  final TextScaler? textScaler;
-
-  /// [Text.maxLines] passthrough
-  final int? maxLines;
-
   /// [Text.semanticsLabel] passthrough
   final String? semanticsLabel;
-
-  /// [Text.textWidthBasis] passthrough
-  final TextWidthBasis? textWidthBasis;
-
-  /// [Text.textHeightBehavior] passthrough
-  final TextHeightBehavior? textHeightBehavior;
-
-  /// [Text.selectionColor] passthrough
-  final Color? selectionColor;
 
   /// [EzTextBackground.padding] passthrough
   final EdgeInsets? padding;
@@ -133,11 +88,8 @@ class EzText extends StatelessWidget {
   /// [EzTextBackground.buttonShape] passthrough
   final bool buttonShape;
 
-  /// [EzTextBackground.useSurface] passthrough
-  /// true: [ColorScheme.surface]
-  /// false: [ColorScheme.surfaceContainer]
-  /// null: [ColorScheme.surfaceDim]
-  final bool? useSurface;
+  /// [EzTextBackground.baseColor] passthrough
+  final Color? baseColor;
 
   /// [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
@@ -150,20 +102,11 @@ class EzText extends StatelessWidget {
     this.style,
     this.strutStyle,
     this.textAlign,
-    this.textDirection,
-    this.locale,
-    this.softWrap,
-    this.overflow,
-    this.textScaler,
-    this.maxLines,
     this.semanticsLabel,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.selectionColor,
     this.padding,
     this.borderRadius,
     this.buttonShape = false,
-    this.useSurface = false,
+    this.baseColor,
     this.backgroundColor,
   });
 
@@ -174,20 +117,12 @@ class EzText extends StatelessWidget {
           style: style ?? EzConfig.styles.bodyLarge,
           strutStyle: strutStyle,
           textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          maxLines: maxLines,
           semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis,
-          textHeightBehavior: textHeightBehavior,
-          selectionColor: selectionColor,
         ),
         padding: padding,
         borderRadius: borderRadius,
         buttonShape: buttonShape,
-        useSurface: useSurface,
+        baseColor: baseColor,
         backgroundColor: backgroundColor,
       );
 }

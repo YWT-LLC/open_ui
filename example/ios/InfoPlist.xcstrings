@@ -28,6 +28,18 @@
     "NSCameraUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يسمح الوصول إلى الكاميرا للتطبيق بتعيين صور خلفية مخصصة وبيانات السمة."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Zugriff auf die Kamera ermöglicht es der App, benutzerdefinierte Hintergrundbilder und Themendaten festzulegen."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40,10 +52,64 @@
             "value" : "El acceso a la cámara permite a la aplicación establecer imágenes de fondo personalizadas y datos para los temas."
           }
         },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagbibigay-daan ang access sa camera sa app na magtakda ng mga custom na background image at data ng tema."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L'accès à l'appareil photo permet à l'application de définir des images d'arrière-plan et des données de thème personnalisées."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैमरा एक्सेस ऐप को कस्टम बैकग्राउंड इमेज और थीम डेटा सेट करने की अनुमति देता है।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aksè nan kamera pèmèt aplikasyon an mete imaj background koutim ak done tèm."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カメラへのアクセスにより、アプリでカスタムの背景画像やテーマデータを設定できるようになります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카메라 액세스를 통해 앱에서 사용자 지정 배경 이미지 및 테마 데이터를 설정할 수 있습니다."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ к камере позволяет приложению устанавливать пользовательские фоновые изображения и данные тем."
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruhusa ya kamera inaruhusu programu kuweka picha maalum za mandharinyuma na data ya mandhari."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ до камери дозволяє програмі встановлювати власні фонові зображення та дані тем."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相机权限允许应用设置自定义背景图像和主题数据。"
           }
         }
       }
@@ -51,6 +117,18 @@
     "NSPhotoLibraryUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتيح الوصول إلى مكتبة الصور للتطبيق تعيين صور خلفية مخصصة وبيانات السمات."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Zugriff auf die Fotomediathek ermöglicht es der App, benutzerdefinierte Hintergrundbilder und Themendaten festzulegen."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -63,10 +141,64 @@
             "value" : "El acceso a la galería de fotos permite a la aplicación establecer imágenes de fondo personalizadas y datos para los temas."
           }
         },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ang pag-access sa photo library ay nagpapahintulot sa app na mag-set ng mga custom na background image at data ng tema."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L'accès à la galerie permet à l'application de définir des images d'arrière-plan et des données de thème personnalisées."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोटो लाइब्रेरी एक्सेस ऐप को कस्टम बैकग्राउंड इमेज और थीम डेटा सेट करने की अनुमति देता है।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aksè nan bibliyotèk foto pèmèt aplikasyon an fikse imaj background koutim ak done tèm."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォトライブラリへのアクセスにより、アプリでカスタムの背景画像やテーマデータを設定できるようになります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 라이브러리 접근을 통해 앱에서 사용자 지정 배경 이미지 및 테마 데이터를 설정할 수 있습니다."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ к библиотеке фотографий позволяет приложению устанавливать пользовательские фоновые изображения и данные тем."
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ufikiaji wa maktaba ya picha unaruhusu programu kuweka picha maalum za mandharinyuma na data ya mandhari."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ до бібліотеки фотографій дозволяє програмі встановлювати спеціальні фонові зображення та дані тем."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "访问照片库允许应用设置自定义背景图像和主题数据。"
           }
         }
       }

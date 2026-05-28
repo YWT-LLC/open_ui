@@ -1,0 +1,90 @@
+{
+  "@@locale": "ht",
+
+  "csPageTitle": "Konstriktè",
+
+  "csAppName": "Non aplikasyon an",
+  "csNamePreview": "aplikasyon_egzanp",
+  "csNameTip": "Pi bon aplikasyon an",
+  "csBecomes": "vin",
+  "csInvalidName": "Sèlman lèt miniskil, nimewo, ak tirè ba ki otorize.",
+  "csYourApp": "aplikasyon w lan",
+  "csPubName": "Non piblikatè",
+  "csPubPreview": "Òganizasyon Egzanp",
+  "csPubTip": "Oswa, Moun Egzanp",
+  "csDescription": "Deskripsyon",
+  "csDescPreview": "Youn oswa de fraz sou aplikasyon w lan.",
+  "csDomainName": "Non domèn",
+  "csDomainTip": "Lè l ekri pa dèyè, se",
+  "csInvalidDomain": "'domèn.non' sèlman; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+
+  "csGenApp": "Lè w jenere {app_name}, sa k kounye a ",
+  "csTheApp": "aplikasyon an",
+  "csTheConfig": "konfigirasyon an",
+  "csSetColors": " (eksepte imaj yo) ap vin tounen konfigirasyon defo pou {app_name}.\n\nLi nesesè pou mete yon konbinezon koulè pèsonalize. Si w bezwen èd pou kreye youn, eseye kòmanse ",
+  "csHere": "isit la.",
+  "csHereHint": "Louvri yon kreyatè plan koulè sou entènèt",
+
+  "csFileBrowser": "Louvri navigatè fichye",
+  "csFlutterPath": "Chemen Flutter",
+  "csNoSpaces": "Chemen an pa ka gen espas",
+  "csNotInstalled": "Pa enstale?",
+  "csPathRequired": "Chemen an obligatwa. Ou pa ka sèvi ak dosye rasin lan.",
+  "csBadPath": "Chemen an pa valab",
+
+  "csAdvanced": "Paramèt avanse",
+  "csRestore": "Retabli {setting}",
+  "csOutputPath": "Chemen pwodiksyon",
+  "csCopyright": "Avi sou dwa otè",
+  "csCopyrightTip": "Ap enkli nan tèt chak fichye Dart",
+  "csLicenseDocs": "Louvri dokimantasyon sou lisans sous louvri",
+  "csL10nTip": "Konfigirasyon lokalizasyon (oubyen tradiksyon)",
+  "csLintTip": "Règ Lint yo",
+  "csLaunchTip": "Ajoute opsyon lansman nan meni debogaj VS Code la",
+
+  "csGenerate": "Jenere aplikasyon",
+  "csInvalidFields": "Gen kèk chan ki pa valab",
+  "csRequired": "Tout chan yo obligatwa",
+
+  "csResetHint": "Aktive epi konfime sa k dwe reyinisyalize.",
+  "csResetBuilder": "Valè konstriktè yo",
+  "csResetApp": "Paramèt aplikasyon an",
+  "csResetBoth": "Toulede",
+  "csResetNothing": "Anyen",
+
+
+
+  "asPageTitle": "Achivè",
+
+  "asUseIt": "\n\nSèvi avè l sou ",
+  "asToGen": " pou biwo pou jenere kòd la pou {app_name}",
+
+  
+
+  "gsPageTitle": "Jeneratè",
+
+  "gsConsole": "Rezilta konsole a",
+
+  "gsIsReadyIn": "prè nan",
+
+  "gsNeedPermission": "Open UI bezwen Aksè Konplè sou Disk la.\n\nTanpri ale nan...\nParamèt Sistèm > Konfidansyalite ak Sekirite > Aksè Konplè sou Disk > Pèmèt Open UI; apresa eseye ankò.",
+  "gsSeeNBelieve": "Si ou vle verifye sa Open UI fè, ale ",
+  "gsSeeNBelieveHint": "Louvri kòd jenerasyon kòd Open UI a.",
+  "gsNotInstalled": "Flutter pa enstale",
+  "gsPartialSuccess": "Kòd la te jenere avèk siksè, men gen kèk konfigirasyon pwojè ki echwe.",
+
+
+
+  "rsWouldYou": "èske w ta renmen...",
+
+  "rsInstall": "Enstale li",
+  "rsInstallHint": "Louvri gid enstalasyon Flutter a",
+
+  "rsRun": "Egzekite l",
+
+  "rsWipe": "Efase l",
+  "rsNextTime": "Siksè, n ap kwaze dwèt nou pou pwochen fwa!",
+  "rsAnotherOne": "Yon lòt echèk; ou ta pwobableman dwe pran kontwòl...",
+
+  "rsLeave": "Kite li"
+}

@@ -1,0 +1,314 @@
+{
+  "@@locale": "de",
+
+  "gApply": "Anwenden",
+  "gApplyChanges": "Änderungen anwenden",
+  "gContinue": "Weiter",
+  "gOpen": "Öffnen",
+  "gOpenLink": "Link öffnen",
+  "gSkip": "Überspringen",
+  "gSuccess": "Erfolg",
+  "gSuccessExl": "Erfolg!",
+  "gYes": "Ja",
+
+  "gAnd": "und",
+  "gHelp": "Hilfe",
+  "gNA": "N/A",
+  "gNAHint": "Nicht zutreffend",
+  "gOptional": "optional",
+  "gOptions": "Optionen",
+  "gRequired": "Erforderlich",
+  "gThe": "Das",
+
+  "gBack": "Zurück",
+  "gCancel": "Abbrechen",
+  "gClose": "Schließen",
+  "gDisabled": "Deaktiviert",
+  "gError": "Fehler",
+  "gFailure": "Fehlschlag",
+  "gNo": "Nein",
+  "gRedo": "Wiederholen",
+  "gUndo": "Rückgängig",
+
+  "gSettings": "Einstellungen",
+  "gGlobal": "Global",
+  "gColor": "Farbe",
+  "gDesign": "Design",
+  "gLayout": "Layout",
+  "gText": "Text",
+
+  "gDark": "Dunkel",
+  "gLight": "Hell",
+  "gSystem": "System",
+
+  "gEditing": "Bearbeiten: ",
+  "gEditingHint": "Zum Bearbeiten aktivieren",
+  "gDarkTheme": "Dunkles Design",
+  "gLightTheme": "Helles Design",
+  "gBothThemes": "Beide Designs",
+
+  "gLeft": "Links",
+  "gRight": "Rechts",
+
+  "gAdvanced": "Erweitert",
+  "gQuick": "Schnell",
+
+  "gDecrease": "Verringern",
+  "gIncrease": "Erhöhen",
+  "gMaximum": "Maximum",
+  "gMinimum": "Minimum",
+  "gCenterReset": "Mitte gedrückt halten zum Zurücksetzen",
+
+  "gLoadingAnim": "Lädt. Das Empathetic-Logo dreht sich wie eine Sanduhr.",
+
+  "gPlay": "Abspielen",
+  "gPause": "Pause",
+  "gReplay": "Erneut abspielen",
+  "gMute": "Stummschalten",
+  "gUnMute": "Stummschaltung aufheben",
+  "gPlaybackSpeed": "Wiedergabegeschwindigkeit",
+  "gCaptions": "Untertitel",
+  "gCaptionsHint": "Für Schriftarten gedrückt halten",
+  "gFullScreen": "Vollbild",
+
+  "gMachineTranslated": "Maschinell übersetzt",
+
+  "gUpdates": "Updates verfügbar",
+  "gHardRefresh": "Bitte die Seite komplett neu laden...\nStrg + Umschalt + R",
+  "gHardRefreshMac": "Bitte die Seite komplett neu laden...\nCmd + Umschalt + R",
+  "gHardRefreshMobile": "Bitte die Seite im Browser-Menü neu laden.",
+
+  "gEnterURL": "URL eingeben",
+  "gValidURL": "Bitte eine gültige URL eingeben",
+
+  "g404Wonder": "Nicht alle, die wandern, sind verloren.",
+  "g404": "Aber in diesem Fall: 404 Seite nicht gefunden.",
+  "g404Note": "Hinweis: Flutter Web verwendet Hash-Routing, wie...\nhttps://www.example.com/#/ziel",
+
+  "gOpenSource": "Open Source",
+  "gOpenEmpathetech": "Link zu Empathetic LLC öffnen",
+  "gEFUISourceHint": "GitHub-Seite für EFUI öffnen",
+  "gOpenUIReleases": "Releases-Seite für Open UI öffnen",
+
+  "gSupportEmail": "Unsere Support-E-Mail",
+  "gClipboard": "{thing} wurde in die Zwischenablage kopiert.",
+  
+  "gAttention": "Achtung",
+  "gCurrently": "Aktuell:",
+  "gSetToValue": "{name} ist auf {value} gesetzt",
+  "gRemove": "Entfernen",
+  "gReset": "Zurücksetzen",
+  "gResetTo": "Zurücksetzen:",
+  "gResetValue": "{name} zurücksetzen?",
+  "gResetValueTo": "{name} auf {value} zurücksetzen",
+  "gResetAll": "Alles zurücksetzen",
+  "gUndoWarn1": "Kann nicht automatisch rückgängig gemacht werden.\n",
+  "gSave": "Speichern",
+  "gSaveHint": "Aktivieren, um eine JSON-Konfigurationsdatei zu speichern.",
+  "gSwitchHint": "Schalter umlegen",
+  "gUndoWarn2": " Sie Ihre aktuelle Konfiguration, um sie manuell wiederherzustellen.",
+  "gValue": "Wert",
+
+  "gSource": "Quelle:",
+  "gCreator": "Ersteller von",
+  "gMadeBy": "Erstellt von",
+  "gYou": "Von Ihnen festgelegt",
+
+
+
+  "ssNavHint": "Einstellungsseite öffnen",
+  "ssRestartReminder": "App schließen und neu starten, um die Änderungen anzuwenden.",
+  "ssRestartReminderWeb": "Seite neu laden, um die Änderungen anzuwenden.",
+  "ssHaveFun": "Viel Spaß!",
+
+  "ssDominantHand": "Dominante Hand",
+  "ssThemeMode": "Design-Modus",
+  
+  "ssLanguage": "Sprache",
+  "ssLangHint": "Aktivieren, um die App-Sprache zu ändern",
+
+  "ssUpdateDark": "Dunkles Design aktualisieren",
+  "ssUpdateLight": "Helles Design aktualisieren",
+  "ssUpdateBoth": "Beide Design-Modi aktualisieren",
+
+  "ssLoadPreset": "Voreinstellung laden",
+  "ssLoadPresetHint": "Aktivieren, um Voreinstellungen anzuzeigen",
+  "ssDewIt": "Beide aktualisieren/automatisch bestätigen",
+  "ssBigButtons": "Große Schaltflächen",
+  "ssHighVisibility": "Hohe Sichtbarkeit",
+  "ssChalkboard": "Tafel",
+  "ssNebula": "Nebel",
+  "ssWallHoles": "Wandlöcher",
+
+  "ssDarkOnly": "Dies ist eine Voreinstellung für das dunkle Design.\nDer Design-Modus wird auf dunkel gesetzt und aktualisiert.\n\nWeiter?",
+  "ssLightOnly": "Dies ist eine Voreinstellung für das helle Design.\nDer Design-Modus wird auf hell gesetzt und aktualisiert.\n\nWeiter?",
+  "ssApplied": "{config} angewendet.",
+  "ssTryMe": "Probier mich aus",
+
+  "ssRandom": "Zufällig",
+  "ssRandomize": "{themeType} Design zufällig generieren?",
+
+  "ssConfigTip": "Konfiguration speichern/laden",
+  "ssSaveConfig": "Konfiguration speichern",
+  "ssConfigSaved": "Ihre Konfiguration wurde in {path} gespeichert",
+  "ssWrongConfigExt": "Die Datei wurde nicht gespeichert als ",
+  "ssLoadConfig": "Konfiguration laden",
+
+  "ssResetAll": "Alle Einstellungen zurücksetzen?",
+  "ssResetAppearance": "Alle Erscheinungsbild-Einstellungen zurücksetzen?",
+  "ssResetBoth": "Beide Design-Modi zurücksetzen",
+
+
+
+  "csPageTitle": "Farbeinstellungen",
+
+  "csSchemeBase": "Farbschema aus\nBild erstellen",
+  "csFromImage": "Ein Farbschema wird aus dem Bild generiert.",
+
+  "csMonoChrome": "Monochromes Schema verwenden",
+  "csHighContrast": "Kontrastreiches Schema verwenden",
+
+  "csPrimary": "Primär",
+  "csPrimaryContainer": "Primäre\nKontur",
+  "csSecondary": "Sekundär",
+  "csSecondaryContainer": "Sekundäre\nKontur",
+  "csTertiary": "Tertiär",
+  "csTertiaryContainer": "Tertiäre\nKontur",
+  "csError": "Fehler",
+  "csErrorContainer": "Fehler-\nKontur",
+  "csOutline": "Hinweis-\ntext",
+  "csOutlineVariant": "Hinweis-\nKontur",
+  "csSurface": "Schaltflächen-\nHintergrund",
+  "csSurfaceDim": "Alarm && App-Leisten-\nHintergrund",
+  "csSurfaceContainer": "Seiten- && Modal-\nHintergrund",
+  "csOnSurface": "Text",
+  "csScrim": "Modal-\nAbdeckung",
+  "csShadow": "Schatten",
+  "csSurfaceTint": "Oberflächen-\nFärbung",
+
+  "csPickerTitle": "Farbe auswählen",
+  "csPickerHint": "Farbauswahl öffnen. Für weitere Optionen gedrückt halten.",
+  "csRecommended": "Kontrast-Empfehlung verwenden?",
+  "csUseCustom": "Benutzerdefiniert verwenden",
+  "csCurrVal": "Aktueller Farbwert:",
+
+  "csReset": "{themeType} Farben zurücksetzen?",
+  "csColorScheme": "Farbschema",
+
+
+
+  "dsPageTitle": "Design-Einstellungen",
+
+  "dsButton": "Schaltfläche",
+  "dsPage": "Seite",
+
+  "dsNone": "Keine",
+  "dsSystem": "System",
+
+  "dsPadding": "Innenabstand",
+
+  "dsStyle": "Stil",
+  "dsBorderWidth": "Randbreite",
+  "dsPill": "Pille",
+  "dsRectangle": "Rechteck",
+  "dsRoundRectangle": "Abgerundetes Rechteck",
+  "dsLeftGram": "Links parallel",
+  "dsRightGram": "Rechts parallel",
+  "dsGem": "Edelstein",
+  "dsJewel": "Juwel",
+
+  "dsAlwaysUnderline": "Links immer unterstreichen",
+  "dsShowBack": "Zurück-Schaltfläche anzeigen",
+
+  "dsMargin": "Außenabstand",
+  "dsSpacing": "Abstand",
+
+  "dsPageTransition": "Seitenübergang",
+  "dsTurnX": "Horizontale Drehung",
+  "dsTurnY": "Vertikale Drehung",
+  "dsRotate": "Rotieren",
+  "dsSlideX": "Horizontales Gleiten",
+  "dsSlideY": "Vertikales Gleiten",
+  "dsZoom": "Zoom",
+  "dsFadeTransition": "Verblassen",  
+
+  "dsAnimStyle": "Animationsstil",
+  "dsPlay": "Animation abspielen",
+  "dsMilliseconds": "Millisekunden",
+  "dsCurve": "Kurve",
+  "dsBounce": "Hüpfen",
+  "dsEase": "Weich",
+  "dsElastic": "Elastisch",
+  "dsLinear": "Linear",
+
+  "dsBackgroundImg": "Hintergrundbild",
+  "dsImgSettingHint": "{title}-Bild aktualisieren",
+  "dsReFit": "Neu einpassen",
+  "dsFromFile": "Aus Datei",
+  "dsFromCamera": "Von Kamera",
+  "dsFromNetwork": "Aus URL",
+  "dsSolidColor": "Volltonfarbe",
+  "dsResetIt": "Zurücksetzen",
+  "dsClearIt": "Löschen",
+  "dsUseForColors": "App-Farben mit diesem Bild aktualisieren",
+
+  "dsImgGetFailed": "Bild konnte nicht abgerufen werden",
+  "dsImgSetFailed": "Bild konnte nicht aktualisiert werden",
+  "dsImgPermission": "Einige Websites erlauben keinen Fremdzugriff auf ihre Bilder.\nVersuchen Sie es mit einem Bild von einem anderen Host.",
+
+  "dsUseFull": "Gesamtes Bild verwenden?",
+  "dsFit": "Wie soll es eingepasst werden?",
+
+  "dsCrop": "Zuschneiden",
+  "dsNoWeb": "Bildbearbeitung wird im Web nicht unterstützt",
+  "dsRotateLeft": "Nach links drehen",
+  "dsRotateRight": "Nach rechts drehen",
+
+  "dsShowScroll": "Bildlaufleisten anzeigen",
+
+  "dsResetButton": "{themeType} Schaltflächendesign zurücksetzen?",
+  "dsResetPage": "{themeType} Seitendesign zurücksetzen?",
+
+
+
+  "tsPageTitle": "Texteinstellungen",
+
+  "tsBatchOverride": "Sie haben bereits granulare Änderungen an \"{setting}\" in den erweiterten Einstellungen vorgenommen.\n\nSind Sie sicher, dass Sie diese Änderungen mit einem Batch-Update überschreiben möchten?",
+
+  "tsTextBackground": "Text-Hintergrund-Deckkraft",
+  "tsIconSize": "Symbolgröße",
+
+  "tsLinkHint": "Aktivieren, um {style} zu bearbeiten",
+
+  "tsDisplay": "Anzeige",
+  "tsHeadline": "Überschrift",
+  "tsTitle": "Titel",
+  "tsBody": "Fließtext",
+  "tsLabel": "Beschriftung",
+
+  "tsFontFamily": "Schriftart",
+  "tsFontSize": "Schriftgröße",
+  "tsBold": "Fett",
+  "tsItalic": "Kursiv",
+  "tsUnderline": "Unterstrichen",
+  "tsLetterSpacing": "Zeichenabstand",
+  "tsWordSpacing": "Wortabstand",
+  "tsLineHeight": "Zeilenhöhe",
+
+  "tsDisplayP1": "Ist diese ",
+  "tsDisplayLink": "Anzeige",
+  "tsDisplayP2": " gut?",
+  "tsHeadlineP1": "Sind ",
+  "tsHeadlineLink": "Überschriften",
+  "tsHeadlineP2": " deutlich...",
+  "tsTitleP1": "von ",
+  "tsTitleLink": "Titeln?",
+  "tsBodyP1": "Was ist mit ",
+  "tsBodyLink": "dem Fließtext?",
+  "tsBodyP2": " Ist er gut lesbar?",
+  "tsLabelP1": "Und ",
+  "tsLabelLink": "die Beschriftungen?",
+  "tsLabelP2": " Nicht zu groß, nicht zu klein?",
+
+  "tsReset": "{themeType} Textstile zurücksetzen?"
+}

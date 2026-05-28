@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2026-05-27
+### Updated
+- EFUI 12.0.0
+- App icon
+
 ## [3.1.1] - 2026-04-01
 ### Updated
 - EFUI 11.1.1

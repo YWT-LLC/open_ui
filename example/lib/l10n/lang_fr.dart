@@ -56,12 +56,6 @@ class LangFr extends Lang {
       '\'domain.name\' seulement; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
-  String get csInclude => 'Inclure';
-
-  @override
-  String get csEasy => 'Facile à changer plus tard';
-
-  @override
   String csGenApp(Object app_name) {
     return 'Lorsque vous générez $app_name, l\'actuel ';
   }
@@ -74,7 +68,7 @@ class LangFr extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (sauf les images) deviendra la configuration par défaut pour $app_name.\n\nIl est recommandé de définir un schéma de couleurs personnalisé. Si vous avez besoin d\'aide pour en construire un, essayez de commencer ';
+    return ' (sauf les images) deviendra la configuration par défaut pour $app_name.\n\nIl est requis de définir un schéma de couleurs personnalisé. Si vous avez besoin d\'aide pour en construire un, essayez de commencer ';
   }
 
   @override
@@ -179,10 +173,6 @@ class LangFr extends Lang {
 
   @override
   String get gsIsReadyIn => 'est prêt dans';
-
-  @override
-  String get gsFirstRun =>
-      'La première exécution prend généralement un certain temps';
 
   @override
   String get gsNeedPermission =>

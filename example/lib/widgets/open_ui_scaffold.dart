@@ -3,8 +3,8 @@
  * See LICENSE for distribution and usage details.
  */
 
-import './export.dart';
 import '../utils/export.dart';
+import './export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,36 +30,42 @@ class OpenUIScaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
+  /// For [EzConfig.backFABs]
+  final bool home;
+
   /// Standardized [Scaffold] for all of the EFUI example app's screens
   const OpenUIScaffold(
     this.body, {
     super.key,
-    this.title = appName,
+    this.title = thisAppName,
     this.running = false,
     this.showSettings = true,
     this.onUpload,
     this.fabs,
+    this.home = false,
   });
 
   @override
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final double toolbarHeight =
-        ezToolbarHeight(context: context, title: appName);
+    final double toolbarHeight = ezToolbarHeight(context: context, title: title);
 
     // Define custom widgets //
 
     final Widget options = MenuAnchor(
-      builder: (_, MenuController controller, ___) => IconButton(
-        onPressed: () =>
-            (controller.isOpen) ? controller.close() : controller.open(),
+      builder: (_, MenuController controller, ___) => EzIconButton(
+        onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
         tooltip: EzConfig.l10n.gOptions,
-        icon: Icon(Icons.more_vert, semanticLabel: EzConfig.l10n.gOptions),
+        icon: Icon(
+          Icons.more_vert,
+          semanticLabel: EzConfig.l10n.gOptions,
+          size: EzConfig.styles.titleLarge!.fontSize,
+        ),
       ),
       menuChildren: <Widget>[
         if (showSettings) SettingsButton(context),
-        if (onUpload != null) UploadButton(context, onUpload: onUpload!),
+        if (onUpload != null) UploadButton(onUpload!),
         const OpenSourceButton(),
       ],
     );
@@ -68,26 +74,17 @@ class OpenUIScaffold extends StatelessWidget {
 
     return EzAdaptiveParent(
       small: Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => Scaffold(
-          key: ValueKey<int>(config.seed),
+        builder: (_, EzConfigProvider config, __) => EzScaffold(
+          seed: config.seed,
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, toolbarHeight),
-            child: AppBar(
-              excludeHeaderSemantics: true,
-              toolbarHeight: toolbarHeight,
-
-              // Leading (aka left)
+            child: EzAppBar(
+              height: toolbarHeight,
               leading: running
                   ? const SizedBox.shrink()
                   : (EzConfig.isLefty ? options : const EzBackAction()),
               leadingWidth: toolbarHeight,
-
-              // Title
               title: Text(title, textAlign: TextAlign.center),
-              centerTitle: true,
-              titleSpacing: 0,
-
-              // Actions (aka trailing aka right)
               actions: <Widget>[
                 running
                     ? const SizedBox.shrink()
@@ -96,22 +93,11 @@ class OpenUIScaffold extends StatelessWidget {
             ),
           ),
           body: body,
-          floatingActionButton: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              updater,
-              if (config.layout.showBackFAB &&
-                  ezRootNav.currentState!.canPop()) ...<Widget>[
-                config.layout.spacer,
-                const EzBackFAB(),
-              ],
-              if (fabs != null) ...fabs!,
-            ],
-          ),
-          floatingActionButtonLocation: EzConfig.isLefty
-              ? FloatingActionButtonLocation.startFloat
-              : FloatingActionButtonLocation.endFloat,
-          resizeToAvoidBottomInset: false,
+          fabs: <Widget>[
+            updater,
+            if (fabs != null) ...fabs!,
+            ...EzConfig.backFABs(home),
+          ],
         ),
       ),
     );

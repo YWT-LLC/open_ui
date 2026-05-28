@@ -1,0 +1,314 @@
+{
+  "@@locale": "ht",
+
+  "gApply": "Aplike",
+  "gApplyChanges": "Aplike chanjman yo",
+  "gContinue": "Kontinye",
+  "gOpen": "Louvri",
+  "gOpenLink": "Louvri lyen an",
+  "gSkip": "Sote",
+  "gSuccess": "Siksè",
+  "gSuccessExl": "Siksè!",
+  "gYes": "Wi",
+
+  "gAnd": "ak",
+  "gHelp": "Èd",
+  "gNA": "P/A",
+  "gNAHint": "Pa aplikab",
+  "gOptional": "opsyonèl",
+  "gOptions": "Opsyon yo",
+  "gRequired": "Obligatwa",
+  "gThe": "La",
+
+  "gBack": "Tounen",
+  "gCancel": "Anile",
+  "gClose": "Fèmen",
+  "gDisabled": "Dezaktive",
+  "gError": "Erè",
+  "gFailure": "Echèk",
+  "gNo": "Non",
+  "gRedo": "Refè",
+  "gUndo": "Defè",
+
+  "gSettings": "Paramèt",
+  "gGlobal": "Global",
+  "gColor": "Koulè",
+  "gDesign": "Konsepsyon",
+  "gLayout": "Aranjman",
+  "gText": "Tèks",
+
+  "gDark": "Sonm",
+  "gLight": "Klè",
+  "gSystem": "Sistèm",
+
+  "gEditing": "Ap modifye: ",
+  "gEditingHint": "Aktive pou modifye",
+  "gDarkTheme": "Tèm sonm",
+  "gLightTheme": "Tèm klè",
+  "gBothThemes": "Tou de tèm yo",
+
+  "gLeft": "Goch",
+  "gRight": "Dwat",
+
+  "gAdvanced": "Avanse",
+  "gQuick": "Rapid",
+
+  "gDecrease": "Diminye",
+  "gIncrease": "Ogmante",
+  "gMaximum": "Maksimòm",
+  "gMinimum": "Minimòm",
+  "gCenterReset": "Kenbe nan mitan pou reyajiste",
+
+  "gLoadingAnim": "Ap chaje. Logo Empathetic la ap anime tankou yon sabliye k ap vire.",
+
+  "gPlay": "Jwe",
+  "gPause": "Poz",
+  "gReplay": "Rejwe",
+  "gMute": "Koupe son",
+  "gUnMute": "Remete son",
+  "gPlaybackSpeed": "Vitès lekti",
+  "gCaptions": "Soutit/lejann",
+  "gCaptionsHint": "Kenbe pou polis yo",
+  "gFullScreen": "Plen ekran",
+
+  "gMachineTranslated": "Tradui ak machin",
+
+  "gUpdates": "Mizajou disponib",
+  "gHardRefresh": "Tanpri fòse rafrechi paj la...\nCtrl + Shift + R",
+  "gHardRefreshMac": "Tanpri fòse rafrechi paj la...\nCommand + Shift + R",
+  "gHardRefreshMobile": "Tanpri rafrechi paj la nan meni navigatè a.",
+
+  "gEnterURL": "Antre URL",
+  "gValidURL": "Tanpri antre yon URL ki valab",
+
+  "g404Wonder": "Se pa tout moun k ap flannen ki pèdi.",
+  "g404": "Men, nan ka sa a: 404 paj pa jwenn.",
+  "g404Note": "Nòt: Flutter web itilize woutaj hachage, tankou...\nhttps://www.example.com/#/destination",
+
+  "gOpenSource": "Sous louvri",
+  "gOpenEmpathetech": "Louvri yon lyen pou Empathetic LLC",
+  "gEFUISourceHint": "Louvri paj GitHub pou EFUI",
+  "gOpenUIReleases": "Louvri paj vèsyon yo pou Open UI",
+
+  "gSupportEmail": "Imèl sipò nou an",
+  "gClipboard": "Yo kopye {thing} nan près-papye a.",
+  
+  "gAttention": "Atansyon",
+  "gCurrently": "Kounye a:",
+  "gSetToValue": "{name} regle sou {value}",
+  "gRemove": "Retire",
+  "gReset": "Reyajiste",
+  "gResetTo": "Reyajiste:",
+  "gResetValue": "Reyajiste {name}?",
+  "gResetValueTo": "Reyajiste {name} sou {value}",
+  "gResetAll": "Reyajiste tout",
+  "gUndoWarn1": "Pa ka defè otomatikman.\n",
+  "gSave": "Anrejistre",
+  "gSaveHint": "Aktive pou anrejistre yon dosye konfigirasyon JSON.",
+  "gSwitchHint": "Baskile entèriptè a",
+  "gUndoWarn2": " konfigirasyon kounye a pou w ka retabli l manyèlman.",
+  "gValue": "Valè",
+
+  "gSource": "Sous:",
+  "gCreator": "Kreyatè",
+  "gMadeBy": "Fèt pa",
+  "gYou": "Ou menm ki regle l",
+
+
+
+  "ssNavHint": "Louvri paj paramèt yo",
+  "ssRestartReminder": "Fèmen epi relouvri aplikasyon an pou aplike chanjman ou yo.",
+  "ssRestartReminderWeb": "Rechaje/rafrechi paj la pou aplike chanjman ou yo.",
+  "ssHaveFun": "Amize w!",
+
+  "ssDominantHand": "Men dominan",
+  "ssThemeMode": "Mòd tèm",
+  
+  "ssLanguage": "Lang",
+  "ssLangHint": "Aktive pou chanje lang aplikasyon an",
+
+  "ssUpdateDark": "Mete tèm sonm nan ajou",
+  "ssUpdateLight": "Mete tèm klè a ajou",
+  "ssUpdateBoth": "Mete tou de mòd tèm yo ajou",
+
+  "ssLoadPreset": "Chaje prereglaj",
+  "ssLoadPresetHint": "Aktive pou montre prereglaj yo",
+  "ssDewIt": "Mizajou tou de/otomatikman konfime",
+  "ssBigButtons": "Gwo bouton",
+  "ssHighVisibility": "Gwo vizibilite",
+  "ssChalkboard": "Tablo nwa",
+  "ssNebula": "Nebula",
+  "ssWallHoles": "Twou nan mi",
+
+  "ssDarkOnly": "Sa a se yon prereglaj tèm sonm.\nLi pral mete mòd tèm nan sou sonm, epi mete tèm sa a ajou.\n\nKontinye?",
+  "ssLightOnly": "Sa a se yon prereglaj tèm klè.\nLi pral mete mòd tèm nan sou klè, epi mete tèm sa a ajou.\n\nKontinye?",
+  "ssApplied": "{config} aplike.",
+  "ssTryMe": "Eseye m",
+
+  "ssRandom": "Rann oaza",
+  "ssRandomize": "Rann tèm {themeType} lan oaza?",
+
+  "ssConfigTip": "Anrejistre/chaje konfigirasyon",
+  "ssSaveConfig": "Anrejistre konfigirasyon",
+  "ssConfigSaved": "Konfigirasyon ou an anrejistre nan {path}",
+  "ssWrongConfigExt": "Fichye a pa t anrejistre kòm ",
+  "ssLoadConfig": "Chaje konfigirasyon",
+
+  "ssResetAll": "Reyajiste tout paramèt yo?",
+  "ssResetAppearance": "Reyajiste tout paramèt aparans yo?",
+  "ssResetBoth": "Reyajiste tou de mòd tèm yo",
+
+
+
+  "csPageTitle": "Paramèt koulè",
+
+  "csSchemeBase": "Konstwi palèt\nsoti nan imaj",
+  "csFromImage": "Yon palèt koulè ap pwodwi soti nan imaj la.",
+
+  "csMonoChrome": "Itilize palèt monokwòm",
+  "csHighContrast": "Itilize palèt gwo kontras",
+
+  "csPrimary": "Prensipal",
+  "csPrimaryContainer": "Kontou\nprensipal",
+  "csSecondary": "Segondè",
+  "csSecondaryContainer": "Kontou\nsegondè",
+  "csTertiary": "Tèsyè",
+  "csTertiaryContainer": "Kontou\ntèsyè",
+  "csError": "Erè",
+  "csErrorContainer": "Kontou\nerè",
+  "csOutline": "Tèks\nendis",
+  "csOutlineVariant": "Kontou\nendis",
+  "csSurface": "Fon\nbouton",
+  "csSurfaceDim": "Alet && fon ba\naplikasyon",
+  "csSurfaceContainer": "Paj && fon\nmodal",
+  "csOnSurface": "Tèks",
+  "csScrim": "Kouvèti\nmodal",
+  "csShadow": "Lonbraj",
+  "csSurfaceTint": "Tent\nsifas",
+
+  "csPickerTitle": "Chwazi yon koulè",
+  "csPickerHint": "Louvri yon selektè koulè. Peze lontan pou plis opsyon.",
+  "csRecommended": "Itilize rekòmandasyon kontras?",
+  "csUseCustom": "Itilize pèsonalize",
+  "csCurrVal": "Valè koulè kounye a:",
+
+  "csReset": "Reyajiste koulè {themeType} yo?",
+  "csColorScheme": "palèt koulè",
+
+
+
+  "dsPageTitle": "Paramèt konsepsyon",
+
+  "dsButton": "Bouton",
+  "dsPage": "Paj",
+
+  "dsNone": "Okenn",
+  "dsSystem": "Sistèm",
+
+  "dsPadding": "Espas anndan",
+
+  "dsStyle": "Aparans",
+  "dsBorderWidth": "Lajè bordi",
+  "dsPill": "Pilil",
+  "dsRectangle": "Rektang",
+  "dsRoundRectangle": "Rektang awondi",
+  "dsLeftGram": "Paralèl goch",
+  "dsRightGram": "Paralèl dwat",
+  "dsGem": "Pyè presye",
+  "dsJewel": "Bijou",
+
+  "dsAlwaysUnderline": "Toujou souliye lyen yo",
+  "dsShowBack": "Montre bouton tounen",
+
+  "dsMargin": "Maj",
+  "dsSpacing": "Espas",
+
+  "dsPageTransition": "Tranzisyon paj",
+  "dsTurnX": "Vire orizontal",
+  "dsTurnY": "Vire vètikal",
+  "dsRotate": "Wotasyon",
+  "dsSlideX": "Glise orizontal",
+  "dsSlideY": "Glise vètikal",
+  "dsZoom": "Zoum",
+  "dsFadeTransition": "Tranzisyon fennen",  
+
+  "dsAnimStyle": "Aparans animasyon",
+  "dsPlay": "Jwe animasyon an",
+  "dsMilliseconds": "Milisgond",
+  "dsCurve": "Koub",
+  "dsBounce": "Rebondi",
+  "dsEase": "Adousi",
+  "dsElastic": "Elastik",
+  "dsLinear": "Lineyè",
+
+  "dsBackgroundImg": "Imaj de fon",
+  "dsImgSettingHint": "Mete imaj {title} la ajou",
+  "dsReFit": "Re-ajiste",
+  "dsFromFile": "Soti nan dosye",
+  "dsFromCamera": "Soti nan kamera",
+  "dsFromNetwork": "Soti nan URL",
+  "dsSolidColor": "Koulè solid",
+  "dsResetIt": "Reyajiste l",
+  "dsClearIt": "Efase l",
+  "dsUseForColors": "Mete koulè aplikasyon an ajou avèk imaj sa a",
+
+  "dsImgGetFailed": "Pa t ka rekipere imaj la",
+  "dsImgSetFailed": "Pa t ka mete imaj la ajou",
+  "dsImgPermission": "Kèk sit pa pèmèt lòt moun jwenn aksè nan imaj yo.\nEseye yon imaj ki soti nan yon lòt sit.",
+
+  "dsUseFull": "Itilize tout imaj la?",
+  "dsFit": "Kijan li ta dwe ajiste?",
+
+  "dsCrop": "Koupe",
+  "dsNoWeb": "Modifikasyon imaj pa sipòte sou entènèt",
+  "dsRotateLeft": "Vire agoch",
+  "dsRotateRight": "Vire adwat",
+
+  "dsShowScroll": "Montre ba defilman yo",
+
+  "dsResetButton": "Reyajiste konsepsyon bouton {themeType} lan?",
+  "dsResetPage": "Reyajiste konsepsyon paj {themeType} lan?",
+
+
+
+  "tsPageTitle": "Paramèt tèks",
+
+  "tsBatchOverride": "Ou deja fè chanjman detaye nan \"{setting}\" nan paramèt avanse yo.\n\nÈske w sèten ou vle ranplase chanjman sa yo ak yon mizajou an gwo?",
+
+  "tsTextBackground": "Opasite fon tèks la",
+  "tsIconSize": "Gwosè ikòn",
+
+  "tsLinkHint": "Aktive pou modifye {style}",
+
+  "tsDisplay": "Afichaj",
+  "tsHeadline": "Gwo tit",
+  "tsTitle": "Tit",
+  "tsBody": "Kò",
+  "tsLabel": "Etikèt",
+
+  "tsFontFamily": "Fanmi polis",
+  "tsFontSize": "Gwosè polis",
+  "tsBold": "Gwa",
+  "tsItalic": "Italik",
+  "tsUnderline": "Souliye",
+  "tsLetterSpacing": "Espasman lèt yo",
+  "tsWordSpacing": "Espasman mo yo",
+  "tsLineHeight": "Wotè liy",
+
+  "tsDisplayP1": "Èske ",
+  "tsDisplayLink": "afichaj",
+  "tsDisplayP2": " sa a parèt byen?",
+  "tsHeadlineP1": "Èske ",
+  "tsHeadlineLink": "gwo tit yo",
+  "tsHeadlineP2": " distenk...",
+  "tsTitleP1": "ak ",
+  "tsTitleLink": "tit yo?",
+  "tsBodyP1": "E pou ",
+  "tsBodyLink": "kò a?",
+  "tsBodyP2": " Èske li fasil pou li?",
+  "tsLabelP1": "Epi ",
+  "tsLabelLink": "etikèt yo?",
+  "tsLabelP2": " Ni twò gwo, ni twò piti?",
+
+  "tsReset": "Reyajiste estil tèks {themeType} yo?"
+}

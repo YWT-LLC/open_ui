@@ -43,8 +43,7 @@ class EzToolTipper extends StatelessWidget {
               if (richMessage.runtimeType == EzInlineLink) {
                 message = (richMessage as EzInlineLink).hint;
               } else if (richMessage.runtimeType == TextSpan) {
-                for (final InlineSpan child
-                    in (richMessage as TextSpan).children!) {
+                for (final InlineSpan child in (richMessage as TextSpan).children!) {
                   switch (child.runtimeType) {
                     case const (TextSpan):
                       final TextSpan ogSpan = child as TextSpan;
@@ -69,7 +68,7 @@ class EzToolTipper extends StatelessWidget {
               await SemanticsService.sendAnnouncement(
                 View.of(context),
                 message,
-                TextDirection.ltr,
+                EzConfig.isLTR ? TextDirection.ltr : TextDirection.rtl,
                 assertiveness: Assertiveness.assertive,
               );
             }
@@ -78,6 +77,7 @@ class EzToolTipper extends StatelessWidget {
         },
         child: Tooltip(
           waitDuration: Duration.zero,
+          exitDuration: const Duration(milliseconds: 500),
           triggerMode: TooltipTriggerMode.tap,
           enableTapToDismiss: false,
           excludeFromSemantics: true,
@@ -89,8 +89,8 @@ class EzToolTipper extends StatelessWidget {
           ),
         ),
       ),
-      useSurface: true,
-      borderRadius: ezPillEdge,
+      baseColor: EzConfig.colors.surface,
+      borderRadius: EzConfig.textRadius,
     );
   }
 }

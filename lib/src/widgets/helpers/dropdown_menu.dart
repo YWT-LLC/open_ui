@@ -6,41 +6,19 @@
 import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class EzDropdownMenu<T> extends StatelessWidget {
   /// [DropdownMenu.enabled] passthrough
   final bool enabled;
 
-  /// [DropdownMenu.width] passthrough
-  final double? width;
-
-  /// Will set [width] to [ezDropdownWidth] of [widthEntries]
-  final List<String>? widthEntries;
-
-  /// [DropdownMenu.menuHeight] passthrough
-  final double? menuHeight;
-
-  /// [DropdownMenu.leadingIcon] passthrough
-  final Widget? leadingIcon;
-
-  /// [DropdownMenu.trailingIcon] passthrough
-  final Widget? trailingIcon;
+  /// [ezDropdownWidth] passthrough
+  final String widthEntry;
 
   /// [DropdownMenu.label] passthrough
   final Widget? label;
 
   /// [DropdownMenu.hintText] passthrough
   final String? hintText;
-
-  /// [DropdownMenu.helperText] passthrough
-  final String? helperText;
-
-  /// [DropdownMenu.errorText] passthrough
-  final String? errorText;
-
-  /// [DropdownMenu.selectedTrailingIcon] passthrough
-  final Widget? selectedTrailingIcon;
 
   /// [DropdownMenu.enableFilter] passthrough
   final bool enableFilter;
@@ -57,12 +35,6 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// [DropdownMenu.textAlign] passthrough
   final TextAlign textAlign;
 
-  /// [DropdownMenu.inputDecorationTheme] passthrough
-  final InputDecorationTheme? inputDecorationTheme;
-
-  /// [DropdownMenu.menuStyle] passthrough
-  final MenuStyle? menuStyle;
-
   /// [DropdownMenu.controller] passthrough
   final TextEditingController? controller;
 
@@ -72,122 +44,46 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// [DropdownMenu.onSelected] passthrough
   final ValueChanged<T?>? onSelected;
 
-  /// [DropdownMenu.focusNode] passthrough
-  final FocusNode? focusNode;
-
-  /// [DropdownMenu.requestFocusOnTap] passthrough
-  final bool? requestFocusOnTap;
-
-  /// [DropdownMenu.expandedInsets] passthrough
-  final EdgeInsetsGeometry? expandedInsets;
-
-  /// [DropdownMenu.filterCallback] passthrough
-  final FilterCallback<T>? filterCallback;
-
-  /// [DropdownMenu.searchCallback] passthrough
-  final SearchCallback<T>? searchCallback;
-
-  /// [DropdownMenu.alignmentOffset] passthrough
-  final Offset? alignmentOffset;
-
   /// [DropdownMenu.dropdownMenuEntries] passthrough
   final List<DropdownMenuEntry<T>> dropdownMenuEntries;
-
-  /// [DropdownMenu.inputFormatters] passthrough
-  final List<TextInputFormatter>? inputFormatters;
 
   /// [DropdownMenu] with custom styling
   const EzDropdownMenu({
     super.key,
-    this.focusNode,
     this.enabled = true,
-    this.width,
-    this.widthEntries,
-    this.menuHeight,
-    this.leadingIcon,
-    this.trailingIcon,
     this.label,
     this.hintText,
-    this.helperText,
-    this.errorText,
-    this.selectedTrailingIcon,
     this.enableFilter = false,
     this.enableSearch = true,
     this.keyboardType,
     this.textStyle,
     this.textAlign = TextAlign.start,
-    this.inputDecorationTheme,
-    this.menuStyle,
     this.controller,
     this.initialSelection,
     this.onSelected,
-    this.requestFocusOnTap,
-    this.expandedInsets,
-    this.filterCallback,
-    this.searchCallback,
-    this.alignmentOffset,
     required this.dropdownMenuEntries,
-    this.inputFormatters,
+    required this.widthEntry,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return IconButtonTheme(
-      data: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          backgroundColor:
-              EzConfig.colors.surface.withValues(alpha: EzConfig.buttonOpacity),
-          foregroundColor: EzConfig.colors.primary,
-          disabledForegroundColor: EzConfig.colors.outline,
-          overlayColor: EzConfig.colors.primary,
-          side: null,
-          shape: EzConfig.buttonShape.shape,
-          iconSize: EzConfig.iconSize,
-          alignment: Alignment.center,
-          padding: EzInsets.wrap(EzConfig.padding),
+  Widget build(BuildContext context) => IconButtonTheme(
+        data: IconButtonThemeData(style: IconButton.styleFrom(side: (BorderSide.none))),
+        child: DropdownMenu<T>(
+          enabled: enabled,
+          width: ezDropdownWidth(context, widthEntry),
+          trailingIcon: EzIcon(Icons.arrow_drop_down),
+          label: label,
+          hintText: hintText,
+          selectedTrailingIcon: EzIcon(Icons.arrow_drop_up),
+          enableFilter: enableFilter,
+          enableSearch: enableSearch,
+          keyboardType: keyboardType,
+          textStyle: textStyle,
+          textAlign: textAlign,
+          controller: controller,
+          initialSelection: initialSelection,
+          onSelected: onSelected,
+          dropdownMenuEntries: dropdownMenuEntries,
         ),
-      ),
-      child: DropdownMenu<T>(
-        enabled: enabled,
-        width: width ??
-            (widthEntries == null
-                ? null
-                : ezDropdownWidth(context: context, entries: widthEntries!)),
-        menuHeight: menuHeight,
-        leadingIcon: leadingIcon,
-        trailingIcon: trailingIcon ??
-            Icon(
-              Icons.arrow_drop_down,
-              size: EzConfig.iconSize,
-            ),
-        label: label,
-        hintText: hintText,
-        helperText: helperText,
-        errorText: errorText,
-        selectedTrailingIcon: selectedTrailingIcon ??
-            Icon(
-              Icons.arrow_drop_up,
-              size: EzConfig.iconSize,
-            ),
-        enableFilter: enableFilter,
-        enableSearch: enableSearch,
-        keyboardType: keyboardType,
-        textStyle: textStyle,
-        textAlign: textAlign,
-        inputDecorationTheme: inputDecorationTheme,
-        menuStyle: menuStyle,
-        controller: controller,
-        initialSelection: initialSelection,
-        onSelected: onSelected,
-        focusNode: focusNode,
-        requestFocusOnTap: requestFocusOnTap,
-        expandedInsets: expandedInsets,
-        filterCallback: filterCallback,
-        searchCallback: searchCallback,
-        alignmentOffset: alignmentOffset,
-        dropdownMenuEntries: dropdownMenuEntries,
-        inputFormatters: inputFormatters,
-      ),
-    );
-  }
+      );
 }

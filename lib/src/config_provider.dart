@@ -29,7 +29,7 @@ class EzConfigProvider extends ChangeNotifier {
   late EzLayoutCache _layout;
   late EzTextCache _text;
 
-  final EzAppCache? _appCache;
+  final EzAppCache _appCache;
 
   late ThemeData _currTheme;
   late ThemeData _darkTheme;
@@ -39,7 +39,7 @@ class EzConfigProvider extends ChangeNotifier {
     required Locale locale,
     required EFUILang el10n,
     required bool isDark,
-    EzAppCache? appCache,
+    required EzAppCache appCache,
   })  : _platform = getBasePlatform(),
         _onMobile = isMobile(),
         _seed = Random().nextInt(rMax),
@@ -51,6 +51,7 @@ class EzConfigProvider extends ChangeNotifier {
         _appCache = appCache {
     _buildThemeMode();
     _buildThemeData();
+    _appCache.init(isDark);
   }
 
   /// Gather and set [_themeMode] from storage
@@ -75,99 +76,110 @@ class EzConfigProvider extends ChangeNotifier {
 
     if (_isDark) {
       // Build new caches
-      _color = EzColorCache(EzConfig.get(darkColorSchemeImageKey));
+      _color = EzColorCache(EzConfig.get(darkColorSchemeImageKey) ?? noImageValue);
+
+      final EzButtonShape buttonShape = EBSConfig.lookup(EzConfig.get(darkButtonShapeKey));
       _design = EzDesignCache(
-        animDur: EzConfig.get(darkAnimationDurationKey),
-        pageTransition: EPTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
-        fadedTransition: EzConfig.get(darkTransitionFadeKey),
-        backgroundImagePath: EzConfig.get(darkBackgroundImageKey),
-        backgroundImageFit:
-            boxFitLookup[EzConfig.get(darkBackgroundImageKey + boxFitSuffix)],
-        buttonShape: EBSConfig.lookup(EzConfig.get(darkButtonShapeKey)),
+        // Button
+        padding: EzConfig.get(darkPaddingKey),
+        buttonShape: buttonShape,
         borderWidth: EzConfig.get(darkBorderWidthKey),
-        buttonOpacity: EzConfig.get(darkButtonOpacityKey),
-        borderOpacity: EzConfig.get(darkBorderOpacityKey),
+        textRadius: buttonShape.textRadius,
+        textFieldRadius: buttonShape.textFieldRadius,
+        lineLinks: EzConfig.get(darkLineLinksKey),
+        showBackFAB: EzConfig.get(darkShowBackFABKey),
+        showScroll: EzConfig.get(darkShowScrollKey),
+
+        // Page
+        margin: EzConfig.get(darkMarginKey),
+        spacing: EzConfig.get(darkSpacingKey),
+        backgroundImagePath: EzConfig.get(darkBackgroundImageKey) ?? noImageValue,
+        backgroundImageFit: boxFitLib[EzConfig.get(darkBackgroundFitKey)],
+        transitionType: ETTConfig.lookup(EzConfig.get(darkTransitionTypeKey)),
+        fadedTransition: EzConfig.get(darkTransitionFadeKey),
+        animDur: EzConfig.get(darkAnimationDurationKey),
+        animCurve: EACConfig.translate(EzConfig.get(darkAnimationCurveKey)),
       );
       _layout = EzLayoutCache(
-        marginVal: EzConfig.get(darkMarginKey),
-        padding: EzConfig.get(darkPaddingKey),
-        spacing: EzConfig.get(darkSpacingKey),
         margin: EzMargin(isDark: true),
         rowMargin: EzMargin(isDark: true, vertical: false),
         spacer: const EzSpacer(isDark: true),
         rowSpacer: const EzSpacer(isDark: true, vertical: false),
         separator: const EzSeparator(isDark: true),
         divider: const EzDivider(),
-        showBackFAB: EzConfig.get(darkShowBackFABKey),
-        showScroll: EzConfig.get(darkShowScrollKey),
+        startLine: const EzNewLine(textAlign: TextAlign.start),
+        centerLine: const EzNewLine(),
+        endLine: const EzNewLine(textAlign: TextAlign.end),
       );
       _text = EzTextCache(
         backgroundOpacity: EzConfig.get(darkTextBackgroundOpacityKey),
         iconSize: EzConfig.get(darkIconSizeKey),
-        lineLinks: EzConfig.get(darkLineLinksKey),
-        startLine: const EzNewLine(textAlign: TextAlign.start),
-        centerLine: const EzNewLine(),
-        endLine: const EzNewLine(textAlign: TextAlign.end),
       );
 
       // Update the curr theme pointer
       _currTheme = _darkTheme;
     } else {
-      // Ditto
-      _color = EzColorCache(EzConfig.get(lightColorSchemeImageKey));
+      // Build new caches
+      _color = EzColorCache(EzConfig.get(lightColorSchemeImageKey) ?? noImageValue);
+
+      final EzButtonShape buttonShape = EBSConfig.lookup(EzConfig.get(lightButtonShapeKey));
       _design = EzDesignCache(
-        animDur: EzConfig.get(lightAnimationDurationKey),
-        pageTransition: EPTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
-        fadedTransition: EzConfig.get(lightTransitionFadeKey),
-        backgroundImagePath: EzConfig.get(lightBackgroundImageKey),
-        backgroundImageFit:
-            boxFitLookup[EzConfig.get(lightBackgroundImageKey + boxFitSuffix)],
-        buttonShape: EBSConfig.lookup(EzConfig.get(lightButtonShapeKey)),
+        // Button
+        padding: EzConfig.get(lightPaddingKey),
+        buttonShape: buttonShape,
         borderWidth: EzConfig.get(lightBorderWidthKey),
-        buttonOpacity: EzConfig.get(lightButtonOpacityKey),
-        borderOpacity: EzConfig.get(lightBorderOpacityKey),
+        textRadius: buttonShape.textRadius,
+        textFieldRadius: buttonShape.textFieldRadius,
+        lineLinks: EzConfig.get(lightLineLinksKey),
+        showBackFAB: EzConfig.get(lightShowBackFABKey),
+        showScroll: EzConfig.get(lightShowScrollKey),
+
+        // Page
+        margin: EzConfig.get(lightMarginKey),
+        spacing: EzConfig.get(lightSpacingKey),
+        backgroundImagePath: EzConfig.get(lightBackgroundImageKey) ?? noImageValue,
+        backgroundImageFit: boxFitLib[EzConfig.get(lightBackgroundFitKey)],
+        transitionType: ETTConfig.lookup(EzConfig.get(lightTransitionTypeKey)),
+        fadedTransition: EzConfig.get(lightTransitionFadeKey),
+        animDur: EzConfig.get(lightAnimationDurationKey),
+        animCurve: EACConfig.translate(EzConfig.get(lightAnimationCurveKey)),
       );
       _layout = EzLayoutCache(
-        marginVal: EzConfig.get(lightMarginKey),
-        padding: EzConfig.get(lightPaddingKey),
-        spacing: EzConfig.get(lightSpacingKey),
         margin: EzMargin(isDark: false),
         rowMargin: EzMargin(isDark: false, vertical: false),
         spacer: const EzSpacer(isDark: false),
         rowSpacer: const EzSpacer(isDark: false, vertical: false),
         separator: const EzSeparator(isDark: false),
         divider: const EzDivider(),
-        showBackFAB: EzConfig.get(lightShowBackFABKey),
-        showScroll: EzConfig.get(lightShowScrollKey),
-      );
-      _text = EzTextCache(
-        backgroundOpacity: EzConfig.get(lightTextBackgroundOpacityKey),
-        iconSize: EzConfig.get(lightIconSizeKey),
-        lineLinks: EzConfig.get(lightLineLinksKey),
         startLine: const EzNewLine(textAlign: TextAlign.start),
         centerLine: const EzNewLine(),
         endLine: const EzNewLine(textAlign: TextAlign.end),
       );
+      _text = EzTextCache(
+        backgroundOpacity: EzConfig.get(lightTextBackgroundOpacityKey),
+        iconSize: EzConfig.get(lightIconSizeKey),
+      );
 
+      // Update the curr theme pointer
       _currTheme = _lightTheme;
     }
   }
 
   // Get //
 
-  /// Track [redrawUI] and [rebuildUI] (randomized on each call)
+  /// Current [TargetPlatform]
+  TargetPlatform get platform => _platform;
+
+  /// Whether the app is running on a mobile device
+  bool get onMobile => _onMobile;
+
+  /// Track [rebuildUI] (randomized on each call)
   int get seed => _seed;
 
   /// Toggleable bool for alerting the user to rebuild the UI
   /// Some settings would be too expensive to rebuild on every change, so they update locally and [pingRebuild]
   /// Example: [EzIconSizeSetting]
   bool get needsRebuild => _needsRebuild;
-
-  /// Current [TargetPlatform]
-  TargetPlatform get platform => _platform;
-
-  /// Whether the app is running on a mobile device
-  bool get onMobile => _onMobile;
 
   /// Current language for the app
   Locale get locale => _locale;
@@ -220,27 +232,17 @@ class EzConfigProvider extends ChangeNotifier {
   }
 
   /// Set the apps [Locale] from storage and load corresponding localizations
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  Future<void> rebuildLocale(void Function() onComplete) async {
+  Future<void> rebuildLocale() async {
     final (Locale, EFUILang) result = await ezStoredL10n();
     _locale = result.$1;
     _l10n = result.$2;
+    _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
 
-    final bool newLTR = !rtlLanguageCodes.contains(_locale.languageCode);
-
-    if (newLTR == _ltr) {
-      await redrawUI(onComplete);
-    } else {
-      _ltr = newLTR;
-      await rebuildUI(onComplete);
-    }
+    await rebuildUI();
   }
 
-  /// Reconfigure [ThemeMode] et al. from storage and [redrawUI] with [onComplete]
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  Future<void> rebuildThemeMode(void Function() onComplete) async {
+  /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
+  Future<void> rebuildThemeMode() async {
     final ThemeMode newMode = _buildThemeMode();
 
     switch (newMode) {
@@ -253,8 +255,7 @@ class EzConfigProvider extends ChangeNotifier {
         _currTheme = _lightTheme;
         break;
       case ThemeMode.system:
-        if (WidgetsBinding.instance.platformDispatcher.platformBrightness ==
-            Brightness.dark) {
+        if (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) {
           _isDark = true;
           _currTheme = _darkTheme;
         } else {
@@ -264,14 +265,11 @@ class EzConfigProvider extends ChangeNotifier {
         break;
     }
 
-    await redrawUI(onComplete);
+    await rebuildUI();
   }
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
-  /// Then calls [redrawUI] with [onComplete]
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  Future<void> rebuildUI(void Function() onComplete) async {
+  Future<void> rebuildUI({Future<dynamic> Function()? changes}) async {
     unawaited(ezRootNav.currentState!.push(
       // Open progress layer
       PageRouteBuilder<Widget>(
@@ -279,11 +277,11 @@ class EzConfigProvider extends ChangeNotifier {
         transitionsBuilder: (_, __, ___, Widget child) => child,
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) =>
-            const Center(child: CircularProgressIndicator()),
+        pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
       ),
     ));
 
+    if (changes != null) await changes();
     final ThemeMode newMode = _buildThemeMode();
 
     switch (newMode) {
@@ -294,50 +292,24 @@ class EzConfigProvider extends ChangeNotifier {
         _isDark = false;
         break;
       case ThemeMode.system:
-        WidgetsBinding.instance.platformDispatcher.platformBrightness ==
-                Brightness.dark
+        WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark
             ? _isDark = true
             : _isDark = false;
         break;
     }
     _buildThemeData();
 
-    _needsRebuild = false;
-    await redrawUI(onComplete);
-
-    // Close progress layer
-    ezRootNav.currentState!.pop();
-    ezCloseAll(); // redraw's version is "blocked" by the progress layer
-  }
-
-  /// Randomizes the [seed] and notifies listeners
-  /// Optionally calls [onComplete] after notifying
-  /// If unsure, we recommend [onComplete] to be setState((){})
-  /// Or [doNothing] for [StatelessWidget]s
-  Future<void> redrawUI(void Function() onComplete) async {
     _seed = Random().nextInt(rMax);
-    if (_appCache != null) await _appCache.rebuild();
+    await _appCache.rebuild();
+    _needsRebuild = false;
 
+    ezRootNav.currentState!.pop();
     ezCloseAll();
     notifyListeners();
-    onComplete.call();
-  }
-
-  /// Trigger [redrawUI] if/when the [ThemeMode] brightness changes
-  /// Used in [EzConfigurableApp], not normally called manually
-  /// For that reason, there is no passthrough for [redrawUI]
-  Future<void> redrawTheme() async {
-    final bool newIsDark =
-        (WidgetsBinding.instance.platformDispatcher.platformBrightness ==
-            Brightness.dark);
-
-    if (newIsDark != _isDark) {
-      _isDark = newIsDark;
-      _currTheme = newIsDark ? _darkTheme : _lightTheme;
-      await redrawUI(doNothing);
-    }
   }
 }
+
+// Build //
 
 class EzColorCache {
   final String schemeImagePath;
@@ -348,40 +320,59 @@ class EzColorCache {
 }
 
 class EzDesignCache {
-  final int animDur;
+  // Button //
 
-  final EzPageTransition pageTransition;
+  final double padding;
+
+  final EzButtonShape buttonShape;
+  final double borderWidth;
+
+  final BorderRadius textRadius;
+  final BorderRadius textFieldRadius;
+
+  final bool lineLinks;
+  final bool showBackFAB;
+  final bool showScroll;
+
+  // Page //
+
+  final double margin;
+  final double spacing;
+
+  final int animDur;
+  final Curve animCurve;
+  final EzTransitionType transitionType;
   final bool fadedTransition;
 
   final String backgroundImagePath;
   final BoxFit? backgroundImageFit;
 
-  final EzButtonShape buttonShape;
-  final double borderWidth;
-
-  final double buttonOpacity;
-  final double borderOpacity;
-
   /// Theme aware tracker for frequently used design values...
   /// Animation duration
   EzDesignCache({
+    // Button
+    required this.padding,
+    required this.buttonShape,
+    required this.borderWidth,
+    required this.textRadius,
+    required this.textFieldRadius,
+    required this.lineLinks,
+    required this.showBackFAB,
+    required this.showScroll,
+
+    // Page
+    required this.margin,
+    required this.spacing,
     required this.animDur,
-    required this.pageTransition,
+    required this.animCurve,
+    required this.transitionType,
     required this.fadedTransition,
     required this.backgroundImagePath,
     required this.backgroundImageFit,
-    required this.buttonShape,
-    required this.borderWidth,
-    required this.buttonOpacity,
-    required this.borderOpacity,
   });
 }
 
 class EzLayoutCache {
-  final double marginVal;
-  final double padding;
-  final double spacing;
-
   final EzMargin margin;
   final EzMargin rowMargin;
   final EzSpacer spacer;
@@ -389,51 +380,41 @@ class EzLayoutCache {
   final EzSeparator separator;
   final EzDivider divider;
 
-  final bool showBackFAB;
-  final bool showScroll;
+  final EzNewLine startLine;
+  final EzNewLine centerLine;
+  final EzNewLine endLine;
 
-  /// Theme aware tracker for frequently used layout values...
-  /// Margin, padding, and spacing
-  /// Both their [EzConfig] values and default [Widget]s
-  /// ...and hideScroll
+  /// Theme aware tracker for frequently used layout [Widget]s
   EzLayoutCache({
-    required this.marginVal,
-    required this.padding,
-    required this.spacing,
     required this.margin,
     required this.rowMargin,
     required this.spacer,
     required this.rowSpacer,
     required this.separator,
     required this.divider,
-    required this.showBackFAB,
-    required this.showScroll,
-  });
-}
-
-class EzTextCache {
-  final double backgroundOpacity;
-  final double iconSize;
-  final bool lineLinks;
-
-  final EzNewLine startLine;
-  final EzNewLine centerLine;
-  final EzNewLine endLine;
-
-  /// Theme aware tracker for frequently used text values...
-  /// Icon size, frequently used [EzNewLine]s
-  EzTextCache({
-    required this.backgroundOpacity,
-    required this.iconSize,
-    required this.lineLinks,
     required this.startLine,
     required this.centerLine,
     required this.endLine,
   });
 }
 
+class EzTextCache {
+  final double backgroundOpacity;
+  final double iconSize;
+
+  /// Theme aware tracker for frequently used text values...
+  /// Icon size, frequently used [EzNewLine]s
+  EzTextCache({
+    required this.backgroundOpacity,
+    required this.iconSize,
+  });
+}
+
 abstract class EzAppCache {
-  /// Will run on every call to [EzConfigProvider.redrawUI]
+  /// Will run on app setup
+  void init(bool isDark);
+
+  /// Will run on every call to [EzConfigProvider.rebuildUI]
   /// AKA when [EzConfig.seed] changes
   Future<void> rebuild();
 }
