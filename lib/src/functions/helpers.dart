@@ -119,8 +119,7 @@ Future<void> ezConfigLoader(BuildContext context) async {
   try {
     if (result != null && result.files.single.path != null) {
       if (kIsWeb) {
-        final Uint8List? fileBytes = result.files.first.bytes;
-        if (fileBytes == null) throw 'null file';
+        final Uint8List fileBytes = await result.files.first.readAsBytes();
 
         final String fileContent = utf8.decode(fileBytes);
         await EzConfig.loadConfig(jsonDecode(fileContent));
