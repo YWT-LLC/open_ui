@@ -24,7 +24,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScreen> {
-  // Define the build data //
+  //* Define the build data *//
+
+  // Platform data //
 
   final bool isDesktop = kIsWeb
       ? false
@@ -47,17 +49,21 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
           : '$homePath/Documents'
       : '';
 
-  final TextEditingController nameTC = TextEditingController();
+  // Form data //
+
+  final TextEditingController nameTC = TextEditingController(text: EzConfig.get(nameBackupKey));
   late String namePreview = l10n.csNamePreview;
   bool validName = false;
 
-  final TextEditingController publisherTC = TextEditingController();
+  final TextEditingController publisherTC =
+      TextEditingController(text: EzConfig.get(publisherBackupKey));
   late String pubPreview = l10n.csPubPreview;
 
-  final TextEditingController domainTC = TextEditingController();
-  bool exampleDomain = false;
+  final TextEditingController descriptionTC =
+      TextEditingController(text: EzConfig.get(descriptionBackupKey));
 
-  final TextEditingController descriptionTC = TextEditingController();
+  final TextEditingController domainTC = TextEditingController(text: EzConfig.get(domainBackupKey));
+  bool exampleDomain = false;
 
   late final int currYear = DateTime.now().year;
 
@@ -83,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   bool canGen = true;
 
-  // Define custom functions //
+  //* Define custom functions *//
 
   /// Validate the code gen file path (Desktop only)
   Future<bool> checkPath(TextEditingController controller) async {
@@ -107,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
     return false;
   }
 
-  // Init //
+  //* Init *//
 
   @override
   void initState() {
@@ -138,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
     }
   }
 
-  // Return the build //
+  //* Return the build *//
 
   @override
   Widget build(BuildContext context) => OpenUIScaffold(
@@ -161,8 +167,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                 ),
                 controller: nameTC,
                 validator: (String? entry) => validateAppName(
-                  value: entry,
-                  onSuccess: () => setState(() {
+                  entry,
+                  onSuccess: () async {
                     final String previous = namePreview;
                     validName = true;
                     namePreview = nameTC.text;
@@ -171,9 +177,11 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       previous.replaceAll('_', '-'),
                       namePreview.replaceAll('_', '-'),
                     );
-
                     copyrightTC.text = copyrightTC.text.replaceAll(previous, namePreview);
-                  }),
+
+                    await EzConfig.setString(nameBackupKey, nameTC.text);
+                    setState(() {});
+                  },
                   onFailure: () => setState(() => validName = false),
                 ),
                 hintText: l10n.csNamePreview,
@@ -185,19 +193,18 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                 title: l10n.csPubName,
                 tip: l10n.csPubTip,
                 controller: publisherTC,
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return EzConfig.l10n.gRequired;
-                  }
-
-                  setState(() {
+                validator: (String? value) => validatePublisher(
+                  value,
+                  onSuccess: () async {
                     final String previous = pubPreview;
                     pubPreview = publisherTC.text;
 
                     copyrightTC.text = copyrightTC.text.replaceAll(previous, pubPreview);
-                  });
-                  return null;
-                },
+
+                    await EzConfig.setString(publisherBackupKey, publisherTC.text);
+                    setState(() {});
+                  },
+                ),
                 hintText: l10n.csPubPreview,
               ),
               EzConfig.spacer,
@@ -206,8 +213,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               _BasicField(
                 title: l10n.csDescription,
                 controller: descriptionTC,
-                validator: (String? value) =>
-                    (value == null || value.isEmpty) ? EzConfig.l10n.gRequired : null,
+                validator: (String? value) => validateDescription(
+                  value,
+                  onSuccess: () async {
+                    await EzConfig.setString(publisherBackupKey, publisherTC.text);
+                    setState(() {});
+                  },
+                ),
                 hintText: l10n.csDescPreview,
               ),
               EzConfig.spacer,
@@ -240,7 +252,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         controller: domainTC,
                         textAlign: TextAlign.start,
                         maxLines: 1,
-                        validator: (String? text) => validateDomain(text),
+                        validator: (String? text) => validateDomain(
+                          text,
+                          onSuccess: () async {
+                            await EzConfig.setString(domainBackupKey, domainTC.text);
+                            setState(() {});
+                          },
+                        ),
                         autovalidateMode: AutovalidateMode.onUnfocus,
                         decoration: const InputDecoration(hintText: 'com.example'),
                       ),
@@ -640,16 +658,23 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
           // Gather everything
           nameTC.text = config.appName;
+          await EzConfig.setString(nameBackupKey, config.appName);
           namePreview = config.appName;
           validName = true;
 
           publisherTC.text = config.publisherName;
+          await EzConfig.setString(publisherBackupKey, config.publisherName);
           pubPreview = config.publisherName;
 
           descriptionTC.text = config.appDescription;
+          await EzConfig.setString(descriptionBackupKey, config.appDescription);
 
           domainTC.text = config.domainName;
-          if (config.domainName == 'com.example') exampleDomain = true;
+          if (config.domainName == 'com.example') {
+            exampleDomain = true;
+          } else {
+            await EzConfig.setString(domainBackupKey, config.domainName);
+          }
 
           await EzConfig.loadConfig(config.appDefaults);
 
@@ -693,17 +718,21 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
         fabs: <Widget>[
           EzConfig.spacer,
           ResetFAB(
-            clear: () {
+            clear: () async {
               nameTC.clear();
+              await EzConfig.remove(nameBackupKey);
               namePreview = l10n.csNamePreview;
               validName = false;
 
               publisherTC.clear();
+              await EzConfig.remove(publisherBackupKey);
               pubPreview = l10n.csPubPreview;
 
               descriptionTC.clear();
+              await EzConfig.remove(descriptionBackupKey);
 
               domainTC.clear();
+              await EzConfig.remove(domainBackupKey);
               exampleDomain = false;
 
               flutterPathTC.clear();
