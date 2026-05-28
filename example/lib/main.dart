@@ -24,7 +24,7 @@ void main() async {
     appName: thisAppName,
     androidPackage: thisPackageName,
     assetPaths: <String>{},
-    defaults: isMobile() ? empathMobileConfig : empathDesktopConfig,
+    defaults: isMobile() ? mobileDefaults : desktopDefaults,
     localeFallback: americanEnglish,
     l10nFallback: await EFUILang.delegate.load(americanEnglish),
     preferences: await SharedPreferencesWithCache.create(
