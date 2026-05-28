@@ -373,13 +373,13 @@ class $classCaseAppName extends StatelessWidget {
 
           switch (entry.key) {
             case hubPositionKey:
-              result += '${entry.key}Key: 0';
+              result += '${entry.key}Key: 0,';
               break;
 
             case advancedColorsKey:
             case pageTabKey:
             case advancedTextKey:
-              result += '${entry.key}Key: false';
+              result += '${entry.key}Key: false,';
               break;
 
             case appLocaleKey:
