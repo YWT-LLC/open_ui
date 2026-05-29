@@ -25,7 +25,7 @@ Accessibility, UI, User Interface, UX, User Experience, Design, User Customizati
 ## Promotional text
 Für dich gemacht, von dir gemacht 
 
-## BeschDescriptionreibung
+## Description
 Entdecke Open UI, den einzigen wirklich barrierefreien App-Generator.
 
 Open UI ist eine Sandbox, in der du jeden Aspekt des Erscheinungsbildes der App selbst bestimmen kannst.
