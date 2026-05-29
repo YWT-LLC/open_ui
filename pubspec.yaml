@@ -55,7 +55,7 @@ dev_dependencies:
   # Community
   after_layout: ^1.2.0
   flutter_launcher_icons: ^0.14.4
-  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.8
   window_manager: ^0.5.1
   xml: ^6.6.1
 

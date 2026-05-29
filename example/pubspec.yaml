@@ -36,7 +36,7 @@ dev_dependencies:
   dependency_validator: ^5.0.5
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
-  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.8
 
 flutter:
   generate: true
