@@ -208,8 +208,8 @@ class _GenerateScreenState extends State<GenerateScreen> {
         // Add the entitlement
         final XmlElement dictionary = debugDoc.rootElement.findElements('dict').first;
 
-        dictionary.children.add(XmlElement(XmlName(networkClientKey)));
-        dictionary.children.add(XmlElement(XmlName('true')));
+        dictionary.children.add(XmlElement(const XmlName.parts(networkClientKey)));
+        dictionary.children.add(XmlElement(const XmlName.parts('true')));
 
         // Save the modified file
         await macOSDebugEntitlements.writeAsString(debugDoc.toXmlString(pretty: true));
@@ -219,8 +219,8 @@ class _GenerateScreenState extends State<GenerateScreen> {
         // Add the entitlement
         final XmlElement dictionary = releaseDoc.rootElement.findElements('dict').first;
 
-        dictionary.children.add(XmlElement(XmlName(networkClientKey)));
-        dictionary.children.add(XmlElement(XmlName('true')));
+        dictionary.children.add(XmlElement(const XmlName.parts(networkClientKey)));
+        dictionary.children.add(XmlElement(const XmlName.parts('true')));
 
         // Save the modified file
         await macOSReleaseEntitlements.writeAsString(releaseDoc.toXmlString(pretty: true));
