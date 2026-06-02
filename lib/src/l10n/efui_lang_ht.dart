@@ -156,8 +156,7 @@ class EFUILangHt extends EFUILang {
   String get gCenterReset => 'Kenbe nan mitan pou reyajiste';
 
   @override
-  String get gLoadingAnim =>
-      'Ap chaje. Logo Empathetic la ap anime tankou yon sabliye k ap vire.';
+  String get gLoadingAnim => 'Ap chaje. Logo Empathetic la ap anime tankou yon sabliye k ap vire.';
 
   @override
   String get gPlay => 'Jwe';
@@ -184,7 +183,7 @@ class EFUILangHt extends EFUILang {
   String get gCaptionsHint => 'Kenbe pou polis yo';
 
   @override
-  String get gFullScreen => 'Plen ekran';
+  String get gFullscreen => 'Plen ekran';
 
   @override
   String get gMachineTranslated => 'Tradui ak machin';
@@ -196,12 +195,10 @@ class EFUILangHt extends EFUILang {
   String get gHardRefresh => 'Tanpri fòse rafrechi paj la...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac =>
-      'Tanpri fòse rafrechi paj la...\nCommand + Shift + R';
+  String get gHardRefreshMac => 'Tanpri fòse rafrechi paj la...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile =>
-      'Tanpri rafrechi paj la nan meni navigatè a.';
+  String get gHardRefreshMobile => 'Tanpri rafrechi paj la nan meni navigatè a.';
 
   @override
   String get gEnterURL => 'Antre URL';
@@ -285,8 +282,7 @@ class EFUILangHt extends EFUILang {
   String get gSwitchHint => 'Baskile entèriptè a';
 
   @override
-  String get gUndoWarn2 =>
-      ' konfigirasyon kounye a pou w ka retabli l manyèlman.';
+  String get gUndoWarn2 => ' konfigirasyon kounye a pou w ka retabli l manyèlman.';
 
   @override
   String get gValue => 'Valè';
@@ -307,12 +303,10 @@ class EFUILangHt extends EFUILang {
   String get ssNavHint => 'Louvri paj paramèt yo';
 
   @override
-  String get ssRestartReminder =>
-      'Fèmen epi relouvri aplikasyon an pou aplike chanjman ou yo.';
+  String get ssRestartReminder => 'Fèmen epi relouvri aplikasyon an pou aplike chanjman ou yo.';
 
   @override
-  String get ssRestartReminderWeb =>
-      'Rechaje/rafrechi paj la pou aplike chanjman ou yo.';
+  String get ssRestartReminderWeb => 'Rechaje/rafrechi paj la pou aplike chanjman ou yo.';
 
   @override
   String get ssHaveFun => 'Amize w!';
@@ -482,8 +476,7 @@ class EFUILangHt extends EFUILang {
   String get csPickerTitle => 'Chwazi yon koulè';
 
   @override
-  String get csPickerHint =>
-      'Louvri yon selektè koulè. Peze lontan pou plis opsyon.';
+  String get csPickerHint => 'Louvri yon selektè koulè. Peze lontan pou plis opsyon.';
 
   @override
   String get csRecommended => 'Itilize rekòmandasyon kontras?';

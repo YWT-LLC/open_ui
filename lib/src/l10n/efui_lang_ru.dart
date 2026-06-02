@@ -184,7 +184,7 @@ class EFUILangRu extends EFUILang {
   String get gCaptionsHint => 'Удерживайте для выбора шрифтов';
 
   @override
-  String get gFullScreen => 'Во весь экран';
+  String get gFullscreen => 'Во весь экран';
 
   @override
   String get gMachineTranslated => 'Машинный перевод';
@@ -201,8 +201,7 @@ class EFUILangRu extends EFUILang {
       'Пожалуйста, выполните жесткую перезагрузку страницы...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile =>
-      'Пожалуйста, обновите страницу в меню браузера.';
+  String get gHardRefreshMobile => 'Пожалуйста, обновите страницу в меню браузера.';
 
   @override
   String get gEnterURL => 'Введите URL';
@@ -280,15 +279,13 @@ class EFUILangRu extends EFUILang {
   String get gSave => 'Сохранить';
 
   @override
-  String get gSaveHint =>
-      'Активируйте, чтобы сохранить файл конфигурации JSON.';
+  String get gSaveHint => 'Активируйте, чтобы сохранить файл конфигурации JSON.';
 
   @override
   String get gSwitchHint => 'Переключить';
 
   @override
-  String get gUndoWarn2 =>
-      ' вашу текущую конфигурацию, чтобы восстановить ее вручную.';
+  String get gUndoWarn2 => ' вашу текущую конфигурацию, чтобы восстановить ее вручную.';
 
   @override
   String get gValue => 'Значение';
@@ -313,8 +310,7 @@ class EFUILangRu extends EFUILang {
       'Закройте и снова откройте приложение, чтобы применить изменения.';
 
   @override
-  String get ssRestartReminderWeb =>
-      'Перезагрузите/обновите страницу, чтобы применить изменения.';
+  String get ssRestartReminderWeb => 'Перезагрузите/обновите страницу, чтобы применить изменения.';
 
   @override
   String get ssHaveFun => 'Удачного использования!';
@@ -421,8 +417,7 @@ class EFUILangRu extends EFUILang {
   String get csSchemeBase => 'Создать схему\nиз изображения';
 
   @override
-  String get csFromImage =>
-      'Цветовая схема будет сгенерирована из изображения.';
+  String get csFromImage => 'Цветовая схема будет сгенерирована из изображения.';
 
   @override
   String get csMonoChrome => 'Использовать монохромную схему';
@@ -640,8 +635,7 @@ class EFUILangRu extends EFUILang {
   String get dsClearIt => 'Очистить';
 
   @override
-  String get dsUseForColors =>
-      'Обновить цвета приложения с помощью этого изображения';
+  String get dsUseForColors => 'Обновить цвета приложения с помощью этого изображения';
 
   @override
   String get dsImgGetFailed => 'Не удалось получить изображение';
@@ -663,8 +657,7 @@ class EFUILangRu extends EFUILang {
   String get dsCrop => 'Обрезать';
 
   @override
-  String get dsNoWeb =>
-      'Редактирование изображений не поддерживается в браузере';
+  String get dsNoWeb => 'Редактирование изображений не поддерживается в браузере';
 
   @override
   String get dsRotateLeft => 'Повернуть влево';

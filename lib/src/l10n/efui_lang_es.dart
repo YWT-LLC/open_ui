@@ -184,7 +184,7 @@ class EFUILangEs extends EFUILang {
   String get gCaptionsHint => 'Mantén pulsado para fuentes';
 
   @override
-  String get gFullScreen => 'Pantalla completa';
+  String get gFullscreen => 'Pantalla completa';
 
   @override
   String get gMachineTranslated => 'Traducción automática';
@@ -193,16 +193,13 @@ class EFUILangEs extends EFUILang {
   String get gUpdates => 'Actualizaciones disponibles';
 
   @override
-  String get gHardRefresh =>
-      'Por favor, actualice la página...\nCtrl + Shift + R';
+  String get gHardRefresh => 'Por favor, actualice la página...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac =>
-      'Por favor, actualice la página...\nCommand + Shift + R';
+  String get gHardRefreshMac => 'Por favor, actualice la página...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile =>
-      'Actualice la página en el menú del navegador.';
+  String get gHardRefreshMobile => 'Actualice la página en el menú del navegador.';
 
   @override
   String get gEnterURL => 'Inserta el link';
@@ -280,15 +277,13 @@ class EFUILangEs extends EFUILang {
   String get gSave => 'Guarde';
 
   @override
-  String get gSaveHint =>
-      'Activar para guardar un archivo de configuración JSON.';
+  String get gSaveHint => 'Activar para guardar un archivo de configuración JSON.';
 
   @override
   String get gSwitchHint => 'Accionar el interruptor';
 
   @override
-  String get gUndoWarn2 =>
-      ' su configuración actual para restaurarla manualmente.';
+  String get gUndoWarn2 => ' su configuración actual para restaurarla manualmente.';
 
   @override
   String get gValue => 'Valor';
@@ -309,12 +304,10 @@ class EFUILangEs extends EFUILang {
   String get ssNavHint => 'Abrir la página de configuración';
 
   @override
-  String get ssRestartReminder =>
-      'Cierre y vuelva a abrir la app para aplicar los cambios.';
+  String get ssRestartReminder => 'Cierre y vuelva a abrir la app para aplicar los cambios.';
 
   @override
-  String get ssRestartReminderWeb =>
-      'Recarga o actualice la página para aplicar tus cambios.';
+  String get ssRestartReminderWeb => 'Recarga o actualice la página para aplicar tus cambios.';
 
   @override
   String get ssHaveFun => '¡Diviértete!';
@@ -409,8 +402,7 @@ class EFUILangEs extends EFUILang {
   String get ssResetAll => '¿Restablecer todas las configuraciones?';
 
   @override
-  String get ssResetAppearance =>
-      '¿Restablecer todos los ajustes de apariencia?';
+  String get ssResetAppearance => '¿Restablecer todos los ajustes de apariencia?';
 
   @override
   String get ssResetBoth => 'Restablecer ambos modos de tema';
@@ -422,8 +414,7 @@ class EFUILangEs extends EFUILang {
   String get csSchemeBase => 'Crear tema\nusando imagen';
 
   @override
-  String get csFromImage =>
-      'Se generará un esquema de color a partir de la imagen.';
+  String get csFromImage => 'Se generará un esquema de color a partir de la imagen.';
 
   @override
   String get csMonoChrome => 'Usar esquema monocromático';
@@ -486,8 +477,7 @@ class EFUILangEs extends EFUILang {
   String get csPickerTitle => 'Selecciona un color';
 
   @override
-  String get csPickerHint =>
-      'Abre un selector de color. Mantén pulsado para ver más opciones.';
+  String get csPickerHint => 'Abre un selector de color. Mantén pulsado para ver más opciones.';
 
   @override
   String get csRecommended => '¿Usar contraste recomendado?';
@@ -641,8 +631,7 @@ class EFUILangEs extends EFUILang {
   String get dsClearIt => 'Borrar';
 
   @override
-  String get dsUseForColors =>
-      'Actualiza los colores de la app usando esta imagen';
+  String get dsUseForColors => 'Actualiza los colores de la app usando esta imagen';
 
   @override
   String get dsImgGetFailed => 'Error al intentar obtener la imagen';

@@ -184,7 +184,7 @@ class EFUILangSw extends EFUILang {
   String get gCaptionsHint => 'Shikilia kwa fonti';
 
   @override
-  String get gFullScreen => 'Skrini nzima';
+  String get gFullscreen => 'Skrini nzima';
 
   @override
   String get gMachineTranslated => 'Imetafsiriwa na mashine';
@@ -193,16 +193,13 @@ class EFUILangSw extends EFUILang {
   String get gUpdates => 'Masasisho yanapatikana';
 
   @override
-  String get gHardRefresh =>
-      'Tafadhali onyesha upya ukurasa kwa lazima...\nCtrl + Shift + R';
+  String get gHardRefresh => 'Tafadhali onyesha upya ukurasa kwa lazima...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac =>
-      'Tafadhali onyesha upya ukurasa kwa lazima...\nCommand + Shift + R';
+  String get gHardRefreshMac => 'Tafadhali onyesha upya ukurasa kwa lazima...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile =>
-      'Tafadhali onyesha upya ukurasa kwenye menyu ya kivinjari.';
+  String get gHardRefreshMobile => 'Tafadhali onyesha upya ukurasa kwenye menyu ya kivinjari.';
 
   @override
   String get gEnterURL => 'Weka URL';
@@ -307,8 +304,7 @@ class EFUILangSw extends EFUILang {
   String get ssNavHint => 'Fungua ukurasa wa mipangilio';
 
   @override
-  String get ssRestartReminder =>
-      'Funga na ufungue upya programu ili kutekeleza mabadiliko yako.';
+  String get ssRestartReminder => 'Funga na ufungue upya programu ili kutekeleza mabadiliko yako.';
 
   @override
   String get ssRestartReminderWeb =>
@@ -419,8 +415,7 @@ class EFUILangSw extends EFUILang {
   String get csSchemeBase => 'Tengeneza mpangilio\nKutoka kwenye picha';
 
   @override
-  String get csFromImage =>
-      'Mpangilio wa rangi utatengenezwa kutoka kwenye picha.';
+  String get csFromImage => 'Mpangilio wa rangi utatengenezwa kutoka kwenye picha.';
 
   @override
   String get csMonoChrome => 'Tumia mpangilio wa rangi moja';
@@ -483,8 +478,7 @@ class EFUILangSw extends EFUILang {
   String get csPickerTitle => 'Chagua rangi';
 
   @override
-  String get csPickerHint =>
-      'Fungua kichagua rangi. Bonyeza kwa muda mrefu kwa chaguo zaidi.';
+  String get csPickerHint => 'Fungua kichagua rangi. Bonyeza kwa muda mrefu kwa chaguo zaidi.';
 
   @override
   String get csRecommended => 'Tumia pendekezo la utofauti wa rangi?';

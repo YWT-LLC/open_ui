@@ -184,7 +184,7 @@ class EFUILangFil extends EFUILang {
   String get gCaptionsHint => 'Pindutin nang matagal para sa mga font';
 
   @override
-  String get gFullScreen => 'Fullscreen';
+  String get gFullscreen => 'Fullscreen';
 
   @override
   String get gMachineTranslated => 'Isinalin ng makina';
@@ -193,16 +193,13 @@ class EFUILangFil extends EFUILang {
   String get gUpdates => 'May mga available na update';
 
   @override
-  String get gHardRefresh =>
-      'Mangyaring i-hard refresh ang page...\nCtrl + Shift + R';
+  String get gHardRefresh => 'Mangyaring i-hard refresh ang page...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac =>
-      'Mangyaring i-hard refresh ang page...\nCommand + Shift + R';
+  String get gHardRefreshMac => 'Mangyaring i-hard refresh ang page...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile =>
-      'Mangyaring i-refresh ang page sa menu ng browser.';
+  String get gHardRefreshMobile => 'Mangyaring i-refresh ang page sa menu ng browser.';
 
   @override
   String get gEnterURL => 'Ilagay ang URL';
@@ -286,8 +283,7 @@ class EFUILangFil extends EFUILang {
   String get gSwitchHint => 'I-flip ang switch';
 
   @override
-  String get gUndoWarn2 =>
-      ' ang iyong kasalukuyang config para ma-restore ito nang manual.';
+  String get gUndoWarn2 => ' ang iyong kasalukuyang config para ma-restore ito nang manual.';
 
   @override
   String get gValue => 'Value';
@@ -638,8 +634,7 @@ class EFUILangFil extends EFUILang {
   String get dsClearIt => 'I-clear ito';
 
   @override
-  String get dsUseForColors =>
-      'I-update ang mga kulay ng app gamit ang larawang ito';
+  String get dsUseForColors => 'I-update ang mga kulay ng app gamit ang larawang ito';
 
   @override
   String get dsImgGetFailed => 'Bigo na makuha ang larawan';

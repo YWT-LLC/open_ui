@@ -674,7 +674,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   onPressed: () async => widget.fullscreen
                                       ? Navigator.of(context).pop(widget.controller.value.position)
                                       : await enterFullscreen(),
-                                  tooltip: 'Fullscreen', // TODO: l10n
+                                  tooltip: EzConfig.l10n.gFullscreen,
                                 ),
                               ],
                             ),

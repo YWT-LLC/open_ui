@@ -183,7 +183,7 @@ class EFUILangJa extends EFUILang {
   String get gCaptionsHint => '長押しでフォントを変更';
 
   @override
-  String get gFullScreen => '全画面表示';
+  String get gFullscreen => '全画面表示';
 
   @override
   String get gMachineTranslated => '機械翻訳';
@@ -357,12 +357,10 @@ class EFUILangJa extends EFUILang {
   String get ssWallHoles => '壁の穴';
 
   @override
-  String get ssDarkOnly =>
-      'これはダークテーマのプリセットです。\nテーマモードをダークに設定し、そのテーマを更新します。\n\n続行しますか？';
+  String get ssDarkOnly => 'これはダークテーマのプリセットです。\nテーマモードをダークに設定し、そのテーマを更新します。\n\n続行しますか？';
 
   @override
-  String get ssLightOnly =>
-      'これはライトテーマのプリセットです。\nテーマモードをライトに設定し、そのテーマを更新します。\n\n続行しますか？';
+  String get ssLightOnly => 'これはライトテーマのプリセットです。\nテーマモードをライトに設定し、そのテーマを更新します。\n\n続行しますか？';
 
   @override
   String ssApplied(Object config) {
@@ -639,8 +637,7 @@ class EFUILangJa extends EFUILang {
   String get dsImgSetFailed => '画像の更新に失敗しました';
 
   @override
-  String get dsImgPermission =>
-      '一部のサイトでは、他者による画像へのアクセスが許可されていません。\n別のホストの画像を試してください。';
+  String get dsImgPermission => '一部のサイトでは、他者による画像へのアクセスが許可されていません。\n別のホストの画像を試してください。';
 
   @override
   String get dsUseFull => '画像全体を使用しますか？';

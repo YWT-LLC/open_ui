@@ -183,7 +183,7 @@ class EFUILangZh extends EFUILang {
   String get gCaptionsHint => '长按选择字体';
 
   @override
-  String get gFullScreen => '全屏';
+  String get gFullscreen => '全屏';
 
   @override
   String get gMachineTranslated => '机器翻译';
@@ -213,8 +213,7 @@ class EFUILangZh extends EFUILang {
   String get g404 => '但是，在这种情况下：404 找不到页面。';
 
   @override
-  String get g404Note =>
-      '注意：Flutter web 使用哈希路由，例如...\nhttps://www.example.com/#/destination';
+  String get g404Note => '注意：Flutter web 使用哈希路由，例如...\nhttps://www.example.com/#/destination';
 
   @override
   String get gOpenSource => '开源';
@@ -955,7 +954,7 @@ class EFUILangZhCn extends EFUILangZh {
   String get gCaptionsHint => '长按选择字体';
 
   @override
-  String get gFullScreen => '全屏';
+  String get gFullscreen => '全屏';
 
   @override
   String get gMachineTranslated => '机器翻译';
@@ -985,8 +984,7 @@ class EFUILangZhCn extends EFUILangZh {
   String get g404 => '但是，在这种情况下：404 找不到页面。';
 
   @override
-  String get g404Note =>
-      '注意：Flutter web 使用哈希路由，例如...\nhttps://www.example.com/#/destination';
+  String get g404Note => '注意：Flutter web 使用哈希路由，例如...\nhttps://www.example.com/#/destination';
 
   @override
   String get gOpenSource => '开源';

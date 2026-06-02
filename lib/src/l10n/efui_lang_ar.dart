@@ -156,8 +156,7 @@ class EFUILangAr extends EFUILang {
   String get gCenterReset => 'اضغط باستمرار في المنتصف لإعادة الضبط';
 
   @override
-  String get gLoadingAnim =>
-      'جارٍ التحميل. شعار Empathetic يتحرك كساعة رملية دوارة.';
+  String get gLoadingAnim => 'جارٍ التحميل. شعار Empathetic يتحرك كساعة رملية دوارة.';
 
   @override
   String get gPlay => 'تشغيل';
@@ -184,7 +183,7 @@ class EFUILangAr extends EFUILang {
   String get gCaptionsHint => 'اضغط باستمرار لاختيار الخطوط';
 
   @override
-  String get gFullScreen => 'ملء الشاشة';
+  String get gFullscreen => 'ملء الشاشة';
 
   @override
   String get gMachineTranslated => 'ترجمة آلية';
@@ -193,12 +192,10 @@ class EFUILangAr extends EFUILang {
   String get gUpdates => 'تحديثات متاحة';
 
   @override
-  String get gHardRefresh =>
-      'يرجى إعادة تحميل الصفحة بالكامل...\nCtrl + Shift + R';
+  String get gHardRefresh => 'يرجى إعادة تحميل الصفحة بالكامل...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac =>
-      'يرجى إعادة تحميل الصفحة بالكامل...\nCommand + Shift + R';
+  String get gHardRefreshMac => 'يرجى إعادة تحميل الصفحة بالكامل...\nCommand + Shift + R';
 
   @override
   String get gHardRefreshMobile => 'يرجى تحديث الصفحة من قائمة المتصفح.';
@@ -934,8 +931,7 @@ class EFUILangArEg extends EFUILangAr {
   String get gCenterReset => 'اضغط باستمرار في المنتصف لإعادة الضبط';
 
   @override
-  String get gLoadingAnim =>
-      'جارٍ التحميل. شعار Empathetic يتحرك كساعة رملية دوارة.';
+  String get gLoadingAnim => 'جارٍ التحميل. شعار Empathetic يتحرك كساعة رملية دوارة.';
 
   @override
   String get gPlay => 'تشغيل';
@@ -962,7 +958,7 @@ class EFUILangArEg extends EFUILangAr {
   String get gCaptionsHint => 'اضغط باستمرار لاختيار الخطوط';
 
   @override
-  String get gFullScreen => 'ملء الشاشة';
+  String get gFullscreen => 'ملء الشاشة';
 
   @override
   String get gMachineTranslated => 'ترجمة آلية';
@@ -971,12 +967,10 @@ class EFUILangArEg extends EFUILangAr {
   String get gUpdates => 'تحديثات متاحة';
 
   @override
-  String get gHardRefresh =>
-      'يرجى إعادة تحميل الصفحة بالكامل...\nCtrl + Shift + R';
+  String get gHardRefresh => 'يرجى إعادة تحميل الصفحة بالكامل...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac =>
-      'يرجى إعادة تحميل الصفحة بالكامل...\nCommand + Shift + R';
+  String get gHardRefreshMac => 'يرجى إعادة تحميل الصفحة بالكامل...\nCommand + Shift + R';
 
   @override
   String get gHardRefreshMobile => 'يرجى تحديث الصفحة من قائمة المتصفح.';

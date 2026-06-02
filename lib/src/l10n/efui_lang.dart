@@ -73,8 +73,7 @@ import 'efui_lang_zh.dart' deferred as efui_lang_zh;
 /// be consistent with the languages listed in the EFUILang.supportedLocales
 /// property.
 abstract class EFUILang {
-  EFUILang(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  EFUILang(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -471,11 +470,11 @@ abstract class EFUILang {
   /// **'Hold for fonts'**
   String get gCaptionsHint;
 
-  /// No description provided for @gFullScreen.
+  /// No description provided for @gFullscreen.
   ///
   /// In en, this message translates to:
   /// **'Fullscreen'**
-  String get gFullScreen;
+  String get gFullscreen;
 
   /// No description provided for @gMachineTranslated.
   ///
@@ -1637,9 +1636,7 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'EG':
-            return efui_lang_ar
-                .loadLibrary()
-                .then((dynamic _) => efui_lang_ar.EFUILangArEg());
+            return efui_lang_ar.loadLibrary().then((dynamic _) => efui_lang_ar.EFUILangArEg());
         }
         break;
       }
@@ -1647,9 +1644,7 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'US':
-            return efui_lang_en
-                .loadLibrary()
-                .then((dynamic _) => efui_lang_en.EFUILangEnUs());
+            return efui_lang_en.loadLibrary().then((dynamic _) => efui_lang_en.EFUILangEnUs());
         }
         break;
       }
@@ -1657,9 +1652,7 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'CN':
-            return efui_lang_zh
-                .loadLibrary()
-                .then((dynamic _) => efui_lang_zh.EFUILangZhCn());
+            return efui_lang_zh.loadLibrary().then((dynamic _) => efui_lang_zh.EFUILangZhCn());
         }
         break;
       }
@@ -1668,61 +1661,33 @@ Future<EFUILang> lookupEFUILang(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'ar':
-      return efui_lang_ar
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_ar.EFUILangAr());
+      return efui_lang_ar.loadLibrary().then((dynamic _) => efui_lang_ar.EFUILangAr());
     case 'de':
-      return efui_lang_de
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_de.EFUILangDe());
+      return efui_lang_de.loadLibrary().then((dynamic _) => efui_lang_de.EFUILangDe());
     case 'en':
-      return efui_lang_en
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_en.EFUILangEn());
+      return efui_lang_en.loadLibrary().then((dynamic _) => efui_lang_en.EFUILangEn());
     case 'es':
-      return efui_lang_es
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_es.EFUILangEs());
+      return efui_lang_es.loadLibrary().then((dynamic _) => efui_lang_es.EFUILangEs());
     case 'fil':
-      return efui_lang_fil
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_fil.EFUILangFil());
+      return efui_lang_fil.loadLibrary().then((dynamic _) => efui_lang_fil.EFUILangFil());
     case 'fr':
-      return efui_lang_fr
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_fr.EFUILangFr());
+      return efui_lang_fr.loadLibrary().then((dynamic _) => efui_lang_fr.EFUILangFr());
     case 'hi':
-      return efui_lang_hi
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_hi.EFUILangHi());
+      return efui_lang_hi.loadLibrary().then((dynamic _) => efui_lang_hi.EFUILangHi());
     case 'ht':
-      return efui_lang_ht
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_ht.EFUILangHt());
+      return efui_lang_ht.loadLibrary().then((dynamic _) => efui_lang_ht.EFUILangHt());
     case 'ja':
-      return efui_lang_ja
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_ja.EFUILangJa());
+      return efui_lang_ja.loadLibrary().then((dynamic _) => efui_lang_ja.EFUILangJa());
     case 'ko':
-      return efui_lang_ko
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_ko.EFUILangKo());
+      return efui_lang_ko.loadLibrary().then((dynamic _) => efui_lang_ko.EFUILangKo());
     case 'ru':
-      return efui_lang_ru
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_ru.EFUILangRu());
+      return efui_lang_ru.loadLibrary().then((dynamic _) => efui_lang_ru.EFUILangRu());
     case 'sw':
-      return efui_lang_sw
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_sw.EFUILangSw());
+      return efui_lang_sw.loadLibrary().then((dynamic _) => efui_lang_sw.EFUILangSw());
     case 'uk':
-      return efui_lang_uk
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_uk.EFUILangUk());
+      return efui_lang_uk.loadLibrary().then((dynamic _) => efui_lang_uk.EFUILangUk());
     case 'zh':
-      return efui_lang_zh
-          .loadLibrary()
-          .then((dynamic _) => efui_lang_zh.EFUILangZh());
+      return efui_lang_zh.loadLibrary().then((dynamic _) => efui_lang_zh.EFUILangZh());
   }
 
   throw FlutterError(
