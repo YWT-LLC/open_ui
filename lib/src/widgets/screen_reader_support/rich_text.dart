@@ -20,14 +20,26 @@ class EzRichText extends StatelessWidget {
   /// [Text.rich] passthrough
   final TextAlign textAlign;
 
+  /// Optional [EzTextBackground.borderRadius] passthrough
+  final BorderRadiusGeometry? borderRadius;
+
+  /// Optional [EzTextBackground.baseColor] passthrough
+  final Color? baseColor;
+
+  /// Optional [EzTextBackground.backgroundColor] passthrough
+  final Color? backgroundColor;
+
   /// [Text.rich] wrapper with custom [Semantics] behavior
   /// Recommended to pair with [EzPlainText] and [EzInlineLink] rather than [TextSpan]s
   const EzRichText(
     this.children, {
     super.key,
-    this.textBackground = true,
     this.style,
     this.textAlign = TextAlign.start,
+    this.textBackground = true,
+    this.borderRadius,
+    this.baseColor,
+    this.backgroundColor,
   });
 
   String _semanticsLabel() {
@@ -71,6 +83,13 @@ class EzRichText extends StatelessWidget {
         label: _semanticsLabel(),
         container: true,
         explicitChildNodes: true,
-        child: textBackground ? EzTextBackground(_text()) : _text(),
+        child: textBackground
+            ? EzTextBackground(
+                _text(),
+                borderRadius: borderRadius,
+                baseColor: baseColor,
+                backgroundColor: backgroundColor,
+              )
+            : _text(),
       );
 }
