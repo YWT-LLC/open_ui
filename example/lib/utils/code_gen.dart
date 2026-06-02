@@ -614,26 +614,23 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
     // Return the build //
 
     return EzAdaptiveParent(
-      small: Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => EzScaffold(
-          seed: config.seed,
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, toolbarHeight),
-            child: EzAppBar(
-              height: toolbarHeight,
-              leading: EzConfig.isLefty ? options : const EzBackAction(),
-              leadingWidth: toolbarHeight,
-              title: Text(title, textAlign: TextAlign.center),
-              actions: <Widget>[EzConfig.isLefty ? const EzBackAction() : options],
-            ),
+      small: EzScaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, toolbarHeight),
+          child: EzAppBar(
+            height: toolbarHeight,
+            leading: EzConfig.isLefty ? options : const EzBackAction(),
+            leadingWidth: toolbarHeight,
+            title: Text(title, textAlign: TextAlign.center),
+            actions: <Widget>[EzConfig.isLefty ? const EzBackAction() : options],
           ),
-          body: body,
-          fabs: <Widget>[
-            updater,
-            if (fabs != null) ...fabs!,
-            ...EzConfig.backFABs(home),
-          ],
         ),
+        body: body,
+        fabs: <Widget>[
+          updater,
+          if (fabs != null) ...fabs!,
+          ...EzConfig.backFABs(home),
+        ],
       ),
     );
   }
