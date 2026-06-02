@@ -92,6 +92,8 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
   final MenuController subMenuControl = MenuController();
   int captionStyle = 1;
 
+  bool twinRunning = false;
+
   // Define custom functions //
 
   void handleMobileHover() {
@@ -171,6 +173,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
       );
     }
 
+    setState(() => twinRunning = true);
     if (mounted) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
@@ -200,6 +203,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
         ),
       );
     }
+    if (mounted) setState(() => twinRunning = false);
 
     await SystemChrome.setEnabledSystemUIMode(
         SystemUiMode.edgeToEdge); // TODO: whatever the base app is using
@@ -335,7 +339,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                     color: Colors.black,
                     child: AspectRatio(
                       aspectRatio: widget.aspectRatio,
-                      child: VideoPlayer(widget.controller),
+                      child: twinRunning ? const SizedBox.shrink() : VideoPlayer(widget.controller),
                     ),
                   ),
                 ),
