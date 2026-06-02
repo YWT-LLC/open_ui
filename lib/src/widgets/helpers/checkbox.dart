@@ -39,7 +39,7 @@ class EzCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: _scale > 1.1 ? padding ?? EzInsets.wrap(EzConfig.marginVal) : EdgeInsets.zero,
+        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(EzConfig.marginVal) : EdgeInsets.zero,
         child: Transform.scale(
           scale: max(1.0, _scale),
           child: Checkbox(

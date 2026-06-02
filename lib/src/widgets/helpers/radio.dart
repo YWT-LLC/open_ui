@@ -30,7 +30,7 @@ class EzRadio<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: _scale > 1.1 ? padding ?? EzInsets.wrap(EzConfig.marginVal) : EdgeInsets.zero,
+        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(EzConfig.marginVal) : EdgeInsets.zero,
         decoration: BoxDecoration(
           color: EzConfig.colors.surface.withValues(alpha: EzConfig.textBackgroundOpacity),
           shape: BoxShape.circle,
