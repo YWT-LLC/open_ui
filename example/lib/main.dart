@@ -32,6 +32,7 @@ void main() async {
         allowList: allEZConfigKeys.keys.toSet(),
       ),
     ),
+    orientations: DeviceOrientation.values,
   );
 
   if (!kIsWeb && !isMobile()) {

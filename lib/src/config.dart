@@ -8,6 +8,7 @@ import '../empathetech_flutter_ui.dart';
 import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -25,6 +26,9 @@ class EzConfig {
 
   /// [AssetImage] paths for the app
   final Set<String> _assetPaths;
+
+  /// [DeviceOrientation]s the app uses
+  final List<DeviceOrientation> _orientations;
 
   /// Fallback [Locale] for unsupported [Locale]s
   /// [english] or [americanEnglish] is recommended
@@ -65,6 +69,7 @@ class EzConfig {
     // External (factory parameters)
     required String appName,
     required String? androidPackage,
+    required List<DeviceOrientation> orientations,
     required Set<String> assetPaths,
     required Locale localeFallback,
     required EFUILang l10nFallback,
@@ -78,6 +83,7 @@ class EzConfig {
     required Map<String, Type> typeMap,
   })  : _appName = appName,
         _androidPackage = androidPackage,
+        _orientations = orientations,
         _assetPaths = assetPaths,
         _localeFallback = localeFallback,
         _l10nFallback = l10nFallback,
@@ -97,10 +103,12 @@ class EzConfig {
   /// [securePreferences] => optionally provide a [FlutterSecureStorage] instance
   /// [defaults] => provide your brand colors, text styles, design settings, etc.
   /// [neverReset] => provide the set of keys that should never be reset by any [EzConfig] functions
+  /// [orientations] => [DeviceOrientation] that
   factory EzConfig.init({
     required String appName,
     required String? androidPackage,
     required Set<String> assetPaths,
+    required List<DeviceOrientation> orientations,
     required Locale localeFallback,
     required EFUILang l10nFallback,
     required SharedPreferencesWithCache preferences,
@@ -170,6 +178,7 @@ Must be one of [int, bool, double, String, List<String>]''');
         appName: appName,
         androidPackage: androidPackage,
         assetPaths: <String>{...assetPaths, ...efuiAssetPaths},
+        orientations: orientations,
         localeFallback: localeFallback,
         l10nFallback: l10nFallback,
         preferences: SharedPreferencesAsync(),
@@ -193,6 +202,9 @@ Must be one of [int, bool, double, String, List<String>]''');
 
   /// Android package String, if relevant
   static String? get androidPackage => _instance!._androidPackage;
+
+  /// [DeviceOrientation]s the app uses
+  static List<DeviceOrientation> get orientations => _instance!._orientations;
 
   /// Default/fallback for unsupported [Locale]s
   static Locale get localeFallback => _instance!._localeFallback;
