@@ -16,7 +16,7 @@ class EzToolTipper extends StatelessWidget {
   final InlineSpan? richMessage;
 
   /// Adds [EzConfig.marginVal] spacing to the left && right
-  /// When the [EzConfig.textBackgroundOpacity] is < 0.01
+  /// When the [EzConfig.textBackgroundOpacity] is < [oneP]
   final bool autoPad;
 
   /// Classic question mark tool tip
@@ -84,7 +84,7 @@ class EzToolTipper extends StatelessWidget {
           isTooltipVisible = !isTooltipVisible;
         },
         child: Padding(
-          padding: (autoPad && EzConfig.textBackgroundOpacity < 0.01)
+          padding: (autoPad && EzConfig.textBackgroundOpacity < oneP)
               ? EdgeInsets.symmetric(horizontal: EzConfig.marginVal)
               : EdgeInsets.zero,
           child: Tooltip(

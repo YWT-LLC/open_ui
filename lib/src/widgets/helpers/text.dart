@@ -42,7 +42,7 @@ class EzTextBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: (backgroundColor == null && EzConfig.textBackgroundOpacity < 0.01)
+        padding: (backgroundColor == null && EzConfig.textBackgroundOpacity < oneP)
             ? EdgeInsets.zero
             : padding ?? EdgeInsets.all(EzConfig.marginVal),
         decoration: buttonShape

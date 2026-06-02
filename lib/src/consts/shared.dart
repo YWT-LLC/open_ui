@@ -83,6 +83,10 @@ const Set<String> rtlLanguageCodes = <String>{
 /// 0.12
 const double focusOpacity = 0.125;
 
+/// One percent
+/// Helpful in many cases, for example whether to show opacity or not
+const double oneP = 0.01;
+
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';
 

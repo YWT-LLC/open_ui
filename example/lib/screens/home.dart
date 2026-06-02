@@ -996,7 +996,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
                 ),
               ),
               if (widget.tip != null) ...<Widget>[
-                EzConfig.rowMargin,
+                if (EzConfig.textBackgroundOpacity > oneP) EzConfig.rowMargin,
                 widget.tip.runtimeType == String
                     ? EzToolTipper(message: widget.tip)
                     : EzToolTipper(richMessage: widget.tip),
