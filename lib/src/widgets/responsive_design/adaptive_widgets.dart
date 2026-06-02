@@ -6,7 +6,6 @@
 import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 // Enum declaration //
 
@@ -53,16 +52,13 @@ class EzScreenSize extends InheritedWidget {
 
 class EzAdaptiveParent extends StatelessWidget {
   /// Think phone thoughts
-  /// Should be tracking [EzConfigProvider.seed] for redraws/rebuilds
-  final Consumer<EzConfigProvider> small;
+  final Widget small;
 
   /// Think tablet thoughts
-  /// Should be tracking [EzConfigProvider.seed] for redraws/rebuilds
-  final Consumer<EzConfigProvider>? medium;
+  final Widget? medium;
 
   /// Think desktop thoughts
-  /// Should be tracking [EzConfigProvider.seed] for redraws/rebuilds
-  final Consumer<EzConfigProvider>? large;
+  final Widget? large;
 
   /// Will be added to all [ScreenSize] calculations
   final double offset;
