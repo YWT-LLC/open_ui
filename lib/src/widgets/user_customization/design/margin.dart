@@ -62,7 +62,7 @@ class EzMarginSetting extends StatelessWidget {
                           style: EzConfig.styles.bodyLarge,
                           textAlign: TextAlign.center,
                         ),
-                        padding: EzInsets.wrap(currValue),
+                        padding: EdgeInsets.all(currValue),
                       ),
                       Container(
                         color: EzConfig.colors.onSurface,

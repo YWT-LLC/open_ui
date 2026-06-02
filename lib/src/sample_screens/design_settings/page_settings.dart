@@ -375,7 +375,7 @@ class _PageTransitionSetting extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: TextButton.styleFrom(
                                   backgroundColor: EzConfig.colors.surfaceContainer,
-                                  padding: EzInsets.wrap(EzConfig.marginVal),
+                                  padding: EdgeInsets.all(EzConfig.marginVal),
                                 ),
                                 onPressed: () async {
                                   if (EzConfig.updateBoth || EzConfig.isDark) {

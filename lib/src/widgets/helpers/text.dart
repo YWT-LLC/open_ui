@@ -12,15 +12,7 @@ class EzTextBackground extends StatelessWidget {
   /// Doesn't have to be [Text]
   final Widget text;
 
-  /// Defaults to [EzInsets.wrap] with [EzConfig.marginVal]
-  final EdgeInsets? padding;
-
-  /// Defaults to [ezRoundEdge]
-  /// moot if [buttonShape] is true
-  final BorderRadiusGeometry? borderRadius;
-
   /// Match the current [EzConfig.buttonShape]
-  /// Takes priority over [borderRadius]
   final bool buttonShape;
 
   /// Uses [EzConfig.textBackgroundOpacity]
@@ -34,8 +26,6 @@ class EzTextBackground extends StatelessWidget {
   const EzTextBackground(
     this.text, {
     super.key,
-    this.padding,
-    this.borderRadius,
     this.buttonShape = false,
     this.baseColor,
     this.backgroundColor,
@@ -43,7 +33,9 @@ class EzTextBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: padding ?? EzInsets.wrap(EzConfig.marginVal),
+        padding: EzConfig.textBackgroundOpacity < 0.01
+            ? EdgeInsets.zero
+            : EdgeInsets.all(EzConfig.marginVal),
         decoration: buttonShape
             ? ShapeDecoration(
                 color: backgroundColor ??
@@ -55,7 +47,7 @@ class EzTextBackground extends StatelessWidget {
                 color: backgroundColor ??
                     (baseColor ?? EzConfig.colors.surfaceContainer)
                         .withValues(alpha: EzConfig.textBackgroundOpacity),
-                borderRadius: borderRadius ?? EzConfig.textRadius,
+                borderRadius: EzConfig.textRadius,
               ),
         child: text,
       );
@@ -69,21 +61,11 @@ class EzText extends StatelessWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [Text.strutStyle] passthrough
-  final StrutStyle? strutStyle;
-
   /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [Text.semanticsLabel] passthrough
   final String? semanticsLabel;
-
-  /// [EzTextBackground.padding] passthrough
-  final EdgeInsets? padding;
-
-  /// [EzTextBackground.borderRadius] passthrough
-  /// moot if [buttonShape] is true
-  final BorderRadiusGeometry? borderRadius;
 
   /// [EzTextBackground.buttonShape] passthrough
   final bool buttonShape;
@@ -100,11 +82,8 @@ class EzText extends StatelessWidget {
     this.data, {
     super.key,
     this.style,
-    this.strutStyle,
     this.textAlign,
     this.semanticsLabel,
-    this.padding,
-    this.borderRadius,
     this.buttonShape = false,
     this.baseColor,
     this.backgroundColor,
@@ -115,12 +94,9 @@ class EzText extends StatelessWidget {
         Text(
           data,
           style: style ?? EzConfig.styles.bodyLarge,
-          strutStyle: strutStyle,
           textAlign: textAlign,
           semanticsLabel: semanticsLabel,
         ),
-        padding: padding,
-        borderRadius: borderRadius,
         buttonShape: buttonShape,
         baseColor: baseColor,
         backgroundColor: backgroundColor,

@@ -101,7 +101,7 @@ class _EzLinkState extends State<EzLink> {
             child: (widget.onTap != null)
                 ? TextButton(
                     style: TextButton.styleFrom(
-                      padding: widget.inline ? EdgeInsets.zero : EzInsets.wrap(EzConfig.marginVal),
+                      padding: widget.inline ? EdgeInsets.zero : EdgeInsets.all(EzConfig.marginVal),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       visualDensity: VisualDensity.compact,
                       minimumSize: Size.zero,
@@ -125,7 +125,7 @@ class _EzLinkState extends State<EzLink> {
                     builder: (_, FollowLink? followLink) => TextButton(
                       style: TextButton.styleFrom(
                         padding:
-                            widget.inline ? EdgeInsets.zero : EzInsets.wrap(EzConfig.marginVal),
+                            widget.inline ? EdgeInsets.zero : EdgeInsets.all(EzConfig.marginVal),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         visualDensity: VisualDensity.compact,
                         minimumSize: Size.zero,
