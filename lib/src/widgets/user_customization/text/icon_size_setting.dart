@@ -158,7 +158,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
             ],
           ),
           buttonShape: true,
-          fitted: true,
+          padding: EdgeInsets.zero,
           baseColor: EzConfig.colors.surface,
           backgroundColor: widget.backgroundColor,
         ),

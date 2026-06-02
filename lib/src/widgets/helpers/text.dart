@@ -12,8 +12,9 @@ class EzTextBackground extends StatelessWidget {
   /// Doesn't have to be [Text]
   final Widget text;
 
-  /// Removes padding when true
-  final bool fitted;
+  /// Optional override
+  /// Defaults to [EdgeInsets.all] w/ [EzConfig.marginVal]
+  final EdgeInsets? padding;
 
   /// Match the current [EzConfig.buttonShape]
   final bool buttonShape;
@@ -32,7 +33,7 @@ class EzTextBackground extends StatelessWidget {
   const EzTextBackground(
     this.text, {
     super.key,
-    this.fitted = false,
+    this.padding,
     this.buttonShape = false,
     this.borderRadius,
     this.baseColor,
@@ -41,9 +42,9 @@ class EzTextBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: (fitted || EzConfig.textBackgroundOpacity < 0.01)
+        padding: EzConfig.textBackgroundOpacity < 0.01
             ? EdgeInsets.zero
-            : EdgeInsets.all(EzConfig.marginVal),
+            : padding ?? EdgeInsets.all(EzConfig.marginVal),
         decoration: buttonShape
             ? ShapeDecoration(
                 color: backgroundColor ??

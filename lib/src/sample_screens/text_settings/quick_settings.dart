@@ -76,7 +76,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
             ),
             backgroundColor: buttonBackground,
             buttonShape: true,
-            fitted: true,
+            padding: EdgeInsets.zero,
           ),
         ),
       ]),
