@@ -429,20 +429,12 @@ import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class ${classCaseAppName}Cache extends EzAppCache {
-  // Construct //
-
   Locale _locale;
   Lang _l10n;
 
   ${classCaseAppName}Cache(Locale locale, $l10nClass l10n)
       : _locale = locale,
         _l10n = l10n;
-
-  // Get //
-
-  Lang get l10n => _l10n;
-
-  // Set //
 
   @override
   void init(_) {}
@@ -456,7 +448,7 @@ class ${classCaseAppName}Cache extends EzAppCache {
   }
 }
 
-Lang get l10n => (EzConfig.appCache! as ${classCaseAppName}Cache).l10n;
+Lang get l10n => (EzConfig.appCache! as ${classCaseAppName}Cache)._l10n;
 """);
 
     // export.dart
