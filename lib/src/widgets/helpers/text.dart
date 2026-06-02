@@ -12,8 +12,14 @@ class EzTextBackground extends StatelessWidget {
   /// Doesn't have to be [Text]
   final Widget text;
 
+  /// Removes padding when true
+  final bool fitted;
+
   /// Match the current [EzConfig.buttonShape]
   final bool buttonShape;
+
+  /// Optionally override [BoxDecoration.borderRadius]
+  final BorderRadiusGeometry? borderRadius;
 
   /// Uses [EzConfig.textBackgroundOpacity]
   /// Defaults to [ColorScheme.surfaceContainer]
@@ -26,14 +32,16 @@ class EzTextBackground extends StatelessWidget {
   const EzTextBackground(
     this.text, {
     super.key,
+    this.fitted = false,
     this.buttonShape = false,
+    this.borderRadius,
     this.baseColor,
     this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: EzConfig.textBackgroundOpacity < 0.01
+        padding: (fitted || EzConfig.textBackgroundOpacity < 0.01)
             ? EdgeInsets.zero
             : EdgeInsets.all(EzConfig.marginVal),
         decoration: buttonShape
@@ -47,7 +55,7 @@ class EzTextBackground extends StatelessWidget {
                 color: backgroundColor ??
                     (baseColor ?? EzConfig.colors.surfaceContainer)
                         .withValues(alpha: EzConfig.textBackgroundOpacity),
-                borderRadius: EzConfig.textRadius,
+                borderRadius: borderRadius ?? EzConfig.textRadius,
               ),
         child: text,
       );
