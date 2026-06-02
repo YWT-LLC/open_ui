@@ -74,8 +74,8 @@ class OpenUIScaffold extends StatelessWidget {
 
     return EzAdaptiveParent(
       small: Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => EzScaffold(
-          seed: config.seed,
+        builder: (_, EzConfigProvider config, __) => Scaffold(
+          key: ValueKey<int>(config.seed),
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, toolbarHeight),
             child: EzAppBar(
@@ -93,11 +93,17 @@ class OpenUIScaffold extends StatelessWidget {
             ),
           ),
           body: body,
-          fabs: <Widget>[
-            updater,
-            if (fabs != null) ...fabs!,
-            ...EzConfig.backFABs(home),
-          ],
+          floatingActionButton: EzCol(
+            children: <Widget>[
+              updater,
+              if (fabs != null) ...fabs!,
+              ...EzConfig.backFABs(home),
+            ],
+          ),
+          floatingActionButtonLocation: EzConfig.isLefty
+              ? FloatingActionButtonLocation.startFloat
+              : FloatingActionButtonLocation.endFloat,
+          resizeToAvoidBottomInset: false,
         ),
       ),
     );
