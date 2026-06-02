@@ -365,10 +365,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
-      sha256: "38d1c268de9097ff59cf0e844ac38759fc78f76836d37edad06fa21e182055a0"
+      sha256: "3854fe5e3bff0b113c658f260b90c95dea17c92db0f2addeac2e343dd9969785"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.34"
+    version: "2.0.35"
   flutter_secure_storage:
     dependency: transitive
     description:
@@ -447,10 +447,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "92d8cee7c57dff0a6c409c05597b460002434eccf7424a712283225b3962d03f"
+      sha256: "5922b2861e2235a3504896f0d6fa07d84141b480cf52eecd2f42cd25585a9e8a"
       url: "https://pub.dev"
     source: hosted
-    version: "17.2.3"
+    version: "17.3.0"
   google_fonts:
     dependency: transitive
     description:
@@ -519,10 +519,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_android
-      sha256: "695b6a97b6a1de3525d2c4747302ee727a19910294d8161527d67aaea85e36af"
+      sha256: "6f3a1995eafb000333174fae92202622033b0ee7fd917a6cd3730295264df84a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.13+18"
+    version: "0.8.13+19"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -1100,10 +1100,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "8a46fcbcd5b865e87053fc5096101d12f56f3fe352c42aa621e7fec9290054b7"
+      sha256: b413d49b73867ac08dd2f9890efd3cc11f2a0e577618d50843440a1fb3776c32
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.31"
+    version: "6.3.32"
   url_launcher_ios:
     dependency: transitive
     description:
