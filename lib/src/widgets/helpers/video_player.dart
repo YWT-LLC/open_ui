@@ -14,6 +14,9 @@ class EzVideoPlayer extends StatefulWidget {
   /// [VideoPlayerController] passthrough
   final VideoPlayerController controller;
 
+  /// [String] label for screen readers
+  final String semantics;
+
   /// [AspectRatio.aspectRatio] for the video
   final double aspectRatio;
 
@@ -23,14 +26,17 @@ class EzVideoPlayer extends StatefulWidget {
   /// [BoxConstraints.maxWidth] for the video
   final double maxWidth;
 
-  /// [String] label for screen readers
-  final String semantics;
+  /// Whether the video player is in fullscreen mode
+  final bool fullscreen;
 
   /// Whether the video has captions available
   final bool hasCaptions;
 
   /// Seconds to skip forward/backward on arrow key press
   final int skipTime;
+
+  /// Initial playback speed
+  final double speed;
 
   /// Include volume controls
   final bool hasAudio;
@@ -51,12 +57,14 @@ class EzVideoPlayer extends StatefulWidget {
   const EzVideoPlayer({
     super.key,
     required this.controller,
+    required this.semantics,
     required this.aspectRatio,
     required this.maxHeight,
     required this.maxWidth,
-    required this.semantics,
+    this.fullscreen = false,
     this.hasCaptions = false,
     this.skipTime = 10,
+    this.speed = 1.0,
     this.hasAudio = true,
     this.startingVolume = 0.0,
     this.mobileDelay = 3,
@@ -75,7 +83,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
   bool hovering = false;
   Timer? mobileHover;
 
-  double currSpeed = 1.0;
+  late double currSpeed = widget.speed;
 
   double? savedVolume;
   Timer? showVolume;
@@ -146,6 +154,65 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
       ? Duration(milliseconds: videoLength)
       : Duration(milliseconds: (videoLength * completion).round());
 
+  Future<void> enterFullscreen() async {
+    await pause();
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+    if (widget.aspectRatio >= 1.0) {
+      await SystemChrome.setPreferredOrientations(
+        const <DeviceOrientation>[
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+        ],
+      );
+    } else {
+      await SystemChrome.setPreferredOrientations(
+        const <DeviceOrientation>[DeviceOrientation.portraitUp],
+      );
+    }
+
+    if (mounted) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => Scaffold(
+            backgroundColor: Colors.black,
+            body: SafeArea(
+              child: Center(
+                child: EzVideoPlayer(
+                  controller: widget.controller,
+                  semantics: widget.semantics,
+                  aspectRatio: widget.aspectRatio,
+                  maxHeight: double.infinity,
+                  maxWidth: double.infinity,
+                  fullscreen: true,
+                  hasCaptions: widget.hasCaptions,
+                  skipTime: widget.skipTime,
+                  speed: currSpeed,
+                  hasAudio: widget.hasAudio,
+                  startingVolume: widget.controller.value.volume,
+                  mobileDelay: widget.mobileDelay,
+                  autoPlay: false,
+                  autoLoop: widget.autoLoop,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    await SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.edgeToEdge); // TODO: whatever the base app is using
+    await SystemChrome.setPreferredOrientations(
+      const <DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ], // TODO: whatever the base app is using
+    );
+  }
+
   // Init //
 
   @override
@@ -156,12 +223,13 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
   Future<void> setupVideo() async {
     await widget.controller.setVolume(widget.startingVolume);
-    await widget.controller.setPlaybackSpeed(1.0);
+    await widget.controller.setPlaybackSpeed(widget.speed);
     await widget.controller.setLooping(widget.autoLoop);
 
     if (!widget.controller.value.isInitialized) {
       await widget.controller.initialize();
     }
+
     if (widget.autoPlay) await play(widget.controller.value);
   }
 
@@ -231,6 +299,16 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                     return KeyEventResult.handled;
                   } else {
                     return KeyEventResult.ignored;
+                  }
+
+                // F -> enter fullscreen (if not already)
+                case LogicalKeyboardKey.keyF:
+                  if (!widget.fullscreen) enterFullscreen();
+
+                // Esc -> exit fullscreen (if relevant)
+                case LogicalKeyboardKey.escape:
+                  if (widget.fullscreen) {
+                    Navigator.of(context).pop(widget.controller.value.position);
                   }
 
                 default:
@@ -584,6 +662,16 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ],
                                     ),
                                   ),
+
+                                // FullScreen
+                                EzIconButton(
+                                  icon: EzIcon(
+                                      widget.fullscreen ? Icons.fullscreen_exit : Icons.fullscreen),
+                                  onPressed: () async => widget.fullscreen
+                                      ? Navigator.of(context).pop(widget.controller.value.position)
+                                      : await enterFullscreen(),
+                                  tooltip: 'Fullscreen', // TODO: l10n
+                                ),
                               ],
                             ),
                           ),
