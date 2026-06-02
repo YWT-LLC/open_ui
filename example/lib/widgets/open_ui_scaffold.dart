@@ -7,7 +7,6 @@ import '../utils/export.dart';
 import './export.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class OpenUIScaffold extends StatelessWidget {
@@ -73,32 +72,29 @@ class OpenUIScaffold extends StatelessWidget {
     // Return the build //
 
     return EzAdaptiveParent(
-      small: Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => EzScaffold(
-          seed: config.seed,
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, toolbarHeight),
-            child: EzAppBar(
-              height: toolbarHeight,
-              leading: running
+      small: EzScaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, toolbarHeight),
+          child: EzAppBar(
+            height: toolbarHeight,
+            leading: running
+                ? const SizedBox.shrink()
+                : (EzConfig.isLefty ? options : const EzBackAction()),
+            leadingWidth: toolbarHeight,
+            title: Text(title, textAlign: TextAlign.center),
+            actions: <Widget>[
+              running
                   ? const SizedBox.shrink()
-                  : (EzConfig.isLefty ? options : const EzBackAction()),
-              leadingWidth: toolbarHeight,
-              title: Text(title, textAlign: TextAlign.center),
-              actions: <Widget>[
-                running
-                    ? const SizedBox.shrink()
-                    : (EzConfig.isLefty ? const EzBackAction() : options)
-              ],
-            ),
+                  : (EzConfig.isLefty ? const EzBackAction() : options)
+            ],
           ),
-          body: body,
-          fabs: <Widget>[
-            updater,
-            if (fabs != null) ...fabs!,
-            ...EzConfig.backFABs(home),
-          ],
         ),
+        body: body,
+        fabs: <Widget>[
+          updater,
+          if (fabs != null) ...fabs!,
+          ...EzConfig.backFABs(home),
+        ],
       ),
     );
   }
