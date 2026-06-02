@@ -8,11 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzScaffold extends Scaffold {
-  final int seed;
   final List<Widget> fabs;
 
   EzScaffold({
-    required this.seed,
     super.appBar,
     super.drawer,
     super.endDrawer,
@@ -20,7 +18,7 @@ class EzScaffold extends Scaffold {
     super.backgroundColor,
     required this.fabs,
   }) : super(
-          key: ValueKey<int>(seed),
+          key: ValueKey<int>(EzConfig.seed),
           floatingActionButton: EzCol(children: fabs),
           floatingActionButtonLocation: EzConfig.isLefty
               ? FloatingActionButtonLocation.startFloat
