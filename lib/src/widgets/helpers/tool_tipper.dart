@@ -15,9 +15,17 @@ class EzToolTipper extends StatelessWidget {
   /// [Tooltip.richMessage] passthrough
   final InlineSpan? richMessage;
 
+  /// Adds [EzConfig.marginVal] spacing to the left && right
+  /// When the [EzConfig.textBackgroundOpacity] is < 0.01
+  final bool autoPad;
+
   /// Classic question mark tool tip
-  const EzToolTipper({super.key, this.message, this.richMessage})
-      : assert(((message == null) != (richMessage == null)),
+  const EzToolTipper({
+    super.key,
+    this.message,
+    this.richMessage,
+    this.autoPad = true,
+  }) : assert(((message == null) != (richMessage == null)),
             'Either message or richMessage must be provided, but not both');
 
   @override
@@ -75,17 +83,22 @@ class EzToolTipper extends StatelessWidget {
           }
           isTooltipVisible = !isTooltipVisible;
         },
-        child: Tooltip(
-          waitDuration: Duration.zero,
-          exitDuration: const Duration(milliseconds: 500),
-          triggerMode: TooltipTriggerMode.tap,
-          enableTapToDismiss: false,
-          excludeFromSemantics: true,
-          message: message,
-          richMessage: richMessage,
-          child: EzIcon(
-            Icons.help_outline,
-            color: EzConfig.colors.outline,
+        child: Padding(
+          padding: (autoPad && EzConfig.textBackgroundOpacity < 0.01)
+              ? EdgeInsets.symmetric(horizontal: EzConfig.marginVal)
+              : EdgeInsets.zero,
+          child: Tooltip(
+            waitDuration: Duration.zero,
+            exitDuration: const Duration(milliseconds: 500),
+            triggerMode: TooltipTriggerMode.tap,
+            enableTapToDismiss: false,
+            excludeFromSemantics: true,
+            message: message,
+            richMessage: richMessage,
+            child: EzIcon(
+              Icons.help_outline,
+              color: EzConfig.colors.outline,
+            ),
           ),
         ),
       ),
