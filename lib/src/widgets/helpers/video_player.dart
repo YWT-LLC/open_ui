@@ -158,8 +158,8 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
   Future<void> enterFullscreen() async {
     await pause();
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     if (widget.aspectRatio >= 1.0) {
       await SystemChrome.setPreferredOrientations(
         const <DeviceOrientation>[
@@ -206,15 +206,15 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     if (mounted) setState(() => twinRunning = false);
 
     await SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.edgeToEdge); // TODO: whatever the base app is using
-    await SystemChrome.setPreferredOrientations(
-      const <DeviceOrientation>[
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight,
-      ], // TODO: whatever the base app is using
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
     );
+    await SystemChrome.setPreferredOrientations(EzConfig.orientations);
+  }
+
+  Future<void> exitFullscreen() async {
+    await pause();
+    if (mounted) Navigator.of(context).pop(widget.controller.value.position);
   }
 
   // Init //
@@ -311,9 +311,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
                 // Esc -> exit fullscreen (if relevant)
                 case LogicalKeyboardKey.escape:
-                  if (widget.fullscreen) {
-                    Navigator.of(context).pop(widget.controller.value.position);
-                  }
+                  if (widget.fullscreen) exitFullscreen();
 
                 default:
                   return KeyEventResult.ignored;
@@ -672,7 +670,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   icon: EzIcon(
                                       widget.fullscreen ? Icons.fullscreen_exit : Icons.fullscreen),
                                   onPressed: () async => widget.fullscreen
-                                      ? Navigator.of(context).pop(widget.controller.value.position)
+                                      ? await exitFullscreen()
                                       : await enterFullscreen(),
                                   tooltip: EzConfig.l10n.gFullscreen,
                                 ),
