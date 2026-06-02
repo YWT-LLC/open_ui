@@ -31,7 +31,7 @@ class QuickTextSettings extends StatefulWidget {
 class _QuickTextSettingsState extends State<QuickTextSettings> {
   // Gather the build data //
 
-  late double backOpacity = EzConfig.textBackgroundOpacity;
+  double backOpacity = EzConfig.textBackgroundOpacity;
 
   late Color buttonBackground = EzConfig.colors.surface.withValues(alpha: backOpacity);
   late Color textBackground = EzConfig.colors.surfaceContainer.withValues(alpha: backOpacity);
@@ -40,7 +40,6 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final EdgeInsets colMargin = EzInsets.col(EzConfig.marginVal);
     final EdgeInsets wrapPadding = EdgeInsets.only(
       left: EzConfig.spacing / 2,
       right: EzConfig.spacing / 2,
@@ -77,81 +76,63 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
             ),
             backgroundColor: buttonBackground,
             buttonShape: true,
-            padding: EdgeInsets.zero,
+            fitted: true,
           ),
         ),
       ]),
+      EzConfig.spacer,
 
-      EzConfig.spacer,
       // Display preview
-      EzTextBackground(
-        Text(
-          EzConfig.l10n.tsDisplayP1 + EzConfig.l10n.tsDisplayLink + EzConfig.l10n.tsDisplayP2,
-          textAlign: TextAlign.center,
-          style: widget.displayProvider.value,
-        ),
+      EzText(
+        EzConfig.l10n.tsDisplayP1 + EzConfig.l10n.tsDisplayLink + EzConfig.l10n.tsDisplayP2,
+        textAlign: TextAlign.center,
+        style: widget.displayProvider.value,
         backgroundColor: textBackground,
-        padding: colMargin,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Headline preview
-      EzTextBackground(
-        Text(
-          EzConfig.l10n.tsHeadlineP1 + EzConfig.l10n.tsHeadlineLink + EzConfig.l10n.tsHeadlineP2,
-          textAlign: TextAlign.center,
-          style: widget.headlineProvider.value,
-        ),
+      EzText(
+        EzConfig.l10n.tsHeadlineP1 + EzConfig.l10n.tsHeadlineLink + EzConfig.l10n.tsHeadlineP2,
+        textAlign: TextAlign.center,
+        style: widget.headlineProvider.value,
         backgroundColor: textBackground,
-        padding: colMargin,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Title preview
-      EzTextBackground(
-        Text(
-          EzConfig.l10n.tsTitleP1 + EzConfig.l10n.tsTitleLink,
-          textAlign: TextAlign.center,
-          style: widget.titleProvider.value,
-        ),
+      EzText(
+        EzConfig.l10n.tsTitleP1 + EzConfig.l10n.tsTitleLink,
+        textAlign: TextAlign.center,
+        style: widget.titleProvider.value,
         backgroundColor: textBackground,
-        padding: colMargin,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Body preview
-      EzTextBackground(
-        Text(
-          EzConfig.l10n.tsBodyP1 + EzConfig.l10n.tsBodyLink + EzConfig.l10n.tsBodyP2,
-          textAlign: TextAlign.center,
-          style: widget.bodyProvider.value,
-        ),
+      EzText(
+        EzConfig.l10n.tsBodyP1 + EzConfig.l10n.tsBodyLink + EzConfig.l10n.tsBodyP2,
+        textAlign: TextAlign.center,
+        style: widget.bodyProvider.value,
         backgroundColor: textBackground,
-        padding: colMargin,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Label preview
-      EzTextBackground(
-        Text(
-          EzConfig.l10n.tsLabelP1 + EzConfig.l10n.tsLabelLink + EzConfig.l10n.tsLabelP2,
-          textAlign: TextAlign.center,
-          style: widget.labelProvider.value,
-        ),
+      EzText(
+        EzConfig.l10n.tsLabelP1 + EzConfig.l10n.tsLabelLink + EzConfig.l10n.tsLabelP2,
+        textAlign: TextAlign.center,
+        style: widget.labelProvider.value,
         backgroundColor: textBackground,
-        padding: colMargin,
       ),
       EzConfig.divider,
 
       // Text background opacity
-      EzTextBackground(
-        Text(
-          EzConfig.l10n.tsTextBackground,
-          style: widget.labelProvider.value,
-          textAlign: TextAlign.center,
-        ),
+      EzText(
+        EzConfig.l10n.tsTextBackground,
+        style: widget.labelProvider.value,
+        textAlign: TextAlign.center,
         backgroundColor: textBackground,
-        padding: colMargin,
       ),
       ConstrainedBox(
         constraints: BoxConstraints(maxWidth: ScreenSize.small.size),

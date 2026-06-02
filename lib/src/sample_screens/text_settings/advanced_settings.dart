@@ -441,7 +441,6 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final EdgeInsets colMargin = EzInsets.col(EzConfig.marginVal);
     const EzSwapSpacer swapSpacer = EzSwapSpacer(breakpoint: ScreenSize.medium);
 
     // Return the build //
@@ -521,120 +520,100 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
       EzConfig.separator,
 
       // Display preview
-      EzTextBackground(
-        EzRichText(
-          <InlineSpan>[
-            EzPlainText(text: EzConfig.l10n.tsDisplayP1),
-            EzInlineLink(
-              EzConfig.l10n.tsDisplayLink,
-              style: widget.displayProvider.value,
-              textAlign: TextAlign.center,
-              onTap: () => setState(() => editing = EzTextSettingType.display),
-              hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsDisplay.toLowerCase()),
-            ),
-            EzPlainText(text: EzConfig.l10n.tsDisplayP2),
-          ],
-          textBackground: false,
-          style: widget.displayProvider.value,
-          textAlign: TextAlign.center,
-        ),
+      EzRichText(
+        <InlineSpan>[
+          EzPlainText(text: EzConfig.l10n.tsDisplayP1),
+          EzInlineLink(
+            EzConfig.l10n.tsDisplayLink,
+            style: widget.displayProvider.value,
+            textAlign: TextAlign.center,
+            onTap: () => setState(() => editing = EzTextSettingType.display),
+            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsDisplay.toLowerCase()),
+          ),
+          EzPlainText(text: EzConfig.l10n.tsDisplayP2),
+        ],
+        style: widget.displayProvider.value,
+        textAlign: TextAlign.center,
         baseColor: EzConfig.colors.surface,
-        padding: colMargin,
         borderRadius: EzConfig.textRadius,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Headline preview
-      EzTextBackground(
-        EzRichText(
-          <InlineSpan>[
-            EzPlainText(text: EzConfig.l10n.tsHeadlineP1),
-            EzInlineLink(
-              EzConfig.l10n.tsHeadlineLink,
-              style: widget.headlineProvider.value,
-              textAlign: TextAlign.center,
-              onTap: () => setState(() => editing = EzTextSettingType.headline),
-              hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsHeadline.toLowerCase()),
-            ),
-            EzPlainText(text: EzConfig.l10n.tsHeadlineP2),
-          ],
-          textBackground: false,
-          style: widget.headlineProvider.value,
-          textAlign: TextAlign.center,
-        ),
+      EzRichText(
+        <InlineSpan>[
+          EzPlainText(text: EzConfig.l10n.tsHeadlineP1),
+          EzInlineLink(
+            EzConfig.l10n.tsHeadlineLink,
+            style: widget.headlineProvider.value,
+            textAlign: TextAlign.center,
+            onTap: () => setState(() => editing = EzTextSettingType.headline),
+            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsHeadline.toLowerCase()),
+          ),
+          EzPlainText(text: EzConfig.l10n.tsHeadlineP2),
+        ],
+        style: widget.headlineProvider.value,
+        textAlign: TextAlign.center,
         baseColor: EzConfig.colors.surface,
-        padding: colMargin,
         borderRadius: EzConfig.textRadius,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Title preview
-      EzTextBackground(
-        EzRichText(
-          <InlineSpan>[
-            EzPlainText(text: EzConfig.l10n.tsTitleP1),
-            EzInlineLink(
-              EzConfig.l10n.tsTitleLink,
-              style: widget.titleProvider.value,
-              textAlign: TextAlign.center,
-              onTap: () => setState(() => editing = EzTextSettingType.title),
-              hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsTitle.toLowerCase()),
-            ),
-          ],
-          textBackground: false,
-          style: widget.titleProvider.value,
-          textAlign: TextAlign.center,
-        ),
+      EzRichText(
+        <InlineSpan>[
+          EzPlainText(text: EzConfig.l10n.tsTitleP1),
+          EzInlineLink(
+            EzConfig.l10n.tsTitleLink,
+            style: widget.titleProvider.value,
+            textAlign: TextAlign.center,
+            onTap: () => setState(() => editing = EzTextSettingType.title),
+            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsTitle.toLowerCase()),
+          ),
+        ],
+        style: widget.titleProvider.value,
+        textAlign: TextAlign.center,
         baseColor: EzConfig.colors.surface,
-        padding: colMargin,
         borderRadius: EzConfig.textRadius,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Body preview
-      EzTextBackground(
-        EzRichText(
-          <InlineSpan>[
-            EzPlainText(text: EzConfig.l10n.tsBodyP1),
-            EzInlineLink(
-              EzConfig.l10n.tsBodyLink,
-              style: widget.bodyProvider.value,
-              textAlign: TextAlign.center,
-              onTap: () => setState(() => editing = EzTextSettingType.body),
-              hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsBody.toLowerCase()),
-            ),
-            EzPlainText(text: EzConfig.l10n.tsBodyP2),
-          ],
-          textBackground: false,
-          style: widget.bodyProvider.value,
-          textAlign: TextAlign.center,
-        ),
+      EzRichText(
+        <InlineSpan>[
+          EzPlainText(text: EzConfig.l10n.tsBodyP1),
+          EzInlineLink(
+            EzConfig.l10n.tsBodyLink,
+            style: widget.bodyProvider.value,
+            textAlign: TextAlign.center,
+            onTap: () => setState(() => editing = EzTextSettingType.body),
+            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsBody.toLowerCase()),
+          ),
+          EzPlainText(text: EzConfig.l10n.tsBodyP2),
+        ],
+        style: widget.bodyProvider.value,
+        textAlign: TextAlign.center,
         baseColor: EzConfig.colors.surface,
-        padding: colMargin,
         borderRadius: EzConfig.textRadius,
       ),
-      EzConfig.spacer,
+      EzConfig.centerLine,
 
       // Label preview
-      EzTextBackground(
-        EzRichText(
-          <InlineSpan>[
-            EzPlainText(text: EzConfig.l10n.tsLabelP1),
-            EzInlineLink(
-              EzConfig.l10n.tsLabelLink,
-              style: widget.labelProvider.value,
-              textAlign: TextAlign.center,
-              onTap: () => setState(() => editing = EzTextSettingType.label),
-              hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsLabel.toLowerCase()),
-            ),
-            EzPlainText(text: EzConfig.l10n.tsLabelP2),
-          ],
-          textBackground: false,
-          style: widget.labelProvider.value,
-          textAlign: TextAlign.center,
-        ),
+      EzRichText(
+        <InlineSpan>[
+          EzPlainText(text: EzConfig.l10n.tsLabelP1),
+          EzInlineLink(
+            EzConfig.l10n.tsLabelLink,
+            style: widget.labelProvider.value,
+            textAlign: TextAlign.center,
+            onTap: () => setState(() => editing = EzTextSettingType.label),
+            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsLabel.toLowerCase()),
+          ),
+          EzPlainText(text: EzConfig.l10n.tsLabelP2),
+        ],
+        style: widget.labelProvider.value,
+        textAlign: TextAlign.center,
         baseColor: EzConfig.colors.surface,
-        padding: colMargin,
         borderRadius: EzConfig.textRadius,
       ),
 
