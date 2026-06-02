@@ -40,12 +40,3 @@ TargetPlatform getHostPlatform() {
     return TargetPlatform.linux;
   }
 }
-
-/// Request/exit a fullscreen window
-Future<void> toggleFullscreen(bool isFull) async {
-  if (isFull) {
-    document.exitFullscreen();
-  } else {
-    document.documentElement?.requestFullscreen();
-  }
-}

@@ -273,10 +273,6 @@ Widget ezFlag(Locale locale, {bool inDistress = false}) {
   return inDistress ? Transform.rotate(angle: pi, child: flag) : flag;
 }
 
-/// [TargetPlatform] aware helper that will request/exit a fullscreen window
-/// Alias exists for [kIsWeb] support
-Future<void> ezFullscreenToggle(bool isFull) => toggleFullscreen(isFull);
-
 /// Scale Widgets based on IconSize
 /// For Widgets that don't do it automatically, like [Radio] and [Checkbox]
 double ezIconRatio() => max(
