@@ -17,6 +17,7 @@ class EzScaffold extends Scaffold {
     super.drawer,
     super.endDrawer,
     required super.body,
+    super.backgroundColor,
     required this.fabs,
   }) : super(
           key: ValueKey<int>(seed),
