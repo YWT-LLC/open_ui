@@ -156,7 +156,8 @@ class EFUILangDe extends EFUILang {
   String get gCenterReset => 'Mitte gedrückt halten zum Zurücksetzen';
 
   @override
-  String get gLoadingAnim => 'Lädt. Das Empathetic-Logo dreht sich wie eine Sanduhr.';
+  String get gLoadingAnim =>
+      'Lädt. Das Empathetic-Logo dreht sich wie eine Sanduhr.';
 
   @override
   String get gPlay => 'Abspielen';
@@ -192,10 +193,12 @@ class EFUILangDe extends EFUILang {
   String get gUpdates => 'Updates verfügbar';
 
   @override
-  String get gHardRefresh => 'Bitte die Seite komplett neu laden...\nStrg + Umschalt + R';
+  String get gHardRefresh =>
+      'Bitte die Seite komplett neu laden...\nStrg + Umschalt + R';
 
   @override
-  String get gHardRefreshMac => 'Bitte die Seite komplett neu laden...\nCmd + Umschalt + R';
+  String get gHardRefreshMac =>
+      'Bitte die Seite komplett neu laden...\nCmd + Umschalt + R';
 
   @override
   String get gHardRefreshMobile => 'Bitte die Seite im Browser-Menü neu laden.';
@@ -270,19 +273,22 @@ class EFUILangDe extends EFUILang {
   String get gResetAll => 'Alles zurücksetzen';
 
   @override
-  String get gUndoWarn1 => 'Kann nicht automatisch rückgängig gemacht werden.\n';
+  String get gUndoWarn1 =>
+      'Kann nicht automatisch rückgängig gemacht werden.\n';
 
   @override
   String get gSave => 'Speichern';
 
   @override
-  String get gSaveHint => 'Aktivieren, um eine JSON-Konfigurationsdatei zu speichern.';
+  String get gSaveHint =>
+      'Aktivieren, um eine JSON-Konfigurationsdatei zu speichern.';
 
   @override
   String get gSwitchHint => 'Schalter umlegen';
 
   @override
-  String get gUndoWarn2 => ' Sie Ihre aktuelle Konfiguration, um sie manuell wiederherzustellen.';
+  String get gUndoWarn2 =>
+      ' Sie Ihre aktuelle Konfiguration, um sie manuell wiederherzustellen.';
 
   @override
   String get gValue => 'Wert';
@@ -303,10 +309,12 @@ class EFUILangDe extends EFUILang {
   String get ssNavHint => 'Einstellungsseite öffnen';
 
   @override
-  String get ssRestartReminder => 'App schließen und neu starten, um die Änderungen anzuwenden.';
+  String get ssRestartReminder =>
+      'App schließen und neu starten, um die Änderungen anzuwenden.';
 
   @override
-  String get ssRestartReminderWeb => 'Seite neu laden, um die Änderungen anzuwenden.';
+  String get ssRestartReminderWeb =>
+      'Seite neu laden, um die Änderungen anzuwenden.';
 
   @override
   String get ssHaveFun => 'Viel Spaß!';
@@ -401,7 +409,8 @@ class EFUILangDe extends EFUILang {
   String get ssResetAll => 'Alle Einstellungen zurücksetzen?';
 
   @override
-  String get ssResetAppearance => 'Alle Erscheinungsbild-Einstellungen zurücksetzen?';
+  String get ssResetAppearance =>
+      'Alle Erscheinungsbild-Einstellungen zurücksetzen?';
 
   @override
   String get ssResetBoth => 'Beide Design-Modi zurücksetzen';
@@ -476,7 +485,8 @@ class EFUILangDe extends EFUILang {
   String get csPickerTitle => 'Farbe auswählen';
 
   @override
-  String get csPickerHint => 'Farbauswahl öffnen. Für weitere Optionen gedrückt halten.';
+  String get csPickerHint =>
+      'Farbauswahl öffnen. Für weitere Optionen gedrückt halten.';
 
   @override
   String get csRecommended => 'Kontrast-Empfehlung verwenden?';

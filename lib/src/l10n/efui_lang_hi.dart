@@ -193,13 +193,16 @@ class EFUILangHi extends EFUILang {
   String get gUpdates => 'अपडेट उपलब्ध हैं';
 
   @override
-  String get gHardRefresh => 'कृपया पेज को हार्ड रिफ्रेश करें...\nCtrl + Shift + R';
+  String get gHardRefresh =>
+      'कृपया पेज को हार्ड रिफ्रेश करें...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac => 'कृपया पेज को हार्ड रिफ्रेश करें...\nCommand + Shift + R';
+  String get gHardRefreshMac =>
+      'कृपया पेज को हार्ड रिफ्रेश करें...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile => 'कृपया ब्राउज़र मेनू में पेज को रीफ्रेश करें।';
+  String get gHardRefreshMobile =>
+      'कृपया ब्राउज़र मेनू में पेज को रीफ्रेश करें।';
 
   @override
   String get gEnterURL => 'URL दर्ज करें';
@@ -283,7 +286,8 @@ class EFUILangHi extends EFUILang {
   String get gSwitchHint => 'स्विच फ़्लिप करें';
 
   @override
-  String get gUndoWarn2 => ' अपनी वर्तमान कॉन्फ़िग को मैन्युअल रूप से पुनर्स्थापित करने के लिए।';
+  String get gUndoWarn2 =>
+      ' अपनी वर्तमान कॉन्फ़िग को मैन्युअल रूप से पुनर्स्थापित करने के लिए।';
 
   @override
   String get gValue => 'मान';
@@ -308,7 +312,8 @@ class EFUILangHi extends EFUILang {
       'अपने बदलावों को लागू करने के लिए ऐप को बंद करें और फिर से खोलें।';
 
   @override
-  String get ssRestartReminderWeb => 'अपने बदलावों को लागू करने के लिए पेज को रीलोड/रीफ्रेश करें।';
+  String get ssRestartReminderWeb =>
+      'अपने बदलावों को लागू करने के लिए पेज को रीलोड/रीफ्रेश करें।';
 
   @override
   String get ssHaveFun => 'मज़े करें!';
@@ -403,7 +408,8 @@ class EFUILangHi extends EFUILang {
   String get ssResetAll => 'क्या सभी सेटिंग्स रीसेट करें?';
 
   @override
-  String get ssResetAppearance => 'क्या सभी दिखावट (appearance) सेटिंग्स रीसेट करें?';
+  String get ssResetAppearance =>
+      'क्या सभी दिखावट (appearance) सेटिंग्स रीसेट करें?';
 
   @override
   String get ssResetBoth => 'दोनों थीम मोड रीसेट करें';
@@ -415,7 +421,8 @@ class EFUILangHi extends EFUILang {
   String get csSchemeBase => 'छवि से\nस्कीम बनाएं';
 
   @override
-  String get csFromImage => 'छवि से एक रंग योजना (color scheme) उत्पन्न की जाएगी।';
+  String get csFromImage =>
+      'छवि से एक रंग योजना (color scheme) उत्पन्न की जाएगी।';
 
   @override
   String get csMonoChrome => 'मोनोक्रोम स्कीम का उपयोग करें';
@@ -478,7 +485,8 @@ class EFUILangHi extends EFUILang {
   String get csPickerTitle => 'रंग चुनें';
 
   @override
-  String get csPickerHint => 'कलर पिकर खोलें। अधिक विकल्पों के लिए देर तक दबाएं।';
+  String get csPickerHint =>
+      'कलर पिकर खोलें। अधिक विकल्पों के लिए देर तक दबाएं।';
 
   @override
   String get csRecommended => 'क्या कंट्रास्ट अनुशंसा का उपयोग करें?';

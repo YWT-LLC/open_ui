@@ -156,7 +156,8 @@ class EFUILangEn extends EFUILang {
   String get gCenterReset => 'Hold center to reset';
 
   @override
-  String get gLoadingAnim => 'Loading. The Empathetic logo animated as a spinning hourglass.';
+  String get gLoadingAnim =>
+      'Loading. The Empathetic logo animated as a spinning hourglass.';
 
   @override
   String get gPlay => 'Play';
@@ -192,13 +193,16 @@ class EFUILangEn extends EFUILang {
   String get gUpdates => 'Updates available';
 
   @override
-  String get gHardRefresh => 'Please hard refresh the page...\nCtrl + Shift + R';
+  String get gHardRefresh =>
+      'Please hard refresh the page...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac => 'Please hard refresh the page...\nCommand + Shift + R';
+  String get gHardRefreshMac =>
+      'Please hard refresh the page...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile => 'Please refresh the page in the browser menu.';
+  String get gHardRefreshMobile =>
+      'Please refresh the page in the browser menu.';
 
   @override
   String get gEnterURL => 'Enter URL';
@@ -303,10 +307,12 @@ class EFUILangEn extends EFUILang {
   String get ssNavHint => 'Open the settings page';
 
   @override
-  String get ssRestartReminder => 'Close and reopen the app to apply your changes.';
+  String get ssRestartReminder =>
+      'Close and reopen the app to apply your changes.';
 
   @override
-  String get ssRestartReminderWeb => 'Reload/refresh the page to apply your changes.';
+  String get ssRestartReminderWeb =>
+      'Reload/refresh the page to apply your changes.';
 
   @override
   String get ssHaveFun => 'Have fun!';
@@ -476,7 +482,8 @@ class EFUILangEn extends EFUILang {
   String get csPickerTitle => 'Pick a color';
 
   @override
-  String get csPickerHint => 'Open a color picker. Long press for more options.';
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
 
   @override
   String get csRecommended => 'Use contrast recommendation?';
@@ -931,7 +938,8 @@ class EFUILangEnUs extends EFUILangEn {
   String get gCenterReset => 'Hold center to reset';
 
   @override
-  String get gLoadingAnim => 'Loading. The Empathetic logo animated as a spinning hourglass.';
+  String get gLoadingAnim =>
+      'Loading. The Empathetic logo animated as a spinning hourglass.';
 
   @override
   String get gPlay => 'Play';
@@ -967,13 +975,16 @@ class EFUILangEnUs extends EFUILangEn {
   String get gUpdates => 'Updates available';
 
   @override
-  String get gHardRefresh => 'Please hard refresh the page...\nCtrl + Shift + R';
+  String get gHardRefresh =>
+      'Please hard refresh the page...\nCtrl + Shift + R';
 
   @override
-  String get gHardRefreshMac => 'Please hard refresh the page...\nCommand + Shift + R';
+  String get gHardRefreshMac =>
+      'Please hard refresh the page...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile => 'Please refresh the page in the browser menu.';
+  String get gHardRefreshMobile =>
+      'Please refresh the page in the browser menu.';
 
   @override
   String get gEnterURL => 'Enter URL';
@@ -1078,10 +1089,12 @@ class EFUILangEnUs extends EFUILangEn {
   String get ssNavHint => 'Open the settings page';
 
   @override
-  String get ssRestartReminder => 'Close and reopen the app to apply your changes.';
+  String get ssRestartReminder =>
+      'Close and reopen the app to apply your changes.';
 
   @override
-  String get ssRestartReminderWeb => 'Reload/refresh the page to apply your changes.';
+  String get ssRestartReminderWeb =>
+      'Reload/refresh the page to apply your changes.';
 
   @override
   String get ssHaveFun => 'Have fun!';
@@ -1251,7 +1264,8 @@ class EFUILangEnUs extends EFUILangEn {
   String get csPickerTitle => 'Pick a color';
 
   @override
-  String get csPickerHint => 'Open a color picker. Long press for more options.';
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
 
   @override
   String get csRecommended => 'Use contrast recommendation?';

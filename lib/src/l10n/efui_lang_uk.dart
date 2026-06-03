@@ -201,7 +201,8 @@ class EFUILangUk extends EFUILang {
       'Будь ласка, виконайте жорстке оновлення сторінки...\nCommand + Shift + R';
 
   @override
-  String get gHardRefreshMobile => 'Будь ласка, оновіть сторінку в меню браузера.';
+  String get gHardRefreshMobile =>
+      'Будь ласка, оновіть сторінку в меню браузера.';
 
   @override
   String get gEnterURL => 'Введіть URL';
@@ -285,7 +286,8 @@ class EFUILangUk extends EFUILang {
   String get gSwitchHint => 'Перемкнути';
 
   @override
-  String get gUndoWarn2 => ' вашу поточну конфігурацію, щоб відновити її вручну.';
+  String get gUndoWarn2 =>
+      ' вашу поточну конфігурацію, щоб відновити її вручну.';
 
   @override
   String get gValue => 'Значення';
@@ -306,10 +308,12 @@ class EFUILangUk extends EFUILang {
   String get ssNavHint => 'Відкрити сторінку налаштувань';
 
   @override
-  String get ssRestartReminder => 'Закрийте та знову відкрийте програму, щоб застосувати зміни.';
+  String get ssRestartReminder =>
+      'Закрийте та знову відкрийте програму, щоб застосувати зміни.';
 
   @override
-  String get ssRestartReminderWeb => 'Перезавантажте/оновіть сторінку, щоб застосувати зміни.';
+  String get ssRestartReminderWeb =>
+      'Перезавантажте/оновіть сторінку, щоб застосувати зміни.';
 
   @override
   String get ssHaveFun => 'Приємного користування!';
@@ -404,7 +408,8 @@ class EFUILangUk extends EFUILang {
   String get ssResetAll => 'Скинути всі налаштування?';
 
   @override
-  String get ssResetAppearance => 'Скинути всі налаштування зовнішнього вигляду?';
+  String get ssResetAppearance =>
+      'Скинути всі налаштування зовнішнього вигляду?';
 
   @override
   String get ssResetBoth => 'Скинути обидва режими теми';
@@ -634,7 +639,8 @@ class EFUILangUk extends EFUILang {
   String get dsClearIt => 'Очистити';
 
   @override
-  String get dsUseForColors => 'Оновити кольори програми за допомогою цього зображення';
+  String get dsUseForColors =>
+      'Оновити кольори програми за допомогою цього зображення';
 
   @override
   String get dsImgGetFailed => 'Не вдалося отримати зображення';

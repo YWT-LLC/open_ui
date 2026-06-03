@@ -357,10 +357,12 @@ class EFUILangKo extends EFUILang {
   String get ssWallHoles => '벽 구멍';
 
   @override
-  String get ssDarkOnly => '다크 테마 사전 설정입니다.\n테마 모드를 다크로 설정하고 해당 테마를 업데이트합니다.\n\n계속하시겠습니까?';
+  String get ssDarkOnly =>
+      '다크 테마 사전 설정입니다.\n테마 모드를 다크로 설정하고 해당 테마를 업데이트합니다.\n\n계속하시겠습니까?';
 
   @override
-  String get ssLightOnly => '라이트 테마 사전 설정입니다.\n테마 모드를 라이트로 설정하고 해당 테마를 업데이트합니다.\n\n계속하시겠습니까?';
+  String get ssLightOnly =>
+      '라이트 테마 사전 설정입니다.\n테마 모드를 라이트로 설정하고 해당 테마를 업데이트합니다.\n\n계속하시겠습니까?';
 
   @override
   String ssApplied(Object config) {
@@ -637,7 +639,8 @@ class EFUILangKo extends EFUILang {
   String get dsImgSetFailed => '이미지를 업데이트하지 못했습니다';
 
   @override
-  String get dsImgPermission => '일부 사이트는 다른 사람이 이미지에 접근하는 것을 허용하지 않습니다.\n다른 호스트의 이미지를 사용해 보세요.';
+  String get dsImgPermission =>
+      '일부 사이트는 다른 사람이 이미지에 접근하는 것을 허용하지 않습니다.\n다른 호스트의 이미지를 사용해 보세요.';
 
   @override
   String get dsUseFull => '전체 이미지를 사용하시겠습니까?';
