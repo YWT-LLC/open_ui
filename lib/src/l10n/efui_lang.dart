@@ -459,6 +459,12 @@ abstract class EFUILang {
   /// **'Playback speed'**
   String get gPlaybackSpeed;
 
+  /// No description provided for @gFBF.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle frame by frame skips'**
+  String get gFBF;
+
   /// No description provided for @gCaptions.
   ///
   /// In en, this message translates to:

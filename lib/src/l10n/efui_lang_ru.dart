@@ -178,6 +178,9 @@ class EFUILangRu extends EFUILang {
   String get gPlaybackSpeed => 'Скорость воспроизведения';
 
   @override
+  String get gFBF => 'Переключить покадровый пропуск';
+
+  @override
   String get gCaptions => 'Субтитры';
 
   @override

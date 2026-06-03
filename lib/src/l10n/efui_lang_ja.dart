@@ -177,6 +177,9 @@ class EFUILangJa extends EFUILang {
   String get gPlaybackSpeed => '再生速度';
 
   @override
+  String get gFBF => 'コマ送りスキップの切り替え';
+
+  @override
   String get gCaptions => '字幕 / キャプション';
 
   @override

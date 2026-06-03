@@ -178,6 +178,9 @@ class EFUILangFil extends EFUILang {
   String get gPlaybackSpeed => 'Bilis ng pag-playback';
 
   @override
+  String get gFBF => 'I-toggle ang paglaktaw bawat frame';
+
+  @override
   String get gCaptions => 'Mga subtitle/caption';
 
   @override

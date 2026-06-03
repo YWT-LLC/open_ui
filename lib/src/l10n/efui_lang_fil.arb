@@ -67,6 +67,7 @@
   "gMute": "I-mute",
   "gUnMute": "I-unmute",
   "gPlaybackSpeed": "Bilis ng pag-playback",
+  "gFBF": "I-toggle ang paglaktaw bawat frame",
   "gCaptions": "Mga subtitle/caption",
   "gCaptionsHint": "Pindutin nang matagal para sa mga font",
   "gFullscreen": "Fullscreen",

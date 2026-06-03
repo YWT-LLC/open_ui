@@ -178,6 +178,9 @@ class EFUILangSw extends EFUILang {
   String get gPlaybackSpeed => 'Kasi ya kucheza';
 
   @override
+  String get gFBF => 'Geuza kuruka fremu baada ya fremu';
+
+  @override
   String get gCaptions => 'Manukuu';
 
   @override

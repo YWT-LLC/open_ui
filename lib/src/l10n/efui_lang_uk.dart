@@ -178,6 +178,9 @@ class EFUILangUk extends EFUILang {
   String get gPlaybackSpeed => 'Швидкість відтворення';
 
   @override
+  String get gFBF => 'Перемкнути покадровий пропуск';
+
+  @override
   String get gCaptions => 'Субтитри/підписи';
 
   @override

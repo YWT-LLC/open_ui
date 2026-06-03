@@ -177,6 +177,9 @@ class EFUILangZh extends EFUILang {
   String get gPlaybackSpeed => '播放速度';
 
   @override
+  String get gFBF => '切换逐帧跳过';
+
+  @override
   String get gCaptions => '字幕/说明';
 
   @override
@@ -947,6 +950,9 @@ class EFUILangZhCn extends EFUILangZh {
 
   @override
   String get gPlaybackSpeed => '播放速度';
+
+  @override
+  String get gFBF => '切换逐帧跳过';
 
   @override
   String get gCaptions => '字幕/说明';

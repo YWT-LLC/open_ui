@@ -178,6 +178,9 @@ class EFUILangAr extends EFUILang {
   String get gPlaybackSpeed => 'سرعة التشغيل';
 
   @override
+  String get gFBF => 'تبديل التخطي إطاراً تلو الآخر';
+
+  @override
   String get gCaptions => 'ترجمة/تسميات توضيحية';
 
   @override
@@ -954,6 +957,9 @@ class EFUILangArEg extends EFUILangAr {
 
   @override
   String get gPlaybackSpeed => 'سرعة التشغيل';
+
+  @override
+  String get gFBF => 'تبديل التخطي إطاراً تلو الآخر';
 
   @override
   String get gCaptions => 'ترجمة/تسميات توضيحية';

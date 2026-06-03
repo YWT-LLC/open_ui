@@ -67,6 +67,7 @@
   "gMute": "음소거",
   "gUnMute": "음소거 해제",
   "gPlaybackSpeed": "재생 속도",
+  "gFBF": "프레임 단위 건너뛰기 전환",
   "gCaptions": "자막/캡션",
   "gCaptionsHint": "글꼴을 보려면 길게 누르세요",
   "gFullscreen": "전체 화면",
