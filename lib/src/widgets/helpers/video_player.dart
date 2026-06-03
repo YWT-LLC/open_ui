@@ -85,6 +85,8 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
   late double currSpeed = widget.speed;
 
+  bool fbf = false;
+
   double? savedVolume;
   Timer? showVolume;
 
@@ -108,8 +110,8 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     );
   }
 
-  Future<void> play(VideoPlayerValue value) async {
-    if (value.isCompleted) await widget.controller.seekTo(Duration.zero);
+  Future<void> play() async {
+    if (widget.controller.value.isCompleted) await widget.controller.seekTo(Duration.zero);
     await widget.controller.play();
     handleMobileHover();
   }
@@ -155,6 +157,18 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
   Duration findP(double completion) => completion >= 1
       ? Duration(milliseconds: videoLength)
       : Duration(milliseconds: (videoLength * completion).round());
+
+  /// Enter frame by frame
+  Future<void> enterFBF() async {
+    setState(() => fbf = true);
+    await pause();
+  }
+
+  /// Exit frame by frame
+  Future<void> exitFBF() async {
+    setState(() => fbf = false);
+    await play();
+  }
 
   Future<void> enterFullscreen() async {
     await pause();
@@ -234,7 +248,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
       await widget.controller.initialize();
     }
 
-    if (widget.autoPlay) await play(widget.controller.value);
+    if (widget.autoPlay) await play();
   }
 
   @override
@@ -263,7 +277,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
           onKeyEvent: (_, KeyEvent event) {
             if (event is KeyDownEvent) {
               switch (event.logicalKey) {
-                // Up/Down -> volume control (if relevant)
+                // Up -> volume up (if relevant)
                 case LogicalKeyboardKey.arrowUp:
                   if (widget.hasAudio) {
                     double newVol = value.volume + 0.05;
@@ -273,6 +287,8 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                     showVolumeLabel();
                   }
                   return KeyEventResult.handled;
+
+                // Down -> volume down (if relevant)
                 case LogicalKeyboardKey.arrowDown:
                   if (widget.hasAudio) {
                     double newVol = value.volume - 0.05;
@@ -283,17 +299,19 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                   }
                   return KeyEventResult.handled;
 
-                // Left/Right -> time skip
-                case LogicalKeyboardKey.arrowRight:
-                  skipForward(value);
-                  return KeyEventResult.handled;
+                // Left -> skip backwards
                 case LogicalKeyboardKey.arrowLeft:
                   skipBackward(value);
                   return KeyEventResult.handled;
 
+                // Right -> skip forward
+                case LogicalKeyboardKey.arrowRight:
+                  skipForward(value);
+                  return KeyEventResult.handled;
+
                 // Space -> play/pause
                 case LogicalKeyboardKey.space:
-                  value.isPlaying ? pause() : play(value);
+                  value.isPlaying ? pause() : play();
                   return KeyEventResult.handled;
 
                 // C -> captions toggle (if relevant)
@@ -307,11 +325,21 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
                 // F -> enter fullscreen (if not already)
                 case LogicalKeyboardKey.keyF:
-                  if (!widget.fullscreen) enterFullscreen();
+                  if (!widget.fullscreen) {
+                    enterFullscreen();
+                    return KeyEventResult.handled;
+                  } else {
+                    return KeyEventResult.ignored;
+                  }
 
                 // Esc -> exit fullscreen (if relevant)
                 case LogicalKeyboardKey.escape:
-                  if (widget.fullscreen) exitFullscreen();
+                  if (widget.fullscreen) {
+                    exitFullscreen();
+                    return KeyEventResult.handled;
+                  } else {
+                    return KeyEventResult.ignored;
+                  }
 
                 default:
                   return KeyEventResult.ignored;
@@ -389,7 +417,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
                           hovering ? setState(() => hovering = false) : handleMobileHover();
                         } else {
-                          value.isPlaying ? await pause() : await play(value);
+                          value.isPlaying ? await pause() : await play();
                         }
                       },
                       onDoubleTapDown: (TapDownDetails tap) async {
@@ -471,7 +499,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                 },
                                 onChanged: (double value) => widget.controller.seekTo(findP(value)),
                                 onChangeEnd: (_) async {
-                                  await play(value);
+                                  await play();
                                   handleMobileHover();
                                 },
                               ),
@@ -501,7 +529,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                           icon: EzIcon(Icons.pause),
                                         )
                                       : EzIconButton(
-                                          onPressed: () => play(value),
+                                          onPressed: play,
                                           tooltip: EzConfig.l10n.gPlay,
                                           icon: EzIcon(
                                               value.isCompleted ? Icons.replay : Icons.play_arrow),
@@ -612,6 +640,17 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   ),
                                 ),
 
+                                // Frame by frame
+                                Padding(
+                                  padding: EdgeInsets.only(right: EzConfig.spacing),
+                                  child: EzIconButton(
+                                    icon:
+                                        EzIcon(fbf ? Icons.directions_walk : Icons.directions_run),
+                                    onPressed: () async => fbf ? await exitFBF() : await enterFBF(),
+                                    tooltip: 'Toggle frame by frame mode', // TODO: l10n
+                                  ),
+                                ),
+
                                 // Captions
                                 if (widget.hasCaptions)
                                   Padding(
@@ -666,13 +705,17 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   ),
 
                                 // FullScreen
-                                EzIconButton(
-                                  icon: EzIcon(
-                                      widget.fullscreen ? Icons.fullscreen_exit : Icons.fullscreen),
-                                  onPressed: () async => widget.fullscreen
-                                      ? await exitFullscreen()
-                                      : await enterFullscreen(),
-                                  tooltip: EzConfig.l10n.gFullscreen,
+                                Padding(
+                                  padding: EdgeInsets.only(right: EzConfig.spacing),
+                                  child: EzIconButton(
+                                    icon: EzIcon(widget.fullscreen
+                                        ? Icons.fullscreen_exit
+                                        : Icons.fullscreen),
+                                    onPressed: () async => widget.fullscreen
+                                        ? await exitFullscreen()
+                                        : await enterFullscreen(),
+                                    tooltip: EzConfig.l10n.gFullscreen,
+                                  ),
                                 ),
                               ],
                             ),
