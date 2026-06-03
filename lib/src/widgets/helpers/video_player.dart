@@ -132,11 +132,11 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     handleMobileHover();
   }
 
-  Future<void> skipForward(VideoPlayerValue value) =>
-      widget.controller.seekTo(value.position + Duration(seconds: widget.skipTime));
+  Future<void> skipForward(VideoPlayerValue value) => widget.controller.seekTo(value.position +
+      (fbf ? const Duration(milliseconds: 20) : Duration(seconds: widget.skipTime)));
 
-  Future<void> skipBackward(VideoPlayerValue value) =>
-      widget.controller.seekTo(value.position - Duration(seconds: widget.skipTime));
+  Future<void> skipBackward(VideoPlayerValue value) => widget.controller.seekTo(value.position -
+      (fbf ? const Duration(milliseconds: 20) : Duration(seconds: widget.skipTime)));
 
   void showVolumeLabel() {
     showVolume?.cancel();
@@ -645,7 +645,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   padding: EdgeInsets.only(right: EzConfig.spacing),
                                   child: EzIconButton(
                                     icon:
-                                        EzIcon(fbf ? Icons.directions_walk : Icons.directions_run),
+                                        EzIcon(fbf ? Icons.directions_run : Icons.directions_walk),
                                     onPressed: () async => fbf ? await exitFBF() : await enterFBF(),
                                     tooltip: 'Toggle frame by frame mode', // TODO: l10n
                                   ),
