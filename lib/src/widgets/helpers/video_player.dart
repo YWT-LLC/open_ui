@@ -83,9 +83,8 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
   bool hovering = false;
   Timer? mobileHover;
 
-  late double currSpeed = widget.speed;
-
   bool fbf = false;
+  late double speedBackup = widget.speed;
 
   double? savedVolume;
   Timer? showVolume;
@@ -160,14 +159,15 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
   /// Enter frame by frame
   Future<void> enterFBF() async {
+    speedBackup = widget.controller.value.playbackSpeed;
+    await widget.controller.setPlaybackSpeed(0.1);
     setState(() => fbf = true);
-    await pause();
   }
 
   /// Exit frame by frame
   Future<void> exitFBF() async {
+    await widget.controller.setPlaybackSpeed(speedBackup);
     setState(() => fbf = false);
-    await play();
   }
 
   Future<void> enterFullscreen() async {
@@ -204,7 +204,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                   fullscreen: true,
                   hasCaptions: widget.hasCaptions,
                   skipTime: widget.skipTime,
-                  speed: currSpeed,
+                  speed: widget.controller.value.playbackSpeed,
                   hasAudio: widget.hasAudio,
                   startingVolume: widget.controller.value.volume,
                   mobileDelay: widget.mobileDelay,
@@ -595,10 +595,10 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                     reverseHands: false,
                                     children: <Widget>[
                                       EzIconButton(
-                                        enabled: currSpeed > 0.25,
+                                        enabled: value.playbackSpeed > 0.25,
                                         onPressed: () async {
-                                          setState(() => currSpeed -= 0.25);
-                                          await widget.controller.setPlaybackSpeed(currSpeed);
+                                          await widget.controller
+                                              .setPlaybackSpeed(value.playbackSpeed - 0.25);
                                           handleMobileHover();
                                         },
                                         tooltip:
@@ -617,7 +617,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                               color: Colors.white,
                                             ),
                                             Text(
-                                              currSpeed.toStringAsFixed(2),
+                                              value.playbackSpeed.toStringAsFixed(2),
                                               style: labelStyle,
                                               textAlign: TextAlign.center,
                                             ),
@@ -626,10 +626,10 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ),
                                       EzConfig.rowMargin,
                                       EzIconButton(
-                                        enabled: currSpeed < 2.0,
+                                        enabled: value.playbackSpeed < 2.0,
                                         onPressed: () async {
-                                          setState(() => currSpeed += 0.25);
-                                          await widget.controller.setPlaybackSpeed(currSpeed);
+                                          await widget.controller
+                                              .setPlaybackSpeed(value.playbackSpeed + 0.25);
                                           handleMobileHover();
                                         },
                                         tooltip:
