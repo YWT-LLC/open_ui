@@ -134,7 +134,7 @@ class EzMaterialAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? baseStyle = style ?? EzConfig.styles.bodyLarge;
+    final TextStyle? baseStyle = style ?? EzConfig.bodyStyle;
 
     final TextStyle? textStyle = isDefaultAction
         ? baseStyle?.copyWith(fontWeight: FontWeight.bold)

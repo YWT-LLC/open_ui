@@ -50,7 +50,7 @@ class EzSpacingSetting extends StatelessWidget {
                       // Title
                       Text(
                         EzConfig.l10n.dsSpacing,
-                        style: EzConfig.styles.titleLarge,
+                        style: EzConfig.titleStyle,
                         textAlign: TextAlign.center,
                       ),
                       EzSpacer(space: currValue),

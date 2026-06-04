@@ -30,7 +30,7 @@ class EzAppBar extends StatelessWidget {
           style: IconButton.styleFrom(
             side: BorderSide.none,
             padding: EzInsets.wrap(EzConfig.marginVal),
-            iconSize: EzConfig.styles.headlineLarge!.fontSize,
+            iconSize: EzConfig.headlineStyle!.fontSize,
             backgroundColor: EzConfig.colors.surfaceDim,
           ),
         ),

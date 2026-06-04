@@ -50,7 +50,7 @@ class EzPaddingSetting extends StatelessWidget {
                       // Title
                       Text(
                         EzConfig.l10n.dsPadding,
-                        style: EzConfig.styles.titleLarge,
+                        style: EzConfig.titleStyle,
                         textAlign: TextAlign.center,
                       ),
 

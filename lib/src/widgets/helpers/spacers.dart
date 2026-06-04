@@ -294,7 +294,7 @@ class EzFooter extends StatelessWidget {
               padding: EdgeInsets.only(top: spacing ?? (EzConfig.spacing * 2)),
               child: Text(
                 message ?? EzConfig.l10n.gMachineTranslated,
-                style: EzConfig.styles.labelLarge,
+                style: EzConfig.labelStyle,
                 textAlign: textAlign,
               ),
             );

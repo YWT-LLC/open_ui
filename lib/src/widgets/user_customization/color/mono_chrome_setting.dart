@@ -32,7 +32,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.white,
                 side: EzConfig.borderSide(color: dimWhite),
-                textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
+                textStyle: EzConfig.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
                 backgroundColor: lightSurface,
@@ -41,7 +41,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.black,
                 side: EzConfig.borderSide(color: dimBlack),
-                textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.black),
+                textStyle: EzConfig.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => EzConfig.rebuildUI(changes: () async {
           if (EzConfig.updateBoth || EzConfig.isDark) {

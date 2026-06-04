@@ -595,7 +595,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         icon: Icon(
           Icons.more_vert,
           semanticLabel: EzConfig.l10n.gOptions,
-          size: EzConfig.styles.titleLarge!.fontSize,
+          size: EzConfig.titleStyle!.fontSize,
         ),
       ),
       menuChildren: <Widget>[
@@ -655,7 +655,7 @@ class ErrorScreen extends StatelessWidget {
       child: EzScrollView(children: <Widget>[
         EzText(
           EzConfig.l10n.g404Wonder,
-          style: EzConfig.styles.headlineLarge,
+          style: EzConfig.headlineStyle,
           textAlign: TextAlign.center,
         ),
         EzConfig.separator,
@@ -667,7 +667,7 @@ class ErrorScreen extends StatelessWidget {
         EzConfig.separator,
         EzText(
           EzConfig.l10n.g404Note,
-          style: EzConfig.styles.labelLarge,
+          style: EzConfig.labelStyle,
           textAlign: TextAlign.center,
         ),
         const EzFooter(spacing: 0),         
@@ -722,7 +722,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Text(
                   count.toString(),
-                  style: EzConfig.styles.headlineLarge,
+                  style: EzConfig.headlineStyle,
                   textAlign: TextAlign.center,
                 ),
               ],

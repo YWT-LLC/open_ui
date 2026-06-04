@@ -48,7 +48,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
             },
             child: EzText(
               EzConfig.l10n.tsIconSize,
-              style: EzConfig.styles.bodyLarge,
+              style: EzConfig.bodyStyle,
             ),
           ),
         ),

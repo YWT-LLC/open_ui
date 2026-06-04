@@ -32,7 +32,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 shadowColor: Colors.transparent,
                 overlayColor: hceGreen,
                 side: EzConfig.borderSide(color: halfWhite),
-                textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
+                textStyle: EzConfig.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -41,7 +41,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 shadowColor: Colors.transparent,
                 overlayColor: hcePurple,
                 side: EzConfig.borderSide(color: halfBlack),
-                textStyle: EzConfig.styles.bodyLarge?.copyWith(color: Colors.black),
+                textStyle: EzConfig.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => EzConfig.rebuildUI(changes: () async {
           if (EzConfig.updateBoth || EzConfig.isDark) {

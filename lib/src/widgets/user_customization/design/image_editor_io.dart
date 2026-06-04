@@ -84,7 +84,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
             EzText(
               name,
               textAlign: TextAlign.center,
-              style: EzConfig.styles.labelLarge?.copyWith(color: color),
+              style: EzConfig.labelStyle?.copyWith(color: color),
             ),
           ]),
         ),

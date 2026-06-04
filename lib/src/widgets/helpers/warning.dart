@@ -40,7 +40,7 @@ class EzWarning extends StatelessWidget {
 
                     Text(
                       title ?? EzConfig.l10n.gAttention,
-                      style: EzConfig.styles.titleLarge,
+                      style: EzConfig.titleStyle,
                       textAlign: TextAlign.center,
                     ),
                     EzConfig.rowMargin,
@@ -54,7 +54,7 @@ class EzWarning extends StatelessWidget {
                 // Body
                 Text(
                   body,
-                  style: EzConfig.styles.bodyLarge,
+                  style: EzConfig.bodyStyle,
                   textAlign: TextAlign.center,
                 ),
               ]),

@@ -33,7 +33,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
           // Section nav
           EzText(
             currSection.title,
-            style: EzConfig.styles.labelLarge,
+            style: EzConfig.labelStyle,
             textAlign: TextAlign.center,
           ),
           SegmentedButton<EzSettingsSection>(

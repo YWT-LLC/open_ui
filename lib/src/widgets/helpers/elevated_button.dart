@@ -58,7 +58,7 @@ class _EzElevatedButtonState extends State<EzElevatedButton> {
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
         child: Text(widget.text,
-            style: (widget.textStyle ?? EzConfig.styles.bodyLarge)?.copyWith(
+            style: (widget.textStyle ?? EzConfig.bodyStyle)?.copyWith(
               decorationColor: widget.enabled ? EzConfig.colors.primary : EzConfig.colors.outline,
             ),
             textAlign: widget.textAlign),
@@ -123,7 +123,7 @@ class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
         iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
         label: Text(
           widget.label,
-          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)?.copyWith(
+          style: (widget.textStyle ?? EzConfig.bodyStyle)?.copyWith(
             decorationColor: widget.enabled ? EzConfig.colors.primary : EzConfig.colors.outline,
           ),
           textAlign: widget.textAlign,

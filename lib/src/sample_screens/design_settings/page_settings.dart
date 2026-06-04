@@ -152,7 +152,7 @@ class _AnimDurSetting extends StatelessWidget {
                 // Slider
                 Text(
                   EzConfig.l10n.dsMilliseconds,
-                  style: EzConfig.styles.bodyLarge,
+                  style: EzConfig.bodyStyle,
                 ),
                 ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
@@ -179,7 +179,7 @@ class _AnimDurSetting extends StatelessWidget {
                   Flexible(
                     child: Text(
                       EzConfig.l10n.dsCurve,
-                      style: EzConfig.styles.bodyLarge,
+                      style: EzConfig.bodyStyle,
                     ),
                   ),
                   EzConfig.margin,
@@ -371,7 +371,7 @@ class _PageTransitionSetting extends StatelessWidget {
                             child: EzCol(children: <Widget>[
                               EzTextButton(
                                 text: type.name,
-                                textStyle: EzConfig.styles.labelLarge,
+                                textStyle: EzConfig.labelStyle,
                                 textAlign: TextAlign.center,
                                 style: TextButton.styleFrom(
                                   backgroundColor: EzConfig.colors.surfaceContainer,

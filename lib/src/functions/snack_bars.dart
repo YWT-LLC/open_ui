@@ -48,7 +48,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
             EzConfig.rowMargin,
             EzTextButton(
               text: undoMessage ?? EzConfig.l10n.gUndo,
-              textStyle: EzConfig.styles.bodyLarge?.copyWith(color: EzConfig.colors.primary),
+              textStyle: EzConfig.bodyStyle?.copyWith(color: EzConfig.colors.primary),
               onPressed: () async {
                 await undo();
                 if (context.mounted) {
@@ -90,7 +90,7 @@ double _snackWidth({
             ezTextSize(
               undoMsg ?? EzConfig.l10n.gUndo,
               context: context,
-              style: EzConfig.styles.bodyLarge,
+              style: EzConfig.bodyStyle,
             ).width)
         : 0) +
     // Timer width

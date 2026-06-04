@@ -20,7 +20,7 @@ class EzBackAction extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back,
             semanticLabel: EzConfig.l10n.gBack,
-            size: EzConfig.styles.titleLarge!.fontSize,
+            size: EzConfig.titleStyle!.fontSize,
           ),
         )
       : const SizedBox.shrink();

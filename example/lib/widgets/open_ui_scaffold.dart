@@ -59,7 +59,7 @@ class OpenUIScaffold extends StatelessWidget {
         icon: Icon(
           Icons.more_vert,
           semanticLabel: EzConfig.l10n.gOptions,
-          size: EzConfig.styles.titleLarge!.fontSize,
+          size: EzConfig.titleStyle!.fontSize,
         ),
       ),
       menuChildren: <Widget>[

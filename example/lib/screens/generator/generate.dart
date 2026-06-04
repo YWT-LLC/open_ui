@@ -360,7 +360,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   Flexible(
                     child: Text(
                       l10n.gsConsole,
-                      style: EzConfig.styles.titleLarge,
+                      style: EzConfig.titleStyle,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -380,7 +380,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   valueListenable: readout,
                   builder: (_, String value, __) => Text(
                     value,
-                    style: EzConfig.styles.bodyLarge,
+                    style: EzConfig.bodyStyle,
                     textAlign: TextAlign.start,
                   ),
                 ),

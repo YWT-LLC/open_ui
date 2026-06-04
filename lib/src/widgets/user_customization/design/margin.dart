@@ -50,7 +50,7 @@ class EzMarginSetting extends StatelessWidget {
                       // Title
                       Text(
                         EzConfig.l10n.dsMargin,
-                        style: EzConfig.styles.titleLarge,
+                        style: EzConfig.titleStyle,
                         textAlign: TextAlign.center,
                       ),
 
@@ -59,7 +59,7 @@ class EzMarginSetting extends StatelessWidget {
                       EzTextBackground(
                         Text(
                           currValue.toStringAsFixed(_decimals),
-                          style: EzConfig.styles.bodyLarge,
+                          style: EzConfig.bodyStyle,
                           textAlign: TextAlign.center,
                         ),
                         padding: EdgeInsets.all(currValue),

@@ -44,7 +44,7 @@ class EzCLI extends StatelessWidget {
         // Title
         EzText(
           'CLI',
-          style: EzConfig.styles.titleLarge,
+          style: EzConfig.titleStyle,
           textAlign: TextAlign.center,
         ),
 

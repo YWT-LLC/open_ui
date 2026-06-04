@@ -16,7 +16,7 @@ class ErrorScreen extends StatelessWidget {
         child: EzScrollView(children: <Widget>[
           EzText(
             EzConfig.l10n.g404Wonder,
-            style: EzConfig.styles.headlineLarge,
+            style: EzConfig.headlineStyle,
             textAlign: TextAlign.center,
           ),
           EzConfig.separator,
@@ -28,7 +28,7 @@ class ErrorScreen extends StatelessWidget {
           EzConfig.separator,
           EzText(
             EzConfig.l10n.g404Note,
-            style: EzConfig.styles.labelLarge,
+            style: EzConfig.labelStyle,
             textAlign: TextAlign.center,
           ),
           const EzFooter(spacing: 0)

@@ -50,7 +50,7 @@ class _EzMenuButtonState extends State<EzMenuButton> {
         trailingIcon: EzConfig.isLefty ? null : widget.icon,
         child: Text(
           widget.label,
-          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)?.copyWith(
+          style: (widget.textStyle ?? EzConfig.bodyStyle)?.copyWith(
             decorationColor: EzConfig.colors.primary,
           ),
           textAlign: widget.textAlign ?? (EzConfig.isLefty ? TextAlign.start : TextAlign.end),

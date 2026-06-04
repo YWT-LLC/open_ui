@@ -236,7 +236,7 @@ double ezDropdownWidth(BuildContext context, String entry) =>
     ezTextSize(
       entry,
       context: context,
-      style: EzConfig.styles.bodyLarge,
+      style: EzConfig.bodyStyle,
     ).width +
     EzConfig.padding +
     max(EzConfig.padding + EzConfig.iconSize, kMinInteractiveDimension);

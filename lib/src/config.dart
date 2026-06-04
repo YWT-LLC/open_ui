@@ -948,7 +948,12 @@ Must be one of [int, bool, double, String, List<String>]''');
 
   // Text //
 
-  static TextTheme get styles => _provPoint.theme.textTheme;
+  static TextStyle? get displayStyle => _provPoint.theme.textTheme.displayLarge;
+  static TextStyle? get headlineStyle => _provPoint.theme.textTheme.headlineLarge;
+  static TextStyle? get titleStyle => _provPoint.theme.textTheme.titleLarge;
+  static TextStyle? get bodyStyle => _provPoint.theme.textTheme.bodyLarge;
+  static TextStyle? get labelStyle => _provPoint.theme.textTheme.labelLarge;
+
   static double get textBackgroundOpacity => _provPoint.text.backgroundOpacity;
   static double get iconSize => _provPoint.text.iconSize;
 }

@@ -913,7 +913,7 @@ class _BasicField extends StatelessWidget {
               Flexible(
                 child: EzText(
                   title,
-                  style: EzConfig.styles.titleLarge,
+                  style: EzConfig.titleStyle,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -978,7 +978,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
               Flexible(
                 child: Text(
                   widget.title,
-                  style: EzConfig.styles.bodyLarge,
+                  style: EzConfig.bodyStyle,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -1068,7 +1068,7 @@ class _LicensePickerState extends State<_LicensePicker> {
                 child: Text(
                   'LICENSE',
                   textAlign: TextAlign.start,
-                  style: EzConfig.styles.bodyLarge,
+                  style: EzConfig.bodyStyle,
                 ),
               ),
               EzConfig.rowMargin,

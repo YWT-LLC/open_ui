@@ -62,7 +62,7 @@ class _EzTextButtonState extends State<EzTextButton> {
         child: Text(
           widget.text,
           semanticsLabel: widget.semantics,
-          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)
+          style: (widget.textStyle ?? EzConfig.bodyStyle)
               ?.copyWith(decorationColor: EzConfig.colors.primary),
           textAlign: widget.textAlign,
         ),
@@ -131,7 +131,7 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
         label: Text(
           widget.label,
           semanticsLabel: widget.semantics,
-          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)
+          style: (widget.textStyle ?? EzConfig.bodyStyle)
               ?.copyWith(decorationColor: EzConfig.colors.primary),
           textAlign: widget.textAlign,
         ),

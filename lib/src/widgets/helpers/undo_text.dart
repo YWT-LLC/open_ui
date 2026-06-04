@@ -19,7 +19,7 @@ Widget ezRichUndoWarning(
       // Cannot be undone
       EzPlainText(
         text: EzConfig.l10n.gUndoWarn1,
-        style: EzConfig.styles.bodyLarge,
+        style: EzConfig.bodyStyle,
       ),
 
       // Save link
@@ -27,18 +27,18 @@ Widget ezRichUndoWarning(
         EzConfig.l10n.gSave,
         onTap: () => EzConfig.saveConfig(context, skip: skip),
         hint: EzConfig.l10n.gSaveHint,
-        style: EzConfig.styles.bodyLarge,
+        style: EzConfig.bodyStyle,
         textAlign: TextAlign.center,
       ),
 
       // Can restore manually
       EzPlainText(
         text: EzConfig.l10n.gUndoWarn2,
-        style: EzConfig.styles.bodyLarge,
+        style: EzConfig.bodyStyle,
       ),
     ],
     textBackground: false,
-    style: EzConfig.styles.bodyLarge,
+    style: EzConfig.bodyStyle,
     textAlign: TextAlign.center,
   );
 
@@ -47,7 +47,7 @@ Widget ezRichUndoWarning(
           width: ezTextSize(
             EzConfig.l10n.gSave + EzConfig.l10n.gUndoWarn2,
             context: context,
-            style: EzConfig.styles.bodyLarge,
+            style: EzConfig.bodyStyle,
           ).width,
           child: text,
         )

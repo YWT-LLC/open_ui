@@ -102,7 +102,7 @@ class EzText extends StatelessWidget {
   Widget build(BuildContext context) => EzTextBackground(
         Text(
           data,
-          style: style ?? EzConfig.styles.bodyLarge,
+          style: style ?? EzConfig.bodyStyle,
           textAlign: textAlign,
           semanticsLabel: semanticsLabel,
         ),
@@ -128,7 +128,7 @@ class EzNewLine extends StatelessWidget {
   Widget build(BuildContext context) => ExcludeSemantics(
         child: Text(
           '',
-          style: style ?? EzConfig.styles.bodyLarge,
+          style: style ?? EzConfig.bodyStyle,
           textAlign: textAlign ?? TextAlign.start,
         ),
       );

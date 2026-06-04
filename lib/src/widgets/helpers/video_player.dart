@@ -258,7 +258,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     final double controlsHeight =
         (3 * EzConfig.marginVal + 2 * (EzConfig.iconSize + EzConfig.padding));
 
-    final TextStyle? labelStyle = EzConfig.styles.labelLarge?.copyWith(color: Colors.white);
+    final TextStyle? labelStyle = EzConfig.labelStyle?.copyWith(color: Colors.white);
 
     final SliderThemeData sliderTheme = SliderThemeData(
       activeTrackColor: EzConfig.colors.secondary,
@@ -388,10 +388,10 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                           EzText(
                             '${(value.volume * 100).toStringAsFixed(0)}%',
                             style: switch (captionStyle) {
-                              4 => EzConfig.styles.displayLarge?.copyWith(color: Colors.white),
-                              3 => EzConfig.styles.headlineLarge?.copyWith(color: Colors.white),
-                              2 => EzConfig.styles.titleLarge?.copyWith(color: Colors.white),
-                              1 => EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
+                              4 => EzConfig.displayStyle?.copyWith(color: Colors.white),
+                              3 => EzConfig.headlineStyle?.copyWith(color: Colors.white),
+                              2 => EzConfig.titleStyle?.copyWith(color: Colors.white),
+                              1 => EzConfig.bodyStyle?.copyWith(color: Colors.white),
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
@@ -451,10 +451,10 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                           child: EzText(
                             value.caption.text,
                             style: switch (captionStyle) {
-                              4 => EzConfig.styles.displayLarge?.copyWith(color: Colors.white),
-                              3 => EzConfig.styles.headlineLarge?.copyWith(color: Colors.white),
-                              2 => EzConfig.styles.titleLarge?.copyWith(color: Colors.white),
-                              1 => EzConfig.styles.bodyLarge?.copyWith(color: Colors.white),
+                              4 => EzConfig.displayStyle?.copyWith(color: Colors.white),
+                              3 => EzConfig.headlineStyle?.copyWith(color: Colors.white),
+                              2 => EzConfig.titleStyle?.copyWith(color: Colors.white),
+                              1 => EzConfig.bodyStyle?.copyWith(color: Colors.white),
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
@@ -672,31 +672,31 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       menuChildren: <Widget>[
                                         EzMenuButton(
                                           label: EzConfig.l10n.tsDisplay,
-                                          textStyle: EzConfig.styles.displayLarge,
+                                          textStyle: EzConfig.displayStyle,
                                           textAlign: TextAlign.center,
                                           onPressed: () => setState(() => captionStyle = 4),
                                         ),
                                         EzMenuButton(
                                           label: EzConfig.l10n.tsHeadline,
-                                          textStyle: EzConfig.styles.headlineLarge,
+                                          textStyle: EzConfig.headlineStyle,
                                           textAlign: TextAlign.center,
                                           onPressed: () => setState(() => captionStyle = 3),
                                         ),
                                         EzMenuButton(
                                           label: EzConfig.l10n.tsTitle,
-                                          textStyle: EzConfig.styles.titleLarge,
+                                          textStyle: EzConfig.titleStyle,
                                           textAlign: TextAlign.center,
                                           onPressed: () => setState(() => captionStyle = 2),
                                         ),
                                         EzMenuButton(
                                           label: EzConfig.l10n.tsBody,
-                                          textStyle: EzConfig.styles.bodyLarge,
+                                          textStyle: EzConfig.bodyStyle,
                                           textAlign: TextAlign.center,
                                           onPressed: () => setState(() => captionStyle = 1),
                                         ),
                                         EzMenuButton(
                                           label: EzConfig.l10n.tsLabel,
-                                          textStyle: EzConfig.styles.labelLarge,
+                                          textStyle: EzConfig.labelStyle,
                                           textAlign: TextAlign.center,
                                           onPressed: () => setState(() => captionStyle = 0),
                                         ),

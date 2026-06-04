@@ -527,7 +527,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           children: <Widget>[
             Text(
               EzConfig.l10n.dsFit,
-              style: EzConfig.styles.titleLarge,
+              style: EzConfig.titleStyle,
               textAlign: TextAlign.center,
             ),
             EzConfig.margin,
@@ -617,7 +617,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 EzTextButton(
                   onPressed: () => Navigator.of(fitContext).pop(null),
                   text: EzConfig.l10n.gCancel,
-                  textStyle: EzConfig.styles.bodyLarge,
+                  textStyle: EzConfig.bodyStyle,
                   textAlign: TextAlign.center,
                 ),
                 EzConfig.rowSpacer,
@@ -631,7 +631,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                     }
                   },
                   text: currFit == null ? EzConfig.l10n.gSkip : EzConfig.l10n.gApply,
-                  textStyle: EzConfig.styles.bodyLarge?.copyWith(color: EzConfig.colors.primary),
+                  textStyle: EzConfig.bodyStyle?.copyWith(color: EzConfig.colors.primary),
                   textAlign: TextAlign.center,
                 ),
                 EzConfig.rowSpacer,
@@ -654,7 +654,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     required StateSetter setModal,
   }) {
     final double toolbarHeight =
-        ezTextSize(fit.name, style: EzConfig.styles.bodyLarge, context: modalContext).height +
+        ezTextSize(fit.name, style: EzConfig.bodyStyle, context: modalContext).height +
             (EzConfig.marginVal * 0.25);
 
     return EzCol(children: <Widget>[
@@ -689,7 +689,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                     ),
                     child: Text(
                       fit.name,
-                      style: EzConfig.styles.bodyLarge,
+                      style: EzConfig.bodyStyle,
                       textAlign: TextAlign.center,
                     ),
                   ),

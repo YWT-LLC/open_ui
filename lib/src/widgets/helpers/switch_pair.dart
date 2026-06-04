@@ -169,14 +169,14 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                 ? EzLink(
                     widget.text,
                     textColor: EzConfig.colors.onSurface,
-                    style: EzConfig.styles.bodyLarge,
+                    style: EzConfig.bodyStyle,
                     textAlign: widget.textAlign,
                     hint: widget.semanticsLabel ?? EzConfig.l10n.gSwitchHint,
                     onTap: () => onChanged(!value),
                   )
                 : EzText(
                     widget.text,
-                    style: EzConfig.styles.bodyLarge,
+                    style: EzConfig.bodyStyle,
                     textAlign: widget.textAlign,
                     semanticsLabel: widget.semanticsLabel,
                   ),

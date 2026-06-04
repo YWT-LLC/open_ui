@@ -32,7 +32,7 @@ class SuccessHeader extends StatelessWidget {
           Flexible(
             child: EzText(
               EzConfig.l10n.gSuccessExl,
-              style: EzConfig.styles.headlineLarge,
+              style: EzConfig.headlineStyle,
               textAlign: TextAlign.center,
             ),
           ),

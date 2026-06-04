@@ -195,7 +195,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                 // Border width slider
                 Text(
                   EzConfig.l10n.dsBorderWidth,
-                  style: EzConfig.styles.bodyLarge,
+                  style: EzConfig.bodyStyle,
                 ),
                 ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
