@@ -178,7 +178,7 @@ class EFUILangEn extends EFUILang {
   String get gPlaybackSpeed => 'Playback speed';
 
   @override
-  String get gFBF => 'Toggle frame by frame skips';
+  String get gFBF => 'Frame by frame';
 
   @override
   String get gCaptions => 'Subtitles/captions';
@@ -963,7 +963,7 @@ class EFUILangEnUs extends EFUILangEn {
   String get gPlaybackSpeed => 'Playback speed';
 
   @override
-  String get gFBF => 'Toggle frame by frame skips';
+  String get gFBF => 'Frame by frame';
 
   @override
   String get gCaptions => 'Subtitles/captions';

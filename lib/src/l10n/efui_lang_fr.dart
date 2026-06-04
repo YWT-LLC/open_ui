@@ -178,7 +178,7 @@ class EFUILangFr extends EFUILang {
   String get gPlaybackSpeed => 'Vitesse de lecture';
 
   @override
-  String get gFBF => 'Basculer les sauts image par image';
+  String get gFBF => 'Image par image';
 
   @override
   String get gCaptions => 'Sous-titres/légendes';

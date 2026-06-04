@@ -178,7 +178,7 @@ class EFUILangDe extends EFUILang {
   String get gPlaybackSpeed => 'Wiedergabegeschwindigkeit';
 
   @override
-  String get gFBF => 'Einzelbild-Sprünge umschalten';
+  String get gFBF => 'Bild für Bild';
 
   @override
   String get gCaptions => 'Untertitel';

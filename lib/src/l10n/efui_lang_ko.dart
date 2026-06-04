@@ -177,7 +177,7 @@ class EFUILangKo extends EFUILang {
   String get gPlaybackSpeed => '재생 속도';
 
   @override
-  String get gFBF => '프레임 단위 건너뛰기 전환';
+  String get gFBF => '프레임 단위';
 
   @override
   String get gCaptions => '자막/캡션';

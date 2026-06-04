@@ -178,7 +178,7 @@ class EFUILangHt extends EFUILang {
   String get gPlaybackSpeed => 'Vitès lekti';
 
   @override
-  String get gFBF => 'Baskile so ankadreman pa ankadreman';
+  String get gFBF => 'Imaj pa imaj';
 
   @override
   String get gCaptions => 'Soutit/lejann';

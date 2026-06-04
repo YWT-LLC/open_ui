@@ -67,7 +67,7 @@
   "gMute": "静音",
   "gUnMute": "取消静音",
   "gPlaybackSpeed": "播放速度",
-  "gFBF": "切换逐帧跳过",
+  "gFBF": "逐帧",
   "gCaptions": "字幕/说明",
   "gCaptionsHint": "长按选择字体",
   "gFullscreen": "全屏",

@@ -178,7 +178,7 @@ class EFUILangEs extends EFUILang {
   String get gPlaybackSpeed => 'Velocidad de reproducción';
 
   @override
-  String get gFBF => 'Alternar saltos fotograma a fotograma';
+  String get gFBF => 'Fotograma a fotograma';
 
   @override
   String get gCaptions => 'Subtítulos/captions';

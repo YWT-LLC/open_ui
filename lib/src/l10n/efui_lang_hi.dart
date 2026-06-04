@@ -178,7 +178,7 @@ class EFUILangHi extends EFUILang {
   String get gPlaybackSpeed => 'प्लेबैक गति';
 
   @override
-  String get gFBF => 'फ़्रेम-दर-फ़्रेम स्किप टॉगल करें';
+  String get gFBF => 'फ़्रेम-दर-फ़्रेम';
 
   @override
   String get gCaptions => 'उपशीर्षक/कैप्शन';

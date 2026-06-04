@@ -67,7 +67,7 @@
   "gMute": "Mute",
   "gUnMute": "Un-mute",
   "gPlaybackSpeed": "Playback speed",
-  "gFBF": "Toggle frame by frame skips",
+  "gFBF": "Frame by frame",
   "gCaptions": "Subtitles/captions",
   "gCaptionsHint": "Hold for fonts",
   "gFullscreen": "Fullscreen",

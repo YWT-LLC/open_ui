@@ -462,7 +462,7 @@ abstract class EFUILang {
   /// No description provided for @gFBF.
   ///
   /// In en, this message translates to:
-  /// **'Toggle frame by frame skips'**
+  /// **'Frame by frame'**
   String get gFBF;
 
   /// No description provided for @gCaptions.
