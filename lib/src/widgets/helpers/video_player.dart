@@ -647,7 +647,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                     icon:
                                         EzIcon(fbf ? Icons.directions_run : Icons.directions_walk),
                                     onPressed: () async => fbf ? await exitFBF() : await enterFBF(),
-                                    tooltip: EzConfig.l10n.gFBF,
+                                    tooltip: fbf ? EzConfig.l10n.gPlay : EzConfig.l10n.gFBF,
                                   ),
                                 ),
 
