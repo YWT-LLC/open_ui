@@ -595,7 +595,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                     reverseHands: false,
                                     children: <Widget>[
                                       EzIconButton(
-                                        enabled: value.playbackSpeed > 0.25,
+                                        enabled: !fbf && value.playbackSpeed > 0.25,
                                         onPressed: () async {
                                           await widget.controller
                                               .setPlaybackSpeed(value.playbackSpeed - 0.25);
@@ -626,7 +626,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                       ),
                                       EzConfig.rowMargin,
                                       EzIconButton(
-                                        enabled: value.playbackSpeed < 2.0,
+                                        enabled: !fbf && value.playbackSpeed < 2.0,
                                         onPressed: () async {
                                           await widget.controller
                                               .setPlaybackSpeed(value.playbackSpeed + 0.25);
