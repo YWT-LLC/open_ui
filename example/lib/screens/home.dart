@@ -667,7 +667,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     ],
                   ],
                 ),
-                const EzFooter(textAlign: TextAlign.start),
+                EzFooter(currCode: config.locale.languageCode, textAlign: TextAlign.start),
               ],
             ),
             alignment: Alignment.topLeft,
