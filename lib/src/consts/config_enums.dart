@@ -118,16 +118,6 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.jewel => esJewel,
       };
 
-  String get name => switch (this) {
-        EzButtonShape.pill => EzConfig.l10n.dsPill,
-        EzButtonShape.rect => EzConfig.l10n.dsRectangle,
-        EzButtonShape.roundRect => EzConfig.l10n.dsRoundRectangle,
-        EzButtonShape.leftGram => EzConfig.l10n.dsLeftGram,
-        EzButtonShape.rightGram => EzConfig.l10n.dsRightGram,
-        EzButtonShape.gem => EzConfig.l10n.dsGem,
-        EzButtonShape.jewel => EzConfig.l10n.dsJewel,
-      };
-
   BorderRadius get radius => switch (this) {
         EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
         EzButtonShape.rect => BorderRadius.zero,
@@ -167,6 +157,16 @@ extension EBSConfig on EzButtonShape {
             topLeft: Radius.circular(jewelSlope),
             topRight: Radius.circular(jewelSlope),
           ),
+      };
+
+  String name(EZCProvider config) => switch (this) {
+        EzButtonShape.pill => config.l10n.dsPill,
+        EzButtonShape.rect => config.l10n.dsRectangle,
+        EzButtonShape.roundRect => config.l10n.dsRoundRectangle,
+        EzButtonShape.leftGram => config.l10n.dsLeftGram,
+        EzButtonShape.rightGram => config.l10n.dsRightGram,
+        EzButtonShape.gem => config.l10n.dsGem,
+        EzButtonShape.jewel => config.l10n.dsJewel,
       };
 
   /// Defaults to [EzTransitionType.system]
@@ -229,21 +229,21 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.zoom => esZoom,
       };
 
-  String get name => switch (this) {
-        EzTransitionType.none => EzConfig.l10n.dsNone,
-        EzTransitionType.system => EzConfig.l10n.dsSystem,
-        EzTransitionType.turnX => EzConfig.l10n.dsTurnX,
-        EzTransitionType.turnY => EzConfig.l10n.dsTurnY,
-        EzTransitionType.rotate => EzConfig.l10n.dsRotate,
-        EzTransitionType.slideX => EzConfig.l10n.dsSlideX,
-        EzTransitionType.slideY => EzConfig.l10n.dsSlideY,
-        EzTransitionType.zoom => EzConfig.l10n.dsZoom,
+  String name(EZCProvider config) => switch (this) {
+        EzTransitionType.none => config.l10n.dsNone,
+        EzTransitionType.system => config.l10n.dsSystem,
+        EzTransitionType.turnX => config.l10n.dsTurnX,
+        EzTransitionType.turnY => config.l10n.dsTurnY,
+        EzTransitionType.rotate => config.l10n.dsRotate,
+        EzTransitionType.slideX => config.l10n.dsSlideX,
+        EzTransitionType.slideY => config.l10n.dsSlideY,
+        EzTransitionType.zoom => config.l10n.dsZoom,
       };
 
-  Icon get icon => switch (this) {
+  Icon icon(EZCProvider config) => switch (this) {
         EzTransitionType.none => EzIcon(Icons.cancel),
-        EzTransitionType.system => EzIcon(EzConfig.onMobile
-            ? EzConfig.platform == TargetPlatform.iOS
+        EzTransitionType.system => EzIcon(config.onMobile
+            ? config.platform == TargetPlatform.iOS
                 ? Icons.phone_iphone
                 : Icons.phone_android
             : Icons.computer),
@@ -251,7 +251,7 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.turnY => EzIcon(Icons.u_turn_left),
         EzTransitionType.rotate => EzIcon(Icons.rotate_90_degrees_cw),
         EzTransitionType.slideX => EzIcon(
-            EzConfig.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
+            config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
         EzTransitionType.slideY => EzIcon(Icons.keyboard_double_arrow_up),
         EzTransitionType.zoom => EzIcon(Icons.zoom_in),
       };
@@ -293,13 +293,6 @@ extension EACConfig on EzAnimationCurve {
         EzAnimationCurve.linear => esLinear,
       };
 
-  String get name => switch (this) {
-        EzAnimationCurve.bounce => EzConfig.l10n.dsBounce,
-        EzAnimationCurve.ease => EzConfig.l10n.dsEase,
-        EzAnimationCurve.elastic => EzConfig.l10n.dsElastic,
-        EzAnimationCurve.linear => EzConfig.l10n.dsLinear,
-      };
-
   Curve get curve => switch (this) {
         EzAnimationCurve.bounce => Curves.bounceInOut,
         EzAnimationCurve.ease => Curves.easeInOut,
@@ -312,6 +305,13 @@ extension EACConfig on EzAnimationCurve {
         esElastic => EzAnimationCurve.elastic,
         esLinear => EzAnimationCurve.linear,
         esEase || _ => EzAnimationCurve.ease,
+      };
+
+  String name(EZCProvider config) => switch (this) {
+        EzAnimationCurve.bounce => config.l10n.dsBounce,
+        EzAnimationCurve.ease => config.l10n.dsEase,
+        EzAnimationCurve.elastic => config.l10n.dsElastic,
+        EzAnimationCurve.linear => config.l10n.dsLinear,
       };
 
   static Curve translate(String? value) => switch (value) {

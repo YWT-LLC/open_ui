@@ -23,7 +23,7 @@ class EzConfigurableApp extends StatelessWidget {
   /// Recommended to use [ezStoredL10n]
   final EFUILang el10n;
 
-  /// Sets [EzConfigProvider.appCache]
+  /// Sets [EZCProvider.appCache]
   final EzAppCache appCache;
 
   /// Router/page config
@@ -41,48 +41,19 @@ class EzConfigurableApp extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider<EzConfigProvider>(
-        create: (_) => EzConfigProvider(
+  Widget build(BuildContext context) => ChangeNotifierProvider<EZCProvider>(
+        create: (_) => EZCProvider(
           locale: locale,
           el10n: el10n,
-          isDark: EzConfig.get(isDarkThemeKey) ?? isDarkTheme(context),
+          isDark: EZCManager.get(isDarkThemeKey) ?? isDarkTheme(context),
           appCache: appCache,
         ),
-        child: _DevXLayer(
+        child: _AppDrawer(
           localizationsDelegates: localizationsDelegates,
           supportedLocales: supportedLocales,
           routerConfig: routerConfig,
         ),
       );
-}
-
-class _DevXLayer extends StatelessWidget {
-  /// LocaleNamesLocalizationsDelegate(), etc.
-  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
-
-  /// Languages/locales the app supports
-  final Iterable<Locale> supportedLocales;
-
-  /// Router/page config
-  final RouterConfig<Object>? routerConfig;
-
-  /// A [Widget] layer that may seem redundant, but it makes developers lives a whole lot easier
-  const _DevXLayer({
-    required this.localizationsDelegates,
-    required this.supportedLocales,
-    required this.routerConfig,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    EzConfig.initProvider(Provider.of<EzConfigProvider>(context));
-
-    return _AppDrawer(
-      localizationsDelegates: localizationsDelegates,
-      supportedLocales: supportedLocales,
-      routerConfig: routerConfig,
-    );
-  }
 }
 
 class _AppDrawer extends StatefulWidget {
@@ -113,22 +84,24 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
   void didChangePlatformBrightness() async {
     super.didChangePlatformBrightness();
 
+    final EZCProvider config = Provider.of<EZCProvider>(context, listen: false);
+
     if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
-        EzConfig.isDark) {
-      await EzConfig.rebuildUI();
+        config.isDark) {
+      await config.rebuildUI();
     }
   }
 
   // Return the build //
 
   @override
-  Widget build(BuildContext context) => Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => MaterialApp.router(
+  Widget build(BuildContext context) => Consumer<EZCProvider>(
+        builder: (_, EZCProvider config, __) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: widget.localizationsDelegates,
           supportedLocales: widget.supportedLocales,
           locale: config.locale,
-          title: EzConfig.appName,
+          title: EZCManager.appName,
           themeMode: config.themeMode,
           darkTheme: config.darkTheme,
           theme: config.lightTheme,

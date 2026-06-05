@@ -13,25 +13,25 @@ class SettingsHubScreen extends StatelessWidget {
   /// Optionally override the starting position
   final int? targetPass;
 
-  SettingsHubScreen({this.targetPass}) : super(key: ValueKey<int>(EzConfig.seed));
+  const SettingsHubScreen({super.key, this.targetPass});
 
   @override
-  Widget build(BuildContext context) => Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => OpenUIScaffold(
+  Widget build(BuildContext context) => Consumer<EZCProvider>(
+        builder: (_, EZCProvider config, __) => OpenUIScaffold(
           EzScreen(EzSettingsHub(
             pages: <EzSettingsSection>[
               // Global //
 
               EzSettingsSection(
                 position: 0,
-                title: EzConfig.l10n.gGlobal,
+                title: config.l10n.gGlobal,
                 icon: EzIcon(
                   config.onMobile
                       ? config.platform == TargetPlatform.iOS
                           ? Icons.phone_iphone
                           : Icons.phone_android
                       : Icons.computer,
-                  semanticLabel: EzConfig.l10n.gGlobal,
+                  semanticLabel: config.l10n.gGlobal,
                 ),
                 subSettings: <EzSubSetting>[],
                 fromStorage: () => EzSubSetting.blank,
@@ -42,16 +42,16 @@ class SettingsHubScreen extends StatelessWidget {
 
               EzSettingsSection(
                 position: 1,
-                title: EzConfig.l10n.gColor,
+                title: config.l10n.gColor,
                 icon: EzIcon(
                   Icons.palette,
-                  semanticLabel: EzConfig.l10n.gColor,
+                  semanticLabel: config.l10n.gColor,
                 ),
                 subSettings: <EzSubSetting>[
                   EzSubSetting.qckColor,
                   EzSubSetting.advColor,
                 ],
-                fromStorage: () => EzConfig.get(advancedColorsKey) == true
+                fromStorage: () => EZCManager.get(advancedColorsKey) == true
                     ? EzSubSetting.advColor
                     : EzSubSetting.qckColor,
                 build: (EzSubSetting subSec) => EzColorSettings(target: subSec),
@@ -61,16 +61,16 @@ class SettingsHubScreen extends StatelessWidget {
 
               EzSettingsSection(
                 position: 2,
-                title: EzConfig.l10n.gDesign,
+                title: config.l10n.gDesign,
                 icon: EzIcon(
                   Icons.design_services,
-                  semanticLabel: EzConfig.l10n.gDesign,
+                  semanticLabel: config.l10n.gDesign,
                 ),
                 subSettings: <EzSubSetting>[
                   EzSubSetting.butDesign,
                   EzSubSetting.pagDesign,
                 ],
-                fromStorage: () => EzConfig.get(pageTabKey) == true
+                fromStorage: () => EZCManager.get(pageTabKey) == true
                     ? EzSubSetting.pagDesign
                     : EzSubSetting.butDesign,
                 build: (EzSubSetting subSec) => EzDesignSettings(target: subSec),
@@ -80,16 +80,16 @@ class SettingsHubScreen extends StatelessWidget {
 
               EzSettingsSection(
                 position: 3,
-                title: EzConfig.l10n.gText,
+                title: config.l10n.gText,
                 icon: EzIcon(
                   Icons.text_format,
-                  semanticLabel: EzConfig.l10n.gText,
+                  semanticLabel: config.l10n.gText,
                 ),
                 subSettings: <EzSubSetting>[
                   EzSubSetting.qckText,
                   EzSubSetting.advText,
                 ],
-                fromStorage: () => EzConfig.get(advancedTextKey) == true
+                fromStorage: () => EZCManager.get(advancedTextKey) == true
                     ? EzSubSetting.advText
                     : EzSubSetting.qckText,
                 build: (EzSubSetting subSec) => EzTextSettings(target: subSec),
@@ -102,12 +102,12 @@ class SettingsHubScreen extends StatelessWidget {
           fabs: <Widget>[
             // Rebuild (conditional)
             if (config.needsRebuild) ...<Widget>[
-              config.layout.spacer,
+              config.spacer,
               const EzRebuildFAB(),
             ],
 
             // Save/upload config
-            config.layout.spacer,
+            config.spacer,
             const EzConfigFAB(),
           ],
         ),

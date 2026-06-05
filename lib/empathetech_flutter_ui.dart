@@ -5,8 +5,8 @@
 
 // Core //
 
+export 'src/config_manager.dart';
 export 'src/config_provider.dart';
-export 'src/config.dart';
 export 'src/configurable_app.dart';
 
 //* consts *//

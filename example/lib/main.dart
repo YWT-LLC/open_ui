@@ -20,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
 
-  EzConfig.init(
+  EZCManager.init(
     appName: thisAppName,
     androidPackage: thisPackageName,
     assetPaths: <String>{},
@@ -80,14 +80,14 @@ class OpenUI extends StatelessWidget {
         routerConfig: GoRouter(
           navigatorKey: ezRootNav,
           initialLocation: homePath,
-          errorBuilder: (_, __) => ErrorScreen(),
+          errorBuilder: (_, __) => const ErrorScreen(),
           routes: <RouteBase>[
             // Home
             GoRoute(
               path: homePath,
               name: homePath,
               pageBuilder: (BuildContext context, GoRouterState state) =>
-                  ezPageBuilder(context, state, HomeScreen()),
+                  ezPageBuilder(context, state, const HomeScreen()),
               routes: <RouteBase>[
                 // Archive
                 GoRoute(
@@ -110,7 +110,7 @@ class OpenUI extends StatelessWidget {
                   path: settingsHubPath,
                   name: settingsHubPath,
                   pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, SettingsHubScreen()),
+                      ezPageBuilder(context, state, const SettingsHubScreen()),
                 ),
               ],
             ),

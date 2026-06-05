@@ -40,6 +40,6 @@ class EzRow extends StatelessWidget {
         mainAxisSize: mainAxisSize,
         crossAxisAlignment: crossAxisAlignment,
         children:
-            (reverseHands && EzConfig.isLefty == true) ? children.reversed.toList() : children,
+            (reverseHands && EZCManager.isLefty == true) ? children.reversed.toList() : children,
       );
 }

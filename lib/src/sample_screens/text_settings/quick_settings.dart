@@ -8,6 +8,8 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class QuickTextSettings extends StatefulWidget {
+  final EZCProvider config;
+
   // Providers
   final EzDisplayStyleProvider displayProvider;
   final EzHeadlineStyleProvider headlineProvider;
@@ -17,6 +19,7 @@ class QuickTextSettings extends StatefulWidget {
 
   const QuickTextSettings({
     super.key,
+    required this.config,
     required this.displayProvider,
     required this.headlineProvider,
     required this.titleProvider,
@@ -31,19 +34,19 @@ class QuickTextSettings extends StatefulWidget {
 class _QuickTextSettingsState extends State<QuickTextSettings> {
   // Gather the build data //
 
-  double backOpacity = EzConfig.textBackgroundOpacity;
+  late double backOpacity = widget.config.textBackgroundOpacity;
 
-  late Color buttonBackground = EzConfig.colors.surface.withValues(alpha: backOpacity);
-  late Color textBackground = EzConfig.colors.surfaceContainer.withValues(alpha: backOpacity);
+  late Color buttonBackground = widget.config.colors.surface.withValues(alpha: backOpacity);
+  late Color textBackground = widget.config.colors.surfaceContainer.withValues(alpha: backOpacity);
 
   @override
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
     final EdgeInsets wrapPadding = EdgeInsets.only(
-      left: EzConfig.spacing / 2,
-      right: EzConfig.spacing / 2,
-      bottom: EzConfig.spacing,
+      left: widget.config.spacing / 2,
+      right: widget.config.spacing / 2,
+      bottom: widget.config.spacing,
     );
 
     // Return the build //
@@ -80,56 +83,62 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           ),
         ),
       ]),
-      EzConfig.spacer,
+      widget.config.spacer,
 
       // Display preview
       EzText(
-        EzConfig.l10n.tsDisplayP1 + EzConfig.l10n.tsDisplayLink + EzConfig.l10n.tsDisplayP2,
+        widget.config.l10n.tsDisplayP1 +
+            widget.config.l10n.tsDisplayLink +
+            widget.config.l10n.tsDisplayP2,
         textAlign: TextAlign.center,
         style: widget.displayProvider.value,
         backgroundColor: textBackground,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Headline preview
       EzText(
-        EzConfig.l10n.tsHeadlineP1 + EzConfig.l10n.tsHeadlineLink + EzConfig.l10n.tsHeadlineP2,
+        widget.config.l10n.tsHeadlineP1 +
+            widget.config.l10n.tsHeadlineLink +
+            widget.config.l10n.tsHeadlineP2,
         textAlign: TextAlign.center,
         style: widget.headlineProvider.value,
         backgroundColor: textBackground,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Title preview
       EzText(
-        EzConfig.l10n.tsTitleP1 + EzConfig.l10n.tsTitleLink,
+        widget.config.l10n.tsTitleP1 + widget.config.l10n.tsTitleLink,
         textAlign: TextAlign.center,
         style: widget.titleProvider.value,
         backgroundColor: textBackground,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Body preview
       EzText(
-        EzConfig.l10n.tsBodyP1 + EzConfig.l10n.tsBodyLink + EzConfig.l10n.tsBodyP2,
+        widget.config.l10n.tsBodyP1 + widget.config.l10n.tsBodyLink + widget.config.l10n.tsBodyP2,
         textAlign: TextAlign.center,
         style: widget.bodyProvider.value,
         backgroundColor: textBackground,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Label preview
       EzText(
-        EzConfig.l10n.tsLabelP1 + EzConfig.l10n.tsLabelLink + EzConfig.l10n.tsLabelP2,
+        widget.config.l10n.tsLabelP1 +
+            widget.config.l10n.tsLabelLink +
+            widget.config.l10n.tsLabelP2,
         textAlign: TextAlign.center,
         style: widget.labelProvider.value,
         backgroundColor: textBackground,
       ),
-      EzConfig.divider,
+      widget.config.divider,
 
       // Text background opacity
       EzText(
-        EzConfig.l10n.tsTextBackground,
+        widget.config.l10n.tsTextBackground,
         style: widget.labelProvider.value,
         textAlign: TextAlign.center,
         backgroundColor: textBackground,
@@ -148,21 +157,21 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           onChanged: (double value) {
             setState(() {
               backOpacity = value;
-              buttonBackground = EzConfig.colors.surface.withValues(alpha: backOpacity);
-              textBackground = EzConfig.colors.surfaceContainer.withValues(alpha: backOpacity);
+              buttonBackground = widget.config.colors.surface.withValues(alpha: backOpacity);
+              textBackground = widget.config.colors.surfaceContainer.withValues(alpha: backOpacity);
             });
           },
           onChangeEnd: (double value) async {
-            if (EzConfig.updateBoth || EzConfig.isDark) {
-              await EzConfig.setDouble(darkTextBackgroundOpacityKey, value);
+            if (EZCManager.updateBoth || widget.config.isDark) {
+              await EZCManager.setDouble(darkTextBackgroundOpacityKey, value);
             }
-            if (EzConfig.updateBoth || !EzConfig.isDark) {
-              await EzConfig.setDouble(lightTextBackgroundOpacityKey, value);
+            if (EZCManager.updateBoth || !widget.config.isDark) {
+              await EZCManager.setDouble(lightTextBackgroundOpacityKey, value);
             }
 
             if (context.mounted) {
-              EzConfig.pingRebuild(
-                  ezTextRebuildCheck(context) || (value != EzConfig.textBackgroundOpacity));
+              widget.config.pingRebuild(ezTextRebuildCheck(context, widget.config) ||
+                  (value != widget.config.textBackgroundOpacity));
             }
           },
 
@@ -170,25 +179,25 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           semanticFormatterCallback: (double value) => value.toStringAsFixed(2),
         ),
       ),
-      EzConfig.spacer,
+      widget.config.spacer,
 
       // Icon size
       EzIconSizeSetting(backgroundColor: buttonBackground),
 
       // Reset all
-      EzConfig.separator,
+      widget.config.separator,
       EzResetButton(
         all: false,
-        dynamicTitle: () => EzConfig.l10n.tsReset(ezThemeString(true)),
+        dynamicTitle: () => widget.config.l10n.tsReset(ezThemeString(true)),
         onConfirm: () async {
-          if (EzConfig.updateBoth || EzConfig.isDark) {
-            await EzConfig.removeKeys(darkTextKeys.keys.toSet());
-            await EzConfig.remove(darkOnSurfaceKey);
+          if (EZCManager.updateBoth || widget.config.isDark) {
+            await EZCManager.removeKeys(darkTextKeys.keys.toSet());
+            await EZCManager.remove(darkOnSurfaceKey);
           }
 
-          if (EzConfig.updateBoth || !EzConfig.isDark) {
-            await EzConfig.removeKeys(lightTextKeys.keys.toSet());
-            await EzConfig.remove(lightOnSurfaceKey);
+          if (EZCManager.updateBoth || !widget.config.isDark) {
+            await EZCManager.removeKeys(lightTextKeys.keys.toSet());
+            await EZCManager.remove(lightOnSurfaceKey);
           }
         },
       ),
