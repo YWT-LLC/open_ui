@@ -107,7 +107,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             delta: delta,
             child: currSection.build(currSubSec),
           ),
-          const EzFooter(),
+          const EzFooter(), // TODO: works?
         ],
       );
 }
