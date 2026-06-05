@@ -11,6 +11,7 @@ class EzScaffold extends Scaffold {
   final List<Widget> fabs;
 
   EzScaffold({
+    super.key,
     super.appBar,
     super.drawer,
     super.endDrawer,
@@ -18,7 +19,6 @@ class EzScaffold extends Scaffold {
     super.backgroundColor,
     required this.fabs,
   }) : super(
-          key: ValueKey<int>(EzConfig.seed),
           floatingActionButton: EzCol(children: fabs),
           floatingActionButtonLocation: EzConfig.isLefty
               ? FloatingActionButtonLocation.startFloat
