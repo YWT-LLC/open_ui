@@ -262,17 +262,18 @@ class EzSwapSeparator extends StatelessWidget {
 }
 
 class EzFooter extends StatelessWidget {
-  /// No [message] for this [Locale]
+  /// Just an [EzSeparator] for this [Locale]
   final Locale defaultLocale;
 
+  /// [EzConfigProvider.locale] || [EzConfig.locale] -> [Locale.languageCode]
+  final String? currCode;
+
   /// The current screen/page is human translated
+  /// Just an [EzSeparator] when true
   final bool human;
 
   /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
   final TextAlign textAlign;
-
-  /// Optionally override [EFUILang.gMachineTranslated]
-  final String? message;
 
   /// Optionally override [EzConfig.spacing] * 2
   final double? spacing;
@@ -280,20 +281,20 @@ class EzFooter extends StatelessWidget {
   const EzFooter({
     super.key,
     this.defaultLocale = english,
+    this.currCode,
     this.human = false,
-    this.message,
     this.textAlign = TextAlign.center,
     this.spacing,
   });
 
   @override
   Widget build(BuildContext context) =>
-      (human || EzConfig.locale.languageCode == defaultLocale.languageCode)
+      (human || ((currCode ?? EzConfig.locale.languageCode) == defaultLocale.languageCode))
           ? const EzSeparator()
           : Padding(
               padding: EdgeInsets.only(top: spacing ?? (EzConfig.spacing * 2)),
               child: Text(
-                message ?? EzConfig.l10n.gMachineTranslated,
+                EzConfig.l10n.gMachineTranslated,
                 style: EzConfig.labelStyle,
                 textAlign: textAlign,
               ),
