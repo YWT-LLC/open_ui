@@ -23,7 +23,7 @@ class EzConfigurableApp extends StatelessWidget {
   /// Recommended to use [ezStoredL10n]
   final EFUILang el10n;
 
-  /// Sets [EZCProvider.appCache]
+  /// Sets [EzCP.appCache]
   final EzAppCache appCache;
 
   /// Router/page config
@@ -41,11 +41,11 @@ class EzConfigurableApp extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider<EZCProvider>(
-        create: (_) => EZCProvider(
+  Widget build(BuildContext context) => ChangeNotifierProvider<EzCP>(
+        create: (_) => EzCP(
           locale: locale,
           el10n: el10n,
-          isDark: EZCManager.get(isDarkThemeKey) ?? isDarkTheme(context),
+          isDark: EzCM.get(isDarkThemeKey) ?? isDarkTheme(context),
           appCache: appCache,
         ),
         child: _AppDrawer(
@@ -84,7 +84,7 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
   void didChangePlatformBrightness() async {
     super.didChangePlatformBrightness();
 
-    final EZCProvider config = Provider.of<EZCProvider>(context, listen: false);
+    final EzCP config = Provider.of<EzCP>(context, listen: false);
 
     if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
         config.isDark) {
@@ -95,13 +95,13 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
   // Return the build //
 
   @override
-  Widget build(BuildContext context) => Consumer<EZCProvider>(
-        builder: (_, EZCProvider config, __) => MaterialApp.router(
+  Widget build(BuildContext context) => Consumer<EzCP>(
+        builder: (_, EzCP config, __) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: widget.localizationsDelegates,
           supportedLocales: widget.supportedLocales,
           locale: config.locale,
-          title: EZCManager.appName,
+          title: EzCM.appName,
           themeMode: config.themeMode,
           darkTheme: config.darkTheme,
           theme: config.lightTheme,
