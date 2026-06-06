@@ -14,8 +14,8 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EZCProvider>(
-      builder: (_, EZCProvider config, __) => OpenUIScaffold(EzScreen(Center(
+    return Consumer<EzCP>(
+      builder: (_, EzCP config, __) => OpenUIScaffold(EzScreen(Center(
         child: EzScrollView(children: <Widget>[
           EzText(
             config.l10n.g404Wonder,
@@ -25,7 +25,7 @@ class ErrorScreen extends StatelessWidget {
           config.separator,
           EzText(
             config.l10n.g404,
-            style: ezSubTitleStyle(),
+            style: ezSubTitleStyle(config.styles),
             textAlign: TextAlign.center,
           ),
           config.separator,
@@ -34,7 +34,7 @@ class ErrorScreen extends StatelessWidget {
             style: config.labelStyle,
             textAlign: TextAlign.center,
           ),
-          EzFooter(config.locale.languageCode, spacing: 0)
+          EzFooter(config, spacing: 0),
         ]),
       ))),
     );
