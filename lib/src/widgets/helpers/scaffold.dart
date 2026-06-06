@@ -20,7 +20,7 @@ class EzScaffold extends Scaffold {
     required this.fabs,
   }) : super(
           floatingActionButton: EzCol(children: fabs),
-          floatingActionButtonLocation: EZCManager.isLefty
+          floatingActionButtonLocation: EzCM.isLefty
               ? FloatingActionButtonLocation.startFloat
               : FloatingActionButtonLocation.endFloat,
           resizeToAvoidBottomInset: false,
