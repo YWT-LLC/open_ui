@@ -9,13 +9,14 @@ import 'package:efui_bios/efui_bios.dart';
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class ArchiveScreen extends StatefulWidget {
   final EAGConfig config;
 
-  ArchiveScreen(this.config) : super(key: ValueKey<int>(EzConfig.seed));
+  const ArchiveScreen(this.config, {super.key});
 
   @override
   State<ArchiveScreen> createState() => _ArchiveScreenState();
@@ -27,9 +28,9 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   GeneratorState genState = GeneratorState.running;
   String failureMessage = '';
 
-  final bool isDesktop = EzConfig.platform == TargetPlatform.linux ||
-      EzConfig.platform == TargetPlatform.macOS ||
-      EzConfig.platform == TargetPlatform.windows;
+  final bool isDesktop = EzCM.platform == TargetPlatform.linux ||
+      EzCM.platform == TargetPlatform.macOS ||
+      EzCM.platform == TargetPlatform.windows;
 
   // Define custom functions //
 
@@ -52,38 +53,38 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
     savedConfig.endsWith('.json')
         ? setState(() => genState = GeneratorState.successful)
         : setState(() {
-            failureMessage = '${EzConfig.l10n.ssWrongConfigExt} .json...\n\n$savedConfig';
+            failureMessage = '${ezL10n.ssWrongConfigExt} .json...\n\n$savedConfig';
             genState = GeneratorState.failed;
           });
   }
 
-  Widget header() => switch (genState) {
+  Widget header(EzCP config) => switch (genState) {
         GeneratorState.running => SizedBox(
             height: heightOf(context) / 3,
             width: double.infinity,
             child: EmpathyLoading(
-              semantics: EzConfig.l10n.gLoadingAnim,
-              colorScheme: EzConfig.colors,
+              semantics: config.l10n.gLoadingAnim,
+              colorScheme: config.colors,
             ),
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(
               richMessage: EzRichText(
                 <InlineSpan>[
-                  EzPlainText(text: EzConfig.l10n.ssConfigSaved(archivePath())),
+                  EzPlainText(text: config.l10n.ssConfigSaved(archivePath())),
                   if (!isDesktop) ...<InlineSpan>[
                     EzPlainText(text: l10n.asUseIt),
                     EzInlineLink(
                       thisAppName,
-                      style: ezSubTitleStyle(),
+                      style: ezSubTitleStyle(config.styles),
                       textAlign: TextAlign.center,
                       url: Uri.parse(openUIReleases),
-                      hint: EzConfig.l10n.gOpenUIReleases,
+                      hint: config.l10n.gOpenUIReleases,
                     ),
                     EzPlainText(text: l10n.asToGen(widget.config.appName)),
                   ]
                 ],
-                style: ezSubTitleStyle(),
+                style: ezSubTitleStyle(config.styles),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -102,9 +103,13 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   // Return the build //
 
   @override
-  Widget build(BuildContext context) => OpenUIScaffold(
-        EzScreen(header(), alignment: Alignment.topCenter),
+  Widget build(BuildContext context) {
+    return Consumer<EzCP>(
+      builder: (_, EzCP config, __) => OpenUIScaffold(
+        EzScreen(header(config), alignment: Alignment.topCenter),
         title: l10n.asPageTitle,
         running: genState == GeneratorState.running,
-      );
+      ),
+    );
+  }
 }
