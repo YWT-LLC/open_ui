@@ -20,11 +20,13 @@ const Widget updater = EzUpdaterFAB(
 );
 
 class ResetFAB extends StatelessWidget {
+  final EzCP config;
   final void Function() clear;
   final void Function() state;
 
   /// Opens an [EzAlertDialog] for resetting the form fields, app settings, both, or none
-  const ResetFAB({
+  const ResetFAB(
+    this.config, {
     super.key,
     required this.clear,
     required this.state,
@@ -32,10 +34,10 @@ class ResetFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: EzConfig.l10n.gReset,
+        message: config.l10n.gReset,
         excludeFromSemantics: true,
         child: Semantics(
-          label: EzConfig.l10n.gReset,
+          label: config.l10n.gReset,
           button: true,
           hint: l10n.csResetHint,
           child: ExcludeSemantics(
@@ -44,7 +46,7 @@ class ResetFAB extends StatelessWidget {
                 context: context,
                 builder: (BuildContext dCon) => EzAlertDialog(
                   title: Text(
-                    '${EzConfig.l10n.gReset}...',
+                    '${config.l10n.gReset}...',
                     textAlign: TextAlign.center,
                   ),
                   actions: <Widget>[
@@ -52,7 +54,7 @@ class ResetFAB extends StatelessWidget {
                     EzMaterialAction(
                       onPressed: () async {
                         clear();
-                        await EzConfig.rebuildUI();
+                        await config.rebuildUI();
                         state();
                       },
                       text: l10n.csResetBuilder,
@@ -62,7 +64,7 @@ class ResetFAB extends StatelessWidget {
                     // App settings
                     EzMaterialAction(
                       onPressed: () async {
-                        await EzConfig.rebuildUI(changes: () => EzConfig.reset(forceBoth: true));
+                        await config.rebuildUI(changes: () => EzCM.reset(forceBoth: true));
                         state();
                       },
                       text: l10n.csResetApp,
@@ -72,9 +74,9 @@ class ResetFAB extends StatelessWidget {
                     // Both
                     EzMaterialAction(
                       onPressed: () async {
-                        await EzConfig.rebuildUI(changes: () async {
+                        await config.rebuildUI(changes: () async {
                           clear();
-                          await EzConfig.reset(forceBoth: true);
+                          await EzCM.reset(forceBoth: true);
                         });
                         state();
                       },
@@ -100,8 +102,10 @@ class ResetFAB extends StatelessWidget {
 
 /// When needed, add this an modify the main router
 class MacStoreFAB extends StatelessWidget {
+  final EzCP config;
+
   /// Opens an [EzAlertDialog] for resetting the form fields, app settings, both, or none
-  const MacStoreFAB({super.key});
+  const MacStoreFAB(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
@@ -125,8 +129,8 @@ The full (free and open source) app generator can be downloaded from the ''',
             ),
           ]),
         ),
-        backgroundColor: EzConfig.colors.secondary,
-        foregroundColor: EzConfig.colors.onSecondary,
+        backgroundColor: config.colors.secondary,
+        foregroundColor: config.colors.onSecondary,
         child: EzIcon(Icons.update),
       );
 }
