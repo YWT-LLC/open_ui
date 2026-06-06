@@ -257,6 +257,7 @@ class EzCP extends ChangeNotifier {
 
   ColorScheme get colors => _currTheme.colorScheme;
 
+  TextTheme get styles => _currTheme.textTheme;
   TextStyle? get displayStyle => _currTheme.textTheme.displayLarge;
   TextStyle? get headlineStyle => _currTheme.textTheme.headlineLarge;
   TextStyle? get titleStyle => _currTheme.textTheme.titleLarge;
