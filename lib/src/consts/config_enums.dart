@@ -159,14 +159,14 @@ extension EBSConfig on EzButtonShape {
           ),
       };
 
-  String name(EZCProvider config) => switch (this) {
-        EzButtonShape.pill => config.l10n.dsPill,
-        EzButtonShape.rect => config.l10n.dsRectangle,
-        EzButtonShape.roundRect => config.l10n.dsRoundRectangle,
-        EzButtonShape.leftGram => config.l10n.dsLeftGram,
-        EzButtonShape.rightGram => config.l10n.dsRightGram,
-        EzButtonShape.gem => config.l10n.dsGem,
-        EzButtonShape.jewel => config.l10n.dsJewel,
+  String name(EFUILang l10n) => switch (this) {
+        EzButtonShape.pill => l10n.dsPill,
+        EzButtonShape.rect => l10n.dsRectangle,
+        EzButtonShape.roundRect => l10n.dsRoundRectangle,
+        EzButtonShape.leftGram => l10n.dsLeftGram,
+        EzButtonShape.rightGram => l10n.dsRightGram,
+        EzButtonShape.gem => l10n.dsGem,
+        EzButtonShape.jewel => l10n.dsJewel,
       };
 
   /// Defaults to [EzTransitionType.system]
@@ -229,29 +229,29 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.zoom => esZoom,
       };
 
-  String name(EZCProvider config) => switch (this) {
-        EzTransitionType.none => config.l10n.dsNone,
-        EzTransitionType.system => config.l10n.dsSystem,
-        EzTransitionType.turnX => config.l10n.dsTurnX,
-        EzTransitionType.turnY => config.l10n.dsTurnY,
-        EzTransitionType.rotate => config.l10n.dsRotate,
-        EzTransitionType.slideX => config.l10n.dsSlideX,
-        EzTransitionType.slideY => config.l10n.dsSlideY,
-        EzTransitionType.zoom => config.l10n.dsZoom,
+  String name(EFUILang l10n) => switch (this) {
+        EzTransitionType.none => l10n.dsNone,
+        EzTransitionType.system => l10n.dsSystem,
+        EzTransitionType.turnX => l10n.dsTurnX,
+        EzTransitionType.turnY => l10n.dsTurnY,
+        EzTransitionType.rotate => l10n.dsRotate,
+        EzTransitionType.slideX => l10n.dsSlideX,
+        EzTransitionType.slideY => l10n.dsSlideY,
+        EzTransitionType.zoom => l10n.dsZoom,
       };
 
-  Icon icon(EZCProvider config) => switch (this) {
+  Icon icon(bool isLTR) => switch (this) {
         EzTransitionType.none => EzIcon(Icons.cancel),
-        EzTransitionType.system => EzIcon(config.onMobile
-            ? config.platform == TargetPlatform.iOS
+        EzTransitionType.system => EzIcon(EzCM.onMobile
+            ? EzCM.platform == TargetPlatform.iOS
                 ? Icons.phone_iphone
                 : Icons.phone_android
             : Icons.computer),
         EzTransitionType.turnX => EzIcon(Icons.flip),
         EzTransitionType.turnY => EzIcon(Icons.u_turn_left),
         EzTransitionType.rotate => EzIcon(Icons.rotate_90_degrees_cw),
-        EzTransitionType.slideX => EzIcon(
-            config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
+        EzTransitionType.slideX =>
+          EzIcon(isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
         EzTransitionType.slideY => EzIcon(Icons.keyboard_double_arrow_up),
         EzTransitionType.zoom => EzIcon(Icons.zoom_in),
       };
@@ -307,11 +307,11 @@ extension EACConfig on EzAnimationCurve {
         esEase || _ => EzAnimationCurve.ease,
       };
 
-  String name(EZCProvider config) => switch (this) {
-        EzAnimationCurve.bounce => config.l10n.dsBounce,
-        EzAnimationCurve.ease => config.l10n.dsEase,
-        EzAnimationCurve.elastic => config.l10n.dsElastic,
-        EzAnimationCurve.linear => config.l10n.dsLinear,
+  String name(EFUILang l10n) => switch (this) {
+        EzAnimationCurve.bounce => l10n.dsBounce,
+        EzAnimationCurve.ease => l10n.dsEase,
+        EzAnimationCurve.elastic => l10n.dsElastic,
+        EzAnimationCurve.linear => l10n.dsLinear,
       };
 
   static Curve translate(String? value) => switch (value) {
