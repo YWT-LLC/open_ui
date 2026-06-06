@@ -8,7 +8,7 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class QuickTextSettings extends StatefulWidget {
-  final EZCProvider config;
+  final EzCP config;
 
   // Providers
   final EzDisplayStyleProvider displayProvider;
@@ -162,11 +162,11 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
             });
           },
           onChangeEnd: (double value) async {
-            if (EZCManager.updateBoth || widget.config.isDark) {
-              await EZCManager.setDouble(darkTextBackgroundOpacityKey, value);
+            if (EzCM.updateBoth || widget.config.isDark) {
+              await EzCM.setDouble(darkTextBackgroundOpacityKey, value);
             }
-            if (EZCManager.updateBoth || !widget.config.isDark) {
-              await EZCManager.setDouble(lightTextBackgroundOpacityKey, value);
+            if (EzCM.updateBoth || !widget.config.isDark) {
+              await EzCM.setDouble(lightTextBackgroundOpacityKey, value);
             }
 
             if (context.mounted) {
@@ -190,14 +190,14 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         all: false,
         dynamicTitle: () => widget.config.l10n.tsReset(ezThemeString(true)),
         onConfirm: () async {
-          if (EZCManager.updateBoth || widget.config.isDark) {
-            await EZCManager.removeKeys(darkTextKeys.keys.toSet());
-            await EZCManager.remove(darkOnSurfaceKey);
+          if (EzCM.updateBoth || widget.config.isDark) {
+            await EzCM.removeKeys(darkTextKeys.keys.toSet());
+            await EzCM.remove(darkOnSurfaceKey);
           }
 
-          if (EZCManager.updateBoth || !widget.config.isDark) {
-            await EZCManager.removeKeys(lightTextKeys.keys.toSet());
-            await EZCManager.remove(lightOnSurfaceKey);
+          if (EzCM.updateBoth || !widget.config.isDark) {
+            await EzCM.removeKeys(lightTextKeys.keys.toSet());
+            await EzCM.remove(lightOnSurfaceKey);
           }
         },
       ),
