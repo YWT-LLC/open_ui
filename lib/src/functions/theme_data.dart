@@ -43,34 +43,33 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     WidgetState.selected: SystemMouseCursors.click,
   });
 
-  final double padding = isDark ? EZCManager.get(darkPaddingKey) : EZCManager.get(lightPaddingKey);
+  final double padding = isDark ? EzCM.get(darkPaddingKey) : EzCM.get(lightPaddingKey);
 
   final EzButtonShape ezButtonShape =
-      EBSConfig.lookup(EZCManager.get(isDark ? darkButtonShapeKey : lightButtonShapeKey));
+      EBSConfig.lookup(EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey));
   final OutlinedBorder buttonShape = ezButtonShape.shape;
 
-  final double borderWidth = EZCManager.get(isDark ? darkBorderWidthKey : lightBorderWidthKey);
+  final double borderWidth = EzCM.get(isDark ? darkBorderWidthKey : lightBorderWidthKey);
   BorderSide buildBorder(Color color) =>
       borderWidth == 0 ? BorderSide.none : BorderSide(color: color, width: borderWidth);
 
   // Design (page) //
 
-  final double margin = EZCManager.get(isDark ? darkMarginKey : lightMarginKey);
-  final double spacing = EZCManager.get(isDark ? darkSpacingKey : lightSpacingKey);
+  final double margin = EzCM.get(isDark ? darkMarginKey : lightMarginKey);
+  final double spacing = EzCM.get(isDark ? darkSpacingKey : lightSpacingKey);
 
-  final int animDuration =
-      EZCManager.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
+  final int animDuration = EzCM.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
   final int threeQAnim = (animDuration * 0.75).toInt();
 
   final Curve animCurve =
-      EACConfig.translate(EZCManager.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
+      EACConfig.translate(EzCM.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
 
   // Text //
 
   final TextTheme textTheme = ezTextTheme(colorScheme.onSurface, isDark: isDark);
 
   final double textOpacity =
-      EZCManager.get(isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey);
+      EzCM.get(isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey);
   final double crucialTextOpacity = max(textOpacity, focusOpacity);
 
   final Color linkTextBackground = colorScheme.surface.withValues(alpha: textOpacity);
@@ -82,7 +81,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       ? colorScheme.shadow.withValues(alpha: crucialTextOpacity * shadowMod)
       : colorScheme.shadow;
 
-  final double iconSize = EZCManager.get(isDark ? darkIconSizeKey : lightIconSizeKey);
+  final double iconSize = EzCM.get(isDark ? darkIconSizeKey : lightIconSizeKey);
 
   final IconThemeData iconData = IconThemeData(
     color: colorScheme.primary,
