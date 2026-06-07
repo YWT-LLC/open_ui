@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class EzSwitchPair extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Easily disable the button
   /// Useful if the functionality is async
   final bool enabled;
@@ -76,7 +79,8 @@ class EzSwitchPair extends StatefulWidget {
   /// [EzRow] with flexible [EzText] and a [Switch]
   /// Provide the traditional [value] and [onChanged]
   /// Or and EzConfig optimized [valueKey] and optional [afterChanged]
-  const EzSwitchPair({
+  const EzSwitchPair(
+    this.config, {
     super.key,
     this.enabled = true,
     this.fauxDisabled = false,
@@ -130,9 +134,9 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
     }
 
     if (widget.secureKey) {
-      await EzConfig.secSet(widget.valueKey!, choice.toString());
+      await EzCM.secSet(widget.valueKey!, choice.toString());
     } else {
-      await EzConfig.setBool(widget.valueKey!, choice);
+      await EzCM.setBool(widget.valueKey!, choice);
     }
     setState(() => value = choice);
 
@@ -143,8 +147,8 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   void setValue() async {
     final bool newVal = widget.secureKey
-        ? int.tryParse(await EzConfig.secGet(widget.valueKey!)) ?? false
-        : EzConfig.get(widget.valueKey!);
+        ? int.tryParse(await EzCM.secGet(widget.valueKey!)) ?? false
+        : EzCM.get(widget.valueKey!);
 
     if (newVal != value) setState(() => value = newVal);
   }
@@ -168,15 +172,15 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             child: widget.clickable
                 ? EzLink(
                     widget.text,
-                    textColor: EzConfig.colors.onSurface,
-                    style: EzConfig.bodyStyle,
+                    textColor: widget.config.colors.onSurface,
+                    style: widget.config.bodyStyle,
                     textAlign: widget.textAlign,
-                    hint: widget.semanticsLabel ?? EzConfig.l10n.gSwitchHint,
+                    hint: widget.semanticsLabel ?? widget.config.efuiL10n.gSwitchHint,
                     onTap: () => onChanged(!value),
                   )
                 : EzText(
                     widget.text,
-                    style: EzConfig.bodyStyle,
+                    style: widget.config.bodyStyle,
                     textAlign: widget.textAlign,
                     semanticsLabel: widget.semanticsLabel,
                   ),
@@ -188,15 +192,15 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             child: Switch(
               value: value,
               onChanged: onChanged,
-              activeThumbColor: widget.fauxDisabled ? EzConfig.colors.outline : null,
-              inactiveThumbColor: EzConfig.colors.outline,
+              activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
+              inactiveThumbColor: widget.config.colors.outline,
               trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
-                  ? WidgetStatePropertyAll<Color>(EzConfig.colors.outlineVariant)
+                  ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
                   : null,
               trackOutlineWidth: widget.trackOutlineWidth,
-              padding: EzConfig.isLefty
-                  ? EdgeInsets.only(right: EzConfig.marginVal)
-                  : EdgeInsets.only(left: EzConfig.marginVal),
+              padding: EzCM.isLefty
+                  ? EdgeInsets.only(right: widget.config.marginVal)
+                  : EdgeInsets.only(left: widget.config.marginVal),
             ),
           ),
         ],

@@ -8,8 +8,10 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzScaffold extends Scaffold {
+  /// [List] of (preferably) [FloatingActionButton]s
   final List<Widget> fabs;
 
+  /// [Scaffold] wrapper with ezPresets
   EzScaffold({
     super.key,
     super.appBar,

@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzAnimSwitch extends AnimatedSwitcher {
+  /// Recommend [EzCP.animCurve]
+  final Curve curve;
+
   /// [ezAnimDuration] passthrough
   final double mod;
 
@@ -20,8 +23,9 @@ class EzAnimSwitch extends AnimatedSwitcher {
   /// [[ezTransitionBuilder] passthrough
   final bool reverse;
 
-  /// An [EzConfig] controlled [AnimatedSwitcher]
-  EzAnimSwitch({
+  /// An [EzCP] controlled [AnimatedSwitcher]
+  EzAnimSwitch(
+    this.curve, {
     super.key,
     this.mod = 1.0,
     super.reverseDuration,
@@ -31,8 +35,8 @@ class EzAnimSwitch extends AnimatedSwitcher {
     this.reverse = false,
     super.child,
   }) : super(
-          switchInCurve: EzConfig.animCurve,
-          switchOutCurve: EzConfig.animCurve,
+          switchInCurve: curve,
+          switchOutCurve: curve,
           duration: ezAnimDuration(mod: mod),
           transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
             a,
@@ -52,7 +56,8 @@ class EzAnimVis extends EzAnimSwitch {
   final Widget kid;
 
   /// [EzAnimSwitch] + [Visibility]
-  EzAnimVis({
+  EzAnimVis(
+    super.curve, {
     super.key,
     super.mod,
     super.reverseDuration,
@@ -79,7 +84,8 @@ class EzAnimHide extends EzAnimSwitch {
 
   /// [EzAnimSwitch] + [Visibility] that maintains size
   /// && defaults to a static fade
-  EzAnimHide({
+  EzAnimHide(
+    super.curve, {
     super.key,
     super.mod,
     super.reverseDuration,
@@ -102,33 +108,44 @@ class EzAnimHide extends EzAnimSwitch {
 }
 
 class EzFauxCarousel extends StatelessWidget {
-  final int position;
-  final int delta;
-  final Widget child;
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// Optional [ezAnimDuration] passthrough/override
   final double animMod;
 
-  const EzFauxCarousel({
+  /// Current position in the list
+  final int position;
+
+  /// Checks [int.sign] for forward/backward movement
+  final int delta;
+
+  /// What's being animated
+  final Widget child;
+
+  const EzFauxCarousel(
+    this.config, {
     super.key,
+    this.animMod = 0.75,
     required this.position,
     required this.delta,
     required this.child,
-    this.animMod = 0.75,
   });
 
   @override
   Widget build(BuildContext context) => AnimatedSwitcher(
         duration: ezAnimDuration(mod: animMod),
-        switchInCurve: EzConfig.animCurve,
-        switchOutCurve: EzConfig.animCurve,
+        switchInCurve: config.animCurve,
+        switchOutCurve: config.animCurve,
         transitionBuilder: (Widget w, Animation<double> a) {
           final double sign = (w.key == ValueKey<int>(position)) ? 1.0 : -1.0;
-          final double direction = (EzConfig.isLTR ? 1.0 : -1.0) * delta.sign;
+          final double direction = (config.isLTR ? 1.0 : -1.0) * delta.sign;
 
           return SlideTransition(
             position: Tween<Offset>(
               begin: Offset(direction * sign, 0.0),
               end: Offset.zero,
-            ).animate(CurvedAnimation(parent: a, curve: EzConfig.animCurve)),
+            ).animate(CurvedAnimation(parent: a, curve: config.animCurve)),
             child: FadeTransition(opacity: a, child: w),
           );
         },

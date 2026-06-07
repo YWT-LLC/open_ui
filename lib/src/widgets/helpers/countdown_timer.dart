@@ -9,6 +9,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class EzCountdownTimer extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// How long is the countdown
   final Duration duration;
 
@@ -20,7 +23,8 @@ class EzCountdownTimer extends StatefulWidget {
 
   /// An animated circle/pie countdown timer
   /// Default [radius] is for use in a [SnackBar]
-  const EzCountdownTimer({
+  const EzCountdownTimer(
+    this.config, {
     super.key,
     required this.duration,
     this.radius,
@@ -31,8 +35,7 @@ class EzCountdownTimer extends StatefulWidget {
   State<EzCountdownTimer> createState() => _EzCountdownTimerState();
 }
 
-class _EzCountdownTimerState extends State<EzCountdownTimer>
-    with SingleTickerProviderStateMixin {
+class _EzCountdownTimerState extends State<EzCountdownTimer> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -49,7 +52,7 @@ class _EzCountdownTimerState extends State<EzCountdownTimer>
 
   @override
   Widget build(BuildContext context) {
-    final double size = widget.radius ?? EzConfig.iconSize + EzConfig.padding;
+    final double size = widget.radius ?? widget.config.iconSize + widget.config.padding;
 
     return AnimatedBuilder(
       animation: _animation,
@@ -57,7 +60,7 @@ class _EzCountdownTimerState extends State<EzCountdownTimer>
         size: Size(size, size),
         painter: _CountdownTimerPainter(
           progress: _animation.value,
-          color: widget.color ?? EzConfig.colors.secondary,
+          color: widget.color ?? widget.config.colors.secondary,
         ),
       ),
     );

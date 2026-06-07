@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzCLI extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [ezCmd] passthrough
   final String dir;
 
@@ -29,7 +32,8 @@ class EzCLI extends StatelessWidget {
   final TextEditingController _cmdController;
 
   /// Simple interface for running CLI commands via [ezCmd]
-  EzCLI({
+  EzCLI(
+    this.config, {
     super.key,
     required this.dir,
     required this.onSuccess,
@@ -44,7 +48,7 @@ class EzCLI extends StatelessWidget {
         // Title
         EzText(
           'CLI',
-          style: EzConfig.titleStyle,
+          style: config.titleStyle,
           textAlign: TextAlign.center,
         ),
 
