@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class OpenUIScaffold extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Scaffold.body] passthrough
   final Widget body;
 
@@ -29,19 +32,20 @@ class OpenUIScaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzConfig.backFABs]
-  final bool home;
+  /// For [EzCP.backFABs]
+  final bool isHome;
 
   /// Standardized [Scaffold] for all of the EFUI example app's screens
   const OpenUIScaffold(
-    this.body, {
+    this.config, {
     super.key,
     this.title = thisAppName,
     this.running = false,
     this.showSettings = true,
     this.onUpload,
+    required this.body,
     this.fabs,
-    this.home = false,
+    this.isHome = false,
   });
 
   @override
@@ -55,11 +59,11 @@ class OpenUIScaffold extends StatelessWidget {
     final Widget options = MenuAnchor(
       builder: (_, MenuController controller, ___) => EzIconButton(
         onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
-        tooltip: EzConfig.l10n.gOptions,
+        tooltip: config.l10n.gOptions,
         icon: Icon(
           Icons.more_vert,
-          semanticLabel: EzConfig.l10n.gOptions,
-          size: EzConfig.titleStyle!.fontSize,
+          semanticLabel: config.l10n.gOptions,
+          size: config.titleStyle!.fontSize,
         ),
       ),
       menuChildren: <Widget>[
@@ -77,15 +81,12 @@ class OpenUIScaffold extends StatelessWidget {
           preferredSize: Size(double.infinity, toolbarHeight),
           child: EzAppBar(
             height: toolbarHeight,
-            leading: running
-                ? const SizedBox.shrink()
-                : (EzConfig.isLefty ? options : const EzBackAction()),
+            leading:
+                running ? const SizedBox.shrink() : (EzCM.isLefty ? options : const EzBackAction()),
             leadingWidth: toolbarHeight,
             title: Text(title, textAlign: TextAlign.center),
             actions: <Widget>[
-              running
-                  ? const SizedBox.shrink()
-                  : (EzConfig.isLefty ? const EzBackAction() : options)
+              running ? const SizedBox.shrink() : (EzCM.isLefty ? const EzBackAction() : options)
             ],
           ),
         ),
@@ -93,7 +94,7 @@ class OpenUIScaffold extends StatelessWidget {
         fabs: <Widget>[
           updater,
           if (fabs != null) ...fabs!,
-          ...EzConfig.backFABs(home),
+          ...config.backFABs(isHome: isHome),
         ],
       ),
     );

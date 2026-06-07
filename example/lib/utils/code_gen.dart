@@ -553,6 +553,9 @@ import 'package:provider/provider.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class ${classCaseAppName}Scaffold extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [AppBar.title] passthrough (via [Text] widget)
   final String title;
 
@@ -566,16 +569,17 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzConfig.backFABs]
-  final bool home;
+  /// For [EzCP.backFABs]
+  final bool isHome;
 
   /// Standardized [Scaffold] for all of the EFUI example app's screens
-  const ${classCaseAppName}Scaffold(this.body, {
+  const ${classCaseAppName}Scaffold(this.config, {
     super.key,
     this.title = appName,
     this.showSettings = true,
+    required this.body,
     this.fabs,
-    this.home = false,
+    this.isHome = false,
   });
 
   @override
@@ -621,7 +625,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         fabs: <Widget>[
           updater,
           if (fabs != null) ...fabs!,
-          ...EzConfig.backFABs(home),
+          ...config.backFABs(home),
         ],
       ),
     );
