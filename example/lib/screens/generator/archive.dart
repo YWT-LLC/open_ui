@@ -14,9 +14,9 @@ import 'package:file_saver/file_saver.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class ArchiveScreen extends StatefulWidget {
-  final EAGConfig config;
+  final EAGConfig archiving;
 
-  const ArchiveScreen(this.config, {super.key});
+  const ArchiveScreen(this.archiving, {super.key});
 
   @override
   State<ArchiveScreen> createState() => _ArchiveScreenState();
@@ -34,13 +34,13 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
 
   // Define custom functions //
 
-  /// Save the config
+  /// Save the EAGConfig
   void archive() async {
     late final String savedConfig;
     try {
       savedConfig = await FileSaver.instance.saveFile(
-        name: '${widget.config.appName}_eag_config.json',
-        bytes: utf8.encode(jsonEncode(widget.config.toJson())),
+        name: '${widget.archiving.appName}_eag_config.json',
+        bytes: utf8.encode(jsonEncode(widget.archiving.toJson())),
         mimeType: MimeType.json,
       );
     } catch (e) {
@@ -53,7 +53,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
     savedConfig.endsWith('.json')
         ? setState(() => genState = GeneratorState.successful)
         : setState(() {
-            failureMessage = '${ezL10n.ssWrongConfigExt} .json...\n\n$savedConfig';
+            failureMessage = '${efuiL10nWatcher.ssWrongConfigExt} .json...\n\n$savedConfig';
             genState = GeneratorState.failed;
           });
   }
@@ -63,7 +63,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
             height: heightOf(context) / 3,
             width: double.infinity,
             child: EmpathyLoading(
-              semantics: config.l10n.gLoadingAnim,
+              semantics: config.efuiL10n.gLoadingAnim,
               colorScheme: config.colors,
             ),
           ),
@@ -71,17 +71,17 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
             child: SuccessHeader(
               richMessage: EzRichText(
                 <InlineSpan>[
-                  EzPlainText(text: config.l10n.ssConfigSaved(archivePath())),
+                  EzPlainText(text: config.efuiL10n.ssConfigSaved(archivePath())),
                   if (!isDesktop) ...<InlineSpan>[
-                    EzPlainText(text: l10n.asUseIt),
+                    EzPlainText(text: l10n(config).asUseIt),
                     EzInlineLink(
                       thisAppName,
                       style: ezSubTitleStyle(config.styles),
                       textAlign: TextAlign.center,
                       url: Uri.parse(openUIReleases),
-                      hint: config.l10n.gOpenUIReleases,
+                      hint: config.efuiL10n.gOpenUIReleases,
                     ),
-                    EzPlainText(text: l10n.asToGen(widget.config.appName)),
+                    EzPlainText(text: l10n(config).asToGen(widget.archiving.appName)),
                   ]
                 ],
                 style: ezSubTitleStyle(config.styles),
@@ -106,8 +106,9 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   Widget build(BuildContext context) {
     return Consumer<EzCP>(
       builder: (_, EzCP config, __) => OpenUIScaffold(
-        EzScreen(header(config), alignment: Alignment.topCenter),
-        title: l10n.asPageTitle,
+        config,
+        body: EzScreen(header(config), alignment: Alignment.topCenter),
+        title: l10n(config).asPageTitle,
         running: genState == GeneratorState.running,
       ),
     );

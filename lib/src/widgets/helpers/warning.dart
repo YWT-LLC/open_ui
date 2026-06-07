@@ -25,7 +25,7 @@ class EzWarning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-        label: '${title ?? config.l10n.gAttention}: $body',
+        label: '${title ?? config.efuiL10n.gAttention}: $body',
         readOnly: true,
         child: ExcludeSemantics(
           child: Card(
@@ -42,7 +42,7 @@ class EzWarning extends StatelessWidget {
                     config.rowMargin,
 
                     Text(
-                      title ?? config.l10n.gAttention,
+                      title ?? config.efuiL10n.gAttention,
                       style: config.titleStyle,
                       textAlign: TextAlign.center,
                     ),

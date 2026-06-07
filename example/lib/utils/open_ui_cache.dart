@@ -20,12 +20,14 @@ class OpenUICache extends EzAppCache {
   void init(_) {}
 
   @override
-  Future<void> rebuild() async {
-    if (_locale != EzConfig.locale) {
-      _locale = EzConfig.locale;
-      _l10n = await Lang.delegate.load(EzConfig.locale);
+  Future<void> rebuild(EzCP config) async {
+    if (_locale != config.locale) {
+      _locale = config.locale;
+      _l10n = await Lang.delegate.load(config.locale);
     }
   }
 }
 
-Lang get l10n => (EzConfig.appCache! as OpenUICache)._l10n;
+OpenUICache _cache(EzCP config) => config.appCache! as OpenUICache;
+
+Lang l10n(EzCP config) => _cache(config)._l10n;

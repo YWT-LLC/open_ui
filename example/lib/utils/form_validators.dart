@@ -9,16 +9,17 @@ import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 /// Allows letters (upper and lower case) and underscores
 String? validateAppName(
+  EzCP config,
   String? value, {
   Function? onSuccess,
   Function? onFailure,
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return '${ezL10n.gRequired}; ${l10n.csInvalidName.toLowerCase()}';
+    return '${config.efuiL10n.gRequired}; ${l10n(config).csInvalidName.toLowerCase()}';
   } else if (!appNamePattern.hasMatch(value)) {
     onFailure?.call();
-    return l10n.csInvalidName;
+    return l10n(config).csInvalidName;
   } else {
     onSuccess?.call();
     return null;
@@ -26,13 +27,14 @@ String? validateAppName(
 }
 
 String? validatePublisher(
+  EzCP config,
   String? value, {
   Function? onSuccess,
   Function? onFailure,
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return ezL10n.gRequired;
+    return config.efuiL10n.gRequired;
   }
 
   onSuccess?.call();
@@ -40,13 +42,14 @@ String? validatePublisher(
 }
 
 String? validateDescription(
+  EzCP config,
   String? value, {
   Function? onSuccess,
   Function? onFailure,
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return ezL10n.gRequired;
+    return config.efuiL10n.gRequired;
   }
 
   onSuccess?.call();
@@ -55,16 +58,17 @@ String? validateDescription(
 
 /// Validates name.extension domains
 String? validateDomain(
+  EzCP config,
   String? value, {
   Function? onSuccess,
   Function? onFailure,
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return '${ezL10n.gRequired}; ${l10n.csInvalidName}';
+    return '${config.efuiL10n.gRequired}; ${l10n(config).csInvalidName}';
   } else if (!domainPattern.hasMatch(value)) {
     onFailure?.call();
-    return l10n.csInvalidDomain;
+    return l10n(config).csInvalidDomain;
   } else {
     onSuccess?.call();
     return null;

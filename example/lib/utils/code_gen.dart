@@ -440,15 +440,17 @@ class ${classCaseAppName}Cache extends EzAppCache {
   void init(_) {}
 
   @override
-  Future<void> rebuild() async {
-    if (_locale != EzConfig.locale) {
-      _l10n = await $l10nClass.delegate.load(EzConfig.locale);
-      _locale = EzConfig.locale;
+  Future<void> rebuild(EzCP config) async {
+    if (_locale != config.locale) {
+      _l10n = await $l10nClass.delegate.load(config.locale);
+      _locale = config.locale;
     }
   }
 }
 
-Lang get l10n => (EzConfig.appCache! as ${classCaseAppName}Cache)._l10n;
+${classCaseAppName}Cache _cache(EzCP config) => config.appCache! as ${classCaseAppName}Cache;
+
+Lang l10n(EzCP config) => (config.appCache! as ${classCaseAppName}Cache)._l10n;
 """);
 
     // export.dart
@@ -484,15 +486,16 @@ class CountFAB extends StatelessWidget {
 }
 
 // TODO: Complete link placeholders (_PH)
-const Widget updater = EzUpdaterFAB(
-  appVersion: '1.0.0', // TODO (recommended): include a check for this in your release scripts
-  versionSource:
-      'https://raw.githubusercontent.com/USER_PH/REPO_PH/refs/heads/main/APP_VERSION',
-  gPlay:
-      'https://play.google.com/store/apps/details?id=${config.domainName}.${config.appName}',
-  appStore: 'https://apps.apple.com/us/app/${config.appName.replaceAll('_', '-')}/APP_ID_PH',
-  github: 'https://github.com/USER_PH/REPO_PH/releases',
-);
+EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
+    config,
+    appVersion: '1.0.0', // TODO (recommended): include a check for this in your release scripts
+    versionSource:
+        'https://raw.githubusercontent.com/USER_PH/REPO_PH/refs/heads/main/APP_VERSION',
+    gPlay:
+        'https://play.google.com/store/apps/details?id=${config.domainName}.${config.appName}',
+    appStore: 'https://apps.apple.com/us/app/${config.appName.replaceAll('_', '-')}/APP_ID_PH',
+    github: 'https://github.com/USER_PH/REPO_PH/releases',
+  );
 """);
 
     // menu_buttons.dart
@@ -514,7 +517,7 @@ class SettingsButton extends StatelessWidget {
   Widget build(_) => EzMenuButton(
         onPressed: () => parentContext.goNamed(settingsHubPath),
         icon: EzIcon(Icons.settings),
-        label: config.l10n.gSettings,
+        label: config.efuiL10n.gSettings,
       );
 }
 
@@ -525,18 +528,18 @@ class EFUICredits extends StatelessWidget {
   /// Honor system: keep a version of this in your app
   /// Remove iff appropriate contributions have been made to Empathetech LLC
   /// https://www.empathetech.net/#/contribute
-  EFUICredits({super.key}) : _label = EzCM.isLefty ? config.l10n.gMadeBy : config.l10n.gCreator;
+  EFUICredits({super.key}) : _label = EzCM.isLefty ? config.efuiL10n.gMadeBy : config.efuiL10n.gCreator;
 
   @override
   Widget build(BuildContext context) => Tooltip(
-      message: config.l10n.gOpenEmpathetech,
+      message: config.efuiL10n.gOpenEmpathetech,
       excludeFromSemantics: true,
       child: EzMenuLink(
         uri: Uri.parse('https://www.empathetech.net/#/products/open-ui'),
         icon: EzIcon(Icons.settings),
         label: _label,
         semanticsLabel:
-            '\${EzCM.isLefty ? '\${config.l10n.gSettings} \$_label' : '\$_label \${config.l10n.gSettings}'}. \${config.l10n.gOpenEmpathetech}',
+            '\${EzCM.isLefty ? '\${config.efuiL10n.gSettings} \$_label' : '\$_label \${config.efuiL10n.gSettings}'}. \${config.efuiL10n.gOpenEmpathetech}',
       ),
     );
 }
@@ -595,10 +598,10 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
       builder: (_, MenuController controller, ___) => EzIconButton(
         onPressed: () =>
             controller.isOpen ? controller.close() : controller.open(),
-        tooltip: config.l10n.gOptions,
+        tooltip: config.efuiL10n.gOptions,
         icon: Icon(
           Icons.more_vert,
-          semanticLabel: config.l10n.gOptions,
+          semanticLabel: config.efuiL10n.gOptions,
           size: config.titleStyle!.fontSize,
         ),
       ),
@@ -659,19 +662,19 @@ class ErrorScreen extends StatelessWidget {
     return Consumer<EzCP>(builder: (_, EzCP config, __) => ${classCaseAppName}Scaffold(EzScreen(Center(
       child: EzScrollView(children: <Widget>[
         EzText(
-          config.l10n.g404Wonder,
+          config.efuiL10n.g404Wonder,
           style: config.headlineStyle,
           textAlign: TextAlign.center,
         ),
         config.separator,
         EzText(
-          config.l10n.g404,
+          config.efuiL10n.g404,
           style: ezSubTitleStyle(),
           textAlign: TextAlign.center,
         ),
         config.separator,
         EzText(
-          config.l10n.g404Note,
+          config.efuiL10n.g404Note,
           style: config.labelStyle,
           textAlign: TextAlign.center,
         ),
@@ -723,7 +726,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                l10n.hsCounterLabel,
+                l10n(config).hsCounterLabel,
                 style: ezSubTitleStyle(),
                 textAlign: TextAlign.center,
               ),
@@ -772,14 +775,14 @@ class SettingsHubScreen extends StatelessWidget {
 
             EzSettingsSection(
               position: 0,
-              title: config.l10n.gGlobal,
+              title: config.efuiL10n.gGlobal,
               icon: EzIcon(
                 EzCM.onMobile
                     ? EzCM.platform == TargetPlatform.iOS
                         ? Icons.phone_iphone
                         : Icons.phone_android
                     : Icons.computer,
-                semanticLabel: config.l10n.gGlobal,
+                semanticLabel: config.efuiL10n.gGlobal,
               ),
               subSettings: <EzSubSetting>[],
               fromStorage: () => EzSubSetting.blank,
@@ -790,10 +793,10 @@ class SettingsHubScreen extends StatelessWidget {
 
             EzSettingsSection(
               position: 1,
-              title: config.l10n.gColor,
+              title: config.efuiL10n.gColor,
               icon: EzIcon(
                 Icons.palette,
-                semanticLabel: config.l10n.gColor,
+                semanticLabel: config.efuiL10n.gColor,
               ),
               subSettings: <EzSubSetting>[
                 EzSubSetting.qckColor,
@@ -809,10 +812,10 @@ class SettingsHubScreen extends StatelessWidget {
 
             EzSettingsSection(
               position: 2,
-              title: config.l10n.gDesign,
+              title: config.efuiL10n.gDesign,
               icon: EzIcon(
                 Icons.design_services,
-                semanticLabel: config.l10n.gDesign,
+                semanticLabel: config.efuiL10n.gDesign,
               ),
               subSettings: <EzSubSetting>[
                 EzSubSetting.butDesign,
@@ -828,10 +831,10 @@ class SettingsHubScreen extends StatelessWidget {
 
             EzSettingsSection(
               position: 3,
-              title: config.l10n.gText,
+              title: config.efuiL10n.gText,
               icon: EzIcon(
                 Icons.text_format,
-                semanticLabel: config.l10n.gText,
+                semanticLabel: config.efuiL10n.gText,
               ),
               subSettings: <EzSubSetting>[
                 EzSubSetting.qckText,
@@ -845,18 +848,18 @@ class SettingsHubScreen extends StatelessWidget {
           ],
           target: targetPass,
         )),
-        title: config.l10n.gSettings,
+        title: config.efuiL10n.gSettings,
         showSettings: false,
         fabs: <Widget>[
           // Rebuild (conditional)
           if (config.needsRebuild) ...<Widget>[
             config.spacer,
-            const EzRebuildFAB(),
+            EzRebuildFAB(config),
           ],
 
           // Save/upload config
           config.spacer,
-          const EzConfigFAB(),
+          EzConfigFAB(config),
         ],
       ),
     );
@@ -1010,7 +1013,7 @@ Future<void> genL10n({
   "hsCounterLabel": "你按了这么多次按钮："
 }''');
 
-    await File('$dir/l10n.yaml').writeAsString(config.l10nConfig);
+    await File('$dir/l10n(config).yaml').writeAsString(config.l10nConfig);
   } catch (e) {
     onFailure(e.toString());
   }

@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 
 /// Standardized [SnackBar] with an [EzCountdownTimer]
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
-  BuildContext context, {
+  EzCP config, {
+  required BuildContext context,
   required String message,
   Color? backgroundColor,
   VoidCallback? onVisible,
@@ -26,9 +27,10 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
       backgroundColor: backgroundColor,
       showCloseIcon: showCloseIcon ?? true,
       onVisible: onVisible,
-      padding: EdgeInsets.all(EzConfig.marginVal),
+      padding: EdgeInsets.all(config.marginVal),
       width: min(
         _snackWidth(
+          config,
           context: context,
           message: message,
           showCloseIcon: showCloseIcon ?? true,
@@ -45,10 +47,10 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
 
           // Undo (conditional)
           if (undo != null) ...<Widget>[
-            EzConfig.rowMargin,
+            config.rowMargin,
             EzTextButton(
-              text: undoMessage ?? EzConfig.l10n.gUndo,
-              textStyle: EzConfig.bodyStyle?.copyWith(color: EzConfig.colors.primary),
+              text: undoMessage ?? config.efuiL10n.gUndo,
+              textStyle: config.bodyStyle?.copyWith(color: config.colors.primary),
               onPressed: () async {
                 await undo();
                 if (context.mounted) {
@@ -59,8 +61,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
           ],
 
           // Timer
-          EzConfig.rowMargin,
-          EzCountdownTimer(duration: toastLength),
+          config.rowMargin,
+          EzCountdownTimer(config, duration: toastLength),
 
           // Close (inherited, above)
         ],
@@ -70,7 +72,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
   );
 }
 
-double _snackWidth({
+double _snackWidth(
+  EzCP config, {
   required BuildContext context,
   required String message,
   required bool showCloseIcon,
@@ -78,23 +81,23 @@ double _snackWidth({
   String? undoMsg,
 }) =>
     // Text width
-    (EzConfig.marginVal +
+    (config.marginVal +
         ezTextSize(
           message,
           context: context,
-          style: EzConfig.theme.snackBarTheme.contentTextStyle,
+          style: config.theme.snackBarTheme.contentTextStyle,
         ).width) +
     // Undo width
     (showUndo
-        ? (EzConfig.marginVal +
+        ? (config.marginVal +
             ezTextSize(
-              undoMsg ?? EzConfig.l10n.gUndo,
+              undoMsg ?? config.efuiL10n.gUndo,
               context: context,
-              style: EzConfig.bodyStyle,
+              style: config.bodyStyle,
             ).width)
         : 0) +
     // Timer width
-    (EzConfig.marginVal + EzConfig.iconSize + EzConfig.padding) +
+    (config.marginVal + config.iconSize + config.padding) +
     // Close width
-    ((showCloseIcon ? (EzConfig.iconSize + (EzConfig.padding / 2) + EzConfig.spacing) : 0) +
-        EzConfig.marginVal);
+    ((showCloseIcon ? (config.iconSize + (config.padding / 2) + config.spacing) : 0) +
+        config.marginVal);

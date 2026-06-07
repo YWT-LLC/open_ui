@@ -65,15 +65,22 @@ class EzCP extends ChangeNotifier {
 
   /// Builds fresh themes and config caches
   void _buildThemeData() {
-    // Build new themes
+    // Build new themes //
+
     _darkTheme = ezThemeData(Brightness.dark, _ltr);
     _lightTheme = ezThemeData(Brightness.light, _ltr);
 
     if (_isDark) {
-      // Build new caches
+      // Build new caches //
+
+      // Setup
+      final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(darkButtonShapeKey));
+      final double margin = EzCM.get(darkMarginKey);
+      final double spacing = EzCM.get(darkSpacingKey);
+
+      // Make them so
       _color = EzColorCache(EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
 
-      final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(darkButtonShapeKey));
       _design = EzDesignCache(
         // Button
         padding: EzCM.get(darkPaddingKey),
@@ -86,8 +93,8 @@ class EzCP extends ChangeNotifier {
         showScroll: EzCM.get(darkShowScrollKey),
 
         // Page
-        margin: EzCM.get(darkMarginKey),
-        spacing: EzCM.get(darkSpacingKey),
+        margin: margin,
+        spacing: spacing,
         backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
         backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
         transitionType: ETTConfig.lookup(EzCM.get(darkTransitionTypeKey)),
@@ -95,17 +102,20 @@ class EzCP extends ChangeNotifier {
         animDur: EzCM.get(darkAnimationDurationKey),
         animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
       );
+
       _layout = EzLayoutCache(
-        margin: EzMargin(isDark: true),
-        rowMargin: EzMargin(isDark: true, vertical: false),
-        spacer: const EzSpacer(isDark: true),
-        rowSpacer: const EzSpacer(isDark: true, vertical: false),
-        separator: const EzSeparator(isDark: true),
-        divider: const EzDivider(),
+        margin: EzSpacer(margin),
+        rowMargin: EzSpacer(margin, vertical: false),
+        spacer: EzSpacer(spacing),
+        rowSpacer: EzSpacer(spacing, vertical: false),
+        swapSpacer: EzSwapSpacer(spacing),
+        separator: EzSpacer(spacing * 2),
+        divider: EzDivider(spacing * 3),
         startLine: const EzNewLine(textAlign: TextAlign.start),
         centerLine: const EzNewLine(),
         endLine: const EzNewLine(textAlign: TextAlign.end),
       );
+
       _text = EzTextCache(
         backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
         iconSize: EzCM.get(darkIconSizeKey),
@@ -114,10 +124,16 @@ class EzCP extends ChangeNotifier {
       // Update the curr theme pointer
       _currTheme = _darkTheme;
     } else {
-      // Build new caches
+      // Build new caches //
+
+      // Setup
+      final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(lightButtonShapeKey));
+      final double margin = EzCM.get(lightMarginKey);
+      final double spacing = EzCM.get(lightSpacingKey);
+
+      // Make them so
       _color = EzColorCache(EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
 
-      final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(lightButtonShapeKey));
       _design = EzDesignCache(
         // Button
         padding: EzCM.get(lightPaddingKey),
@@ -130,8 +146,8 @@ class EzCP extends ChangeNotifier {
         showScroll: EzCM.get(lightShowScrollKey),
 
         // Page
-        margin: EzCM.get(lightMarginKey),
-        spacing: EzCM.get(lightSpacingKey),
+        margin: margin,
+        spacing: spacing,
         backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
         backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
         transitionType: ETTConfig.lookup(EzCM.get(lightTransitionTypeKey)),
@@ -139,17 +155,20 @@ class EzCP extends ChangeNotifier {
         animDur: EzCM.get(lightAnimationDurationKey),
         animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
       );
+
       _layout = EzLayoutCache(
-        margin: EzMargin(isDark: false),
-        rowMargin: EzMargin(isDark: false, vertical: false),
-        spacer: const EzSpacer(isDark: false),
-        rowSpacer: const EzSpacer(isDark: false, vertical: false),
-        separator: const EzSeparator(isDark: false),
-        divider: const EzDivider(),
+        margin: EzSpacer(margin),
+        rowMargin: EzSpacer(margin, vertical: false),
+        spacer: EzSpacer(spacing),
+        rowSpacer: EzSpacer(spacing, vertical: false),
+        swapSpacer: EzSwapSpacer(spacing),
+        separator: EzSpacer(spacing * 2),
+        divider: EzDivider(spacing * 3),
         startLine: const EzNewLine(textAlign: TextAlign.start),
         centerLine: const EzNewLine(),
         endLine: const EzNewLine(textAlign: TextAlign.end),
       );
+
       _text = EzTextCache(
         backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
         iconSize: EzCM.get(lightIconSizeKey),
@@ -166,7 +185,7 @@ class EzCP extends ChangeNotifier {
   Locale get locale => _locale;
 
   /// EFUI localizations for the [locale]
-  EFUILang get l10n => _l10n;
+  EFUILang get efuiL10n => _l10n;
 
   /// Text direction for the [locale]
   bool get isLTR => _ltr;
@@ -195,10 +214,8 @@ class EzCP extends ChangeNotifier {
   bool get lineLinks => _design.lineLinks;
   bool get showBackFAB => _design.showBackFAB;
 
-  List<Widget> backFABs({required bool onHome, bool showHome = false}) =>
-      (showBackFAB && !onHome && ezRootNav.currentState!.canPop())
-          ? <Widget>[spacer, EzBackFAB(showHome: showHome)]
-          : <Widget>[];
+  List<Widget> backFABs(bool isHome) =>
+      (showBackFAB && !isHome && ezRootNav.currentState!.canPop()) ? <Widget>[spacer] : <Widget>[];
 
   // Page
   double get marginVal => _design.margin;
@@ -223,13 +240,14 @@ class EzCP extends ChangeNotifier {
   // Layout cache (lil page design, lil text) //
   EzLayoutCache get layout => _layout;
 
-  EzMargin get margin => _layout.margin;
-  EzMargin get rowMargin => _layout.rowMargin;
+  EzSpacer get margin => _layout.margin;
+  EzSpacer get rowMargin => _layout.rowMargin;
 
   EzSpacer get spacer => _layout.spacer;
   EzSpacer get rowSpacer => _layout.rowSpacer;
+  EzSwapSpacer get swapSpacer => _layout.swapSpacer;
 
-  EzSeparator get separator => _layout.separator;
+  EzSpacer get separator => _layout.separator;
   EzDivider get divider => _layout.divider;
 
   EzNewLine get startLine => _layout.startLine;
@@ -350,7 +368,7 @@ class EzCP extends ChangeNotifier {
     }
     _buildThemeData();
 
-    await _appCache.rebuild();
+    await _appCache.rebuild(this);
     _needsRebuild = false;
 
     ezRootNav.currentState!.pop();
@@ -423,11 +441,12 @@ class EzDesignCache {
 }
 
 class EzLayoutCache {
-  final EzMargin margin;
-  final EzMargin rowMargin;
+  final EzSpacer margin;
+  final EzSpacer rowMargin;
   final EzSpacer spacer;
   final EzSpacer rowSpacer;
-  final EzSeparator separator;
+  final EzSwapSpacer swapSpacer;
+  final EzSpacer separator;
   final EzDivider divider;
 
   final EzNewLine startLine;
@@ -440,6 +459,7 @@ class EzLayoutCache {
     required this.rowMargin,
     required this.spacer,
     required this.rowSpacer,
+    required this.swapSpacer,
     required this.separator,
     required this.divider,
     required this.startLine,
@@ -465,11 +485,11 @@ abstract class EzAppCache {
   void init(bool isDark);
 
   /// Will run on every call to [EzCP.rebuildUI]
-  Future<void> rebuild();
+  Future<void> rebuild(EzCP config);
 }
 
 // Helpers/watchers //
 
 EzCP get configWatcher => Provider.of<EzCP>(ezRootNav.currentContext!, listen: false);
 
-EFUILang get ezL10n => configWatcher._l10n;
+EFUILang get efuiL10nWatcher => configWatcher._l10n;
