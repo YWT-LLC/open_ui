@@ -8,6 +8,8 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class AdvancedTextSettings extends StatefulWidget {
+  final EzCP config;
+
   // Providers
   final EzDisplayStyleProvider displayProvider;
   final EzHeadlineStyleProvider headlineProvider;
@@ -15,7 +17,8 @@ class AdvancedTextSettings extends StatefulWidget {
   final EzBodyStyleProvider bodyProvider;
   final EzLabelStyleProvider labelProvider;
 
-  const AdvancedTextSettings({
+  const AdvancedTextSettings(
+    this.config, {
     super.key,
     required this.displayProvider,
     required this.headlineProvider,
@@ -36,7 +39,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
   // Define custom functions //
 
   /// [ThemeMode] string
-  String tS() => EzConfig.isDark ? 'dark_' : 'light_';
+  String tS() => widget.config.isDark ? 'dark_' : 'light_';
 
   /// Font family setting
   EzFontSetting familyController(BuildContext context, EzTextSettingType source) =>
@@ -76,17 +79,17 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
   Widget _sizeIcon() => EzTextBackground(
         Icon(
           Icons.text_fields_sharp,
-          color: EzConfig.colors.onSurface,
+          color: widget.config.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: EzConfig.textFieldRadius,
+        borderRadius: widget.config.textFieldRadius,
       );
 
   /// Font size setting
   EzFontDoubleSetting sizeController(EzTextSettingType source) => switch (source) {
         EzTextSettingType.display => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}size_display'),
-            configKey: EzConfig.isDark ? darkDisplayFontSizeKey : lightDisplayFontSizeKey,
+            configKey: widget.config.isDark ? darkDisplayFontSizeKey : lightDisplayFontSizeKey,
             initialValue: widget.displayProvider.value.fontSize!,
             min: minDisplay,
             max: maxDisplay,
@@ -94,11 +97,11 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             style: widget.bodyProvider.value,
             icon: _sizeIcon(),
             plusMinus: true,
-            tooltip: EzConfig.l10n.tsFontSize,
+            tooltip: widget.config.l10n.tsFontSize,
           ),
         EzTextSettingType.headline => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}size_headline'),
-            configKey: EzConfig.isDark ? darkHeadlineFontSizeKey : lightHeadlineFontSizeKey,
+            configKey: widget.config.isDark ? darkHeadlineFontSizeKey : lightHeadlineFontSizeKey,
             initialValue: widget.headlineProvider.value.fontSize!,
             min: minHeadline,
             max: maxHeadline,
@@ -106,11 +109,11 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             style: widget.bodyProvider.value,
             icon: _sizeIcon(),
             plusMinus: true,
-            tooltip: EzConfig.l10n.tsFontSize,
+            tooltip: widget.config.l10n.tsFontSize,
           ),
         EzTextSettingType.title => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}size_title'),
-            configKey: EzConfig.isDark ? darkTitleFontSizeKey : lightTitleFontSizeKey,
+            configKey: widget.config.isDark ? darkTitleFontSizeKey : lightTitleFontSizeKey,
             initialValue: widget.titleProvider.value.fontSize!,
             min: minTitle,
             max: maxTitle,
@@ -118,11 +121,11 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             style: widget.bodyProvider.value,
             icon: _sizeIcon(),
             plusMinus: true,
-            tooltip: EzConfig.l10n.tsFontSize,
+            tooltip: widget.config.l10n.tsFontSize,
           ),
         EzTextSettingType.body => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}size_body'),
-            configKey: EzConfig.isDark ? darkBodyFontSizeKey : lightBodyFontSizeKey,
+            configKey: widget.config.isDark ? darkBodyFontSizeKey : lightBodyFontSizeKey,
             initialValue: widget.bodyProvider.value.fontSize!,
             min: minBody,
             max: maxBody,
@@ -130,11 +133,11 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             style: widget.bodyProvider.value,
             icon: _sizeIcon(),
             plusMinus: true,
-            tooltip: EzConfig.l10n.tsFontSize,
+            tooltip: widget.config.l10n.tsFontSize,
           ),
         EzTextSettingType.label => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}size_label'),
-            configKey: EzConfig.isDark ? darkLabelFontSizeKey : lightLabelFontSizeKey,
+            configKey: widget.config.isDark ? darkLabelFontSizeKey : lightLabelFontSizeKey,
             initialValue: widget.labelProvider.value.fontSize!,
             min: minLabel,
             max: maxLabel,
@@ -142,7 +145,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             style: widget.bodyProvider.value,
             icon: _sizeIcon(),
             plusMinus: true,
-            tooltip: EzConfig.l10n.tsFontSize,
+            tooltip: widget.config.l10n.tsFontSize,
           ),
       };
 
@@ -236,204 +239,209 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
   Widget _letterIcon() => EzTextBackground(
         Icon(
           Icons.horizontal_distribute_sharp,
-          color: EzConfig.colors.onSurface,
+          color: widget.config.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: EzConfig.textFieldRadius,
+        borderRadius: widget.config.textFieldRadius,
       );
 
   /// Letter spacing setting
   EzFontDoubleSetting letterSpacingController(EzTextSettingType source) => switch (source) {
         EzTextSettingType.display => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}letter_spacing_display'),
-            configKey: EzConfig.isDark ? darkDisplayWordSpacingKey : lightDisplayWordSpacingKey,
+            configKey:
+                widget.config.isDark ? darkDisplayWordSpacingKey : lightDisplayWordSpacingKey,
             initialValue: widget.displayProvider.value.letterSpacing!,
             min: minLetterSpacing,
             max: maxLetterSpacing,
             notifierCallback: widget.displayProvider.setLetterSpacing,
             style: widget.bodyProvider.value,
             icon: _letterIcon(),
-            tooltip: EzConfig.l10n.tsLetterSpacing,
+            tooltip: widget.config.l10n.tsLetterSpacing,
           ),
         EzTextSettingType.headline => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}letter_spacing_headline'),
-            configKey: EzConfig.isDark ? darkHeadlineWordSpacingKey : lightHeadlineWordSpacingKey,
+            configKey:
+                widget.config.isDark ? darkHeadlineWordSpacingKey : lightHeadlineWordSpacingKey,
             initialValue: widget.headlineProvider.value.letterSpacing!,
             min: minLetterSpacing,
             max: maxLetterSpacing,
             notifierCallback: widget.headlineProvider.setLetterSpacing,
             style: widget.bodyProvider.value,
             icon: _letterIcon(),
-            tooltip: EzConfig.l10n.tsLetterSpacing,
+            tooltip: widget.config.l10n.tsLetterSpacing,
           ),
         EzTextSettingType.title => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}letter_spacing_title'),
-            configKey: EzConfig.isDark ? darkTitleWordSpacingKey : lightTitleWordSpacingKey,
+            configKey: widget.config.isDark ? darkTitleWordSpacingKey : lightTitleWordSpacingKey,
             initialValue: widget.titleProvider.value.letterSpacing!,
             min: minLetterSpacing,
             max: maxLetterSpacing,
             notifierCallback: widget.titleProvider.setLetterSpacing,
             style: widget.bodyProvider.value,
             icon: _letterIcon(),
-            tooltip: EzConfig.l10n.tsLetterSpacing,
+            tooltip: widget.config.l10n.tsLetterSpacing,
           ),
         EzTextSettingType.body => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}letter_spacing_body'),
-            configKey: EzConfig.isDark ? darkBodyWordSpacingKey : lightBodyWordSpacingKey,
+            configKey: widget.config.isDark ? darkBodyWordSpacingKey : lightBodyWordSpacingKey,
             initialValue: widget.bodyProvider.value.letterSpacing!,
             min: minLetterSpacing,
             max: maxLetterSpacing,
             notifierCallback: widget.bodyProvider.setLetterSpacing,
             style: widget.bodyProvider.value,
             icon: _letterIcon(),
-            tooltip: EzConfig.l10n.tsLetterSpacing,
+            tooltip: widget.config.l10n.tsLetterSpacing,
           ),
         EzTextSettingType.label => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}letter_spacing_label'),
-            configKey: EzConfig.isDark ? darkLabelWordSpacingKey : lightLabelWordSpacingKey,
+            configKey: widget.config.isDark ? darkLabelWordSpacingKey : lightLabelWordSpacingKey,
             initialValue: widget.labelProvider.value.letterSpacing!,
             min: minLetterSpacing,
             max: maxLetterSpacing,
             notifierCallback: widget.labelProvider.setLetterSpacing,
             style: widget.bodyProvider.value,
             icon: _letterIcon(),
-            tooltip: EzConfig.l10n.tsLetterSpacing,
+            tooltip: widget.config.l10n.tsLetterSpacing,
           ),
       };
 
   Widget _wordIcon() => EzTextBackground(
         Icon(
           Icons.space_bar_sharp,
-          color: EzConfig.colors.onSurface,
+          color: widget.config.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: EzConfig.textFieldRadius,
+        borderRadius: widget.config.textFieldRadius,
       );
 
   /// Word spacing setting
   EzFontDoubleSetting wordSpacingController(EzTextSettingType source) => switch (source) {
         EzTextSettingType.display => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}word_spacing_display'),
-            configKey: EzConfig.isDark ? darkDisplayWordSpacingKey : lightDisplayWordSpacingKey,
+            configKey:
+                widget.config.isDark ? darkDisplayWordSpacingKey : lightDisplayWordSpacingKey,
             initialValue: widget.displayProvider.value.wordSpacing!,
             min: minWordSpacing,
             max: maxWordSpacing,
             notifierCallback: widget.displayProvider.setWordSpacing,
             style: widget.bodyProvider.value,
             icon: _wordIcon(),
-            tooltip: EzConfig.l10n.tsWordSpacing,
+            tooltip: widget.config.l10n.tsWordSpacing,
           ),
         EzTextSettingType.headline => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}word_spacing_headline'),
-            configKey: EzConfig.isDark ? darkHeadlineWordSpacingKey : lightHeadlineWordSpacingKey,
+            configKey:
+                widget.config.isDark ? darkHeadlineWordSpacingKey : lightHeadlineWordSpacingKey,
             initialValue: widget.headlineProvider.value.wordSpacing!,
             min: minWordSpacing,
             max: maxWordSpacing,
             notifierCallback: widget.headlineProvider.setWordSpacing,
             style: widget.bodyProvider.value,
             icon: _wordIcon(),
-            tooltip: EzConfig.l10n.tsWordSpacing,
+            tooltip: widget.config.l10n.tsWordSpacing,
           ),
         EzTextSettingType.title => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}word_spacing_title'),
-            configKey: EzConfig.isDark ? darkTitleWordSpacingKey : lightTitleWordSpacingKey,
+            configKey: widget.config.isDark ? darkTitleWordSpacingKey : lightTitleWordSpacingKey,
             initialValue: widget.titleProvider.value.wordSpacing!,
             min: minWordSpacing,
             max: maxWordSpacing,
             notifierCallback: widget.titleProvider.setWordSpacing,
             style: widget.bodyProvider.value,
             icon: _wordIcon(),
-            tooltip: EzConfig.l10n.tsWordSpacing,
+            tooltip: widget.config.l10n.tsWordSpacing,
           ),
         EzTextSettingType.body => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}word_spacing_body'),
-            configKey: EzConfig.isDark ? darkBodyWordSpacingKey : lightBodyWordSpacingKey,
+            configKey: widget.config.isDark ? darkBodyWordSpacingKey : lightBodyWordSpacingKey,
             initialValue: widget.bodyProvider.value.wordSpacing!,
             min: minWordSpacing,
             max: maxWordSpacing,
             notifierCallback: widget.bodyProvider.setWordSpacing,
             style: widget.bodyProvider.value,
             icon: _wordIcon(),
-            tooltip: EzConfig.l10n.tsWordSpacing,
+            tooltip: widget.config.l10n.tsWordSpacing,
           ),
         EzTextSettingType.label => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}word_spacing_label'),
-            configKey: EzConfig.isDark ? darkLabelWordSpacingKey : lightLabelWordSpacingKey,
+            configKey: widget.config.isDark ? darkLabelWordSpacingKey : lightLabelWordSpacingKey,
             initialValue: widget.labelProvider.value.wordSpacing!,
             min: minWordSpacing,
             max: maxWordSpacing,
             notifierCallback: widget.labelProvider.setWordSpacing,
             style: widget.bodyProvider.value,
             icon: _wordIcon(),
-            tooltip: EzConfig.l10n.tsWordSpacing,
+            tooltip: widget.config.l10n.tsWordSpacing,
           ),
       };
 
   Widget _lineIcon() => EzTextBackground(
         Icon(
           Icons.format_line_spacing_sharp,
-          color: EzConfig.colors.onSurface,
+          color: widget.config.colors.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: EzConfig.textFieldRadius,
+        borderRadius: widget.config.textFieldRadius,
       );
 
   /// Line height setting
   EzFontDoubleSetting lineHeightController(EzTextSettingType source) => switch (source) {
         EzTextSettingType.display => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}line_height_display'),
-            configKey: EzConfig.isDark ? darkDisplayFontHeightKey : lightDisplayFontHeightKey,
+            configKey: widget.config.isDark ? darkDisplayFontHeightKey : lightDisplayFontHeightKey,
             initialValue: widget.displayProvider.value.height!,
             min: minFontHeight,
             max: maxFontHeight,
             notifierCallback: widget.displayProvider.setHeight,
             style: widget.bodyProvider.value,
             icon: _lineIcon(),
-            tooltip: EzConfig.l10n.tsLineHeight,
+            tooltip: widget.config.l10n.tsLineHeight,
           ),
         EzTextSettingType.headline => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}line_height_headline'),
-            configKey: EzConfig.isDark ? darkHeadlineFontHeightKey : lightHeadlineFontHeightKey,
+            configKey:
+                widget.config.isDark ? darkHeadlineFontHeightKey : lightHeadlineFontHeightKey,
             initialValue: widget.headlineProvider.value.height!,
             min: minFontHeight,
             max: maxFontHeight,
             notifierCallback: widget.headlineProvider.setHeight,
             style: widget.bodyProvider.value,
             icon: _lineIcon(),
-            tooltip: EzConfig.l10n.tsLineHeight,
+            tooltip: widget.config.l10n.tsLineHeight,
           ),
         EzTextSettingType.title => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}line_height_title'),
-            configKey: EzConfig.isDark ? darkTitleFontHeightKey : lightTitleFontHeightKey,
+            configKey: widget.config.isDark ? darkTitleFontHeightKey : lightTitleFontHeightKey,
             initialValue: widget.titleProvider.value.height!,
             min: minFontHeight,
             max: maxFontHeight,
             notifierCallback: widget.titleProvider.setHeight,
             style: widget.bodyProvider.value,
             icon: _lineIcon(),
-            tooltip: EzConfig.l10n.tsLineHeight,
+            tooltip: widget.config.l10n.tsLineHeight,
           ),
         EzTextSettingType.body => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}line_height_body'),
-            configKey: EzConfig.isDark ? darkBodyFontHeightKey : lightBodyFontHeightKey,
+            configKey: widget.config.isDark ? darkBodyFontHeightKey : lightBodyFontHeightKey,
             initialValue: widget.bodyProvider.value.height!,
             min: minFontHeight,
             max: maxFontHeight,
             notifierCallback: widget.bodyProvider.setHeight,
             style: widget.bodyProvider.value,
             icon: _lineIcon(),
-            tooltip: EzConfig.l10n.tsLineHeight,
+            tooltip: widget.config.l10n.tsLineHeight,
           ),
         EzTextSettingType.label => EzFontDoubleSetting(
             key: ValueKey<String>('${tS()}line_height_label'),
-            configKey: EzConfig.isDark ? darkLabelFontHeightKey : lightLabelFontHeightKey,
+            configKey: widget.config.isDark ? darkLabelFontHeightKey : lightLabelFontHeightKey,
             initialValue: widget.labelProvider.value.height!,
             min: minFontHeight,
             max: maxFontHeight,
             notifierCallback: widget.labelProvider.setHeight,
             style: widget.bodyProvider.value,
             icon: _lineIcon(),
-            tooltip: EzConfig.l10n.tsLineHeight,
+            tooltip: widget.config.l10n.tsLineHeight,
           ),
       };
 
@@ -452,13 +460,13 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         primary: false,
         children: <Widget>[
           EzText(
-            EzConfig.l10n.gEditing,
+            widget.config.l10n.gEditing,
             style: widget.labelProvider.value,
             textAlign: TextAlign.center,
           ),
-          EzConfig.margin,
+          widget.config.margin,
           EzDropdownMenu<EzTextSettingType>(
-            widthEntry: EzConfig.l10n.tsHeadline,
+            widthEntry: widget.config.l10n.tsHeadline,
             textStyle: widget.labelProvider.value,
             dropdownMenuEntries: EzTextSettingType.values
                 .map((EzTextSettingType type) => DropdownMenuEntry<EzTextSettingType>(
@@ -474,7 +482,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           ),
         ],
       ),
-      EzConfig.spacer,
+      widget.config.spacer,
 
       // Controls
       EzRowCol.sym(
@@ -495,9 +503,9 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               boldController(editing),
-              EzConfig.rowSpacer,
+              widget.config.rowSpacer,
               italicsController(editing),
-              EzConfig.rowSpacer,
+              widget.config.rowSpacer,
               underlineController(editing),
             ],
           ),
@@ -509,126 +517,126 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               letterSpacingController(editing),
-              EzConfig.rowSpacer,
+              widget.config.rowSpacer,
               wordSpacingController(editing),
-              EzConfig.rowSpacer,
+              widget.config.rowSpacer,
               lineHeightController(editing),
             ],
           ),
         ],
       ),
-      EzConfig.separator,
+      widget.config.separator,
 
       // Display preview
       EzRichText(
         <InlineSpan>[
-          EzPlainText(text: EzConfig.l10n.tsDisplayP1),
+          EzPlainText(text: widget.config.l10n.tsDisplayP1),
           EzInlineLink(
-            EzConfig.l10n.tsDisplayLink,
+            widget.config.l10n.tsDisplayLink,
             style: widget.displayProvider.value,
             textAlign: TextAlign.center,
             onTap: () => setState(() => editing = EzTextSettingType.display),
-            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsDisplay.toLowerCase()),
+            hint: widget.config.l10n.tsLinkHint(widget.config.l10n.tsDisplay.toLowerCase()),
           ),
-          EzPlainText(text: EzConfig.l10n.tsDisplayP2),
+          EzPlainText(text: widget.config.l10n.tsDisplayP2),
         ],
         style: widget.displayProvider.value,
         textAlign: TextAlign.center,
-        baseColor: EzConfig.colors.surface,
-        borderRadius: EzConfig.textRadius,
+        baseColor: widget.config.colors.surface,
+        borderRadius: widget.config.textRadius,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Headline preview
       EzRichText(
         <InlineSpan>[
-          EzPlainText(text: EzConfig.l10n.tsHeadlineP1),
+          EzPlainText(text: widget.config.l10n.tsHeadlineP1),
           EzInlineLink(
-            EzConfig.l10n.tsHeadlineLink,
+            widget.config.l10n.tsHeadlineLink,
             style: widget.headlineProvider.value,
             textAlign: TextAlign.center,
             onTap: () => setState(() => editing = EzTextSettingType.headline),
-            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsHeadline.toLowerCase()),
+            hint: widget.config.l10n.tsLinkHint(widget.config.l10n.tsHeadline.toLowerCase()),
           ),
-          EzPlainText(text: EzConfig.l10n.tsHeadlineP2),
+          EzPlainText(text: widget.config.l10n.tsHeadlineP2),
         ],
         style: widget.headlineProvider.value,
         textAlign: TextAlign.center,
-        baseColor: EzConfig.colors.surface,
-        borderRadius: EzConfig.textRadius,
+        baseColor: widget.config.colors.surface,
+        borderRadius: widget.config.textRadius,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Title preview
       EzRichText(
         <InlineSpan>[
-          EzPlainText(text: EzConfig.l10n.tsTitleP1),
+          EzPlainText(text: widget.config.l10n.tsTitleP1),
           EzInlineLink(
-            EzConfig.l10n.tsTitleLink,
+            widget.config.l10n.tsTitleLink,
             style: widget.titleProvider.value,
             textAlign: TextAlign.center,
             onTap: () => setState(() => editing = EzTextSettingType.title),
-            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsTitle.toLowerCase()),
+            hint: widget.config.l10n.tsLinkHint(widget.config.l10n.tsTitle.toLowerCase()),
           ),
         ],
         style: widget.titleProvider.value,
         textAlign: TextAlign.center,
-        baseColor: EzConfig.colors.surface,
-        borderRadius: EzConfig.textRadius,
+        baseColor: widget.config.colors.surface,
+        borderRadius: widget.config.textRadius,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Body preview
       EzRichText(
         <InlineSpan>[
-          EzPlainText(text: EzConfig.l10n.tsBodyP1),
+          EzPlainText(text: widget.config.l10n.tsBodyP1),
           EzInlineLink(
-            EzConfig.l10n.tsBodyLink,
+            widget.config.l10n.tsBodyLink,
             style: widget.bodyProvider.value,
             textAlign: TextAlign.center,
             onTap: () => setState(() => editing = EzTextSettingType.body),
-            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsBody.toLowerCase()),
+            hint: widget.config.l10n.tsLinkHint(widget.config.l10n.tsBody.toLowerCase()),
           ),
-          EzPlainText(text: EzConfig.l10n.tsBodyP2),
+          EzPlainText(text: widget.config.l10n.tsBodyP2),
         ],
         style: widget.bodyProvider.value,
         textAlign: TextAlign.center,
-        baseColor: EzConfig.colors.surface,
-        borderRadius: EzConfig.textRadius,
+        baseColor: widget.config.colors.surface,
+        borderRadius: widget.config.textRadius,
       ),
-      EzConfig.centerLine,
+      widget.config.centerLine,
 
       // Label preview
       EzRichText(
         <InlineSpan>[
-          EzPlainText(text: EzConfig.l10n.tsLabelP1),
+          EzPlainText(text: widget.config.l10n.tsLabelP1),
           EzInlineLink(
-            EzConfig.l10n.tsLabelLink,
+            widget.config.l10n.tsLabelLink,
             style: widget.labelProvider.value,
             textAlign: TextAlign.center,
             onTap: () => setState(() => editing = EzTextSettingType.label),
-            hint: EzConfig.l10n.tsLinkHint(EzConfig.l10n.tsLabel.toLowerCase()),
+            hint: widget.config.l10n.tsLinkHint(widget.config.l10n.tsLabel.toLowerCase()),
           ),
-          EzPlainText(text: EzConfig.l10n.tsLabelP2),
+          EzPlainText(text: widget.config.l10n.tsLabelP2),
         ],
         style: widget.labelProvider.value,
         textAlign: TextAlign.center,
-        baseColor: EzConfig.colors.surface,
-        borderRadius: EzConfig.textRadius,
+        baseColor: widget.config.colors.surface,
+        borderRadius: widget.config.textRadius,
       ),
 
       // Reset all
-      EzConfig.separator,
+      widget.config.separator,
       EzResetButton(
         all: false,
-        dynamicTitle: () => EzConfig.l10n.tsReset(ezThemeString(false)),
+        dynamicTitle: () => widget.config.l10n.tsReset(ezThemeString(false)),
         onConfirm: () async {
-          if (EzConfig.isDark) {
-            await EzConfig.removeKeys(darkTextKeys.keys.toSet());
-            await EzConfig.remove(darkOnSurfaceKey);
+          if (widget.config.isDark) {
+            await EzCM.removeKeys(darkTextKeys.keys.toSet());
+            await EzCM.remove(darkOnSurfaceKey);
           } else {
-            await EzConfig.removeKeys(lightTextKeys.keys.toSet());
-            await EzConfig.remove(lightOnSurfaceKey);
+            await EzCM.removeKeys(lightTextKeys.keys.toSet());
+            await EzCM.remove(lightOnSurfaceKey);
           }
 
           setState(() => editing = EzTextSettingType.display);

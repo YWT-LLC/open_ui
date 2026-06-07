@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class PageDesign extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Optional settings to add to the start of the sub-page
   final List<Widget>? prepend;
 
@@ -20,10 +23,10 @@ class PageDesign extends StatelessWidget {
   /// How much space between the settings and the local [EzResetButton]
   final Widget resetSpacer;
 
-  /// Optional extra keys to reset (when [EzConfig.isDark])
+  /// Optional extra keys to reset (when [config.isDark])
   final Set<String>? resetExtraDark;
 
-  /// Optional extra keys to reset (when ![EzConfig.isDark])
+  /// Optional extra keys to reset (when ![config.isDark])
   final Set<String>? resetExtraLight;
 
   /// Keys that shouldn't be reset by the local [EzResetButton]
@@ -32,7 +35,8 @@ class PageDesign extends StatelessWidget {
   /// Keys that shouldn't be saved by (save option in) the local [EzResetButton]
   final Set<String>? saveSkip;
 
-  const PageDesign({
+  const PageDesign(
+    this.config, {
     super.key,
     required this.prepend,
     this.includeBackgroundImage = true,
@@ -53,42 +57,44 @@ class PageDesign extends StatelessWidget {
 
         // Margin
         const EzMarginSetting(),
-        EzConfig.spacer,
+        config.spacer,
 
         // Spacing
         const EzSpacingSetting(),
 
         // Background image
         if (includeBackgroundImage) ...<Widget>[
-          EzConfig.spacer,
+          config.spacer,
           EzScrollView(
             scrollDirection: Axis.horizontal,
             startCentered: true,
-            child: EzConfig.isDark
+            child: config.isDark
                 ? EzImageSetting(
+                    config,
                     pathKey: darkBackgroundImageKey,
                     fitKey: darkBackgroundFitKey,
                     sourceKey: darkBackgroundSourceKey,
-                    label: EzConfig.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
+                    label: config.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   )
                 : EzImageSetting(
+                    config,
                     pathKey: lightBackgroundImageKey,
                     fitKey: lightBackgroundFitKey,
                     sourceKey: darkBackgroundSourceKey,
-                    label: EzConfig.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
+                    label: config.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   ),
           ),
         ],
-        EzConfig.separator,
+        config.separator,
 
         // Page transition
         if (!kIsWeb) ...<Widget>[
-          const _PageTransitionSetting(),
-          EzConfig.spacer,
+          _PageTransitionSetting(config),
+          config.spacer,
         ],
 
         // Animation duration
-        const _AnimDurSetting(),
+        _AnimDurSetting(config),
 
         // After background
         if (append != null) ...append!,
@@ -97,27 +103,27 @@ class PageDesign extends StatelessWidget {
         resetSpacer,
         EzResetButton(
           all: false,
-          dynamicTitle: () => EzConfig.l10n.dsResetPage(ezThemeString(true)),
+          dynamicTitle: () => config.l10n.dsResetPage(ezThemeString(true)),
           onConfirm: () async {
-            if (EzConfig.updateBoth || EzConfig.isDark) {
-              await EzConfig.removeKeys(<String>{
+            if (EzCM.updateBoth || config.isDark) {
+              await EzCM.removeKeys(<String>{
                 ...darkPageDesignKeys.keys.toSet(),
                 darkColorSchemeImageKey,
               });
 
               if (resetExtraDark != null) {
-                await EzConfig.removeKeys(resetExtraDark!);
+                await EzCM.removeKeys(resetExtraDark!);
               }
             }
 
-            if (EzConfig.updateBoth || !EzConfig.isDark) {
-              await EzConfig.removeKeys(<String>{
+            if (EzCM.updateBoth || !config.isDark) {
+              await EzCM.removeKeys(<String>{
                 ...lightPageDesignKeys.keys.toSet(),
                 lightColorSchemeImageKey,
               });
 
               if (resetExtraLight != null) {
-                await EzConfig.removeKeys(resetExtraLight!);
+                await EzCM.removeKeys(resetExtraLight!);
               }
             }
           },
@@ -128,14 +134,16 @@ class PageDesign extends StatelessWidget {
 }
 
 class _AnimDurSetting extends StatelessWidget {
-  const _AnimDurSetting();
+  final EzCP config;
+
+  const _AnimDurSetting(this.config);
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         onPressed: () async {
-          double animDuration = EzConfig.animDur.toDouble();
+          double animDuration = config.animDur.toDouble();
           EzAnimationCurve curve = EACConfig.lookup(
-              EzConfig.get(EzConfig.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
+              EzCM.get(config.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
 
           await ezModal(
             context: context,
@@ -144,15 +152,19 @@ class _AnimDurSetting extends StatelessWidget {
                 // Preview
                 SizedBox(
                   key: ValueKey<String>('$animDuration:${curve.curve}'),
-                  height: EzConfig.iconSize + (EzConfig.padding * 2),
-                  child: _AnimationPreview(animDuration.toInt(), curve.curve),
+                  height: config.iconSize + (config.padding * 2),
+                  child: _AnimationPreview(
+                    config,
+                    duration: animDuration.toInt(),
+                    curve: curve.curve,
+                  ),
                 ),
-                EzConfig.separator,
+                config.separator,
 
                 // Slider
                 Text(
-                  EzConfig.l10n.dsMilliseconds,
-                  style: EzConfig.bodyStyle,
+                  config.l10n.dsMilliseconds,
+                  style: config.bodyStyle,
                 ),
                 ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
@@ -164,31 +176,31 @@ class _AnimDurSetting extends StatelessWidget {
                     label: animDuration.toStringAsFixed(0),
                     onChanged: (double value) => setModal(() => animDuration = value),
                     onChangeEnd: (double value) async {
-                      if (EzConfig.updateBoth || EzConfig.isDark) {
-                        await EzConfig.setInt(darkAnimationDurationKey, value.toInt());
+                      if (EzCM.updateBoth || config.isDark) {
+                        await EzCM.setInt(darkAnimationDurationKey, value.toInt());
                       }
-                      if (EzConfig.updateBoth || !EzConfig.isDark) {
-                        await EzConfig.setInt(lightAnimationDurationKey, value.toInt());
+                      if (EzCM.updateBoth || !config.isDark) {
+                        await EzCM.setInt(lightAnimationDurationKey, value.toInt());
                       }
                     },
                   ),
                 ),
-                EzConfig.spacer,
+                config.spacer,
 
                 EzRow(children: <Widget>[
                   Flexible(
                     child: Text(
-                      EzConfig.l10n.dsCurve,
-                      style: EzConfig.bodyStyle,
+                      config.l10n.dsCurve,
+                      style: config.bodyStyle,
                     ),
                   ),
-                  EzConfig.margin,
+                  config.margin,
                   EzDropdownMenu<EzAnimationCurve>(
-                    widthEntry: EzAnimationCurve.elastic.name,
+                    widthEntry: EzAnimationCurve.elastic.name(config.l10n),
                     dropdownMenuEntries: EzAnimationCurve.values
                         .map((EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
                               value: type,
-                              label: type.name,
+                              label: type.name(config.l10n),
                             ))
                         .toList(),
                     enableSearch: false,
@@ -196,63 +208,66 @@ class _AnimDurSetting extends StatelessWidget {
                     onSelected: (EzAnimationCurve? value) async {
                       if (value == null) return;
 
-                      if (EzConfig.updateBoth || EzConfig.isDark) {
-                        await EzConfig.setString(darkAnimationCurveKey, value.value);
+                      if (EzCM.updateBoth || config.isDark) {
+                        await EzCM.setString(darkAnimationCurveKey, value.value);
                       }
-                      if (EzConfig.updateBoth || !EzConfig.isDark) {
-                        await EzConfig.setString(lightAnimationCurveKey, value.value);
+                      if (EzCM.updateBoth || !config.isDark) {
+                        await EzCM.setString(lightAnimationCurveKey, value.value);
                       }
 
                       setModal(() => curve = value);
                     },
                   ),
                 ]),
-                EzConfig.separator,
+                config.separator,
 
                 // Reset button
                 EzElevatedIconButton(
                   onPressed: () async {
-                    if (EzConfig.updateBoth || EzConfig.isDark) {
-                      await EzConfig.remove(darkAnimationDurationKey);
-                      await EzConfig.remove(darkAnimationCurveKey);
+                    if (EzCM.updateBoth || config.isDark) {
+                      await EzCM.remove(darkAnimationDurationKey);
+                      await EzCM.remove(darkAnimationCurveKey);
 
-                      animDuration =
-                          (EzConfig.getDefault(darkAnimationDurationKey) as int).toDouble();
-                      curve = EACConfig.lookup(EzConfig.getDefault(darkAnimationCurveKey));
+                      animDuration = (EzCM.getDefault(darkAnimationDurationKey) as int).toDouble();
+                      curve = EACConfig.lookup(EzCM.getDefault(darkAnimationCurveKey));
                     }
-                    if (EzConfig.updateBoth || !EzConfig.isDark) {
-                      await EzConfig.remove(lightAnimationDurationKey);
-                      await EzConfig.remove(lightAnimationCurveKey);
+                    if (EzCM.updateBoth || !config.isDark) {
+                      await EzCM.remove(lightAnimationDurationKey);
+                      await EzCM.remove(lightAnimationCurveKey);
 
-                      animDuration =
-                          (EzConfig.getDefault(lightAnimationDurationKey) as int).toDouble();
-                      curve = EACConfig.lookup(EzConfig.getDefault(lightAnimationCurveKey));
+                      animDuration = (EzCM.getDefault(lightAnimationDurationKey) as int).toDouble();
+                      curve = EACConfig.lookup(EzCM.getDefault(lightAnimationCurveKey));
                     }
 
                     setModal(() {});
                   },
                   icon: EzIcon(Icons.refresh),
-                  label: EzConfig.l10n.gReset,
+                  label: config.l10n.gReset,
                 ),
-                EzConfig.separator,
+                config.separator,
               ]),
             ),
           );
 
-          if (animDuration != EzConfig.animDur.toDouble() || curve.curve != EzConfig.animCurve) {
-            await EzConfig.rebuildUI();
+          if (animDuration != config.animDur.toDouble() || curve.curve != config.animCurve) {
+            await config.rebuildUI();
           }
         },
-        label: EzConfig.l10n.dsAnimStyle,
+        label: config.l10n.dsAnimStyle,
         icon: EzIcon(Icons.timer_outlined),
       );
 }
 
 class _AnimationPreview extends StatefulWidget {
+  final EzCP config;
   final int duration;
   final Curve curve;
 
-  const _AnimationPreview(this.duration, this.curve);
+  const _AnimationPreview(
+    this.config, {
+    required this.duration,
+    required this.curve,
+  });
 
   @override
   State<_AnimationPreview> createState() => _AnimationPreviewState();
@@ -305,7 +320,7 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
             }
 
             return Transform.translate(
-              offset: Offset(xOffset * (EzConfig.isLTR ? 1.0 : -1.0), 0),
+              offset: Offset(xOffset * (widget.config.isLTR ? 1.0 : -1.0), 0),
               child: child,
             );
           },
@@ -315,7 +330,7 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
               icon: EzIcon(
                 Icons.play_arrow,
-                semanticLabel: EzConfig.l10n.dsPlay,
+                semanticLabel: widget.config.l10n.dsPlay,
               ),
             ),
           ),
@@ -330,13 +345,15 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
 }
 
 class _PageTransitionSetting extends StatelessWidget {
-  const _PageTransitionSetting();
+  final EzCP config;
+
+  const _PageTransitionSetting(this.config);
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         onPressed: () async {
-          EzTransitionType currType = EzConfig.transitionType;
-          bool currFade = EzConfig.fadedTransition;
+          EzTransitionType currType = config.transitionType;
+          bool currFade = config.fadedTransition;
 
           await ezModal(
             context: context,
@@ -348,11 +365,11 @@ class _PageTransitionSetting extends StatelessWidget {
                   onChanged: (EzTransitionType? choice) async {
                     if (choice == null) return;
 
-                    if (EzConfig.updateBoth || EzConfig.isDark) {
-                      await EzConfig.setString(darkTransitionTypeKey, choice.value);
+                    if (EzCM.updateBoth || config.isDark) {
+                      await EzCM.setString(darkTransitionTypeKey, choice.value);
                     }
-                    if (EzConfig.updateBoth || !EzConfig.isDark) {
-                      await EzConfig.setString(lightTransitionTypeKey, choice.value);
+                    if (EzCM.updateBoth || !config.isDark) {
+                      await EzCM.setString(lightTransitionTypeKey, choice.value);
                     }
 
                     setModal(() => currType = choice);
@@ -365,24 +382,24 @@ class _PageTransitionSetting extends StatelessWidget {
                         .map(
                           (EzTransitionType type) => Padding(
                             padding: EdgeInsets.symmetric(
-                              vertical: EzConfig.spacing,
-                              horizontal: EzConfig.spacing / 2,
+                              vertical: config.spacing,
+                              horizontal: config.spacing / 2,
                             ),
                             child: EzCol(children: <Widget>[
                               EzTextButton(
-                                text: type.name,
-                                textStyle: EzConfig.labelStyle,
+                                text: type.name(config.l10n),
+                                textStyle: config.labelStyle,
                                 textAlign: TextAlign.center,
                                 style: TextButton.styleFrom(
-                                  backgroundColor: EzConfig.colors.surfaceContainer,
-                                  padding: EdgeInsets.all(EzConfig.marginVal),
+                                  backgroundColor: config.colors.surfaceContainer,
+                                  padding: EdgeInsets.all(config.marginVal),
                                 ),
                                 onPressed: () async {
-                                  if (EzConfig.updateBoth || EzConfig.isDark) {
-                                    await EzConfig.setString(darkTransitionTypeKey, type.value);
+                                  if (EzCM.updateBoth || config.isDark) {
+                                    await EzCM.setString(darkTransitionTypeKey, type.value);
                                   }
-                                  if (EzConfig.updateBoth || !EzConfig.isDark) {
-                                    await EzConfig.setString(lightTransitionTypeKey, type.value);
+                                  if (EzCM.updateBoth || !config.isDark) {
+                                    await EzCM.setString(lightTransitionTypeKey, type.value);
                                   }
 
                                   setModal(() => currType = type);
@@ -390,13 +407,13 @@ class _PageTransitionSetting extends StatelessWidget {
                               ),
                               ExcludeSemantics(
                                 child: EzIconButton(
-                                  icon: type.icon,
+                                  icon: type.icon(config.isLTR),
                                   onPressed: () async {
-                                    if (EzConfig.updateBoth || EzConfig.isDark) {
-                                      await EzConfig.setString(darkTransitionTypeKey, type.value);
+                                    if (EzCM.updateBoth || config.isDark) {
+                                      await EzCM.setString(darkTransitionTypeKey, type.value);
                                     }
-                                    if (EzConfig.updateBoth || !EzConfig.isDark) {
-                                      await EzConfig.setString(lightTransitionTypeKey, type.value);
+                                    if (EzCM.updateBoth || !config.isDark) {
+                                      await EzCM.setString(lightTransitionTypeKey, type.value);
                                     }
 
                                     setModal(() => currType = type);
@@ -412,35 +429,35 @@ class _PageTransitionSetting extends StatelessWidget {
                         .toList(),
                   ),
                 ),
-                EzConfig.spacer,
+                config.spacer,
 
                 // Fade switch
                 EzSwitchPair(
-                  valueKey: EzConfig.isDark ? darkTransitionFadeKey : lightTransitionFadeKey,
+                  valueKey: config.isDark ? darkTransitionFadeKey : lightTransitionFadeKey,
                   afterChanged: (bool? choice) async {
                     if (choice == null) return;
 
-                    if (EzConfig.updateBoth) {
-                      await EzConfig.setBool(
-                        EzConfig.isDark ? lightTransitionFadeKey : darkTransitionFadeKey,
+                    if (EzCM.updateBoth) {
+                      await EzCM.setBool(
+                        config.isDark ? lightTransitionFadeKey : darkTransitionFadeKey,
                         choice,
                       );
                     }
 
                     setModal(() => currFade = choice);
                   },
-                  text: EzConfig.l10n.dsFadeTransition,
+                  text: config.l10n.dsFadeTransition,
                 ),
-                EzConfig.separator,
+                config.separator,
               ]),
             ),
           );
 
-          if (currType != EzConfig.transitionType || currFade != EzConfig.fadedTransition) {
-            await EzConfig.rebuildUI();
+          if (currType != config.transitionType || currFade != config.fadedTransition) {
+            await config.rebuildUI();
           }
         },
         icon: EzIcon(Icons.slideshow),
-        label: EzConfig.l10n.dsPageTransition,
+        label: config.l10n.dsPageTransition,
       );
 }
