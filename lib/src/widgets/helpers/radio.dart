@@ -9,7 +9,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzRadio<T> extends StatelessWidget {
-  /// Defaults to [EdgeInsets.all] with [EzConfig.marginVal] when [ezIconRatio] > 1.1
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// Defaults to [EdgeInsets.all] with [config.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
   /// [Radio.value] passthrough
@@ -21,18 +24,19 @@ class EzRadio<T> extends StatelessWidget {
   final double _scale;
 
   /// [Radio] with custom styling and scaling
-  EzRadio({
+  EzRadio(
+    this.config, {
     super.key,
     this.padding,
     required this.value,
     this.toggleable = false,
-  }) : _scale = ezIconRatio();
+  }) : _scale = ezIconRatio(config);
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(EzConfig.marginVal) : EdgeInsets.zero,
+        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
         decoration: BoxDecoration(
-          color: EzConfig.colors.surface.withValues(alpha: EzConfig.textBackgroundOpacity),
+          color: config.colors.surface.withValues(alpha: config.textBackgroundOpacity),
           shape: BoxShape.circle,
         ),
         child: Transform.scale(

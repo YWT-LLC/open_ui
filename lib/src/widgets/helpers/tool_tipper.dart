@@ -9,18 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 
 class EzToolTipper extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Tooltip.message] passthrough
   final String? message;
 
   /// [Tooltip.richMessage] passthrough
   final InlineSpan? richMessage;
 
-  /// Adds [EzConfig.marginVal] spacing to the left && right
-  /// When the [EzConfig.textBackgroundOpacity] is < [oneP]
+  /// Adds [config.marginVal] spacing to the left && right
+  /// When the [config.textBackgroundOpacity] is < [oneP]
   final bool autoPad;
 
   /// Classic question mark tool tip
-  const EzToolTipper({
+  const EzToolTipper(
+    this.config, {
     super.key,
     this.message,
     this.richMessage,
@@ -34,8 +38,9 @@ class EzToolTipper extends StatelessWidget {
     bool isTooltipVisible = false;
 
     return EzTextBackground(
-      Semantics(
-        label: EzConfig.l10n.gHelp,
+      config,
+      text: Semantics(
+        label: config.ezL10n.gHelp,
         button: true,
         onTap: () async {
           if (isTooltipVisible) {
@@ -44,7 +49,7 @@ class EzToolTipper extends StatelessWidget {
             key.currentState?.ensureTooltipVisible();
 
             // Wait for auto-announcement to finish
-            await Future<void>.delayed(ezReadingTime(EzConfig.l10n.gHelp));
+            await Future<void>.delayed(ezReadingTime(config, config.ezL10n.gHelp));
             String message = this.message ?? '';
 
             if (richMessage != null) {
@@ -76,7 +81,7 @@ class EzToolTipper extends StatelessWidget {
               await SemanticsService.sendAnnouncement(
                 View.of(context),
                 message,
-                EzConfig.isLTR ? TextDirection.ltr : TextDirection.rtl,
+                config.isLTR ? TextDirection.ltr : TextDirection.rtl,
                 assertiveness: Assertiveness.assertive,
               );
             }
@@ -84,8 +89,8 @@ class EzToolTipper extends StatelessWidget {
           isTooltipVisible = !isTooltipVisible;
         },
         child: Padding(
-          padding: (autoPad && EzConfig.textBackgroundOpacity < oneP)
-              ? EdgeInsets.symmetric(horizontal: EzConfig.marginVal)
+          padding: (autoPad && config.textBackgroundOpacity < oneP)
+              ? EdgeInsets.symmetric(horizontal: config.marginVal)
               : EdgeInsets.zero,
           child: Tooltip(
             waitDuration: Duration.zero,
@@ -96,14 +101,15 @@ class EzToolTipper extends StatelessWidget {
             message: message,
             richMessage: richMessage,
             child: EzIcon(
+              config,
               Icons.help_outline,
-              color: EzConfig.colors.outline,
+              color: config.colors.outline,
             ),
           ),
         ),
       ),
-      baseColor: EzConfig.colors.surface,
-      borderRadius: EzConfig.textRadius,
+      baseColor: config.colors.surface,
+      borderRadius: config.textRadius,
     );
   }
 }

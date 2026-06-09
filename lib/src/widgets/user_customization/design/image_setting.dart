@@ -96,13 +96,15 @@ class _ImageSettingState extends State<EzImageSetting> {
     return showDialog(
       context: context,
       builder: (_) => EzAlertDialog(
-        title: Text(widget.config.l10n.gSource, textAlign: TextAlign.center),
+        widget.config,
+        title: Text(widget.config.ezL10n.gSource, textAlign: TextAlign.center),
         content: ezUrlCheck(credits)
             ? EzLink(
-                credits,
+                widget.config,
+                text: credits,
                 url: Uri.parse(credits),
                 backgroundColor: widget.config.colors.surfaceDim,
-                hint: widget.config.l10n.gOpenLink,
+                hint: widget.config.ezL10n.gOpenLink,
               )
             : Text(credits, textAlign: TextAlign.center),
       ),
@@ -122,17 +124,20 @@ class _ImageSettingState extends State<EzImageSetting> {
   }
 
   /// Validate a URL
-  String? validateUrl(String? value) =>
-      (value == null || value.isEmpty || !ezUrlCheck(value)) ? widget.config.l10n.gValidURL : null;
+  String? validateUrl(String? value) => (value == null || value.isEmpty || !ezUrlCheck(value))
+      ? widget.config.ezL10n.gValidURL
+      : null;
 
   /// First-layer [ElevatedButton.onPressed]
   /// Opens an options modal and updates the state accordingly
   Future<bool> activateSetting() async {
     // Get an image (path) from the user
     String? newPath = await ezModal<String?>(
+      widget.config,
       context: context,
       builder: (BuildContext mCon) => StatefulBuilder(
         builder: (_, StateSetter setModal) => EzScrollView(
+          widget.config,
           children: sourceOptions(mCon, setModal),
         ),
       ),
@@ -151,18 +156,22 @@ class _ImageSettingState extends State<EzImageSetting> {
         final Future<dynamic> Function(String path) toDo = await showDialog(
           context: context,
           builder: (BuildContext dCon) => EzAlertDialog(
-            title: Text(widget.config.l10n.dsUseFull, textAlign: TextAlign.center),
+            widget.config,
+            title: Text(widget.config.ezL10n.dsUseFull, textAlign: TextAlign.center),
             actions: <EzMaterialAction>[
               EzMaterialAction(
-                text: widget.config.l10n.gYes,
+                widget.config,
+                text: widget.config.ezL10n.gYes,
                 onPressed: () => Navigator.of(dCon).pop((_) => Future<dynamic>.value(true)),
               ),
               EzMaterialAction(
-                text: widget.config.l10n.dsCrop,
+                widget.config,
+                text: widget.config.ezL10n.dsCrop,
                 onPressed: () => Navigator.of(dCon).pop(editImage),
               ),
               EzMaterialAction(
-                text: widget.config.l10n.gCancel,
+                widget.config,
+                text: widget.config.ezL10n.gCancel,
                 onPressed: () => Navigator.of(dCon).pop((_) => Future<dynamic>.value(null)),
               ),
             ],
@@ -197,8 +206,12 @@ class _ImageSettingState extends State<EzImageSetting> {
     final bool setPath = await EzCM.setString(widget.pathKey, newPath);
     if (!setPath) {
       (mounted)
-          ? await ezLogAlert(context, message: widget.config.l10n.dsImgSetFailed)
-          : ezLog(widget.config.l10n.dsImgSetFailed);
+          ? await ezLogAlert(
+              widget.config,
+              context: context,
+              message: widget.config.ezL10n.dsImgSetFailed,
+            )
+          : ezLog(widget.config.ezL10n.dsImgSetFailed);
       return false;
     }
     currPath = newPath;
@@ -219,11 +232,12 @@ class _ImageSettingState extends State<EzImageSetting> {
           await EzCM.setString(darkColorSchemeImageKey, newPath);
         } else {
           final String errorMsg =
-              '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.l10n.dsImgPermission}' : ''}';
+              '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
           (mounted)
               ? await ezLogAlert(
-                  context,
-                  title: widget.config.l10n.dsImgGetFailed,
+                  widget.config,
+                  context: context,
+                  title: widget.config.ezL10n.dsImgGetFailed,
                   message: errorMsg,
                 )
               : ezLog(errorMsg);
@@ -244,11 +258,12 @@ class _ImageSettingState extends State<EzImageSetting> {
           await EzCM.setString(lightColorSchemeImageKey, newPath);
         } else {
           final String errorMsg =
-              '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.l10n.dsImgPermission}' : ''}';
+              '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
           (mounted)
               ? await ezLogAlert(
-                  context,
-                  title: widget.config.l10n.dsImgGetFailed,
+                  widget.config,
+                  context: context,
+                  title: widget.config.ezL10n.dsImgGetFailed,
                   message: errorMsg,
                 )
               : ezLog(errorMsg);
@@ -271,8 +286,10 @@ class _ImageSettingState extends State<EzImageSetting> {
       options.add(Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             final String? picked = await ezImagePicker(
+              widget.config,
               context: context,
               source: ImageSource.camera,
             );
@@ -280,8 +297,8 @@ class _ImageSettingState extends State<EzImageSetting> {
             fromLocal = true;
             if (mCon.mounted) Navigator.of(mCon).pop(picked);
           },
-          icon: EzIcon(Icons.camera),
-          label: widget.config.l10n.dsFromCamera,
+          icon: EzIcon(widget.config, Icons.camera),
+          label: widget.config.ezL10n.dsFromCamera,
         ),
       ));
     }
@@ -292,8 +309,10 @@ class _ImageSettingState extends State<EzImageSetting> {
       options.add(Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             final String? picked = await ezImagePicker(
+              widget.config,
               context: context,
               source: ImageSource.gallery,
             );
@@ -301,8 +320,8 @@ class _ImageSettingState extends State<EzImageSetting> {
             fromLocal = true;
             if (mCon.mounted) Navigator.of(mCon).pop(picked);
           },
-          icon: EzIcon(Icons.folder),
-          label: widget.config.l10n.dsFromFile,
+          icon: EzIcon(widget.config, Icons.folder),
+          label: widget.config.ezL10n.dsFromFile,
         ),
       ));
     }
@@ -312,15 +331,18 @@ class _ImageSettingState extends State<EzImageSetting> {
     options.add(Padding(
       padding: wrapPadding,
       child: EzElevatedIconButton(
+        widget.config,
         onPressed: () => showDialog(
           context: context,
           builder: (BuildContext dCon) => EzAlertDialog(
+            widget.config,
             title: Text(
-              widget.config.l10n.gEnterURL,
+              widget.config.ezL10n.gEnterURL,
               textAlign: TextAlign.center,
             ),
             content: Form(
               child: EzPasteField(
+                widget.config,
                 controller: urlController,
                 autofillHints: const <String>[AutofillHints.url],
                 decoration: const InputDecoration(hintText: webImgHint),
@@ -328,7 +350,8 @@ class _ImageSettingState extends State<EzImageSetting> {
               ),
             ),
             actions: ezActionPair(
-              confirmMsg: widget.config.l10n.gApply,
+              widget.config,
+              confirmMsg: widget.config.ezL10n.gApply,
               onConfirm: () async {
                 closeKeyboard(dCon);
 
@@ -365,11 +388,12 @@ class _ImageSettingState extends State<EzImageSetting> {
                   }
 
                   final String errorMsg =
-                      '${e.toString()}\n\n${widget.config.l10n.dsImgPermission}';
+                      '${e.toString()}\n\n${widget.config.ezL10n.dsImgPermission}';
                   (mounted)
                       ? await ezLogAlert(
-                          context,
-                          title: widget.config.l10n.dsImgGetFailed,
+                          widget.config,
+                          context: context,
+                          title: widget.config.ezL10n.dsImgGetFailed,
                           message: errorMsg,
                         )
                       : ezLog(errorMsg);
@@ -386,14 +410,14 @@ class _ImageSettingState extends State<EzImageSetting> {
                 }
               },
               confirmIsDestructive: true,
-              denyMsg: widget.config.l10n.gCancel,
+              denyMsg: widget.config.ezL10n.gCancel,
               onDeny: () => Navigator.of(dCon).pop(null),
             ),
             needsClose: false,
           ),
         ),
-        icon: EzIcon(Icons.computer_outlined),
-        label: widget.config.l10n.dsFromNetwork,
+        icon: EzIcon(widget.config, Icons.computer_outlined),
+        label: widget.config.ezL10n.dsFromNetwork,
       ),
     ));
 
@@ -402,6 +426,7 @@ class _ImageSettingState extends State<EzImageSetting> {
       options.add(Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             final int? pathARGB = (currPath == null) ? null : int.tryParse(currPath!);
             Color currColor =
@@ -425,8 +450,8 @@ class _ImageSettingState extends State<EzImageSetting> {
               onDeny: doNothing,
             );
           },
-          icon: EzIcon(Icons.color_lens),
-          label: widget.config.l10n.dsSolidColor,
+          icon: EzIcon(widget.config, Icons.color_lens),
+          label: widget.config.ezL10n.dsSolidColor,
         ),
       ));
     }
@@ -436,6 +461,7 @@ class _ImageSettingState extends State<EzImageSetting> {
       options.add(Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             await fileCleanup();
             await EzCM.remove(widget.pathKey);
@@ -444,8 +470,8 @@ class _ImageSettingState extends State<EzImageSetting> {
               Navigator.of(mCon).pop(defaultPath);
             }
           },
-          icon: EzIcon(Icons.refresh),
-          label: widget.config.l10n.dsResetIt,
+          icon: EzIcon(widget.config, Icons.refresh),
+          label: widget.config.ezL10n.dsResetIt,
         ),
       ));
     }
@@ -455,6 +481,7 @@ class _ImageSettingState extends State<EzImageSetting> {
       options.add(Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             await fileCleanup();
             await EzCM.setString(widget.pathKey, noImageValue);
@@ -463,8 +490,8 @@ class _ImageSettingState extends State<EzImageSetting> {
               Navigator.of(mCon).pop(noImageValue);
             }
           },
-          icon: EzIcon(Icons.clear),
-          label: widget.clearLabel ?? widget.config.l10n.dsClearIt,
+          icon: EzIcon(widget.config, Icons.clear),
+          label: widget.clearLabel ?? widget.config.ezL10n.dsClearIt,
         ),
       ));
     }
@@ -476,12 +503,18 @@ class _ImageSettingState extends State<EzImageSetting> {
           currPath != null &&
           currPath != noImageValue) ...<Widget>[
         EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             final bool? changed = await chooseFit(currPath!);
-            if (changed == true) await widget.config.rebuildUI();
+            if (changed == true) {
+              await widget.config.rebuildUI(<EzSettingType>{
+                EzSettingType.color,
+                EzSettingType.design,
+              });
+            }
           },
-          icon: EzIcon(Icons.image_aspect_ratio),
-          label: widget.config.l10n.dsReFit,
+          icon: EzIcon(widget.config, Icons.image_aspect_ratio),
+          label: widget.config.ezL10n.dsReFit,
         ),
         widget.config.spacer,
       ],
@@ -490,8 +523,9 @@ class _ImageSettingState extends State<EzImageSetting> {
         Padding(
           padding: EdgeInsets.symmetric(vertical: widget.config.spacing / 2),
           child: EzSwitchPair(
+            widget.config,
             key: ValueKey<bool>(updateTheme),
-            text: widget.config.l10n.dsUseForColors,
+            text: widget.config.ezL10n.dsUseForColors,
             value: updateTheme,
             onChanged: (bool? choice) {
               if (choice == null) return;
@@ -507,12 +541,13 @@ class _ImageSettingState extends State<EzImageSetting> {
   /// Opens [EzImageEditor] and overrides the image as necessary
   Future<String?> editImage(String path) async {
     final String? editResult = await ezModal<String?>(
+      widget.config,
       context: context,
       enableDrag: false,
       useSafeArea: false,
       isDismissible: false,
       showDragHandle: false,
-      builder: (_) => EzImageEditor(path),
+      builder: (_) => EzImageEditor(widget.config, path: path),
       constraints: const BoxConstraints(
         minWidth: double.infinity,
         minHeight: double.infinity,
@@ -528,12 +563,14 @@ class _ImageSettingState extends State<EzImageSetting> {
     final double height = heightOf(context) * 0.25;
 
     return ezModal<bool?>(
+      widget.config,
       context: context,
       builder: (_) => StatefulBuilder(
         builder: (BuildContext fitContext, StateSetter fitState) => EzScrollView(
+          widget.config,
           children: <Widget>[
             Text(
-              widget.config.l10n.dsFit,
+              widget.config.ezL10n.dsFit,
               style: widget.config.titleStyle,
               textAlign: TextAlign.center,
             ),
@@ -545,6 +582,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 fitState(() {});
               },
               child: EzScrollView(
+                widget.config,
                 scrollDirection: Axis.horizontal,
                 showScrollHint: true,
                 primary: false,
@@ -618,17 +656,21 @@ class _ImageSettingState extends State<EzImageSetting> {
             ),
             widget.config.spacer,
             EzRow(
-              mainAxisAlignment: EzCM.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
+              widget.config,
+              mainAxisAlignment:
+                  widget.config.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
               children: <Widget>[
                 widget.config.rowSpacer,
                 EzTextButton(
+                  widget.config,
                   onPressed: () => Navigator.of(fitContext).pop(null),
-                  text: widget.config.l10n.gCancel,
+                  text: widget.config.ezL10n.gCancel,
                   textStyle: widget.config.bodyStyle,
                   textAlign: TextAlign.center,
                 ),
                 widget.config.rowSpacer,
                 EzTextButton(
+                  widget.config,
                   onPressed: () async {
                     if (currFit != null && widget.fitKey != null) {
                       await EzCM.setString(widget.fitKey!, currFit!.name);
@@ -637,7 +679,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                       Navigator.of(fitContext).pop(true);
                     }
                   },
-                  text: currFit == null ? widget.config.l10n.gSkip : widget.config.l10n.gApply,
+                  text: currFit == null ? widget.config.ezL10n.gSkip : widget.config.ezL10n.gApply,
                   textStyle: widget.config.bodyStyle?.copyWith(color: widget.config.colors.primary),
                   textAlign: TextAlign.center,
                 ),
@@ -712,7 +754,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           ),
         ),
       ),
-      ExcludeSemantics(child: EzRadio<BoxFit>(value: fit)),
+      ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
     ]);
   }
 
@@ -725,9 +767,10 @@ class _ImageSettingState extends State<EzImageSetting> {
     return Semantics(
       label: widget.label,
       button: true,
-      hint: widget.config.l10n.dsImgSettingHint(widget.label),
+      hint: widget.config.ezL10n.dsImgSettingHint(widget.label),
       child: ExcludeSemantics(
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: () async {
             if (inProgress) return;
 
@@ -737,7 +780,12 @@ class _ImageSettingState extends State<EzImageSetting> {
             });
             final bool changed = await activateSetting();
 
-            if (changed) await widget.config.rebuildUI();
+            if (changed) {
+              await widget.config.rebuildUI(<EzSettingType>{
+                EzSettingType.color,
+                EzSettingType.design,
+              });
+            }
             setState(() => inProgress = false);
           },
           onLongPress: inProgress ? doNothing : showSource,
@@ -761,6 +809,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                   ? const CircularProgressIndicator()
                   : (currPath == null || currPath == noImageValue)
                       ? EzIcon(
+                          widget.config,
                           Icons.image_search,
                           color: widget.config.colors.primary,
                         )

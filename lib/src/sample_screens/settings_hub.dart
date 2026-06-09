@@ -8,6 +8,9 @@ import '../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzSettingsHub extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Where the magic happens
   final List<EzSettingsSection> pages;
 
@@ -16,24 +19,26 @@ class EzSettingsHub extends StatefulWidget {
   final int? target;
 
   /// Empathetech settings landing page
-  const EzSettingsHub({super.key, required this.pages, this.target});
+  const EzSettingsHub(this.config, {super.key, required this.pages, this.target});
 
   @override
   State<EzSettingsHub> createState() => _EzSettingsHubState();
 }
 
 class _EzSettingsHubState extends State<EzSettingsHub> {
-  late EzSettingsSection currSection = widget.pages[widget.target ?? EzConfig.hubPos];
+  late EzSettingsSection currSection = widget.pages[widget.target ?? EzCM.hubPos];
   late EzSubSetting currSubSec = currSection.fromStorage();
   int delta = 0;
 
   @override
   Widget build(BuildContext context) => EzScrollView(
+        widget.config,
         children: <Widget>[
           // Section nav
           EzText(
-            currSection.title,
-            style: EzConfig.labelStyle,
+            widget.config,
+            text: currSection.title,
+            style: widget.config.labelStyle,
             textAlign: TextAlign.center,
           ),
           SegmentedButton<EzSettingsSection>(
@@ -49,7 +54,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
               final EzSettingsSection choice = selected.first;
               delta = choice.position - currSection.position;
 
-              await EzConfig.setHubPos(choice.position);
+              await EzCM.setHubPos(choice.position);
 
               currSection = choice;
               currSubSec = choice.fromStorage();
@@ -60,14 +65,16 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
           // Sub-section nav (&& divider)
           EzAnimSwitch(
             // Don't use AnimVis, breaks on Global settings
+            widget.config,
             mod: 0.75,
             forceType: EzTransitionType.slideY,
             forceFade: true,
             reverse: true,
             child: currSection.subSettings.isNotEmpty
                 ? EzCol(children: <Widget>[
-                    EzConfig.margin,
+                    widget.config.margin,
                     EzScrollView(
+                      widget.config,
                       scrollDirection: Axis.horizontal,
                       reverseHands: true,
                       showScrollHint: true,
@@ -77,7 +84,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                           segments: (currSection.subSettings)
                               .map((EzSubSetting sub) => ButtonSegment<EzSubSetting>(
                                     value: sub,
-                                    label: Text(sub.label),
+                                    label: Text(sub.label(widget.config.ezL10n)),
                                   ))
                               .toList(),
                           selected: <EzSubSetting>{currSubSec},
@@ -85,29 +92,30 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                           onSelectionChanged: (Set<EzSubSetting> selected) async {
                             final EzSubSetting choice = selected.first;
 
-                            await EzConfig.setBool(choice.write.$1, choice.write.$2);
+                            await EzCM.setBool(choice.write.$1, choice.write.$2);
                             setState(() => currSubSec = choice);
                           },
                         ),
 
                         // Update both toggle
-                        EzConfig.rowMargin,
-                        EzThemeCoin(enabled: currSubSec.bothable),
+                        widget.config.rowMargin,
+                        EzThemeCoin(widget.config, enabled: currSubSec.bothable),
                       ],
                     ),
-                    EzDivider(height: EzConfig.spacing),
-                    EzConfig.spacer,
+                    EzDivider(widget.config.spacing),
+                    widget.config.spacer,
                   ])
                 : const SizedBox.shrink(),
           ),
 
           // Current section
           EzFauxCarousel(
+            widget.config,
             position: currSection.position,
             delta: delta,
             child: currSection.build(currSubSec),
           ),
-          const EzFooter(), // TODO: works?
+          EzFooter(widget.config),
         ],
       );
 }

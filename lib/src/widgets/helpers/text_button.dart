@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzTextButton extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [TextButton.child] will be [Text] with [text], [textStyle], and [textAlign]
   final String text;
 
@@ -33,7 +36,8 @@ class EzTextButton extends StatefulWidget {
   final ButtonStyle? style;
 
   /// [TextButton] with custom styling
-  const EzTextButton({
+  const EzTextButton(
+    this.config, {
     super.key,
     this.onPressed,
     this.onLongPress,
@@ -55,26 +59,29 @@ class _EzTextButtonState extends State<EzTextButton> {
         onPressed: widget.onPressed,
         onLongPress: widget.onLongPress,
         style: widget.inline
-            ? (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
+            ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
                 padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
               )
             : widget.style,
         child: Text(
           widget.text,
           semanticsLabel: widget.semantics,
-          style: (widget.textStyle ?? EzConfig.bodyStyle)
-              ?.copyWith(decorationColor: EzConfig.colors.primary),
+          style: (widget.textStyle ?? widget.config.bodyStyle)
+              ?.copyWith(decorationColor: widget.config.colors.primary),
           textAlign: widget.textAlign,
         ),
       );
 }
 
 class EzTextIconButton extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [TextButton.icon] label will be [Text] with [label], [textStyle], and [textAlign]
   final String label;
 
   /// [TextButton.icon] passthrough
-  /// iconAlignment: [EzConfig.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
+  /// iconAlignment: [EzCM.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget icon;
 
   /// [TextButton.onPressed] passthrough
@@ -99,7 +106,8 @@ class EzTextIconButton extends StatefulWidget {
   final ButtonStyle? style;
 
   /// [TextButton.icon] with custom styling
-  const EzTextIconButton({
+  const EzTextIconButton(
+    this.config, {
     super.key,
     required this.label,
     required this.icon,
@@ -122,17 +130,17 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
         onPressed: widget.onPressed,
         onLongPress: widget.onLongPress,
         style: widget.inline
-            ? (widget.style ?? EzConfig.theme.textButtonTheme.style!).copyWith(
+            ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
                 padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
               )
             : widget.style,
         icon: widget.icon,
-        iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
+        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
         label: Text(
           widget.label,
           semanticsLabel: widget.semantics,
-          style: (widget.textStyle ?? EzConfig.bodyStyle)
-              ?.copyWith(decorationColor: EzConfig.colors.primary),
+          style: (widget.textStyle ?? widget.config.bodyStyle)
+              ?.copyWith(decorationColor: widget.config.colors.primary),
           textAlign: widget.textAlign,
         ),
       );

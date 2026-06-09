@@ -16,7 +16,7 @@ Color getTextColor(Color background) {
   return Color(((lumR + lumG + lumB) >= 150) ? blackHex : whiteHex);
 }
 
-/// Generate an [EzConfig] based [ColorScheme]
+/// Generate a [ColorScheme] based on [EzCM]
 ColorScheme ezColorScheme(Brightness brightness) {
   Color? getColor(String key) {
     final int? value = EzCM.get(key);
@@ -126,7 +126,7 @@ ColorScheme ezColorScheme(Brightness brightness) {
         );
 }
 
-/// Store the passed [ColorScheme] in [EzConfig]
+/// Store the passed [ColorScheme] in [EzCM]
 /// When [brightness] is null, both dark and light color schemes are updated
 Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) async {
   if (brightness == null || brightness == Brightness.dark) {
@@ -242,8 +242,8 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
   }
 }
 
-/// Generates a [ColorScheme] based on the image found at [path]
-/// Then stores the values in [EzConfig]
+/// Generates a [ColorScheme] based on the image found at [path],
+/// Stores it in [EzCM], and loads it to [EzCP]
 /// When [brightness] is null, both dark and light color schemes are updated
 Future<String> loadImageColorScheme(String path, Brightness? brightness) async {
   try {

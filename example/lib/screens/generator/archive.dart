@@ -14,9 +14,9 @@ import 'package:file_saver/file_saver.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class ArchiveScreen extends StatefulWidget {
-  final EAGConfig archiving;
+  final EAGConfig archive;
 
-  const ArchiveScreen(this.archiving, {super.key});
+  const ArchiveScreen(this.archive, {super.key});
 
   @override
   State<ArchiveScreen> createState() => _ArchiveScreenState();
@@ -35,12 +35,12 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   // Define custom functions //
 
   /// Save the EAGConfig
-  void archive() async {
+  void archive(EzCP config) async {
     late final String savedConfig;
     try {
       savedConfig = await FileSaver.instance.saveFile(
-        name: '${widget.archiving.appName}_eag_config.json',
-        bytes: utf8.encode(jsonEncode(widget.archiving.toJson())),
+        name: '${widget.archive.appName}_eag_config.json',
+        bytes: utf8.encode(jsonEncode(widget.archive.toJson())),
         mimeType: MimeType.json,
       );
     } catch (e) {
@@ -53,7 +53,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
     savedConfig.endsWith('.json')
         ? setState(() => genState = GeneratorState.successful)
         : setState(() {
-            failureMessage = '${efuiL10nWatcher.ssWrongConfigExt} .json...\n\n$savedConfig';
+            failureMessage = '${config.ezL10n.ssWrongConfigExt} .json...\n\n$savedConfig';
             genState = GeneratorState.failed;
           });
   }
@@ -63,25 +63,28 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
             height: heightOf(context) / 3,
             width: double.infinity,
             child: EmpathyLoading(
-              semantics: config.efuiL10n.gLoadingAnim,
+              semantics: config.ezL10n.gLoadingAnim,
               colorScheme: config.colors,
             ),
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(
+              config,
               richMessage: EzRichText(
-                <InlineSpan>[
-                  EzPlainText(text: config.efuiL10n.ssConfigSaved(archivePath())),
+                config,
+                children: <InlineSpan>[
+                  EzPlainText(text: config.ezL10n.ssConfigSaved(archivePath())),
                   if (!isDesktop) ...<InlineSpan>[
                     EzPlainText(text: l10n(config).asUseIt),
                     EzInlineLink(
-                      thisAppName,
+                      config,
+                      text: thisAppName,
                       style: ezSubTitleStyle(config.styles),
                       textAlign: TextAlign.center,
                       url: Uri.parse(openUIReleases),
-                      hint: config.efuiL10n.gOpenUIReleases,
+                      hint: config.ezL10n.gOpenUIReleases,
                     ),
-                    EzPlainText(text: l10n(config).asToGen(widget.archiving.appName)),
+                    EzPlainText(text: l10n(config).asToGen(widget.archive.appName)),
                   ]
                 ],
                 style: ezSubTitleStyle(config.styles),
@@ -89,28 +92,27 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
               ),
             ),
           ),
-        GeneratorState.failed => Center(child: FailureHeader(message: failureMessage)),
+        GeneratorState.failed => Center(child: FailureHeader(config, message: failureMessage)),
       };
-
-  // Init //
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => archive());
-  }
 
   // Return the build //
 
+  bool ran = false;
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(
-      builder: (_, EzCP config, __) => OpenUIScaffold(
+    return Consumer<EzCP>(builder: (_, EzCP config, __) {
+      if (!ran) {
+        ran = true;
+        archive(config);
+      }
+
+      return OpenUIScaffold(
         config,
-        body: EzScreen(header(config), alignment: Alignment.topCenter),
+        body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
         title: l10n(config).asPageTitle,
         running: genState == GeneratorState.running,
-      ),
-    );
+      );
+    });
   }
 }

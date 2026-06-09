@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class EzTutorial extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Positioned.top] passthrough
   final double? top;
 
@@ -39,7 +42,8 @@ class EzTutorial extends StatelessWidget {
 
   /// [AlertDialog] wrapped in a [SelectionArea] and [Positioned] widget
   /// Pairs well with [OverlayPortal] for displaying tutorials
-  const EzTutorial({
+  const EzTutorial(
+    this.config, {
     super.key,
     this.top,
     this.bottom,
@@ -64,8 +68,8 @@ class EzTutorial extends StatelessWidget {
             // Title
             title: title,
             titlePadding: EdgeInsets.symmetric(
-              horizontal: EzConfig.marginVal,
-              vertical: EzConfig.spacing / 2,
+              horizontal: config.marginVal,
+              vertical: config.spacing / 2,
             ),
 
             // Content
@@ -75,26 +79,26 @@ class EzTutorial extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             contentPadding: EdgeInsets.symmetric(
-              horizontal: EzConfig.marginVal,
-              vertical: EzConfig.spacing / 2,
+              horizontal: config.marginVal,
+              vertical: config.spacing / 2,
             ),
 
             // Actions
             actions: <Widget>[
               EzMaterialAction(
+                config,
                 text: acceptMessage,
                 semantics: acceptSemantics,
                 onPressed: onAccept,
               )
             ],
-            actionsAlignment:
-                EzConfig.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
+            actionsAlignment: config.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
 
             // General
             iconPadding: EdgeInsets.zero,
             buttonPadding: EdgeInsets.zero,
-            insetPadding: EdgeInsets.all(EzConfig.marginVal),
-            actionsPadding: EzInsets.wrap(EzConfig.spacing),
+            insetPadding: EdgeInsets.all(config.marginVal),
+            actionsPadding: EzInsets.wrap(config.spacing),
           ),
         ),
       );

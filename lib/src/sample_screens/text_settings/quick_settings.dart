@@ -58,6 +58,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         Padding(
           padding: wrapPadding,
           child: EzFontFamilyBatchSetting(
+            widget.config,
             displayProvider: widget.displayProvider,
             headlineProvider: widget.headlineProvider,
             titleProvider: widget.titleProvider,
@@ -70,7 +71,9 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         Padding(
           padding: wrapPadding,
           child: EzTextBackground(
-            EzFontDoubleBatchSetting(
+            widget.config,
+            text: EzFontDoubleBatchSetting(
+              widget.config,
               displayProvider: widget.displayProvider,
               headlineProvider: widget.headlineProvider,
               titleProvider: widget.titleProvider,
@@ -87,9 +90,10 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
       // Display preview
       EzText(
-        widget.config.efuiL10n.tsDisplayP1 +
-            widget.config.efuiL10n.tsDisplayLink +
-            widget.config.efuiL10n.tsDisplayP2,
+        widget.config,
+        text: widget.config.ezL10n.tsDisplayP1 +
+            widget.config.ezL10n.tsDisplayLink +
+            widget.config.ezL10n.tsDisplayP2,
         textAlign: TextAlign.center,
         style: widget.displayProvider.value,
         backgroundColor: textBackground,
@@ -98,9 +102,10 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
       // Headline preview
       EzText(
-        widget.config.efuiL10n.tsHeadlineP1 +
-            widget.config.efuiL10n.tsHeadlineLink +
-            widget.config.efuiL10n.tsHeadlineP2,
+        widget.config,
+        text: widget.config.ezL10n.tsHeadlineP1 +
+            widget.config.ezL10n.tsHeadlineLink +
+            widget.config.ezL10n.tsHeadlineP2,
         textAlign: TextAlign.center,
         style: widget.headlineProvider.value,
         backgroundColor: textBackground,
@@ -109,7 +114,8 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
       // Title preview
       EzText(
-        widget.config.efuiL10n.tsTitleP1 + widget.config.efuiL10n.tsTitleLink,
+        widget.config,
+        text: widget.config.ezL10n.tsTitleP1 + widget.config.ezL10n.tsTitleLink,
         textAlign: TextAlign.center,
         style: widget.titleProvider.value,
         backgroundColor: textBackground,
@@ -118,9 +124,10 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
       // Body preview
       EzText(
-        widget.config.efuiL10n.tsBodyP1 +
-            widget.config.efuiL10n.tsBodyLink +
-            widget.config.efuiL10n.tsBodyP2,
+        widget.config,
+        text: widget.config.ezL10n.tsBodyP1 +
+            widget.config.ezL10n.tsBodyLink +
+            widget.config.ezL10n.tsBodyP2,
         textAlign: TextAlign.center,
         style: widget.bodyProvider.value,
         backgroundColor: textBackground,
@@ -129,9 +136,10 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
       // Label preview
       EzText(
-        widget.config.efuiL10n.tsLabelP1 +
-            widget.config.efuiL10n.tsLabelLink +
-            widget.config.efuiL10n.tsLabelP2,
+        widget.config,
+        text: widget.config.ezL10n.tsLabelP1 +
+            widget.config.ezL10n.tsLabelLink +
+            widget.config.ezL10n.tsLabelP2,
         textAlign: TextAlign.center,
         style: widget.labelProvider.value,
         backgroundColor: textBackground,
@@ -140,7 +148,8 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
       // Text background opacity
       EzText(
-        widget.config.efuiL10n.tsTextBackground,
+        widget.config,
+        text: widget.config.ezL10n.tsTextBackground,
         style: widget.labelProvider.value,
         textAlign: TextAlign.center,
         backgroundColor: textBackground,
@@ -172,7 +181,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
             }
 
             if (context.mounted) {
-              widget.config.pingRebuild(ezTextRebuildCheck(context, widget.config) ||
+              widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context) ||
                   (value != widget.config.textBackgroundOpacity));
             }
           },
@@ -184,13 +193,15 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
       widget.config.spacer,
 
       // Icon size
-      EzIconSizeSetting(backgroundColor: buttonBackground),
+      EzIconSizeSetting(widget.config, backgroundColor: buttonBackground),
 
       // Reset all
       widget.config.separator,
       EzResetButton(
+        widget.config,
         all: false,
-        dynamicTitle: () => widget.config.efuiL10n.tsReset(ezThemeString(true)),
+        dynamicTitle: () =>
+            widget.config.ezL10n.tsReset(ezThemeString(widget.config, bothable: true)),
         onConfirm: () async {
           if (EzCM.updateBoth || widget.config.isDark) {
             await EzCM.removeKeys(darkTextKeys.keys.toSet());

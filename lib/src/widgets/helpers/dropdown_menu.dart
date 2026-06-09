@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzDropdownMenu<T> extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [DropdownMenu.enabled] passthrough
   final bool enabled;
 
@@ -48,7 +51,8 @@ class EzDropdownMenu<T> extends StatelessWidget {
   final List<DropdownMenuEntry<T>> dropdownMenuEntries;
 
   /// [DropdownMenu] with custom styling
-  const EzDropdownMenu({
+  const EzDropdownMenu(
+    this.config, {
     super.key,
     this.enabled = true,
     this.label,
@@ -70,11 +74,11 @@ class EzDropdownMenu<T> extends StatelessWidget {
         data: IconButtonThemeData(style: IconButton.styleFrom(side: (BorderSide.none))),
         child: DropdownMenu<T>(
           enabled: enabled,
-          width: ezDropdownWidth(context, widthEntry),
-          trailingIcon: EzIcon(Icons.arrow_drop_down),
+          width: ezDropdownWidth(config, context: context, entry: widthEntry),
+          trailingIcon: EzIcon(config, Icons.arrow_drop_down),
           label: label,
           hintText: hintText,
-          selectedTrailingIcon: EzIcon(Icons.arrow_drop_up),
+          selectedTrailingIcon: EzIcon(config, Icons.arrow_drop_up),
           enableFilter: enableFilter,
           enableSearch: enableSearch,
           keyboardType: keyboardType,

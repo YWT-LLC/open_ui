@@ -8,6 +8,9 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzNebulaConfig extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Like updateBoth, but smaller
   final bool autoConfirm;
 
@@ -15,16 +18,21 @@ class EzNebulaConfig extends StatelessWidget {
   final Future<void> Function(bool)? extra;
 
   /// Dark theme only config, will set [ThemeMode.dark]
-  const EzNebulaConfig({
+  const EzNebulaConfig(
+    this.config, {
     super.key,
     required this.autoConfirm,
     this.extra,
   });
 
   /// When true, skips the "This is a dark theme only..." dialog
-  static Future<bool> onPressed(BuildContext context, bool autoConfirm) async {
-    if (!autoConfirm || EzConfig.themeMode != ThemeMode.dark) {
-      final bool uSure = await _confirm(context) ?? false;
+  static Future<bool> onPressed(
+    EzCP config,
+    bool autoConfirm, {
+    required BuildContext context,
+  }) async {
+    if (!autoConfirm || config.themeMode != ThemeMode.dark) {
+      final bool uSure = await _confirm(config, context: context) ?? false;
       if (!uSure) return false;
     }
 
@@ -32,15 +40,17 @@ class EzNebulaConfig extends StatelessWidget {
     return true;
   }
 
-  static Future<bool?> _confirm(BuildContext context) => showDialog(
+  static Future<bool?> _confirm(EzCP config, {required BuildContext context}) => showDialog(
         context: context,
         builder: (BuildContext dCon) => EzAlertDialog(
-          title: Text(EzConfig.l10n.gAttention, textAlign: TextAlign.center),
+          config,
+          title: Text(config.ezL10n.gAttention, textAlign: TextAlign.center),
           content: Text(
-            EzConfig.l10n.ssDarkOnly,
+            config.ezL10n.ssDarkOnly,
             textAlign: TextAlign.center,
           ),
           actions: ezActionPair(
+            config,
             onConfirm: () => Navigator.of(dCon).pop(true),
             confirmIsDestructive: true,
             onDeny: () => Navigator.of(dCon).pop(false),
@@ -52,13 +62,13 @@ class EzNebulaConfig extends StatelessWidget {
   static Future<void> _makeItSo() async {
     // Reset //
 
-    await EzConfig.removeKeys(darkColorKeys.keys.toSet());
-    await EzConfig.removeKeys(darkDesignKeys.keys.toSet());
-    await EzConfig.removeKeys(darkTextKeys.keys.toSet());
+    await EzCM.removeKeys(darkColorKeys.keys.toSet());
+    await EzCM.removeKeys(darkDesignKeys.keys.toSet());
+    await EzCM.removeKeys(darkTextKeys.keys.toSet());
 
     // Global settings //
 
-    await EzConfig.setBool(isDarkThemeKey, true);
+    await EzCM.setBool(isDarkThemeKey, true);
 
     // Color settings //
 
@@ -109,24 +119,24 @@ class EzNebulaConfig extends StatelessWidget {
 
     // Design settings //
 
-    await EzConfig.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
-    await EzConfig.setDouble(darkBorderWidthKey, 1.0);
+    await EzCM.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
+    await EzCM.setDouble(darkBorderWidthKey, 1.0);
 
-    await EzConfig.setString(darkBackgroundImageKey, nebulaPath);
-    await EzConfig.setString(darkBackgroundFitKey, BoxFit.cover.name);
-    await EzConfig.setString(darkBackgroundSourceKey, 'https://www.pexels.com/@jmueller/');
+    await EzCM.setString(darkBackgroundImageKey, nebulaPath);
+    await EzCM.setString(darkBackgroundFitKey, BoxFit.cover.name);
+    await EzCM.setString(darkBackgroundSourceKey, 'https://www.pexels.com/@jmueller/');
 
     // Text settings //
 
     // Font
-    await EzConfig.setString(darkDisplayFontFamilyKey, sourceCodePro);
-    await EzConfig.setString(darkHeadlineFontFamilyKey, sourceCodePro);
-    await EzConfig.setString(darkTitleFontFamilyKey, sourceCodePro);
-    await EzConfig.setString(darkBodyFontFamilyKey, sourceCodePro);
-    await EzConfig.setString(darkLabelFontFamilyKey, sourceCodePro);
+    await EzCM.setString(darkDisplayFontFamilyKey, sourceCodePro);
+    await EzCM.setString(darkHeadlineFontFamilyKey, sourceCodePro);
+    await EzCM.setString(darkTitleFontFamilyKey, sourceCodePro);
+    await EzCM.setString(darkBodyFontFamilyKey, sourceCodePro);
+    await EzCM.setString(darkLabelFontFamilyKey, sourceCodePro);
 
     // Background opacity
-    await EzConfig.setDouble(darkTextBackgroundOpacityKey, 0.333);
+    await EzCM.setDouble(darkTextBackgroundOpacityKey, 0.333);
   }
 
   @override
@@ -152,6 +162,7 @@ class EzNebulaConfig extends StatelessWidget {
         shape: EzButtonShape.jewel.shape,
       ),
       child: EzElevatedButton(
+        config,
         style: ElevatedButton.styleFrom(
           backgroundColor: _empathPurpleDimmer,
           foregroundColor: Colors.white,
@@ -160,20 +171,20 @@ class EzNebulaConfig extends StatelessWidget {
           side: const BorderSide(color: _halfSand, width: 1.0),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
-          padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
+          padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
         ),
         onPressed: () async {
           final bool uSure = autoConfirm ||
-              (EzConfig.themeMode == ThemeMode.dark) ||
-              (await _confirm(context) ?? false);
+              (config.themeMode == ThemeMode.dark) ||
+              (await _confirm(config, context: context) ?? false);
           if (uSure) {
-            await EzConfig.rebuildUI(changes: () async {
+            await config.rebuildUI(allEST, changes: () async {
               await _makeItSo();
               await extra?.call(autoConfirm);
             });
           }
         },
-        text: EzConfig.l10n.ssNebula,
+        text: config.ezL10n.ssNebula,
         textStyle: localBody,
       ),
     );

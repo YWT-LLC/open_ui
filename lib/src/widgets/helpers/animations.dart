@@ -8,10 +8,10 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzAnimSwitch extends AnimatedSwitcher {
-  /// Recommend [EzCP.animCurve]
-  final Curve curve;
+  /// EzConfig Provider
+  final EzCP config;
 
-  /// [ezAnimDuration] passthrough
+  /// [ezDuration] passthrough
   final double mod;
 
   /// [ezTransitionBuilder] passthrough
@@ -25,7 +25,7 @@ class EzAnimSwitch extends AnimatedSwitcher {
 
   /// An [EzCP] controlled [AnimatedSwitcher]
   EzAnimSwitch(
-    this.curve, {
+    this.config, {
     super.key,
     this.mod = 1.0,
     super.reverseDuration,
@@ -35,10 +35,11 @@ class EzAnimSwitch extends AnimatedSwitcher {
     this.reverse = false,
     super.child,
   }) : super(
-          switchInCurve: curve,
-          switchOutCurve: curve,
-          duration: ezAnimDuration(mod: mod),
+          switchInCurve: config.animCurve,
+          switchOutCurve: config.animCurve,
+          duration: ezDuration(config.animDur, mod: mod),
           transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
+            config,
             a,
             w,
             forceType: forceType,
@@ -57,7 +58,7 @@ class EzAnimVis extends EzAnimSwitch {
 
   /// [EzAnimSwitch] + [Visibility]
   EzAnimVis(
-    super.curve, {
+    super.config, {
     super.key,
     super.mod,
     super.reverseDuration,
@@ -85,7 +86,7 @@ class EzAnimHide extends EzAnimSwitch {
   /// [EzAnimSwitch] + [Visibility] that maintains size
   /// && defaults to a static fade
   EzAnimHide(
-    super.curve, {
+    super.config, {
     super.key,
     super.mod,
     super.reverseDuration,
@@ -111,7 +112,7 @@ class EzFauxCarousel extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
-  /// Optional [ezAnimDuration] passthrough/override
+  /// Optional [ezDuration] passthrough/override
   final double animMod;
 
   /// Current position in the list
@@ -134,7 +135,7 @@ class EzFauxCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedSwitcher(
-        duration: ezAnimDuration(mod: animMod),
+        duration: ezDuration(config.animDur, mod: animMod),
         switchInCurve: config.animCurve,
         switchOutCurve: config.animCurve,
         transitionBuilder: (Widget w, Animation<double> a) {

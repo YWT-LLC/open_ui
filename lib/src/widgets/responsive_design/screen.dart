@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzScreen extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Screen content
   final Widget child;
 
@@ -20,9 +23,10 @@ class EzScreen extends StatelessWidget {
   /// Optional wrap [child] in a [SafeArea]
   final bool safeArea;
 
-  /// Custom [Container] that creates a standard screen for [EzConfig] powered apps
+  /// Custom [Container] for the top layer of an (IRL) screen
   const EzScreen(
-    this.child, {
+    this.config, {
+    required this.child,
     super.key,
     this.alignment,
     this.margin,
@@ -30,19 +34,19 @@ class EzScreen extends StatelessWidget {
   });
 
   Decoration? buildDecoration() {
-    final String path = EzConfig.backgroundImagePath;
+    final String path = config.backgroundImagePath;
     if (path == noImageValue) return null;
 
     final int? isColor = int.tryParse(path);
     if (isColor != null) return BoxDecoration(color: Color(isColor));
 
-    return BoxDecoration(image: EzConfig.backgroundImage);
+    return BoxDecoration(image: config.backgroundImage);
   }
 
   @override
   Widget build(BuildContext context) => Container(
         alignment: alignment,
-        padding: margin ?? EdgeInsets.all(EzConfig.marginVal),
+        padding: margin ?? EdgeInsets.all(config.marginVal),
         decoration: buildDecoration(),
         height: double.infinity,
         width: double.infinity,

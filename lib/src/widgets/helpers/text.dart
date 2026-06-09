@@ -8,21 +8,24 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzTextBackground extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// The [Widget] that needs a background
   /// Doesn't have to be [Text]
   final Widget text;
 
   /// Optional override
-  /// Defaults to [EdgeInsets.all] w/ [EzConfig.marginVal]
+  /// Defaults to [EdgeInsets.all] w/ [config.marginVal]
   final EdgeInsets? padding;
 
-  /// Match the current [EzConfig.buttonShape]
+  /// Match the current [config.buttonShape]
   final bool buttonShape;
 
   /// Optionally override [BoxDecoration.borderRadius]
   final BorderRadiusGeometry? borderRadius;
 
-  /// Uses [EzConfig.textBackgroundOpacity]
+  /// Uses [config.textBackgroundOpacity]
   /// Defaults to [ColorScheme.surfaceContainer]
   final Color? baseColor;
 
@@ -31,8 +34,9 @@ class EzTextBackground extends StatelessWidget {
 
   /// Create a [Container] for your [text] with a background color that automatically responds to [lightTextBackgroundOpacityKey]/[darkTextBackgroundOpacityKey]
   const EzTextBackground(
-    this.text, {
+    this.config, {
     super.key,
+    required this.text,
     this.padding,
     this.buttonShape = false,
     this.borderRadius,
@@ -42,29 +46,32 @@ class EzTextBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: (backgroundColor == null && EzConfig.textBackgroundOpacity < oneP)
+        padding: (backgroundColor == null && config.textBackgroundOpacity < oneP)
             ? EdgeInsets.zero
-            : padding ?? EdgeInsets.all(EzConfig.marginVal),
+            : padding ?? EdgeInsets.all(config.marginVal),
         decoration: buttonShape
             ? ShapeDecoration(
                 color: backgroundColor ??
-                    (baseColor ?? EzConfig.colors.surfaceContainer)
-                        .withValues(alpha: EzConfig.textBackgroundOpacity),
-                shape: EzConfig.buttonShape.shape,
+                    (baseColor ?? config.colors.surfaceContainer)
+                        .withValues(alpha: config.textBackgroundOpacity),
+                shape: config.buttonShape.shape,
               )
             : BoxDecoration(
                 color: backgroundColor ??
-                    (baseColor ?? EzConfig.colors.surfaceContainer)
-                        .withValues(alpha: EzConfig.textBackgroundOpacity),
-                borderRadius: borderRadius ?? EzConfig.textRadius,
+                    (baseColor ?? config.colors.surfaceContainer)
+                        .withValues(alpha: config.textBackgroundOpacity),
+                borderRadius: borderRadius ?? config.textRadius,
               ),
         child: text,
       );
 }
 
 class EzText extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Text.data] passthrough
-  final String data;
+  final String text;
 
   /// [Text.style] passthrough
   /// Defaults to [TextTheme.bodyLarge]
@@ -88,8 +95,9 @@ class EzText extends StatelessWidget {
   /// Quick wrapper for creating [Text] with a default [EzTextBackground]
   /// [style] defaults to [TextTheme.bodyLarge]
   const EzText(
-    this.data, {
+    this.config, {
     super.key,
+    required this.text,
     this.style,
     this.textAlign,
     this.semanticsLabel,
@@ -100,9 +108,10 @@ class EzText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzTextBackground(
-        Text(
-          data,
-          style: style ?? EzConfig.bodyStyle,
+        config,
+        text: Text(
+          text,
+          style: style ?? config.bodyStyle,
           textAlign: textAlign,
           semanticsLabel: semanticsLabel,
         ),
@@ -122,13 +131,13 @@ class EzNewLine extends StatelessWidget {
   final TextAlign? textAlign;
 
   /// Quick wrapper for creating a [TextStyle]d blank line
-  const EzNewLine({super.key, this.style, this.textAlign});
+  const EzNewLine(this.style, {super.key, this.textAlign});
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
         child: Text(
           '',
-          style: style ?? EzConfig.bodyStyle,
+          style: style,
           textAlign: textAlign ?? TextAlign.start,
         ),
       );

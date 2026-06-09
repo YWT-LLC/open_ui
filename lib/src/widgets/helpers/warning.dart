@@ -25,7 +25,7 @@ class EzWarning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-        label: '${title ?? config.efuiL10n.gAttention}: $body',
+        label: '${title ?? config.ezL10n.gAttention}: $body',
         readOnly: true,
         child: ExcludeSemantics(
           child: Card(
@@ -34,22 +34,23 @@ class EzWarning extends StatelessWidget {
               child: EzCol(children: <Widget>[
                 // Title
                 EzScrollView(
+                  config,
                   scrollDirection: Axis.horizontal,
                   startCentered: true,
                   children: <Widget>[
                     // Thing1
-                    EzIcon(Icons.warning, color: config.colors.secondary),
+                    EzIcon(config, Icons.warning, color: config.colors.secondary),
                     config.rowMargin,
 
                     Text(
-                      title ?? config.efuiL10n.gAttention,
+                      title ?? config.ezL10n.gAttention,
                       style: config.titleStyle,
                       textAlign: TextAlign.center,
                     ),
                     config.rowMargin,
 
                     // Thing 2
-                    EzIcon(Icons.warning, color: config.colors.secondary),
+                    EzIcon(config, Icons.warning, color: config.colors.secondary),
                   ],
                 ),
                 config.spacer,

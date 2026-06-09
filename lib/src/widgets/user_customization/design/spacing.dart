@@ -8,11 +8,14 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzSpacingSetting extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   final int _steps;
   final int _decimals;
 
   /// An easy to use spacing setting
-  const EzSpacingSetting({super.key})
+  const EzSpacingSetting(this.config, {super.key})
       : _steps = 26,
         _decimals = 1;
 
@@ -20,27 +23,29 @@ class EzSpacingSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final String configKey = EzConfig.isDark ? darkSpacingKey : lightSpacingKey;
-    final double defaultValue = EzConfig.getDefault(configKey);
+    final String configKey = config.isDark ? darkSpacingKey : lightSpacingKey;
+    final double defaultValue = EzCM.getDefault(configKey);
 
-    double currValue = EzConfig.get(configKey);
+    double currValue = EzCM.get(configKey);
 
     // Return the build //
 
     return EzElevatedIconButton(
+      config,
       onPressed: () async {
         final double backup = currValue;
 
         await ezModal(
+          config,
           context: context,
           builder: (_) => StatefulBuilder(
-            builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+            builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
               // Preview
               Semantics(
                 button: false,
                 readOnly: true,
-                label: EzConfig.l10n.gSetToValue(
-                  EzConfig.l10n.dsSpacing,
+                label: config.ezL10n.gSetToValue(
+                  config.ezL10n.dsSpacing,
                   currValue.toStringAsFixed(_decimals),
                 ),
                 child: ExcludeSemantics(
@@ -49,38 +54,42 @@ class EzSpacingSetting extends StatelessWidget {
                     children: <Widget>[
                       // Title
                       Text(
-                        EzConfig.l10n.dsSpacing,
-                        style: EzConfig.titleStyle,
+                        config.ezL10n.dsSpacing,
+                        style: config.titleStyle,
                         textAlign: TextAlign.center,
                       ),
-                      EzSpacer(space: currValue),
+                      EzSpacer(currValue),
 
                       // Vertical preview
                       EzElevatedButton(
+                        config,
                         enabled: false,
-                        text: EzConfig.l10n.gValue,
+                        text: config.ezL10n.gValue,
                       ),
 
                       // Divider preview
-                      EzDivider(height: currValue * 3),
+                      EzDivider(currValue * 3),
 
                       // Horizontal preview
                       EzScrollView(
+                        config,
                         scrollDirection: Axis.horizontal,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           EzElevatedButton(
+                            config,
                             enabled: false,
-                            text: EzConfig.l10n.gCurrently,
+                            text: config.ezL10n.gCurrently,
                           ),
-                          EzSpacer(space: currValue, vertical: false),
+                          EzSpacer(currValue, vertical: false),
                           EzElevatedButton(
+                            config,
                             enabled: false,
                             text: currValue.toStringAsFixed(_decimals),
                           ),
                         ],
                       ),
-                      EzSpacer(space: currValue),
+                      EzSpacer(currValue),
                     ],
                   ),
                 ),
@@ -99,11 +108,11 @@ class EzSpacingSetting extends StatelessWidget {
                   // Slider functions
                   onChanged: (double value) => setModal(() => currValue = value),
                   onChangeEnd: (double value) async {
-                    await EzConfig.setDouble(configKey, value);
+                    await EzCM.setDouble(configKey, value);
 
-                    if (EzConfig.updateBoth) {
-                      await EzConfig.setDouble(
-                        EzConfig.isDark ? lightSpacingKey : darkSpacingKey,
+                    if (EzCM.updateBoth) {
+                      await EzCM.setDouble(
+                        config.isDark ? lightSpacingKey : darkSpacingKey,
                         value,
                       );
                     }
@@ -113,29 +122,30 @@ class EzSpacingSetting extends StatelessWidget {
                   semanticFormatterCallback: (double value) => value.toStringAsFixed(_decimals),
                 ),
               ),
-              EzConfig.spacer,
+              config.spacer,
 
               // Reset button
               EzElevatedIconButton(
+                config,
                 onPressed: () async {
-                  await EzConfig.remove(configKey);
-                  if (EzConfig.updateBoth) {
-                    await EzConfig.remove(EzConfig.isDark ? lightSpacingKey : darkSpacingKey);
+                  await EzCM.remove(configKey);
+                  if (EzCM.updateBoth) {
+                    await EzCM.remove(config.isDark ? lightSpacingKey : darkSpacingKey);
                   }
                   setModal(() => currValue = defaultValue);
                 },
-                icon: EzIcon(Icons.refresh),
-                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
+                icon: EzIcon(config, Icons.refresh),
+                label: '${config.ezL10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
               ),
-              EzConfig.separator,
+              config.separator,
             ]),
           ),
         );
 
-        if (currValue != backup) await EzConfig.rebuildUI();
+        if (currValue != backup) await config.rebuildUI(<EzSettingType>{EzSettingType.design});
       },
-      icon: EzIcon(Icons.space_bar),
-      label: EzConfig.l10n.dsSpacing,
+      icon: EzIcon(config, Icons.space_bar),
+      label: config.ezL10n.dsSpacing,
     );
   }
 }

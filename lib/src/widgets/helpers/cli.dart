@@ -47,7 +47,8 @@ class EzCLI extends StatelessWidget {
   Widget build(BuildContext context) => EzCol(children: <Widget>[
         // Title
         EzText(
-          'CLI',
+          config,
+          text: 'CLI',
           style: config.titleStyle,
           textAlign: TextAlign.center,
         ),

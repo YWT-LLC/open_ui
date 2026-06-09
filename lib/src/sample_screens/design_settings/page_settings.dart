@@ -20,8 +20,8 @@ class PageDesign extends StatelessWidget {
   /// Optional settings to add to the end o the sub-page
   final List<Widget>? append;
 
-  /// How much space between the settings and the local [EzResetButton]
-  final Widget resetSpacer;
+  /// Defaults to [EzCP.separator]
+  final Widget? resetSpacer;
 
   /// Optional extra keys to reset (when [config.isDark])
   final Set<String>? resetExtraDark;
@@ -41,7 +41,7 @@ class PageDesign extends StatelessWidget {
     required this.prepend,
     this.includeBackgroundImage = true,
     required this.append,
-    this.resetSpacer = const EzSeparator(),
+    this.resetSpacer,
     required this.resetExtraDark,
     required this.resetExtraLight,
     required this.resetSkip,
@@ -56,16 +56,17 @@ class PageDesign extends StatelessWidget {
         if (prepend != null) ...prepend!,
 
         // Margin
-        const EzMarginSetting(),
+        EzMarginSetting(config),
         config.spacer,
 
         // Spacing
-        const EzSpacingSetting(),
+        EzSpacingSetting(config),
 
         // Background image
         if (includeBackgroundImage) ...<Widget>[
           config.spacer,
           EzScrollView(
+            config,
             scrollDirection: Axis.horizontal,
             startCentered: true,
             child: config.isDark
@@ -74,14 +75,14 @@ class PageDesign extends StatelessWidget {
                     pathKey: darkBackgroundImageKey,
                     fitKey: darkBackgroundFitKey,
                     sourceKey: darkBackgroundSourceKey,
-                    label: config.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
+                    label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   )
                 : EzImageSetting(
                     config,
                     pathKey: lightBackgroundImageKey,
                     fitKey: lightBackgroundFitKey,
                     sourceKey: darkBackgroundSourceKey,
-                    label: config.l10n.dsBackgroundImg.replaceAll(' ', '\n'),
+                    label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                   ),
           ),
         ],
@@ -100,10 +101,11 @@ class PageDesign extends StatelessWidget {
         if (append != null) ...append!,
 
         // Reset button
-        resetSpacer,
+        resetSpacer ?? config.separator,
         EzResetButton(
+          config,
           all: false,
-          dynamicTitle: () => config.l10n.dsResetPage(ezThemeString(true)),
+          dynamicTitle: () => config.ezL10n.dsResetPage(ezThemeString(config, bothable: true)),
           onConfirm: () async {
             if (EzCM.updateBoth || config.isDark) {
               await EzCM.removeKeys(<String>{
@@ -140,15 +142,17 @@ class _AnimDurSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
+        config,
         onPressed: () async {
           double animDuration = config.animDur.toDouble();
           EzAnimationCurve curve = EACConfig.lookup(
               EzCM.get(config.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
 
           await ezModal(
+            config,
             context: context,
             builder: (_) => StatefulBuilder(
-              builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+              builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
                 // Preview
                 SizedBox(
                   key: ValueKey<String>('$animDuration:${curve.curve}'),
@@ -163,7 +167,7 @@ class _AnimDurSetting extends StatelessWidget {
 
                 // Slider
                 Text(
-                  config.l10n.dsMilliseconds,
+                  config.ezL10n.dsMilliseconds,
                   style: config.bodyStyle,
                 ),
                 ConstrainedBox(
@@ -187,20 +191,21 @@ class _AnimDurSetting extends StatelessWidget {
                 ),
                 config.spacer,
 
-                EzRow(children: <Widget>[
+                EzRow(config, children: <Widget>[
                   Flexible(
                     child: Text(
-                      config.l10n.dsCurve,
+                      config.ezL10n.dsCurve,
                       style: config.bodyStyle,
                     ),
                   ),
                   config.margin,
                   EzDropdownMenu<EzAnimationCurve>(
-                    widthEntry: EzAnimationCurve.elastic.name(config.l10n),
+                    config,
+                    widthEntry: EzAnimationCurve.elastic.name(config.ezL10n),
                     dropdownMenuEntries: EzAnimationCurve.values
                         .map((EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
                               value: type,
-                              label: type.name(config.l10n),
+                              label: type.name(config.ezL10n),
                             ))
                         .toList(),
                     enableSearch: false,
@@ -223,6 +228,7 @@ class _AnimDurSetting extends StatelessWidget {
 
                 // Reset button
                 EzElevatedIconButton(
+                  config,
                   onPressed: () async {
                     if (EzCM.updateBoth || config.isDark) {
                       await EzCM.remove(darkAnimationDurationKey);
@@ -241,8 +247,8 @@ class _AnimDurSetting extends StatelessWidget {
 
                     setModal(() {});
                   },
-                  icon: EzIcon(Icons.refresh),
-                  label: config.l10n.gReset,
+                  icon: EzIcon(config, Icons.refresh),
+                  label: config.ezL10n.gReset,
                 ),
                 config.separator,
               ]),
@@ -250,11 +256,11 @@ class _AnimDurSetting extends StatelessWidget {
           );
 
           if (animDuration != config.animDur.toDouble() || curve.curve != config.animCurve) {
-            await config.rebuildUI();
+            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
           }
         },
-        label: config.l10n.dsAnimStyle,
-        icon: EzIcon(Icons.timer_outlined),
+        label: config.ezL10n.dsAnimStyle,
+        icon: EzIcon(config, Icons.timer_outlined),
       );
 }
 
@@ -326,11 +332,13 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
           },
           child: Center(
             child: EzIconButton(
+              widget.config,
               onPressed: () =>
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
               icon: EzIcon(
+                widget.config,
                 Icons.play_arrow,
-                semanticLabel: widget.config.l10n.dsPlay,
+                semanticLabel: widget.config.ezL10n.dsPlay,
               ),
             ),
           ),
@@ -351,11 +359,13 @@ class _PageTransitionSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
+        config,
         onPressed: () async {
           EzTransitionType currType = config.transitionType;
           bool currFade = config.fadedTransition;
 
           await ezModal(
+            config,
             context: context,
             builder: (_) => StatefulBuilder(
               builder: (_, StateSetter setModal) => EzCol(children: <Widget>[
@@ -375,6 +385,7 @@ class _PageTransitionSetting extends StatelessWidget {
                     setModal(() => currType = choice);
                   },
                   child: EzScrollView(
+                    config,
                     scrollDirection: Axis.horizontal,
                     thumbVisibility: false,
                     showScrollHint: true,
@@ -387,7 +398,8 @@ class _PageTransitionSetting extends StatelessWidget {
                             ),
                             child: EzCol(children: <Widget>[
                               EzTextButton(
-                                text: type.name(config.l10n),
+                                config,
+                                text: type.name(config.ezL10n),
                                 textStyle: config.labelStyle,
                                 textAlign: TextAlign.center,
                                 style: TextButton.styleFrom(
@@ -407,7 +419,8 @@ class _PageTransitionSetting extends StatelessWidget {
                               ),
                               ExcludeSemantics(
                                 child: EzIconButton(
-                                  icon: type.icon(config.isLTR),
+                                  config,
+                                  icon: type.icon(config),
                                   onPressed: () async {
                                     if (EzCM.updateBoth || config.isDark) {
                                       await EzCM.setString(darkTransitionTypeKey, type.value);
@@ -421,7 +434,7 @@ class _PageTransitionSetting extends StatelessWidget {
                                 ),
                               ),
                               ExcludeSemantics(
-                                child: EzRadio<EzTransitionType>(value: type),
+                                child: EzRadio<EzTransitionType>(config, value: type),
                               ),
                             ]),
                           ),
@@ -433,6 +446,7 @@ class _PageTransitionSetting extends StatelessWidget {
 
                 // Fade switch
                 EzSwitchPair(
+                  config,
                   valueKey: config.isDark ? darkTransitionFadeKey : lightTransitionFadeKey,
                   afterChanged: (bool? choice) async {
                     if (choice == null) return;
@@ -446,7 +460,7 @@ class _PageTransitionSetting extends StatelessWidget {
 
                     setModal(() => currFade = choice);
                   },
-                  text: config.l10n.dsFadeTransition,
+                  text: config.ezL10n.dsFadeTransition,
                 ),
                 config.separator,
               ]),
@@ -454,10 +468,10 @@ class _PageTransitionSetting extends StatelessWidget {
           );
 
           if (currType != config.transitionType || currFade != config.fadedTransition) {
-            await config.rebuildUI();
+            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
           }
         },
-        icon: EzIcon(Icons.slideshow),
-        label: config.l10n.dsPageTransition,
+        icon: EzIcon(config, Icons.slideshow),
+        label: config.ezL10n.dsPageTransition,
       );
 }

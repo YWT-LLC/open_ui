@@ -9,13 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class EzColorSetting extends StatefulWidget {
-  /// [EzConfig] key whose [Color] will be updated
+  /// EzConfig provider
+  final EzCP config;
+
+  /// [config] key whose [Color] will be updated
   final String configKey;
 
-  /// Creates a tool for [configKey] ColorScheme values via [EzConfig]
+  /// Creates a tool for [configKey] ColorScheme values via [config]
   /// When [configKey] is a text color (has [textColorPrefix]), the base color will be used to generate a recommendation via [getTextColor]
   /// [EzColorSetting] inherits styling from the [ElevatedButton] and [AlertDialog] values in your [ThemeData]
-  const EzColorSetting({super.key, required this.configKey});
+  const EzColorSetting(this.config, {super.key, required this.configKey});
 
   @override
   State<EzColorSetting> createState() => _ColorSettingState();
@@ -24,9 +27,9 @@ class EzColorSetting extends StatefulWidget {
 class _ColorSettingState extends State<EzColorSetting> {
   // Define the build data //
 
-  late Color currColor = (EzConfig.get(widget.configKey) == null)
-      ? getLiveColor(widget.configKey)
-      : Color(EzConfig.get(widget.configKey));
+  late Color currColor = (EzCM.get(widget.configKey) == null)
+      ? getLiveColor(widget.config.colors, widget.configKey)
+      : Color(EzCM.get(widget.configKey));
 
   // Define custom functions //
 
@@ -36,12 +39,13 @@ class _ColorSettingState extends State<EzColorSetting> {
     final Color backup = currColor;
 
     return ezColorPicker(
-      context,
+      widget.config,
+      context: context,
       startColor: backup,
       onColorChange: (Color chosenColor) => setState(() => currColor = chosenColor),
       onConfirm: () async {
-        await EzConfig.setInt(widget.configKey, currColor.toARGB32());
-        await EzConfig.rebuildUI();
+        await EzCM.setInt(widget.configKey, currColor.toARGB32());
+        await widget.config.rebuildUI(noEST);
       },
       onDeny: () => setState(() => currColor = backup),
     );
@@ -65,9 +69,10 @@ class _ColorSettingState extends State<EzColorSetting> {
     );
 
     // Find the recommended contrast color for the background
-    final int? backgroundColorValue = EzConfig.get(backgroundKey);
-    final Color backgroundColor =
-        (backgroundColorValue == null) ? getLiveColor(backgroundKey) : Color(backgroundColorValue);
+    final int? backgroundColorValue = EzCM.get(backgroundKey);
+    final Color backgroundColor = (backgroundColorValue == null)
+        ? getLiveColor(widget.config.colors, backgroundKey)
+        : Color(backgroundColorValue);
 
     final int recommended = getTextColor(backgroundColor).toARGB32();
 
@@ -79,8 +84,9 @@ class _ColorSettingState extends State<EzColorSetting> {
     return showDialog(
       context: context,
       builder: (BuildContext dCon) => EzAlertDialog(
+        widget.config,
         title: Text(
-          EzConfig.l10n.csRecommended,
+          widget.config.ezL10n.csRecommended,
           textAlign: TextAlign.center,
         ),
         // Recommended color preview
@@ -90,28 +96,30 @@ class _ColorSettingState extends State<EzColorSetting> {
               shape: BoxShape.circle,
               border: Border.all(
                 color: backgroundColor,
-                width: EzConfig.borderWidth,
+                width: widget.config.borderWidth,
               ),
             ),
             child: CircleAvatar(
               backgroundColor: Color(recommended),
-              radius: (EzConfig.iconSize / 2) + EzConfig.padding,
+              radius: (widget.config.iconSize / 2) + widget.config.padding,
             ),
           ),
         ],
         actions: <EzMaterialAction>[
           EzMaterialAction(
-            text: EzConfig.l10n.gYes,
+            widget.config,
+            text: widget.config.ezL10n.gYes,
             onPressed: () async {
               // Update the user's configKey
-              await EzConfig.setInt(widget.configKey, recommended);
+              await EzCM.setInt(widget.configKey, recommended);
               setState(() => currColor = Color(recommended));
-              await EzConfig.rebuildUI();
+              await widget.config.rebuildUI(noEST);
             },
             isDefaultAction: true,
           ),
           EzMaterialAction(
-            text: EzConfig.l10n.csUseCustom,
+            widget.config,
+            text: widget.config.ezL10n.csUseCustom,
             onPressed: () async {
               final dynamic chosen = await openColorPicker();
               if (dCon.mounted) Navigator.of(dCon).pop(chosen);
@@ -124,39 +132,43 @@ class _ColorSettingState extends State<EzColorSetting> {
   }
 
   /// Opens an [EzAlertDialog] for resetting [configKey] to default
-  /// If there is no default value, the key will simply be removed from [EzConfig.prefs]
+  /// If there is no default value, the key will simply be removed from [EzCP]
   /// If a value is found, a preview of the reset color is shown and the user can confirm/deny
   Future<dynamic> reset() => showDialog(
         context: context,
         builder: (BuildContext dCon) {
-          final int? resetValue = EzConfig.getDefault(widget.configKey);
+          final int? resetValue = EzCM.getDefault(widget.configKey);
           final String currColorLabel = currColor.toARGB32().toRadixString(16).toUpperCase();
 
           return EzAlertDialog(
+            widget.config,
             title: Text(
-              EzConfig.l10n.gResetValue(getColorName(widget.configKey).toLowerCase()),
+              widget.config.ezL10n
+                  .gResetValue(getColorName(widget.config.ezL10n, widget.configKey).toLowerCase()),
               textAlign: TextAlign.center,
             ),
             contents: <Widget>[
               // Label
-              Text(EzConfig.l10n.csCurrVal, textAlign: TextAlign.center),
-              EzConfig.margin,
+              Text(widget.config.ezL10n.csCurrVal, textAlign: TextAlign.center),
+              widget.config.margin,
 
               // Copy-able value
               EzTextIconButton(
+                widget.config,
                 onPressed: () => Clipboard.setData(ClipboardData(text: currColorLabel)),
-                icon: EzIcon(Icons.copy),
+                icon: EzIcon(widget.config, Icons.copy),
                 label: currColorLabel,
               ),
             ],
             actions: ezActionPair(
+              widget.config,
               onConfirm: () async {
                 // Remove the user's configKey and reset the current state
-                await EzConfig.remove(widget.configKey);
+                await EzCM.remove(widget.configKey);
                 if (resetValue != null) {
                   setState(() => currColor = Color(resetValue));
                 }
-                await EzConfig.rebuildUI();
+                await widget.config.rebuildUI(noEST);
               },
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),
@@ -170,35 +182,36 @@ class _ColorSettingState extends State<EzColorSetting> {
 
   @override
   Widget build(BuildContext context) {
-    final double iconRadius = EzConfig.iconSize / 2;
-    final String label = getColorName(widget.configKey);
+    final double iconRadius = widget.config.iconSize / 2;
+    final String label = getColorName(widget.config.ezL10n, widget.configKey);
 
     return Semantics(
       label: label,
       button: true,
-      hint: EzConfig.l10n.csPickerHint,
+      hint: widget.config.ezL10n.csPickerHint,
       child: ExcludeSemantics(
         child: EzElevatedIconButton(
+          widget.config,
           onPressed: changeColor,
           onLongPress: reset,
           icon: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: EzConfig.colors.primaryContainer,
-                width: EzConfig.borderWidth,
+                color: widget.config.colors.primaryContainer,
+                width: widget.config.borderWidth,
               ),
             ),
             child: currColor == Colors.transparent
                 ? CircleAvatar(
-                    backgroundColor: EzConfig.colors.surface,
-                    foregroundColor: EzConfig.colors.onSurface,
-                    radius: iconRadius + EzConfig.padding,
-                    child: EzIcon(Icons.visibility_off),
+                    backgroundColor: widget.config.colors.surface,
+                    foregroundColor: widget.config.colors.onSurface,
+                    radius: iconRadius + widget.config.padding,
+                    child: EzIcon(widget.config, Icons.visibility_off),
                   )
                 : CircleAvatar(
                     backgroundColor: currColor,
-                    radius: iconRadius + EzConfig.padding,
+                    radius: iconRadius + widget.config.padding,
                   ),
           ),
           label: label,

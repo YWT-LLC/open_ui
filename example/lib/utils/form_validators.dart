@@ -16,7 +16,7 @@ String? validateAppName(
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return '${config.efuiL10n.gRequired}; ${l10n(config).csInvalidName.toLowerCase()}';
+    return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName.toLowerCase()}';
   } else if (!appNamePattern.hasMatch(value)) {
     onFailure?.call();
     return l10n(config).csInvalidName;
@@ -34,7 +34,7 @@ String? validatePublisher(
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return config.efuiL10n.gRequired;
+    return config.ezL10n.gRequired;
   }
 
   onSuccess?.call();
@@ -49,7 +49,7 @@ String? validateDescription(
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return config.efuiL10n.gRequired;
+    return config.ezL10n.gRequired;
   }
 
   onSuccess?.call();
@@ -65,7 +65,7 @@ String? validateDomain(
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return '${config.efuiL10n.gRequired}; ${l10n(config).csInvalidName}';
+    return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName}';
   } else if (!domainPattern.hasMatch(value)) {
     onFailure?.call();
     return l10n(config).csInvalidDomain;

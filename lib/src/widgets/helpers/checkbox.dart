@@ -9,7 +9,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzCheckbox extends StatelessWidget {
-  /// Defaults to [EdgeInsets.all] with [EzConfig.marginVal] when [ezIconRatio] > 1.1
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// Defaults to [EdgeInsets.all] with [config.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
   /// [Checkbox.value] passthrough
@@ -28,18 +31,19 @@ class EzCheckbox extends StatelessWidget {
   final String? semanticLabel;
 
   /// [Checkbox] with custom styling and scaling
-  EzCheckbox({
+  EzCheckbox(
+    this.config, {
     super.key,
     this.padding,
     this.value,
     this.onChanged,
     this.isError = false,
     this.semanticLabel,
-  }) : _scale = ezIconRatio();
+  }) : _scale = ezIconRatio(config);
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(EzConfig.marginVal) : EdgeInsets.zero,
+        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
         child: Transform.scale(
           scale: max(1.0, _scale),
           child: Checkbox(
@@ -53,6 +57,9 @@ class EzCheckbox extends StatelessWidget {
 }
 
 class EzCheckboxPair extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [EzRow.reverseHands] passthrough
   final bool reverseHands;
 
@@ -65,7 +72,7 @@ class EzCheckboxPair extends StatelessWidget {
   /// [EzRow.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// [EzText.data] passthrough
+  /// [EzText.text] passthrough
   final String text;
 
   /// [EzText.style] passthrough
@@ -83,7 +90,7 @@ class EzCheckboxPair extends StatelessWidget {
   /// [EzText.backgroundColor] passthrough
   final Color? backgroundColor;
 
-  /// Defaults to [EdgeInsets.all] with [EzConfig.marginVal] when [scale] > 1.1
+  /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when scale > 1.1
   final EdgeInsetsGeometry? padding;
 
   /// [Checkbox.value] passthrough
@@ -95,7 +102,8 @@ class EzCheckboxPair extends StatelessWidget {
   /// [Checkbox.semanticLabel] passthrough
   final String? semanticLabel;
 
-  const EzCheckboxPair({
+  const EzCheckboxPair(
+    this.config, {
     super.key,
     // EzRow
     this.reverseHands = true,
@@ -120,6 +128,7 @@ class EzCheckboxPair extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzRow(
+        config,
         reverseHands: reverseHands,
         mainAxisSize: mainAxisSize,
         mainAxisAlignment: mainAxisAlignment,
@@ -127,7 +136,8 @@ class EzCheckboxPair extends StatelessWidget {
         children: <Widget>[
           Flexible(
             child: EzText(
-              text,
+              config,
+              text: text,
               style: style,
               textAlign: textAlign,
               semanticsLabel: semanticsLabel,
@@ -136,6 +146,7 @@ class EzCheckboxPair extends StatelessWidget {
             ),
           ),
           EzCheckbox(
+            config,
             padding: padding,
             value: value,
             onChanged: onChanged,

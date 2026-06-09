@@ -19,8 +19,9 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
   Future<void> Function()? undo,
   String? undoMessage,
 }) {
-  final Duration toastLength =
-      (undo == null) ? ezReadingTime(message) : ezReadingTime(message) + const Duration(seconds: 2);
+  final Duration toastLength = (undo == null)
+      ? ezReadingTime(config, message)
+      : ezReadingTime(config, message) + const Duration(seconds: 2);
 
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
@@ -40,6 +41,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
         widthOf(context),
       ),
       content: EzRow(
+        config,
         reverseHands: false,
         children: <Widget>[
           // Text
@@ -49,7 +51,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
           if (undo != null) ...<Widget>[
             config.rowMargin,
             EzTextButton(
-              text: undoMessage ?? config.efuiL10n.gUndo,
+              config,
+              text: undoMessage ?? config.ezL10n.gUndo,
               textStyle: config.bodyStyle?.copyWith(color: config.colors.primary),
               onPressed: () async {
                 await undo();
@@ -91,7 +94,7 @@ double _snackWidth(
     (showUndo
         ? (config.marginVal +
             ezTextSize(
-              undoMsg ?? config.efuiL10n.gUndo,
+              undoMsg ?? config.ezL10n.gUndo,
               context: context,
               style: config.bodyStyle,
             ).width)

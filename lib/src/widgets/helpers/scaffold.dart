@@ -8,11 +8,15 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzScaffold extends Scaffold {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [List] of (preferably) [FloatingActionButton]s
   final List<Widget> fabs;
 
   /// [Scaffold] wrapper with ezPresets
-  EzScaffold({
+  EzScaffold(
+    this.config, {
     super.key,
     super.appBar,
     super.drawer,
@@ -22,7 +26,7 @@ class EzScaffold extends Scaffold {
     required this.fabs,
   }) : super(
           floatingActionButton: EzCol(children: fabs),
-          floatingActionButtonLocation: EzCM.isLefty
+          floatingActionButtonLocation: config.isLefty
               ? FloatingActionButtonLocation.startFloat
               : FloatingActionButtonLocation.endFloat,
           resizeToAvoidBottomInset: false,

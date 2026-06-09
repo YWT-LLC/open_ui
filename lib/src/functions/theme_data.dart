@@ -8,7 +8,7 @@ import '../../empathetech_flutter_ui.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-/// Creates a [ThemeData] from [EzConfig] values
+/// Creates a [ThemeData] from [EzCM] values
 ThemeData ezThemeData(Brightness brightness, bool ltr) {
   //* Setup *//
 

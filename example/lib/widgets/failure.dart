@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class FailureHeader extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Core [Text] to display... under 'Failure'
   /// Provide [message] OR [richMessage]
   final String? message;
@@ -18,7 +21,8 @@ class FailureHeader extends StatelessWidget {
   final EzRichText? richMessage;
 
   /// header [Widget] for a failed run
-  const FailureHeader({
+  const FailureHeader(
+    this.config, {
     super.key,
     this.message,
     this.richMessage,
@@ -32,19 +36,21 @@ class FailureHeader extends StatelessWidget {
         // Headline
         Flexible(
           child: EzText(
-            EzConfig.l10n.gFailure,
-            style: EzConfig.headlineStyle,
+            config,
+            text: config.ezL10n.gFailure,
+            style: config.headlineStyle,
             textAlign: TextAlign.center,
           ),
         ),
-        EzConfig.spacer,
+        config.spacer,
 
         // Error message
         message != null
             ? Flexible(
                 child: EzText(
-                  message!,
-                  style: ezSubTitleStyle(),
+                  config,
+                  text: message!,
+                  style: ezSubTitleStyle(config.styles),
                   textAlign: TextAlign.center,
                 ),
               )
@@ -53,6 +59,9 @@ class FailureHeader extends StatelessWidget {
 }
 
 class DeleteOption extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Directory that will be rm -rf'd
   final String appName;
 
@@ -66,7 +75,8 @@ class DeleteOption extends StatelessWidget {
   final ValueNotifier<String>? readout;
 
   /// Iterable [Widget] containing a [EzElevatedIconButton] for wiping the partial build
-  const DeleteOption({
+  const DeleteOption(
+    this.config, {
     super.key,
     required this.appName,
     required this.dir,
@@ -80,64 +90,70 @@ class DeleteOption extends StatelessWidget {
         children: <Widget>[
           // Would you like to...
           EzText(
-            l10n.rsWouldYou,
+            config,
+            text: l10n(config).rsWouldYou,
             style: style,
             textAlign: TextAlign.center,
           ),
-          EzConfig.spacer,
+          config.spacer,
 
           // Wipe it
           EzElevatedIconButton(
+            config,
             onPressed: () => ezCmd(
-              EzConfig.platform == TargetPlatform.windows
-                  ? 'rmdir /s /q $appName'
-                  : 'rm -rf $appName',
+              EzCM.platform == TargetPlatform.windows ? 'rmdir /s /q $appName' : 'rm -rf $appName',
               dir: dir,
               onSuccess: () async {
-                await ezSnackBar(context, message: l10n.rsNextTime).closed;
+                await ezSnackBar(config, context: context, message: l10n(config).rsNextTime).closed;
                 if (context.mounted) await Navigator.of(context).maybePop();
               },
               onFailure: (String message) async {
-                await ezSnackBar(context, message: l10n.rsAnotherOne).closed;
+                await ezSnackBar(config, context: context, message: l10n(config).rsAnotherOne)
+                    .closed;
                 if (context.mounted) await Navigator.of(context).maybePop();
               },
               readout: readout,
             ),
-            icon: EzIcon(Icons.delete),
-            label: l10n.rsWipe,
+            icon: EzIcon(config, Icons.delete),
+            label: l10n(config).rsWipe,
           ),
-          EzConfig.spacer,
+          config.spacer,
 
           // Leave
           EzElevatedIconButton(
+            config,
             onPressed: () => Navigator.of(context).pop(),
-            icon: EzIcon(Icons.arrow_back),
-            label: l10n.rsLeave,
+            icon: EzIcon(config, Icons.arrow_back),
+            label: l10n(config).rsLeave,
           ),
         ],
       );
 }
 
 class LinkOption extends StatelessWidget {
+  final EzCP config;
+
   /// Iterable [Widget] containing a [EzElevatedIconButton] for wiping the partial build
-  const LinkOption({super.key});
+  const LinkOption(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => EzCol(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           EzText(
-            l10n.rsWouldYou,
-            style: ezSubTitleStyle(),
+            config,
+            text: l10n(config).rsWouldYou,
+            style: ezSubTitleStyle(config.styles),
             textAlign: TextAlign.center,
           ),
-          EzConfig.spacer,
+          config.spacer,
           EzElevatedIconLink(
+            config,
             url: Uri.parse(installFlutter),
             tooltip: installFlutter,
-            hint: l10n.rsInstallHint,
-            icon: EzIcon(Icons.computer),
-            label: l10n.rsInstall,
+            hint: l10n(config).rsInstallHint,
+            icon: EzIcon(config, Icons.computer),
+            label: l10n(config).rsInstall,
           ),
         ],
       );

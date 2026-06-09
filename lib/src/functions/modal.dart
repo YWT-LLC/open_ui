@@ -7,8 +7,9 @@ import '../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-/// [showModalBottomSheet] wrapper with custom defaults and uses [EzConfig] based animations
-Future<T?> ezModal<T>({
+/// [showModalBottomSheet] wrapper with custom defaults and uses [EzCP] based animations
+Future<T?> ezModal<T>(
+  EzCP config, {
   required BuildContext context,
   required WidgetBuilder builder,
   Color? backgroundColor,
@@ -33,22 +34,24 @@ Future<T?> ezModal<T>({
       useSafeArea: useSafeArea,
       anchorPoint: anchorPoint,
       sheetAnimationStyle: AnimationStyle(
-        curve: EzConfig.animCurve,
-        reverseCurve: EzConfig.animCurve,
-        duration: ezAnimDuration(mod: animMod),
-        reverseDuration: ezAnimDuration(mod: animMod),
+        curve: config.animCurve,
+        reverseCurve: config.animCurve,
+        duration: ezDuration(config.animDur, mod: animMod),
+        reverseDuration: ezDuration(config.animDur, mod: animMod),
       ),
     );
 
 Widget ezModalScroll(
-  List<Widget> children, {
+  EzCP config, {
+  required List<Widget> children,
   ScrollController? controller,
   MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
 }) =>
     Padding(
-      padding: EdgeInsets.symmetric(horizontal: EzConfig.marginVal),
+      padding: EdgeInsets.symmetric(horizontal: config.marginVal),
       child: EzScrollView(
+        config,
         controller: controller,
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,

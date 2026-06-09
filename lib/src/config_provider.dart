@@ -7,11 +7,12 @@ import '../empathetech_flutter_ui.dart';
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class EzCP extends ChangeNotifier {
-  // Construct //
+  //* Construct *//
 
+  late bool _isLefty;
+  late bool _isDark;
   late Locale _locale;
   late EFUILang _l10n;
   bool _ltr;
@@ -21,36 +22,35 @@ class EzCP extends ChangeNotifier {
   late EzLayoutCache _layout;
   late EzTextCache _text;
 
-  final EzAppCache _appCache;
-
   late ThemeData _darkTheme;
   late ThemeData _lightTheme;
 
   late ThemeMode _themeMode;
   late ThemeData _currTheme;
-  late bool _isDark;
 
+  final EzAppCache _appCache;
   bool _needsRebuild;
 
   /// EzConfig Provider
   EzCP({
+    required bool isDark,
     required Locale locale,
     required EFUILang el10n,
     required EzAppCache appCache,
-    required bool isDark,
-  })  : _locale = locale,
+  })  : _isDark = isDark,
+        _locale = locale,
         _l10n = el10n,
         _ltr = !rtlLanguageCodes.contains(locale.languageCode),
         _appCache = appCache,
-        _isDark = isDark,
         _needsRebuild = false {
-    _buildThemeMode();
-    _buildThemeData();
+    _isLefty = EzCM.get(isLeftyKey);
+    _getThemeMode();
+    _buildThemeData(allEST);
     _appCache.init(isDark);
   }
 
   /// Gather and set [_themeMode] from storage
-  ThemeMode _buildThemeMode() {
+  ThemeMode _getThemeMode() {
     final bool? savedDark = EzCM.get(isDarkThemeKey);
 
     final ThemeMode newMode = (savedDark == null)
@@ -64,9 +64,10 @@ class EzCP extends ChangeNotifier {
   }
 
   /// Builds fresh themes and config caches
-  void _buildThemeData() {
+  void _buildThemeData(Set<EzSettingType> types) {
     // Build new themes //
 
+    _isLefty = EzCM.get(isLeftyKey);
     _darkTheme = ezThemeData(Brightness.dark, _ltr);
     _lightTheme = ezThemeData(Brightness.light, _ltr);
 
@@ -77,49 +78,58 @@ class EzCP extends ChangeNotifier {
       final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(darkButtonShapeKey));
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
+      final TextStyle? bodyStyle = _darkTheme.textTheme.bodyLarge;
 
       // Make them so
-      _color = EzColorCache(EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
+      if (types.contains(EzSettingType.color)) {
+        _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
+      }
 
-      _design = EzDesignCache(
-        // Button
-        padding: EzCM.get(darkPaddingKey),
-        buttonShape: buttonShape,
-        borderWidth: EzCM.get(darkBorderWidthKey),
-        textRadius: buttonShape.textRadius,
-        textFieldRadius: buttonShape.textFieldRadius,
-        lineLinks: EzCM.get(darkLineLinksKey),
-        showBackFAB: EzCM.get(darkShowBackFABKey),
-        showScroll: EzCM.get(darkShowScrollKey),
+      if (types.contains(EzSettingType.design)) {
+        _design = EzDesignCache(
+          // Button
+          padding: EzCM.get(darkPaddingKey),
+          buttonShape: buttonShape,
+          borderWidth: EzCM.get(darkBorderWidthKey),
+          textRadius: buttonShape.textRadius,
+          textFieldRadius: buttonShape.textFieldRadius,
+          lineLinks: EzCM.get(darkLineLinksKey),
+          showBackFAB: EzCM.get(darkShowBackFABKey),
+          showScroll: EzCM.get(darkShowScrollKey),
 
-        // Page
-        margin: margin,
-        spacing: spacing,
-        backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
-        backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
-        transitionType: ETTConfig.lookup(EzCM.get(darkTransitionTypeKey)),
-        fadedTransition: EzCM.get(darkTransitionFadeKey),
-        animDur: EzCM.get(darkAnimationDurationKey),
-        animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
-      );
+          // Page
+          margin: margin,
+          spacing: spacing,
+          backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
+          backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
+          transitionType: ETTConfig.lookup(EzCM.get(darkTransitionTypeKey)),
+          fadedTransition: EzCM.get(darkTransitionFadeKey),
+          animDur: EzCM.get(darkAnimationDurationKey),
+          animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
+        );
+      }
 
-      _layout = EzLayoutCache(
-        margin: EzSpacer(margin),
-        rowMargin: EzSpacer(margin, vertical: false),
-        spacer: EzSpacer(spacing),
-        rowSpacer: EzSpacer(spacing, vertical: false),
-        swapSpacer: EzSwapSpacer(spacing),
-        separator: EzSpacer(spacing * 2),
-        divider: EzDivider(spacing * 3),
-        startLine: const EzNewLine(textAlign: TextAlign.start),
-        centerLine: const EzNewLine(),
-        endLine: const EzNewLine(textAlign: TextAlign.end),
-      );
+      if (types.contains(EzSettingType.design) || types.contains(EzSettingType.text)) {
+        _layout = EzLayoutCache(
+          margin: EzSpacer(margin),
+          rowMargin: EzSpacer(margin, vertical: false),
+          spacer: EzSpacer(spacing),
+          rowSpacer: EzSpacer(spacing, vertical: false),
+          swapSpacer: EzSwapSpacer(spacing),
+          separator: EzSpacer(spacing * 2),
+          divider: EzDivider(spacing * 3),
+          startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
+          centerLine: EzNewLine(bodyStyle),
+          endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+        );
+      }
 
-      _text = EzTextCache(
-        backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
-        iconSize: EzCM.get(darkIconSizeKey),
-      );
+      if (types.contains(EzSettingType.text)) {
+        _text = EzTextCache(
+          backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
+          iconSize: EzCM.get(darkIconSizeKey),
+        );
+      }
 
       // Update the curr theme pointer
       _currTheme = _darkTheme;
@@ -130,72 +140,89 @@ class EzCP extends ChangeNotifier {
       final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(lightButtonShapeKey));
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
+      final TextStyle? bodyStyle = _darkTheme.textTheme.bodyLarge;
 
       // Make them so
-      _color = EzColorCache(EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
+      if (types.contains(EzSettingType.color)) {
+        _color = EzColorCache(schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
+      }
 
-      _design = EzDesignCache(
-        // Button
-        padding: EzCM.get(lightPaddingKey),
-        buttonShape: buttonShape,
-        borderWidth: EzCM.get(lightBorderWidthKey),
-        textRadius: buttonShape.textRadius,
-        textFieldRadius: buttonShape.textFieldRadius,
-        lineLinks: EzCM.get(lightLineLinksKey),
-        showBackFAB: EzCM.get(lightShowBackFABKey),
-        showScroll: EzCM.get(lightShowScrollKey),
+      if (types.contains(EzSettingType.design)) {
+        _design = EzDesignCache(
+          // Button
+          padding: EzCM.get(lightPaddingKey),
+          buttonShape: buttonShape,
+          borderWidth: EzCM.get(lightBorderWidthKey),
+          textRadius: buttonShape.textRadius,
+          textFieldRadius: buttonShape.textFieldRadius,
+          lineLinks: EzCM.get(lightLineLinksKey),
+          showBackFAB: EzCM.get(lightShowBackFABKey),
+          showScroll: EzCM.get(lightShowScrollKey),
 
-        // Page
-        margin: margin,
-        spacing: spacing,
-        backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
-        backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
-        transitionType: ETTConfig.lookup(EzCM.get(lightTransitionTypeKey)),
-        fadedTransition: EzCM.get(lightTransitionFadeKey),
-        animDur: EzCM.get(lightAnimationDurationKey),
-        animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
-      );
+          // Page
+          margin: margin,
+          spacing: spacing,
+          backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
+          backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
+          transitionType: ETTConfig.lookup(EzCM.get(lightTransitionTypeKey)),
+          fadedTransition: EzCM.get(lightTransitionFadeKey),
+          animDur: EzCM.get(lightAnimationDurationKey),
+          animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
+        );
+      }
 
-      _layout = EzLayoutCache(
-        margin: EzSpacer(margin),
-        rowMargin: EzSpacer(margin, vertical: false),
-        spacer: EzSpacer(spacing),
-        rowSpacer: EzSpacer(spacing, vertical: false),
-        swapSpacer: EzSwapSpacer(spacing),
-        separator: EzSpacer(spacing * 2),
-        divider: EzDivider(spacing * 3),
-        startLine: const EzNewLine(textAlign: TextAlign.start),
-        centerLine: const EzNewLine(),
-        endLine: const EzNewLine(textAlign: TextAlign.end),
-      );
+      if (types.contains(EzSettingType.design) || types.contains(EzSettingType.text)) {
+        _layout = EzLayoutCache(
+          margin: EzSpacer(margin),
+          rowMargin: EzSpacer(margin, vertical: false),
+          spacer: EzSpacer(spacing),
+          rowSpacer: EzSpacer(spacing, vertical: false),
+          swapSpacer: EzSwapSpacer(spacing),
+          separator: EzSpacer(spacing * 2),
+          divider: EzDivider(spacing * 3),
+          startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
+          centerLine: EzNewLine(bodyStyle),
+          endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+        );
+      }
 
-      _text = EzTextCache(
-        backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
-        iconSize: EzCM.get(lightIconSizeKey),
-      );
+      if (types.contains(EzSettingType.text)) {
+        _text = EzTextCache(
+          backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
+          iconSize: EzCM.get(lightIconSizeKey),
+        );
+      }
 
       // Update the curr theme pointer
       _currTheme = _lightTheme;
     }
   }
 
-  // Get //
+  //* Get *//
+
+  /// Whether the layout should favor left handed users
+  bool get isLefty => _isLefty;
+
+  /// Whether the current [themeMode] uses [Brightness.dark]
+  bool get isDark => _isDark;
 
   /// Current language for the app
   Locale get locale => _locale;
 
   /// EFUI localizations for the [locale]
-  EFUILang get efuiL10n => _l10n;
+  EFUILang get ezL10n => _l10n;
 
   /// Text direction for the [locale]
   bool get isLTR => _ltr;
 
   // Color cache //
+
   EzColorCache get color => _color;
 
   String get schemeImagePath => _color.schemeImagePath;
 
   // Design cache //
+
   EzDesignCache get design => _design;
 
   // Button
@@ -207,37 +234,42 @@ class EzCP extends ChangeNotifier {
   BorderRadius get textRadius => _design.textRadius;
   BorderRadius get textFieldRadius => _design.textFieldRadius;
 
-  BorderSide borderSide({Color? color}) => borderWidth == 0
+  BorderSide borderSide({Color? color}) => _design.borderWidth == 0
       ? BorderSide.none
-      : BorderSide(color: color ?? colors.primaryContainer, width: borderWidth);
+      : BorderSide(
+          color: color ?? _currTheme.colorScheme.primaryContainer,
+          width: _design.borderWidth,
+        );
 
   bool get lineLinks => _design.lineLinks;
   bool get showBackFAB => _design.showBackFAB;
+  bool get showScroll => _design.showScroll;
 
   List<Widget> backFABs(bool isHome) =>
-      (showBackFAB && !isHome && ezRootNav.currentState!.canPop()) ? <Widget>[spacer] : <Widget>[];
+      (_design.showBackFAB && !isHome && ezRootNav.currentState!.canPop())
+          ? <Widget>[spacer, EzBackFAB(this)]
+          : <Widget>[]; // TODO: test this
 
   // Page
   double get marginVal => _design.margin;
   double get spacing => _design.spacing;
 
-  String get backgroundImagePath => _design.backgroundImagePath;
-  BoxFit? get backgroundImageFit => _design.backgroundImageFit;
-
-  DecorationImage get backgroundImage => DecorationImage(
-        image: ezImageProvider(backgroundImagePath),
-        fit: backgroundImageFit,
-      );
+  int get animDur => _design.animDur;
+  Curve get animCurve => _design.animCurve;
 
   EzTransitionType get transitionType => _design.transitionType;
   bool get fadedTransition => _design.fadedTransition;
 
-  int get animDur => _design.animDur;
-  Curve get animCurve => _design.animCurve;
+  String get backgroundImagePath => _design.backgroundImagePath;
+  BoxFit? get backgroundImageFit => _design.backgroundImageFit;
 
-  bool get showScroll => _design.showScroll;
+  DecorationImage get backgroundImage => DecorationImage(
+        image: ezImageProvider(_design.backgroundImagePath),
+        fit: _design.backgroundImageFit,
+      );
 
   // Layout cache (lil page design, lil text) //
+
   EzLayoutCache get layout => _layout;
 
   EzSpacer get margin => _layout.margin;
@@ -255,12 +287,14 @@ class EzCP extends ChangeNotifier {
   EzNewLine get endLine => _layout.endLine;
 
   // Text cache //
+
   EzTextCache get text => _text;
 
   double get textBackgroundOpacity => _text.backgroundOpacity;
   double get iconSize => _text.iconSize;
 
   // Live theme //
+
   ThemeData get darkTheme => _darkTheme;
   ThemeData get lightTheme => _lightTheme;
 
@@ -269,9 +303,6 @@ class EzCP extends ChangeNotifier {
 
   /// Current [ThemeData] to match the [themeMode]
   ThemeData get theme => _currTheme;
-
-  /// Whether the current [themeMode] uses [Brightness.dark]
-  bool get isDark => _isDark;
 
   ColorScheme get colors => _currTheme.colorScheme;
 
@@ -290,7 +321,7 @@ class EzCP extends ChangeNotifier {
   /// Most helpful for external localizations, but the possibilities are endless!
   EzAppCache? get appCache => _appCache;
 
-  // Set //
+  //* Set *//
 
   /// Set [needsRebuild] to [status]
   void pingRebuild(bool status) {
@@ -307,12 +338,12 @@ class EzCP extends ChangeNotifier {
     _l10n = result.$2;
     _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
 
-    await rebuildUI();
+    await rebuildUI(noEST); // TODO: test
   }
 
   /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
   Future<void> rebuildThemeMode() async {
-    final ThemeMode newMode = _buildThemeMode();
+    final ThemeMode newMode = _getThemeMode();
 
     switch (newMode) {
       case ThemeMode.dark:
@@ -334,11 +365,11 @@ class EzCP extends ChangeNotifier {
         break;
     }
 
-    await rebuildUI();
+    await rebuildUI(noEST); // TODO: test (manual and inherited!)
   }
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
-  Future<void> rebuildUI({Future<dynamic> Function()? changes}) async {
+  Future<void> rebuildUI(Set<EzSettingType> types, {Future<dynamic> Function()? changes}) async {
     unawaited(ezRootNav.currentState!.push(
       // Open progress layer
       PageRouteBuilder<Widget>(
@@ -351,7 +382,7 @@ class EzCP extends ChangeNotifier {
     ));
 
     if (changes != null) await changes();
-    final ThemeMode newMode = _buildThemeMode();
+    final ThemeMode newMode = _getThemeMode();
 
     switch (newMode) {
       case ThemeMode.dark:
@@ -366,7 +397,7 @@ class EzCP extends ChangeNotifier {
             : _isDark = false;
         break;
     }
-    _buildThemeData();
+    _buildThemeData(types);
 
     await _appCache.rebuild(this);
     _needsRebuild = false;
@@ -377,14 +408,23 @@ class EzCP extends ChangeNotifier {
   }
 }
 
-// Build //
+enum EzSettingType { color, design, text }
+
+const Set<EzSettingType> allEST = <EzSettingType>{
+  EzSettingType.color,
+  EzSettingType.design,
+  EzSettingType.text,
+};
+const Set<EzSettingType> noEST = <EzSettingType>{};
+
+//* Cache *//
 
 class EzColorCache {
   final String schemeImagePath;
 
   /// Theme aware tracker for frequently used color values...
-  /// (dark|light)ColorSchemeImageKey
-  EzColorCache(this.schemeImagePath);
+  /// Color scheme image(s)
+  EzColorCache({required this.schemeImagePath});
 }
 
 class EzDesignCache {
@@ -454,6 +494,7 @@ class EzLayoutCache {
   final EzNewLine endLine;
 
   /// Theme aware tracker for frequently used layout [Widget]s
+  /// Spacers and new lines
   EzLayoutCache({
     required this.margin,
     required this.rowMargin,
@@ -473,7 +514,7 @@ class EzTextCache {
   final double iconSize;
 
   /// Theme aware tracker for frequently used text values...
-  /// Icon size, frequently used [EzNewLine]s
+  /// Background opacity, icon size
   EzTextCache({
     required this.backgroundOpacity,
     required this.iconSize,
@@ -487,9 +528,3 @@ abstract class EzAppCache {
   /// Will run on every call to [EzCP.rebuildUI]
   Future<void> rebuild(EzCP config);
 }
-
-// Helpers/watchers //
-
-EzCP get configWatcher => Provider.of<EzCP>(ezRootNav.currentContext!, listen: false);
-
-EFUILang get efuiL10nWatcher => configWatcher._l10n;

@@ -8,15 +8,19 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzMonoChromeColorsSetting extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [ThemeData.colorScheme] for [Brightness.dark]
   final ColorScheme dark;
 
   /// [ThemeData.colorScheme] for [Brightness.light]
   final ColorScheme light;
 
-  /// Easily store a custom mono chrome [ColorScheme] to [EzConfig]
+  /// Easily store a custom mono chrome [ColorScheme] to [EzCM]
   /// [ezHighContrastDark] and [ezHighContrastLight] by default
-  const EzMonoChromeColorsSetting({
+  const EzMonoChromeColorsSetting(
+    this.config, {
     super.key,
     this.dark = ezMonoChromeDark,
     this.light = ezMonoChromeLight,
@@ -24,15 +28,16 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
-        style: EzConfig.isDark
+        config,
+        style: config.isDark
             ? ElevatedButton.styleFrom(
                 backgroundColor: darkSurface,
                 foregroundColor: Colors.white,
                 iconColor: Colors.white,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.white,
-                side: EzConfig.borderSide(color: dimWhite),
-                textStyle: EzConfig.bodyStyle?.copyWith(color: Colors.white),
+                side: config.borderSide(color: dimWhite),
+                textStyle: config.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
                 backgroundColor: lightSurface,
@@ -40,19 +45,19 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.black,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.black,
-                side: EzConfig.borderSide(color: dimBlack),
-                textStyle: EzConfig.bodyStyle?.copyWith(color: Colors.black),
+                side: config.borderSide(color: dimBlack),
+                textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
-        onPressed: () => EzConfig.rebuildUI(changes: () async {
-          if (EzConfig.updateBoth || EzConfig.isDark) {
+        onPressed: () => config.rebuildUI(allEST, changes: () async {
+          if (EzCM.updateBoth || config.isDark) {
             await loadColorScheme(dark, Brightness.dark);
           }
-          if (EzConfig.updateBoth || !EzConfig.isDark) {
+          if (EzCM.updateBoth || !config.isDark) {
             await loadColorScheme(light, Brightness.light);
           }
         }),
-        icon: EzIcon(Icons.contrast),
-        label: EzConfig.l10n.csMonoChrome,
+        icon: EzIcon(config, Icons.contrast),
+        label: config.ezL10n.csMonoChrome,
       );
 }
 

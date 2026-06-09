@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class SuccessHeader extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Core message to display... under 'Success'
   /// Used in an [Flexible] wrapped [EzText]
   /// Provide [message] or [richMessage]
@@ -17,7 +20,8 @@ class SuccessHeader extends StatelessWidget {
   final Widget? richMessage;
 
   /// header [Widget] for a successful run
-  const SuccessHeader({
+  const SuccessHeader(
+    this.config, {
     super.key,
     this.message,
     this.richMessage,
@@ -31,20 +35,22 @@ class SuccessHeader extends StatelessWidget {
           // Headline
           Flexible(
             child: EzText(
-              EzConfig.l10n.gSuccessExl,
-              style: EzConfig.headlineStyle,
+              config,
+              text: config.ezL10n.gSuccessExl,
+              style: config.headlineStyle,
               textAlign: TextAlign.center,
             ),
           ),
-          EzConfig.spacer,
+          config.spacer,
 
           // Where to go next
           message == null
               ? richMessage!
               : Flexible(
                   child: EzText(
-                    message!,
-                    style: ezSubTitleStyle(),
+                    config,
+                    text: message!,
+                    style: ezSubTitleStyle(config.styles),
                     textAlign: TextAlign.center,
                   ),
                 ),

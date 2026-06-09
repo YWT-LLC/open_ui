@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzRow extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Row.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
@@ -25,7 +28,8 @@ class EzRow extends StatelessWidget {
   final List<Widget> children;
 
   /// [Row] wrapper that optionally reverses [children] based on [isLeftyKey]'s status
-  const EzRow({
+  const EzRow(
+    this.config, {
     super.key,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.min,
@@ -39,6 +43,6 @@ class EzRow extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment,
         mainAxisSize: mainAxisSize,
         crossAxisAlignment: crossAxisAlignment,
-        children: (reverseHands && EzCM.isLefty == true) ? children.reversed.toList() : children,
+        children: (reverseHands && config.isLefty == true) ? children.reversed.toList() : children,
       );
 }

@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzAlertDialog extends AlertDialog {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Dialog content becomes [contents] in an [EzScrollView]
   final List<Widget>? contents;
 
@@ -15,7 +18,8 @@ class EzAlertDialog extends AlertDialog {
   final bool needsClose;
 
   /// [AlertDialog] wrapper with custom styling
-  const EzAlertDialog({
+  const EzAlertDialog(
+    this.config, {
     super.key,
     super.title,
     super.content,
@@ -32,10 +36,11 @@ class EzAlertDialog extends AlertDialog {
     // Define the content //
 
     final Widget? dialogContent =
-        content ?? ((contents == null) ? null : EzScrollView(children: contents!));
+        content ?? ((contents == null) ? null : EzScrollView(config, children: contents!));
 
     late final Widget closeAction = EzMaterialAction(
-      text: EzConfig.l10n.gClose,
+      config,
+      text: config.ezL10n.gClose,
       onPressed: () => Navigator.of(context).pop(),
     );
 
@@ -57,9 +62,9 @@ class EzAlertDialog extends AlertDialog {
         titlePadding: title == null
             ? null
             : EdgeInsets.only(
-                top: EzConfig.marginVal,
-                left: EzConfig.marginVal,
-                right: EzConfig.marginVal,
+                top: config.marginVal,
+                left: config.marginVal,
+                right: config.marginVal,
               ),
 
         // Content
@@ -67,16 +72,16 @@ class EzAlertDialog extends AlertDialog {
         contentPadding: dialogContent == null
             ? null
             : EdgeInsets.only(
-                top: (title == null) ? EzConfig.marginVal : EzConfig.spacing,
-                left: EzConfig.marginVal,
-                right: EzConfig.marginVal,
+                top: (title == null) ? config.marginVal : config.spacing,
+                left: config.marginVal,
+                right: config.marginVal,
               ),
 
         // Actions
         actions: (closedActions == null)
             ? null
             : closedActions.length <= 2
-                ? EzConfig.isLefty
+                ? config.isLefty
                     ? closedActions.reversed.toList()
                     : closedActions
                 : <Widget>[
@@ -88,21 +93,24 @@ class EzAlertDialog extends AlertDialog {
                   ],
         actionsAlignment: (closedActions != null && closedActions.length > 2)
             ? MainAxisAlignment.center
-            : EzConfig.isLefty
+            : config.isLefty
                 ? MainAxisAlignment.start
                 : MainAxisAlignment.end,
 
         // General
         iconPadding: EdgeInsets.zero,
         buttonPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.all(EzConfig.marginVal),
-        actionsPadding: EzInsets.wrap(EzConfig.spacing),
+        insetPadding: EdgeInsets.all(config.marginVal),
+        actionsPadding: EzInsets.wrap(config.spacing),
       ),
     );
   }
 }
 
 class EzMaterialAction extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [EzTextButton.text] passthrough
   final String text;
 
@@ -122,7 +130,8 @@ class EzMaterialAction extends StatelessWidget {
   final TextStyle? style;
 
   /// [EzTextButton] wrapper with custom styling for an [AlertDialog]
-  const EzMaterialAction({
+  const EzMaterialAction(
+    this.config, {
     super.key,
     required this.text,
     this.semantics,
@@ -134,19 +143,20 @@ class EzMaterialAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? baseStyle = style ?? EzConfig.bodyStyle;
+    final TextStyle? baseStyle = style ?? config.bodyStyle;
 
     final TextStyle? textStyle = isDefaultAction
         ? baseStyle?.copyWith(fontWeight: FontWeight.bold)
         : isDestructiveAction
-            ? baseStyle?.copyWith(color: EzConfig.colors.error)
+            ? baseStyle?.copyWith(color: config.colors.error)
             : baseStyle;
 
     return EzTextButton(
+      config,
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: EzConfig.colors.surfaceDim,
-        padding: EzInsets.wrap(EzConfig.spacing),
+        backgroundColor: config.colors.surfaceDim,
+        padding: EzInsets.wrap(config.spacing),
       ),
       text: text,
       semantics: semantics,
@@ -156,7 +166,8 @@ class EzMaterialAction extends StatelessWidget {
 }
 
 /// Pairs with [EzAlertDialog]
-List<EzMaterialAction> ezActionPair({
+List<EzMaterialAction> ezActionPair(
+  EzCP config, {
   String? confirmMsg,
   required void Function() onConfirm,
   bool confirmIsDefault = false,
@@ -169,14 +180,16 @@ List<EzMaterialAction> ezActionPair({
 }) =>
     <EzMaterialAction>[
       EzMaterialAction(
-        text: denyMsg ?? EzConfig.l10n.gNo,
+        config,
+        text: denyMsg ?? config.ezL10n.gNo,
         onPressed: onDeny,
         isDefaultAction: denyIsDefault,
         isDestructiveAction: denyIsDestructive,
         style: style,
       ),
       EzMaterialAction(
-        text: confirmMsg ?? EzConfig.l10n.gYes,
+        config,
+        text: confirmMsg ?? config.ezL10n.gYes,
         onPressed: onConfirm,
         isDefaultAction: confirmIsDefault,
         isDestructiveAction: confirmIsDestructive,

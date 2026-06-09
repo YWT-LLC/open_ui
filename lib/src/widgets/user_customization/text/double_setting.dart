@@ -9,7 +9,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzFontDoubleSetting extends StatefulWidget {
-  /// The [EzConfig] key being edited
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// The [EzCM] key being edited
   final String configKey;
 
   /// An alt to updateBoth
@@ -46,7 +49,8 @@ class EzFontDoubleSetting extends StatefulWidget {
 
   /// Standardized tool for updating double [TextStyle] values for the passed [configKey]
   /// For example: [TextStyle.fontSize], [TextStyle.letterSpacing], [TextStyle.wordSpacing], and [TextStyle.height]
-  const EzFontDoubleSetting({
+  const EzFontDoubleSetting(
+    this.config, {
     super.key,
     required this.configKey,
     this.mirrorKey,
@@ -77,8 +81,10 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
     style: widget.style,
   );
 
-  late double formFieldWidth = max(sizeLimit.width + EzConfig.padding, kMinInteractiveDimension);
-  late double formFieldHeight = max(sizeLimit.height + EzConfig.padding, kMinInteractiveDimension);
+  late double formFieldWidth =
+      max(sizeLimit.width + widget.config.padding, kMinInteractiveDimension);
+  late double formFieldHeight =
+      max(sizeLimit.height + widget.config.padding, kMinInteractiveDimension);
 
   // Init //
 
@@ -96,22 +102,24 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
         message: widget.tooltip,
         child: EzCol(children: <Widget>[
           EzScrollView(
+            widget.config,
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               // Minus
               if (widget.plusMinus) ...<Widget>[
                 (currValue > widget.min)
                     ? EzIconButton(
+                        widget.config,
                         onPressed: () async {
                           currValue -= widget.delta;
                           controller.text = currValue.toString();
 
-                          await EzConfig.setDouble(
+                          await EzCM.setDouble(
                             widget.configKey,
                             currValue,
                           );
                           if (widget.mirrorKey != null) {
-                            await EzConfig.setDouble(
+                            await EzCM.setDouble(
                               widget.mirrorKey!,
                               currValue,
                             );
@@ -119,23 +127,27 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
 
                           widget.notifierCallback(currValue);
                           if (context.mounted) {
-                            EzConfig.pingRebuild(ezTextRebuildCheck(context));
+                            widget.config
+                                .pingRebuild(ezTextRebuildCheck(widget.config, context: context));
                           }
 
                           setState(() {});
                         },
-                        tooltip: '${EzConfig.l10n.gDecrease} ${widget.tooltip.toLowerCase()}',
-                        icon: EzIcon(Icons.remove),
+                        tooltip:
+                            '${widget.config.ezL10n.gDecrease} ${widget.tooltip.toLowerCase()}',
+                        icon: EzIcon(widget.config, Icons.remove),
                       )
                     : EzIconButton(
+                        widget.config,
                         enabled: false,
-                        tooltip: EzConfig.l10n.gMinimum,
+                        tooltip: widget.config.ezL10n.gMinimum,
                         icon: EzIcon(
+                          widget.config,
                           Icons.remove,
-                          color: EzConfig.colors.outline,
+                          color: widget.config.colors.outline,
                         ),
                       ),
-                EzConfig.rowMargin,
+                widget.config.rowMargin,
               ],
 
               // Text field
@@ -144,7 +156,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                   maxWidth: formFieldWidth,
                   maxHeight: formFieldHeight,
                 ),
-                decoration: BoxDecoration(borderRadius: EzConfig.textFieldRadius),
+                decoration: BoxDecoration(borderRadius: widget.config.textFieldRadius),
                 child: TextFormField(
                   controller: controller,
                   style: widget.style,
@@ -159,15 +171,15 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
 
                     if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
                       setState(() {
-                        formFieldWidth = (sizeLimit.width + EzConfig.padding) * 1.75;
-                        formFieldHeight = (sizeLimit.height + EzConfig.padding) * 1.75;
+                        formFieldWidth = (sizeLimit.width + widget.config.padding) * 1.75;
+                        formFieldHeight = (sizeLimit.height + widget.config.padding) * 1.75;
                       });
                       return '${widget.min}  <->  ${widget.max}';
                     }
 
                     setState(() {
-                      formFieldWidth = sizeLimit.width + EzConfig.padding;
-                      formFieldHeight = sizeLimit.height + EzConfig.padding;
+                      formFieldWidth = sizeLimit.width + widget.config.padding;
+                      formFieldHeight = sizeLimit.height + widget.config.padding;
                     });
                     return null;
                   },
@@ -179,14 +191,15 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                     }
                     currValue = doubleVal;
 
-                    await EzConfig.setDouble(widget.configKey, doubleVal);
+                    await EzCM.setDouble(widget.configKey, doubleVal);
                     if (widget.mirrorKey != null) {
-                      await EzConfig.setDouble(widget.mirrorKey!, doubleVal);
+                      await EzCM.setDouble(widget.mirrorKey!, doubleVal);
                     }
 
                     widget.notifierCallback(doubleVal);
                     if (context.mounted) {
-                      EzConfig.pingRebuild(ezTextRebuildCheck(context));
+                      widget.config
+                          .pingRebuild(ezTextRebuildCheck(widget.config, context: context));
                     }
 
                     setState(() {});
@@ -195,21 +208,22 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
               ),
 
               if (widget.plusMinus) ...<Widget>[
-                EzConfig.rowMargin,
+                widget.config.rowMargin,
 
                 // Plus icon
                 (currValue < widget.max)
                     ? EzIconButton(
+                        widget.config,
                         onPressed: () async {
                           currValue += widget.delta;
                           controller.text = currValue.toString();
 
-                          await EzConfig.setDouble(
+                          await EzCM.setDouble(
                             widget.configKey,
                             currValue,
                           );
                           if (widget.mirrorKey != null) {
-                            await EzConfig.setDouble(
+                            await EzCM.setDouble(
                               widget.mirrorKey!,
                               currValue,
                             );
@@ -217,20 +231,24 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
 
                           widget.notifierCallback(currValue);
                           if (context.mounted) {
-                            EzConfig.pingRebuild(ezTextRebuildCheck(context));
+                            widget.config
+                                .pingRebuild(ezTextRebuildCheck(widget.config, context: context));
                           }
 
                           setState(() {});
                         },
-                        tooltip: '${EzConfig.l10n.gIncrease} ${widget.tooltip.toLowerCase()}',
-                        icon: EzIcon(Icons.add),
+                        tooltip:
+                            '${widget.config.ezL10n.gIncrease} ${widget.tooltip.toLowerCase()}',
+                        icon: EzIcon(widget.config, Icons.add),
                       )
                     : EzIconButton(
+                        widget.config,
                         enabled: false,
-                        tooltip: EzConfig.l10n.gMaximum,
+                        tooltip: widget.config.ezL10n.gMaximum,
                         icon: EzIcon(
+                          widget.config,
                           Icons.add,
-                          color: EzConfig.colors.outline,
+                          color: widget.config.colors.outline,
                         ),
                       ),
               ],

@@ -10,54 +10,63 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 class EzBackFAB extends StatelessWidget {
-  final bool showHome;
+  /// EzConfig Provider
+  final EzCP config;
 
   /// [FloatingActionButton] that goes back; [Navigator.pop]
-  const EzBackFAB({super.key, this.showHome = false});
+  const EzBackFAB(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
         heroTag: 'back_fab',
-        tooltip: EzConfig.l10n.gBack,
+        tooltip: config.ezL10n.gBack,
         onPressed: () => Navigator.of(context).maybePop(),
-        child: EzIcon(showHome ? Icons.home : Icons.arrow_back),
+        child: EzIcon(config, Icons.arrow_back),
       );
 }
 
 class EzConfigFAB extends StatelessWidget {
-  /// Dumps all of [EzConfig] by default
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// Dumps everything (except the current [Locale]) by default
   final Set<String>? skip;
 
   /// [FloatingActionButton] that saves/loads config to/from JSON file(s)
-  const EzConfigFAB({super.key, this.skip});
+  const EzConfigFAB(this.config, {super.key, this.skip});
 
   @override
   Widget build(BuildContext context) => MenuAnchor(
         builder: (_, MenuController controller, __) {
           return FloatingActionButton(
             heroTag: 'config_fab',
-            tooltip: EzConfig.l10n.ssConfigTip,
+            tooltip: config.ezL10n.ssConfigTip,
             onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
-            child: EzIcon(Icons.save),
+            child: EzIcon(config, Icons.save),
           );
         },
         menuChildren: <Widget>[
           // Save config
           EzMenuButton(
-            label: EzConfig.l10n.ssSaveConfig,
-            onPressed: () => EzConfig.saveConfig(context, skip: skip),
+            config,
+            label: config.ezL10n.ssSaveConfig,
+            onPressed: () => EzCM.saveConfig(config, context: context, skip: skip),
           ),
 
           // Load config
           EzMenuButton(
-            label: EzConfig.l10n.ssLoadConfig,
-            onPressed: () => ezConfigLoader(context),
+            config,
+            label: config.ezL10n.ssLoadConfig,
+            onPressed: () => ezConfigLoader(config, context: context),
           ),
         ],
       );
 }
 
 class EzUpdaterFAB extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Local app version
   final String appVersion;
 
@@ -82,7 +91,8 @@ class EzUpdaterFAB extends StatefulWidget {
   final String? github;
 
   /// [Visibility] wrapped [FloatingActionButton] that links to the latest version if/when there is a mismatch
-  const EzUpdaterFAB({
+  const EzUpdaterFAB(
+    this.config, {
     super.key,
     required this.appVersion,
     required this.versionSource,
@@ -107,10 +117,10 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   String? url;
 
   /// Platform aware instructions
-  String hardRefresh() => switch (EzConfig.platform) {
-        TargetPlatform.android || TargetPlatform.iOS => EzConfig.l10n.gHardRefreshMobile,
-        TargetPlatform.macOS => EzConfig.l10n.gHardRefreshMac,
-        _ => EzConfig.l10n.gHardRefresh,
+  String hardRefresh() => switch (EzCM.platform) {
+        TargetPlatform.android || TargetPlatform.iOS => widget.config.ezL10n.gHardRefreshMobile,
+        TargetPlatform.macOS => widget.config.ezL10n.gHardRefreshMac,
+        _ => widget.config.ezL10n.gHardRefresh,
       };
 
   // Init //
@@ -125,7 +135,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   void asyncInit() async {
     final bool isGPlay = await isGPlayInstall();
 
-    if (EzConfig.onMobile && (isGPlay || EzConfig.platform == TargetPlatform.iOS)) {
+    if (EzCM.onMobile && (isGPlay || EzCM.platform == TargetPlatform.iOS)) {
       return; // Don't show for store installs, they will auto-update
     }
 
@@ -152,7 +162,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
       }
     }
 
-    switch (EzConfig.platform) {
+    switch (EzCM.platform) {
       case TargetPlatform.android:
         url = isGPlay ? (widget.gPlay ?? widget.github) : widget.github;
       case TargetPlatform.iOS:
@@ -173,43 +183,44 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
                 onPressed: () => showDialog(
                   context: context,
                   builder: (_) => EzAlertDialog(
+                    widget.config,
                     title: Text(
-                      EzConfig.l10n.gUpdates,
+                      widget.config.ezL10n.gUpdates,
                       textAlign: TextAlign.center,
                     ),
                     content: Text(hardRefresh(), textAlign: TextAlign.center),
                   ),
                 ),
-                tooltip: EzConfig.l10n.gUpdates,
-                backgroundColor: EzConfig.colors.secondary,
-                foregroundColor: EzConfig.colors.onSecondary,
-                child: EzIcon(Icons.update),
+                tooltip: widget.config.ezL10n.gUpdates,
+                backgroundColor: widget.config.colors.secondary,
+                foregroundColor: widget.config.colors.onSecondary,
+                child: EzIcon(widget.config, Icons.update),
               )
             : FloatingActionButton(
                 heroTag: 'updater_fab',
                 onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
-                tooltip: EzConfig.l10n.gUpdates,
-                backgroundColor: EzConfig.colors.secondary,
-                foregroundColor: EzConfig.colors.onSecondary,
-                child: EzIcon(Icons.update),
+                tooltip: widget.config.ezL10n.gUpdates,
+                backgroundColor: widget.config.colors.secondary,
+                foregroundColor: widget.config.colors.onSecondary,
+                child: EzIcon(widget.config, Icons.update),
               ),
       );
 }
 
 class EzRebuildFAB extends StatelessWidget {
-  /// Optional override, defaults to 'Apply changes'
-  final String? tooltip;
+  /// EzConfig provider
+  final EzCP config;
 
   /// [FloatingActionButton] that rebuilds the app when pressed
-  const EzRebuildFAB({super.key, this.tooltip});
+  const EzRebuildFAB(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
         heroTag: 'rebuild_fab',
-        onPressed: EzConfig.rebuildUI,
-        tooltip: tooltip ?? EzConfig.l10n.gApplyChanges,
-        backgroundColor: EzConfig.colors.secondary,
-        foregroundColor: EzConfig.colors.onSecondary,
-        child: EzIcon(Icons.build),
+        onPressed: () => config.rebuildUI(allEST),
+        tooltip: config.ezL10n.gApplyChanges,
+        backgroundColor: config.colors.secondary,
+        foregroundColor: config.colors.onSecondary,
+        child: EzIcon(config, Icons.build),
       );
 }

@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzElevatedButton extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Easily disable the button
   /// Useful if the functionality is async
   final bool enabled;
@@ -31,7 +34,8 @@ class EzElevatedButton extends StatefulWidget {
   final TextAlign? textAlign;
 
   /// [ElevatedButton] with custom styling and an off switch
-  const EzElevatedButton({
+  const EzElevatedButton(
+    this.config, {
     super.key,
     this.enabled = true,
     this.onPressed,
@@ -53,19 +57,23 @@ class _EzElevatedButtonState extends State<EzElevatedButton> {
         onLongPress: widget.enabled ? widget.onLongPress : doNothing,
         style: widget.enabled
             ? widget.style
-            : (widget.style ?? EzConfig.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(EzConfig.colors.outline),
+            : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
         child: Text(widget.text,
-            style: (widget.textStyle ?? EzConfig.bodyStyle)?.copyWith(
-              decorationColor: widget.enabled ? EzConfig.colors.primary : EzConfig.colors.outline,
+            style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+              decorationColor:
+                  widget.enabled ? widget.config.colors.primary : widget.config.colors.outline,
             ),
             textAlign: widget.textAlign),
       );
 }
 
 class EzElevatedIconButton extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Easily disable the button
   /// Useful if the functionality is async
   final bool enabled;
@@ -92,7 +100,8 @@ class EzElevatedIconButton extends StatefulWidget {
   final TextAlign? textAlign;
 
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
-  const EzElevatedIconButton({
+  const EzElevatedIconButton(
+    this.config, {
     super.key,
     this.enabled = true,
     this.onPressed,
@@ -115,16 +124,17 @@ class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
         onLongPress: widget.enabled ? widget.onLongPress : doNothing,
         style: widget.enabled
             ? widget.style
-            : (widget.style ?? EzConfig.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(EzConfig.colors.outline),
+            : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
         icon: widget.icon,
-        iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
+        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
         label: Text(
           widget.label,
-          style: (widget.textStyle ?? EzConfig.bodyStyle)?.copyWith(
-            decorationColor: widget.enabled ? EzConfig.colors.primary : EzConfig.colors.outline,
+          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+            decorationColor:
+                widget.enabled ? widget.config.colors.primary : widget.config.colors.outline,
           ),
           textAlign: widget.textAlign,
         ),

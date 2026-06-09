@@ -8,6 +8,9 @@ import 'package:url_launcher/link.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class EzLink extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// The [TextButton.child] will be [Text] with [text] and all provided styling
   final String text;
 
@@ -52,8 +55,9 @@ class EzLink extends StatefulWidget {
   /// Always has a [tooltip]; if one is not provided, it will default to [hint]
   /// Adds an [TextDecoration.underline] on hover/focus
   const EzLink(
-    this.text, {
+    this.config, {
     super.key,
+    required this.text,
     this.inline = false,
     this.style,
     this.textColor,
@@ -76,15 +80,15 @@ class _EzLinkState extends State<EzLink> {
 
   late final String semantics = '${widget.text}; ${widget.hint}';
 
-  late TextStyle? textStyle = (widget.style ?? EzConfig.bodyStyle)?.copyWith(
-    color: widget.textColor ?? EzConfig.colors.primary,
-    decoration: EzConfig.lineLinks ? TextDecoration.underline : TextDecoration.none,
-    decorationColor: EzConfig.colors.primary,
+  late TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
+    color: widget.textColor ?? widget.config.colors.primary,
+    decoration: widget.config.lineLinks ? TextDecoration.underline : TextDecoration.none,
+    decorationColor: widget.config.colors.primary,
   );
 
   // Define custom functions //
 
-  void underline(bool addIt) => (EzConfig.lineLinks)
+  void underline(bool addIt) => (widget.config.lineLinks)
       ? doNothing()
       : setState(() => textStyle =
           textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
@@ -101,7 +105,8 @@ class _EzLinkState extends State<EzLink> {
             child: (widget.onTap != null)
                 ? TextButton(
                     style: TextButton.styleFrom(
-                      padding: widget.inline ? EdgeInsets.zero : EdgeInsets.all(EzConfig.marginVal),
+                      padding:
+                          widget.inline ? EdgeInsets.zero : EdgeInsets.all(widget.config.marginVal),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       visualDensity: VisualDensity.compact,
                       minimumSize: Size.zero,
@@ -124,8 +129,9 @@ class _EzLinkState extends State<EzLink> {
                     uri: widget.url,
                     builder: (_, FollowLink? followLink) => TextButton(
                       style: TextButton.styleFrom(
-                        padding:
-                            widget.inline ? EdgeInsets.zero : EdgeInsets.all(EzConfig.marginVal),
+                        padding: widget.inline
+                            ? EdgeInsets.zero
+                            : EdgeInsets.all(widget.config.marginVal),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         visualDensity: VisualDensity.compact,
                         minimumSize: Size.zero,

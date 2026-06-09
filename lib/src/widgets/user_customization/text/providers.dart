@@ -35,22 +35,20 @@ abstract class EzTextStyleProvider extends ChangeNotifier {
 
   /// Toggle the [TextStyle.fontWeight] based on the passed [bold]
   void bold(bool bold) {
-    _style =
-        _style.copyWith(fontWeight: bold ? FontWeight.bold : FontWeight.normal);
+    _style = _style.copyWith(fontWeight: bold ? FontWeight.bold : FontWeight.normal);
     notifyListeners();
   }
 
   /// Toggle the [TextStyle.fontStyle] based on the passed [italic]
   void italic(bool italic) {
-    _style = _style.copyWith(
-        fontStyle: italic ? FontStyle.italic : FontStyle.normal);
+    _style = _style.copyWith(fontStyle: italic ? FontStyle.italic : FontStyle.normal);
     notifyListeners();
   }
 
   /// Toggle the [TextStyle.decoration] based on the passed [underline]
   void underline(bool underline) {
-    _style = _style.copyWith(
-        decoration: underline ? TextDecoration.underline : TextDecoration.none);
+    _style =
+        _style.copyWith(decoration: underline ? TextDecoration.underline : TextDecoration.none);
     notifyListeners();
   }
 
@@ -75,55 +73,55 @@ abstract class EzTextStyleProvider extends ChangeNotifier {
 
 class EzDisplayStyleProvider extends EzTextStyleProvider {
   /// [EzTextStyleProvider] for [ezDisplayStyle]s values
-  EzDisplayStyleProvider() : super(ezDisplayStyle(null));
+  EzDisplayStyleProvider(bool isDark) : super(ezDisplayStyle(null, isDark: isDark));
 
   /// Reset via [ezDefaultDisplayStyle]
-  void reset() {
-    _style = ezDefaultDisplayStyle(null);
+  void reset(bool isDark) {
+    _style = ezDefaultDisplayStyle(null, isDark: isDark);
     notifyListeners();
   }
 }
 
 class EzHeadlineStyleProvider extends EzTextStyleProvider {
   /// [EzTextStyleProvider] for [ezHeadlineStyle]s values
-  EzHeadlineStyleProvider() : super(ezHeadlineStyle(null));
+  EzHeadlineStyleProvider(bool isDark) : super(ezHeadlineStyle(null, isDark: isDark));
 
   /// Reset via [ezDefaultHeadlineStyle]
-  void reset() {
-    _style = ezDefaultHeadlineStyle(null);
+  void reset(bool isDark) {
+    _style = ezDefaultHeadlineStyle(null, isDark: isDark);
     notifyListeners();
   }
 }
 
 class EzTitleStyleProvider extends EzTextStyleProvider {
   /// [EzTextStyleProvider] for [ezTitleStyle]s values
-  EzTitleStyleProvider() : super(ezTitleStyle(null));
+  EzTitleStyleProvider(bool isDark) : super(ezTitleStyle(null, isDark: isDark));
 
   /// Reset via [ezDefaultTitleStyle]
-  void reset() {
-    _style = ezDefaultTitleStyle(null);
+  void reset(bool isDark) {
+    _style = ezDefaultTitleStyle(null, isDark: isDark);
     notifyListeners();
   }
 }
 
 class EzBodyStyleProvider extends EzTextStyleProvider {
   /// [EzTextStyleProvider] for [ezBodyStyle]s values
-  EzBodyStyleProvider() : super(ezBodyStyle(null));
+  EzBodyStyleProvider(bool isDark) : super(ezBodyStyle(null, isDark: isDark));
 
   /// Reset via [ezDefaultBodyStyle]
-  void reset() {
-    _style = ezDefaultBodyStyle(null);
+  void reset(bool isDark) {
+    _style = ezDefaultBodyStyle(null, isDark: isDark);
     notifyListeners();
   }
 }
 
 class EzLabelStyleProvider extends EzTextStyleProvider {
   /// [EzTextStyleProvider] for [ezLabelStyle]s values
-  EzLabelStyleProvider() : super(ezLabelStyle(null));
+  EzLabelStyleProvider(bool isDark) : super(ezLabelStyle(null, isDark: isDark));
 
   /// Reset via [ezDefaultLabelStyle]
-  void reset() {
-    _style = ezDefaultLabelStyle(null);
+  void reset(bool isDark) {
+    _style = ezDefaultLabelStyle(null, isDark: isDark);
     notifyListeners();
   }
 }

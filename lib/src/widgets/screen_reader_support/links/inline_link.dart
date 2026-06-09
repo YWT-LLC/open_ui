@@ -8,6 +8,9 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzInlineLink extends WidgetSpan {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [EzLink.text] passthrough
   final String text;
 
@@ -43,8 +46,9 @@ class EzInlineLink extends WidgetSpan {
   /// The [EzLink] has zero padding and custom [Semantics] for [EzRichText]; [richLabel]
   EzInlineLink(
     // EzLink
-    this.text, {
+    this.config, {
     this.key,
+    required this.text,
     super.style,
     this.textColor,
     this.backgroundColor = Colors.transparent,
@@ -59,7 +63,8 @@ class EzInlineLink extends WidgetSpan {
             'Either onTap or url should be provided, but not both.'),
         super(
           child: EzLink(
-            text,
+            config,
+            text: text,
             key: key,
             style: style,
             textColor: textColor,

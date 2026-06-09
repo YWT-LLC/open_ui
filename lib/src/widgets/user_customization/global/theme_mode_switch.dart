@@ -8,46 +8,52 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzThemeModeSwitch extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Standardized tool for changing the [ThemeMode]
-  const EzThemeModeSwitch({super.key});
+  const EzThemeModeSwitch(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => EzScrollView(
+        config,
         scrollDirection: Axis.horizontal,
         reverseHands: true,
         children: <Widget>[
           // Label
           EzText(
-            EzConfig.l10n.ssThemeMode,
+            config,
+            text: config.ezL10n.ssThemeMode,
             textAlign: TextAlign.center,
           ),
-          EzConfig.margin,
+          config.margin,
 
           // Button
           EzDropdownMenu<ThemeMode>(
-            widthEntry: EzConfig.l10n.gSystem,
+            config,
+            widthEntry: config.ezL10n.gSystem,
             dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
-              DropdownMenuEntry<ThemeMode>(value: ThemeMode.system, label: EzConfig.l10n.gSystem),
-              DropdownMenuEntry<ThemeMode>(value: ThemeMode.light, label: EzConfig.l10n.gLight),
-              DropdownMenuEntry<ThemeMode>(value: ThemeMode.dark, label: EzConfig.l10n.gDark),
+              DropdownMenuEntry<ThemeMode>(value: ThemeMode.system, label: config.ezL10n.gSystem),
+              DropdownMenuEntry<ThemeMode>(value: ThemeMode.light, label: config.ezL10n.gLight),
+              DropdownMenuEntry<ThemeMode>(value: ThemeMode.dark, label: config.ezL10n.gDark),
             ],
             enableSearch: false,
-            initialSelection: EzConfig.themeMode,
+            initialSelection: config.themeMode,
             onSelected: (ThemeMode? choice) async {
-              if (choice == null || choice == EzConfig.themeMode) return;
+              if (choice == null || choice == config.themeMode) return;
 
               switch (choice) {
                 case ThemeMode.dark:
-                  await EzConfig.setBool(isDarkThemeKey, true);
+                  await EzCM.setBool(isDarkThemeKey, true);
                   break;
                 case ThemeMode.light:
-                  await EzConfig.setBool(isDarkThemeKey, false);
+                  await EzCM.setBool(isDarkThemeKey, false);
                   break;
                 case ThemeMode.system:
-                  await EzConfig.remove(isDarkThemeKey);
+                  await EzCM.remove(isDarkThemeKey);
                   break;
               }
-              await EzConfig.rebuildThemeMode();
+              await config.rebuildThemeMode();
             },
           ),
         ],

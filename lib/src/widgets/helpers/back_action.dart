@@ -10,17 +10,21 @@ import 'package:flutter/material.dart';
 /// Mimics the [AppBar.leading] back button
 /// But can also be used in [AppBar.actions] for left handed layouts
 class EzBackAction extends StatelessWidget {
-  const EzBackAction({super.key});
+  /// EzConfig Provider
+  final EzCP config;
+
+  const EzBackAction(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => ezRootNav.currentState!.canPop()
       ? EzIconButton(
+          config,
           onPressed: () => Navigator.of(context).maybePop(),
-          tooltip: EzConfig.l10n.gBack,
+          tooltip: config.ezL10n.gBack,
           icon: Icon(
             Icons.arrow_back,
-            semanticLabel: EzConfig.l10n.gBack,
-            size: EzConfig.titleStyle!.fontSize,
+            semanticLabel: config.ezL10n.gBack,
+            size: config.titleStyle!.fontSize,
           ),
         )
       : const SizedBox.shrink();

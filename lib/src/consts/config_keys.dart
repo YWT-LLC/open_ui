@@ -3,22 +3,28 @@
  * See LICENSE for distribution and usage details.
  */
 
+//* BTS settings *//
+
+const String hubPositionKey = 'hubPosition';
+const String updateBothKey = 'updateBoth';
+
+/// [hubPositionKey], [updateBothKey]
+const Map<String, Type> allBTSKeys = <String, Type>{
+  hubPositionKey: int,
+  updateBothKey: bool,
+};
+
 //* Global settings *//
 
 const String isLeftyKey = 'isLefty';
 const String isDarkThemeKey = 'isDarkTheme';
 const String appLocaleKey = 'appLocale';
-const String hubPositionKey = 'hubPosition';
-const String updateBothKey = 'updateBoth';
 
-/// [isLeftyKey], [isDarkThemeKey], [appLocaleKey], [hubPositionKey],
-/// [updateBothKey]
+/// [isLeftyKey], [isDarkThemeKey], [appLocaleKey]
 const Map<String, Type> allGlobalKeys = <String, Type>{
   isLeftyKey: bool,
   isDarkThemeKey: bool,
   appLocaleKey: List<String>,
-  hubPositionKey: int,
-  updateBothKey: bool,
 };
 
 //* Color settings *//
@@ -689,8 +695,9 @@ const Map<String, Type> allTextKeys = <String, Type>{
 
 //* Trackers *//
 
-/// [allGlobalKeys], [allColorKeys], [allDesignKeys], [allTextKeys]
+/// [allBTSKeys], [allGlobalKeys], [allColorKeys], [allDesignKeys], [allTextKeys]
 const Map<String, Type> allEZConfigKeys = <String, Type>{
+  ...allBTSKeys,
   ...allGlobalKeys,
   ...allColorKeys,
   ...allDesignKeys,

@@ -10,44 +10,47 @@ import 'package:flutter/material.dart';
 /// Remind the user that reset/randomize/etc cannot be undone automatically
 /// Includes and [EzInlineLink] to save current config to JSON
 Widget ezRichUndoWarning(
-  BuildContext context, {
+  EzCP config, {
+  required BuildContext context,
   bool standalone = true,
   Set<String>? skip,
 }) {
   final EzRichText text = EzRichText(
-    <InlineSpan>[
+    config,
+    children: <InlineSpan>[
       // Cannot be undone
       EzPlainText(
-        text: EzConfig.l10n.gUndoWarn1,
-        style: EzConfig.bodyStyle,
+        text: config.ezL10n.gUndoWarn1,
+        style: config.bodyStyle,
       ),
 
       // Save link
       EzInlineLink(
-        EzConfig.l10n.gSave,
-        onTap: () => EzConfig.saveConfig(context, skip: skip),
-        hint: EzConfig.l10n.gSaveHint,
-        style: EzConfig.bodyStyle,
+        config,
+        text: config.ezL10n.gSave,
+        onTap: () => EzCM.saveConfig(config, context: context, skip: skip),
+        hint: config.ezL10n.gSaveHint,
+        style: config.bodyStyle,
         textAlign: TextAlign.center,
       ),
 
       // Can restore manually
       EzPlainText(
-        text: EzConfig.l10n.gUndoWarn2,
-        style: EzConfig.bodyStyle,
+        text: config.ezL10n.gUndoWarn2,
+        style: config.bodyStyle,
       ),
     ],
     textBackground: false,
-    style: EzConfig.bodyStyle,
+    style: config.bodyStyle,
     textAlign: TextAlign.center,
   );
 
   return standalone
       ? SizedBox(
           width: ezTextSize(
-            EzConfig.l10n.gSave + EzConfig.l10n.gUndoWarn2,
+            config.ezL10n.gSave + config.ezL10n.gUndoWarn2,
             context: context,
-            style: EzConfig.bodyStyle,
+            style: config.bodyStyle,
           ).width,
           child: text,
         )

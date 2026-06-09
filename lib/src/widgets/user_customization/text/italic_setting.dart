@@ -8,6 +8,9 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzItalicSetting extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Which [TextStyle] to update
   final EzTextSettingType type;
 
@@ -15,7 +18,8 @@ class EzItalicSetting extends StatefulWidget {
   final void Function(bool italic) notifierCallback;
 
   /// Standardized tool for toggling [FontStyle.italic] in the [TextStyle.fontStyle] that matches [type]
-  const EzItalicSetting({
+  const EzItalicSetting(
+    this.config, {
     required super.key,
     required this.type,
     required this.notifierCallback,
@@ -26,29 +30,31 @@ class EzItalicSetting extends StatefulWidget {
 }
 
 class _EzItalicSettingState extends State<EzItalicSetting> {
-  late bool isItalic = EzConfig.get(widget.type.italicKey) ?? false;
+  late bool isItalic = EzCM.get(widget.type.italicKey(widget.config.isDark)) ?? false;
 
   @override
   Widget build(BuildContext context) => EzIconButton(
+        widget.config,
         onPressed: () async {
           isItalic = !isItalic;
 
-          await EzConfig.setBool(widget.type.italicKey, isItalic);
-          if (EzConfig.updateBoth) {
-            await EzConfig.setBool(widget.type.italicMirror, isItalic);
+          await EzCM.setBool(widget.type.italicKey(widget.config.isDark), isItalic);
+          if (EzCM.updateBoth) {
+            await EzCM.setBool(widget.type.italicMirror(widget.config.isDark), isItalic);
           }
 
           widget.notifierCallback(isItalic);
           if (context.mounted) {
-            EzConfig.pingRebuild(ezTextRebuildCheck(context));
+            widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
           }
 
           setState(() {});
         },
-        tooltip: EzConfig.l10n.tsItalic,
+        tooltip: widget.config.ezL10n.tsItalic,
         icon: EzIcon(
+          widget.config,
           Icons.format_italic,
-          color: isItalic ? EzConfig.colors.primary : EzConfig.colors.outline,
+          color: isItalic ? widget.config.colors.primary : widget.config.colors.outline,
         ),
       );
 }

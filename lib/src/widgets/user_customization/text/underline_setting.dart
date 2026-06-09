@@ -8,6 +8,9 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzUnderlineSetting extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Which [TextStyle] to update
   final EzTextSettingType type;
 
@@ -15,7 +18,8 @@ class EzUnderlineSetting extends StatefulWidget {
   final void Function(bool underline) notifierCallback;
 
   /// Standardized tool for toggling [TextDecoration.underline] in the [TextStyle.decoration] that matches [type]
-  const EzUnderlineSetting({
+  const EzUnderlineSetting(
+    this.config, {
     required super.key,
     required this.type,
     required this.notifierCallback,
@@ -26,29 +30,31 @@ class EzUnderlineSetting extends StatefulWidget {
 }
 
 class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
-  late bool isUnderlined = EzConfig.get(widget.type.underlineKey) ?? false;
+  late bool isUnderlined = EzCM.get(widget.type.underlineKey(widget.config.isDark)) ?? false;
 
   @override
   Widget build(BuildContext context) => EzIconButton(
+        widget.config,
         onPressed: () async {
           isUnderlined = !isUnderlined;
 
-          await EzConfig.setBool(widget.type.underlineKey, isUnderlined);
-          if (EzConfig.updateBoth) {
-            await EzConfig.setBool(widget.type.underlineMirror, isUnderlined);
+          await EzCM.setBool(widget.type.underlineKey(widget.config.isDark), isUnderlined);
+          if (EzCM.updateBoth) {
+            await EzCM.setBool(widget.type.underlineMirror(widget.config.isDark), isUnderlined);
           }
 
           widget.notifierCallback(isUnderlined);
           if (context.mounted) {
-            EzConfig.pingRebuild(ezTextRebuildCheck(context));
+            widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
           }
 
           setState(() {});
         },
-        tooltip: EzConfig.l10n.tsUnderline,
+        tooltip: widget.config.ezL10n.tsUnderline,
         icon: EzIcon(
+          widget.config,
           Icons.format_underline,
-          color: isUnderlined ? EzConfig.colors.primary : EzConfig.colors.outline,
+          color: isUnderlined ? widget.config.colors.primary : widget.config.colors.outline,
         ),
       );
 }

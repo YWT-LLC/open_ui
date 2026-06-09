@@ -11,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 
 /// Returns and [AssetImage], [NetworkImage], or [FileImage] based on the [path]
 ImageProvider ezImageProvider(String path) {
-  if (EzConfig.isPathAsset(path)) {
+  if (EzCM.isPathAsset(path)) {
     return efuiAssetPaths.contains(path) ? efuiImageLookup[path]! : AssetImage(path);
   } else if (ezUrlCheck(path)) {
     return NetworkImage(path);
@@ -21,8 +21,9 @@ ImageProvider ezImageProvider(String path) {
 }
 
 /// Wraps an [ImagePicker] in a try/catch
-/// Provide [prefsPath] to auto save successful results to [EzConfig]
-Future<String?> ezImagePicker({
+/// Provide [prefsPath] to auto save successful results to [config]
+Future<String?> ezImagePicker(
+  EzCP config, {
   required BuildContext context,
   required ImageSource source,
   String? prefsPath,
@@ -31,11 +32,13 @@ Future<String?> ezImagePicker({
     final XFile? picked = await ImagePicker().pickImage(source: source);
     if (picked == null) return null;
 
-    if (prefsPath != null) await EzConfig.setString(prefsPath, picked.path);
+    if (prefsPath != null) await EzCM.setString(prefsPath, picked.path);
     return picked.path;
   } on Exception catch (e) {
-    final String errorMsg = '${EzConfig.l10n.dsImgSetFailed}\n${e.toString()}';
-    (context.mounted) ? await ezLogAlert(context, message: errorMsg) : ezLog(errorMsg);
+    final String errorMsg = '${config.ezL10n.dsImgSetFailed}\n${e.toString()}';
+    (context.mounted)
+        ? await ezLogAlert(config, context: context, message: errorMsg)
+        : ezLog(errorMsg);
     return null;
   }
 }

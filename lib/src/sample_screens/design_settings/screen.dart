@@ -10,6 +10,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzDesignSettings extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Current sub-page
   final EzSubSetting target;
 
@@ -37,24 +40,26 @@ class EzDesignSettings extends StatelessWidget {
   final List<Widget>? appendPage;
 
   /// Spacer before the [EzResetButton]
-  final Widget resetSpacerButton;
+  /// Defaults to [EzCP.separator]
+  final Widget? resetSpacerButton;
 
   /// Spacer before the [EzResetButton]
-  final Widget resetSpacerPage;
+  /// Defaults to [EzCP.separator]
+  final Widget? resetSpacerPage;
 
-  /// Additional [EzConfig] keys for the local [EzResetButton]
+  /// Additional [EzCM] keys for the local [EzResetButton]
   /// [darkButtonDesignKeys] by default
   final Set<String>? resetExtraDarkButton;
 
-  /// Additional [EzConfig] keys for the local [EzResetButton]
+  /// Additional [EzCM] keys for the local [EzResetButton]
   /// [lightButtonDesignKeys] by default
   final Set<String>? resetExtraLightButton;
 
-  /// Additional [EzConfig] keys for the local [EzResetButton]
+  /// Additional [EzCM] keys for the local [EzResetButton]
   /// [darkPageDesignKeys] by default
   final Set<String>? resetExtraDarkPage;
 
-  /// Additional [EzConfig] keys for the local [EzResetButton]
+  /// Additional [EzCM] keys for the local [EzResetButton]
   /// [lightPageDesignKeys] by default
   final Set<String>? resetExtraLightPage;
 
@@ -72,7 +77,8 @@ class EzDesignSettings extends StatelessWidget {
 
   /// Empathetech image settings
   /// Recommended to use as a [Scaffold.body]
-  const EzDesignSettings({
+  const EzDesignSettings(
+    this.config, {
     super.key,
     required this.target,
 
@@ -80,7 +86,7 @@ class EzDesignSettings extends StatelessWidget {
     this.prependButton,
     this.appendButton,
     this.styleLabel,
-    this.resetSpacerButton = const EzSeparator(),
+    this.resetSpacerButton,
     this.resetExtraDarkButton,
     this.resetExtraLightButton,
     this.resetSkipButton,
@@ -90,7 +96,7 @@ class EzDesignSettings extends StatelessWidget {
     this.prependPage,
     this.appendPage,
     this.includeBackgroundImage = true,
-    this.resetSpacerPage = const EzSeparator(),
+    this.resetSpacerPage,
     this.resetExtraDarkPage,
     this.resetExtraLightPage,
     this.resetSkipPage,
@@ -99,25 +105,28 @@ class EzDesignSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzFauxCarousel(
+        config,
         position: target.isFirst ? 0 : 1,
         delta: target.isFirst ? -1 : 1,
         animMod: 0.5,
         child: (target == EzSubSetting.butDesign)
             ? ButtonDesign(
+                config,
                 prepend: prependButton,
                 append: appendButton,
                 styleLabel: styleLabel,
-                resetSpacer: resetSpacerButton,
+                resetSpacer: resetSpacerButton ?? config.separator,
                 resetExtraDark: resetExtraDarkButton,
                 resetExtraLight: resetExtraLightButton,
                 resetSkip: resetSkipButton,
                 saveSkip: saveSkipButton,
               )
             : PageDesign(
+                config,
                 prepend: prependPage,
                 includeBackgroundImage: includeBackgroundImage,
                 append: appendPage,
-                resetSpacer: resetSpacerPage,
+                resetSpacer: resetSpacerPage ?? config.separator,
                 resetExtraDark: resetExtraDarkPage,
                 resetExtraLight: resetExtraLightPage,
                 resetSkip: resetSkipPage,

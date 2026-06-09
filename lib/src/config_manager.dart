@@ -226,22 +226,6 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Fallback [EFUILang] for unsupported [Locale]s
   static EFUILang get l10nFallback => _instance!._l10nFallback;
 
-  /// Get the [key]s default (nullable) value
-  static dynamic getDefault(String key) => _instance!._defaults[key];
-
-  /// Get the [key]s current value
-  /// bool, int, double, String, String List, or null
-  static dynamic get(String key) => _instance!._prefs[key] ?? getDefault(key);
-
-  /// [FlutterSecureStorage] only stores Strings
-  /// No null or error checking, assumes the proper instance was provided in [EzCM.init]
-  /// Returns empty [String] on failure (not null)
-  static Future<String> secGet(String key) async =>
-      await _instance!._securePreferences!.read(key: key) ?? Future<String>.value('');
-
-  /// Alias for [EzCM.get] => [isLeftyKey]
-  static bool get isLefty => get(isLeftyKey);
-
   /// Get the [key]s (nullable) [bool] value
   /// Uses the stored values from [SharedPreferencesAsync]
   static Future<bool?> getBool(String key) => _instance!._preferences.getBool(key);
@@ -262,6 +246,19 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Uses the stored values from [SharedPreferencesAsync]
   static Future<List<String>?> getStringList(String key) =>
       _instance!._preferences.getStringList(key);
+
+  /// Get the [key]s default (nullable) value
+  static dynamic getDefault(String key) => _instance!._defaults[key];
+
+  /// [FlutterSecureStorage] only stores Strings
+  /// No null or error checking, assumes the proper instance was provided in [EzCM.init]
+  /// Returns empty [String] on failure (not null)
+  static Future<String> secGet(String key) async =>
+      await _instance!._securePreferences!.read(key: key) ?? Future<String>.value('');
+
+  /// Get the [key]s current value
+  /// bool, int, double, String, String List, or null
+  static dynamic get(String key) => _instance!._prefs[key] ?? getDefault(key);
 
   /// Wether the [path] leads to an [AssetImage]
   static bool isPathAsset(String path) => _instance!._assetPaths.contains(path);
@@ -373,12 +370,14 @@ Must be one of [int, bool, double, String, List<String>]''');
         mimeType: MimeType.json,
       );
     } catch (e) {
-      (context.mounted) ? await ezLogAlert(context, message: e.toString()) : ezLog(e.toString());
+      (context.mounted)
+          ? await ezLogAlert(config, context: context, message: e.toString())
+          : ezLog(e.toString());
       return;
     }
 
     if (context.mounted) {
-      ezSnackBar(config, context: context, message: config.efuiL10n.ssConfigSaved(archivePath()));
+      ezSnackBar(config, context: context, message: config.ezL10n.ssConfigSaved(archivePath()));
     }
   }
 
@@ -830,8 +829,7 @@ Must be one of [int, bool, double, String, List<String>]''');
     return success;
   }
 
-  //* Helpers *//
-  // Hub //
+  //* Helpers/BTS *//
 
   static int get hubPos => get(hubPositionKey);
   static bool get updateBoth => get(updateBothKey);

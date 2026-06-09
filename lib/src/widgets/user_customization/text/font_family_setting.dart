@@ -8,6 +8,9 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzFontSetting extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Which [TextStyle] to update
   final EzTextSettingType type;
 
@@ -20,7 +23,8 @@ class EzFontSetting extends StatefulWidget {
 
   /// Standardized tool for updating the [TextStyle.fontFamily] that matches [type]
   /// [EzFontSetting] options are built from [googleStyles]
-  const EzFontSetting({
+  const EzFontSetting(
+    this.config, {
     required super.key,
     required this.type,
     required this.baseStyle,
@@ -32,18 +36,19 @@ class EzFontSetting extends StatefulWidget {
 }
 
 class _FontSettingState extends State<EzFontSetting> {
-  late String? currFont = EzConfig.get(widget.type.fontKey) == null
+  late String? currFont = EzCM.get(widget.type.fontKey(widget.config.isDark)) == null
       ? null
-      : ezClassToCamel(ezFirstWord(EzConfig.get(widget.type.fontKey)));
+      : ezClassToCamel(ezFirstWord(EzCM.get(widget.type.fontKey(widget.config.isDark))));
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: EzConfig.l10n.tsFontFamily,
+        message: widget.config.ezL10n.tsFontFamily,
         child: EzDropdownMenu<String>(
+          widget.config,
           widthEntry: fingerPaint,
           textStyle: fuseWithGFont(
             starter: widget.baseStyle,
-            gFont: currFont ?? EzConfig.get(widget.type.fontKey),
+            gFont: currFont ?? EzCM.get(widget.type.fontKey(widget.config.isDark)),
           ),
           dropdownMenuEntries: googleStyles.entries
               .map((MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
@@ -58,14 +63,14 @@ class _FontSettingState extends State<EzFontSetting> {
             if (font == null) return;
             currFont = font;
 
-            await EzConfig.setString(widget.type.fontKey, font);
-            if (EzConfig.updateBoth) {
-              await EzConfig.setString(widget.type.fontMirror, font);
+            await EzCM.setString(widget.type.fontKey(widget.config.isDark), font);
+            if (EzCM.updateBoth) {
+              await EzCM.setString(widget.type.fontMirror(widget.config.isDark), font);
             }
             widget.notifierCallback(font);
 
             if (context.mounted) {
-              EzConfig.pingRebuild(ezTextRebuildCheck(context));
+              widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
             }
             setState(() {});
           },

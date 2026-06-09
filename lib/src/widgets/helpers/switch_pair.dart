@@ -54,7 +54,7 @@ class EzSwitchPair extends StatefulWidget {
   /// Only for when using [valueKey]
   final Future<bool> Function(bool)? canChange;
 
-  /// [EzConfig] key to provide to [Switch.value]
+  /// [EzCM] key to provide to [Switch.value]
   /// And update in [Switch.onChanged]
   /// Provide [valueKey] OR [value]
   /// Optionally provide [afterChanged]
@@ -163,6 +163,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   @override
   Widget build(BuildContext context) => EzRow(
+        widget.config,
         reverseHands: widget.reverseHands,
         mainAxisSize: widget.mainAxisSize,
         mainAxisAlignment: widget.mainAxisAlignment,
@@ -171,22 +172,24 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
           Flexible(
             child: widget.clickable
                 ? EzLink(
-                    widget.text,
+                    widget.config,
+                    text: widget.text,
                     textColor: widget.config.colors.onSurface,
                     style: widget.config.bodyStyle,
                     textAlign: widget.textAlign,
-                    hint: widget.semanticsLabel ?? widget.config.efuiL10n.gSwitchHint,
+                    hint: widget.semanticsLabel ?? widget.config.ezL10n.gSwitchHint,
                     onTap: () => onChanged(!value),
                   )
                 : EzText(
-                    widget.text,
+                    widget.config,
+                    text: widget.text,
                     style: widget.config.bodyStyle,
                     textAlign: widget.textAlign,
                     semanticsLabel: widget.semanticsLabel,
                   ),
           ),
           Transform.scale(
-            scale: max(1.0, ezIconRatio()),
+            scale: max(1.0, ezIconRatio(widget.config)),
             // Could be PlatformSwitch
             // Dev's opinion: Material switches are better
             child: Switch(
@@ -198,7 +201,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                   ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
                   : null,
               trackOutlineWidth: widget.trackOutlineWidth,
-              padding: EzCM.isLefty
+              padding: widget.config.isLefty
                   ? EdgeInsets.only(right: widget.config.marginVal)
                   : EdgeInsets.only(left: widget.config.marginVal),
             ),

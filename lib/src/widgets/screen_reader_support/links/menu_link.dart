@@ -10,6 +10,9 @@ import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EzMenuLink extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Link.uri] to open
   final Uri uri;
 
@@ -29,7 +32,8 @@ class EzMenuLink extends StatelessWidget {
   final TextAlign? textAlign;
 
   /// [EzMenuButton] wrapped in a [Link]
-  const EzMenuLink({
+  const EzMenuLink(
+    this.config, {
     super.key,
     required this.uri,
     this.semanticsLabel,
@@ -43,6 +47,7 @@ class EzMenuLink extends StatelessWidget {
   Widget build(BuildContext context) => Link(
         uri: uri,
         builder: (_, FollowLink? followLink) => EzMenuButton(
+          config,
           onPressed: () => launchUrl(uri),
           semanticsLabel: semanticsLabel,
           icon: icon,

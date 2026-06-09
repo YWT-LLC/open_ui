@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzImageLink extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Image.image] passthrough
   final ImageProvider<Object> image;
 
@@ -43,7 +46,8 @@ class EzImageLink extends StatelessWidget {
 
   /// [Image] wrapper that either opens an internal link via [onTap]
   /// Or an external link to [url]
-  const EzImageLink({
+  const EzImageLink(
+    this.config, {
     super.key,
     required this.label,
     required this.hint,
@@ -62,7 +66,7 @@ class EzImageLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color focusColor = EzConfig.colors.primary.withValues(alpha: focusOpacity);
+    final Color focusColor = config.colors.primary.withValues(alpha: focusOpacity);
 
     final Image child = Image(
       image: image,

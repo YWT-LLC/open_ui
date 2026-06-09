@@ -10,17 +10,21 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzColorSettings extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Current sub-page
   final EzSubSetting target;
 
   /// Spacer above the [EzResetButton], on both sub-screens
-  final Widget resetSpacer;
+  /// Defaults to [EzCP.separator]
+  final Widget? resetSpacer;
 
-  /// Additional [EzConfig] keys for the local [EzResetButton]
+  /// Additional [EzCM] keys for the local [EzResetButton]
   /// [darkColorKeys] are included by default
   final Set<String>? resetExtraDark;
 
-  /// Additional [EzConfig] keys for the local [EzResetButton]
+  /// Additional [EzCM] keys for the local [EzResetButton]
   /// [lightColorKeys] are included by default
   final Set<String>? resetExtraLight;
 
@@ -50,11 +54,12 @@ class EzColorSettings extends StatelessWidget {
 
   /// Empathetech color settings
   /// Recommended to use as a [Scaffold.body]
-  const EzColorSettings({
+  const EzColorSettings(
     // Shared
+    this.config, {
     super.key,
     required this.target,
-    this.resetSpacer = const EzSeparator(),
+    this.resetSpacer,
     this.resetExtraDark,
     this.resetExtraLight,
     this.resetSkip,
@@ -71,23 +76,26 @@ class EzColorSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzFauxCarousel(
+        config,
         position: target.isFirst ? 0 : 1,
         delta: target.isFirst ? -1 : 1,
         animMod: 0.5,
         child: (target == EzSubSetting.qckColor)
             ? QuickColorSettings(
+                config,
                 quickHeader: quickHeader,
                 quickFooter: quickFooter,
-                resetSpacer: resetSpacer,
+                resetSpacer: resetSpacer ?? config.separator,
                 resetExtraDark: resetExtraDark,
                 resetExtraLight: resetExtraLight,
                 resetSkip: resetSkip,
                 saveSkip: saveSkip,
               )
             : AdvancedColorSettings(
+                config,
                 extraDark: extraDark,
                 extraLight: extraLight,
-                resetSpacer: resetSpacer,
+                resetSpacer: resetSpacer ?? config.separator,
                 resetSkip: resetSkip,
                 saveSkip: saveSkip,
               ),

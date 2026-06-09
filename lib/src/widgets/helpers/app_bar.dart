@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class EzAppBar extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   final double height;
   final Widget? leading;
   final double? leadingWidth;
@@ -14,7 +17,8 @@ class EzAppBar extends StatelessWidget {
   final List<Widget>? actions;
 
   /// [AppBar] wrapped in a [PreferredSize] and local [IconButtonTheme]
-  const EzAppBar({
+  const EzAppBar(
+    this.config, {
     super.key,
     required this.height,
     this.leading,
@@ -29,9 +33,9 @@ class EzAppBar extends StatelessWidget {
         data: IconButtonThemeData(
           style: IconButton.styleFrom(
             side: BorderSide.none,
-            padding: EzInsets.wrap(EzConfig.marginVal),
-            iconSize: EzConfig.headlineStyle!.fontSize,
-            backgroundColor: EzConfig.colors.surfaceDim,
+            padding: EzInsets.wrap(config.marginVal),
+            iconSize: config.headlineStyle!.fontSize,
+            backgroundColor: config.colors.surfaceDim,
           ),
         ),
         child: AppBar(

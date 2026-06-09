@@ -9,13 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class EzPasteField extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   final TextEditingController controller;
   final TextStyle? style;
   final String? Function(String?)? validator;
   final List<String>? autofillHints;
   final InputDecoration? decoration;
 
-  const EzPasteField({
+  const EzPasteField(
+    this.config, {
     super.key,
     required this.controller,
     this.style,
@@ -25,7 +29,7 @@ class EzPasteField extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => EzRow(children: <Widget>[
+  Widget build(BuildContext context) => EzRow(config, children: <Widget>[
         // Field
         Expanded(
           child: TextFormField(
@@ -40,15 +44,16 @@ class EzPasteField extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUnfocus,
           ),
         ),
-        EzConfig.rowMargin,
+        config.rowMargin,
 
         // Paste
         EzIconButton(
+          config,
           onPressed: () async {
             final String? clipText = (await Clipboard.getData(Clipboard.kTextPlain))?.text;
             if (clipText != null) controller.text = clipText;
           },
-          icon: EzIcon(Icons.paste),
+          icon: EzIcon(config, Icons.paste),
         ),
       ]);
 }

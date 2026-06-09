@@ -9,15 +9,15 @@ import 'package:efui_bios/efui_bios.dart';
 import 'package:flutter/material.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
-/// Track version updates
-const Widget updater = EzUpdaterFAB(
-  appVersion: '4.0.0',
-  versionSource:
-      'https://raw.githubusercontent.com/Empathetech-LLC/empathetech_flutter_ui/refs/heads/main/example/APP_VERSION',
-  gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
-  appStore: 'https://apps.apple.com/us/app/open-ui/id6499560244',
-  github: 'https://github.com/Empathetech-LLC/empathetech_flutter_ui/releases',
-);
+EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
+      config,
+      appVersion: '4.0.0',
+      versionSource:
+          'https://raw.githubusercontent.com/Empathetech-LLC/empathetech_flutter_ui/refs/heads/main/example/APP_VERSION',
+      gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
+      appStore: 'https://apps.apple.com/us/app/open-ui/id6499560244',
+      github: 'https://github.com/Empathetech-LLC/empathetech_flutter_ui/releases',
+    );
 
 class ResetFAB extends StatelessWidget {
   final EzCP config;
@@ -34,66 +34,74 @@ class ResetFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: config.l10n.gReset,
+        message: config.ezL10n.gReset,
         excludeFromSemantics: true,
         child: Semantics(
-          label: config.l10n.gReset,
+          label: config.ezL10n.gReset,
           button: true,
-          hint: l10n.csResetHint,
+          hint: l10n(config).csResetHint,
           child: ExcludeSemantics(
             child: FloatingActionButton(
               onPressed: () => showDialog(
                 context: context,
                 builder: (BuildContext dCon) => EzAlertDialog(
+                  config,
                   title: Text(
-                    '${config.l10n.gReset}...',
+                    '${config.ezL10n.gReset}...',
                     textAlign: TextAlign.center,
                   ),
                   actions: <Widget>[
                     // Builder/forms
                     EzMaterialAction(
+                      config,
                       onPressed: () async {
                         clear();
-                        await config.rebuildUI();
+                        await config.rebuildUI(noEST);
                         state();
                       },
-                      text: l10n.csResetBuilder,
+                      text: l10n(config).csResetBuilder,
                       isDefaultAction: true,
                     ),
 
                     // App settings
                     EzMaterialAction(
+                      config,
                       onPressed: () async {
-                        await config.rebuildUI(changes: () => EzCM.reset(forceBoth: true));
+                        await config.rebuildUI(
+                          allEST,
+                          changes: () => EzCM.reset(config.isDark, forceBoth: true),
+                        );
                         state();
                       },
-                      text: l10n.csResetApp,
+                      text: l10n(config).csResetApp,
                       isDestructiveAction: true,
                     ),
 
                     // Both
                     EzMaterialAction(
+                      config,
                       onPressed: () async {
-                        await config.rebuildUI(changes: () async {
+                        await config.rebuildUI(allEST, changes: () async {
                           clear();
-                          await EzCM.reset(forceBoth: true);
+                          await EzCM.reset(config.isDark, forceBoth: true);
                         });
                         state();
                       },
-                      text: l10n.csResetBoth,
+                      text: l10n(config).csResetBoth,
                       isDestructiveAction: true,
                     ),
 
                     // None
                     EzMaterialAction(
+                      config,
                       onPressed: () => Navigator.of(dCon).pop(),
-                      text: l10n.csResetNothing,
+                      text: l10n(config).csResetNothing,
                     ),
                   ],
                   needsClose: false,
                 ),
               ),
-              child: EzIcon(Icons.refresh),
+              child: EzIcon(config, Icons.refresh),
             ),
           ),
         ),
@@ -113,7 +121,7 @@ class MacStoreFAB extends StatelessWidget {
         tooltip: 'EoL',
         onPressed: () => showDialog(
           context: context,
-          builder: (BuildContext dCon) => EzAlertDialog(contents: <Widget>[
+          builder: (BuildContext dCon) => EzAlertDialog(config, contents: <Widget>[
             const Text(
               '''Good news: Open UI is now an app generator!
 
@@ -123,7 +131,8 @@ The full (free and open source) app generator can be downloaded from the ''',
               textAlign: TextAlign.center,
             ),
             EzLink(
-              'GitHub releases',
+              config,
+              text: 'GitHub releases',
               url: Uri.parse(openUIReleases),
               hint: openUIReleases,
             ),
@@ -131,6 +140,6 @@ The full (free and open source) app generator can be downloaded from the ''',
         ),
         backgroundColor: config.colors.secondary,
         foregroundColor: config.colors.onSecondary,
-        child: EzIcon(Icons.update),
+        child: EzIcon(config, Icons.update),
       );
 }

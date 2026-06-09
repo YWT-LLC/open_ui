@@ -8,6 +8,8 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class QuickColorSettings extends StatelessWidget {
+  final EzCP config;
+
   final List<Widget>? quickHeader;
   final List<Widget>? quickFooter;
   final Widget resetSpacer;
@@ -16,7 +18,8 @@ class QuickColorSettings extends StatelessWidget {
   final Set<String>? resetSkip;
   final Set<String>? saveSkip;
 
-  const QuickColorSettings({
+  const QuickColorSettings(
+    this.config, {
     super.key,
     required this.quickHeader,
     required this.quickFooter,
@@ -33,29 +36,30 @@ class QuickColorSettings extends StatelessWidget {
 
         // From image
         Semantics(
-          label: EzConfig.l10n.csSchemeBase.replaceAll('\n', ' '),
-          value: EzConfig.l10n.gOptional,
+          label: config.ezL10n.csSchemeBase.replaceAll('\n', ' '),
+          value: config.ezL10n.gOptional,
           button: true,
-          hint: EzConfig.l10n.csFromImage,
+          hint: config.ezL10n.csFromImage,
           child: ExcludeSemantics(
             child: EzImageSetting(
-              pathKey: EzConfig.isDark ? darkColorSchemeImageKey : lightColorSchemeImageKey,
+              config,
+              pathKey: config.isDark ? darkColorSchemeImageKey : lightColorSchemeImageKey,
               fitKey: null,
-              label: EzConfig.l10n.csSchemeBase,
+              label: config.ezL10n.csSchemeBase,
               setColors: true,
               showEditor: false,
               showFitOption: false,
             ),
           ),
         ),
-        EzConfig.separator,
+        config.separator,
 
         // High contrast
-        const EzHighContrastColorsSetting(),
-        EzConfig.spacer,
+        EzHighContrastColorsSetting(config),
+        config.spacer,
 
         // MonoChrome
-        const EzMonoChromeColorsSetting(),
+        EzMonoChromeColorsSetting(config),
 
         // Additional settings
         if (quickFooter != null) ...quickFooter!,
@@ -63,33 +67,34 @@ class QuickColorSettings extends StatelessWidget {
         // Local reset
         resetSpacer,
         EzResetButton(
+          config,
           all: false,
-          dynamicTitle: () => EzConfig.l10n.csReset(ezThemeString(true)),
+          dynamicTitle: () => config.ezL10n.csReset(ezThemeString(config, bothable: true)),
           resetSkip: resetSkip,
           onConfirm: () async {
-            if (EzConfig.updateBoth) {
-              await EzConfig.removeKeys(allColorKeys.keys.toSet());
+            if (EzCM.updateBoth) {
+              await EzCM.removeKeys(allColorKeys.keys.toSet());
               if (resetExtraDark != null) {
-                await EzConfig.removeKeys(resetExtraDark!);
+                await EzCM.removeKeys(resetExtraDark!);
               }
               if (resetExtraLight != null) {
-                await EzConfig.removeKeys(resetExtraLight!);
+                await EzCM.removeKeys(resetExtraLight!);
               }
             } else {
-              if (EzConfig.isDark) {
-                await EzConfig.removeKeys(darkColorKeys.keys.toSet());
+              if (config.isDark) {
+                await EzCM.removeKeys(darkColorKeys.keys.toSet());
                 if (resetExtraDark != null) {
-                  await EzConfig.removeKeys(resetExtraDark!);
+                  await EzCM.removeKeys(resetExtraDark!);
                 }
               } else {
-                await EzConfig.removeKeys(lightColorKeys.keys.toSet());
+                await EzCM.removeKeys(lightColorKeys.keys.toSet());
                 if (resetExtraLight != null) {
-                  await EzConfig.removeKeys(resetExtraLight!);
+                  await EzCM.removeKeys(resetExtraLight!);
                 }
               }
             }
           },
         ),
-        EzConfig.separator,
+        config.separator,
       ]);
 }

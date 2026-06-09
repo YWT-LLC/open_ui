@@ -8,15 +8,31 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class ButtonDesign extends StatelessWidget {
+  /// EzConfig Provider
   final EzCP config;
 
+  /// Extra settings at the beginning
   final List<Widget>? prepend;
+
+  /// Extra settings at the end
   final List<Widget>? append;
+
+  /// Optional style setting label override
   final String? styleLabel;
-  final Widget resetSpacer;
+
+  /// Defaults to [EzCP.separator]
+  final Widget? resetSpacer;
+
+  /// Extra keys for [EzCM.reset]
   final Set<String>? resetExtraDark;
+
+  /// Extra keys for [EzCM.reset]
   final Set<String>? resetExtraLight;
+
+  /// Extra keys for [EzCM.reset]
   final Set<String>? resetSkip;
+
+  /// Extra keys for [EzCM.reset]
   final Set<String>? saveSkip;
 
   const ButtonDesign(
@@ -25,7 +41,7 @@ class ButtonDesign extends StatelessWidget {
     required this.prepend,
     required this.append,
     this.styleLabel,
-    this.resetSpacer = const EzSeparator(),
+    this.resetSpacer,
     required this.resetExtraDark,
     required this.resetExtraLight,
     required this.resetSkip,
@@ -39,7 +55,7 @@ class ButtonDesign extends StatelessWidget {
         if (prepend != null) ...prepend!,
 
         // Padding
-        const EzPaddingSetting(),
+        EzPaddingSetting(config),
         config.spacer,
 
         // Button style
@@ -48,7 +64,8 @@ class ButtonDesign extends StatelessWidget {
 
         // Underline links
         EzSwitchPair(
-          text: config.l10n.dsAlwaysUnderline,
+          config,
+          text: config.ezL10n.dsAlwaysUnderline,
           clickable: true,
           valueKey: config.isDark ? darkLineLinksKey : lightLineLinksKey,
           afterChanged: (bool? value) async {
@@ -57,14 +74,15 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
             }
 
-            await config.rebuildUI();
+            await config.rebuildUI(<EzSettingType>{EzSettingType.design, EzSettingType.text});
           },
         ),
         config.spacer,
 
         // Show back FAB
         EzSwitchPair(
-          text: config.l10n.dsShowBack,
+          config,
+          text: config.ezL10n.dsShowBack,
           valueKey: config.isDark ? darkShowBackFABKey : lightShowBackFABKey,
           afterChanged: (bool? value) async {
             if (value == null) return;
@@ -72,13 +90,14 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightShowBackFABKey : darkShowBackFABKey, value);
             }
 
-            await config.rebuildUI();
+            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
           },
         ),
         config.spacer,
 
         // Show scroll
         EzSwitchPair(
+          config,
           valueKey: config.isDark ? darkShowScrollKey : lightShowScrollKey,
           afterChanged: (bool? value) async {
             if (value == null) return;
@@ -86,18 +105,19 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightShowScrollKey : darkShowScrollKey, value);
             }
 
-            await config.rebuildUI();
+            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
           },
-          text: config.l10n.dsShowScroll,
+          text: config.ezL10n.dsShowScroll,
         ),
 
         if (append != null) ...append!,
 
         // Local reset all
-        resetSpacer,
+        resetSpacer ?? config.separator,
         EzResetButton(
+          config,
           all: false,
-          dynamicTitle: () => config.l10n.dsResetButton(ezThemeString(true)),
+          dynamicTitle: () => config.ezL10n.dsResetButton(ezThemeString(config, bothable: true)),
           onConfirm: () async {
             if (EzCM.updateBoth || config.isDark) {
               await EzCM.removeKeys(darkButtonDesignKeys.keys.toSet());
@@ -126,14 +146,16 @@ class _ButtonStyleSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
+        config,
         onPressed: () async {
           EzButtonShape currShape = config.buttonShape;
           double currWidth = config.borderWidth;
 
           await ezModal(
+            config,
             context: context,
             builder: (_) => StatefulBuilder(
-              builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+              builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
                 // Shape choices
                 RadioGroup<EzButtonShape>(
                   groupValue: currShape,
@@ -150,6 +172,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                     setModal(() => currShape = choice);
                   },
                   child: EzScrollView(
+                    config,
                     scrollDirection: Axis.horizontal,
                     thumbVisibility: false,
                     showScrollHint: true,
@@ -162,7 +185,8 @@ class _ButtonStyleSetting extends StatelessWidget {
                             ),
                             child: EzCol(children: <Widget>[
                               EzElevatedButton(
-                                text: shape.name(config.l10n),
+                                config,
+                                text: shape.name(config.ezL10n),
                                 style: ElevatedButton.styleFrom(
                                   side: currWidth == 0
                                       ? BorderSide.none
@@ -184,7 +208,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                                 },
                               ),
                               config.margin,
-                              ExcludeSemantics(child: EzRadio<EzButtonShape>(value: shape)),
+                              ExcludeSemantics(child: EzRadio<EzButtonShape>(config, value: shape)),
                             ]),
                           ),
                         )
@@ -195,7 +219,7 @@ class _ButtonStyleSetting extends StatelessWidget {
 
                 // Border width slider
                 Text(
-                  config.l10n.dsBorderWidth,
+                  config.ezL10n.dsBorderWidth,
                   style: config.bodyStyle,
                 ),
                 ConstrainedBox(
@@ -225,6 +249,7 @@ class _ButtonStyleSetting extends StatelessWidget {
 
                 // Reset button
                 EzElevatedIconButton(
+                  config,
                   onPressed: () async {
                     if (EzCM.updateBoth || config.isDark) {
                       await EzCM.remove(darkButtonShapeKey);
@@ -242,8 +267,8 @@ class _ButtonStyleSetting extends StatelessWidget {
                           EzCM.getDefault(config.isDark ? darkBorderWidthKey : lightBorderWidthKey);
                     });
                   },
-                  icon: EzIcon(Icons.refresh),
-                  label: config.l10n.gReset,
+                  icon: EzIcon(config, Icons.refresh),
+                  label: config.ezL10n.gReset,
                 ),
                 config.separator,
               ]),
@@ -251,10 +276,10 @@ class _ButtonStyleSetting extends StatelessWidget {
           );
 
           if (currShape != config.buttonShape || currWidth != config.borderWidth) {
-            await config.rebuildUI();
+            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
           }
         },
-        label: config.l10n.dsStyle,
-        icon: EzIcon(Icons.edit),
+        label: config.ezL10n.dsStyle,
+        icon: EzIcon(config, Icons.edit),
       );
 }

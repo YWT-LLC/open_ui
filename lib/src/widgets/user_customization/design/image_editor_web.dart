@@ -9,8 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Unsupported in web
-  final String imagePath;
+  final String path;
 
   /// Unsupported in web
   final double? cropAspectRatio;
@@ -23,8 +26,9 @@ class EzImageEditor extends StatelessWidget {
 
   /// Unsupported in web
   const EzImageEditor(
-    this.imagePath, {
+    this.config, {
     super.key,
+    required this.path,
     this.initCropRectType = InitCropRectType.imageRect,
     this.cropAspectRatio,
     this.initialCropAspectRatio,
@@ -37,8 +41,8 @@ class EzImageEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text(
-        EzConfig.l10n.dsNoWeb,
-        style: EzConfig.bodyStyle,
+        config.ezL10n.dsNoWeb,
+        style: config.bodyStyle,
         textAlign: TextAlign.center,
       );
 }

@@ -52,24 +52,25 @@ class OpenUIScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final double toolbarHeight = ezToolbarHeight(context: context, title: title);
+    final double toolbarHeight = ezToolbarHeight(config, context: context, title: title);
 
     // Define custom widgets //
 
     final Widget options = MenuAnchor(
       builder: (_, MenuController controller, ___) => EzIconButton(
+        config,
         onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
-        tooltip: config.l10n.gOptions,
+        tooltip: config.ezL10n.gOptions,
         icon: Icon(
           Icons.more_vert,
-          semanticLabel: config.l10n.gOptions,
+          semanticLabel: config.ezL10n.gOptions,
           size: config.titleStyle!.fontSize,
         ),
       ),
       menuChildren: <Widget>[
-        if (showSettings) SettingsButton(context),
-        if (onUpload != null) UploadButton(onUpload!),
-        const OpenSourceButton(),
+        if (showSettings) SettingsButton(config, parentContext: context),
+        if (onUpload != null) UploadButton(config, onUpload: onUpload!),
+        OpenSourceButton(config),
       ],
     );
 
@@ -77,24 +78,27 @@ class OpenUIScaffold extends StatelessWidget {
 
     return EzAdaptiveParent(
       small: EzScaffold(
+        config,
         appBar: PreferredSize(
           preferredSize: Size(double.infinity, toolbarHeight),
           child: EzAppBar(
+            config,
             height: toolbarHeight,
-            leading:
-                running ? const SizedBox.shrink() : (EzCM.isLefty ? options : const EzBackAction()),
+            leading: running
+                ? const SizedBox.shrink()
+                : (config.isLefty ? options : EzBackAction(config)),
             leadingWidth: toolbarHeight,
             title: Text(title, textAlign: TextAlign.center),
             actions: <Widget>[
-              running ? const SizedBox.shrink() : (EzCM.isLefty ? const EzBackAction() : options)
+              running ? const SizedBox.shrink() : (config.isLefty ? EzBackAction(config) : options)
             ],
           ),
         ),
         body: body,
         fabs: <Widget>[
-          updater,
+          updater(config),
           if (fabs != null) ...fabs!,
-          ...config.backFABs(isHome: isHome),
+          ...config.backFABs(isHome),
         ],
       ),
     );

@@ -8,6 +8,9 @@ import '../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzRichText extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Text.rich] passthrough
   final List<InlineSpan> children;
 
@@ -32,7 +35,8 @@ class EzRichText extends StatelessWidget {
   /// [Text.rich] wrapper with custom [Semantics] behavior
   /// Recommended to pair with [EzPlainText] and [EzInlineLink] rather than [TextSpan]s
   const EzRichText(
-    this.children, {
+    this.config, {
+    required this.children,
     super.key,
     this.style,
     this.textAlign = TextAlign.start,
@@ -85,7 +89,8 @@ class EzRichText extends StatelessWidget {
         explicitChildNodes: true,
         child: textBackground
             ? EzTextBackground(
-                _text(),
+                config,
+                text: _text(),
                 borderRadius: borderRadius,
                 baseColor: baseColor,
                 backgroundColor: backgroundColor,

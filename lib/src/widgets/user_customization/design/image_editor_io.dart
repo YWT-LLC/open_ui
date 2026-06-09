@@ -15,8 +15,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [File] path of the image being edited
-  final String imagePath;
+  final String path;
 
   /// [ExtendedImageMode.editor] cropAspectRatio passthrough
   /// If null, it will mirror the window's aspect ratio
@@ -34,8 +37,9 @@ class EzImageEditor extends StatefulWidget {
   /// Allows the user to crop/zoom/rotate the image
   /// Intended to be used in a full-screen modal
   const EzImageEditor(
-    this.imagePath, {
+    this.config, {
     super.key,
+    required this.path,
     this.initCropRectType = InitCropRectType.imageRect,
     this.cropAspectRatio,
     this.initialCropAspectRatio,
@@ -53,7 +57,7 @@ class EzImageEditor extends StatefulWidget {
 class _EzImageEditorState extends State<EzImageEditor> {
   // Define the build data //
 
-  final Duration rotateDuration = ezAnimDuration(mod: 0.5);
+  late final Duration rotateDuration = ezDuration(widget.config.animDur, mod: 0.5);
 
   final ImageEditorController _editorController = ImageEditorController();
   final GlobalKey<ExtendedImageEditorState> editorKey = GlobalKey<ExtendedImageEditorState>();
@@ -68,7 +72,8 @@ class _EzImageEditorState extends State<EzImageEditor> {
     return size.width / size.height;
   }
 
-  Widget keyIcon({
+  Widget keyIcon(
+    EzCP config, {
     required IconData icon,
     required Color color,
     required String name,
@@ -79,12 +84,13 @@ class _EzImageEditorState extends State<EzImageEditor> {
         excludeFromSemantics: false,
         child: ExcludeSemantics(
           child: EzCol(children: <Widget>[
-            EzIcon(icon, color: color),
-            EzConfig.margin,
+            EzIcon(config, icon, color: color),
+            widget.config.margin,
             EzText(
-              name,
+              widget.config,
+              text: name,
               textAlign: TextAlign.center,
-              style: EzConfig.labelStyle?.copyWith(color: color),
+              style: widget.config.labelStyle?.copyWith(color: color),
             ),
           ]),
         ),
@@ -100,7 +106,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
     _editorController.addListener(updateState);
 
     // Get the file extension
-    final String path = widget.imagePath;
+    final String path = widget.path;
     final int dot = path.lastIndexOf('.');
 
     fileExt = (dot != -1 && dot < path.length - 1) ? path.substring(dot + 1).toLowerCase() : 'jpg';
@@ -119,7 +125,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
             // Preview
             Expanded(
               child: ExtendedImage.file(
-                File(widget.imagePath),
+                File(widget.path),
                 fit: BoxFit.contain,
                 mode: ExtendedImageMode.editor,
                 extendedImageEditorKey: editorKey,
@@ -130,11 +136,11 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   initialCropAspectRatio: widget.initialCropAspectRatio ?? liveAspectRatio(),
                   initCropRectType: widget.initCropRectType,
                   cropRectPadding: EdgeInsets.only(
-                    top: EzConfig.spacing,
-                    left: EzConfig.spacing,
-                    right: EzConfig.spacing,
+                    top: widget.config.spacing,
+                    left: widget.config.spacing,
+                    right: widget.config.spacing,
                   ),
-                  hitTestSize: max(EzConfig.padding, kMinInteractiveDimension),
+                  hitTestSize: max(widget.config.padding, kMinInteractiveDimension),
                   controller: _editorController,
                 ),
               ),
@@ -142,15 +148,17 @@ class _EzImageEditorState extends State<EzImageEditor> {
 
             // Key && controls
             Padding(
-              padding: EdgeInsets.all(EzConfig.spacing),
+              padding: EdgeInsets.all(widget.config.spacing),
               child: EzScrollView(
+                widget.config,
                 scrollDirection: Axis.horizontal,
                 startCentered: true,
                 showScrollHint: true,
                 children: <Widget>[
                   // Rotate left
                   EzIconButton(
-                    tooltip: EzConfig.l10n.dsRotateLeft,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.dsRotateLeft,
                     enabled: !processing,
                     onPressed: () {
                       _editorController.rotate(
@@ -161,13 +169,14 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       );
                       setState(() {});
                     },
-                    icon: EzIcon(Icons.rotate_left),
+                    icon: EzIcon(widget.config, Icons.rotate_left),
                   ),
-                  EzConfig.rowSpacer,
+                  widget.config.rowSpacer,
 
                   // Rotate right
                   EzIconButton(
-                    tooltip: EzConfig.l10n.dsRotateRight,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.dsRotateRight,
                     enabled: !processing,
                     onPressed: () {
                       _editorController.rotate(
@@ -178,65 +187,69 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       );
                       setState(() {});
                     },
-                    icon: EzIcon(Icons.rotate_right),
+                    icon: EzIcon(widget.config, Icons.rotate_right),
                   ),
 
                   // Div
                   SizedBox(
-                    height: EzConfig.iconSize + EzConfig.padding,
+                    height: widget.config.iconSize + widget.config.padding,
                     child: VerticalDivider(
-                      width: EzConfig.spacing * 2,
-                      color: EzConfig.colors.secondary,
+                      width: widget.config.spacing * 2,
+                      color: widget.config.colors.secondary,
                     ),
                   ),
 
                   // Reset
                   EzIconButton(
-                    tooltip: EzConfig.l10n.gReset,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.gReset,
                     enabled: !processing,
                     onPressed: () {
                       _editorController.reset();
                       setState(() {});
                     },
-                    icon: EzIcon(Icons.refresh),
+                    icon: EzIcon(widget.config, Icons.refresh),
                   ),
-                  EzConfig.rowSpacer,
+                  widget.config.rowSpacer,
 
                   // Undo
                   EzIconButton(
-                    tooltip: EzConfig.l10n.gUndo,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.gUndo,
                     enabled: !processing && _editorController.canUndo,
                     onPressed: () {
                       _editorController.undo();
                       setState(() {});
                     },
-                    icon: EzIcon(Icons.undo),
+                    icon: EzIcon(widget.config, Icons.undo),
                   ),
-                  EzConfig.rowSpacer,
+                  widget.config.rowSpacer,
 
                   // Redo
                   EzIconButton(
-                    tooltip: EzConfig.l10n.gRedo,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.gRedo,
                     enabled: !processing && _editorController.canRedo,
                     onPressed: () {
                       _editorController.redo();
                       setState(() {});
                     },
-                    icon: EzIcon(Icons.redo),
+                    icon: EzIcon(widget.config, Icons.redo),
                   ),
 
                   // Div
                   SizedBox(
-                    height: EzConfig.iconSize + EzConfig.padding,
+                    height: widget.config.iconSize + widget.config.padding,
                     child: VerticalDivider(
-                      width: EzConfig.spacing * 2,
-                      color: EzConfig.colors.secondary,
+                      width: widget.config.spacing * 2,
+                      color: widget.config.colors.secondary,
                     ),
                   ),
 
                   // Done
                   EzIconButton(
-                    tooltip: EzConfig.l10n.gApply,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.gApply,
                     onPressed: () async {
                       // Check exit cases
                       if (processing) return;
@@ -313,20 +326,27 @@ class _EzImageEditorState extends State<EzImageEditor> {
                         }
                       } catch (e) {
                         (context.mounted)
-                            ? await ezLogAlert(context, message: e.toString())
+                            ? await ezLogAlert(
+                                widget.config,
+                                context: context,
+                                message: e.toString(),
+                              )
                             : ezLog(e.toString());
                         setState(() => processing = false);
                       }
                     },
-                    icon: processing ? const CircularProgressIndicator() : EzIcon(Icons.check),
+                    icon: processing
+                        ? const CircularProgressIndicator()
+                        : EzIcon(widget.config, Icons.check),
                   ),
-                  EzConfig.rowSpacer,
+                  widget.config.rowSpacer,
 
                   // Cancel
                   EzIconButton(
-                    tooltip: EzConfig.l10n.gCancel,
+                    widget.config,
+                    tooltip: widget.config.ezL10n.gCancel,
                     onPressed: () => Navigator.pop(context, null),
-                    icon: EzIcon(Icons.delete),
+                    icon: EzIcon(widget.config, Icons.delete),
                   ),
                 ],
               ),

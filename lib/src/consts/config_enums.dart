@@ -39,6 +39,59 @@ const Set<String> ezEnumVals = <String>{
   esLinear,
 };
 
+//* Animation curve *//
+
+/// enum [String] 'bounce'
+const String esBounce = 'bounce';
+
+/// enum [String] 'ease'
+const String esEase = 'ease';
+
+/// enum [String] 'elastic'
+const String esElastic = 'elastic';
+
+/// enum [String] 'linear'
+const String esLinear = 'linear';
+
+enum EzAnimationCurve { bounce, ease, elastic, linear }
+
+extension EACConfig on EzAnimationCurve {
+  String get value => switch (this) {
+        EzAnimationCurve.bounce => esBounce,
+        EzAnimationCurve.ease => esEase,
+        EzAnimationCurve.elastic => esElastic,
+        EzAnimationCurve.linear => esLinear,
+      };
+
+  Curve get curve => switch (this) {
+        EzAnimationCurve.bounce => Curves.bounceInOut,
+        EzAnimationCurve.ease => Curves.easeInOut,
+        EzAnimationCurve.elastic => Curves.elasticInOut,
+        EzAnimationCurve.linear => Curves.linear,
+      };
+
+  static EzAnimationCurve lookup(String? value) => switch (value) {
+        esBounce => EzAnimationCurve.bounce,
+        esElastic => EzAnimationCurve.elastic,
+        esLinear => EzAnimationCurve.linear,
+        esEase || _ => EzAnimationCurve.ease,
+      };
+
+  String name(EFUILang l10n) => switch (this) {
+        EzAnimationCurve.bounce => l10n.dsBounce,
+        EzAnimationCurve.ease => l10n.dsEase,
+        EzAnimationCurve.elastic => l10n.dsElastic,
+        EzAnimationCurve.linear => l10n.dsLinear,
+      };
+
+  static Curve translate(String? value) => switch (value) {
+        esBounce => Curves.bounceInOut,
+        esElastic => Curves.elasticInOut,
+        esLinear => Curves.linear,
+        esEase || _ => Curves.easeInOut,
+      };
+}
+
 //* Box Fit *//
 
 /// Library for getting a [BoxFit] from its name
@@ -240,20 +293,22 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.zoom => l10n.dsZoom,
       };
 
-  Icon icon(bool isLTR) => switch (this) {
-        EzTransitionType.none => EzIcon(Icons.cancel),
-        EzTransitionType.system => EzIcon(EzCM.onMobile
-            ? EzCM.platform == TargetPlatform.iOS
-                ? Icons.phone_iphone
-                : Icons.phone_android
-            : Icons.computer),
-        EzTransitionType.turnX => EzIcon(Icons.flip),
-        EzTransitionType.turnY => EzIcon(Icons.u_turn_left),
-        EzTransitionType.rotate => EzIcon(Icons.rotate_90_degrees_cw),
-        EzTransitionType.slideX =>
-          EzIcon(isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
-        EzTransitionType.slideY => EzIcon(Icons.keyboard_double_arrow_up),
-        EzTransitionType.zoom => EzIcon(Icons.zoom_in),
+  Icon icon(EzCP config) => switch (this) {
+        EzTransitionType.none => EzIcon(config, Icons.cancel),
+        EzTransitionType.system => EzIcon(
+            config,
+            EzCM.onMobile
+                ? EzCM.platform == TargetPlatform.iOS
+                    ? Icons.phone_iphone
+                    : Icons.phone_android
+                : Icons.computer),
+        EzTransitionType.turnX => EzIcon(config, Icons.flip),
+        EzTransitionType.turnY => EzIcon(config, Icons.u_turn_left),
+        EzTransitionType.rotate => EzIcon(config, Icons.rotate_90_degrees_cw),
+        EzTransitionType.slideX => EzIcon(config,
+            config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
+        EzTransitionType.slideY => EzIcon(config, Icons.keyboard_double_arrow_up),
+        EzTransitionType.zoom => EzIcon(config, Icons.zoom_in),
       };
 
   /// Defaults to [EzTransitionType.system]
@@ -269,55 +324,4 @@ extension ETTConfig on EzTransitionType {
       };
 }
 
-//* Animation curve *//
-
-/// enum [String] 'bounce'
-const String esBounce = 'bounce';
-
-/// enum [String] 'ease'
-const String esEase = 'ease';
-
-/// enum [String] 'elastic'
-const String esElastic = 'elastic';
-
-/// enum [String] 'linear'
-const String esLinear = 'linear';
-
-enum EzAnimationCurve { bounce, ease, elastic, linear }
-
-extension EACConfig on EzAnimationCurve {
-  String get value => switch (this) {
-        EzAnimationCurve.bounce => esBounce,
-        EzAnimationCurve.ease => esEase,
-        EzAnimationCurve.elastic => esElastic,
-        EzAnimationCurve.linear => esLinear,
-      };
-
-  Curve get curve => switch (this) {
-        EzAnimationCurve.bounce => Curves.bounceInOut,
-        EzAnimationCurve.ease => Curves.easeInOut,
-        EzAnimationCurve.elastic => Curves.elasticInOut,
-        EzAnimationCurve.linear => Curves.linear,
-      };
-
-  static EzAnimationCurve lookup(String? value) => switch (value) {
-        esBounce => EzAnimationCurve.bounce,
-        esElastic => EzAnimationCurve.elastic,
-        esLinear => EzAnimationCurve.linear,
-        esEase || _ => EzAnimationCurve.ease,
-      };
-
-  String name(EFUILang l10n) => switch (this) {
-        EzAnimationCurve.bounce => l10n.dsBounce,
-        EzAnimationCurve.ease => l10n.dsEase,
-        EzAnimationCurve.elastic => l10n.dsElastic,
-        EzAnimationCurve.linear => l10n.dsLinear,
-      };
-
-  static Curve translate(String? value) => switch (value) {
-        esBounce => Curves.bounceInOut,
-        esElastic => Curves.elasticInOut,
-        esLinear => Curves.linear,
-        esEase || _ => Curves.easeInOut,
-      };
-}
+//* Rebuild type *//

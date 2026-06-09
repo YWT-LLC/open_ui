@@ -197,7 +197,7 @@ class EzFooter extends StatelessWidget {
           : Padding(
               padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
               child: Text(
-                config.efuiL10n.gMachineTranslated,
+                config.ezL10n.gMachineTranslated,
                 style: config.labelStyle,
                 textAlign: textAlign,
               ),

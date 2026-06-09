@@ -18,7 +18,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen() : super(key: ValueKey<int>(EzConfig.seed));
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -31,12 +31,12 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   final bool isDesktop = kIsWeb
       ? false
-      : (EzConfig.platform == TargetPlatform.linux ||
-          EzConfig.platform == TargetPlatform.macOS ||
-          EzConfig.platform == TargetPlatform.windows);
+      : (EzCM.platform == TargetPlatform.linux ||
+          EzCM.platform == TargetPlatform.macOS ||
+          EzCM.platform == TargetPlatform.windows);
 
-  final bool isMac = !kIsWeb && EzConfig.platform == TargetPlatform.macOS;
-  final bool isWindows = !kIsWeb && EzConfig.platform == TargetPlatform.windows;
+  final bool isMac = !kIsWeb && EzCM.platform == TargetPlatform.macOS;
+  final bool isWindows = !kIsWeb && EzCM.platform == TargetPlatform.windows;
 
   late final String homePath = isDesktop
       ? isWindows
@@ -52,18 +52,20 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   // Form data //
 
-  final TextEditingController nameTC = TextEditingController(text: EzConfig.get(nameBackupKey));
-  late String namePreview = l10n.csNamePreview;
+  final TextEditingController nameTC = TextEditingController(text: EzCM.get(nameBackupKey));
+  late String namePreview =
+      l10n(Provider.of<EzCP>(ezRootNav.currentContext!, listen: false)).csNamePreview;
   bool validName = false;
 
   final TextEditingController publisherTC =
-      TextEditingController(text: EzConfig.get(publisherBackupKey));
-  late String pubPreview = l10n.csPubPreview;
+      TextEditingController(text: EzCM.get(publisherBackupKey));
+  late String pubPreview =
+      l10n(Provider.of<EzCP>(ezRootNav.currentContext!, listen: false)).csPubPreview;
 
   final TextEditingController descriptionTC =
-      TextEditingController(text: EzConfig.get(descriptionBackupKey));
+      TextEditingController(text: EzCM.get(descriptionBackupKey));
 
-  final TextEditingController domainTC = TextEditingController(text: EzConfig.get(domainBackupKey));
+  final TextEditingController domainTC = TextEditingController(text: EzCM.get(domainBackupKey));
   bool exampleDomain = false;
 
   late final int currYear = DateTime.now().year;
@@ -114,10 +116,10 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   }
 
   /// Validate the code gen file path (Desktop only)
-  Future<bool> checkPath(TextEditingController controller) async {
+  Future<bool> checkPath(EzCP config, TextEditingController controller) async {
     if (await Directory(controller.text).exists()) return true;
 
-    final String badPath = l10n.csBadPath;
+    final String badPath = l10n(config).csBadPath;
 
     // Disable interaction
     setState(() {
@@ -127,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
     });
 
     // Wait a sec
-    await Future<void>.delayed(ezReadingTime(badPath));
+    await Future<void>.delayed(ezReadingTime(config, badPath));
 
     // Re-enable interaction
     setState(() => canGen = true);
@@ -146,8 +148,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) async {
     // Shared changes from relevant backups
-    final String? bName = EzConfig.get(nameBackupKey);
-    final String? bPub = EzConfig.get(publisherBackupKey);
+    final String? bName = EzCM.get(nameBackupKey);
+    final String? bPub = EzCM.get(publisherBackupKey);
 
     if (bName != null && bName.isNotEmpty) {
       updateName(bName);
@@ -181,398 +183,496 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   //* Return the build *//
 
   @override
-  Widget build(BuildContext context) => Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => OpenUIScaffold(
-          EzScreen(
-            EzScrollView(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // Basic settings //
+  Widget build(BuildContext context) {
+    return Consumer<EzCP>(
+      builder: (_, EzCP config, __) => OpenUIScaffold(
+        config,
+        body: EzScreen(
+          config,
+          alignment: Alignment.topLeft,
+          child: EzScrollView(
+            config,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Basic settings //
 
-                // App name
-                _BasicField(
-                  title: l10n.csAppName,
-                  tip: TextSpan(
-                    children: <InlineSpan>[
-                      EzPlainText(text: l10n.csNameTip),
-                      EzPlainText(text: '  -->  ', semanticsLabel: ' ${l10n.csBecomes} '),
-                      EzPlainText(text: ezTitleToSnake(l10n.csNameTip)),
-                    ],
-                    style: config.theme.textTheme.bodyLarge,
-                  ),
-                  controller: nameTC,
-                  validator: (String? entry) => validateAppName(
-                    entry,
-                    onSuccess: () async {
-                      await EzConfig.setString(nameBackupKey, nameTC.text);
-                      updateName(nameTC.text);
-                    },
-                    onFailure: () => setState(() => validName = false),
-                  ),
-                  hintText: l10n.csNamePreview,
+              // App name
+              _BasicField(
+                config,
+                title: l10n(config).csAppName,
+                tip: TextSpan(
+                  children: <InlineSpan>[
+                    EzPlainText(text: l10n(config).csNameTip),
+                    EzPlainText(text: '  -->  ', semanticsLabel: ' ${l10n(config).csBecomes} '),
+                    EzPlainText(text: ezTitleToSnake(l10n(config).csNameTip)),
+                  ],
+                  style: config.bodyStyle,
                 ),
-                config.layout.spacer,
+                controller: nameTC,
+                validator: (String? entry) => validateAppName(
+                  config,
+                  entry,
+                  onSuccess: () async {
+                    await EzCM.setString(nameBackupKey, nameTC.text);
+                    updateName(nameTC.text);
+                  },
+                  onFailure: () => setState(() => validName = false),
+                ),
+                hintText: l10n(config).csNamePreview,
+              ),
+              config.spacer,
 
-                // Publisher name
-                _BasicField(
-                  title: l10n.csPubName,
-                  tip: l10n.csPubTip,
-                  controller: publisherTC,
-                  validator: (String? value) => validatePublisher(
-                    value,
-                    onSuccess: () async {
-                      await EzConfig.setString(publisherBackupKey, publisherTC.text);
-                      updatePublisher(publisherTC.text);
+              // Publisher name
+              _BasicField(
+                config,
+                title: l10n(config).csPubName,
+                tip: l10n(config).csPubTip,
+                controller: publisherTC,
+                validator: (String? value) => validatePublisher(
+                  config,
+                  value,
+                  onSuccess: () async {
+                    await EzCM.setString(publisherBackupKey, publisherTC.text);
+                    updatePublisher(publisherTC.text);
+                  },
+                ),
+                hintText: l10n(config).csPubPreview,
+              ),
+              config.spacer,
+
+              // Description
+              _BasicField(
+                config,
+                title: l10n(config).csDescription,
+                controller: descriptionTC,
+                validator: (String? value) => validateDescription(
+                  config,
+                  value,
+                  onSuccess: () async {
+                    await EzCM.setString(descriptionBackupKey, descriptionTC.text);
+                    setState(() {});
+                  },
+                ),
+                hintText: l10n(config).csDescPreview,
+              ),
+              config.spacer,
+
+              // Domain name
+              EzRow(
+                config,
+                reverseHands: false,
+                children: <Widget>[
+                  Flexible(
+                    child: EzText(
+                      config,
+                      text: l10n(config).csDomainName,
+                      style: config.titleStyle,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  EzToolTipper(config, message: l10n(config).csDomainTip),
+                ],
+              ),
+              ConstrainedBox(
+                constraints: ezTextFieldConstraints(context),
+                child: EzCol(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    EzAnimVis(
+                      config,
+                      visible: !exampleDomain,
+                      mod: 0.5,
+                      forceType: EzTransitionType.zoom,
+                      forceFade: true,
+                      kid: TextFormField(
+                        controller: domainTC,
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                        validator: (String? text) => validateDomain(
+                          config,
+                          text,
+                          onSuccess: () async {
+                            await EzCM.setString(domainBackupKey, domainTC.text);
+                            setState(() {});
+                          },
+                        ),
+                        autovalidateMode: AutovalidateMode.onUnfocus,
+                        decoration: const InputDecoration(hintText: 'com.example'),
+                      ),
+                    ),
+                    EzAnimSwitch(
+                      config,
+                      mod: 0.5,
+                      forceType: EzTransitionType.zoom,
+                      forceFade: false,
+                      child: EzSwitchPair(
+                        config,
+                        key: ValueKey<bool>(exampleDomain),
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: (exampleDomain || config.isLefty)
+                            ? MainAxisAlignment.start
+                            : MainAxisAlignment.end,
+                        text: config.ezL10n.gNA,
+                        semanticsLabel: config.ezL10n.gNAHint,
+                        textAlign: TextAlign.start,
+                        value: exampleDomain,
+                        onChanged: (bool? value) {
+                          if (value == null) return;
+                          setState(() => exampleDomain = value);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              config.separator,
+
+              // Default app config //
+
+              EzRichText(
+                config,
+                children: <InlineSpan>[
+                  EzPlainText(
+                    text: l10n(config).csGenApp(isDesktop
+                        ? (validName ? namePreview : l10n(config).csTheApp)
+                        : l10n(config).csTheConfig),
+                  ),
+                  EzInlineLink(
+                    config,
+                    text: config.ezL10n.gSettings.toLowerCase(),
+                    style: ezSubTitleStyle(config.styles),
+                    textAlign: TextAlign.start,
+                    onTap: () => context.goNamed(settingsHubPath),
+                    hint: config.ezL10n.ssNavHint,
+                  ),
+                  EzPlainText(
+                      text: l10n(config)
+                          .csSetColors(validName ? namePreview : l10n(config).csYourApp)),
+                  EzInlineLink(
+                    config,
+                    text: l10n(config).csHere,
+                    style: ezSubTitleStyle(config.styles),
+                    textAlign: TextAlign.start,
+                    url: Uri.parse('https://www.canva.com/colors/color-wheel/'),
+                    hint: l10n(config).csHereHint,
+                  ),
+                ],
+                style: ezSubTitleStyle(config.styles),
+                textAlign: TextAlign.start,
+              ),
+              config.separator,
+
+              // Advanced settings //
+
+              ExpansionTile(
+                controller: advancedEC,
+                onExpansionChanged: (_) => setState(() {}),
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                showTrailingIcon: false,
+                title: EzRow(
+                  config,
+                  children: <Widget>[
+                    Flexible(
+                      child: Text(
+                        l10n(config).csAdvanced,
+                        style: config.titleStyle,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    config.rowMargin,
+                    Semantics(
+                      hint: advancedEC.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
+                      button: true,
+                      child: ExcludeSemantics(
+                        child: EzIconButton(
+                          config,
+                          icon: EzIcon(config, ezVisIcon(config, advancedEC.isExpanded)),
+                          onPressed: () =>
+                              advancedEC.isExpanded ? advancedEC.collapse() : advancedEC.expand(),
+                          tooltip:
+                              advancedEC.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                children: <Widget>[
+                  config.spacer,
+
+                  // Work path picker
+                  if (isDesktop) ...<Widget>[
+                    Text(
+                      l10n(config).csOutputPath,
+                      style: config.bodyStyle?.copyWith(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.start,
+                    ),
+                    EzScrollView(
+                      config,
+                      scrollDirection: Axis.horizontal,
+                      reverseHands: true,
+                      children: <Widget>[
+                        // Text field
+                        ConstrainedBox(
+                          constraints: ezTextFieldConstraints(context),
+                          child: TextFormField(
+                            controller: workPathTC,
+                            readOnly: !canGen,
+                            textAlign: TextAlign.start,
+                            maxLines: 1,
+                            validator: (String? path) =>
+                                (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
+                            autovalidateMode: AutovalidateMode.onUnfocus,
+                          ),
+                        ),
+                        config.rowMargin,
+
+                        // Browse
+                        EzIconButton(
+                          config,
+                          onPressed: () async {
+                            final String? selectedDirectory = await FilePicker.getDirectoryPath();
+                            if (selectedDirectory == null) return;
+
+                            setState(() {
+                              workPathTC.text = selectedDirectory.contains(homePath)
+                                  ? '$homePath${selectedDirectory.split(homePath)[1]}'
+                                  : selectedDirectory;
+                            });
+                          },
+                          tooltip: l10n(config).csFileBrowser,
+                          icon: EzIcon(config, Icons.folder_open),
+                        ),
+                      ],
+                    ),
+                    config.spacer,
+                  ],
+
+                  // Copyright config
+                  _AdvancedSettingsField(
+                    config,
+                    title: l10n(config).csCopyright,
+                    tip: l10n(config).csCopyrightTip,
+                    ec: copyrightEC,
+                    tc: copyrightTC,
+                  ),
+                  config.spacer,
+
+                  // LICENSE config
+                  _LicensePicker(
+                    config,
+                    ec: licenseEC,
+                    groupValue: license,
+                    onChanged: (String? picked) {
+                      if (picked != null) {
+                        setState(() => license = picked);
+                      }
                     },
                   ),
-                  hintText: l10n.csPubPreview,
-                ),
-                config.layout.spacer,
+                  config.spacer,
 
-                // Description
-                _BasicField(
-                  title: l10n.csDescription,
-                  controller: descriptionTC,
-                  validator: (String? value) => validateDescription(
-                    value,
-                    onSuccess: () async {
-                      await EzConfig.setString(descriptionBackupKey, descriptionTC.text);
-                      setState(() {});
-                    },
+                  // l10n config
+                  _AdvancedSettingsField(
+                    config,
+                    title: 'l10n(config).yaml',
+                    tip: l10n(config).csL10nTip,
+                    ec: l10nEC,
+                    tc: l10nTC,
                   ),
-                  hintText: l10n.csDescPreview,
-                ),
-                config.layout.spacer,
+                  config.spacer,
 
-                // Domain name
+                  // Analysis options config
+                  _AdvancedSettingsField(
+                    config,
+                    title: 'analysis_options.yaml',
+                    tip: l10n(config).csLintTip,
+                    ec: analysisEC,
+                    tc: analysisTC,
+                  ),
+                  config.spacer,
+
+                  // VS Code launch config
+                  _AdvancedSettingsField(
+                    config,
+                    title: '.vscode/launch.json',
+                    tip: l10n(config).csLaunchTip,
+                    ec: launchEC,
+                    tc: launchTC,
+                  ),
+                ],
+              ),
+              advancedEC.isExpanded
+                  ? config.separator
+                  : EzDivider(
+                      config.spacing * 3,
+                      constraints: ezTextFieldConstraints(context, prop: 0.333),
+                    ),
+
+              // Flutter path picker (Mac only)
+              if (isMac) ...<Widget>[
+                // Title
                 EzRow(
+                  config,
                   reverseHands: false,
                   children: <Widget>[
                     Flexible(
                       child: EzText(
-                        l10n.csDomainName,
-                        style: config.theme.textTheme.titleLarge,
+                        config,
+                        text: l10n(config).csFlutterPath,
+                        style: config.titleStyle,
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    EzToolTipper(message: l10n.csDomainTip),
+                    EzToolTipper(config, message: l10n(config).csNoSpaces),
                   ],
                 ),
-                ConstrainedBox(
-                  constraints: ezTextFieldConstraints(context),
-                  child: EzCol(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      EzAnimVis(
-                        visible: !exampleDomain,
-                        mod: 0.5,
-                        forceType: EzTransitionType.zoom,
-                        forceFade: true,
-                        kid: TextFormField(
-                          controller: domainTC,
-                          textAlign: TextAlign.start,
-                          maxLines: 1,
-                          validator: (String? text) => validateDomain(
-                            text,
-                            onSuccess: () async {
-                              await EzConfig.setString(domainBackupKey, domainTC.text);
-                              setState(() {});
-                            },
-                          ),
-                          autovalidateMode: AutovalidateMode.onUnfocus,
-                          decoration: const InputDecoration(hintText: 'com.example'),
-                        ),
-                      ),
-                      EzAnimSwitch(
-                        mod: 0.5,
-                        forceType: EzTransitionType.zoom,
-                        forceFade: false,
-                        child: EzSwitchPair(
-                          key: ValueKey<bool>(exampleDomain),
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: (exampleDomain || EzConfig.isLefty)
-                              ? MainAxisAlignment.start
-                              : MainAxisAlignment.end,
-                          text: config.l10n.gNA,
-                          semanticsLabel: config.l10n.gNAHint,
-                          textAlign: TextAlign.start,
-                          value: exampleDomain,
-                          onChanged: (bool? value) {
-                            if (value == null) return;
-                            setState(() => exampleDomain = value);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                config.layout.separator,
 
-                // Default app config //
-
-                EzRichText(
-                  <InlineSpan>[
-                    EzPlainText(
-                      text: l10n.csGenApp(
-                          isDesktop ? (validName ? namePreview : l10n.csTheApp) : l10n.csTheConfig),
-                    ),
-                    EzInlineLink(
-                      config.l10n.gSettings.toLowerCase(),
-                      style: ezSubTitleStyle(),
-                      textAlign: TextAlign.start,
-                      onTap: () => context.goNamed(settingsHubPath),
-                      hint: config.l10n.ssNavHint,
-                    ),
-                    EzPlainText(text: l10n.csSetColors(validName ? namePreview : l10n.csYourApp)),
-                    EzInlineLink(
-                      l10n.csHere,
-                      style: ezSubTitleStyle(),
-                      textAlign: TextAlign.start,
-                      url: Uri.parse('https://www.canva.com/colors/color-wheel/'),
-                      hint: l10n.csHereHint,
-                    ),
-                  ],
-                  style: ezSubTitleStyle(),
-                  textAlign: TextAlign.start,
-                ),
-                config.layout.separator,
-
-                // Advanced settings //
-
-                ExpansionTile(
-                  controller: advancedEC,
-                  onExpansionChanged: (_) => setState(() {}),
-                  expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                  showTrailingIcon: false,
-                  title: EzRow(
-                    children: <Widget>[
-                      Flexible(
-                        child: Text(
-                          l10n.csAdvanced,
-                          style: config.theme.textTheme.titleLarge,
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                      config.layout.rowMargin,
-                      Semantics(
-                        hint: advancedEC.isExpanded ? config.l10n.gClose : config.l10n.gOpen,
-                        button: true,
-                        child: ExcludeSemantics(
-                          child: EzIconButton(
-                            icon: EzIcon(ezVisIcon(advancedEC.isExpanded)),
-                            onPressed: () =>
-                                advancedEC.isExpanded ? advancedEC.collapse() : advancedEC.expand(),
-                            tooltip: advancedEC.isExpanded ? config.l10n.gClose : config.l10n.gOpen,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  children: <Widget>[
-                    config.layout.spacer,
-
-                    // Work path picker
-                    if (isDesktop) ...<Widget>[
-                      Text(
-                        l10n.csOutputPath,
-                        style:
-                            config.theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.start,
-                      ),
-                      EzScrollView(
-                        scrollDirection: Axis.horizontal,
-                        reverseHands: true,
-                        children: <Widget>[
-                          // Text field
-                          ConstrainedBox(
-                            constraints: ezTextFieldConstraints(context),
-                            child: TextFormField(
-                              controller: workPathTC,
-                              readOnly: !canGen,
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              validator: (String? path) =>
-                                  (path == null || path.isEmpty) ? l10n.csPathRequired : null,
-                              autovalidateMode: AutovalidateMode.onUnfocus,
-                            ),
-                          ),
-                          config.layout.rowMargin,
-
-                          // Browse
-                          EzIconButton(
-                            onPressed: () async {
-                              final String? selectedDirectory = await FilePicker.getDirectoryPath();
-                              if (selectedDirectory == null) return;
-
-                              setState(() {
-                                workPathTC.text = selectedDirectory.contains(homePath)
-                                    ? '$homePath${selectedDirectory.split(homePath)[1]}'
-                                    : selectedDirectory;
-                              });
-                            },
-                            tooltip: l10n.csFileBrowser,
-                            icon: EzIcon(Icons.folder_open),
-                          ),
-                        ],
-                      ),
-                      config.layout.spacer,
-                    ],
-
-                    // Copyright config
-                    _AdvancedSettingsField(
-                      title: l10n.csCopyright,
-                      tip: l10n.csCopyrightTip,
-                      ec: copyrightEC,
-                      tc: copyrightTC,
-                    ),
-                    config.layout.spacer,
-
-                    // LICENSE config
-                    _LicensePicker(
-                      ec: licenseEC,
-                      groupValue: license,
-                      onChanged: (String? picked) {
-                        if (picked != null) {
-                          setState(() => license = picked);
-                        }
-                      },
-                    ),
-                    config.layout.spacer,
-
-                    // l10n config
-                    _AdvancedSettingsField(
-                      title: 'l10n.yaml',
-                      tip: l10n.csL10nTip,
-                      ec: l10nEC,
-                      tc: l10nTC,
-                    ),
-                    config.layout.spacer,
-
-                    // Analysis options config
-                    _AdvancedSettingsField(
-                      title: 'analysis_options.yaml',
-                      tip: l10n.csLintTip,
-                      ec: analysisEC,
-                      tc: analysisTC,
-                    ),
-                    config.layout.spacer,
-
-                    // VS Code launch config
-                    _AdvancedSettingsField(
-                      title: '.vscode/launch.json',
-                      tip: l10n.csLaunchTip,
-                      ec: launchEC,
-                      tc: launchTC,
-                    ),
-                  ],
-                ),
-                advancedEC.isExpanded
-                    ? config.layout.separator
-                    : EzDivider(constraints: ezTextFieldConstraints(context, prop: 0.333)),
-
-                // Flutter path picker (Mac only)
-                if (isMac) ...<Widget>[
-                  // Title
-                  EzRow(
-                    reverseHands: false,
-                    children: <Widget>[
-                      Flexible(
-                        child: EzText(
-                          l10n.csFlutterPath,
-                          style: config.theme.textTheme.titleLarge,
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                      EzToolTipper(message: l10n.csNoSpaces),
-                    ],
-                  ),
-
-                  // Picker
-                  EzScrollView(
-                    scrollDirection: Axis.horizontal,
-                    reverseHands: true,
-                    children: <Widget>[
-                      // Text box
-                      ConstrainedBox(
-                        constraints: ezTextFieldConstraints(context),
-                        child: TextFormField(
-                          controller: flutterPathTC,
-                          readOnly: !canGen,
-                          textAlign: TextAlign.start,
-                          maxLines: 1,
-                          validator: (String? path) =>
-                              (path == null || path.isEmpty) ? l10n.csPathRequired : null,
-                          autovalidateMode: AutovalidateMode.onUnfocus,
-                          decoration: InputDecoration(
-                              hintText: isWindows
-                                  ? 'example_path\\flutter\\bin'
-                                  : 'example_path/flutter/bin'),
-                        ),
-                      ),
-                      config.layout.rowMargin,
-
-                      // Browse
-                      EzIconButton(
-                        onPressed: () async {
-                          final String? selectedDirectory =
-                              await FilePicker.getDirectoryPath(dialogTitle: l10n.csFlutterPath);
-
-                          if (selectedDirectory == null) return;
-
-                          setState(() {
-                            flutterPathTC.text = selectedDirectory.contains(homePath)
-                                ? '$homePath${selectedDirectory.split(homePath)[1]}'
-                                : selectedDirectory;
-                          });
-                        },
-                        tooltip: l10n.csFileBrowser,
-                        icon: EzIcon(Icons.folder_open),
-                      ),
-                    ],
-                  ),
-                  config.layout.margin,
-                  EzRichText(
-                    <InlineSpan>[
-                      EzPlainText(
-                        text: '${l10n.csNotInstalled} ',
-                        style: config.theme.textTheme.bodyLarge,
-                      ),
-                      EzInlineLink(
-                        l10n.rsInstall,
-                        style: config.theme.textTheme.bodyLarge,
-                        textAlign: TextAlign.start,
-                        url: Uri.parse(installFlutter),
-                        hint: l10n.rsInstallHint,
-                        tooltip: installFlutter,
-                      ),
-                      EzPlainText(
-                        text: '.',
-                        style: config.theme.textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  config.layout.separator,
-                ],
-
-                // Make it so //
-
+                // Picker
                 EzScrollView(
+                  config,
                   scrollDirection: Axis.horizontal,
+                  reverseHands: true,
                   children: <Widget>[
-                    // Save config
+                    // Text box
+                    ConstrainedBox(
+                      constraints: ezTextFieldConstraints(context),
+                      child: TextFormField(
+                        controller: flutterPathTC,
+                        readOnly: !canGen,
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                        validator: (String? path) =>
+                            (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
+                        autovalidateMode: AutovalidateMode.onUnfocus,
+                        decoration: InputDecoration(
+                            hintText: isWindows
+                                ? 'example_path\\flutter\\bin'
+                                : 'example_path/flutter/bin'),
+                      ),
+                    ),
+                    config.rowMargin,
+
+                    // Browse
+                    EzIconButton(
+                      config,
+                      onPressed: () async {
+                        final String? selectedDirectory = await FilePicker.getDirectoryPath(
+                            dialogTitle: l10n(config).csFlutterPath);
+
+                        if (selectedDirectory == null) return;
+
+                        setState(() {
+                          flutterPathTC.text = selectedDirectory.contains(homePath)
+                              ? '$homePath${selectedDirectory.split(homePath)[1]}'
+                              : selectedDirectory;
+                        });
+                      },
+                      tooltip: l10n(config).csFileBrowser,
+                      icon: EzIcon(config, Icons.folder_open),
+                    ),
+                  ],
+                ),
+                config.margin,
+                EzRichText(
+                  config,
+                  children: <InlineSpan>[
+                    EzPlainText(
+                      text: '${l10n(config).csNotInstalled} ',
+                      style: config.bodyStyle,
+                    ),
+                    EzInlineLink(
+                      config,
+                      text: l10n(config).rsInstall,
+                      style: config.bodyStyle,
+                      textAlign: TextAlign.start,
+                      url: Uri.parse(installFlutter),
+                      hint: l10n(config).rsInstallHint,
+                      tooltip: installFlutter,
+                    ),
+                    EzPlainText(
+                      text: '.',
+                      style: config.bodyStyle,
+                    ),
+                  ],
+                ),
+                config.separator,
+              ],
+
+              // Make it so //
+
+              EzScrollView(
+                config,
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  // Save config
+                  EzElevatedIconButton(
+                    config,
+                    enabled: canGen,
+                    onPressed: () async {
+                      if (validName &&
+                          publisherTC.text.isNotEmpty &&
+                          (exampleDomain || validateDomain(config, domainTC.text) == null) &&
+                          descriptionTC.text.isNotEmpty &&
+                          (!isDesktop ||
+                              ((!isMac || await checkPath(config, flutterPathTC)) &&
+                                  await checkPath(config, workPathTC))) &&
+                          context.mounted) {
+                        context.goNamed(
+                          archiveScreenPath,
+                          extra: EAGConfig(
+                            appName: nameTC.text,
+                            publisherName: publisherTC.text,
+                            appDescription: descriptionTC.text,
+                            domainName: exampleDomain ? 'com.example' : domainTC.text,
+                            appDefaults: Map<String, dynamic>.fromEntries(
+                              allEZConfigKeys.keys.map(
+                                (String key) => MapEntry<String, dynamic>(key, EzCM.get(key)),
+                              ),
+                            ),
+                            flutterPath: isMac ? flutterPathTC.text : null,
+                            workPath: isDesktop ? workPathTC.text : null,
+                            copyright: copyrightTC.text,
+                            license: pickLicense(
+                              license: license,
+                              appName: nameTC.text,
+                              publisher: publisherTC.text,
+                              description: descriptionTC.text,
+                              year: currYear.toString(),
+                            ),
+                            l10nConfig: l10nTC.text,
+                            analysisOptions: analysisTC.text,
+                            vsCodeConfig: launchTC.text,
+                          ),
+                        );
+                      } else {
+                        setState(() => canGen = false);
+                        await ezSnackBar(
+                          config,
+                          context: context,
+                          message: '${l10n(config).csInvalidFields}.\n${l10n(config).csRequired}.',
+                        ).closed;
+                        setState(() => canGen = true);
+                      }
+                    },
+                    icon: EzIcon(config, Icons.save),
+                    label: config.ezL10n.ssSaveConfig,
+                  ),
+
+                  // Generate app
+                  if (isDesktop) ...<Widget>[
+                    config.spacer,
                     EzElevatedIconButton(
+                      config,
                       enabled: canGen,
                       onPressed: () async {
                         if (validName &&
                             publisherTC.text.isNotEmpty &&
-                            (exampleDomain || validateDomain(domainTC.text) == null) &&
+                            (exampleDomain || validateDomain(config, domainTC.text) == null) &&
                             descriptionTC.text.isNotEmpty &&
-                            (!isDesktop ||
-                                ((!isMac || await checkPath(flutterPathTC)) &&
-                                    await checkPath(workPathTC))) &&
+                            (!isMac || await checkPath(config, flutterPathTC)) &&
+                            await checkPath(config, workPathTC) &&
                             context.mounted) {
                           context.goNamed(
-                            archiveScreenPath,
+                            generateScreenPath,
                             extra: EAGConfig(
                               appName: nameTC.text,
                               publisherName: publisherTC.text,
@@ -580,11 +680,11 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                               domainName: exampleDomain ? 'com.example' : domainTC.text,
                               appDefaults: Map<String, dynamic>.fromEntries(
                                 allEZConfigKeys.keys.map(
-                                  (String key) => MapEntry<String, dynamic>(key, EzConfig.get(key)),
+                                  (String key) => MapEntry<String, dynamic>(key, EzCM.get(key)),
                                 ),
                               ),
                               flutterPath: isMac ? flutterPathTC.text : null,
-                              workPath: isDesktop ? workPathTC.text : null,
+                              workPath: workPathTC.text,
                               copyright: copyrightTC.text,
                               license: pickLicense(
                                 license: license,
@@ -601,188 +701,137 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         } else {
                           setState(() => canGen = false);
                           await ezSnackBar(
-                            context,
-                            message: '${l10n.csInvalidFields}.\n${l10n.csRequired}.',
+                            config,
+                            context: context,
+                            message:
+                                '${l10n(config).csInvalidFields}.\n${l10n(config).csRequired}.',
                           ).closed;
                           setState(() => canGen = true);
                         }
                       },
-                      icon: EzIcon(Icons.save),
-                      label: config.l10n.ssSaveConfig,
+                      icon: EzIcon(config, Icons.build),
+                      label: l10n(config).csGenerate,
                     ),
-
-                    // Generate app
-                    if (isDesktop) ...<Widget>[
-                      config.layout.spacer,
-                      EzElevatedIconButton(
-                        enabled: canGen,
-                        onPressed: () async {
-                          if (validName &&
-                              publisherTC.text.isNotEmpty &&
-                              (exampleDomain || validateDomain(domainTC.text) == null) &&
-                              descriptionTC.text.isNotEmpty &&
-                              (!isMac || await checkPath(flutterPathTC)) &&
-                              await checkPath(workPathTC) &&
-                              context.mounted) {
-                            context.goNamed(
-                              generateScreenPath,
-                              extra: EAGConfig(
-                                appName: nameTC.text,
-                                publisherName: publisherTC.text,
-                                appDescription: descriptionTC.text,
-                                domainName: exampleDomain ? 'com.example' : domainTC.text,
-                                appDefaults: Map<String, dynamic>.fromEntries(
-                                  allEZConfigKeys.keys.map(
-                                    (String key) =>
-                                        MapEntry<String, dynamic>(key, EzConfig.get(key)),
-                                  ),
-                                ),
-                                flutterPath: isMac ? flutterPathTC.text : null,
-                                workPath: workPathTC.text,
-                                copyright: copyrightTC.text,
-                                license: pickLicense(
-                                  license: license,
-                                  appName: nameTC.text,
-                                  publisher: publisherTC.text,
-                                  description: descriptionTC.text,
-                                  year: currYear.toString(),
-                                ),
-                                l10nConfig: l10nTC.text,
-                                analysisOptions: analysisTC.text,
-                                vsCodeConfig: launchTC.text,
-                              ),
-                            );
-                          } else {
-                            setState(() => canGen = false);
-                            await ezSnackBar(
-                              context,
-                              message: '${l10n.csInvalidFields}.\n${l10n.csRequired}.',
-                            ).closed;
-                            setState(() => canGen = true);
-                          }
-                        },
-                        icon: EzIcon(Icons.build),
-                        label: l10n.csGenerate,
-                      ),
-                    ],
                   ],
-                ),
-                EzFooter(currCode: config.locale.languageCode, textAlign: TextAlign.start),
-              ],
-            ),
-            alignment: Alignment.topLeft,
+                ],
+              ),
+              EzFooter(config, textAlign: TextAlign.start),
+            ],
           ),
-          title: l10n.csPageTitle,
-          onUpload: (EAGConfig config) async {
-            // Disable buttons
-            setState(() => canGen = false);
-
-            // Gather everything
-            nameTC.text = config.appName;
-            await EzConfig.setString(nameBackupKey, config.appName);
-            namePreview = config.appName;
-            validName = true;
-
-            publisherTC.text = config.publisherName;
-            await EzConfig.setString(publisherBackupKey, config.publisherName);
-            pubPreview = config.publisherName;
-
-            descriptionTC.text = config.appDescription;
-            await EzConfig.setString(descriptionBackupKey, config.appDescription);
-
-            domainTC.text = config.domainName;
-            if (config.domainName == 'com.example') {
-              exampleDomain = true;
-            } else {
-              await EzConfig.setString(domainBackupKey, config.domainName);
-            }
-
-            await EzConfig.loadConfig(config.appDefaults);
-
-            if (config.flutterPath != null &&
-                isMac &&
-                await Directory(config.flutterPath!).exists()) {
-              flutterPathTC.text = config.flutterPath!;
-            }
-
-            if (config.workPath != null && await Directory(config.workPath!).exists()) {
-              workPathTC.text = config.workPath!;
-            }
-
-            copyrightTC.text = config.copyright;
-
-            if (config.license.contains('GNU General Public License')) {
-              license = gnuKey;
-            } else if (config.license.contains('MIT License')) {
-              license = mitKey;
-            } else if (config.license.contains('ISC License')) {
-              license = iscKey;
-            } else if (config.license.contains('Apache License')) {
-              license = apacheKey;
-            } else if (config.license.contains('Mozilla Public License')) {
-              license = mozillaKey;
-            } else if (config.license.contains('free and unencumbered')) {
-              license = unlicenseKey;
-            } else if (config.license.contains('WHAT THE FU')) {
-              license = dwtfywKey;
-            } else {
-              license = gnuKey;
-            }
-
-            l10nTC.text = config.l10nConfig;
-            analysisTC.text = config.analysisOptions;
-            launchTC.text = config.vsCodeConfig;
-
-            // Enable buttons
-            setState(() => canGen = true);
-          },
-          fabs: <Widget>[
-            config.layout.spacer,
-            ResetFAB(
-              clear: () async {
-                nameTC.clear();
-                await EzConfig.remove(nameBackupKey);
-                namePreview = l10n.csNamePreview;
-                validName = false;
-
-                publisherTC.clear();
-                await EzConfig.remove(publisherBackupKey);
-                pubPreview = l10n.csPubPreview;
-
-                descriptionTC.clear();
-                await EzConfig.remove(descriptionBackupKey);
-
-                domainTC.clear();
-                await EzConfig.remove(domainBackupKey);
-                exampleDomain = false;
-
-                flutterPathTC.clear();
-
-                advancedEC.collapse();
-
-                workPathTC.text = docsPath;
-
-                copyrightEC.collapse();
-                copyrightTC.text = copyrightDefault;
-
-                licenseEC.collapse();
-                license = gnuKey;
-
-                l10nEC.collapse();
-                l10nTC.text = l10nDefault;
-
-                analysisEC.collapse();
-                analysisTC.text = analysisDefault;
-
-                launchEC.collapse();
-                launchTC.text = vscDefault;
-              },
-              state: () => setState(() {}),
-            )
-          ],
-          home: true,
         ),
-      );
+        title: l10n(config).csPageTitle,
+        onUpload: (EAGConfig toLoad) async {
+          // Disable buttons
+          setState(() => canGen = false);
+
+          // Gather everything
+          nameTC.text = toLoad.appName;
+          await EzCM.setString(nameBackupKey, toLoad.appName);
+          namePreview = toLoad.appName;
+          validName = true;
+
+          publisherTC.text = toLoad.publisherName;
+          await EzCM.setString(publisherBackupKey, toLoad.publisherName);
+          pubPreview = toLoad.publisherName;
+
+          descriptionTC.text = toLoad.appDescription;
+          await EzCM.setString(descriptionBackupKey, toLoad.appDescription);
+
+          domainTC.text = toLoad.domainName;
+          if (toLoad.domainName == 'com.example') {
+            exampleDomain = true;
+          } else {
+            await EzCM.setString(domainBackupKey, toLoad.domainName);
+          }
+
+          await EzCM.loadConfig(config, toLoad: toLoad.appDefaults);
+
+          if (toLoad.flutterPath != null &&
+              isMac &&
+              await Directory(toLoad.flutterPath!).exists()) {
+            flutterPathTC.text = toLoad.flutterPath!;
+          }
+
+          if (toLoad.workPath != null && await Directory(toLoad.workPath!).exists()) {
+            workPathTC.text = toLoad.workPath!;
+          }
+
+          copyrightTC.text = toLoad.copyright;
+
+          if (toLoad.license.contains('GNU General Public License')) {
+            license = gnuKey;
+          } else if (toLoad.license.contains('MIT License')) {
+            license = mitKey;
+          } else if (toLoad.license.contains('ISC License')) {
+            license = iscKey;
+          } else if (toLoad.license.contains('Apache License')) {
+            license = apacheKey;
+          } else if (toLoad.license.contains('Mozilla Public License')) {
+            license = mozillaKey;
+          } else if (toLoad.license.contains('free and unencumbered')) {
+            license = unlicenseKey;
+          } else if (toLoad.license.contains('WHAT THE FU')) {
+            license = dwtfywKey;
+          } else {
+            license = gnuKey;
+          }
+
+          l10nTC.text = toLoad.l10nConfig;
+          analysisTC.text = toLoad.analysisOptions;
+          launchTC.text = toLoad.vsCodeConfig;
+
+          // Enable buttons
+          setState(() => canGen = true);
+        },
+        fabs: <Widget>[
+          config.spacer,
+          ResetFAB(
+            config,
+            clear: () async {
+              nameTC.clear();
+              await EzCM.remove(nameBackupKey);
+              namePreview = l10n(config).csNamePreview;
+              validName = false;
+
+              publisherTC.clear();
+              await EzCM.remove(publisherBackupKey);
+              pubPreview = l10n(config).csPubPreview;
+
+              descriptionTC.clear();
+              await EzCM.remove(descriptionBackupKey);
+
+              domainTC.clear();
+              await EzCM.remove(domainBackupKey);
+              exampleDomain = false;
+
+              flutterPathTC.clear();
+
+              advancedEC.collapse();
+
+              workPathTC.text = docsPath;
+
+              copyrightEC.collapse();
+              copyrightTC.text = copyrightDefault;
+
+              licenseEC.collapse();
+              license = gnuKey;
+
+              l10nEC.collapse();
+              l10nTC.text = l10nDefault;
+
+              analysisEC.collapse();
+              analysisTC.text = analysisDefault;
+
+              launchEC.collapse();
+              launchTC.text = vscDefault;
+            },
+            state: () => setState(() {}),
+          )
+        ],
+        isHome: true,
+      ),
+    );
+  }
 
   @override
   void dispose() {
@@ -888,13 +937,15 @@ linter:
 }
 
 class _BasicField extends StatelessWidget {
+  final EzCP config;
   final String title;
   final dynamic tip;
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String hintText;
 
-  const _BasicField({
+  const _BasicField(
+    this.config, {
     required this.title,
     this.tip,
     required this.controller,
@@ -908,19 +959,21 @@ class _BasicField extends StatelessWidget {
         children: <Widget>[
           // Title
           EzRow(
+            config,
             reverseHands: false,
             children: <Widget>[
               Flexible(
                 child: EzText(
-                  title,
-                  style: EzConfig.titleStyle,
+                  config,
+                  text: title,
+                  style: config.titleStyle,
                   textAlign: TextAlign.start,
                 ),
               ),
               if (tip != null)
                 tip.runtimeType == String
-                    ? EzToolTipper(message: tip)
-                    : EzToolTipper(richMessage: tip),
+                    ? EzToolTipper(config, message: tip)
+                    : EzToolTipper(config, richMessage: tip),
             ],
           ),
 
@@ -941,12 +994,14 @@ class _BasicField extends StatelessWidget {
 }
 
 class _AdvancedSettingsField extends StatefulWidget {
+  final EzCP config;
   final String title;
   final dynamic tip;
   final ExpansibleController ec;
   final TextEditingController tc;
 
-  const _AdvancedSettingsField({
+  const _AdvancedSettingsField(
+    this.config, {
     required this.title,
     this.tip,
     required this.ec,
@@ -960,10 +1015,10 @@ class _AdvancedSettingsField extends StatefulWidget {
 class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
   @override
   Widget build(BuildContext context) => Theme(
-        data: EzConfig.theme.copyWith(
-          dividerColor: EzConfig.colors.surfaceContainer,
+        data: widget.config.theme.copyWith(
+          dividerColor: widget.config.colors.surfaceContainer,
           dividerTheme: DividerThemeData(
-            color: EzConfig.colors.surfaceContainer,
+            color: widget.config.colors.surfaceContainer,
             space: 0,
             thickness: 0,
           ),
@@ -974,37 +1029,42 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           showTrailingIcon: false,
           title: EzRow(
+            widget.config,
             children: <Widget>[
               Flexible(
                 child: Text(
                   widget.title,
-                  style: EzConfig.bodyStyle,
+                  style: widget.config.bodyStyle,
                   textAlign: TextAlign.start,
                 ),
               ),
-              EzConfig.rowMargin,
+              widget.config.rowMargin,
               Semantics(
-                label: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
+                label:
+                    widget.ec.isExpanded ? widget.config.ezL10n.gClose : widget.config.ezL10n.gOpen,
                 button: true,
                 child: ExcludeSemantics(
                   child: EzIconButton(
+                    widget.config,
                     onPressed: () =>
                         widget.ec.isExpanded ? widget.ec.collapse() : widget.ec.expand(),
-                    tooltip: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
-                    icon: EzIcon(ezVisIcon(widget.ec.isExpanded)),
+                    tooltip: widget.ec.isExpanded
+                        ? widget.config.ezL10n.gClose
+                        : widget.config.ezL10n.gOpen,
+                    icon: EzIcon(widget.config, ezVisIcon(widget.config, widget.ec.isExpanded)),
                   ),
                 ),
               ),
               if (widget.tip != null) ...<Widget>[
-                if (EzConfig.textBackgroundOpacity > oneP) EzConfig.rowMargin,
+                if (widget.config.textBackgroundOpacity > oneP) widget.config.rowMargin,
                 widget.tip.runtimeType == String
-                    ? EzToolTipper(message: widget.tip)
-                    : EzToolTipper(richMessage: widget.tip),
+                    ? EzToolTipper(widget.config, message: widget.tip)
+                    : EzToolTipper(widget.config, richMessage: widget.tip),
               ],
             ],
           ),
           children: <Widget>[
-            EzConfig.margin,
+            widget.config.margin,
             ConstrainedBox(
               constraints: ezTextFieldConstraints(context),
               child: TextFormField(
@@ -1019,11 +1079,13 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
 }
 
 class _LicensePicker extends StatefulWidget {
+  final EzCP config;
   final ExpansibleController ec;
   final String groupValue;
   final void Function(String?) onChanged;
 
-  const _LicensePicker({
+  const _LicensePicker(
+    this.config, {
     required this.ec,
     required this.groupValue,
     required this.onChanged,
@@ -1040,19 +1102,20 @@ class _LicensePickerState extends State<_LicensePicker> {
   }) =>
       EzCol(children: <Widget>[
         EzTextButton(
+          widget.config,
           text: title,
           textAlign: TextAlign.center,
           onPressed: () => widget.onChanged(value),
         ),
-        ExcludeSemantics(child: EzRadio<String>(value: value)),
+        ExcludeSemantics(child: EzRadio<String>(widget.config, value: value)),
       ]);
 
   @override
   Widget build(BuildContext context) => Theme(
-        data: EzConfig.theme.copyWith(
-          dividerColor: EzConfig.colors.surfaceContainer,
+        data: widget.config.theme.copyWith(
+          dividerColor: widget.config.colors.surfaceContainer,
           dividerTheme: DividerThemeData(
-            color: EzConfig.colors.surfaceContainer,
+            color: widget.config.colors.surfaceContainer,
             space: 0,
             thickness: 0,
           ),
@@ -1063,64 +1126,72 @@ class _LicensePickerState extends State<_LicensePicker> {
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           showTrailingIcon: false,
           title: EzRow(
+            widget.config,
             children: <Widget>[
               Flexible(
                 child: Text(
                   'LICENSE',
                   textAlign: TextAlign.start,
-                  style: EzConfig.bodyStyle,
+                  style: widget.config.bodyStyle,
                 ),
               ),
-              EzConfig.rowMargin,
+              widget.config.rowMargin,
               Semantics(
-                label: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
+                label:
+                    widget.ec.isExpanded ? widget.config.ezL10n.gClose : widget.config.ezL10n.gOpen,
                 button: true,
                 child: ExcludeSemantics(
                   child: EzIconButton(
+                    widget.config,
                     onPressed: () =>
                         widget.ec.isExpanded ? widget.ec.collapse() : widget.ec.expand(),
-                    tooltip: widget.ec.isExpanded ? EzConfig.l10n.gClose : EzConfig.l10n.gOpen,
-                    icon: EzIcon(ezVisIcon(widget.ec.isExpanded)),
+                    tooltip: widget.ec.isExpanded
+                        ? widget.config.ezL10n.gClose
+                        : widget.config.ezL10n.gOpen,
+                    icon: EzIcon(widget.config, ezVisIcon(widget.config, widget.ec.isExpanded)),
                   ),
                 ),
               ),
-              EzConfig.rowMargin,
+              widget.config.rowMargin,
               EzToolTipper(
+                widget.config,
                 richMessage: EzInlineLink(
-                  'https://choosealicense.com/',
+                  widget.config,
+                  text: 'https://choosealicense.com/',
                   textAlign: TextAlign.center,
                   url: Uri.parse('https://choosealicense.com/'),
-                  hint: l10n.csLicenseDocs,
+                  hint: l10n(widget.config).csLicenseDocs,
                 ),
               ),
             ],
           ),
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: EzConfig.marginVal),
+              padding: EdgeInsets.only(top: widget.config.marginVal),
               child: RadioGroup<String>(
                 groupValue: widget.groupValue,
                 onChanged: widget.onChanged,
                 child: EzScrollView(
+                  widget.config,
                   scrollDirection: Axis.horizontal,
                   thumbVisibility: false,
                   showScrollHint: true,
                   children: <Widget>[
-                    EzConfig.rowMargin,
+                    widget.config.rowMargin,
                     radio(title: 'GNU GPLv3', value: gnuKey),
-                    EzConfig.rowSpacer,
+                    widget.config.rowSpacer,
                     radio(title: 'MIT', value: mitKey),
-                    EzConfig.rowSpacer,
+                    widget.config.rowSpacer,
                     radio(title: 'ISC', value: iscKey),
-                    EzConfig.rowSpacer,
+                    widget.config.rowSpacer,
                     radio(title: 'Apache 2.0', value: apacheKey),
-                    EzConfig.rowSpacer,
+                    widget.config.rowSpacer,
                     radio(title: 'Mozilla 2.0', value: mozillaKey),
-                    EzConfig.rowSpacer,
+                    widget.config.rowSpacer,
                     radio(title: 'Unlicense', value: unlicenseKey),
-                    EzConfig.rowSpacer,
+                    widget.config.rowSpacer,
                     radio(title: 'DWTFYW', value: dwtfywKey),
-                    EzConfig.rowMargin,
+                    widget.config.rowMargin,
                   ],
                 ),
               ),

@@ -50,14 +50,14 @@ class _EzMenuButtonState extends State<EzMenuButton> {
   Widget build(BuildContext context) => MenuItemButton(
         onPressed: widget.onPressed,
         semanticsLabel: widget.semanticsLabel,
-        leadingIcon: EzCM.isLefty ? widget.icon : null,
-        trailingIcon: EzCM.isLefty ? null : widget.icon,
+        leadingIcon: widget.config.isLefty ? widget.icon : null,
+        trailingIcon: widget.config.isLefty ? null : widget.icon,
         child: Text(
           widget.label,
           style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
             decorationColor: widget.config.colors.primary,
           ),
-          textAlign: widget.textAlign ?? (EzCM.isLefty ? TextAlign.start : TextAlign.end),
+          textAlign: widget.textAlign ?? (widget.config.isLefty ? TextAlign.start : TextAlign.end),
         ),
       );
 }

@@ -11,11 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EzTextSettings extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Current sub-page
   final EzSubSetting target;
-
-  /// Spacer above the [EzResetButton] (shared by both tabs)
-  final Widget resetSpacer;
 
   /// Optional additional reset keys for the dark theme
   /// [allTextKeys] and [darkOnSurfaceKey] are included by default
@@ -35,10 +35,10 @@ class EzTextSettings extends StatelessWidget {
 
   /// Empathetech text settings
   /// Recommended to use as a [Scaffold.body]
-  const EzTextSettings({
+  const EzTextSettings(
+    this.config, {
     super.key,
     required this.target,
-    this.resetSpacer = const EzSeparator(),
     this.resetExtraDark,
     this.resetExtraLight,
     this.resetSkip,
@@ -51,37 +51,40 @@ class EzTextSettings extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: <ChangeNotifierProvider<dynamic>>[
           ChangeNotifierProvider<EzDisplayStyleProvider>(
-            create: (_) => EzDisplayStyleProvider(),
+            create: (_) => EzDisplayStyleProvider(config.isDark),
           ),
           ChangeNotifierProvider<EzHeadlineStyleProvider>(
-            create: (_) => EzHeadlineStyleProvider(),
+            create: (_) => EzHeadlineStyleProvider(config.isDark),
           ),
           ChangeNotifierProvider<EzTitleStyleProvider>(
-            create: (_) => EzTitleStyleProvider(),
+            create: (_) => EzTitleStyleProvider(config.isDark),
           ),
           ChangeNotifierProvider<EzBodyStyleProvider>(
-            create: (_) => EzBodyStyleProvider(),
+            create: (_) => EzBodyStyleProvider(config.isDark),
           ),
           ChangeNotifierProvider<EzLabelStyleProvider>(
-            create: (_) => EzLabelStyleProvider(),
+            create: (_) => EzLabelStyleProvider(config.isDark),
           ),
         ],
-        child: _TextSettings(target),
+        child: _TextSettings(config, target),
       );
 }
 
 class _TextSettings extends StatelessWidget {
+  final EzCP config;
   final EzSubSetting target;
 
-  const _TextSettings(this.target);
+  const _TextSettings(this.config, this.target);
 
   @override
   Widget build(BuildContext context) => EzFauxCarousel(
+        config,
         position: target.isFirst ? 0 : 1,
         delta: target.isFirst ? -1 : 1,
         animMod: 0.5,
         child: (target == EzSubSetting.qckText)
             ? QuickTextSettings(
+                config,
                 displayProvider: Provider.of<EzDisplayStyleProvider>(context),
                 headlineProvider: Provider.of<EzHeadlineStyleProvider>(context),
                 titleProvider: Provider.of<EzTitleStyleProvider>(context),
@@ -89,6 +92,7 @@ class _TextSettings extends StatelessWidget {
                 labelProvider: Provider.of<EzLabelStyleProvider>(context),
               )
             : AdvancedTextSettings(
+                config,
                 displayProvider: Provider.of<EzDisplayStyleProvider>(context),
                 headlineProvider: Provider.of<EzHeadlineStyleProvider>(context),
                 titleProvider: Provider.of<EzTitleStyleProvider>(context),

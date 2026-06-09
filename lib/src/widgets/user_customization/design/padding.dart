@@ -8,11 +8,14 @@ import '../../../../empathetech_flutter_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzPaddingSetting extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   final int _steps;
   final int _decimals;
 
   /// An ez to use padding setting
-  const EzPaddingSetting({super.key})
+  const EzPaddingSetting(this.config, {super.key})
       : _steps = 20,
         _decimals = 0;
 
@@ -20,27 +23,29 @@ class EzPaddingSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final String configKey = EzConfig.isDark ? darkPaddingKey : lightPaddingKey;
-    final double defaultValue = EzConfig.getDefault(configKey);
+    final String configKey = config.isDark ? darkPaddingKey : lightPaddingKey;
+    final double defaultValue = EzCM.getDefault(configKey);
 
-    double currValue = EzConfig.get(configKey);
+    double currValue = EzCM.get(configKey);
 
     // Return the build //
 
     return EzElevatedIconButton(
+      config,
       onPressed: () async {
         final double backup = currValue;
 
         await ezModal(
+          config,
           context: context,
           builder: (_) => StatefulBuilder(
-            builder: (_, StateSetter setModal) => ezModalScroll(<Widget>[
+            builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
               // Preview
               Semantics(
                 button: false,
                 readOnly: true,
-                label: EzConfig.l10n.gSetToValue(
-                  EzConfig.l10n.dsPadding,
+                label: config.ezL10n.gSetToValue(
+                  config.ezL10n.dsPadding,
                   currValue.toStringAsFixed(_decimals),
                 ),
                 child: ExcludeSemantics(
@@ -49,31 +54,34 @@ class EzPaddingSetting extends StatelessWidget {
                     children: <Widget>[
                       // Title
                       Text(
-                        EzConfig.l10n.dsPadding,
-                        style: EzConfig.titleStyle,
+                        config.ezL10n.dsPadding,
+                        style: config.titleStyle,
                         textAlign: TextAlign.center,
                       ),
 
                       // Preview
-                      EzConfig.spacer,
+                      config.spacer,
                       EzScrollView(
+                        config,
                         scrollDirection: Axis.horizontal,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           EzElevatedButton(
+                            config,
                             enabled: false,
                             style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
-                            text: EzConfig.l10n.gCurrently,
+                            text: config.ezL10n.gCurrently,
                           ),
-                          EzConfig.rowSpacer,
+                          config.rowSpacer,
                           EzElevatedButton(
+                            config,
                             enabled: false,
                             style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
                             text: currValue.toStringAsFixed(_decimals),
                           ),
                         ],
                       ),
-                      EzConfig.spacer,
+                      config.spacer,
                     ],
                   ),
                 ),
@@ -92,10 +100,9 @@ class EzPaddingSetting extends StatelessWidget {
                   // Slider functions
                   onChanged: (double value) => setModal(() => currValue = value),
                   onChangeEnd: (double value) async {
-                    await EzConfig.setDouble(configKey, value);
-                    if (EzConfig.updateBoth) {
-                      await EzConfig.setDouble(
-                          EzConfig.isDark ? lightPaddingKey : darkPaddingKey, value);
+                    await EzCM.setDouble(configKey, value);
+                    if (EzCM.updateBoth) {
+                      await EzCM.setDouble(config.isDark ? lightPaddingKey : darkPaddingKey, value);
                     }
                   },
 
@@ -103,29 +110,30 @@ class EzPaddingSetting extends StatelessWidget {
                   semanticFormatterCallback: (double value) => value.toStringAsFixed(_decimals),
                 ),
               ),
-              EzConfig.spacer,
+              config.spacer,
 
               // Reset button
               EzElevatedIconButton(
+                config,
                 onPressed: () async {
-                  await EzConfig.remove(configKey);
-                  if (EzConfig.updateBoth) {
-                    await EzConfig.remove(EzConfig.isDark ? lightPaddingKey : darkPaddingKey);
+                  await EzCM.remove(configKey);
+                  if (EzCM.updateBoth) {
+                    await EzCM.remove(config.isDark ? lightPaddingKey : darkPaddingKey);
                   }
                   setModal(() => currValue = defaultValue);
                 },
-                icon: EzIcon(Icons.refresh),
-                label: '${EzConfig.l10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
+                icon: EzIcon(config, Icons.refresh),
+                label: '${config.ezL10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
               ),
-              EzConfig.separator,
+              config.separator,
             ]),
           ),
         );
 
-        if (currValue != backup) await EzConfig.rebuildUI();
+        if (currValue != backup) await config.rebuildUI(<EzSettingType>{EzSettingType.design});
       },
-      icon: EzIcon(Icons.padding),
-      label: EzConfig.l10n.dsPadding,
+      icon: EzIcon(config, Icons.padding),
+      label: config.ezL10n.dsPadding,
     );
   }
 }

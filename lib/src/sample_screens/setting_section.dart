@@ -108,11 +108,11 @@ enum EzSubSetting {
 }
 
 extension ESSLookup on EzSubSetting {
-  String get label => switch (this) {
+  String label(EFUILang l10n) => switch (this) {
         EzSubSetting.blank => 'null',
-        EzSubSetting.qckText || EzSubSetting.qckColor => EzConfig.l10n.gQuick,
-        EzSubSetting.advText || EzSubSetting.advColor => EzConfig.l10n.gAdvanced,
-        EzSubSetting.butDesign => EzConfig.l10n.dsButton,
-        EzSubSetting.pagDesign => EzConfig.l10n.dsPage,
+        EzSubSetting.qckText || EzSubSetting.qckColor => l10n.gQuick,
+        EzSubSetting.advText || EzSubSetting.advColor => l10n.gAdvanced,
+        EzSubSetting.butDesign => l10n.dsButton,
+        EzSubSetting.pagDesign => l10n.dsPage,
       };
 }

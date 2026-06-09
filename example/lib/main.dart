@@ -8,6 +8,7 @@ import './utils/export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:window_manager/window_manager.dart';
@@ -86,31 +87,47 @@ class OpenUI extends StatelessWidget {
             GoRoute(
               path: homePath,
               name: homePath,
-              pageBuilder: (BuildContext context, GoRouterState state) =>
-                  ezPageBuilder(context, state, const HomeScreen()),
+              pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
+                Provider.of<EzCP>(context, listen: false),
+                context,
+                state,
+                const HomeScreen(),
+              ),
               routes: <RouteBase>[
                 // Archive
                 GoRoute(
                   path: archiveScreenPath,
                   name: archiveScreenPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, ArchiveScreen((state.extra as EAGConfig))),
+                  pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
+                    Provider.of<EzCP>(context, listen: false),
+                    context,
+                    state,
+                    ArchiveScreen((state.extra as EAGConfig)),
+                  ),
                 ),
 
                 // Generate
                 GoRoute(
                   path: generateScreenPath,
                   name: generateScreenPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, GenerateScreen((state.extra as EAGConfig))),
+                  pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
+                    Provider.of<EzCP>(context, listen: false),
+                    context,
+                    state,
+                    GenerateScreen((state.extra as EAGConfig)),
+                  ),
                 ),
 
                 // Settings
                 GoRoute(
                   path: settingsHubPath,
                   name: settingsHubPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, const SettingsHubScreen()),
+                  pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
+                    Provider.of<EzCP>(context, listen: false),
+                    context,
+                    state,
+                    const SettingsHubScreen(),
+                  ),
                 ),
               ],
             ),
