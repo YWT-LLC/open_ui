@@ -252,6 +252,7 @@ class EzCP extends ChangeNotifier {
   // Page
   double get marginVal => _design.margin;
   double get spacing => _design.spacing;
+  double get spargin => _design.margin + _design.spacing;
 
   int get animDur => _design.animDur;
   Curve get animCurve => _design.animCurve;
