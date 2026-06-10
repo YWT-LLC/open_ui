@@ -88,7 +88,7 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
 
     if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
         config.isDark) {
-      await config.rebuildUI(allEST);
+      await config.rebuildUI(allECT);
     }
   }
 

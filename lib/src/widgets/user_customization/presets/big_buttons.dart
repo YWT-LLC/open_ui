@@ -87,7 +87,7 @@ class EzBigButtonsConfig extends StatelessWidget {
           shape: EzButtonShape.roundRect.shape,
           padding: EdgeInsets.all(EzCM.onMobile ? 22.5 : 25.0),
         ),
-        onPressed: () => config.rebuildUI(allEST, changes: () async {
+        onPressed: () => config.rebuildUI(allECT, changes: () async {
           await onPressed(config, updateBoth);
           await extra?.call(updateBoth);
         }),

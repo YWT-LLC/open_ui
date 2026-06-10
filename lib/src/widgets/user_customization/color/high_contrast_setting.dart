@@ -48,7 +48,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 side: config.borderSide(color: halfBlack),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
-        onPressed: () => config.rebuildUI(allEST, changes: () async {
+        onPressed: () => config.rebuildUI(allECT, changes: () async {
           if (EzCM.updateBoth || config.isDark) {
             await loadColorScheme(dark, Brightness.dark);
           }

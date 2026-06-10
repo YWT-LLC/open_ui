@@ -217,7 +217,7 @@ class EzRebuildFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) => FloatingActionButton(
         heroTag: 'rebuild_fab',
-        onPressed: () => config.rebuildUI(allEST),
+        onPressed: () => config.rebuildUI(allECT),
         tooltip: config.ezL10n.gApplyChanges,
         backgroundColor: config.colors.secondary,
         foregroundColor: config.colors.onSecondary,

@@ -17,7 +17,7 @@ class EzResetButton extends StatelessWidget {
   final bool all;
 
   /// Sections to reset, defaults to all
-  final Set<EzSettingType> types;
+  final Set<EzCacheType> types;
 
   /// [EzAlertDialog.title] that shows on click
   final String Function()? dynamicTitle;
@@ -47,7 +47,7 @@ class EzResetButton extends StatelessWidget {
     this.config, {
     super.key,
     this.all = true,
-    this.types = allEST,
+    this.types = allECT,
     this.saveSkip,
     this.dialogContent,
     this.dynamicTitle,

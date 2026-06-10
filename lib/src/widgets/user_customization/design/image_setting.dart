@@ -507,10 +507,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           onPressed: () async {
             final bool? changed = await chooseFit(currPath!);
             if (changed == true) {
-              await widget.config.rebuildUI(<EzSettingType>{
-                EzSettingType.color,
-                EzSettingType.design,
-              });
+              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
             }
           },
           icon: EzIcon(widget.config, Icons.image_aspect_ratio),
@@ -781,10 +778,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             final bool changed = await activateSetting();
 
             if (changed) {
-              await widget.config.rebuildUI(<EzSettingType>{
-                EzSettingType.color,
-                EzSettingType.design,
-              });
+              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
             }
             setState(() => inProgress = false);
           },

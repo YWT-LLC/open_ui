@@ -45,7 +45,7 @@ class EzConfigRandomizer extends StatelessWidget {
             actions: ezActionPair(
               config,
               onConfirm: () => config.rebuildUI(
-                allEST,
+                allECT,
                 changes: () => EzCM.randomize(config.isDark),
               ),
               confirmIsDestructive: true,

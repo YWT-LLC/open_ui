@@ -74,7 +74,7 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
             }
 
-            await config.rebuildUI(<EzSettingType>{EzSettingType.design, EzSettingType.text});
+            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
           },
         ),
         config.spacer,
@@ -90,7 +90,7 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightShowBackFABKey : darkShowBackFABKey, value);
             }
 
-            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
+            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
           },
         ),
         config.spacer,
@@ -105,7 +105,7 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightShowScrollKey : darkShowScrollKey, value);
             }
 
-            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
+            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
           },
           text: config.ezL10n.dsShowScroll,
         ),
@@ -276,7 +276,7 @@ class _ButtonStyleSetting extends StatelessWidget {
           );
 
           if (currShape != config.buttonShape || currWidth != config.borderWidth) {
-            await config.rebuildUI(<EzSettingType>{EzSettingType.design});
+            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
           }
         },
         label: config.ezL10n.dsStyle,

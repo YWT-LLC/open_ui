@@ -45,7 +45,7 @@ class _ColorSettingState extends State<EzColorSetting> {
       onColorChange: (Color chosenColor) => setState(() => currColor = chosenColor),
       onConfirm: () async {
         await EzCM.setInt(widget.configKey, currColor.toARGB32());
-        await widget.config.rebuildUI(<EzSettingType>{EzSettingType.color});
+        await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
       },
       onDeny: () => setState(() => currColor = backup),
     );
@@ -113,7 +113,7 @@ class _ColorSettingState extends State<EzColorSetting> {
               // Update the user's configKey
               await EzCM.setInt(widget.configKey, recommended);
               setState(() => currColor = Color(recommended));
-              await widget.config.rebuildUI(noEST);
+              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
             },
             isDefaultAction: true,
           ),
@@ -168,7 +168,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                 if (resetValue != null) {
                   setState(() => currColor = Color(resetValue));
                 }
-                await widget.config.rebuildUI(noEST);
+                await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
               },
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),

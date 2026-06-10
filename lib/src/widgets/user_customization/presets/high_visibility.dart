@@ -255,7 +255,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
               textStyle: localBody,
               padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
             ),
-      onPressed: () => config.rebuildUI(allEST, changes: () async {
+      onPressed: () => config.rebuildUI(allECT, changes: () async {
         await onPressed(config, updateBoth);
         await extra?.call(updateBoth);
       }),

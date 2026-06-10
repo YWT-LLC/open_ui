@@ -130,7 +130,7 @@ class EzPaddingSetting extends StatelessWidget {
           ),
         );
 
-        if (currValue != backup) await config.rebuildUI(<EzSettingType>{EzSettingType.design});
+        if (currValue != backup) await config.rebuildUI(<EzCacheType>{EzCacheType.design});
       },
       icon: EzIcon(config, Icons.padding),
       label: config.ezL10n.dsPadding,

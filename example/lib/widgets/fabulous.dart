@@ -56,7 +56,7 @@ class ResetFAB extends StatelessWidget {
                       config,
                       onPressed: () async {
                         clear();
-                        await config.rebuildUI(noEST);
+                        await config.rebuildUI(noECT);
                         state();
                       },
                       text: l10n(config).csResetBuilder,
@@ -68,7 +68,7 @@ class ResetFAB extends StatelessWidget {
                       config,
                       onPressed: () async {
                         await config.rebuildUI(
-                          allEST,
+                          allECT,
                           changes: () => EzCM.reset(config.isDark, forceBoth: true),
                         );
                         state();
@@ -81,7 +81,7 @@ class ResetFAB extends StatelessWidget {
                     EzMaterialAction(
                       config,
                       onPressed: () async {
-                        await config.rebuildUI(allEST, changes: () async {
+                        await config.rebuildUI(allECT, changes: () async {
                           clear();
                           await EzCM.reset(config.isDark, forceBoth: true);
                         });

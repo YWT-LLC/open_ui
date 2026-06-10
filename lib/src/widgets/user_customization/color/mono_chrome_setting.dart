@@ -48,7 +48,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 side: config.borderSide(color: dimBlack),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
-        onPressed: () => config.rebuildUI(allEST, changes: () async {
+        onPressed: () => config.rebuildUI(allECT, changes: () async {
           if (EzCM.updateBoth || config.isDark) {
             await loadColorScheme(dark, Brightness.dark);
           }

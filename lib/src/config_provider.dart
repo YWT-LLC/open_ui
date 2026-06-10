@@ -43,7 +43,7 @@ class EzCP extends ChangeNotifier {
         _needsRebuild = false {
     _isLefty = EzCM.get(isLeftyKey);
     _getThemeMode();
-    _buildThemeData(allEST);
+    _buildThemeData(allECT);
     _appCache.init(isDark);
   }
 
@@ -62,7 +62,7 @@ class EzCP extends ChangeNotifier {
   }
 
   /// Builds fresh themes and config caches
-  void _buildThemeData(Set<EzSettingType> types) {
+  void _buildThemeData(Set<EzCacheType> types) {
     _isLefty = EzCM.get(isLeftyKey);
 
     if (_isDark) {
@@ -75,11 +75,11 @@ class EzCP extends ChangeNotifier {
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      if (needsRebuild || types.contains(EzSettingType.color)) {
+      if (needsRebuild || types.contains(EzCacheType.color)) {
         _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
       }
 
-      if (needsRebuild || types.contains(EzSettingType.design)) {
+      if (needsRebuild || types.contains(EzCacheType.design)) {
         _design = EzDesignCache(
           // Button
           padding: EzCM.get(darkPaddingKey),
@@ -103,9 +103,7 @@ class EzCP extends ChangeNotifier {
         );
       }
 
-      if (needsRebuild ||
-          types.contains(EzSettingType.design) ||
-          types.contains(EzSettingType.text)) {
+      if (needsRebuild || types.contains(EzCacheType.design) || types.contains(EzCacheType.text)) {
         _layout = EzLayoutCache(
           margin: EzSpacer(margin),
           rowMargin: EzSpacer(margin, vertical: false),
@@ -120,7 +118,7 @@ class EzCP extends ChangeNotifier {
         );
       }
 
-      if (needsRebuild || types.contains(EzSettingType.text)) {
+      if (needsRebuild || types.contains(EzCacheType.text)) {
         _text = EzTextCache(
           backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
           iconSize: EzCM.get(darkIconSizeKey),
@@ -136,11 +134,11 @@ class EzCP extends ChangeNotifier {
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      if (types.contains(EzSettingType.color)) {
+      if (needsRebuild || types.contains(EzCacheType.color)) {
         _color = EzColorCache(schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
       }
 
-      if (types.contains(EzSettingType.design)) {
+      if (needsRebuild || types.contains(EzCacheType.design)) {
         _design = EzDesignCache(
           // Button
           padding: EzCM.get(lightPaddingKey),
@@ -164,7 +162,7 @@ class EzCP extends ChangeNotifier {
         );
       }
 
-      if (types.contains(EzSettingType.design) || types.contains(EzSettingType.text)) {
+      if (needsRebuild || types.contains(EzCacheType.design) || types.contains(EzCacheType.text)) {
         _layout = EzLayoutCache(
           margin: EzSpacer(margin),
           rowMargin: EzSpacer(margin, vertical: false),
@@ -179,7 +177,7 @@ class EzCP extends ChangeNotifier {
         );
       }
 
-      if (types.contains(EzSettingType.text)) {
+      if (needsRebuild || types.contains(EzCacheType.text)) {
         _text = EzTextCache(
           backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
           iconSize: EzCM.get(lightIconSizeKey),
@@ -325,7 +323,7 @@ class EzCP extends ChangeNotifier {
     _l10n = result.$2;
     _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
 
-    await rebuildUI(noEST);
+    await rebuildUI(noECT);
   }
 
   /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
@@ -340,11 +338,14 @@ class EzCP extends ChangeNotifier {
             ? true
             : false,
     };
-    await rebuildUI(allEST);
+    await rebuildUI(allECT);
   }
 
-  /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
-  Future<void> rebuildUI(Set<EzSettingType> types, {Future<dynamic> Function()? changes}) async {
+  /// Always does a full rebuild of the [ThemeMode] and relevant [ThemeData]
+  /// Only updates the provided cache [types]
+  /// If you are making known [changes] prior to the rebuild, it is recommended to provide them here
+  /// A fullscreen [CircularProgressIndicator] will prevent user input while the [changes] are awaited
+  Future<void> rebuildUI(Set<EzCacheType> types, {Future<dynamic> Function()? changes}) async {
     unawaited(ezRootNav.currentState!.push(
       // Open progress layer
       PageRouteBuilder<Widget>(
@@ -378,16 +379,17 @@ class EzCP extends ChangeNotifier {
   }
 }
 
-enum EzSettingType { color, design, text }
-
-const Set<EzSettingType> allEST = <EzSettingType>{
-  EzSettingType.color,
-  EzSettingType.design,
-  EzSettingType.text,
-};
-const Set<EzSettingType> noEST = <EzSettingType>{};
-
 //* Cache *//
+
+/// Color, Design, Text
+enum EzCacheType { color, design, text }
+
+const Set<EzCacheType> allECT = <EzCacheType>{
+  EzCacheType.color,
+  EzCacheType.design,
+  EzCacheType.text,
+};
+const Set<EzCacheType> noECT = <EzCacheType>{};
 
 class EzColorCache {
   final String schemeImagePath;
