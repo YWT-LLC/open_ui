@@ -127,18 +127,16 @@ class EzTitledDivider extends StatelessWidget {
 }
 
 class EzHeader extends StatelessWidget {
-  /// [EzCP.spacing]
-  final double spacing;
+  final EzCP config;
 
-  /// [EzCP.marginVal]
-  final double margin;
-
-  /// [spacing] - [margin], unless margin is larger
-  const EzHeader({super.key, required this.spacing, required this.margin});
+  /// [EzCP.spacing] - [EzCP.marginVal], unless margin is larger
+  const EzHeader(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: SizedBox.square(dimension: (spacing > margin) ? spacing - margin : 0.0),
+        child: SizedBox.square(
+            dimension:
+                (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0),
       );
 }
 
