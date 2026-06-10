@@ -192,6 +192,10 @@ class EzCP extends ChangeNotifier {
   /// Whether the layout should favor left handed users
   bool get isLefty => _isLefty;
 
+  /// Combines [isLefty] && [isLTR] for cases where absolute position is required
+  /// (vs start/end)
+  bool get onLeft => isLefty == isLTR;
+
   /// Current [ThemeMode]
   ThemeMode get themeMode => _themeMode;
 
