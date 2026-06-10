@@ -262,8 +262,8 @@ Future<void> genLib({
 
   await ezCmd(
     EzCM.platform == TargetPlatform.windows
-        ? 'mkdir lib lib\\utils lib\\widgets lib\\screens'
-        : 'mkdir lib lib/utils lib/widgets lib/screens',
+        ? 'mkdir -p lib lib\\utils lib\\widgets lib\\screens'
+        : 'mkdir -p lib lib/utils lib/widgets lib/screens',
     dir: dir,
     onFailure: onFailure,
     readout: readout,
@@ -904,7 +904,7 @@ Future<void> genL10n({
 
   // Make dir
   await ezCmd(
-    'mkdir $arbPath',
+    'mkdir -p $arbPath',
     dir: dir,
     onFailure: onFailure,
     readout: readout,
@@ -1049,7 +1049,7 @@ Future<void> genVSCode({
 }) async {
   // Make dir
   await ezCmd(
-    'mkdir .vscode',
+    'mkdir -p .vscode',
     dir: dir,
     onFailure: onFailure,
     readout: readout,
