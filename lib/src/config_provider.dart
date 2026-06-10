@@ -12,7 +12,11 @@ class EzCP extends ChangeNotifier {
   //* Construct *//
 
   late bool _isLefty;
+
+  late ThemeMode _themeMode;
   late bool _isDark;
+  late ThemeData _theme;
+
   late Locale _locale;
   late EFUILang _l10n;
   bool _ltr;
@@ -21,12 +25,6 @@ class EzCP extends ChangeNotifier {
   late EzDesignCache _design;
   late EzLayoutCache _layout;
   late EzTextCache _text;
-
-  late ThemeData _darkTheme;
-  late ThemeData _lightTheme;
-
-  late ThemeMode _themeMode;
-  late ThemeData _currTheme;
 
   final EzAppCache _appCache;
   bool _needsRebuild;
@@ -65,27 +63,23 @@ class EzCP extends ChangeNotifier {
 
   /// Builds fresh themes and config caches
   void _buildThemeData(Set<EzSettingType> types) {
-    // Build new themes //
-
     _isLefty = EzCM.get(isLeftyKey);
-    _darkTheme = ezThemeData(Brightness.dark, _ltr);
-    _lightTheme = ezThemeData(Brightness.light, _ltr);
 
     if (_isDark) {
-      // Build new caches //
+      _theme = ezThemeData(Brightness.dark, _ltr);
 
       // Setup
       final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(darkButtonShapeKey));
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
-      final TextStyle? bodyStyle = _darkTheme.textTheme.bodyLarge;
+      final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      if (types.contains(EzSettingType.color)) {
+      if (needsRebuild || types.contains(EzSettingType.color)) {
         _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
       }
 
-      if (types.contains(EzSettingType.design)) {
+      if (needsRebuild || types.contains(EzSettingType.design)) {
         _design = EzDesignCache(
           // Button
           padding: EzCM.get(darkPaddingKey),
@@ -109,7 +103,9 @@ class EzCP extends ChangeNotifier {
         );
       }
 
-      if (types.contains(EzSettingType.design) || types.contains(EzSettingType.text)) {
+      if (needsRebuild ||
+          types.contains(EzSettingType.design) ||
+          types.contains(EzSettingType.text)) {
         _layout = EzLayoutCache(
           margin: EzSpacer(margin),
           rowMargin: EzSpacer(margin, vertical: false),
@@ -124,23 +120,20 @@ class EzCP extends ChangeNotifier {
         );
       }
 
-      if (types.contains(EzSettingType.text)) {
+      if (needsRebuild || types.contains(EzSettingType.text)) {
         _text = EzTextCache(
           backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
           iconSize: EzCM.get(darkIconSizeKey),
         );
       }
-
-      // Update the curr theme pointer
-      _currTheme = _darkTheme;
     } else {
-      // Build new caches //
+      _theme = ezThemeData(Brightness.light, _ltr);
 
       // Setup
       final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(lightButtonShapeKey));
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
-      final TextStyle? bodyStyle = _darkTheme.textTheme.bodyLarge;
+      final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
       if (types.contains(EzSettingType.color)) {
@@ -192,9 +185,6 @@ class EzCP extends ChangeNotifier {
           iconSize: EzCM.get(lightIconSizeKey),
         );
       }
-
-      // Update the curr theme pointer
-      _currTheme = _lightTheme;
     }
   }
 
@@ -203,8 +193,14 @@ class EzCP extends ChangeNotifier {
   /// Whether the layout should favor left handed users
   bool get isLefty => _isLefty;
 
+  /// Current [ThemeMode]
+  ThemeMode get themeMode => _themeMode;
+
   /// Whether the current [themeMode] uses [Brightness.dark]
   bool get isDark => _isDark;
+
+  /// Current [ThemeData] to match the [themeMode]
+  ThemeData get theme => _theme;
 
   /// Current language for the app
   Locale get locale => _locale;
@@ -237,7 +233,7 @@ class EzCP extends ChangeNotifier {
   BorderSide borderSide({Color? color}) => _design.borderWidth == 0
       ? BorderSide.none
       : BorderSide(
-          color: color ?? _currTheme.colorScheme.primaryContainer,
+          color: color ?? _theme.colorScheme.primaryContainer,
           width: _design.borderWidth,
         );
 
@@ -293,25 +289,16 @@ class EzCP extends ChangeNotifier {
   double get textBackgroundOpacity => _text.backgroundOpacity;
   double get iconSize => _text.iconSize;
 
-  // Live theme //
+  // Theme sub-pointers //
 
-  ThemeData get darkTheme => _darkTheme;
-  ThemeData get lightTheme => _lightTheme;
+  ColorScheme get colors => _theme.colorScheme;
 
-  /// Current [ThemeMode]
-  ThemeMode get themeMode => _themeMode;
-
-  /// Current [ThemeData] to match the [themeMode]
-  ThemeData get theme => _currTheme;
-
-  ColorScheme get colors => _currTheme.colorScheme;
-
-  TextTheme get styles => _currTheme.textTheme;
-  TextStyle? get displayStyle => _currTheme.textTheme.displayLarge;
-  TextStyle? get headlineStyle => _currTheme.textTheme.headlineLarge;
-  TextStyle? get titleStyle => _currTheme.textTheme.titleLarge;
-  TextStyle? get bodyStyle => _currTheme.textTheme.bodyLarge;
-  TextStyle? get labelStyle => _currTheme.textTheme.labelLarge;
+  TextTheme get styles => _theme.textTheme;
+  TextStyle? get displayStyle => _theme.textTheme.displayLarge;
+  TextStyle? get headlineStyle => _theme.textTheme.headlineLarge;
+  TextStyle? get titleStyle => _theme.textTheme.titleLarge;
+  TextStyle? get bodyStyle => _theme.textTheme.bodyLarge;
+  TextStyle? get labelStyle => _theme.textTheme.labelLarge;
 
   /// Toggleable bool for alerting the user to rebuild the UI
   /// Some settings would be too expensive to rebuild on every change, so they update locally and [pingRebuild]
@@ -338,34 +325,22 @@ class EzCP extends ChangeNotifier {
     _l10n = result.$2;
     _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
 
-    await rebuildUI(noEST); // TODO: test
+    await rebuildUI(noEST);
   }
 
   /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
   Future<void> rebuildThemeMode() async {
     final ThemeMode newMode = _getThemeMode();
 
-    switch (newMode) {
-      case ThemeMode.dark:
-        _isDark = true;
-        _currTheme = _darkTheme;
-        break;
-      case ThemeMode.light:
-        _isDark = false;
-        _currTheme = _lightTheme;
-        break;
-      case ThemeMode.system:
-        if (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) {
-          _isDark = true;
-          _currTheme = _darkTheme;
-        } else {
-          _isDark = false;
-          _currTheme = _lightTheme;
-        }
-        break;
-    }
-
-    await rebuildUI(noEST); // TODO: test (manual and inherited!)
+    _isDark = switch (newMode) {
+      ThemeMode.dark => true,
+      ThemeMode.light => false,
+      ThemeMode.system =>
+        (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark)
+            ? true
+            : false,
+    };
+    await rebuildUI(allEST);
   }
 
   /// Rebuilds the apps [ThemeMode], [ThemeData], and updates the config caches
@@ -384,19 +359,14 @@ class EzCP extends ChangeNotifier {
     if (changes != null) await changes();
     final ThemeMode newMode = _getThemeMode();
 
-    switch (newMode) {
-      case ThemeMode.dark:
-        _isDark = true;
-        break;
-      case ThemeMode.light:
-        _isDark = false;
-        break;
-      case ThemeMode.system:
-        WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark
-            ? _isDark = true
-            : _isDark = false;
-        break;
-    }
+    _isDark = switch (newMode) {
+      ThemeMode.dark => true,
+      ThemeMode.light => false,
+      ThemeMode.system =>
+        (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark)
+            ? true
+            : false,
+    };
     _buildThemeData(types);
 
     await _appCache.rebuild(this);
