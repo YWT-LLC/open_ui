@@ -88,7 +88,7 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
 
     if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
         config.isDark) {
-      await config.rebuildUI(noEST); // TODO: test (already mentioned bfi)
+      await config.rebuildUI(allEST);
     }
   }
 
@@ -103,8 +103,8 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
           locale: config.locale,
           title: EzCM.appName,
           themeMode: config.themeMode,
-          darkTheme: config.darkTheme,
-          theme: config.lightTheme,
+          darkTheme: config.theme,
+          theme: config.theme,
           routerConfig: widget.routerConfig,
         ),
       );
