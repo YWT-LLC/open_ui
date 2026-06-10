@@ -1014,7 +1014,7 @@ Future<void> genL10n({
   "hsCounterLabel": "你按了这么多次按钮："
 }''');
 
-    await File('$dir/l10n(config).yaml').writeAsString(config.l10nConfig);
+    await File('$dir/l10n.yaml').writeAsString(config.l10nConfig);
   } catch (e) {
     onFailure(e.toString());
   }
