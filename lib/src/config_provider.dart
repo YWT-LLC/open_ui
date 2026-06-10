@@ -7,6 +7,7 @@ import '../empathetech_flutter_ui.dart';
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EzCP extends ChangeNotifier {
   //* Construct *//
@@ -500,3 +501,8 @@ abstract class EzAppCache {
   /// Will run on every call to [EzCP.rebuildUI]
   Future<void> rebuild(EzCP config);
 }
+
+/// Safety net, not a crutch...
+/// Only to be used when getting the proper Provider is unreasonably difficult
+/// Example: inside GoRouter
+EzCP configWatcher(BuildContext context) => Provider.of<EzCP>(context, listen: false);
