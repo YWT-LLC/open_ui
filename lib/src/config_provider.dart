@@ -243,7 +243,7 @@ class EzCP extends ChangeNotifier {
   List<Widget> backFABs(bool isHome) =>
       (_design.showBackFAB && !isHome && ezRootNav.currentState!.canPop())
           ? <Widget>[spacer, EzBackFAB(this)]
-          : <Widget>[]; // TODO: test this
+          : <Widget>[];
 
   // Page
   double get marginVal => _design.margin;
