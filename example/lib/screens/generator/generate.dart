@@ -339,7 +339,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
   Widget build(BuildContext context) {
     return Consumer<EzCP>(builder: (_, EzCP config, __) {
       if (!ran) {
-        ran = true; // TODO: test this
+        ran = true;
         genStuff(config);
       }
 
