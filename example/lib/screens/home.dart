@@ -53,14 +53,12 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   // Form data //
 
   final TextEditingController nameTC = TextEditingController(text: EzCM.get(nameBackupKey));
-  late String namePreview =
-      l10n(Provider.of<EzCP>(ezRootNav.currentContext!, listen: false)).csNamePreview;
+  late String namePreview = l10n(configWatcher(context)).csNamePreview;
   bool validName = false;
 
   final TextEditingController publisherTC =
       TextEditingController(text: EzCM.get(publisherBackupKey));
-  late String pubPreview =
-      l10n(Provider.of<EzCP>(ezRootNav.currentContext!, listen: false)).csPubPreview;
+  late String pubPreview = l10n(configWatcher(context)).csPubPreview;
 
   final TextEditingController descriptionTC =
       TextEditingController(text: EzCM.get(descriptionBackupKey));

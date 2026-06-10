@@ -8,7 +8,6 @@ import './utils/export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:window_manager/window_manager.dart';
@@ -95,11 +94,7 @@ class OpenUI extends StatelessWidget {
                   path: archiveScreenPath,
                   name: archiveScreenPath,
                   pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                    Provider.of<EzCP>(pbc, listen: false),
-                    pbc,
-                    pbs,
-                    ArchiveScreen((pbs.extra as EAGConfig)),
-                  ),
+                      configWatcher(pbc), pbc, pbs, ArchiveScreen((pbs.extra as EAGConfig))),
                 ),
 
                 // Generate
@@ -107,19 +102,15 @@ class OpenUI extends StatelessWidget {
                   path: generateScreenPath,
                   name: generateScreenPath,
                   pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                    Provider.of<EzCP>(pbc, listen: false),
-                    pbc,
-                    pbs,
-                    GenerateScreen((pbs.extra as EAGConfig)),
-                  ),
+                      configWatcher(pbc), pbc, pbs, GenerateScreen((pbs.extra as EAGConfig))),
                 ),
 
                 // Settings
                 GoRoute(
                   path: settingsHubPath,
                   name: settingsHubPath,
-                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                      Provider.of<EzCP>(pbc, listen: false), pbc, pbs, const SettingsHubScreen()),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                      ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
                 ),
               ],
             ),
