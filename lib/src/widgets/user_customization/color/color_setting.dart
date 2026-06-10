@@ -45,7 +45,7 @@ class _ColorSettingState extends State<EzColorSetting> {
       onColorChange: (Color chosenColor) => setState(() => currColor = chosenColor),
       onConfirm: () async {
         await EzCM.setInt(widget.configKey, currColor.toARGB32());
-        await widget.config.rebuildUI(noEST);
+        await widget.config.rebuildUI(<EzSettingType>{EzSettingType.color});
       },
       onDeny: () => setState(() => currColor = backup),
     );
