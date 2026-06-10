@@ -343,15 +343,15 @@ class $classCaseAppName extends StatelessWidget {
           GoRoute(
             path: homePath,
             name: homePath,
-            pageBuilder: (BuildContext context, GoRouterState state) =>
-                ezPageBuilder(context, state, HomeScreen()),
+            pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
             routes: <RouteBase>[
               // Settings
               GoRoute(
                 path: settingsHubPath,
                 name: settingsHubPath,
-                pageBuilder: (BuildContext context, GoRouterState state) =>
-                    ezPageBuilder(context, state, SettingsHubScreen()),
+                pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                    ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
               ),
             ],
           ),

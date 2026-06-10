@@ -87,22 +87,18 @@ class OpenUI extends StatelessWidget {
             GoRoute(
               path: homePath,
               name: homePath,
-              pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
-                Provider.of<EzCP>(context, listen: false),
-                context,
-                state,
-                const HomeScreen(),
-              ),
+              pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                  ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
               routes: <RouteBase>[
                 // Archive
                 GoRoute(
                   path: archiveScreenPath,
                   name: archiveScreenPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
-                    Provider.of<EzCP>(context, listen: false),
-                    context,
-                    state,
-                    ArchiveScreen((state.extra as EAGConfig)),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+                    Provider.of<EzCP>(pbc, listen: false),
+                    pbc,
+                    pbs,
+                    ArchiveScreen((pbs.extra as EAGConfig)),
                   ),
                 ),
 
@@ -110,11 +106,11 @@ class OpenUI extends StatelessWidget {
                 GoRoute(
                   path: generateScreenPath,
                   name: generateScreenPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
-                    Provider.of<EzCP>(context, listen: false),
-                    context,
-                    state,
-                    GenerateScreen((state.extra as EAGConfig)),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+                    Provider.of<EzCP>(pbc, listen: false),
+                    pbc,
+                    pbs,
+                    GenerateScreen((pbs.extra as EAGConfig)),
                   ),
                 ),
 
@@ -122,12 +118,8 @@ class OpenUI extends StatelessWidget {
                 GoRoute(
                   path: settingsHubPath,
                   name: settingsHubPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) => ezPageBuilder(
-                    Provider.of<EzCP>(context, listen: false),
-                    context,
-                    state,
-                    const SettingsHubScreen(),
-                  ),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+                      Provider.of<EzCP>(pbc, listen: false), pbc, pbs, const SettingsHubScreen()),
                 ),
               ],
             ),
