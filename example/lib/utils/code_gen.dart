@@ -628,7 +628,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         fabs: <Widget>[
           updater,
           if (fabs != null) ...fabs!,
-          ...config.backFABs(home),
+          ...config.backFABs(isHome),
         ],
       ),
     );
