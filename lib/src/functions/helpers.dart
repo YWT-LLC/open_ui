@@ -7,6 +7,7 @@ import '../../empathetech_flutter_ui.dart';
 
 import 'dart:io';
 import 'dart:math';
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -336,6 +337,23 @@ Future<dynamic> ezLogAlert(
       needsClose: needsClose,
     ),
   );
+}
+
+/// Disable screen interaction while [changes] are taking place
+Future<void> ezNoTouch(Future<dynamic> Function() changes) async {
+  unawaited(ezRootNav.currentState!.push(
+    // Open progress layer
+    PageRouteBuilder<Widget>(
+      opaque: false,
+      transitionsBuilder: (_, __, ___, Widget child) => child,
+      transitionDuration: Duration.zero,
+      reverseTransitionDuration: Duration.zero,
+      pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
+    ),
+  ));
+
+  await changes();
+  ezRootNav.currentState!.pop();
 }
 
 /// A [Page] animator based on [EzCP]
