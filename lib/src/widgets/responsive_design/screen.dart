@@ -44,12 +44,28 @@ class EzScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-        alignment: alignment,
-        padding: margin ?? EdgeInsets.all(config.marginVal),
-        decoration: buildDecoration(),
-        height: double.infinity,
-        width: double.infinity,
-        child: safeArea ? SafeArea(child: child) : child,
-      );
+  Widget build(BuildContext context) => safeArea
+      ? Container(
+          alignment: alignment,
+          decoration: buildDecoration(),
+          height: double.infinity,
+          width: double.infinity,
+          child: SafeArea(
+            child: Container(
+              alignment: alignment,
+              padding: margin ?? EdgeInsets.all(config.marginVal),
+              height: double.infinity,
+              width: double.infinity,
+              child: child,
+            ),
+          ),
+        )
+      : Container(
+          alignment: alignment,
+          padding: margin ?? EdgeInsets.all(config.marginVal),
+          decoration: buildDecoration(),
+          height: double.infinity,
+          width: double.infinity,
+          child: child,
+        );
 }
