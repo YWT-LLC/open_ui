@@ -23,10 +23,10 @@ class PageDesign extends StatelessWidget {
   /// Defaults to [EzCP.separator]
   final Widget? resetSpacer;
 
-  /// Optional extra keys to reset (when [config.isDark])
+  /// Optional extra keys to reset (when [EzCP.isDark])
   final Set<String>? resetExtraDark;
 
-  /// Optional extra keys to reset (when ![config.isDark])
+  /// Optional extra keys to reset (when ![EzCP.isDark])
   final Set<String>? resetExtraLight;
 
   /// Keys that shouldn't be reset by the local [EzResetButton]

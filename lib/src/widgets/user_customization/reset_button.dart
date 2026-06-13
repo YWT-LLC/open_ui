@@ -35,7 +35,7 @@ class EzResetButton extends StatelessWidget {
 
   /// Override what happens when the user choses to reset
   /// Defaults to [EzCM.reset]
-  /// DO NOT include an [config.rebuildUI] or [Navigator.pop], these are included automatically
+  /// DO NOT include an [EzCP.rebuildUI] or [Navigator.pop], these are included automatically
   final Future<void> Function()? onConfirm;
 
   /// Override what happens when the user choses not to reset

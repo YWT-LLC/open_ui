@@ -16,16 +16,17 @@ class EzTextBackground extends StatelessWidget {
   final Widget text;
 
   /// Optional override
-  /// Defaults to [EdgeInsets.all] w/ [config.marginVal]
+  /// Defaults to [EdgeInsets.all] w/ [EzCP.marginVal]
+  /// Override is always present, default is only present when [EzCP.textBackgroundOpacity] >= [oneP]
   final EdgeInsets? padding;
 
-  /// Match the current [config.buttonShape]
+  /// Match the current [EzCP.buttonShape]
   final bool buttonShape;
 
   /// Optionally override [BoxDecoration.borderRadius]
   final BorderRadiusGeometry? borderRadius;
 
-  /// Uses [config.textBackgroundOpacity]
+  /// Uses [EzCP.textBackgroundOpacity]
   /// Defaults to [ColorScheme.surfaceContainer]
   final Color? baseColor;
 
@@ -46,9 +47,10 @@ class EzTextBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: (backgroundColor == null && config.textBackgroundOpacity < oneP)
-            ? EdgeInsets.zero
-            : padding ?? EdgeInsets.all(config.marginVal),
+        padding: padding ??
+            ((backgroundColor == null && config.textBackgroundOpacity < oneP)
+                ? EdgeInsets.zero
+                : EdgeInsets.all(config.marginVal)),
         decoration: buttonShape
             ? ShapeDecoration(
                 color: backgroundColor ??

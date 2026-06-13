@@ -132,7 +132,7 @@ Future<void> ezConfigLoader(EzCP config, {required BuildContext context}) async 
 }
 
 /// Close any open modals or dialogs
-/// Automatically consumed by [config.rebuildUI]
+/// Automatically consumed by [EzCP.rebuildUI]
 void ezCloseAll() {
   final NavigatorState? state = ezRootNav.currentState;
   if (state == null) return;
@@ -421,7 +421,7 @@ BoxConstraints ezTextFieldConstraints(BuildContext bc, {double prop = 0.75}) {
 }
 
 /// [EFUILang.gBothThemes], [EFUILang.gDarkTheme], or [EFUILang.gLightTheme]
-/// Based on [EzCM.updateBoth] && [config.isDark]
+/// Based on [EzCM.updateBoth] && [EzCP.isDark]
 String ezThemeString(EzCP config, {required bool bothable}) => ((bothable && EzCM.updateBoth)
         ? (config.locale.languageCode == english.languageCode
             ? "${config.ezL10n.gBothThemes}'"

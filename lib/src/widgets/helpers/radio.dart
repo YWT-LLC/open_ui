@@ -12,7 +12,7 @@ class EzRadio<T> extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
-  /// Defaults to [EdgeInsets.all] with [config.marginVal] when [ezIconRatio] > 1.1
+  /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
   /// [Radio.value] passthrough

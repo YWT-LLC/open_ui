@@ -18,17 +18,12 @@ class EzToolTipper extends StatelessWidget {
   /// [Tooltip.richMessage] passthrough
   final InlineSpan? richMessage;
 
-  /// Adds [config.marginVal] spacing to the left && right
-  /// When the [config.textBackgroundOpacity] is < [oneP]
-  final bool autoPad;
-
   /// Classic question mark tool tip
   const EzToolTipper(
     this.config, {
     super.key,
     this.message,
     this.richMessage,
-    this.autoPad = true,
   }) : assert(((message == null) != (richMessage == null)),
             'Either message or richMessage must be provided, but not both');
 
@@ -39,6 +34,7 @@ class EzToolTipper extends StatelessWidget {
 
     return EzTextBackground(
       config,
+      padding: EdgeInsets.all(config.marginVal),
       text: Semantics(
         label: config.ezL10n.gHelp,
         button: true,
@@ -88,23 +84,18 @@ class EzToolTipper extends StatelessWidget {
           }
           isTooltipVisible = !isTooltipVisible;
         },
-        child: Padding(
-          padding: (autoPad && config.textBackgroundOpacity < oneP)
-              ? EdgeInsets.symmetric(horizontal: config.marginVal)
-              : EdgeInsets.zero,
-          child: Tooltip(
-            waitDuration: Duration.zero,
-            exitDuration: const Duration(milliseconds: 500),
-            triggerMode: TooltipTriggerMode.tap,
-            enableTapToDismiss: false,
-            excludeFromSemantics: true,
-            message: message,
-            richMessage: richMessage,
-            child: EzIcon(
-              config,
-              Icons.help_outline,
-              color: config.colors.outline,
-            ),
+        child: Tooltip(
+          waitDuration: Duration.zero,
+          exitDuration: const Duration(milliseconds: 500),
+          triggerMode: TooltipTriggerMode.tap,
+          enableTapToDismiss: false,
+          excludeFromSemantics: true,
+          message: message,
+          richMessage: richMessage,
+          child: EzIcon(
+            config,
+            Icons.help_outline,
+            color: config.colors.outline,
           ),
         ),
       ),

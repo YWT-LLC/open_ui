@@ -12,23 +12,23 @@ class EzFontFamilyBatchSetting extends StatefulWidget {
   final EzCP config;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [config.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzDisplayStyleProvider displayProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [config.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzHeadlineStyleProvider headlineProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [config.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzTitleStyleProvider titleProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [config.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzBodyStyleProvider bodyProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [config.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzLabelStyleProvider labelProvider;
 
   /// Standardized tool for updating the 5 [TextStyle.fontFamily]s
