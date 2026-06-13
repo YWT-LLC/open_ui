@@ -107,6 +107,7 @@ class _EzLinkState extends State<EzLink> {
                     style: TextButton.styleFrom(
                       padding:
                           widget.inline ? EdgeInsets.zero : EdgeInsets.all(widget.config.marginVal),
+                      shape: widget.inline ? null : widget.config.buttonShape.shape,
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       visualDensity: VisualDensity.compact,
                       minimumSize: Size.zero,
@@ -132,6 +133,7 @@ class _EzLinkState extends State<EzLink> {
                         padding: widget.inline
                             ? EdgeInsets.zero
                             : EdgeInsets.all(widget.config.marginVal),
+                        shape: widget.inline ? null : widget.config.buttonShape.shape,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         visualDensity: VisualDensity.compact,
                         minimumSize: Size.zero,

@@ -420,7 +420,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
         enabledMouseCursor: SystemMouseCursors.click,
         overlayColor: colorScheme.primary,
         side: null,
-        shape: null,
+        shape: buttonShape,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
         padding: EdgeInsets.all(margin),

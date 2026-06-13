@@ -61,6 +61,7 @@ class _EzTextButtonState extends State<EzTextButton> {
         style: widget.inline
             ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
                 padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
+                shape: null,
               )
             : widget.style,
         child: Text(
@@ -132,6 +133,7 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
         style: widget.inline
             ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
                 padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
+                shape: null,
               )
             : widget.style,
         icon: widget.icon,
