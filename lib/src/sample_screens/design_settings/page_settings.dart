@@ -448,6 +448,7 @@ class _PageTransitionSetting extends StatelessWidget {
                 EzSwitchPair(
                   config,
                   valueKey: config.isDark ? darkTransitionFadeKey : lightTransitionFadeKey,
+                  text: config.ezL10n.dsFadeTransition,
                   afterChanged: (bool? choice) async {
                     if (choice == null) return;
 
@@ -460,7 +461,6 @@ class _PageTransitionSetting extends StatelessWidget {
 
                     setModal(() => currFade = choice);
                   },
-                  text: config.ezL10n.dsFadeTransition,
                 ),
                 config.separator,
               ]),

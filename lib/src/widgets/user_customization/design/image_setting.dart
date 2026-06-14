@@ -521,9 +521,9 @@ class _ImageSettingState extends State<EzImageSetting> {
           padding: EdgeInsets.symmetric(vertical: widget.config.spacing / 2),
           child: EzSwitchPair(
             widget.config,
-            key: ValueKey<bool>(updateTheme),
-            text: widget.config.ezL10n.dsUseForColors,
+            key: ValueKey<String>('uts-$updateTheme'),
             value: updateTheme,
+            text: widget.config.ezL10n.dsUseForColors,
             onChanged: (bool? choice) {
               if (choice == null) return;
               setModal(() => updateTheme = choice);

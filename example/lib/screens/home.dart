@@ -305,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       forceFade: false,
                       child: EzSwitchPair(
                         config,
-                        key: ValueKey<bool>(exampleDomain),
+                        key: ValueKey<String>('eds-$exampleDomain'),
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: (exampleDomain || config.isLefty)
                             ? MainAxisAlignment.start

@@ -98,6 +98,7 @@ class ButtonDesign extends StatelessWidget {
         // Show scroll
         EzSwitchPair(
           config,
+          text: config.ezL10n.dsShowScroll,
           valueKey: config.isDark ? darkShowScrollKey : lightShowScrollKey,
           afterChanged: (bool? value) async {
             if (value == null) return;
@@ -107,7 +108,6 @@ class ButtonDesign extends StatelessWidget {
 
             await config.rebuildUI(<EzCacheType>{EzCacheType.design});
           },
-          text: config.ezL10n.dsShowScroll,
         ),
 
         if (append != null) ...append!,

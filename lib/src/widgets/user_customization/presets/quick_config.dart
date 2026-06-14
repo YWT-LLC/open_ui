@@ -53,7 +53,7 @@ class EzQuickConfig extends StatelessWidget {
                 // Update both/auto confirm toggle
                 EzSwitchPair(
                   config,
-                  key: ValueKey<bool>(dewIt),
+                  key: ValueKey<String>('dis-$dewIt'),
                   value: dewIt,
                   text: config.ezL10n.ssDewIt,
                   onChanged: (bool? value) {
