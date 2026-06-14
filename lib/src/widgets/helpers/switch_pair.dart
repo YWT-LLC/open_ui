@@ -7,7 +7,6 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class EzSwitchPair extends StatefulWidget {
   /// EzConfig Provider
@@ -33,7 +32,7 @@ class EzSwitchPair extends StatefulWidget {
   /// [EzRow.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// [EzText.data] passthrough
+  /// [EzText.text] passthrough
   final String text;
 
   /// When true, the [text] will be a clickable link (toggles the switch)
@@ -59,9 +58,6 @@ class EzSwitchPair extends StatefulWidget {
   /// Provide [valueKey] OR [value]
   /// Optionally provide [afterChanged]
   final String? valueKey;
-
-  /// Whether the key should use [FlutterSecureStorage]
-  final bool secureKey;
 
   /// [Switch.onChanged] passthrough
   /// Provide [onChanged] OR [afterChanged]
@@ -100,7 +96,6 @@ class EzSwitchPair extends StatefulWidget {
     // Switch
     this.value,
     this.valueKey,
-    this.secureKey = false,
     this.onChanged,
     this.canChange,
     this.afterChanged,
@@ -127,17 +122,13 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
   void onChanged(bool? choice) async {
     if (!widget.enabled) return;
     if (widget.onChanged != null) return widget.onChanged!.call(choice);
+
     if (choice == null) return;
-
     if (widget.canChange != null) {
-      if (!await widget.canChange!(choice)) return;
+      if (!(await widget.canChange!(choice))) return;
     }
 
-    if (widget.secureKey) {
-      await EzCM.secSet(widget.valueKey!, choice.toString());
-    } else {
-      await EzCM.setBool(widget.valueKey!, choice);
-    }
+    await EzCM.setBool(widget.valueKey!, choice);
     setState(() => value = choice);
 
     widget.afterChanged?.call(choice);
@@ -145,18 +136,10 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   // Init //
 
-  void setValue() async {
-    final bool newVal = widget.secureKey
-        ? int.tryParse(await EzCM.secGet(widget.valueKey!)) ?? false
-        : EzCM.get(widget.valueKey!);
-
-    if (newVal != value) setState(() => value = newVal);
-  }
-
   @override
   void initState() {
     super.initState();
-    if (widget.value == null) setValue();
+    if (widget.value == null) setState(() => value = EzCM.get(widget.valueKey!));
   }
 
   // Return the build //
