@@ -655,7 +655,7 @@ Must be one of [int, bool, double, String, List<String>]''');
           // shadow
           surfaceTint: Colors.transparent,
           scrim: Colors.white,
-          brightness: Brightness.light,
+          // brightness: Brightness.light,
           seedColor: primary,
         ),
         Brightness.light,
@@ -824,7 +824,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
     bool success = true;
     for (final String key in keys) {
-      success &= await remove(key, reset: true);
+      success &= await remove(key);
     }
     return success;
   }

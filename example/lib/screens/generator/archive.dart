@@ -35,7 +35,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   // Define custom functions //
 
   /// Save the EAGConfig
-  void archive(EzCP config) async {
+  Future<void> archive(EzCP config) async {
     late final String savedConfig;
     try {
       savedConfig = await FileSaver.instance.saveFile(

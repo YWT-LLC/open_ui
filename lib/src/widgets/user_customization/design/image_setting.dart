@@ -172,7 +172,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               EzMaterialAction(
                 widget.config,
                 text: widget.config.ezL10n.gCancel,
-                onPressed: () => Navigator.of(dCon).pop((_) => Future<dynamic>.value(null)),
+                onPressed: () => Navigator.of(dCon).pop((_) => Future<dynamic>.value()),
               ),
             ],
             needsClose: false,
@@ -380,12 +380,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                   stream.addListener(listener);
                   await completer.future;
                 } catch (e) {
-                  if (dCon.mounted) {
-                    Navigator.of(dCon).pop(null);
-                  }
-                  if (mCon.mounted) {
-                    Navigator.of(mCon).pop(null);
-                  }
+                  if (dCon.mounted) Navigator.of(dCon).pop();
+                  if (mCon.mounted) Navigator.of(mCon).pop();
 
                   final String errorMsg =
                       '${e.toString()}\n\n${widget.config.ezL10n.dsImgPermission}';
@@ -411,7 +407,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               },
               confirmIsDestructive: true,
               denyMsg: widget.config.ezL10n.gCancel,
-              onDeny: () => Navigator.of(dCon).pop(null),
+              onDeny: () => Navigator.of(dCon).pop(),
             ),
             needsClose: false,
           ),
@@ -660,7 +656,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 widget.config.rowSpacer,
                 EzTextButton(
                   widget.config,
-                  onPressed: () => Navigator.of(fitContext).pop(null),
+                  onPressed: () => Navigator.of(fitContext).pop(),
                   text: widget.config.ezL10n.gCancel,
                   textStyle: widget.config.bodyStyle,
                   textAlign: TextAlign.center,

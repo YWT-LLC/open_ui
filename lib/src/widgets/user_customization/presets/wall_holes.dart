@@ -151,7 +151,7 @@ class EzWallHolesConfig extends StatelessWidget {
         backgroundColor: const Color(0xFFDAE4F8),
         foregroundColor: Colors.black,
         overlayColor: Colors.white,
-        side: const BorderSide(color: Colors.black, width: 2.0),
+        side: const BorderSide(width: 2.0),
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
         padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),

@@ -114,7 +114,6 @@ class _EzLinkState extends State<EzLink> {
                       backgroundColor: widget.backgroundColor,
                     ),
                     onPressed: widget.onTap,
-                    onLongPress: null,
                     onHover: (bool isHovering) {
                       underline(isHovering);
                       widget.onHover?.call(isHovering);
@@ -140,7 +139,6 @@ class _EzLinkState extends State<EzLink> {
                         backgroundColor: widget.backgroundColor,
                       ),
                       onPressed: followLink,
-                      onLongPress: null,
                       onHover: (bool isHovering) {
                         underline(isHovering);
                         widget.onHover?.call(isHovering);

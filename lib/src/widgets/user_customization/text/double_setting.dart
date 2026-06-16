@@ -162,7 +162,6 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                   style: widget.style,
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.top,
-                  maxLines: 1,
                   keyboardType: TextInputType.number,
                   autovalidateMode: AutovalidateMode.onUnfocus,
                   validator: (String? value) {

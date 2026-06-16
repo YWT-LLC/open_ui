@@ -168,7 +168,7 @@ class EzNebulaConfig extends StatelessWidget {
           foregroundColor: Colors.white,
           shadowColor: _empathPurpleDimmer,
           overlayColor: empathSand,
-          side: const BorderSide(color: _halfSand, width: 1.0),
+          side: const BorderSide(color: _halfSand),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
           padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),

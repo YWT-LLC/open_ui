@@ -180,7 +180,6 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     enabled: !processing,
                     onPressed: () {
                       _editorController.rotate(
-                        degree: 90.0,
                         rotateCropRect: false,
                         animation: rotateDuration.inMilliseconds > 0 ? true : false,
                         duration: rotateDuration,
@@ -345,7 +344,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   EzIconButton(
                     widget.config,
                     tooltip: widget.config.ezL10n.gCancel,
-                    onPressed: () => Navigator.pop(context, null),
+                    onPressed: () => Navigator.pop(context),
                     icon: EzIcon(widget.config, Icons.delete),
                   ),
                 ],
