@@ -132,7 +132,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   }
 
   /// Check for Open UI updates
-  void asyncInit() async {
+  Future<void> asyncInit() async {
     final bool isGPlay = await isGPlayInstall();
 
     if (EzCM.onMobile && (isGPlay || EzCM.platform == TargetPlatform.iOS)) {

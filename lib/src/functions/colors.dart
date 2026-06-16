@@ -75,7 +75,7 @@ ColorScheme ezColorScheme(Brightness brightness) {
           surfaceTint: getColor(darkSurfaceTintKey),
         )
       : ColorScheme.fromSeed(
-          brightness: Brightness.light,
+          // brightness: Brightness.light,
           seedColor: getColor(lightPrimaryKey)!,
           primary: getColor(lightPrimaryKey),
           onPrimary: getColor(lightOnPrimaryKey),
@@ -258,7 +258,7 @@ Future<String> loadImageColorScheme(String path, Brightness? brightness) async {
       await loadColorScheme(
         await ColorScheme.fromImageProvider(
           provider: ezImageProvider(path),
-          brightness: Brightness.light,
+          // brightness: Brightness.light,
         ),
         Brightness.light,
       );

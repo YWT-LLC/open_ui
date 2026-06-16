@@ -159,8 +159,6 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         child: Slider(
           // Slider values
           value: backOpacity,
-          min: minOpacity,
-          max: maxOpacity,
           divisions: 20,
           label: backOpacity.toStringAsFixed(2),
 

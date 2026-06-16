@@ -227,7 +227,6 @@ class _ButtonStyleSetting extends StatelessWidget {
                   child: Slider(
                     // Slider values
                     value: currWidth,
-                    min: minBorderWidth,
                     max: maxBorderWidth,
                     divisions: 30,
                     label: currWidth.toStringAsFixed(2),

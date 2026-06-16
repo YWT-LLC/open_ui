@@ -58,8 +58,6 @@ class EzCLI extends StatelessWidget {
           constraints: ezTextFieldConstraints(context),
           child: TextFormField(
             controller: _cmdController,
-            textAlign: TextAlign.start,
-            maxLines: 1,
             decoration: const InputDecoration(hintText: 'echo "Hello, World!"'),
             onFieldSubmitted: (String value) async {
               await ezCmd(

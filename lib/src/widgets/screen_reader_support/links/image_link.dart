@@ -70,7 +70,6 @@ class EzImageLink extends StatelessWidget {
 
     final Image child = Image(
       image: image,
-      semanticLabel: null,
       excludeFromSemantics: true,
       width: width,
       height: height,

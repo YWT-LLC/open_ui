@@ -81,7 +81,7 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangePlatformBrightness() async {
+  Future<void> didChangePlatformBrightness() async {
     super.didChangePlatformBrightness();
 
     final EzCP config = configWatcher(context);

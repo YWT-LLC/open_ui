@@ -69,18 +69,18 @@ const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
   surfaceContainer: darkSurfaceContainer,
 
   // Text
-  onSurface: Colors.white,
+  // onSurface: Colors.white,
   outline: halfWhite,
 
   // Primary
   primary: Colors.white,
-  onPrimary: Colors.black,
+  // onPrimary: Colors.black,
   primaryContainer: dimWhite,
   onPrimaryContainer: Colors.black,
 
   // Secondary
   secondary: Colors.white,
-  onSecondary: Colors.black,
+  // onSecondary: Colors.black,
   secondaryContainer: dimWhite,
   onSecondaryContainer: Colors.black,
 
@@ -106,17 +106,17 @@ const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
 /// Custom [ColorScheme.highContrastLight]
 const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
   // Surface
-  surface: lightSurface,
+  // surface: lightSurface,
   surfaceDim: lightSurfaceDim,
   surfaceContainer: lightSurfaceContainer,
 
   // Text
-  onSurface: Colors.black,
+  // onSurface: Colors.black,
   outline: halfBlack,
 
   // Primary
   primary: Colors.black,
-  onPrimary: Colors.white,
+  // onPrimary: Colors.white,
   primaryContainer: dimBlack,
   onPrimaryContainer: Colors.white,
 
@@ -134,7 +134,7 @@ const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
 
   // Erriary
   error: Colors.red,
-  onError: Colors.white,
+  // onError: Colors.white,
   errorContainer: dimBlack,
   onErrorContainer: Colors.white,
 
