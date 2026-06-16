@@ -44,6 +44,9 @@ class EzSwitchPair extends StatefulWidget {
   /// [EzText.semanticsLabel] passthrough
   final String? semanticsLabel;
 
+  /// If provided, an [EzToolTipper] will appear next to the [Switch]
+  final String? tipper;
+
   /// [Switch.value] passthrough
   /// Provide [value] OR [valueKey]
   /// Must pair with [onChanged]
@@ -92,6 +95,9 @@ class EzSwitchPair extends StatefulWidget {
     this.clickable = false,
     this.textAlign,
     this.semanticsLabel,
+
+    // Tool tip(per)
+    this.tipper,
 
     // Switch
     this.value,
@@ -189,6 +195,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                   : EdgeInsets.only(left: widget.config.marginVal),
             ),
           ),
+          if (widget.tipper != null) EzToolTipper(widget.config, message: widget.tipper),
         ],
       );
 }
