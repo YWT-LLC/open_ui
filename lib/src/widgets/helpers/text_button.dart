@@ -60,9 +60,7 @@ class _EzTextButtonState extends State<EzTextButton> {
         onLongPress: widget.onLongPress,
         style: widget.inline
             ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
-                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
-                shape: null,
-              )
+                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero))
             : widget.style,
         child: Text(
           widget.text,
@@ -132,9 +130,7 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
         onLongPress: widget.onLongPress,
         style: widget.inline
             ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
-                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
-                shape: null,
-              )
+                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero))
             : widget.style,
         icon: widget.icon,
         iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,

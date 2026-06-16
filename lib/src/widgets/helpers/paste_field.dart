@@ -35,9 +35,6 @@ class EzPasteField extends StatelessWidget {
           child: TextFormField(
             controller: controller,
             enabled: true,
-            readOnly: false,
-            maxLines: 1,
-            textAlign: TextAlign.start,
             style: style,
             validator: validator,
             autofillHints: autofillHints,

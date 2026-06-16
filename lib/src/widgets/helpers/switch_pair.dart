@@ -125,7 +125,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   // Define custom functions //
 
-  void onChanged(bool? choice) async {
+  Future<void> onChanged(bool? choice) async {
     if (!widget.enabled) return;
     if (widget.onChanged != null) return widget.onChanged!.call(choice);
 

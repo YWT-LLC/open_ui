@@ -498,7 +498,6 @@ Widget ezTransitionBuilder(
               begin: reverse ? 2.0 : 0.0,
               end: 1.0,
             ).animate(CurvedAnimation(parent: animation, curve: config.animCurve)),
-            alignment: Alignment.center,
             child: smartFade(child),
           );
 
@@ -586,7 +585,6 @@ Widget ezTransitionBuilder(
           begin: reverse ? 2.0 : 0.0,
           end: 1.0,
         ).animate(CurvedAnimation(parent: animation, curve: config.animCurve)),
-        alignment: Alignment.center,
         child: smartFade(child),
       );
 

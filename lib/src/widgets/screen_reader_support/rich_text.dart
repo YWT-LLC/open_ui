@@ -47,7 +47,7 @@ class EzRichText extends StatelessWidget {
   });
 
   String _semanticsLabel() {
-    final StringBuffer label = StringBuffer('');
+    final StringBuffer label = StringBuffer();
 
     for (final InlineSpan child in children) {
       switch (child.runtimeType) {
@@ -72,13 +72,12 @@ class EzRichText extends StatelessWidget {
   }
 
   Text _text() => Text.rich(
-        TextSpan(children: children, semanticsLabel: null),
+        TextSpan(children: children),
         style: style,
         textAlign: textAlign,
         softWrap: true,
         overflow: TextOverflow.clip,
         textScaler: TextScaler.noScaling,
-        semanticsLabel: null,
         textWidthBasis: TextWidthBasis.parent,
       );
 

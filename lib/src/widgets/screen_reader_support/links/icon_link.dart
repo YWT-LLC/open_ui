@@ -93,7 +93,6 @@ class _EzIconLinkState extends State<EzIconLink> {
           child: (widget.onTap != null)
               ? TextButton.icon(
                   onPressed: widget.onTap,
-                  onLongPress: null,
                   onHover: (bool isHovering) => underline(isHovering),
                   onFocusChange: (bool hasFocus) => underline(hasFocus),
                   icon: widget.icon,
@@ -108,7 +107,6 @@ class _EzIconLinkState extends State<EzIconLink> {
                   uri: widget.url,
                   builder: (_, FollowLink? followLink) => TextButton.icon(
                     onPressed: followLink,
-                    onLongPress: null,
                     onHover: (bool isHovering) => underline(isHovering),
                     onFocusChange: (bool hasFocus) => underline(hasFocus),
                     icon: widget.icon,

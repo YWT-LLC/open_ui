@@ -87,7 +87,6 @@ class EzAlertDialog extends AlertDialog {
                 : <Widget>[
                     EzCol(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: closedActions,
                     ),
                   ],

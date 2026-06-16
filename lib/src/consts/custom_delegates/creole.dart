@@ -860,11 +860,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
       return null;
     }
 
-    try {
-      return DateTime(year, month, day);
-    } on ArgumentError {
-      return null;
-    }
+    return DateTime(year, month, day);
   }
 
   @override

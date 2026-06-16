@@ -284,8 +284,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       forceFade: true,
                       kid: TextFormField(
                         controller: domainTC,
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
                         validator: (String? text) => validateDomain(
                           config,
                           text,
@@ -356,7 +354,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   ),
                 ],
                 style: ezSubTitleStyle(config.styles),
-                textAlign: TextAlign.start,
               ),
               config.separator,
 
@@ -415,8 +412,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                           child: TextFormField(
                             controller: workPathTC,
                             readOnly: !canGen,
-                            textAlign: TextAlign.start,
-                            maxLines: 1,
                             validator: (String? path) =>
                                 (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
                             autovalidateMode: AutovalidateMode.onUnfocus,
@@ -536,8 +531,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       child: TextFormField(
                         controller: flutterPathTC,
                         readOnly: !canGen,
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
                         validator: (String? path) =>
                             (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
                         autovalidateMode: AutovalidateMode.onUnfocus,
@@ -894,10 +887,15 @@ linter:
   rules:
     always_declare_return_types: true
     always_specify_types: true
+    avoid_catching_errors: true
     avoid_null_checks_in_equality_operators: true
+    avoid_redundant_argument_values: true
     avoid_types_as_parameter_names: true
+    avoid_void_async: true
     await_only_futures: true
     camel_case_types: true
+    cancel_subscriptions: true
+    close_sinks: true
     constant_identifier_names: true
     empty_catches: true
     file_names: true
@@ -980,8 +978,6 @@ class _BasicField extends StatelessWidget {
             constraints: ezTextFieldConstraints(context),
             child: TextFormField(
               controller: controller,
-              textAlign: TextAlign.start,
-              maxLines: 1,
               validator: validator,
               autovalidateMode: AutovalidateMode.onUnfocus,
               decoration: InputDecoration(hintText: hintText),

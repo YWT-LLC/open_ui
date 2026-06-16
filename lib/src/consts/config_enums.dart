@@ -183,7 +183,7 @@ extension EBSConfig on EzButtonShape {
 
   OutlinedBorder get shape => switch (this) {
         EzButtonShape.pill => RoundedSuperellipseBorder(borderRadius: radius),
-        EzButtonShape.rect => const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        EzButtonShape.rect => const RoundedRectangleBorder(),
         EzButtonShape.roundRect => RoundedRectangleBorder(borderRadius: radius),
         EzButtonShape.leftGram => const ParallelogramBorder(lefty: true),
         EzButtonShape.rightGram => const ParallelogramBorder(lefty: false),
