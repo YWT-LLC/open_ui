@@ -320,7 +320,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             fromLocal = true;
             if (mCon.mounted) Navigator.of(mCon).pop(picked);
           },
-          icon: EzIcon(widget.config, Icons.folder),
+          icon: EzIcon(widget.config, Icons.folder_open),
           label: widget.config.ezL10n.dsFromFile,
         ),
       ));
