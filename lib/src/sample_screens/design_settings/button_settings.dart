@@ -74,7 +74,8 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
             }
 
-            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+            await config
+                .rebuildUI(<EzCacheType>{EzCacheType.design, EzCacheType.text}); // TODO: test me
           },
         ),
         config.spacer,
