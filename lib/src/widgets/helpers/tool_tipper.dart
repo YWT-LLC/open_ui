@@ -86,9 +86,8 @@ class EzToolTipper extends StatelessWidget {
         },
         child: Tooltip(
           waitDuration: Duration.zero,
-          exitDuration: const Duration(milliseconds: 500),
+          showDuration: ezReadingTime(config, message ?? richMessage!.toPlainText()),
           triggerMode: TooltipTriggerMode.tap,
-          enableTapToDismiss: false,
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
