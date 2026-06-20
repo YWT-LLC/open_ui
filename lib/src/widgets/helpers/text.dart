@@ -85,6 +85,12 @@ class EzText extends StatelessWidget {
   /// [Text.semanticsLabel] passthrough
   final String? semanticsLabel;
 
+  /// [Text.maxLines] passthrough
+  final int? maxLines;
+
+  /// [Text.overflow] passthrough
+  final TextOverflow? overflow;
+
   /// [EzTextBackground.buttonShape] passthrough
   final bool buttonShape;
 
@@ -103,6 +109,8 @@ class EzText extends StatelessWidget {
     this.style,
     this.textAlign,
     this.semanticsLabel,
+    this.maxLines,
+    this.overflow,
     this.buttonShape = false,
     this.baseColor,
     this.backgroundColor,
@@ -116,6 +124,8 @@ class EzText extends StatelessWidget {
           style: style ?? config.bodyStyle,
           textAlign: textAlign,
           semanticsLabel: semanticsLabel,
+          maxLines: maxLines,
+          overflow: overflow,
         ),
         buttonShape: buttonShape,
         baseColor: baseColor,
