@@ -101,11 +101,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMinimum,
                     iconSize: _iconSize,
-                    icon: EzIcon(
-                      config,
-                      Icons.remove,
-                      color: config.colors.outline,
-                    ),
+                    icon: Icon(Icons.remove, color: config.colors.outline),
                   )
                 : EzIconButton(
                     config,
@@ -158,7 +154,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     },
                     tooltip: '${config.ezL10n.gDecrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
                     iconSize: _iconSize,
-                    icon: EzIcon(config, Icons.remove),
+                    icon: const Icon(Icons.remove),
                   ),
             config.rowMargin,
 
@@ -202,11 +198,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMaximum,
                     iconSize: _iconSize,
-                    icon: EzIcon(
-                      config,
-                      Icons.add,
-                      color: config.colors.outline,
-                    ),
+                    icon: Icon(Icons.add, color: config.colors.outline),
                   )
                 : EzIconButton(
                     config,
@@ -259,7 +251,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     },
                     tooltip: '${config.ezL10n.gIncrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
                     iconSize: _iconSize,
-                    icon: EzIcon(config, Icons.add),
+                    icon: const Icon(Icons.add),
                   ),
           ],
         ),

@@ -89,19 +89,15 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       },
                       tooltip:
                           '${widget.config.ezL10n.gDecrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
-                      icon: EzIcon(widget.config, Icons.remove),
                       iconSize: iconSize,
+                      icon: const Icon(Icons.remove),
                     )
                   : EzIconButton(
                       widget.config,
                       enabled: false,
                       tooltip: widget.config.ezL10n.gMinimum,
-                      icon: EzIcon(
-                        widget.config,
-                        Icons.remove,
-                        color: widget.config.colors.outline,
-                      ),
                       iconSize: iconSize,
+                      icon: Icon(Icons.remove, color: widget.config.colors.outline),
                     ),
               widget.config.rowMargin,
 
@@ -156,19 +152,15 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       },
                       tooltip:
                           '${widget.config.ezL10n.gIncrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
-                      icon: EzIcon(widget.config, Icons.add),
                       iconSize: iconSize,
+                      icon: const Icon(Icons.add),
                     )
                   : EzIconButton(
                       widget.config,
                       enabled: false,
                       tooltip: widget.config.ezL10n.gMaximum,
-                      icon: EzIcon(
-                        widget.config,
-                        Icons.add,
-                        color: widget.config.colors.outline,
-                      ),
                       iconSize: iconSize,
+                      icon: Icon(Icons.add, color: widget.config.colors.outline),
                     ),
             ],
           ),
