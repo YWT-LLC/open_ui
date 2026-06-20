@@ -61,11 +61,8 @@ class OpenUIScaffold extends StatelessWidget {
         config,
         onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
         tooltip: config.ezL10n.gOptions,
-        icon: Icon(
-          Icons.more_vert,
-          semanticLabel: config.ezL10n.gOptions,
-          size: config.titleStyle!.fontSize,
-        ),
+        iconSize: config.titleStyle!.fontSize,
+        icon: Icon(Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
       ),
       menuChildren: <Widget>[
         if (showSettings) SettingsButton(config, parentContext: context),

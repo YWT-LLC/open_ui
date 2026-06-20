@@ -21,11 +21,8 @@ class EzBackAction extends StatelessWidget {
           config,
           onPressed: () => Navigator.of(context).maybePop(),
           tooltip: config.ezL10n.gBack,
-          icon: Icon(
-            Icons.arrow_back,
-            semanticLabel: config.ezL10n.gBack,
-            size: config.titleStyle!.fontSize,
-          ),
+          iconSize: config.titleStyle!.fontSize,
+          icon: Icon(Icons.arrow_back, semanticLabel: config.ezL10n.gBack),
         )
       : const SizedBox.shrink();
 }
