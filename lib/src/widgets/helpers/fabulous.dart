@@ -41,7 +41,7 @@ class EzConfigFAB extends StatelessWidget {
           return FloatingActionButton(
             heroTag: 'config_fab',
             tooltip: config.ezL10n.ssConfigTip,
-            onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
+            onPressed: () => toggleMenu(controller),
             child: EzIcon(config, Icons.save),
           );
         },

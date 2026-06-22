@@ -23,8 +23,6 @@ import 'helpers_io.dart' if (dart.library.html) 'helpers_web.dart';
 
 //* Aliases *//
 
-// Platform checks //
-
 /// Wide check, true if granted, limited, or provisional
 bool allowedPermCheck(PermissionStatus? status) => switch (status) {
       PermissionStatus.granted || PermissionStatus.limited || PermissionStatus.provisional => true,
@@ -88,6 +86,9 @@ String screenshotHint() => switch (EzCM.platform) {
       TargetPlatform.macOS => ' (Command + Shift + 5)',
       _ => '',
     };
+
+/// Open/close a [MenuController]
+void toggleMenu(MenuController c) => c.isOpen ? c.close() : c.open();
 
 /// More readable than...
 /// MediaQuery.of(context).size.width
