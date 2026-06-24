@@ -65,6 +65,7 @@ class ButtonDesign extends StatelessWidget {
         // Underline links
         EzSwitchPair(
           config,
+          key: ValueKey<bool>(config.lineLinks),
           text: config.ezL10n.dsAlwaysUnderline,
           clickable: true,
           valueKey: config.isDark ? darkLineLinksKey : lightLineLinksKey,
@@ -74,8 +75,7 @@ class ButtonDesign extends StatelessWidget {
               await EzCM.setBool(config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
             }
 
-            await config
-                .rebuildUI(<EzCacheType>{EzCacheType.design, EzCacheType.text}); // TODO: test me
+            await config.rebuildUI(<EzCacheType>{EzCacheType.design, EzCacheType.text});
           },
         ),
         config.spacer,
