@@ -298,3 +298,14 @@ class _EzScrollViewState extends State<EzScrollView> {
     );
   }
 }
+
+class EzScrollBlocker extends NotificationListener<ScrollNotification> {
+  final Widget kid;
+
+  /// Widget alias for a [ScrollNotification] based [NotificationListener] that's always true
+  EzScrollBlocker(this.kid, {super.key})
+      : super(
+          onNotification: (ScrollNotification notification) => true,
+          child: kid,
+        );
+}
