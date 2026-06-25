@@ -90,6 +90,9 @@ String screenshotHint() => switch (EzCM.platform) {
 /// Open/close a [MenuController]
 void toggleMenu(MenuController c) => c.isOpen ? c.close() : c.open();
 
+/// Wait for a desired number of [seconds]
+Future<void> wait(int seconds) => Future<void>.delayed(Duration(seconds: seconds));
+
 /// More readable than...
 /// MediaQuery.of(context).size.width
 double widthOf(BuildContext context) => MediaQuery.of(context).size.width;

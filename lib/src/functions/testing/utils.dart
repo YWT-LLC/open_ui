@@ -20,9 +20,6 @@ void ezLog(
   if (buffer != null) buffer.value += ('$message\n');
 }
 
-/// Wait for a desired number of [seconds]
-Future<void> ezPause(int seconds) => Future<void>.delayed(Duration(seconds: seconds));
-
 /// For integration testing
 /// expect([finder], [matcher]) and ensure visibility
 Future<void> ezFind(
