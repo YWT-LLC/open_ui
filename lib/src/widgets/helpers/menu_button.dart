@@ -7,12 +7,9 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class EzMenuButton extends StatefulWidget {
+class EzMenuButton extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
-
-  /// [MenuItemButton.onPressed] passthrough
-  final void Function()? onPressed;
 
   /// iconAlignment: [EzCM.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget? icon;
@@ -29,35 +26,38 @@ class EzMenuButton extends StatefulWidget {
   /// [Text] passthrough
   final TextAlign? textAlign;
 
+  /// [MenuItemButton.onPressed] passthrough
+  final void Function()? onPressed;
+
+  /// When false, disables [onPressed] and switches the color theme
+  final bool enabled;
+
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
   const EzMenuButton(
     this.config, {
     super.key,
-    this.onPressed,
     this.semanticsLabel,
     this.icon,
     required this.label,
     this.textStyle,
     this.textAlign,
+    this.onPressed,
+    this.enabled = true,
   });
 
   @override
-  State<EzMenuButton> createState() => _EzMenuButtonState();
-}
-
-class _EzMenuButtonState extends State<EzMenuButton> {
-  @override
   Widget build(BuildContext context) => MenuItemButton(
-        onPressed: widget.onPressed,
-        semanticsLabel: widget.semanticsLabel,
-        leadingIcon: widget.config.isLefty ? widget.icon : null,
-        trailingIcon: widget.config.isLefty ? null : widget.icon,
+        onPressed: enabled ? onPressed : doNothing,
+        semanticsLabel: semanticsLabel,
+        style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+        leadingIcon: config.isLefty ? icon : null,
+        trailingIcon: config.isLefty ? null : icon,
         child: Text(
-          widget.label,
-          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: widget.config.colors.primary,
+          label,
+          style: (textStyle ?? config.bodyStyle)?.copyWith(
+            decorationColor: config.colors.primary,
           ),
-          textAlign: widget.textAlign ?? (widget.config.isLefty ? TextAlign.start : TextAlign.end),
+          textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
         ),
       );
 }
