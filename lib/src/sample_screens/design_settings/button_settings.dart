@@ -262,7 +262,8 @@ class _ButtonStyleSetting extends StatelessWidget {
 
                     setModal(() {
                       currShape = EBSConfig.lookup(EzCM.getDefault(
-                          config.isDark ? darkButtonShapeKey : lightButtonShapeKey));
+                              config.isDark ? darkButtonShapeKey : lightButtonShapeKey)) ??
+                          EzButtonShape.pill;
                       currWidth =
                           EzCM.getDefault(config.isDark ? darkBorderWidthKey : lightBorderWidthKey);
                     });

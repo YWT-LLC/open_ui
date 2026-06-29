@@ -191,8 +191,6 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.jewel => BeveledRectangleBorder(borderRadius: radius),
       };
 
-  BorderRadius get textRadius => radius;
-
   BorderRadius get textFieldRadius => switch (this) {
         EzButtonShape.pill => const BorderRadius.only(
             topLeft: Radius.circular(ezRoundRadius),
@@ -223,14 +221,15 @@ extension EBSConfig on EzButtonShape {
       };
 
   /// Defaults to [EzTransitionType.system]
-  static EzButtonShape lookup(String? value) => switch (value) {
+  static EzButtonShape? lookup(String? value) => switch (value) {
+        esPill => EzButtonShape.pill,
         esRect => EzButtonShape.rect,
         esRoundRect => EzButtonShape.roundRect,
         esLeftGram => EzButtonShape.leftGram,
         esRightGram => EzButtonShape.rightGram,
         esGem => EzButtonShape.gem,
         esJewel => EzButtonShape.jewel,
-        esPill || _ => EzButtonShape.pill,
+        _ => null,
       };
 }
 

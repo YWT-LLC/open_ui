@@ -70,7 +70,8 @@ class EzCP extends ChangeNotifier {
       _theme = ezThemeData(Brightness.dark, _ltr);
 
       // Setup
-      final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(darkButtonShapeKey));
+      final EzButtonShape buttonShape =
+          EBSConfig.lookup(EzCM.get(darkButtonShapeKey)) ?? EzButtonShape.pill;
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
@@ -86,7 +87,7 @@ class EzCP extends ChangeNotifier {
           padding: EzCM.get(darkPaddingKey),
           buttonShape: buttonShape,
           borderWidth: EzCM.get(darkBorderWidthKey),
-          textRadius: buttonShape.textRadius,
+          textRadius: buttonShape.radius,
           textFieldRadius: buttonShape.textFieldRadius,
           lineLinks: EzCM.get(darkLineLinksKey),
           showBackFAB: EzCM.get(darkShowBackFABKey),
@@ -129,7 +130,8 @@ class EzCP extends ChangeNotifier {
       _theme = ezThemeData(Brightness.light, _ltr);
 
       // Setup
-      final EzButtonShape buttonShape = EBSConfig.lookup(EzCM.get(lightButtonShapeKey));
+      final EzButtonShape buttonShape =
+          EBSConfig.lookup(EzCM.get(lightButtonShapeKey)) ?? EzButtonShape.pill;
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
@@ -145,7 +147,7 @@ class EzCP extends ChangeNotifier {
           padding: EzCM.get(lightPaddingKey),
           buttonShape: buttonShape,
           borderWidth: EzCM.get(lightBorderWidthKey),
-          textRadius: buttonShape.textRadius,
+          textRadius: buttonShape.radius,
           textFieldRadius: buttonShape.textFieldRadius,
           lineLinks: EzCM.get(lightLineLinksKey),
           showBackFAB: EzCM.get(lightShowBackFABKey),

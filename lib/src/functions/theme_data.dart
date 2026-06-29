@@ -46,7 +46,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
   final double padding = isDark ? EzCM.get(darkPaddingKey) : EzCM.get(lightPaddingKey);
 
   final EzButtonShape ezButtonShape =
-      EBSConfig.lookup(EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey));
+      EBSConfig.lookup(EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey)) ??
+          EzButtonShape.pill;
   final OutlinedBorder buttonShape = ezButtonShape.shape;
 
   final double borderWidth = EzCM.get(isDark ? darkBorderWidthKey : lightBorderWidthKey);
@@ -432,7 +433,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
           color: colorScheme.secondary,
           width: borderWidth,
         ),
-        borderRadius: ezButtonShape.textRadius,
+        borderRadius: ezButtonShape.radius,
       ),
       textStyle: textTheme.bodyLarge,
       textAlign: TextAlign.center,
