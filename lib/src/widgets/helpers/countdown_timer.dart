@@ -5,7 +5,7 @@
 
 import '../../../empathetech_flutter_ui.dart';
 
-import 'dart:math' as math;
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzCountdownTimer extends StatefulWidget {
@@ -58,9 +58,9 @@ class _EzCountdownTimerState extends State<EzCountdownTimer> with SingleTickerPr
       animation: _animation,
       builder: (_, __) => CustomPaint(
         size: Size(size, size),
-        painter: _CountdownTimerPainter(
-          progress: _animation.value,
-          color: widget.color ?? widget.config.colors.secondary,
+        painter: EzCountdownPainter(
+          _animation.value,
+          widget.color ?? widget.config.colors.secondary,
         ),
       ),
     );
@@ -73,11 +73,11 @@ class _EzCountdownTimerState extends State<EzCountdownTimer> with SingleTickerPr
   }
 }
 
-class _CountdownTimerPainter extends CustomPainter {
+class EzCountdownPainter extends CustomPainter {
   final double progress;
   final Color color;
 
-  _CountdownTimerPainter({required this.progress, required this.color});
+  EzCountdownPainter(this.progress, this.color);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -89,13 +89,13 @@ class _CountdownTimerPainter extends CustomPainter {
         center: Offset(size.width / 2, size.height / 2),
         radius: size.width / 2,
       ),
-      -math.pi / 2,
-      2 * -math.pi * progress,
+      -pi / 2,
+      2 * -pi * progress,
       true,
       foregroundPaint,
     );
   }
 
   @override
-  bool shouldRepaint(_CountdownTimerPainter oldDelegate) => oldDelegate.progress != progress;
+  bool shouldRepaint(EzCountdownPainter oldDelegate) => oldDelegate.progress != progress;
 }
