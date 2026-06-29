@@ -52,7 +52,7 @@ class ResetFAB extends StatelessWidget {
                   ),
                   actions: <Widget>[
                     // Builder/forms
-                    EzMaterialAction(
+                    EzAction(
                       config,
                       onPressed: () async {
                         clear();
@@ -64,7 +64,7 @@ class ResetFAB extends StatelessWidget {
                     ),
 
                     // App settings
-                    EzMaterialAction(
+                    EzAction(
                       config,
                       onPressed: () async {
                         await config.rebuildUI(
@@ -78,7 +78,7 @@ class ResetFAB extends StatelessWidget {
                     ),
 
                     // Both
-                    EzMaterialAction(
+                    EzAction(
                       config,
                       onPressed: () async {
                         await config.rebuildUI(allECT, changes: () async {
@@ -92,7 +92,7 @@ class ResetFAB extends StatelessWidget {
                     ),
 
                     // None
-                    EzMaterialAction(
+                    EzAction(
                       config,
                       onPressed: () => Navigator.of(dCon).pop(),
                       text: l10n(config).csResetNothing,

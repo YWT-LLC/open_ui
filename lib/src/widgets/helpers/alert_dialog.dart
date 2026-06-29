@@ -38,7 +38,7 @@ class EzAlertDialog extends AlertDialog {
     final Widget? dialogContent =
         content ?? ((contents == null) ? null : EzScrollView(config, children: contents!));
 
-    late final Widget closeAction = EzMaterialAction(
+    late final Widget closeAction = EzAction(
       config,
       text: config.ezL10n.gClose,
       onPressed: () => Navigator.of(context).pop(),
@@ -106,7 +106,7 @@ class EzAlertDialog extends AlertDialog {
   }
 }
 
-class EzMaterialAction extends StatelessWidget {
+class EzAction extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
@@ -129,7 +129,7 @@ class EzMaterialAction extends StatelessWidget {
   final TextStyle? style;
 
   /// [EzTextButton] wrapper with custom styling for an [AlertDialog]
-  const EzMaterialAction(
+  const EzAction(
     this.config, {
     super.key,
     required this.text,
@@ -165,7 +165,7 @@ class EzMaterialAction extends StatelessWidget {
 }
 
 /// Pairs with [EzAlertDialog]
-List<EzMaterialAction> ezActionPair(
+List<EzAction> ezActionPair(
   EzCP config, {
   String? confirmMsg,
   required void Function() onConfirm,
@@ -177,8 +177,8 @@ List<EzMaterialAction> ezActionPair(
   bool denyIsDestructive = false,
   TextStyle? style,
 }) =>
-    <EzMaterialAction>[
-      EzMaterialAction(
+    <EzAction>[
+      EzAction(
         config,
         text: denyMsg ?? config.ezL10n.gNo,
         onPressed: onDeny,
@@ -186,7 +186,7 @@ List<EzMaterialAction> ezActionPair(
         isDestructiveAction: denyIsDestructive,
         style: style,
       ),
-      EzMaterialAction(
+      EzAction(
         config,
         text: confirmMsg ?? config.ezL10n.gYes,
         onPressed: onConfirm,

@@ -105,8 +105,8 @@ class _ColorSettingState extends State<EzColorSetting> {
             ),
           ),
         ],
-        actions: <EzMaterialAction>[
-          EzMaterialAction(
+        actions: <EzAction>[
+          EzAction(
             widget.config,
             text: widget.config.ezL10n.gYes,
             onPressed: () async {
@@ -117,7 +117,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             },
             isDefaultAction: true,
           ),
-          EzMaterialAction(
+          EzAction(
             widget.config,
             text: widget.config.ezL10n.csUseCustom,
             onPressed: () async {

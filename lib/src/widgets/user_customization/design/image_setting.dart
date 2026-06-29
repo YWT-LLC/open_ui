@@ -158,18 +158,18 @@ class _ImageSettingState extends State<EzImageSetting> {
           builder: (BuildContext dCon) => EzAlertDialog(
             widget.config,
             title: Text(widget.config.ezL10n.dsUseFull, textAlign: TextAlign.center),
-            actions: <EzMaterialAction>[
-              EzMaterialAction(
+            actions: <EzAction>[
+              EzAction(
                 widget.config,
                 text: widget.config.ezL10n.gYes,
                 onPressed: () => Navigator.of(dCon).pop((_) => Future<dynamic>.value(true)),
               ),
-              EzMaterialAction(
+              EzAction(
                 widget.config,
                 text: widget.config.ezL10n.dsCrop,
                 onPressed: () => Navigator.of(dCon).pop(editImage),
               ),
-              EzMaterialAction(
+              EzAction(
                 widget.config,
                 text: widget.config.ezL10n.gCancel,
                 onPressed: () => Navigator.of(dCon).pop((_) => Future<dynamic>.value()),

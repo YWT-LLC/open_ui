@@ -31,13 +31,13 @@ class EzTutorial extends StatelessWidget {
   /// Optional [Semantics] override for [content]
   final String? contentSemantics;
 
-  /// [EzMaterialAction.text] passthrough
+  /// [EzAction.text] passthrough
   final String acceptMessage;
 
   /// Optional [Semantics] override for [acceptMessage]
   final String? acceptSemantics;
 
-  /// [EzMaterialAction.onPressed] passthrough
+  /// [EzAction.onPressed] passthrough
   final void Function() onAccept;
 
   /// [AlertDialog] wrapped in a [SelectionArea] and [Positioned] widget
@@ -85,7 +85,7 @@ class EzTutorial extends StatelessWidget {
 
             // Actions
             actions: <Widget>[
-              EzMaterialAction(
+              EzAction(
                 config,
                 text: acceptMessage,
                 semantics: acceptSemantics,
