@@ -160,12 +160,12 @@ Future<dynamic> ezColorPicker(
 }) =>
     ezModal(
       config,
+      enableDrag: false,
       isDismissible: false,
       showDragHandle: false,
-      enableDrag: false,
       context: context,
-      builder: (BuildContext mCon) => EzScrollView(config, children: <Widget>[
-        config.spacer,
+      builder: (BuildContext mCon) => ezModalScroll(config, children: <Widget>[
+        EzHeader(config),
 
         // The magic
         ConstrainedBox(
