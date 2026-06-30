@@ -364,6 +364,7 @@ class _PageTransitionSetting extends StatelessWidget {
           EzTransitionType currType = config.transitionType;
           bool currFade = config.fadedTransition;
 
+          // TODO: no modal scroll?
           await ezModal(
             config,
             context: context,
