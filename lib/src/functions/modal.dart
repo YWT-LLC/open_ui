@@ -43,10 +43,11 @@ Future<T?> ezModal<T>(
 
 Widget ezModalScroll(
   EzCP config, {
-  required List<Widget> children,
   ScrollController? controller,
   MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  ScrollPhysics? physics,
+  required List<Widget> children,
 }) =>
     Padding(
       padding: EdgeInsets.symmetric(horizontal: config.marginVal),
@@ -55,6 +56,7 @@ Widget ezModalScroll(
         controller: controller,
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
+        physics: physics,
         children: children,
       ),
     );
