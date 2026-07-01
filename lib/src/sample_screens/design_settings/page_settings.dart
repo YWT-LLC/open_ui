@@ -364,12 +364,11 @@ class _PageTransitionSetting extends StatelessWidget {
           EzTransitionType currType = config.transitionType;
           bool currFade = config.fadedTransition;
 
-          // TODO: no modal scroll?
           await ezModal(
             config,
             context: context,
             builder: (_) => StatefulBuilder(
-              builder: (_, StateSetter setModal) => EzCol(children: <Widget>[
+              builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
                 // Type choices
                 RadioGroup<EzTransitionType>(
                   groupValue: currType,
