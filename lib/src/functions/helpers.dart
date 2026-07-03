@@ -598,7 +598,8 @@ Widget ezTransitionBuilder(
   }
 }
 
-/// Relaxed reading time for a US tween: 100 words per minute
+/// Relaxed reading time (in ms) for a US tween...
+/// 100 words per minute
 Duration ezReadingTime(EzCP config, String passage) {
   if (passage.trim().isEmpty) return Duration.zero;
 
