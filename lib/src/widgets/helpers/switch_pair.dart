@@ -20,6 +20,9 @@ class EzSwitchPair extends StatefulWidget {
   /// The switch is unchanged
   final bool fauxDisabled;
 
+  /// Optional override
+  final Color? textBackground;
+
   /// [EzRow.reverseHands] passthrough
   final bool reverseHands;
 
@@ -83,6 +86,7 @@ class EzSwitchPair extends StatefulWidget {
     super.key,
     this.enabled = true,
     this.fauxDisabled = false,
+    this.textBackground,
 
     // Row
     this.reverseHands = true,
@@ -164,6 +168,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                     widget.config,
                     text: widget.text,
                     textColor: widget.config.colors.onSurface,
+                    backgroundColor: widget.textBackground,
                     style: widget.config.bodyStyle,
                     textAlign: widget.textAlign,
                     hint: widget.semanticsLabel ?? widget.config.ezL10n.gSwitchHint,
@@ -172,6 +177,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                 : EzText(
                     widget.config,
                     text: widget.text,
+                    backgroundColor: widget.textBackground,
                     style: widget.config.bodyStyle,
                     textAlign: widget.textAlign,
                     semanticsLabel: widget.semanticsLabel,
