@@ -91,7 +91,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     if (currPath == null || currPath == noImageValue) return;
 
     final String credits =
-        (widget.sourceKey == null) ? currPath : EzCM.get(widget.sourceKey!) ?? currPath;
+        (widget.sourceKey == null) ? currPath : (EzCM.get(widget.sourceKey!) ?? currPath);
 
     return showDialog(
       context: context,

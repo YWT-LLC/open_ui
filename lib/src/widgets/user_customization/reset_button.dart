@@ -89,6 +89,7 @@ class EzResetButton extends StatelessWidget {
                               key: ValueKey<String>('ubs-$updateBoth'),
                               value: updateBoth,
                               text: config.ezL10n.ssResetBoth,
+                              textBackground: config.colors.surface,
                               onChanged: (bool? choice) {
                                 if (choice == null) return;
                                 setDialog(() => updateBoth = choice);
