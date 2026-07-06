@@ -36,9 +36,9 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
 
   /// Save the EAGConfig
   Future<void> archive(EzCP config) async {
-    late final String savedConfig;
+    late final String? savedConfig;
     try {
-      savedConfig = await FileSaver.instance.saveFile(
+      savedConfig = await FileSaver.instance.saveAs(
         name: '${widget.archive.appName}_eag_config.json',
         bytes: utf8.encode(jsonEncode(widget.archive.toJson())),
         mimeType: MimeType.json,
@@ -50,7 +50,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
       });
     }
 
-    savedConfig.endsWith('.json')
+    (savedConfig != null && savedConfig.endsWith('.json'))
         ? setState(() => genState = GeneratorState.successful)
         : setState(() {
             failureMessage = '${config.ezL10n.ssWrongConfigExt} .json...\n\n$savedConfig';

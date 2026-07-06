@@ -364,7 +364,7 @@ Must be one of [int, bool, double, String, List<String>]''');
     }
 
     try {
-      await FileSaver.instance.saveFile(
+      await FileSaver.instance.saveAs(
         name: '${ezTitleToSnake(appName)}_settings.json',
         bytes: utf8.encode(jsonEncode(toSave)),
         mimeType: MimeType.json,
@@ -374,10 +374,6 @@ Must be one of [int, bool, double, String, List<String>]''');
           ? await ezLogAlert(config, context: context, message: e.toString())
           : ezLog(e.toString());
       return;
-    }
-
-    if (context.mounted) {
-      ezSnackBar(config, context: context, message: config.ezL10n.ssConfigSaved(archivePath()));
     }
   }
 
