@@ -37,23 +37,18 @@ class EzConfigFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuAnchor(
-        builder: (_, MenuController controller, __) {
-          return FloatingActionButton(
-            heroTag: 'config_fab',
-            tooltip: config.ezL10n.ssConfigTip,
-            onPressed: () => toggleMenu(controller),
-            child: EzIcon(config, Icons.save),
-          );
-        },
+        builder: (_, MenuController controller, __) => FloatingActionButton(
+          heroTag: 'config_fab',
+          tooltip: config.ezL10n.ssConfigTip,
+          onPressed: () => toggleMenu(controller),
+          child: EzIcon(config, Icons.save),
+        ),
         menuChildren: <Widget>[
-          // Save config
           EzMenuButton(
             config,
             label: config.ezL10n.ssSaveConfig,
             onPressed: () => EzCM.saveConfig(config, context: context, skip: skip),
           ),
-
-          // Load config
           EzMenuButton(
             config,
             label: config.ezL10n.ssLoadConfig,
