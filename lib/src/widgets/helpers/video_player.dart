@@ -538,14 +538,13 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                           widget.config,
                                           onPressed: pause,
                                           tooltip: widget.config.ezL10n.gPause,
-                                          icon: EzIcon(widget.config, Icons.pause),
+                                          icon: const Icon(Icons.pause),
                                         )
                                       : EzIconButton(
                                           widget.config,
                                           onPressed: play,
                                           tooltip: widget.config.ezL10n.gPlay,
-                                          icon: EzIcon(
-                                            widget.config,
+                                          icon: Icon(
                                             value.isCompleted ? Icons.replay : Icons.play_arrow,
                                           ),
                                         ),
@@ -558,13 +557,13 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                           widget.config,
                                           onPressed: unMute,
                                           tooltip: widget.config.ezL10n.gUnMute,
-                                          icon: EzIcon(widget.config, Icons.volume_mute),
+                                          icon: const Icon(Icons.volume_mute),
                                         )
                                       : EzIconButton(
                                           widget.config,
                                           onPressed: () => mute(value),
                                           tooltip: widget.config.ezL10n.gMute,
-                                          icon: EzIcon(widget.config, Icons.volume_up),
+                                          icon: const Icon(Icons.volume_up),
                                         ),
 
                                   // Volume slider
@@ -622,7 +621,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         },
                                         tooltip:
                                             '${widget.config.ezL10n.gDecrease} ${widget.config.ezL10n.gPlaybackSpeed.toLowerCase()}',
-                                        icon: EzIcon(widget.config, Icons.remove),
+                                        icon: const Icon(Icons.remove),
                                       ),
                                       widget.config.rowMargin,
                                       Tooltip(
@@ -654,7 +653,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         },
                                         tooltip:
                                             '${widget.config.ezL10n.gIncrease} ${widget.config.ezL10n.gPlaybackSpeed.toLowerCase()}',
-                                        icon: EzIcon(widget.config, Icons.add),
+                                        icon: const Icon(Icons.add),
                                       ),
                                     ],
                                   ),
@@ -665,10 +664,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   padding: EdgeInsets.only(right: widget.config.spacing),
                                   child: EzIconButton(
                                     widget.config,
-                                    icon: EzIcon(
-                                      widget.config,
-                                      fbf ? Icons.directions_run : Icons.directions_walk,
-                                    ),
+                                    icon: Icon(fbf ? Icons.directions_run : Icons.directions_walk),
                                     onPressed: () async => fbf ? await exitFBF() : await enterFBF(),
                                     tooltip: fbf
                                         ? widget.config.ezL10n.gPlay
@@ -693,7 +689,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         tooltip:
                                             '${widget.config.ezL10n.gCaptions}\n${widget.config.ezL10n.gCaptionsHint}',
                                         fauxDisabled: !showCaptions,
-                                        icon: EzIcon(widget.config, Icons.subtitles),
+                                        icon: const Icon(Icons.subtitles),
                                       ),
                                       menuChildren: <Widget>[
                                         EzMenuButton(
@@ -740,8 +736,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                   padding: EdgeInsets.only(right: widget.config.spacing),
                                   child: EzIconButton(
                                     widget.config,
-                                    icon: EzIcon(
-                                      widget.config,
+                                    icon: Icon(
                                       widget.fullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
                                     ),
                                     onPressed: () async => widget.fullscreen

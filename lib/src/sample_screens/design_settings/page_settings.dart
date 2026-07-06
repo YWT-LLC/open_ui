@@ -335,11 +335,7 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
               widget.config,
               onPressed: () =>
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
-              icon: EzIcon(
-                widget.config,
-                Icons.play_arrow,
-                semanticLabel: widget.config.ezL10n.dsPlay,
-              ),
+              icon: Icon(Icons.play_arrow, semanticLabel: widget.config.ezL10n.dsPlay),
             ),
           ),
         ),
