@@ -50,6 +50,9 @@ class EzSwitchPair extends StatefulWidget {
   /// If provided, an [EzToolTipper] will appear next to the [Switch]
   final String? tipper;
 
+  /// If provided, an [EzToolTipper] will appear next to the [Switch]
+  final InlineSpan? bigTipper;
+
   /// [Switch.value] passthrough
   /// Provide [value] OR [valueKey]
   /// Must pair with [onChanged]
@@ -102,6 +105,7 @@ class EzSwitchPair extends StatefulWidget {
 
     // Tool tip(per)
     this.tipper,
+    this.bigTipper,
 
     // Switch
     this.value,
@@ -201,7 +205,12 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                   : EdgeInsets.only(left: widget.config.marginVal),
             ),
           ),
-          if (widget.tipper != null) EzToolTipper(widget.config, message: widget.tipper),
+          if (widget.tipper != null || widget.bigTipper != null)
+            EzToolTipper(
+              widget.config,
+              message: widget.tipper,
+              richMessage: widget.bigTipper,
+            ),
         ],
       );
 }
