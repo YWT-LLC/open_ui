@@ -51,8 +51,7 @@ class _EzItalicSettingState extends State<EzItalicSetting> {
           setState(() {});
         },
         tooltip: widget.config.ezL10n.tsItalic,
-        icon: EzIcon(
-          widget.config,
+        icon: Icon(
           Icons.format_italic,
           color: isItalic ? widget.config.colors.primary : widget.config.colors.outline,
         ),

@@ -169,7 +169,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       );
                       setState(() {});
                     },
-                    icon: EzIcon(widget.config, Icons.rotate_left),
+                    icon: const Icon(Icons.rotate_left),
                   ),
                   widget.config.rowSpacer,
 
@@ -186,7 +186,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       );
                       setState(() {});
                     },
-                    icon: EzIcon(widget.config, Icons.rotate_right),
+                    icon: const Icon(Icons.rotate_right),
                   ),
 
                   // Div
@@ -207,7 +207,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       _editorController.reset();
                       setState(() {});
                     },
-                    icon: EzIcon(widget.config, Icons.refresh),
+                    icon: const Icon(Icons.refresh),
                   ),
                   widget.config.rowSpacer,
 
@@ -220,7 +220,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       _editorController.undo();
                       setState(() {});
                     },
-                    icon: EzIcon(widget.config, Icons.undo),
+                    icon: const Icon(Icons.undo),
                   ),
                   widget.config.rowSpacer,
 
@@ -233,7 +233,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                       _editorController.redo();
                       setState(() {});
                     },
-                    icon: EzIcon(widget.config, Icons.redo),
+                    icon: const Icon(Icons.redo),
                   ),
 
                   // Div
@@ -334,9 +334,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                         setState(() => processing = false);
                       }
                     },
-                    icon: processing
-                        ? const CircularProgressIndicator()
-                        : EzIcon(widget.config, Icons.check),
+                    icon: processing ? const CircularProgressIndicator() : const Icon(Icons.check),
                   ),
                   widget.config.rowSpacer,
 
@@ -345,7 +343,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     widget.config,
                     tooltip: widget.config.ezL10n.gCancel,
                     onPressed: () => Navigator.pop(context),
-                    icon: EzIcon(widget.config, Icons.delete),
+                    icon: const Icon(Icons.delete),
                   ),
                 ],
               ),
