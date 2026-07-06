@@ -23,7 +23,7 @@ dependencies:
   file_saver: ^0.4.0
   line_icons: ^2.0.3
   provider: ^6.1.5+1
-  window_manager: ^0.5.1
+  window_manager: ^0.5.2
   xml: ^7.0.1
 
   # Empathetech
