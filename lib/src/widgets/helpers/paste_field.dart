@@ -50,7 +50,7 @@ class EzPasteField extends StatelessWidget {
             final String? clipText = (await Clipboard.getData(Clipboard.kTextPlain))?.text;
             if (clipText != null) controller.text = clipText;
           },
-          icon: EzIcon(config, Icons.paste),
+          icon: const Icon(Icons.paste),
         ),
       ]);
 }
