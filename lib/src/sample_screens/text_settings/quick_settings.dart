@@ -81,7 +81,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
               labelProvider: widget.labelProvider,
             ),
             backgroundColor: buttonBackground,
-            shape: widget.config.buttonShape.shape,
+            shape: widget.config.buttonShape,
             padding: EdgeInsets.zero,
           ),
         ),
