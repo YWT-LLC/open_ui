@@ -7,7 +7,7 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODO: audit this, readability >> customization. default round rect, still overide-able
+// TODO: audit this, readability >> customization. default round rect, still override-able
 
 class EzTextBackground extends StatelessWidget {
   /// EzConfig Provider
