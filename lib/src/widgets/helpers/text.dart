@@ -7,8 +7,6 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODO: audit this, readability >> customization. default round rect, still override-able
-
 class EzTextBackground extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
@@ -25,8 +23,8 @@ class EzTextBackground extends StatelessWidget {
   /// Optional border override ([BoxDecoration] passthrough)
   final BorderRadiusGeometry? borderRadius;
 
-  /// Optional shape override ([ShapeDecoration] passthrough)
-  final ShapeBorder? shape;
+  /// Optional shape override (defaults to [EzButtonShape.roundRect])
+  final EzButtonShape shape;
 
   /// Uses [EzCP.textBackgroundOpacity]
   /// Defaults to [ColorScheme.surfaceContainer]
@@ -41,7 +39,7 @@ class EzTextBackground extends StatelessWidget {
     super.key,
     required this.text,
     this.padding,
-    this.shape,
+    this.shape = EzButtonShape.roundRect,
     this.borderRadius,
     this.baseColor,
     this.backgroundColor,
@@ -53,19 +51,12 @@ class EzTextBackground extends StatelessWidget {
             ((backgroundColor == null && config.textBackgroundOpacity < oneP)
                 ? EdgeInsets.zero
                 : EdgeInsets.all(config.marginVal)),
-        decoration: shape == null
-            ? BoxDecoration(
-                color: backgroundColor ??
-                    (baseColor ?? config.colors.surfaceContainer)
-                        .withValues(alpha: config.textBackgroundOpacity),
-                borderRadius: borderRadius ?? config.textRadius,
-              )
-            : ShapeDecoration(
-                color: backgroundColor ??
-                    (baseColor ?? config.colors.surfaceContainer)
-                        .withValues(alpha: config.textBackgroundOpacity),
-                shape: shape!,
-              ),
+        decoration: BoxDecoration(
+          color: backgroundColor ??
+              (baseColor ?? config.colors.surfaceContainer)
+                  .withValues(alpha: config.textBackgroundOpacity),
+          borderRadius: shape.radius,
+        ),
         child: text,
       );
 }
@@ -94,7 +85,7 @@ class EzText extends StatelessWidget {
   final TextOverflow? overflow;
 
   /// [EzTextBackground.shape] passthrough
-  final ShapeBorder? shape;
+  final EzButtonShape shape;
 
   /// [EzTextBackground.baseColor] passthrough
   final Color? baseColor;
@@ -113,7 +104,7 @@ class EzText extends StatelessWidget {
     this.semanticsLabel,
     this.maxLines,
     this.overflow,
-    this.shape,
+    this.shape = EzButtonShape.roundRect,
     this.baseColor,
     this.backgroundColor,
   });
