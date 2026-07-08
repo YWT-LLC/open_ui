@@ -145,7 +145,7 @@ class _AnimDurSetting extends StatelessWidget {
         config,
         onPressed: () async {
           double animDuration = config.animDur.toDouble();
-          EzAnimationCurve curve = EACConfig.lookup(
+          EzAnimationCurve curve = EACConfig.safeLookup(
               EzCM.get(config.isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
 
           await ezModal(
@@ -235,14 +235,14 @@ class _AnimDurSetting extends StatelessWidget {
                       await EzCM.remove(darkAnimationCurveKey);
 
                       animDuration = (EzCM.getDefault(darkAnimationDurationKey) as int).toDouble();
-                      curve = EACConfig.lookup(EzCM.getDefault(darkAnimationCurveKey));
+                      curve = EACConfig.safeLookup(EzCM.getDefault(darkAnimationCurveKey));
                     }
                     if (EzCM.updateBoth || !config.isDark) {
                       await EzCM.remove(lightAnimationDurationKey);
                       await EzCM.remove(lightAnimationCurveKey);
 
                       animDuration = (EzCM.getDefault(lightAnimationDurationKey) as int).toDouble();
-                      curve = EACConfig.lookup(EzCM.getDefault(lightAnimationCurveKey));
+                      curve = EACConfig.safeLookup(EzCM.getDefault(lightAnimationCurveKey));
                     }
 
                     setModal(() {});

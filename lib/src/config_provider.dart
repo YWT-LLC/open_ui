@@ -70,8 +70,7 @@ class EzCP extends ChangeNotifier {
       _theme = ezThemeData(Brightness.dark, _ltr);
 
       // Setup
-      final EzButtonShape buttonShape =
-          EBSConfig.lookup(EzCM.get(darkButtonShapeKey)) ?? EzButtonShape.pill;
+      final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(darkButtonShapeKey));
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
@@ -98,7 +97,7 @@ class EzCP extends ChangeNotifier {
           spacing: spacing,
           backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
           backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
-          transitionType: ETTConfig.lookup(EzCM.get(darkTransitionTypeKey)),
+          transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
           fadedTransition: EzCM.get(darkTransitionFadeKey),
           animDur: EzCM.get(darkAnimationDurationKey),
           animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
@@ -130,8 +129,7 @@ class EzCP extends ChangeNotifier {
       _theme = ezThemeData(Brightness.light, _ltr);
 
       // Setup
-      final EzButtonShape buttonShape =
-          EBSConfig.lookup(EzCM.get(lightButtonShapeKey)) ?? EzButtonShape.pill;
+      final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(lightButtonShapeKey));
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
@@ -158,7 +156,7 @@ class EzCP extends ChangeNotifier {
           spacing: spacing,
           backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
           backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
-          transitionType: ETTConfig.lookup(EzCM.get(lightTransitionTypeKey)),
+          transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
           fadedTransition: EzCM.get(lightTransitionFadeKey),
           animDur: EzCM.get(lightAnimationDurationKey),
           animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
