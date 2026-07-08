@@ -56,13 +56,6 @@ const String esLinear = 'linear';
 enum EzAnimationCurve { bounce, ease, elastic, linear }
 
 extension EACConfig on EzAnimationCurve {
-  String get value => switch (this) {
-        EzAnimationCurve.bounce => esBounce,
-        EzAnimationCurve.ease => esEase,
-        EzAnimationCurve.elastic => esElastic,
-        EzAnimationCurve.linear => esLinear,
-      };
-
   Curve get curve => switch (this) {
         EzAnimationCurve.bounce => Curves.bounceInOut,
         EzAnimationCurve.ease => Curves.easeInOut,
@@ -70,11 +63,11 @@ extension EACConfig on EzAnimationCurve {
         EzAnimationCurve.linear => Curves.linear,
       };
 
-  static EzAnimationCurve lookup(String? value) => switch (value) {
-        esBounce => EzAnimationCurve.bounce,
-        esElastic => EzAnimationCurve.elastic,
-        esLinear => EzAnimationCurve.linear,
-        esEase || _ => EzAnimationCurve.ease,
+  String get value => switch (this) {
+        EzAnimationCurve.bounce => esBounce,
+        EzAnimationCurve.ease => esEase,
+        EzAnimationCurve.elastic => esElastic,
+        EzAnimationCurve.linear => esLinear,
       };
 
   String name(EFUILang l10n) => switch (this) {
@@ -88,7 +81,23 @@ extension EACConfig on EzAnimationCurve {
         esBounce => Curves.bounceInOut,
         esElastic => Curves.elasticInOut,
         esLinear => Curves.linear,
-        esEase || _ => Curves.easeInOut,
+        _ => Curves.easeInOut,
+      };
+
+  static EzAnimationCurve? lookup(String? value) => switch (value) {
+        esBounce => EzAnimationCurve.bounce,
+        esEase => EzAnimationCurve.ease,
+        esElastic => EzAnimationCurve.elastic,
+        esLinear => EzAnimationCurve.linear,
+        _ => null,
+      };
+
+  /// Defaults to [EzAnimationCurve.ease]
+  static EzAnimationCurve safeLookup(String? value) => switch (value) {
+        esBounce => EzAnimationCurve.bounce,
+        esElastic => EzAnimationCurve.elastic,
+        esLinear => EzAnimationCurve.linear,
+        _ => EzAnimationCurve.ease,
       };
 }
 
@@ -220,7 +229,6 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.jewel => l10n.dsJewel,
       };
 
-  /// Defaults to [EzTransitionType.system]
   static EzButtonShape? lookup(String? value) => switch (value) {
         esPill => EzButtonShape.pill,
         esRect => EzButtonShape.rect,
@@ -230,6 +238,17 @@ extension EBSConfig on EzButtonShape {
         esGem => EzButtonShape.gem,
         esJewel => EzButtonShape.jewel,
         _ => null,
+      };
+
+  /// Defaults to [EzButtonShape.pill]
+  static EzButtonShape safeLookup(String? value) => switch (value) {
+        esRect => EzButtonShape.rect,
+        esRoundRect => EzButtonShape.roundRect,
+        esLeftGram => EzButtonShape.leftGram,
+        esRightGram => EzButtonShape.rightGram,
+        esGem => EzButtonShape.gem,
+        esJewel => EzButtonShape.jewel,
+        _ => EzButtonShape.pill,
       };
 }
 
@@ -311,7 +330,7 @@ extension ETTConfig on EzTransitionType {
       };
 
   /// Defaults to [EzTransitionType.system]
-  static EzTransitionType lookup(String? value) => switch (value) {
+  static EzTransitionType safeLookup(String? value) => switch (value) {
         esNone => EzTransitionType.none,
         esTurnX => EzTransitionType.turnX,
         esTurnY => EzTransitionType.turnY,
@@ -319,8 +338,6 @@ extension ETTConfig on EzTransitionType {
         esSlideX => EzTransitionType.slideX,
         esSlideY => EzTransitionType.slideY,
         esZoom => EzTransitionType.zoom,
-        esSystem || _ => EzTransitionType.system,
+        _ => EzTransitionType.system,
       };
 }
-
-//* Rebuild type *//
