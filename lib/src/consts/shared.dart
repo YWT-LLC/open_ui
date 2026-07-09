@@ -90,6 +90,10 @@ const double focusOpacity = 0.125;
 /// Helpful in many cases, for example whether to show opacity or not
 const double oneP = 0.01;
 
+/// One millisecond
+/// Helpful for checking whether to show an animation or not
+const Duration oneMS = Duration(milliseconds: 1);
+
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';
 
