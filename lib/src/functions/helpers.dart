@@ -380,7 +380,7 @@ Page<dynamic> ezPageBuilder(
             behavior: HitTestBehavior.translucent,
             onHorizontalDragEnd: (DragEndDetails details) {
               if (details.primaryVelocity != null &&
-                  details.primaryVelocity! > 250 &&
+                  details.primaryVelocity! > (ezSwipeV * 2) &&
                   ezRootNav.currentState!.canPop()) {
                 ezRootNav.currentState!.pop();
               }
