@@ -54,24 +54,23 @@ class EzCLI extends StatelessWidget {
         ),
 
         // Field
-        ConstrainedBox(
+        EzTextField(
+          controller: _cmdController,
           constraints: ezTextFieldConstraints(context),
-          child: TextFormField(
-            controller: _cmdController,
-            decoration: const InputDecoration(hintText: 'echo "Hello, World!"'),
-            onFieldSubmitted: (String value) async {
-              await ezCmd(
-                value,
-                dir: dir,
-                onSuccess: onSuccess,
-                onFailure: onFailure,
-                onError: onError,
-                debug: debug,
-                readout: readout,
-              );
-              _cmdController.clear();
-            },
-          ),
+          hintText: 'echo "Hello, World!"',
+          onFieldSubmitted: (String value) async {
+            await ezCmd(
+              value,
+              dir: dir,
+              onSuccess: onSuccess,
+              onFailure: onFailure,
+              onError: onError,
+              debug: debug,
+              readout: readout,
+            );
+            _cmdController.clear();
+          },
+          validator: null,
         ),
       ]);
 }
