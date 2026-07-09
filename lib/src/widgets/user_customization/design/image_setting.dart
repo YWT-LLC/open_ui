@@ -9,6 +9,7 @@ import './image_editor_io.dart' if (dart.library.html) './image_editor_web.dart'
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -341,13 +342,29 @@ class _ImageSettingState extends State<EzImageSetting> {
               textAlign: TextAlign.center,
             ),
             content: Form(
-              child: EzPasteField(
-                widget.config,
-                controller: urlController,
-                autofillHints: const <String>[AutofillHints.url],
-                decoration: const InputDecoration(hintText: webImgHint),
-                validator: validateUrl,
-              ),
+              child: EzRow(widget.config, children: <Widget>[
+                // Field
+                Expanded(
+                  child: TextFormField(
+                    autofillHints: const <String>[AutofillHints.url],
+                    autovalidateMode: AutovalidateMode.onUnfocus,
+                    controller: urlController,
+                    enabled: true,
+                    validator: validateUrl,
+                  ),
+                ),
+                widget.config.rowMargin,
+
+                // Paste
+                EzIconButton(
+                  widget.config,
+                  onPressed: () async {
+                    final String? clipText = (await Clipboard.getData(Clipboard.kTextPlain))?.text;
+                    if (clipText != null) urlController.text = clipText;
+                  },
+                  icon: const Icon(Icons.paste),
+                ),
+              ]),
             ),
             actions: ezActionPair(
               widget.config,
