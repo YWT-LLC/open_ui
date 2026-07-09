@@ -175,6 +175,9 @@ class EzTextField extends StatefulWidget {
   final TextInputType? keyboardType;
 
   /// [TextFormField] passthrough
+  final int? maxLines;
+
+  /// [TextFormField] passthrough
   final void Function(String)? onChanged;
 
   /// [TextFormField] passthrough
@@ -219,6 +222,7 @@ class EzTextField extends StatefulWidget {
     this.focusNode,
     required this.hintText,
     this.keyboardType,
+    this.maxLines = 1,
     this.onChanged,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -249,6 +253,7 @@ class _EzTextFieldState extends State<EzTextField> {
           focusNode: widget.focusNode,
           decoration: InputDecoration(hintText: widget.hintText),
           keyboardType: widget.keyboardType,
+          maxLines: widget.maxLines,
           onChanged: widget.onChanged,
           onEditingComplete: widget.onEditingComplete,
           onFieldSubmitted: widget.onFieldSubmitted,
