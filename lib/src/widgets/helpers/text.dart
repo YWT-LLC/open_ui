@@ -215,7 +215,7 @@ class EzTextField extends StatefulWidget {
     this.autovalidateMode = AutovalidateMode.onUnfocus,
     this.controller,
     required this.constraints,
-    required this.errorConstraints,
+    this.errorConstraints,
     this.focusNode,
     required this.hintText,
     this.keyboardType,
