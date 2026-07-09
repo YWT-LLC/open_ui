@@ -72,7 +72,6 @@ export 'src/widgets/helpers/elevated_button.dart';
 export 'src/widgets/helpers/fabulous.dart';
 export 'src/widgets/helpers/icon_button.dart';
 export 'src/widgets/helpers/menu_button.dart';
-export 'src/widgets/helpers/paste_field.dart';
 export 'src/widgets/helpers/radio.dart';
 export 'src/widgets/helpers/scaffold.dart';
 export 'src/widgets/helpers/sizing.dart';
