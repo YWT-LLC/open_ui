@@ -199,6 +199,9 @@ class EzTextField extends StatefulWidget {
   final bool readOnly;
 
   /// [TextFormField] passthrough
+  final TextStyle? style;
+
+  /// [TextFormField] passthrough
   final TextAlign textAlign;
 
   /// [TextFormField] passthrough
@@ -230,6 +233,7 @@ class EzTextField extends StatefulWidget {
     this.onTapAlwaysCalled = true,
     this.onTapOutside,
     this.readOnly = false,
+    this.style,
     this.textAlign = TextAlign.center,
     this.textAlignVertical = TextAlignVertical.center,
     this.textInputAction,
@@ -261,6 +265,7 @@ class _EzTextFieldState extends State<EzTextField> {
           onTapAlwaysCalled: widget.onTapAlwaysCalled,
           onTapOutside: widget.onTapOutside,
           readOnly: widget.readOnly,
+          style: widget.style,
           textAlign: widget.textAlign,
           textAlignVertical: widget.textAlignVertical,
           textInputAction: widget.textInputAction,
