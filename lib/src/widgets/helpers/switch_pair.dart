@@ -206,11 +206,14 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             ),
           ),
           if (widget.tipper != null || widget.bigTipper != null)
-            EzToolTipper(
-              widget.config,
-              message: widget.tipper,
-              richMessage: widget.bigTipper,
-            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+              child: EzToolTipper(
+                widget.config,
+                message: widget.tipper,
+                richMessage: widget.bigTipper,
+              ),
+            )
         ],
       );
 }
