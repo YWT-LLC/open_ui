@@ -35,6 +35,7 @@ class EzToolTipper extends StatelessWidget {
     return EzTextBackground(
       config,
       padding: EdgeInsets.all(config.marginVal),
+      shape: config.buttonShape,
       text: Semantics(
         label: config.ezL10n.gHelp,
         button: true,
