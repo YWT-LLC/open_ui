@@ -271,55 +271,52 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   EzToolTipper(config, message: l10n(config).csDomainTip),
                 ],
               ),
-              ConstrainedBox(
-                constraints: ezTextFieldConstraints(context),
-                child: EzCol(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    EzAnimVis(
-                      config,
-                      visible: !exampleDomain,
-                      mod: 0.5,
-                      forceType: EzTransitionType.zoom,
-                      forceFade: true,
-                      kid: TextFormField(
-                        controller: domainTC,
-                        validator: (String? text) => validateDomain(
-                          config,
-                          text,
-                          onSuccess: () async {
-                            await EzCM.setString(domainBackupKey, domainTC.text);
-                            setState(() {});
-                          },
-                        ),
-                        autovalidateMode: AutovalidateMode.onUnfocus,
-                        decoration: const InputDecoration(hintText: 'com.example'),
-                      ),
-                    ),
-                    EzAnimSwitch(
-                      config,
-                      mod: 0.5,
-                      forceType: EzTransitionType.zoom,
-                      forceFade: false,
-                      child: EzSwitchPair(
+              EzCol(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  EzAnimVis(
+                    config,
+                    visible: !exampleDomain,
+                    mod: 0.5,
+                    forceType: EzTransitionType.zoom,
+                    forceFade: true,
+                    kid: EzTextField(
+                      controller: domainTC,
+                      constraints: ezTextFieldConstraints(context),
+                      hintText: 'com.example',
+                      validator: (String? text) => validateDomain(
                         config,
-                        key: ValueKey<String>('eds-$exampleDomain'),
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: (exampleDomain || config.isLefty)
-                            ? MainAxisAlignment.start
-                            : MainAxisAlignment.end,
-                        text: config.ezL10n.gNA,
-                        semanticsLabel: config.ezL10n.gNAHint,
-                        textAlign: TextAlign.start,
-                        value: exampleDomain,
-                        onChanged: (bool? value) {
-                          if (value == null) return;
-                          setState(() => exampleDomain = value);
+                        text,
+                        onSuccess: () async {
+                          await EzCM.setString(domainBackupKey, domainTC.text);
+                          setState(() {});
                         },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  EzAnimSwitch(
+                    config,
+                    mod: 0.5,
+                    forceType: EzTransitionType.zoom,
+                    forceFade: false,
+                    child: EzSwitchPair(
+                      config,
+                      key: ValueKey<String>('eds-$exampleDomain'),
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: (exampleDomain || config.isLefty)
+                          ? MainAxisAlignment.start
+                          : MainAxisAlignment.end,
+                      text: config.ezL10n.gNA,
+                      semanticsLabel: config.ezL10n.gNAHint,
+                      textAlign: TextAlign.start,
+                      value: exampleDomain,
+                      onChanged: (bool? value) {
+                        if (value == null) return;
+                        setState(() => exampleDomain = value);
+                      },
+                    ),
+                  ),
+                ],
               ),
               config.separator,
 
