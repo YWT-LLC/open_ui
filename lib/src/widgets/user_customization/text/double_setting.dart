@@ -147,59 +147,50 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
               ],
 
               // Text field
-              Container(
-                constraints: BoxConstraints(
-                  maxWidth: formFieldWidth,
-                  maxHeight: formFieldHeight,
-                ),
-                decoration: BoxDecoration(borderRadius: widget.config.textFieldRadius),
-                child: TextFormField(
-                  controller: controller,
-                  style: widget.style,
-                  textAlign: TextAlign.center,
-                  textAlignVertical: TextAlignVertical.top,
-                  keyboardType: TextInputType.number,
-                  autovalidateMode: AutovalidateMode.onUnfocus,
-                  validator: (String? value) {
-                    if (value == null) return null;
-                    final double? doubleVal = double.tryParse(value);
+              EzTextField(
+                controller: controller,
+                constraints: BoxConstraints(maxWidth: formFieldWidth, maxHeight: formFieldHeight),
+                hintText: widget.initialValue.toString(),
+                keyboardType: TextInputType.number,
+                style: widget.style,
+                validator: (String? value) {
+                  if (value == null) return null;
+                  final double? doubleVal = double.tryParse(value);
 
-                    if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
-                      setState(() {
-                        formFieldWidth = (sizeLimit.width + widget.config.padding) * 1.75;
-                        formFieldHeight = (sizeLimit.height + widget.config.padding) * 1.75;
-                      });
-                      return '${widget.min}  <->  ${widget.max}';
-                    }
-
+                  if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
                     setState(() {
-                      formFieldWidth = sizeLimit.width + widget.config.padding;
-                      formFieldHeight = sizeLimit.height + widget.config.padding;
+                      formFieldWidth = (sizeLimit.width + widget.config.padding) * 1.75;
+                      formFieldHeight = (sizeLimit.height + widget.config.padding) * 1.75;
                     });
-                    return null;
-                  },
-                  onFieldSubmitted: (String stringVal) async {
-                    final double? doubleVal = double.tryParse(stringVal);
+                    return '${widget.min}  <->  ${widget.max}';
+                  }
 
-                    if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
-                      return;
-                    }
-                    currValue = doubleVal;
+                  setState(() {
+                    formFieldWidth = sizeLimit.width + widget.config.padding;
+                    formFieldHeight = sizeLimit.height + widget.config.padding;
+                  });
+                  return null;
+                },
+                onFieldSubmitted: (String stringVal) async {
+                  final double? doubleVal = double.tryParse(stringVal);
 
-                    await EzCM.setDouble(widget.configKey, doubleVal);
-                    if (widget.mirrorKey != null) {
-                      await EzCM.setDouble(widget.mirrorKey!, doubleVal);
-                    }
+                  if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
+                    return;
+                  }
+                  currValue = doubleVal;
 
-                    widget.notifierCallback(doubleVal);
-                    if (context.mounted) {
-                      widget.config
-                          .pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-                    }
+                  await EzCM.setDouble(widget.configKey, doubleVal);
+                  if (widget.mirrorKey != null) {
+                    await EzCM.setDouble(widget.mirrorKey!, doubleVal);
+                  }
 
-                    setState(() {});
-                  },
-                ),
+                  widget.notifierCallback(doubleVal);
+                  if (context.mounted) {
+                    widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+                  }
+
+                  setState(() {});
+                },
               ),
 
               if (widget.plusMinus) ...<Widget>[
