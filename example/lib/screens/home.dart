@@ -404,15 +404,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       reverseHands: true,
                       children: <Widget>[
                         // Text field
-                        ConstrainedBox(
+                        EzTextField(
+                          controller: workPathTC,
                           constraints: ezTextFieldConstraints(context),
-                          child: TextFormField(
-                            controller: workPathTC,
-                            readOnly: !canGen,
-                            validator: (String? path) =>
-                                (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
-                            autovalidateMode: AutovalidateMode.onUnfocus,
-                          ),
+                          hintText: docsPath,
+                          readOnly: !canGen,
+                          validator: (String? path) =>
+                              (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
                         ),
                         config.rowMargin,
 
@@ -440,10 +438,11 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   // Copyright config
                   _AdvancedSettingsField(
                     config,
+                    ec: copyrightEC,
                     title: l10n(config).csCopyright,
                     tip: l10n(config).csCopyrightTip,
-                    ec: copyrightEC,
                     tc: copyrightTC,
+                    hintText: copyrightDefault,
                   ),
                   config.spacer,
 
@@ -463,30 +462,33 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   // l10n config
                   _AdvancedSettingsField(
                     config,
+                    ec: l10nEC,
                     title: 'l10n(config).yaml',
                     tip: l10n(config).csL10nTip,
-                    ec: l10nEC,
                     tc: l10nTC,
+                    hintText: l10nDefault,
                   ),
                   config.spacer,
 
                   // Analysis options config
                   _AdvancedSettingsField(
                     config,
+                    ec: analysisEC,
                     title: 'analysis_options.yaml',
                     tip: l10n(config).csLintTip,
-                    ec: analysisEC,
                     tc: analysisTC,
+                    hintText: analysisDefault,
                   ),
                   config.spacer,
 
                   // VS Code launch config
                   _AdvancedSettingsField(
                     config,
+                    ec: launchEC,
                     title: '.vscode/launch.json',
                     tip: l10n(config).csLaunchTip,
-                    ec: launchEC,
                     tc: launchTC,
+                    hintText: vscDefault,
                   ),
                 ],
               ),
@@ -523,19 +525,14 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   reverseHands: true,
                   children: <Widget>[
                     // Text box
-                    ConstrainedBox(
+                    EzTextField(
+                      controller: flutterPathTC,
                       constraints: ezTextFieldConstraints(context),
-                      child: TextFormField(
-                        controller: flutterPathTC,
-                        readOnly: !canGen,
-                        validator: (String? path) =>
-                            (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
-                        autovalidateMode: AutovalidateMode.onUnfocus,
-                        decoration: InputDecoration(
-                            hintText: isWindows
-                                ? 'example_path\\flutter\\bin'
-                                : 'example_path/flutter/bin'),
-                      ),
+                      hintText:
+                          isWindows ? 'example_path\\flutter\\bin' : 'example_path/flutter/bin',
+                      readOnly: !canGen,
+                      validator: (String? path) =>
+                          (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
                     ),
                     config.rowMargin,
 
@@ -971,14 +968,11 @@ class _BasicField extends StatelessWidget {
           ),
 
           // Field
-          ConstrainedBox(
+          EzTextField(
+            controller: controller,
             constraints: ezTextFieldConstraints(context),
-            child: TextFormField(
-              controller: controller,
-              validator: validator,
-              autovalidateMode: AutovalidateMode.onUnfocus,
-              decoration: InputDecoration(hintText: hintText),
-            ),
+            hintText: hintText,
+            validator: validator,
           ),
         ],
       );
@@ -986,17 +980,23 @@ class _BasicField extends StatelessWidget {
 
 class _AdvancedSettingsField extends StatefulWidget {
   final EzCP config;
+
+  final ExpansibleController ec;
   final String title;
   final dynamic tip;
-  final ExpansibleController ec;
+
   final TextEditingController tc;
+  final String hintText;
+  // final String? Function(String?)? validator;
 
   const _AdvancedSettingsField(
     this.config, {
+    required this.ec,
     required this.title,
     this.tip,
-    required this.ec,
     required this.tc,
+    required this.hintText,
+    // this.validator,
   });
 
   @override
@@ -1055,13 +1055,13 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
           ),
           children: <Widget>[
             widget.config.margin,
-            ConstrainedBox(
+            EzTextField(
+              controller: widget.tc,
               constraints: ezTextFieldConstraints(context),
-              child: TextFormField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                controller: widget.tc,
-              ),
+              hintText: widget.hintText,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              validator: null,
             ),
           ],
         ),
