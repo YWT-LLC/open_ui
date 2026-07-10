@@ -43,7 +43,7 @@ class EzMenuButton extends StatelessWidget {
     this.semanticsLabel,
     this.textAlign,
     this.textStyle,
-  }) : assert((icon == null) != (label == null), 'Icon or label (or both) must be provided');
+  }) : assert(!((icon == null) && (label == null)), 'Icon or label (or both) must be provided');
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
