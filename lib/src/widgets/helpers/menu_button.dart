@@ -11,53 +11,53 @@ class EzMenuButton extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
+  /// When false, disables [onPressed] and switches the color theme
+  final bool enabled;
+
   /// iconAlignment: [EzCM.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget? icon;
 
-  /// The text for the user
-  final String label;
-
-  /// [MenuItemButton.semanticsLabel] passthrough
-  final String? semanticsLabel;
-
-  /// Defaults to [TextTheme.bodyLarge]
-  final TextStyle? textStyle;
-
-  /// [Text] passthrough
-  final TextAlign? textAlign;
+  /// [MenuItemButton.child] will be a [Text] Widget with [label]
+  final String? label;
 
   /// [MenuItemButton.onPressed] passthrough
   final void Function()? onPressed;
 
-  /// When false, disables [onPressed] and switches the color theme
-  final bool enabled;
+  /// [MenuItemButton.semanticsLabel] passthrough
+  final String? semanticsLabel;
+
+  /// [Text] passthrough
+  final TextAlign? textAlign;
+
+  /// Defaults to [TextTheme.bodyLarge]
+  final TextStyle? textStyle;
 
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
   const EzMenuButton(
     this.config, {
     super.key,
-    this.semanticsLabel,
-    this.icon,
-    required this.label,
-    this.textStyle,
-    this.textAlign,
-    this.onPressed,
     this.enabled = true,
-  });
+    this.icon,
+    this.label,
+    this.onPressed,
+    this.semanticsLabel,
+    this.textAlign,
+    this.textStyle,
+  }) : assert((icon == null) != (label == null), 'Icon or label (or both) must be provided');
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
-        onPressed: enabled ? onPressed : doNothing,
-        semanticsLabel: semanticsLabel,
         style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+        onPressed: enabled ? onPressed : doNothing,
         leadingIcon: config.isLefty ? icon : null,
         trailingIcon: config.isLefty ? null : icon,
-        child: Text(
-          label,
-          style: (textStyle ?? config.bodyStyle)?.copyWith(
-            decorationColor: config.colors.primary,
-          ),
-          textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
-        ),
+        semanticsLabel: semanticsLabel,
+        child: (label == null)
+            ? null
+            : Text(
+                label!,
+                style: textStyle ?? config.bodyStyle,
+                textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
+              ),
       );
 }
