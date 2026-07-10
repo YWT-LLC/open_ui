@@ -23,7 +23,7 @@ class EzMenuLink extends StatelessWidget {
   final Widget? icon;
 
   /// [EzMenuButton.label] passthrough
-  final String label;
+  final String? label;
 
   /// [EzMenuButton.textStyle] passthrough
   final TextStyle? textStyle;
@@ -38,7 +38,7 @@ class EzMenuLink extends StatelessWidget {
     required this.uri,
     this.semanticsLabel,
     this.icon,
-    required this.label,
+    this.label,
     this.textStyle,
     this.textAlign,
   });
