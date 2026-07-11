@@ -345,7 +345,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
         overlayColor: colorScheme.primary,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
-        padding: EzInsets.wrap(padding),
+        padding: EdgeInsets.all(padding),
       ),
     ),
 
