@@ -273,3 +273,6 @@ class _EzTextFieldState extends State<EzTextField> {
         ),
       );
 }
+
+// TODO: liminal errors are messed up still... should I use vertical constraints less? should I incease them more?
+// implied: it's prolly everywhere... maybe it didn't show up in Open UI cuz I usually test it on PC and there's plenty of space?
