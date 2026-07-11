@@ -7,6 +7,8 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
+// TODO: center align when it's only an icon
+
 class EzMenuButton extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
