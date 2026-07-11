@@ -7,8 +7,6 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODO: center align when it's only an icon
-
 class EzMenuButton extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
@@ -51,11 +49,11 @@ class EzMenuButton extends StatelessWidget {
   Widget build(BuildContext context) => MenuItemButton(
         style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
         onPressed: enabled ? onPressed : doNothing,
-        leadingIcon: config.isLefty ? icon : null,
-        trailingIcon: config.isLefty ? null : icon,
+        leadingIcon: label == null ? null : (config.isLefty ? icon : null),
+        trailingIcon: label == null ? null : (config.isLefty ? null : icon),
         semanticsLabel: semanticsLabel,
         child: (label == null)
-            ? null
+            ? icon
             : Text(
                 label!,
                 style: textStyle ?? config.bodyStyle,
