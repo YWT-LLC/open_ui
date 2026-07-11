@@ -99,7 +99,11 @@ double widthOf(BuildContext context) => MediaQuery.of(context).size.width;
 
 //* Custom functions *//
 
-Future<void> ezConfigLoader(EzCP config, {required BuildContext context}) async {
+Future<void> ezConfigLoader(
+  EzCP config, {
+  required BuildContext context,
+  Future<void> Function()? extra,
+}) async {
   final FilePickerResult? result = await FilePicker.pickFiles(
     type: FileType.custom,
     allowedExtensions: <String>['json'],
@@ -126,13 +130,7 @@ Future<void> ezConfigLoader(EzCP config, {required BuildContext context}) async 
     return;
   }
 
-  if (context.mounted) {
-    ezSnackBar(
-      config,
-      context: context,
-      message: kIsWeb ? config.ezL10n.ssRestartReminderWeb : config.ezL10n.ssRestartReminder,
-    );
-  }
+  await config.rebuildUI(allECT, changes: extra);
 }
 
 /// Close any open modals or dialogs
