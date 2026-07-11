@@ -311,14 +311,6 @@ class EFUILangFil extends EFUILang {
   String get ssNavHint => 'Buksan ang page ng mga setting';
 
   @override
-  String get ssRestartReminder =>
-      'Isara at buksang muli ang app para mailapat ang iyong mga pagbabago.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'I-reload/i-refresh ang page para mailapat ang iyong mga pagbabago.';
-
-  @override
   String get ssHaveFun => 'Magsaya!';
 
   @override

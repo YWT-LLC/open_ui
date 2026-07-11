@@ -310,14 +310,6 @@ class EFUILangHt extends EFUILang {
   String get ssNavHint => 'Louvri paj paramèt yo';
 
   @override
-  String get ssRestartReminder =>
-      'Fèmen epi relouvri aplikasyon an pou aplike chanjman ou yo.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Rechaje/rafrechi paj la pou aplike chanjman ou yo.';
-
-  @override
   String get ssHaveFun => 'Amize w!';
 
   @override

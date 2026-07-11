@@ -306,12 +306,6 @@ class EFUILangZh extends EFUILang {
   String get ssNavHint => '打开设置页面';
 
   @override
-  String get ssRestartReminder => '关闭并重新打开应用程序以应用您的更改。';
-
-  @override
-  String get ssRestartReminderWeb => '重新加载/刷新页面以应用您的更改。';
-
-  @override
   String get ssHaveFun => '玩得开心！';
 
   @override
@@ -1079,12 +1073,6 @@ class EFUILangZhCn extends EFUILangZh {
 
   @override
   String get ssNavHint => '打开设置页面';
-
-  @override
-  String get ssRestartReminder => '关闭并重新打开应用程序以应用您的更改。';
-
-  @override
-  String get ssRestartReminderWeb => '重新加载/刷新页面以应用您的更改。';
 
   @override
   String get ssHaveFun => '玩得开心！';

@@ -310,14 +310,6 @@ class EFUILangSw extends EFUILang {
   String get ssNavHint => 'Fungua ukurasa wa mipangilio';
 
   @override
-  String get ssRestartReminder =>
-      'Funga na ufungue upya programu ili kutekeleza mabadiliko yako.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Pakia upya/onyesha upya ukurasa ili kutekeleza mabadiliko yako.';
-
-  @override
   String get ssHaveFun => 'Furahia!';
 
   @override

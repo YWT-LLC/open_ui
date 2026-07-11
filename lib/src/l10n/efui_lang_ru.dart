@@ -312,14 +312,6 @@ class EFUILangRu extends EFUILang {
   String get ssNavHint => 'Открыть страницу настроек';
 
   @override
-  String get ssRestartReminder =>
-      'Закройте и снова откройте приложение, чтобы применить изменения.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Перезагрузите/обновите страницу, чтобы применить изменения.';
-
-  @override
   String get ssHaveFun => 'Удачного использования!';
 
   @override

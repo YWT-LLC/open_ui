@@ -312,14 +312,6 @@ class EFUILangEs extends EFUILang {
   String get ssNavHint => 'Abrir la página de configuración';
 
   @override
-  String get ssRestartReminder =>
-      'Cierre y vuelva a abrir la app para aplicar los cambios.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Recarga o actualice la página para aplicar tus cambios.';
-
-  @override
   String get ssHaveFun => '¡Diviértete!';
 
   @override

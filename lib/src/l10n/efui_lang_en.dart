@@ -310,14 +310,6 @@ class EFUILangEn extends EFUILang {
   String get ssNavHint => 'Open the settings page';
 
   @override
-  String get ssRestartReminder =>
-      'Close and reopen the app to apply your changes.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Reload/refresh the page to apply your changes.';
-
-  @override
   String get ssHaveFun => 'Have fun!';
 
   @override
@@ -1093,14 +1085,6 @@ class EFUILangEnUs extends EFUILangEn {
 
   @override
   String get ssNavHint => 'Open the settings page';
-
-  @override
-  String get ssRestartReminder =>
-      'Close and reopen the app to apply your changes.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Reload/refresh the page to apply your changes.';
 
   @override
   String get ssHaveFun => 'Have fun!';

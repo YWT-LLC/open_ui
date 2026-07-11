@@ -311,14 +311,6 @@ class EFUILangHi extends EFUILang {
   String get ssNavHint => 'सेटिंग्स पेज खोलें';
 
   @override
-  String get ssRestartReminder =>
-      'अपने बदलावों को लागू करने के लिए ऐप को बंद करें और फिर से खोलें।';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'अपने बदलावों को लागू करने के लिए पेज को रीलोड/रीफ्रेश करें।';
-
-  @override
   String get ssHaveFun => 'मज़े करें!';
 
   @override

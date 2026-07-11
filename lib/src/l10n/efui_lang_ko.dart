@@ -306,12 +306,6 @@ class EFUILangKo extends EFUILang {
   String get ssNavHint => '설정 페이지 열기';
 
   @override
-  String get ssRestartReminder => '변경 사항을 적용하려면 앱을 닫고 다시 여세요.';
-
-  @override
-  String get ssRestartReminderWeb => '변경 사항을 적용하려면 페이지를 새로고침하세요.';
-
-  @override
   String get ssHaveFun => '즐기세요!';
 
   @override

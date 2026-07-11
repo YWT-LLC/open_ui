@@ -306,12 +306,6 @@ class EFUILangJa extends EFUILang {
   String get ssNavHint => '設定ページを開く';
 
   @override
-  String get ssRestartReminder => '変更を適用するには、アプリを閉じて再度開いてください。';
-
-  @override
-  String get ssRestartReminderWeb => '変更を適用するには、ページを再読み込み/更新してください。';
-
-  @override
   String get ssHaveFun => 'お楽しみください！';
 
   @override

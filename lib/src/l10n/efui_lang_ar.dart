@@ -309,12 +309,6 @@ class EFUILangAr extends EFUILang {
   String get ssNavHint => 'فتح صفحة الإعدادات';
 
   @override
-  String get ssRestartReminder => 'أغلق التطبيق وأعد فتحه لتطبيق التغييرات.';
-
-  @override
-  String get ssRestartReminderWeb => 'أعد تحميل/تحديث الصفحة لتطبيق التغييرات.';
-
-  @override
   String get ssHaveFun => 'استمتع!';
 
   @override
@@ -1088,12 +1082,6 @@ class EFUILangArEg extends EFUILangAr {
 
   @override
   String get ssNavHint => 'فتح صفحة الإعدادات';
-
-  @override
-  String get ssRestartReminder => 'أغلق التطبيق وأعد فتحه لتطبيق التغييرات.';
-
-  @override
-  String get ssRestartReminderWeb => 'أعد تحميل/تحديث الصفحة لتطبيق التغييرات.';
 
   @override
   String get ssHaveFun => 'استمتع!';

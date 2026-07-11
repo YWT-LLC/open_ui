@@ -312,14 +312,6 @@ class EFUILangDe extends EFUILang {
   String get ssNavHint => 'Einstellungsseite öffnen';
 
   @override
-  String get ssRestartReminder =>
-      'App schließen und neu starten, um die Änderungen anzuwenden.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Seite neu laden, um die Änderungen anzuwenden.';
-
-  @override
   String get ssHaveFun => 'Viel Spaß!';
 
   @override

@@ -311,14 +311,6 @@ class EFUILangUk extends EFUILang {
   String get ssNavHint => 'Відкрити сторінку налаштувань';
 
   @override
-  String get ssRestartReminder =>
-      'Закрийте та знову відкрийте програму, щоб застосувати зміни.';
-
-  @override
-  String get ssRestartReminderWeb =>
-      'Перезавантажте/оновіть сторінку, щоб застосувати зміни.';
-
-  @override
   String get ssHaveFun => 'Приємного користування!';
 
   @override
