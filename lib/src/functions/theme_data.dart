@@ -306,6 +306,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     // Input decoration
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
+      contentPadding: EdgeInsets.all(margin),
       fillColor: inputBackground,
       prefixIconColor: colorScheme.primary,
       iconColor: colorScheme.primary,
