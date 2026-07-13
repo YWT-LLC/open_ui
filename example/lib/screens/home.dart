@@ -284,6 +284,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       controller: domainTC,
                       constraints: ezTextFieldConstraints(context),
                       hintText: 'com.example',
+                      textAlign: TextAlign.start,
                       validator: (String? text) => validateDomain(
                         config,
                         text,
@@ -299,21 +300,24 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     mod: 0.5,
                     forceType: EzTransitionType.zoom,
                     forceFade: false,
-                    child: EzSwitchPair(
-                      config,
-                      key: ValueKey<String>('eds-$exampleDomain'),
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: (exampleDomain || config.isLefty)
-                          ? MainAxisAlignment.start
-                          : MainAxisAlignment.end,
-                      text: config.ezL10n.gNA,
-                      semanticsLabel: config.ezL10n.gNAHint,
-                      textAlign: TextAlign.start,
-                      value: exampleDomain,
-                      onChanged: (bool? value) {
-                        if (value == null) return;
-                        setState(() => exampleDomain = value);
-                      },
+                    child: ConstrainedBox(
+                      constraints: ezTextFieldConstraints(context),
+                      child: EzSwitchPair(
+                        config,
+                        key: ValueKey<String>('eds-$exampleDomain'),
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: (exampleDomain || config.isLefty)
+                            ? MainAxisAlignment.start
+                            : MainAxisAlignment.end,
+                        text: config.ezL10n.gNA,
+                        semanticsLabel: config.ezL10n.gNAHint,
+                        textAlign: TextAlign.start,
+                        value: exampleDomain,
+                        onChanged: (bool? value) {
+                          if (value == null) return;
+                          setState(() => exampleDomain = value);
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -408,6 +412,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                           controller: workPathTC,
                           constraints: ezTextFieldConstraints(context),
                           hintText: docsPath,
+                          textAlign: TextAlign.start,
                           readOnly: !canGen,
                           validator: (String? path) =>
                               (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
@@ -530,6 +535,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       constraints: ezTextFieldConstraints(context),
                       hintText:
                           isWindows ? 'example_path\\flutter\\bin' : 'example_path/flutter/bin',
+                      textAlign: TextAlign.start,
                       readOnly: !canGen,
                       validator: (String? path) =>
                           (path == null || path.isEmpty) ? l10n(config).csPathRequired : null,
@@ -972,6 +978,7 @@ class _BasicField extends StatelessWidget {
             controller: controller,
             constraints: ezTextFieldConstraints(context),
             hintText: hintText,
+            textAlign: TextAlign.start,
             validator: validator,
           ),
         ],
@@ -1059,6 +1066,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
               controller: widget.tc,
               constraints: ezTextFieldConstraints(context),
               hintText: widget.hintText,
+              textAlign: TextAlign.start,
               keyboardType: TextInputType.multiline,
               maxLines: null,
               validator: null,
