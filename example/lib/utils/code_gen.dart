@@ -492,7 +492,7 @@ class CountFAB extends StatelessWidget {
 // TODO: Complete link placeholders (_PH)
 EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
     config,
-    appVersion: '1.0.0', // TODO (recommended): include a check for this in your release scripts
+    appVersion: '1.0.0', // TODO: (recommended to) include a check for this in your release scripts
     versionSource:
         'https://raw.githubusercontent.com/USER_PH/REPO_PH/refs/heads/main/APP_VERSION',
     gPlay:
