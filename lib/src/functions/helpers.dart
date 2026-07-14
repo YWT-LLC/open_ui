@@ -145,7 +145,7 @@ void ezCloseAll() {
 }
 
 /// Wraps a [ColorPicker] in an [EzAlertDialog]
-Future<dynamic> ezColorPicker(
+Future<void> ezColorPicker(
   EzCP config, {
   required BuildContext context,
   String? title,
