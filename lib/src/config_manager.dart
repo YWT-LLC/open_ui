@@ -388,16 +388,20 @@ Must be one of [int, bool, double, String, List<String>]''');
 
     for (final MapEntry<String, dynamic> entry in entries) {
       // Check type
-      final dynamic expectedType = _instance!._typeMap[entry.key];
+      final Type? expectedType = _instance!._typeMap[entry.key];
       if (expectedType == null) {
         ezLog('Skipping unknown key [${entry.key}]');
         continue;
       }
+
       if (expectedType != entry.value.runtimeType) {
-        ezLog(
-          'Skipping key [${entry.key}], mismatched types: [$expectedType != ${entry.value.runtimeType}]',
-        );
-        continue;
+        if ((expectedType == List<String>) && (entry.value.runtimeType == List<dynamic>)) {
+          // We'll try this below, it seems Dart sometimes 'downgrades' String to dynamic
+        } else {
+          ezLog(
+              'Skipping [${entry.key}], mismatched types: $expectedType != ${entry.value.runtimeType}');
+          continue;
+        }
       }
 
       // Load value
@@ -416,6 +420,13 @@ Must be one of [int, bool, double, String, List<String>]''');
           break;
         case const (List<String>):
           await setStringList(entry.key, entry.value);
+          break;
+        case const (List<dynamic>):
+          ezLog('${entry.key} was detected as List<dynamic>; casting items...');
+          await setStringList(
+            entry.key,
+            (entry.value as List<dynamic>).map((dynamic item) => item.toString()).toList(),
+          );
           break;
       }
     }
