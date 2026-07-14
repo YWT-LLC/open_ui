@@ -35,7 +35,7 @@ class _ColorSettingState extends State<EzColorSetting> {
 
   /// Opens an [ezColorPicker] for updating [currColor]
   /// Returns the [Color] of what was chosen (null otherwise)
-  Future<dynamic> openColorPicker() {
+  Future<void> openColorPicker() {
     final Color backup = currColor;
 
     return ezColorPicker(
@@ -121,8 +121,8 @@ class _ColorSettingState extends State<EzColorSetting> {
             widget.config,
             text: widget.config.ezL10n.csUseCustom,
             onPressed: () async {
-              final dynamic chosen = await openColorPicker();
-              if (dCon.mounted) Navigator.of(dCon).pop(chosen);
+              await openColorPicker();
+              if (dCon.mounted) Navigator.of(dCon).pop();
             },
             isDestructiveAction: true,
           ),
