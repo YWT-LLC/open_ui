@@ -75,7 +75,8 @@ extension EACConfig on EzAnimationCurve {
         EzAnimationCurve.ease => l10n.dsEase,
         EzAnimationCurve.elastic => l10n.dsElastic,
         EzAnimationCurve.linear => l10n.dsLinear,
-      };
+      }
+          .replaceAll(' ', '\n');
 
   static Curve translate(String? value) => switch (value) {
         esBounce => Curves.bounceInOut,
@@ -227,7 +228,8 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.rightGram => l10n.dsRightGram,
         EzButtonShape.gem => l10n.dsGem,
         EzButtonShape.jewel => l10n.dsJewel,
-      };
+      }
+          .replaceAll(' ', '\n');
 
   static EzButtonShape? lookup(String? value) => switch (value) {
         esPill => EzButtonShape.pill,
@@ -309,7 +311,8 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.slideX => l10n.dsSlideX,
         EzTransitionType.slideY => l10n.dsSlideY,
         EzTransitionType.zoom => l10n.dsZoom,
-      };
+      }
+          .replaceAll(' ', '\n');
 
   Icon icon(EzCP config) => switch (this) {
         EzTransitionType.none => EzIcon(config, Icons.cancel),
