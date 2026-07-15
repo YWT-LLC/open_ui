@@ -7,6 +7,9 @@ import '../../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
+// TODO: increase the button opacity (just a smidge)
+// TODO: after above and updating liminal MC... are disabled colors correct for this?
+
 class EzNebulaConfig extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;

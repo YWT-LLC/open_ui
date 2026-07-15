@@ -3,6 +3,9 @@
  * See LICENSE for distribution and usage details.
  */
 
+// TODO: scale the image in the previews so that it's a true preview
+// TODO: don't show the `clear it` option when it's already clear
+
 import '../../../../empathetech_flutter_ui.dart';
 import './image_editor_io.dart' if (dart.library.html) './image_editor_web.dart';
 

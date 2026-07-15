@@ -9,6 +9,8 @@ import '../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
+// TODO: add \n's to the names of the page transitions (button style too?)
+
 class EzDesignSettings extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;

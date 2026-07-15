@@ -94,6 +94,8 @@ class EzText extends StatelessWidget {
       );
 }
 
+// TODO: track round vs sharp, like in the clock widget (consolidate that when done?)
+
 class EzTextBackground extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
