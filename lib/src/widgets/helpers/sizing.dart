@@ -6,11 +6,13 @@
 import 'package:flutter/material.dart';
 
 class EzInsets extends EdgeInsets {
-  /// [EdgeInsets].symmetric(horizontal: [base], vertical: [base] / 2)
-  const EzInsets.col(double base) : super.symmetric(horizontal: base, vertical: base / 2);
+  /// [EdgeInsets].symmetric(horizontal: [d2] ? [base] : 0, vertical: [base] / 2)
+  const EzInsets.col(double base, {bool d2 = false})
+      : super.symmetric(horizontal: d2 ? base : 0, vertical: base / 2);
 
-  /// [EdgeInsets].symmetric(horizontal: [base] / 2, vertical: [base])
-  const EzInsets.row(double base) : super.symmetric(horizontal: base / 2, vertical: base);
+  /// [EdgeInsets].symmetric(horizontal: [base] / 2, vertical: [d2] ? [base] : 0)
+  const EzInsets.row(double base, {bool d2 = false})
+      : super.symmetric(horizontal: base / 2, vertical: d2 ? base : 0);
 
   /// [EdgeInsets].all([base] / 2)
   const EzInsets.wrap(double base) : super.all(base / 2);
