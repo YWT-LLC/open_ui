@@ -3,7 +3,6 @@
  * See LICENSE for distribution and usage details.
  */
 
-// TODO: scale the image in the previews so that it's a true preview
 // TODO: don't show the `clear it` option when it's already clear
 
 import '../../../../empathetech_flutter_ui.dart';
@@ -493,7 +492,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     }
 
     // Clear (optional)
-    if (widget.allowClear) {
+    if (widget.allowClear && currPath != noImageValue) {
       options.add(Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
@@ -502,9 +501,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             await fileCleanup();
             await EzCM.setString(widget.pathKey, noImageValue);
 
-            if (mCon.mounted) {
-              Navigator.of(mCon).pop(noImageValue);
-            }
+            if (mCon.mounted) Navigator.of(mCon).pop(noImageValue);
           },
           icon: EzIcon(widget.config, Icons.clear),
           label: widget.clearLabel ?? widget.config.ezL10n.dsClearIt,
@@ -572,8 +569,9 @@ class _ImageSettingState extends State<EzImageSetting> {
 
   /// Opens a preview modal for choosing the desired [BoxFit]
   Future<bool?> chooseFit(String path) {
-    final double width = widthOf(context) * 0.25;
-    final double height = heightOf(context) * 0.25;
+    const double scale = 0.25;
+    final double width = widthOf(context) * scale;
+    final double height = heightOf(context) * scale;
 
     return ezModal<bool?>(
       widget.config,
@@ -599,72 +597,20 @@ class _ImageSettingState extends State<EzImageSetting> {
                 scrollDirection: Axis.horizontal,
                 showScrollHint: true,
                 primary: false,
-                children: <Widget>[
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.contain,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.cover,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.fill,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.fitWidth,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.fitHeight,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.none,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                  fitPreview(
-                    path: path,
-                    fit: BoxFit.scaleDown,
-                    width: width,
-                    height: height,
-                    modalContext: fitContext,
-                    setModal: fitState,
-                  ),
-                  widget.config.rowSpacer,
-                ],
+                children: BoxFit.values
+                    .map((BoxFit bf) => Padding(
+                          padding: EzInsets.row(widget.config.spacing),
+                          child: fitPreview(
+                            path: path,
+                            fit: bf,
+                            height: height,
+                            width: width,
+                            scale: scale,
+                            modalContext: fitContext,
+                            setModal: fitState,
+                          ),
+                        ))
+                    .toList(),
               ),
             ),
             widget.config.spacer,
@@ -710,66 +656,57 @@ class _ImageSettingState extends State<EzImageSetting> {
   Widget fitPreview({
     required String path,
     required BoxFit fit,
-    required double width,
     required double height,
+    required double width,
+    required double scale,
     required BuildContext modalContext,
     required StateSetter setModal,
-  }) {
-    final double toolbarHeight =
-        ezTextSize(fit.name, style: widget.config.bodyStyle, context: modalContext).height +
-            (widget.config.marginVal * 0.25);
-
-    return EzCol(children: <Widget>[
-      GestureDetector(
-        onTap: () {
-          currFit = fit;
-          setModal(() {});
-        },
-        child: Semantics(
-          hint: fit.name,
-          image: true,
-          button: true,
-          child: ExcludeSemantics(
-            child: Container(
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: widget.config.colors.onSurface,
-                  width: widget.config.borderWidth,
+  }) =>
+      EzCol(children: <Widget>[
+        GestureDetector(
+          onTap: () => setModal(() => currFit = fit),
+          child: Semantics(
+            hint: fit.name,
+            image: true,
+            button: true,
+            child: ExcludeSemantics(
+              child: Container(
+                width: width,
+                height: height,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: widget.config.colors.onSurface,
+                    width: widget.config.borderWidth,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.zero),
                 ),
-                borderRadius: const BorderRadius.all(Radius.zero),
-              ),
-              child: EzCol(
-                children: <Widget>[
-                  Container(
-                    height: toolbarHeight,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: widget.config.colors.surface,
-                      borderRadius: const BorderRadius.all(Radius.zero),
+                child: EzCol(
+                  children: <Widget>[
+                    Container(
+                      height: ezTextSize(fit.name,
+                                  style: widget.config.bodyStyle, context: modalContext)
+                              .height +
+                          (widget.config.marginVal * 0.25),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: widget.config.colors.surface,
+                        borderRadius: const BorderRadius.all(Radius.zero),
+                      ),
+                      child: Text(
+                        fit.name,
+                        style: widget.config.bodyStyle,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    child: Text(
-                      fit.name,
-                      style: widget.config.bodyStyle,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    child: Image(
-                      image: ezImageProvider(path),
-                      fit: fit,
-                    ),
-                  ),
-                ],
+                    Expanded(child: Image(image: ezImageProvider(path), fit: fit)),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-      ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
-    ]);
-  }
+        ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
+      ]);
 
   // Return the build //
 
