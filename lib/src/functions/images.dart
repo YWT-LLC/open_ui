@@ -10,13 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 /// Returns and [AssetImage], [NetworkImage], or [FileImage] based on the [path]
-ImageProvider ezImageProvider(String path) {
+ImageProvider ezImageProvider(String path, {double? scale}) {
   if (EzCM.isPathAsset(path)) {
     return efuiAssetPaths.contains(path) ? efuiImageLookup[path]! : AssetImage(path);
   } else if (ezUrlCheck(path)) {
-    return NetworkImage(path);
+    return NetworkImage(path, scale: scale ?? 1.0);
   } else {
-    return FileImage(File(path));
+    return FileImage(File(path), scale: scale ?? 1.0);
   }
 }
 
