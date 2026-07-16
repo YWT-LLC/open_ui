@@ -7,9 +7,6 @@ import '../../../../empathetech_flutter_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODO: increase the button opacity (just a smidge)
-// TODO: after above and updating liminal MC... are disabled colors correct for this?
-
 class EzNebulaConfig extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
@@ -76,9 +73,9 @@ class EzNebulaConfig extends StatelessWidget {
     // Color settings //
 
     await loadColorScheme(
-      const ColorScheme(
+      ColorScheme(
         // Surface
-        surface: _empathPurpleDimmer,
+        surface: empathPurple.withValues(alpha: _nO),
         surfaceDim: _hintOPurple,
         surfaceContainer: _hintOPurple,
 
@@ -89,30 +86,30 @@ class EzNebulaConfig extends StatelessWidget {
         // Primary
         primary: empathSand,
         onPrimary: Colors.black,
-        primaryContainer: _halfSand,
+        primaryContainer: empathSand.withValues(alpha: 0.5),
         onPrimaryContainer: Colors.black,
 
         // Secondary
         secondary: empathEucalyptus,
         onSecondary: Colors.black,
-        secondaryContainer: _halfEucalyptus,
+        secondaryContainer: empathEucalyptus.withValues(alpha: 0.5),
         onSecondaryContainer: Colors.black,
 
         // Tertiary
         tertiary: empathPurple,
         onTertiary: Colors.white,
-        tertiaryContainer: _halfPurple,
+        tertiaryContainer: empathPurple.withValues(alpha: 0.5),
         onTertiaryContainer: Colors.white,
 
         // Error
         error: Colors.red,
         onError: Colors.white,
-        errorContainer: _dimRed,
+        errorContainer: Colors.red.withValues(alpha: _nO),
         onErrorContainer: Colors.white,
 
         // Misc
         outlineVariant: dimWhite,
-        shadow: _empathPurpleDimmer,
+        shadow: empathPurple.withValues(alpha: _nO),
         surfaceTint: Colors.transparent,
         scrim: Colors.black,
         brightness: Brightness.dark,
@@ -167,11 +164,11 @@ class EzNebulaConfig extends StatelessWidget {
       child: EzElevatedButton(
         config,
         style: ElevatedButton.styleFrom(
-          backgroundColor: _empathPurpleDimmer,
+          backgroundColor: empathPurple.withValues(alpha: _nO),
           foregroundColor: Colors.white,
-          shadowColor: _empathPurpleDimmer,
+          shadowColor: empathPurple.withValues(alpha: _nO),
           overlayColor: empathSand,
-          side: const BorderSide(color: _halfSand),
+          side: BorderSide(color: empathSand.withValues(alpha: 0.5)),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
           padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
@@ -194,20 +191,9 @@ class EzNebulaConfig extends StatelessWidget {
   }
 }
 
-/// 0x80DAA520
-const Color _halfSand = Color(0x80DAA520);
-
-/// 0x8020DAA5
-const Color _halfEucalyptus = Color(0x8020DAA5);
-
-/// 0x80A520DA
-const Color _halfPurple = Color(0x80A520DA);
-
-/// 0x33FF0000
-const Color _dimRed = Color(0x33FF0000);
-
-/// 0x19A520DA
-const Color _empathPurpleDimmer = Color(0x19A520DA);
+/// Nebula Opacity
+/// 0.20
+const double _nO = 0.20;
 
 /// 0xFF100010
 const Color _hintOPurple = Color(0xFF100010);
