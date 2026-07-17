@@ -16,7 +16,7 @@ class EzBackAction extends StatelessWidget {
   const EzBackAction(this.config, {super.key});
 
   @override
-  Widget build(BuildContext context) => ezRootNav.currentState!.canPop()
+  Widget build(BuildContext context) => (ezRootNav.currentState?.canPop() ?? false)
       ? EzIconButton(
           config,
           onPressed: () => Navigator.of(context).maybePop(),
