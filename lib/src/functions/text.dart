@@ -12,8 +12,9 @@ import 'package:provider/provider.dart';
 // Helpers //
 
 /// 404 [EFUILang.gError]
-String ez404() =>
-    '404 ${Provider.of<EzCP>(ezRootNav.currentContext!, listen: false).ezL10n.gError}';
+String ez404() => ezRootIsMounted
+    ? '404 ${Provider.of<EzCP>(ezRootContext, listen: false).ezL10n.gError}'
+    : '404';
 
 /// Custom '==' for two [TextStyle]s
 bool ezFitCheck(TextStyle? a, TextStyle? b) {
@@ -68,8 +69,9 @@ Size ezTextSize(
 void ezWindowNamer(String title) => SystemChrome.setApplicationSwitcherDescription(
       ApplicationSwitcherDescription(
         label: title,
-        primaryColor:
-            Provider.of<EzCP>(ezRootNav.currentContext!, listen: false).colors.primary.toARGB32(),
+        primaryColor: ezRootIsMounted
+            ? Provider.of<EzCP>(ezRootContext, listen: false).colors.primary.toARGB32()
+            : empathPurpleHex,
       ),
     );
 
