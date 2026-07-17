@@ -245,7 +245,7 @@ class EzCP extends ChangeNotifier {
   bool get showScroll => _design.showScroll;
 
   List<Widget> backFABs(bool isHome) =>
-      (_design.showBackFAB && !isHome && ezRootNav.currentState!.canPop())
+      (_design.showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false))
           ? <Widget>[spacer, EzBackFAB(this)]
           : <Widget>[];
 
@@ -352,34 +352,24 @@ class EzCP extends ChangeNotifier {
   /// If you are making known [changes] prior to the rebuild, it is recommended to provide them here
   /// A fullscreen [CircularProgressIndicator] will prevent user input while the [changes] are awaited
   Future<void> rebuildUI(Set<EzCacheType> types, {Future<dynamic> Function()? changes}) async {
-    unawaited(ezRootNav.currentState!.push(
-      // Open progress layer
-      PageRouteBuilder<Widget>(
-        opaque: false,
-        transitionsBuilder: (_, __, ___, Widget child) => child,
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
-      ),
-    ));
+    await ezNoTouch(() async {
+      if (changes != null) await changes();
+      final ThemeMode newMode = _getThemeMode();
 
-    if (changes != null) await changes();
-    final ThemeMode newMode = _getThemeMode();
+      _isDark = switch (newMode) {
+        ThemeMode.dark => true,
+        ThemeMode.light => false,
+        ThemeMode.system =>
+          (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark)
+              ? true
+              : false,
+      };
+      _buildThemeData(types);
 
-    _isDark = switch (newMode) {
-      ThemeMode.dark => true,
-      ThemeMode.light => false,
-      ThemeMode.system =>
-        (WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark)
-            ? true
-            : false,
-    };
-    _buildThemeData(types);
+      await _appCache.rebuild(this);
+      _needsRebuild = false;
+    });
 
-    await _appCache.rebuild(this);
-    _needsRebuild = false;
-
-    ezRootNav.currentState!.pop();
     ezCloseAll();
     notifyListeners();
   }
