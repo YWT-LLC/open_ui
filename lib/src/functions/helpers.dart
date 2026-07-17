@@ -139,9 +139,7 @@ void ezCloseAll() {
   final NavigatorState? state = ezRootNav.currentState;
   if (state == null) return;
 
-  if (state.canPop()) {
-    state.popUntil((Route<dynamic> route) => route is PageRoute<dynamic>);
-  }
+  if (state.canPop()) state.popUntil((Route<dynamic> route) => route is PageRoute<dynamic>);
 }
 
 /// Wraps a [ColorPicker] in an [EzAlertDialog]
@@ -379,7 +377,7 @@ Page<dynamic> ezPageBuilder(
             onHorizontalDragEnd: (DragEndDetails details) {
               if (details.primaryVelocity != null &&
                   details.primaryVelocity! > (ezSwipeV * 2) &&
-                  ezRootNav.currentState!.canPop()) {
+                  (ezRootNav.currentState?.canPop() ?? false)) {
                 ezRootNav.currentState!.pop();
               }
             },
@@ -607,6 +605,15 @@ Duration ezReadingTime(EzCP config, String passage) {
 
   return Duration(milliseconds: ((words / 100) * 60 * 1000).ceil());
 }
+
+/// CAW! Must call/check [ezRootIsMounted] first!
+BuildContext get ezRootContext => ezRootNav.currentContext!;
+
+/// Checks that [ezRootNav]s BuildContext is both not null and mounted
+bool get ezRootIsMounted => (ezRootNav.currentContext != null) && ezRootNav.currentContext!.mounted;
+
+/// [ezRootNav]s [NavigatorState]s overlay
+OverlayState? get ezRootOverlay => ezRootNav.currentState?.overlay;
 
 /// 'Smart' keyboard arrow
 IconData ezVisIcon(EzCP config, bool show) => show
