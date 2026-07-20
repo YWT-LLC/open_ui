@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../empathetech_flutter_ui.dart';
+import '../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +19,9 @@ class EzConfigurableApp extends StatelessWidget {
   /// Recommended to use [ezStoredL10n]
   final Locale locale;
 
-  /// Initial EFUILang
+  /// Initial OUILang
   /// Recommended to use [ezStoredL10n]
-  final EFUILang el10n;
+  final OUILang el10n;
 
   /// Sets [EzCP.appCache]
   final EzAppCache appCache;

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 import './image_editor_io.dart' if (dart.library.html) './image_editor_web.dart';
 
 import 'dart:io';
@@ -91,8 +91,9 @@ class _ImageSettingState extends State<EzImageSetting> {
   Future<void> showSource() async {
     if (currPath == null || currPath == noImageValue) return;
 
-    final String credits =
-        (widget.sourceKey == null) ? currPath : (EzCM.get(widget.sourceKey!) ?? currPath);
+    final String credits = (widget.sourceKey == null)
+        ? currPath
+        : (EzCM.get(widget.sourceKey!) ?? currPath);
 
     return showDialog(
       context: context,
@@ -137,10 +138,8 @@ class _ImageSettingState extends State<EzImageSetting> {
       widget.config,
       context: context,
       builder: (BuildContext mCon) => StatefulBuilder(
-        builder: (_, StateSetter setModal) => EzScrollView(
-          widget.config,
-          children: sourceOptions(mCon, setModal),
-        ),
+        builder: (_, StateSetter setModal) =>
+            EzScrollView(widget.config, children: sourceOptions(mCon, setModal)),
       ),
     );
 
@@ -284,227 +283,241 @@ class _ImageSettingState extends State<EzImageSetting> {
     // From camera
     // Only works on mobile
     if (!kIsWeb && EzCM.onMobile) {
-      options.add(Padding(
-        padding: wrapPadding,
-        child: EzElevatedIconButton(
-          widget.config,
-          onPressed: () async {
-            final String? picked = await ezImagePicker(
-              widget.config,
-              context: context,
-              source: ImageSource.camera,
-            );
+      options.add(
+        Padding(
+          padding: wrapPadding,
+          child: EzElevatedIconButton(
+            widget.config,
+            onPressed: () async {
+              final String? picked = await ezImagePicker(
+                widget.config,
+                context: context,
+                source: ImageSource.camera,
+              );
 
-            fromLocal = true;
-            if (mCon.mounted) Navigator.of(mCon).pop(picked);
-          },
-          icon: EzIcon(widget.config, Icons.camera),
-          label: widget.config.ezL10n.dsFromCamera,
+              fromLocal = true;
+              if (mCon.mounted) Navigator.of(mCon).pop(picked);
+            },
+            icon: EzIcon(widget.config, Icons.camera),
+            label: widget.config.ezL10n.dsFromCamera,
+          ),
         ),
-      ));
+      );
     }
 
     // From file
     // Doesn't work on Web
     if (!kIsWeb) {
-      options.add(Padding(
-        padding: wrapPadding,
-        child: EzElevatedIconButton(
-          widget.config,
-          onPressed: () async {
-            final String? picked = await ezImagePicker(
-              widget.config,
-              context: context,
-              source: ImageSource.gallery,
-            );
+      options.add(
+        Padding(
+          padding: wrapPadding,
+          child: EzElevatedIconButton(
+            widget.config,
+            onPressed: () async {
+              final String? picked = await ezImagePicker(
+                widget.config,
+                context: context,
+                source: ImageSource.gallery,
+              );
 
-            fromLocal = true;
-            if (mCon.mounted) Navigator.of(mCon).pop(picked);
-          },
-          icon: EzIcon(widget.config, Icons.folder_open),
-          label: widget.config.ezL10n.dsFromFile,
+              fromLocal = true;
+              if (mCon.mounted) Navigator.of(mCon).pop(picked);
+            },
+            icon: EzIcon(widget.config, Icons.folder_open),
+            label: widget.config.ezL10n.dsFromFile,
+          ),
         ),
-      ));
+      );
     }
 
     // From network
     // Works everywhere
-    options.add(Padding(
-      padding: wrapPadding,
-      child: EzElevatedIconButton(
-        widget.config,
-        onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext dCon) => EzAlertDialog(
-            widget.config,
-            title: Text(
-              widget.config.ezL10n.gEnterURL,
-              textAlign: TextAlign.center,
-            ),
-            content: Form(
-              child: EzRow(widget.config, children: <Widget>[
-                // Field
-                Expanded(
-                  child: TextFormField(
-                    autofillHints: const <String>[AutofillHints.url],
-                    autovalidateMode: AutovalidateMode.onUnfocus,
-                    controller: urlController,
-                    enabled: true,
-                    validator: validateUrl,
-                  ),
-                ),
-                widget.config.rowMargin,
-
-                // Paste
-                EzIconButton(
-                  widget.config,
-                  onPressed: () async {
-                    final String? clipText = (await Clipboard.getData(Clipboard.kTextPlain))?.text;
-                    if (clipText != null) urlController.text = clipText;
-                  },
-                  icon: const Icon(Icons.paste),
-                ),
-              ]),
-            ),
-            actions: ezActionPair(
-              widget.config,
-              confirmMsg: widget.config.ezL10n.gApply,
-              onConfirm: () async {
-                closeKeyboard(dCon);
-
-                // Validate the URL
-                final String url = urlController.text.trim();
-                if (validateUrl(url) != null) return;
-
-                // Verify that the image is accessible
-                try {
-                  final Completer<void> completer = Completer<void>();
-                  final ImageStream stream = NetworkImage(url).resolve(const ImageConfiguration());
-
-                  late ImageStreamListener listener;
-                  listener = ImageStreamListener(
-                    // onImage (onSuccess)
-                    (_, __) {
-                      completer.complete();
-                      stream.removeListener(listener);
-                    },
-                    onError: (Object error, StackTrace? stackTrace) {
-                      completer.completeError(error, stackTrace);
-                      stream.removeListener(listener);
-                    },
-                  );
-
-                  stream.addListener(listener);
-                  await completer.future;
-                } catch (e) {
-                  if (dCon.mounted) Navigator.of(dCon).pop();
-                  if (mCon.mounted) Navigator.of(mCon).pop();
-
-                  final String errorMsg =
-                      '${e.toString()}\n\n${widget.config.ezL10n.dsImgPermission}';
-                  (mounted)
-                      ? await ezLogAlert(
-                          widget.config,
-                          context: context,
-                          title: widget.config.ezL10n.dsImgGetFailed,
-                          message: errorMsg,
-                        )
-                      : ezLog(errorMsg);
-                  return;
-                }
-
-                // Pop dialogs
-                if (dCon.mounted) {
-                  Navigator.of(dCon).pop(url);
-                }
-
-                if (mCon.mounted) {
-                  Navigator.of(mCon).pop(url);
-                }
-              },
-              confirmIsDestructive: true,
-              denyMsg: widget.config.ezL10n.gCancel,
-              onDeny: () => Navigator.of(dCon).pop(),
-            ),
-            needsClose: false,
-          ),
-        ),
-        icon: EzIcon(widget.config, Icons.computer_outlined),
-        label: widget.config.ezL10n.dsFromNetwork,
-      ),
-    ));
-
-    // Solid color (optional)
-    if (widget.allowSolidColor) {
-      options.add(Padding(
+    options.add(
+      Padding(
         padding: wrapPadding,
         child: EzElevatedIconButton(
           widget.config,
-          onPressed: () async {
-            final int? pathARGB = (currPath == null) ? null : int.tryParse(currPath!);
-            Color currColor =
-                pathARGB == null ? widget.config.colors.surfaceContainer : Color(pathARGB);
-
-            await ezColorPicker(
+          onPressed: () => showDialog(
+            context: context,
+            builder: (BuildContext dCon) => EzAlertDialog(
               widget.config,
-              context: context,
-              startColor: currColor,
-              onColorChange: (Color color) => setModal(() => currColor = color),
-              onConfirm: () async {
-                await EzCM.setString(
-                  widget.pathKey,
-                  currColor.toARGB32().toString(),
-                );
+              title: Text(widget.config.ezL10n.gEnterURL, textAlign: TextAlign.center),
+              content: Form(
+                child: EzRow(
+                  widget.config,
+                  children: <Widget>[
+                    // Field
+                    Expanded(
+                      child: TextFormField(
+                        autofillHints: const <String>[AutofillHints.url],
+                        autovalidateMode: AutovalidateMode.onUnfocus,
+                        controller: urlController,
+                        enabled: true,
+                        validator: validateUrl,
+                      ),
+                    ),
+                    widget.config.rowMargin,
 
-                if (mCon.mounted) {
-                  Navigator.of(mCon).pop(currColor.toARGB32().toString());
-                }
-              },
-              onDeny: doNothing,
-            );
-          },
-          icon: EzIcon(widget.config, Icons.color_lens),
-          label: widget.config.ezL10n.dsSolidColor,
+                    // Paste
+                    EzIconButton(
+                      widget.config,
+                      onPressed: () async {
+                        final String? clipText = (await Clipboard.getData(
+                          Clipboard.kTextPlain,
+                        ))?.text;
+                        if (clipText != null) urlController.text = clipText;
+                      },
+                      icon: const Icon(Icons.paste),
+                    ),
+                  ],
+                ),
+              ),
+              actions: ezActionPair(
+                widget.config,
+                confirmMsg: widget.config.ezL10n.gApply,
+                onConfirm: () async {
+                  closeKeyboard(dCon);
+
+                  // Validate the URL
+                  final String url = urlController.text.trim();
+                  if (validateUrl(url) != null) return;
+
+                  // Verify that the image is accessible
+                  try {
+                    final Completer<void> completer = Completer<void>();
+                    final ImageStream stream = NetworkImage(
+                      url,
+                    ).resolve(const ImageConfiguration());
+
+                    late ImageStreamListener listener;
+                    listener = ImageStreamListener(
+                      // onImage (onSuccess)
+                      (_, __) {
+                        completer.complete();
+                        stream.removeListener(listener);
+                      },
+                      onError: (Object error, StackTrace? stackTrace) {
+                        completer.completeError(error, stackTrace);
+                        stream.removeListener(listener);
+                      },
+                    );
+
+                    stream.addListener(listener);
+                    await completer.future;
+                  } catch (e) {
+                    if (dCon.mounted) Navigator.of(dCon).pop();
+                    if (mCon.mounted) Navigator.of(mCon).pop();
+
+                    final String errorMsg =
+                        '${e.toString()}\n\n${widget.config.ezL10n.dsImgPermission}';
+                    (mounted)
+                        ? await ezLogAlert(
+                            widget.config,
+                            context: context,
+                            title: widget.config.ezL10n.dsImgGetFailed,
+                            message: errorMsg,
+                          )
+                        : ezLog(errorMsg);
+                    return;
+                  }
+
+                  // Pop dialogs
+                  if (dCon.mounted) {
+                    Navigator.of(dCon).pop(url);
+                  }
+
+                  if (mCon.mounted) {
+                    Navigator.of(mCon).pop(url);
+                  }
+                },
+                confirmIsDestructive: true,
+                denyMsg: widget.config.ezL10n.gCancel,
+                onDeny: () => Navigator.of(dCon).pop(),
+              ),
+              needsClose: false,
+            ),
+          ),
+          icon: EzIcon(widget.config, Icons.computer_outlined),
+          label: widget.config.ezL10n.dsFromNetwork,
         ),
-      ));
+      ),
+    );
+
+    // Solid color (optional)
+    if (widget.allowSolidColor) {
+      options.add(
+        Padding(
+          padding: wrapPadding,
+          child: EzElevatedIconButton(
+            widget.config,
+            onPressed: () async {
+              final int? pathARGB = (currPath == null) ? null : int.tryParse(currPath!);
+              Color currColor = pathARGB == null
+                  ? widget.config.colors.surfaceContainer
+                  : Color(pathARGB);
+
+              await ezColorPicker(
+                widget.config,
+                context: context,
+                startColor: currColor,
+                onColorChange: (Color color) => setModal(() => currColor = color),
+                onConfirm: () async {
+                  await EzCM.setString(widget.pathKey, currColor.toARGB32().toString());
+
+                  if (mCon.mounted) {
+                    Navigator.of(mCon).pop(currColor.toARGB32().toString());
+                  }
+                },
+                onDeny: doNothing,
+              );
+            },
+            icon: EzIcon(widget.config, Icons.color_lens),
+            label: widget.config.ezL10n.dsSolidColor,
+          ),
+        ),
+      );
     }
 
     // Reset
     if (defaultPath != null && defaultPath != noImageValue) {
-      options.add(Padding(
-        padding: wrapPadding,
-        child: EzElevatedIconButton(
-          widget.config,
-          onPressed: () async {
-            await fileCleanup();
-            await EzCM.remove(widget.pathKey);
+      options.add(
+        Padding(
+          padding: wrapPadding,
+          child: EzElevatedIconButton(
+            widget.config,
+            onPressed: () async {
+              await fileCleanup();
+              await EzCM.remove(widget.pathKey);
 
-            if (mCon.mounted) {
-              Navigator.of(mCon).pop(defaultPath);
-            }
-          },
-          icon: EzIcon(widget.config, Icons.refresh),
-          label: widget.config.ezL10n.dsResetIt,
+              if (mCon.mounted) {
+                Navigator.of(mCon).pop(defaultPath);
+              }
+            },
+            icon: EzIcon(widget.config, Icons.refresh),
+            label: widget.config.ezL10n.dsResetIt,
+          ),
         ),
-      ));
+      );
     }
 
     // Clear (optional)
     if (widget.allowClear && currPath != noImageValue) {
-      options.add(Padding(
-        padding: wrapPadding,
-        child: EzElevatedIconButton(
-          widget.config,
-          onPressed: () async {
-            await fileCleanup();
-            await EzCM.setString(widget.pathKey, noImageValue);
+      options.add(
+        Padding(
+          padding: wrapPadding,
+          child: EzElevatedIconButton(
+            widget.config,
+            onPressed: () async {
+              await fileCleanup();
+              await EzCM.setString(widget.pathKey, noImageValue);
 
-            if (mCon.mounted) Navigator.of(mCon).pop(noImageValue);
-          },
-          icon: EzIcon(widget.config, Icons.clear),
-          label: widget.clearLabel ?? widget.config.ezL10n.dsClearIt,
+              if (mCon.mounted) Navigator.of(mCon).pop(noImageValue);
+            },
+            icon: EzIcon(widget.config, Icons.clear),
+            label: widget.clearLabel ?? widget.config.ezL10n.dsClearIt,
+          ),
         ),
-      ));
+      );
     }
 
     // Return the options, with the conditional update theme switch
@@ -556,10 +569,7 @@ class _ImageSettingState extends State<EzImageSetting> {
       isDismissible: false,
       showDragHandle: false,
       builder: (_) => EzImageEditor(widget.config, path: path),
-      constraints: const BoxConstraints(
-        minWidth: double.infinity,
-        minHeight: double.infinity,
-      ),
+      constraints: const BoxConstraints(minWidth: double.infinity, minHeight: double.infinity),
     );
 
     return (editResult != null && editResult.isNotEmpty) ? editResult : null;
@@ -596,26 +606,29 @@ class _ImageSettingState extends State<EzImageSetting> {
                 showScrollHint: true,
                 primary: false,
                 children: BoxFit.values
-                    .map((BoxFit bf) => Padding(
-                          padding: EzInsets.row(widget.config.spacing),
-                          child: fitPreview(
-                            path: path,
-                            fit: bf,
-                            height: height,
-                            width: width,
-                            scale: scale,
-                            modalContext: fitContext,
-                            setModal: fitState,
-                          ),
-                        ))
+                    .map(
+                      (BoxFit bf) => Padding(
+                        padding: EzInsets.row(widget.config.spacing),
+                        child: fitPreview(
+                          path: path,
+                          fit: bf,
+                          height: height,
+                          width: width,
+                          scale: scale,
+                          modalContext: fitContext,
+                          setModal: fitState,
+                        ),
+                      ),
+                    )
                     .toList(),
               ),
             ),
             widget.config.spacer,
             EzRow(
               widget.config,
-              mainAxisAlignment:
-                  widget.config.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
+              mainAxisAlignment: widget.config.isLefty
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.end,
               children: <Widget>[
                 widget.config.rowSpacer,
                 EzTextButton(
@@ -659,52 +672,58 @@ class _ImageSettingState extends State<EzImageSetting> {
     required double scale,
     required BuildContext modalContext,
     required StateSetter setModal,
-  }) =>
-      EzCol(children: <Widget>[
-        GestureDetector(
-          onTap: () => setModal(() => currFit = fit),
-          child: Semantics(
-            hint: fit.name,
-            image: true,
-            button: true,
-            child: ExcludeSemantics(
-              child: Container(
-                width: width,
-                height: height,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: widget.config.colors.onSurface,
-                    width: widget.config.borderWidth,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.zero),
+  }) => EzCol(
+    children: <Widget>[
+      GestureDetector(
+        onTap: () => setModal(() => currFit = fit),
+        child: Semantics(
+          hint: fit.name,
+          image: true,
+          button: true,
+          child: ExcludeSemantics(
+            child: Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: widget.config.colors.onSurface,
+                  width: widget.config.borderWidth,
                 ),
-                child: EzCol(
-                  children: <Widget>[
-                    Container(
-                      height: ezTextSize(fit.name,
-                                  style: widget.config.bodyStyle, context: modalContext)
-                              .height +
-                          (widget.config.marginVal * 0.25),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: widget.config.colors.surface,
-                        borderRadius: const BorderRadius.all(Radius.zero),
-                      ),
-                      child: Text(
-                        fit.name,
-                        style: widget.config.bodyStyle,
-                        textAlign: TextAlign.center,
-                      ),
+                borderRadius: const BorderRadius.all(Radius.zero),
+              ),
+              child: EzCol(
+                children: <Widget>[
+                  Container(
+                    height:
+                        ezTextSize(
+                          fit.name,
+                          style: widget.config.bodyStyle,
+                          context: modalContext,
+                        ).height +
+                        (widget.config.marginVal * 0.25),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: widget.config.colors.surface,
+                      borderRadius: const BorderRadius.all(Radius.zero),
                     ),
-                    Expanded(child: Image(image: ezImageProvider(path), fit: fit)),
-                  ],
-                ),
+                    child: Text(
+                      fit.name,
+                      style: widget.config.bodyStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: Image(image: ezImageProvider(path), fit: fit),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-        ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
-      ]);
+      ),
+      ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
+    ],
+  );
 
   // Return the build //
 
@@ -746,19 +765,15 @@ class _ImageSettingState extends State<EzImageSetting> {
               radius: widget.config.iconSize + widget.config.padding,
               foregroundImage:
                   (inProgress || currPath == null || currPath == noImageValue || pathARGB != null)
-                      ? null
-                      : ezImageProvider(currPath!),
+                  ? null
+                  : ezImageProvider(currPath!),
               backgroundColor: (pathARGB != null) ? Color(pathARGB) : Colors.transparent,
               foregroundColor: widget.config.colors.onSurface,
               child: inProgress
                   ? const CircularProgressIndicator()
                   : (currPath == null || currPath == noImageValue)
-                      ? EzIcon(
-                          widget.config,
-                          Icons.image_search,
-                          color: widget.config.colors.primary,
-                        )
-                      : null,
+                  ? EzIcon(widget.config, Icons.image_search, color: widget.config.colors.primary)
+                  : null,
             ),
           ),
           label: widget.label,

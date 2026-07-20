@@ -1,0 +1,313 @@
+{
+  "@@locale": "ru",
+
+  "gApply": "Применить",
+  "gApplyChanges": "Применить изменения",
+  "gContinue": "Продолжить",
+  "gOpen": "Открыть",
+  "gOpenLink": "Открыть ссылку",
+  "gSkip": "Пропустить",
+  "gSuccess": "Успешно",
+  "gSuccessExl": "Успешно!",
+  "gYes": "Да",
+
+  "gAnd": "и",
+  "gHelp": "Справка",
+  "gNA": "Н/Д",
+  "gNAHint": "Неприменимо",
+  "gOptional": "необязательно",
+  "gOptions": "Параметры",
+  "gRequired": "Обязательно",
+  "gThe": "Этот",
+
+  "gBack": "Назад",
+  "gCancel": "Отмена",
+  "gClose": "Закрыть",
+  "gDisabled": "Отключено",
+  "gError": "Ошибка",
+  "gFailure": "Сбой",
+  "gNo": "Нет",
+  "gRedo": "Повторить",
+  "gUndo": "Отменить",
+
+  "gSettings": "Настройки",
+  "gGlobal": "Глобальные",
+  "gColor": "Цвет",
+  "gDesign": "Дизайн",
+  "gLayout": "Макет",
+  "gText": "Текст",
+
+  "gDark": "Темная",
+  "gLight": "Светлая",
+  "gSystem": "Системная",
+
+  "gEditing": "Редактирование: ",
+  "gEditingHint": "Активируйте для редактирования",
+  "gDarkTheme": "Темная тема",
+  "gLightTheme": "Светлая тема",
+  "gBothThemes": "Обе темы",
+
+  "gLeft": "Слева",
+  "gRight": "Справа",
+
+  "gAdvanced": "Расширенные",
+  "gQuick": "Быстрые",
+
+  "gDecrease": "Уменьшить",
+  "gIncrease": "Увеличить",
+  "gMaximum": "Максимум",
+  "gMinimum": "Минимум",
+  "gCenterReset": "Удерживайте центр для сброса",
+
+  "gLoadingAnim": "Загрузка. Логотип YWT анимирован в виде вращающихся песочных часов.",
+
+  "gPlay": "Воспроизвести",
+  "gPause": "Пауза",
+  "gReplay": "Повторить",
+  "gMute": "Выключить звук",
+  "gUnMute": "Включить звук",
+  "gPlaybackSpeed": "Скорость воспроизведения",
+  "gFBF": "Покадрово",
+  "gCaptions": "Субтитры",
+  "gCaptionsHint": "Удерживайте для выбора шрифтов",
+  "gFullscreen": "Во весь экран",
+
+  "gMachineTranslated": "Машинный перевод",
+
+  "gUpdates": "Доступны обновления",
+  "gHardRefresh": "Пожалуйста, выполните жесткую перезагрузку страницы...\nCtrl + Shift + R",
+  "gHardRefreshMac": "Пожалуйста, выполните жесткую перезагрузку страницы...\nCommand + Shift + R",
+  "gHardRefreshMobile": "Пожалуйста, обновите страницу в меню браузера.",
+
+  "gEnterURL": "Введите URL",
+  "gValidURL": "Пожалуйста, введите корректный URL",
+
+  "g404Wonder": "Не все те, кто блуждают, потеряны.",
+  "g404": "Но в данном случае: страница 404 не найдена.",
+  "g404Note": "Примечание: Flutter web использует хэш-маршрутизацию, например...\nhttps://www.example.com/#/destination",
+
+  "gOpenSource": "Открытый исходный код",
+  "gOpenYWT": "Открыть ссылку на YWT LLC",
+  "gOpenUISourceHint": "Открыть страницу GitHub для Open UI",
+  "gOpenUIReleases": "Открыть страницу релизов для Open UI",
+
+  "gSupportEmail": "Наш Email поддержки",
+  "gClipboard": "{thing} скопировано в буфер обмена.",
+  
+  "gAttention": "Внимание",
+  "gCurrently": "В настоящее время:",
+  "gSetToValue": "Для {name} установлено значение {value}",
+  "gRemove": "Удалить",
+  "gReset": "Сбросить",
+  "gResetTo": "Сбросить:",
+  "gResetValue": "Сбросить {name}?",
+  "gResetValueTo": "Сбросить {name} до {value}",
+  "gResetAll": "Сбросить все",
+  "gUndoWarn1": "Не может быть отменено автоматически.\n",
+  "gSave": "Сохранить",
+  "gSaveHint": "Активируйте, чтобы сохранить файл конфигурации JSON.",
+  "gSwitchHint": "Переключить",
+  "gUndoWarn2": " вашу текущую конфигурацию, чтобы восстановить ее вручную.",
+  "gValue": "Значение",
+
+  "gSource": "Источник:",
+  "gCreator": "Создатель",
+  "gMadeBy": "Сделано",
+  "gYou": "Установлено вами",
+
+
+
+  "ssNavHint": "Открыть страницу настроек",
+  "ssHaveFun": "Удачного использования!",
+
+  "ssDominantHand": "Ведущая рука",
+  "ssThemeMode": "Режим темы",
+  
+  "ssLanguage": "Язык",
+  "ssLangHint": "Активируйте для изменения языка приложения",
+
+  "ssUpdateDark": "Обновить темную тему",
+  "ssUpdateLight": "Обновить светлую тему",
+  "ssUpdateBoth": "Обновить оба режима темы",
+
+  "ssLoadPreset": "Загрузить пресет",
+  "ssLoadPresetHint": "Активируйте для показа пресетов",
+  "ssDewIt": "Обновить оба/автоподтверждение",
+  "ssBigButtons": "Большие кнопки",
+  "ssHighVisibility": "Высокая видимость",
+  "ssChalkboard": "Классная доска",
+  "ssNebula": "Туманность",
+  "ssWallHoles": "Дыры в стене",
+
+  "ssDarkOnly": "Это пресет темной темы.\nОн установит темный режим темы и обновит эту тему.\n\nПродолжить?",
+  "ssLightOnly": "Это пресет светлой темы.\nОн установит светлый режим темы и обновит эту тему.\n\nПродолжить?",
+  "ssApplied": "Конфигурация {config} применена.",
+  "ssTryMe": "Попробуй",
+
+  "ssRandom": "Случайный выбор",
+  "ssRandomize": "Случайный выбор для {themeType} темы?",
+
+  "ssConfigTip": "Сохранить/загрузить конфигурацию",
+  "ssSaveConfig": "Сохранить конфигурацию",
+  "ssConfigSaved": "Ваша конфигурация была сохранена в {path}",
+  "ssWrongConfigExt": "Файл не был сохранен как ",
+  "ssLoadConfig": "Загрузить конфигурацию",
+
+  "ssResetAll": "Сбросить все настройки?",
+  "ssResetAppearance": "Сбросить все настройки внешнего вида?",
+  "ssResetBoth": "Сбросить оба режима темы",
+
+
+
+  "csPageTitle": "Настройки цвета",
+
+  "csSchemeBase": "Создать схему\nиз изображения",
+  "csFromImage": "Цветовая схема будет сгенерирована из изображения.",
+
+  "csMonoChrome": "Использовать монохромную схему",
+  "csHighContrast": "Использовать высококонтрастную схему",
+
+  "csPrimary": "Основной",
+  "csPrimaryContainer": "Основной\nконтур",
+  "csSecondary": "Вторичный",
+  "csSecondaryContainer": "Вторичный\nконтур",
+  "csTertiary": "Третичный",
+  "csTertiaryContainer": "Третичный\nконтур",
+  "csError": "Ошибка",
+  "csErrorContainer": "Контур\nошибки",
+  "csOutline": "Текст\nподсказки",
+  "csOutlineVariant": "Контур\nподсказки",
+  "csSurface": "Фон\nкнопки",
+  "csSurfaceDim": "Фон оповещений\n&& панели",
+  "csSurfaceContainer": "Фон страницы\n&& модального окна",
+  "csOnSurface": "Текст",
+  "csScrim": "Покрытие\nмодального окна",
+  "csShadow": "Тень",
+  "csSurfaceTint": "Оттенок\nповерхности",
+
+  "csPickerTitle": "Выберите цвет",
+  "csPickerHint": "Открыть палитру цветов. Долгое нажатие для дополнительных параметров.",
+  "csRecommended": "Использовать рекомендованный контраст?",
+  "csUseCustom": "Использовать пользовательский",
+  "csCurrVal": "Текущее значение цвета:",
+
+  "csReset": "Сбросить {themeType} цвета?",
+  "csColorScheme": "цветовая схема",
+
+
+
+  "dsPageTitle": "Настройки дизайна",
+
+  "dsButton": "Кнопка",
+  "dsPage": "Страница",
+
+  "dsNone": "Нет",
+  "dsSystem": "Системный",
+
+  "dsPadding": "Внутренний отступ",
+
+  "dsStyle": "Стиль",
+  "dsBorderWidth": "Толщина границы",
+  "dsPill": "Капсула",
+  "dsRectangle": "Прямоугольник",
+  "dsRoundRectangle": "Скругленный прямоугольник",
+  "dsLeftGram": "Левый параллелограмм",
+  "dsRightGram": "Правый параллелограмм",
+  "dsGem": "Самоцвет",
+  "dsJewel": "Драгоценность",
+
+  "dsAlwaysUnderline": "Всегда подчеркивать ссылки",
+  "dsShowBack": "Показывать кнопку \"Назад\"",
+
+  "dsMargin": "Внешний отступ",
+  "dsSpacing": "Интервал",
+
+  "dsPageTransition": "Переход между страницами",
+  "dsTurnX": "Горизонтальный поворот",
+  "dsTurnY": "Вертикальный поворот",
+  "dsRotate": "Вращение",
+  "dsSlideX": "Горизонтальное скольжение",
+  "dsSlideY": "Вертикальное скольжение",
+  "dsZoom": "Масштабирование",
+  "dsFadeTransition": "Плавное затухание",  
+
+  "dsAnimStyle": "Стиль анимации",
+  "dsPlay": "Воспроизвести анимацию",
+  "dsMilliseconds": "Миллисекунды",
+  "dsCurve": "Кривая",
+  "dsBounce": "Отскок",
+  "dsEase": "Плавность",
+  "dsElastic": "Эластичность",
+  "dsLinear": "Линейная",
+
+  "dsBackgroundImg": "Фоновое изображение",
+  "dsImgSettingHint": "Обновить изображение: {title}",
+  "dsReFit": "Подогнать заново",
+  "dsFromFile": "Из файла",
+  "dsFromCamera": "С камеры",
+  "dsFromNetwork": "По URL",
+  "dsSolidColor": "Сплошной цвет",
+  "dsResetIt": "Сбросить",
+  "dsClearIt": "Очистить",
+  "dsUseForColors": "Обновить цвета приложения с помощью этого изображения",
+
+  "dsImgGetFailed": "Не удалось получить изображение",
+  "dsImgSetFailed": "Не удалось обновить изображение",
+  "dsImgPermission": "Некоторые сайты не разрешают доступ к своим изображениям другим.\nПопробуйте изображение с другого хоста.",
+
+  "dsUseFull": "Использовать полное изображение?",
+  "dsFit": "Как оно должно вписываться?",
+
+  "dsCrop": "Обрезать",
+  "dsNoWeb": "Редактирование изображений не поддерживается в браузере",
+  "dsRotateLeft": "Повернуть влево",
+  "dsRotateRight": "Повернуть вправо",
+
+  "dsShowScroll": "Показывать полосы прокрутки",
+
+  "dsResetButton": "Сбросить дизайн кнопки для {themeType} темы?",
+  "dsResetPage": "Сбросить дизайн страницы для {themeType} темы?",
+
+
+
+  "tsPageTitle": "Настройки текста",
+
+  "tsBatchOverride": "Вы уже внесли точечные изменения \"{setting}\" в расширенных настройках.\n\nВы уверены, что хотите переопределить эти изменения пакетным обновлением?",
+
+  "tsTextBackground": "Непрозрачность фона текста",
+  "tsIconSize": "Размер значка",
+
+  "tsLinkHint": "Активируйте, чтобы изменить {style}",
+
+  "tsDisplay": "Крупный текст",
+  "tsHeadline": "Заголовок",
+  "tsTitle": "Название",
+  "tsBody": "Основной текст",
+  "tsLabel": "Метка",
+
+  "tsFontFamily": "Семейство шрифтов",
+  "tsFontSize": "Размер шрифта",
+  "tsBold": "Жирный",
+  "tsItalic": "Курсив",
+  "tsUnderline": "Подчеркнутый",
+  "tsLetterSpacing": "Межбуквенный интервал",
+  "tsWordSpacing": "Межсловный интервал",
+  "tsLineHeight": "Высота строки",
+
+  "tsDisplayP1": "Хорошо ли выглядит этот ",
+  "tsDisplayLink": "крупный текст",
+  "tsDisplayP2": "?",
+  "tsHeadlineP1": "Отличаются ли ",
+  "tsHeadlineLink": "заголовки",
+  "tsHeadlineP2": "...",
+  "tsTitleP1": "от ",
+  "tsTitleLink": "названий?",
+  "tsBodyP1": "Как насчет ",
+  "tsBodyLink": "основного текста?",
+  "tsBodyP2": " Его легко читать?",
+  "tsLabelP1": "А ",
+  "tsLabelLink": "метки?",
+  "tsLabelP2": " Не слишком большие, не слишком маленькие?",
+
+  "tsReset": "Сбросить стили текста для {themeType} темы?"
+}

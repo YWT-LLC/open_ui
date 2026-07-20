@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,12 +18,7 @@ class EzWallHolesConfig extends StatelessWidget {
   final Future<void> Function(bool)? extra;
 
   /// !Not Windows
-  const EzWallHolesConfig(
-    this.config, {
-    super.key,
-    required this.autoConfirm,
-    this.extra,
-  });
+  const EzWallHolesConfig(this.config, {super.key, required this.autoConfirm, this.extra});
 
   static Future<bool> onPressed(
     EzCP config,
@@ -41,23 +36,20 @@ class EzWallHolesConfig extends StatelessWidget {
   }
 
   static Future<bool?> _confirm(EzCP config, {required BuildContext context}) => showDialog(
-        context: context,
-        builder: (BuildContext dCon) => EzAlertDialog(
-          config,
-          title: Text(config.ezL10n.gAttention, textAlign: TextAlign.center),
-          content: Text(
-            config.ezL10n.ssLightOnly,
-            textAlign: TextAlign.center,
-          ),
-          actions: ezActionPair(
-            config,
-            onConfirm: () => Navigator.of(dCon).pop(true),
-            confirmIsDestructive: true,
-            onDeny: () => Navigator.of(dCon).pop(false),
-          ),
-          needsClose: false,
-        ),
-      );
+    context: context,
+    builder: (BuildContext dCon) => EzAlertDialog(
+      config,
+      title: Text(config.ezL10n.gAttention, textAlign: TextAlign.center),
+      content: Text(config.ezL10n.ssLightOnly, textAlign: TextAlign.center),
+      actions: ezActionPair(
+        config,
+        onConfirm: () => Navigator.of(dCon).pop(true),
+        confirmIsDestructive: true,
+        onDeny: () => Navigator.of(dCon).pop(false),
+      ),
+      needsClose: false,
+    ),
+  );
 
   static Future<void> _makeItSo() async {
     // Reset //
@@ -157,14 +149,18 @@ class EzWallHolesConfig extends StatelessWidget {
         padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
       ),
       onPressed: () async {
-        final bool uSure = autoConfirm ||
+        final bool uSure =
+            autoConfirm ||
             (config.themeMode == ThemeMode.light) ||
             (await _confirm(config, context: context) ?? false);
         if (uSure) {
-          await config.rebuildUI(allECT, changes: () async {
-            await _makeItSo();
-            await extra?.call(autoConfirm);
-          });
+          await config.rebuildUI(
+            allECT,
+            changes: () async {
+              await _makeItSo();
+              await extra?.call(autoConfirm);
+            },
+          );
         }
       },
       text: config.ezL10n.ssWallHoles,

@@ -13,7 +13,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "net.empathetech.open_ui"
+    namespace = "llc.ywt.open_ui"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
     
@@ -23,7 +23,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "net.empathetech.open_ui"
+        applicationId = "llc.ywt.open_ui"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

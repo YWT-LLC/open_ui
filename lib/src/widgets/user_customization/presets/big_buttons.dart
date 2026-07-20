@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,12 +19,7 @@ class EzBigButtonsConfig extends StatelessWidget {
 
   /// Doesn't replace, only modifies: larger touch points from default
   /// Slight bump to all layout values, for easier tapping
-  const EzBigButtonsConfig(
-    this.config, {
-    super.key,
-    required this.updateBoth,
-    this.extra,
-  });
+  const EzBigButtonsConfig(this.config, {super.key, required this.updateBoth, this.extra});
 
   static Future<void> onPressed(EzCP config, bool updateBoth) async {
     // Don't reset //
@@ -82,15 +77,18 @@ class EzBigButtonsConfig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedButton(
-        config,
-        style: ElevatedButton.styleFrom(
-          shape: EzButtonShape.roundRect.shape,
-          padding: EdgeInsets.all(EzCM.onMobile ? 22.5 : 25.0),
-        ),
-        onPressed: () => config.rebuildUI(allECT, changes: () async {
-          await onPressed(config, updateBoth);
-          await extra?.call(updateBoth);
-        }),
-        text: config.ezL10n.ssBigButtons,
-      );
+    config,
+    style: ElevatedButton.styleFrom(
+      shape: EzButtonShape.roundRect.shape,
+      padding: EdgeInsets.all(EzCM.onMobile ? 22.5 : 25.0),
+    ),
+    onPressed: () => config.rebuildUI(
+      allECT,
+      changes: () async {
+        await onPressed(config, updateBoth);
+        await extra?.call(updateBoth);
+      },
+    ),
+    text: config.ezL10n.ssBigButtons,
+  );
 }

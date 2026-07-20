@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class EzSettingsHub extends StatefulWidget {
   /// Defaults to 0/first
   final int? target;
 
-  /// Empathetech settings landing page
+  /// Settings landing page
   const EzSettingsHub(this.config, {super.key, required this.pages, this.target});
 
   @override
@@ -43,10 +43,10 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
           ),
           SegmentedButton<EzSettingsSection>(
             segments: widget.pages
-                .map((EzSettingsSection type) => ButtonSegment<EzSettingsSection>(
-                      value: type,
-                      icon: type.icon,
-                    ))
+                .map(
+                  (EzSettingsSection type) =>
+                      ButtonSegment<EzSettingsSection>(value: type, icon: type.icon),
+                )
                 .toList(),
             selected: <EzSettingsSection>{currSection},
             showSelectedIcon: false,
@@ -71,40 +71,44 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             forceFade: true,
             reverse: true,
             child: currSection.subSettings.isNotEmpty
-                ? EzCol(children: <Widget>[
-                    widget.config.margin,
-                    EzScrollView(
-                      widget.config,
-                      scrollDirection: Axis.horizontal,
-                      reverseHands: true,
-                      showScrollHint: true,
-                      children: <Widget>[
-                        // Quick/Advanced selector
-                        SegmentedButton<EzSubSetting>(
-                          segments: (currSection.subSettings)
-                              .map((EzSubSetting sub) => ButtonSegment<EzSubSetting>(
+                ? EzCol(
+                    children: <Widget>[
+                      widget.config.margin,
+                      EzScrollView(
+                        widget.config,
+                        scrollDirection: Axis.horizontal,
+                        reverseHands: true,
+                        showScrollHint: true,
+                        children: <Widget>[
+                          // Quick/Advanced selector
+                          SegmentedButton<EzSubSetting>(
+                            segments: (currSection.subSettings)
+                                .map(
+                                  (EzSubSetting sub) => ButtonSegment<EzSubSetting>(
                                     value: sub,
                                     label: Text(sub.label(widget.config.ezL10n)),
-                                  ))
-                              .toList(),
-                          selected: <EzSubSetting>{currSubSec},
-                          showSelectedIcon: false,
-                          onSelectionChanged: (Set<EzSubSetting> selected) async {
-                            final EzSubSetting choice = selected.first;
+                                  ),
+                                )
+                                .toList(),
+                            selected: <EzSubSetting>{currSubSec},
+                            showSelectedIcon: false,
+                            onSelectionChanged: (Set<EzSubSetting> selected) async {
+                              final EzSubSetting choice = selected.first;
 
-                            await EzCM.setBool(choice.write.$1, choice.write.$2);
-                            setState(() => currSubSec = choice);
-                          },
-                        ),
+                              await EzCM.setBool(choice.write.$1, choice.write.$2);
+                              setState(() => currSubSec = choice);
+                            },
+                          ),
 
-                        // Update both toggle
-                        widget.config.rowMargin,
-                        EzThemeCoin(widget.config, enabled: currSubSec.bothable),
-                      ],
-                    ),
-                    EzDivider(widget.config.spacing),
-                    widget.config.spacer,
-                  ])
+                          // Update both toggle
+                          widget.config.rowMargin,
+                          EzThemeCoin(widget.config, enabled: currSubSec.bothable),
+                        ],
+                      ),
+                      EzDivider(widget.config.spacing),
+                      widget.config.spacer,
+                    ],
+                  )
                 : const SizedBox.shrink(),
           ),
 

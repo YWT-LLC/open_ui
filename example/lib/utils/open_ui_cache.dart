@@ -1,20 +1,18 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import './export.dart';
 
 import 'package:flutter/material.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class OpenUICache extends EzAppCache {
   Locale _locale;
   Lang _l10n;
 
-  OpenUICache(Locale locale, Lang l10n)
-      : _locale = locale,
-        _l10n = l10n;
+  OpenUICache(Locale locale, Lang l10n) : _locale = locale, _l10n = l10n;
 
   @override
   void init(_) {}

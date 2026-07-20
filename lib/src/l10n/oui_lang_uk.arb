@@ -1,0 +1,313 @@
+{
+  "@@locale": "uk",
+
+  "gApply": "Застосувати",
+  "gApplyChanges": "Застосувати зміни",
+  "gContinue": "Продовжити",
+  "gOpen": "Відкрити",
+  "gOpenLink": "Відкрити посилання",
+  "gSkip": "Пропустити",
+  "gSuccess": "Успіх",
+  "gSuccessExl": "Успішно!",
+  "gYes": "Так",
+
+  "gAnd": "та",
+  "gHelp": "Довідка",
+  "gNA": "Н/Д",
+  "gNAHint": "Не застосовується",
+  "gOptional": "необов'язково",
+  "gOptions": "Параметри",
+  "gRequired": "Обов'язково",
+  "gThe": "Цей",
+
+  "gBack": "Назад",
+  "gCancel": "Скасувати",
+  "gClose": "Закрити",
+  "gDisabled": "Вимкнено",
+  "gError": "Помилка",
+  "gFailure": "Збій",
+  "gNo": "Ні",
+  "gRedo": "Повторити",
+  "gUndo": "Скасувати дію",
+
+  "gSettings": "Налаштування",
+  "gGlobal": "Глобальні",
+  "gColor": "Колір",
+  "gDesign": "Дизайн",
+  "gLayout": "Макет",
+  "gText": "Текст",
+
+  "gDark": "Темна",
+  "gLight": "Світла",
+  "gSystem": "Системна",
+
+  "gEditing": "Редагування: ",
+  "gEditingHint": "Активуйте для редагування",
+  "gDarkTheme": "Темна тема",
+  "gLightTheme": "Світла тема",
+  "gBothThemes": "Обидві теми",
+
+  "gLeft": "Ліворуч",
+  "gRight": "Праворуч",
+
+  "gAdvanced": "Розширені",
+  "gQuick": "Швидкі",
+
+  "gDecrease": "Зменшити",
+  "gIncrease": "Збільшити",
+  "gMaximum": "Максимум",
+  "gMinimum": "Мінімум",
+  "gCenterReset": "Утримуйте центр для скидання",
+
+  "gLoadingAnim": "Завантаження. Логотип YWT анімований як пісочний годинник, що обертається.",
+
+  "gPlay": "Відтворити",
+  "gPause": "Пауза",
+  "gReplay": "Відтворити знову",
+  "gMute": "Вимкнути звук",
+  "gUnMute": "Увімкнути звук",
+  "gPlaybackSpeed": "Швидкість відтворення",
+  "gFBF": "Покадрово",
+  "gCaptions": "Субтитри/підписи",
+  "gCaptionsHint": "Утримуйте для вибору шрифтів",
+  "gFullscreen": "На весь екран",
+
+  "gMachineTranslated": "Машинний переклад",
+
+  "gUpdates": "Доступні оновлення",
+  "gHardRefresh": "Будь ласка, виконайте жорстке оновлення сторінки...\nCtrl + Shift + R",
+  "gHardRefreshMac": "Будь ласка, виконайте жорстке оновлення сторінки...\nCommand + Shift + R",
+  "gHardRefreshMobile": "Будь ласка, оновіть сторінку в меню браузера.",
+
+  "gEnterURL": "Введіть URL",
+  "gValidURL": "Будь ласка, введіть дійсний URL",
+
+  "g404Wonder": "Не всі ті, хто блукають, загубилися.",
+  "g404": "Але в цьому випадку: 404 сторінку не знайдено.",
+  "g404Note": "Примітка: Flutter web використовує хеш-маршрутизацію, наприклад...\nhttps://www.example.com/#/destination",
+
+  "gOpenSource": "Відкритий вихідний код",
+  "gOpenYWT": "Відкрити посилання на YWT LLC",
+  "gOpenUISourceHint": "Відкрити сторінку GitHub для Open UI",
+  "gOpenUIReleases": "Відкрити сторінку релізів для Open UI",
+
+  "gSupportEmail": "Наша електронна пошта підтримки",
+  "gClipboard": "{thing} скопійовано в буфер обміну.",
+  
+  "gAttention": "Увага",
+  "gCurrently": "Зараз:",
+  "gSetToValue": "{name} має значення {value}",
+  "gRemove": "Видалити",
+  "gReset": "Скинути",
+  "gResetTo": "Скинути до:",
+  "gResetValue": "Скинути {name}?",
+  "gResetValueTo": "Скинути {name} до {value}",
+  "gResetAll": "Скинути все",
+  "gUndoWarn1": "Неможливо скасувати автоматично.\n",
+  "gSave": "Зберегти",
+  "gSaveHint": "Активуйте, щоб зберегти конфігураційний файл JSON.",
+  "gSwitchHint": "Перемкнути",
+  "gUndoWarn2": " вашу поточну конфігурацію, щоб відновити її вручну.",
+  "gValue": "Значення",
+
+  "gSource": "Джерело:",
+  "gCreator": "Творець",
+  "gMadeBy": "Зроблено",
+  "gYou": "Встановлено вами",
+
+
+
+  "ssNavHint": "Відкрити сторінку налаштувань",
+  "ssHaveFun": "Приємного користування!",
+
+  "ssDominantHand": "Провідна рука",
+  "ssThemeMode": "Режим теми",
+  
+  "ssLanguage": "Мова",
+  "ssLangHint": "Активуйте, щоб змінити мову програми",
+
+  "ssUpdateDark": "Оновити темну тему",
+  "ssUpdateLight": "Оновити світлу тему",
+  "ssUpdateBoth": "Оновити обидва режими теми",
+
+  "ssLoadPreset": "Завантажити пресет",
+  "ssLoadPresetHint": "Активуйте, щоб показати пресети",
+  "ssDewIt": "Оновити обидва/автопідтвердження",
+  "ssBigButtons": "Великі кнопки",
+  "ssHighVisibility": "Висока видимість",
+  "ssChalkboard": "Шкільна дошка",
+  "ssNebula": "Туманність",
+  "ssWallHoles": "Отвори в стіні",
+
+  "ssDarkOnly": "Це пресет темної теми.\nВін встановить режим теми на темний і оновить цю тему.\n\nПродовжити?",
+  "ssLightOnly": "Це пресет світлої теми.\nВін встановить режим теми на світлий і оновить цю тему.\n\nПродовжити?",
+  "ssApplied": "{config} застосовано.",
+  "ssTryMe": "Спробуй",
+
+  "ssRandom": "Випадково",
+  "ssRandomize": "Рандомізувати {themeType} тему?",
+
+  "ssConfigTip": "Зберегти/завантажити конфігурацію",
+  "ssSaveConfig": "Зберегти конфігурацію",
+  "ssConfigSaved": "Вашу конфігурацію збережено в {path}",
+  "ssWrongConfigExt": "Файл не був збережений як ",
+  "ssLoadConfig": "Завантажити конфігурацію",
+
+  "ssResetAll": "Скинути всі налаштування?",
+  "ssResetAppearance": "Скинути всі налаштування зовнішнього вигляду?",
+  "ssResetBoth": "Скинути обидва режими теми",
+
+
+
+  "csPageTitle": "Налаштування кольору",
+
+  "csSchemeBase": "Створити схему\nіз зображення",
+  "csFromImage": "Колірна схема буде згенерована із зображення.",
+
+  "csMonoChrome": "Використовувати монохромну схему",
+  "csHighContrast": "Використовувати схему з високим контрастом",
+
+  "csPrimary": "Основний",
+  "csPrimaryContainer": "Основний\nконтур",
+  "csSecondary": "Вторинний",
+  "csSecondaryContainer": "Вторинний\nконтур",
+  "csTertiary": "Третинний",
+  "csTertiaryContainer": "Третинний\nконтур",
+  "csError": "Помилка",
+  "csErrorContainer": "Контур\nпомилки",
+  "csOutline": "Текст\nпідказки",
+  "csOutlineVariant": "Контур\nпідказки",
+  "csSurface": "Фон\nкнопки",
+  "csSurfaceDim": "Фон сповіщень\nта панелі",
+  "csSurfaceContainer": "Фон сторінки\nта модального вікна",
+  "csOnSurface": "Текст",
+  "csScrim": "Покриття\nмодального вікна",
+  "csShadow": "Тінь",
+  "csSurfaceTint": "Відтінок\nповерхні",
+
+  "csPickerTitle": "Виберіть колір",
+  "csPickerHint": "Відкрити палітру кольорів. Довге натискання для додаткових параметрів.",
+  "csRecommended": "Використовувати рекомендацію щодо контрасту?",
+  "csUseCustom": "Використовувати власний",
+  "csCurrVal": "Поточне значення кольору:",
+
+  "csReset": "Скинути {themeType} кольори?",
+  "csColorScheme": "колірна схема",
+
+
+
+  "dsPageTitle": "Налаштування дизайну",
+
+  "dsButton": "Кнопка",
+  "dsPage": "Сторінка",
+
+  "dsNone": "Жоден",
+  "dsSystem": "Системний",
+
+  "dsPadding": "Відступи",
+
+  "dsStyle": "Стиль",
+  "dsBorderWidth": "Ширина межі",
+  "dsPill": "Таблетка",
+  "dsRectangle": "Прямокутник",
+  "dsRoundRectangle": "Округлений прямокутник",
+  "dsLeftGram": "Ліва паралель",
+  "dsRightGram": "Права паралель",
+  "dsGem": "Самоцвіт",
+  "dsJewel": "Дорогоцінний камінь",
+
+  "dsAlwaysUnderline": "Завжди підкреслювати посилання",
+  "dsShowBack": "Показувати кнопку 'Назад'",
+
+  "dsMargin": "Зовнішні поля",
+  "dsSpacing": "Інтервал",
+
+  "dsPageTransition": "Перехід між сторінками",
+  "dsTurnX": "Горизонтальний поворот",
+  "dsTurnY": "Вертикальний поворот",
+  "dsRotate": "Обертання",
+  "dsSlideX": "Горизонтальне ковзання",
+  "dsSlideY": "Вертикальне ковзання",
+  "dsZoom": "Масштабування",
+  "dsFadeTransition": "Перехід згасанням",  
+
+  "dsAnimStyle": "Стиль анімації",
+  "dsPlay": "Відтворити анімацію",
+  "dsMilliseconds": "Мілісекунди",
+  "dsCurve": "Крива",
+  "dsBounce": "Відскок",
+  "dsEase": "Плавність",
+  "dsElastic": "Еластичність",
+  "dsLinear": "Лінійна",
+
+  "dsBackgroundImg": "Фонове зображення",
+  "dsImgSettingHint": "Оновити {title} зображення",
+  "dsReFit": "Підігнати знову",
+  "dsFromFile": "З файлу",
+  "dsFromCamera": "З камери",
+  "dsFromNetwork": "З URL-адреси",
+  "dsSolidColor": "Суцільний колір",
+  "dsResetIt": "Скинути",
+  "dsClearIt": "Очистити",
+  "dsUseForColors": "Оновити кольори програми за допомогою цього зображення",
+
+  "dsImgGetFailed": "Не вдалося отримати зображення",
+  "dsImgSetFailed": "Не вдалося оновити зображення",
+  "dsImgPermission": "Деякі сайти не дозволяють іншим отримувати доступ до їхніх зображень.\nСпробуйте зображення з іншого хосту.",
+
+  "dsUseFull": "Використати повне зображення?",
+  "dsFit": "Як воно має вміщуватися?",
+
+  "dsCrop": "Обрізати",
+  "dsNoWeb": "Редагування зображень не підтримується у веб-версії",
+  "dsRotateLeft": "Повернути вліво",
+  "dsRotateRight": "Повернути вправо",
+
+  "dsShowScroll": "Показувати смуги прокрутки",
+
+  "dsResetButton": "Скинути дизайн {themeType} кнопки?",
+  "dsResetPage": "Скинути дизайн {themeType} сторінки?",
+
+
+
+  "tsPageTitle": "Налаштування тексту",
+
+  "tsBatchOverride": "Ви вже внесли детальні зміни \"{setting}\" у розширених налаштуваннях.\n\nВи впевнені, що хочете перевизначити ці зміни масовим оновленням?",
+
+  "tsTextBackground": "Непрозорість фону тексту",
+  "tsIconSize": "Розмір піктограми",
+
+  "tsLinkHint": "Активуйте для редагування {style}",
+
+  "tsDisplay": "Акцентний текст",
+  "tsHeadline": "Заголовок",
+  "tsTitle": "Назва",
+  "tsBody": "Основний текст",
+  "tsLabel": "Мітка",
+
+  "tsFontFamily": "Сімейство шрифтів",
+  "tsFontSize": "Розмір шрифту",
+  "tsBold": "Жирний",
+  "tsItalic": "Курсив",
+  "tsUnderline": "Підкреслений",
+  "tsLetterSpacing": "Міжлітерний інтервал",
+  "tsWordSpacing": "Міжслівний інтервал",
+  "tsLineHeight": "Висота рядка",
+
+  "tsDisplayP1": "Чи цей ",
+  "tsDisplayLink": "акцентний текст",
+  "tsDisplayP2": " виглядає добре?",
+  "tsHeadlineP1": "Чи ",
+  "tsHeadlineLink": "заголовки",
+  "tsHeadlineP2": " відрізняються...",
+  "tsTitleP1": "від ",
+  "tsTitleLink": "назв?",
+  "tsBodyP1": "А як щодо ",
+  "tsBodyLink": "основного тексту?",
+  "tsBodyP2": " Чи легко його читати?",
+  "tsLabelP1": "А ",
+  "tsLabelLink": "мітки?",
+  "tsLabelP2": " Не занадто великі, не занадто малі?",
+
+  "tsReset": "Скинути стилі {themeType} тексту?"
+}

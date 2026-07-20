@@ -1,0 +1,787 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'oui_lang.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Spanish Castilian (`es`).
+class OUILangEs extends OUILang {
+  OUILangEs([String locale = 'es']) : super(locale);
+
+  @override
+  String get gApply => 'Aplicar';
+
+  @override
+  String get gApplyChanges => 'Aplicar cambios';
+
+  @override
+  String get gContinue => 'Continuar';
+
+  @override
+  String get gOpen => 'Abrir';
+
+  @override
+  String get gOpenLink => 'Abrir enlace';
+
+  @override
+  String get gSkip => 'Saltar';
+
+  @override
+  String get gSuccess => 'Éxito';
+
+  @override
+  String get gSuccessExl => '¡Éxito!';
+
+  @override
+  String get gYes => 'Sí';
+
+  @override
+  String get gAnd => 'y';
+
+  @override
+  String get gHelp => 'Ayuda';
+
+  @override
+  String get gNA => 'N/D';
+
+  @override
+  String get gNAHint => 'No disponible';
+
+  @override
+  String get gOptional => 'opcional';
+
+  @override
+  String get gOptions => 'Opciones';
+
+  @override
+  String get gRequired => 'Requerido';
+
+  @override
+  String get gThe => 'El';
+
+  @override
+  String get gBack => 'Atrás';
+
+  @override
+  String get gCancel => 'Cancelar';
+
+  @override
+  String get gClose => 'Cerrar';
+
+  @override
+  String get gDisabled => 'Deshabilitado';
+
+  @override
+  String get gError => 'Error';
+
+  @override
+  String get gFailure => 'Fracaso';
+
+  @override
+  String get gNo => 'No';
+
+  @override
+  String get gRedo => 'Rehacer';
+
+  @override
+  String get gUndo => 'Deshacer';
+
+  @override
+  String get gSettings => 'Ajustes';
+
+  @override
+  String get gGlobal => 'Global';
+
+  @override
+  String get gColor => 'Color';
+
+  @override
+  String get gDesign => 'Diseño';
+
+  @override
+  String get gLayout => 'Esquema';
+
+  @override
+  String get gText => 'Texto';
+
+  @override
+  String get gDark => 'Oscuro';
+
+  @override
+  String get gLight => 'Claro';
+
+  @override
+  String get gSystem => 'Sistema';
+
+  @override
+  String get gEditing => 'Editando: ';
+
+  @override
+  String get gEditingHint => 'Activar para editar';
+
+  @override
+  String get gDarkTheme => 'Tema oscuro';
+
+  @override
+  String get gLightTheme => 'Tema claro';
+
+  @override
+  String get gBothThemes => 'Ambos temas';
+
+  @override
+  String get gLeft => 'Izquierda';
+
+  @override
+  String get gRight => 'Derecha';
+
+  @override
+  String get gAdvanced => 'Avanzado';
+
+  @override
+  String get gQuick => 'Rápido';
+
+  @override
+  String get gDecrease => 'Disminuir';
+
+  @override
+  String get gIncrease => 'Aumentar';
+
+  @override
+  String get gMaximum => 'Máximo';
+
+  @override
+  String get gMinimum => 'Mínimo';
+
+  @override
+  String get gCenterReset => 'Mantén el centro para restablecer';
+
+  @override
+  String get gLoadingAnim =>
+      'Cargando. El logotipo empático animado como un reloj de arena giratorio.';
+
+  @override
+  String get gPlay => 'Reproducir';
+
+  @override
+  String get gPause => 'Pausa';
+
+  @override
+  String get gReplay => 'Repetir';
+
+  @override
+  String get gMute => 'Silenciar';
+
+  @override
+  String get gUnMute => 'Desactivar silencio';
+
+  @override
+  String get gPlaybackSpeed => 'Velocidad de reproducción';
+
+  @override
+  String get gFBF => 'Fotograma a fotograma';
+
+  @override
+  String get gCaptions => 'Subtítulos/captions';
+
+  @override
+  String get gCaptionsHint => 'Mantén pulsado para fuentes';
+
+  @override
+  String get gFullscreen => 'Pantalla completa';
+
+  @override
+  String get gMachineTranslated => 'Traducción automática';
+
+  @override
+  String get gUpdates => 'Actualizaciones disponibles';
+
+  @override
+  String get gHardRefresh =>
+      'Por favor, actualice la página...\nCtrl + Shift + R';
+
+  @override
+  String get gHardRefreshMac =>
+      'Por favor, actualice la página...\nCommand + Shift + R';
+
+  @override
+  String get gHardRefreshMobile =>
+      'Actualice la página en el menú del navegador.';
+
+  @override
+  String get gEnterURL => 'Inserta el link';
+
+  @override
+  String get gValidURL => 'Por favor, introduzca una URL válida';
+
+  @override
+  String get g404Wonder => 'No todos los que deambulan están perdidos.';
+
+  @override
+  String get g404 => 'Pero, en este caso: 404 página no encontrada.';
+
+  @override
+  String get g404Note =>
+      'Nota: Flutter web utiliza enrutamiento hash, como...\nhttps://www.example.com/#/settings';
+
+  @override
+  String get gOpenSource => 'Código abierto';
+
+  @override
+  String get gOpenYWT => 'Abrir un enlace a YWT LLC';
+
+  @override
+  String get gOpenUISourceHint => 'Abrir la página de GitHub de Open UI';
+
+  @override
+  String get gOpenUIReleases => 'Abrir la página de lanzamientos de Open UI';
+
+  @override
+  String get gSupportEmail => 'Nuestro Email de soporte';
+
+  @override
+  String gClipboard(Object thing) {
+    return '$thing ha sido copiado al portapapeles.';
+  }
+
+  @override
+  String get gAttention => 'Atención';
+
+  @override
+  String get gCurrently => 'Actualmente:';
+
+  @override
+  String gSetToValue(Object name, Object value) {
+    return '$name está configurado a $value';
+  }
+
+  @override
+  String get gRemove => 'Quitar';
+
+  @override
+  String get gReset => 'Restablecer';
+
+  @override
+  String get gResetTo => 'Restablecer:';
+
+  @override
+  String gResetValue(Object name) {
+    return '¿Restablecer $name?';
+  }
+
+  @override
+  String gResetValueTo(Object name, Object value) {
+    return 'Restablecer $name a $value';
+  }
+
+  @override
+  String get gResetAll => 'Restablecer todo';
+
+  @override
+  String get gUndoWarn1 => 'No se puede deshacer automáticamente.\n';
+
+  @override
+  String get gSave => 'Guarde';
+
+  @override
+  String get gSaveHint =>
+      'Activar para guardar un archivo de configuración JSON.';
+
+  @override
+  String get gSwitchHint => 'Accionar el interruptor';
+
+  @override
+  String get gUndoWarn2 =>
+      ' su configuración actual para restaurarla manualmente.';
+
+  @override
+  String get gValue => 'Valor';
+
+  @override
+  String get gSource => 'Fuente:';
+
+  @override
+  String get gCreator => 'Creador de';
+
+  @override
+  String get gMadeBy => 'Hecho por';
+
+  @override
+  String get gYou => 'Configurado por ti';
+
+  @override
+  String get ssNavHint => 'Abrir la página de configuración';
+
+  @override
+  String get ssHaveFun => '¡Diviértete!';
+
+  @override
+  String get ssDominantHand => 'Mano preferente';
+
+  @override
+  String get ssThemeMode => 'Modo del tema';
+
+  @override
+  String get ssLanguage => 'Idioma';
+
+  @override
+  String get ssLangHint => 'Activar para cambiar el idioma de la aplicación';
+
+  @override
+  String get ssUpdateDark => 'Actualizar tema oscuro';
+
+  @override
+  String get ssUpdateLight => 'Actualizar tema claro';
+
+  @override
+  String get ssUpdateBoth => 'Actualizar ambos modos de tema';
+
+  @override
+  String get ssLoadPreset => 'Cargar preajuste';
+
+  @override
+  String get ssLoadPresetHint => 'Activar para mostrar ajustes preestablecidos';
+
+  @override
+  String get ssDewIt => 'Actualizar ambos/confirmación automática';
+
+  @override
+  String get ssBigButtons => 'Botones grandes';
+
+  @override
+  String get ssHighVisibility => 'Alta visibilidad';
+
+  @override
+  String get ssChalkboard => 'Pizarra';
+
+  @override
+  String get ssNebula => 'Nebulosa';
+
+  @override
+  String get ssWallHoles => 'Agujeros en la pared';
+
+  @override
+  String get ssDarkOnly =>
+      'Este es un preajuste de tema oscuro.\nCambiará el modo del tema a oscuro y actualizará ese tema.\n\n¿Continuar?';
+
+  @override
+  String get ssLightOnly =>
+      'Este es un preajuste de tema claro.\nCambiará el modo del tema a claro y actualizará ese tema.\n\n¿Continuar?';
+
+  @override
+  String ssApplied(Object config) {
+    return '$config aplicado.';
+  }
+
+  @override
+  String get ssTryMe => 'Pruébame';
+
+  @override
+  String get ssRandom => 'Randomiser';
+
+  @override
+  String ssRandomize(Object themeType) {
+    return 'Thème $themeType aléatoire ?';
+  }
+
+  @override
+  String get ssConfigTip => 'Guardar/cargar configuración';
+
+  @override
+  String get ssSaveConfig => 'Guardar configuración';
+
+  @override
+  String ssConfigSaved(Object path) {
+    return 'Su configuración se ha guardado en $path';
+  }
+
+  @override
+  String get ssWrongConfigExt => 'El archivo no se guardó como ';
+
+  @override
+  String get ssLoadConfig => 'Cargar configuración';
+
+  @override
+  String get ssResetAll => '¿Restablecer todas las configuraciones?';
+
+  @override
+  String get ssResetAppearance =>
+      '¿Restablecer todos los ajustes de apariencia?';
+
+  @override
+  String get ssResetBoth => 'Restablecer ambos modos de tema';
+
+  @override
+  String get csPageTitle => 'Configuración de color';
+
+  @override
+  String get csSchemeBase => 'Crear tema\nusando imagen';
+
+  @override
+  String get csFromImage =>
+      'Se generará un esquema de color a partir de la imagen.';
+
+  @override
+  String get csMonoChrome => 'Usar esquema monocromático';
+
+  @override
+  String get csHighContrast => 'Usar esquema de alto contraste';
+
+  @override
+  String get csPrimary => 'Principal';
+
+  @override
+  String get csPrimaryContainer => 'Esquema\nprincipal';
+
+  @override
+  String get csSecondary => 'Secundario';
+
+  @override
+  String get csSecondaryContainer => 'Esquema\nsecundario';
+
+  @override
+  String get csTertiary => 'Terciario';
+
+  @override
+  String get csTertiaryContainer => 'Esquema\nterciario';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Esquema de\nerror';
+
+  @override
+  String get csOutline => 'Texto de\nsugerencia';
+
+  @override
+  String get csOutlineVariant => 'Esquema de\nsugerencia';
+
+  @override
+  String get csSurface => 'Fondo de\nbotón';
+
+  @override
+  String get csSurfaceDim => 'Fondo de\nalerta && app bar';
+
+  @override
+  String get csSurfaceContainer => 'Fondo de\npágina && modal';
+
+  @override
+  String get csOnSurface => 'Texto';
+
+  @override
+  String get csScrim => 'Cubierta\nmodal';
+
+  @override
+  String get csShadow => 'Sombra';
+
+  @override
+  String get csSurfaceTint => 'Tinte de\nsuperficie';
+
+  @override
+  String get csPickerTitle => 'Selecciona un color';
+
+  @override
+  String get csPickerHint =>
+      'Abre un selector de color. Mantén pulsado para ver más opciones.';
+
+  @override
+  String get csRecommended => '¿Usar contraste recomendado?';
+
+  @override
+  String get csUseCustom => 'Usar personalizado';
+
+  @override
+  String get csCurrVal => 'Valor de color actual:';
+
+  @override
+  String csReset(Object themeType) {
+    return 'Restablecer los colores de $themeType?';
+  }
+
+  @override
+  String get csColorScheme => 'esquema de color';
+
+  @override
+  String get dsPageTitle => 'Configuración de diseño';
+
+  @override
+  String get dsButton => 'Botón';
+
+  @override
+  String get dsPage => 'Página';
+
+  @override
+  String get dsNone => 'Ninguna';
+
+  @override
+  String get dsSystem => 'Sistema';
+
+  @override
+  String get dsPadding => 'Acolchado';
+
+  @override
+  String get dsStyle => 'Estilo';
+
+  @override
+  String get dsBorderWidth => 'Ancho del borde';
+
+  @override
+  String get dsPill => 'Píldora';
+
+  @override
+  String get dsRectangle => 'Rectángulo';
+
+  @override
+  String get dsRoundRectangle => 'Rectángulo redondeado';
+
+  @override
+  String get dsLeftGram => 'Paralelo izquierdo';
+
+  @override
+  String get dsRightGram => 'Paralelo derecho';
+
+  @override
+  String get dsGem => 'Gema';
+
+  @override
+  String get dsJewel => 'Joya';
+
+  @override
+  String get dsAlwaysUnderline => 'Subraya siempre los enlaces';
+
+  @override
+  String get dsShowBack => 'Mostrar botón de retroceso';
+
+  @override
+  String get dsMargin => 'Margen';
+
+  @override
+  String get dsSpacing => 'Espaciado';
+
+  @override
+  String get dsPageTransition => 'Transición de página';
+
+  @override
+  String get dsTurnX => 'Giro horizontal';
+
+  @override
+  String get dsTurnY => 'Giro vertical';
+
+  @override
+  String get dsRotate => 'Girar';
+
+  @override
+  String get dsSlideX => 'Diapositiva horizontal';
+
+  @override
+  String get dsSlideY => 'Diapositiva vertical';
+
+  @override
+  String get dsZoom => 'Zoom';
+
+  @override
+  String get dsFadeTransition => 'Transición de desvanecimiento';
+
+  @override
+  String get dsAnimStyle => 'Estilo de la animación';
+
+  @override
+  String get dsPlay => 'Reproducir animación';
+
+  @override
+  String get dsMilliseconds => 'Milisegundos';
+
+  @override
+  String get dsCurve => 'Curva';
+
+  @override
+  String get dsBounce => 'Rebotar';
+
+  @override
+  String get dsEase => 'Aliviar';
+
+  @override
+  String get dsElastic => 'Elástico';
+
+  @override
+  String get dsLinear => 'Lineal';
+
+  @override
+  String get dsBackgroundImg => 'Imagen de fondo';
+
+  @override
+  String dsImgSettingHint(Object title) {
+    return 'Actualizar la imagen $title';
+  }
+
+  @override
+  String get dsReFit => 'Reajustar';
+
+  @override
+  String get dsFromFile => 'Usando un archivo';
+
+  @override
+  String get dsFromCamera => 'Usando la cámara';
+
+  @override
+  String get dsFromNetwork => 'Usando un link';
+
+  @override
+  String get dsSolidColor => 'Color sólido';
+
+  @override
+  String get dsResetIt => 'Restablecer';
+
+  @override
+  String get dsClearIt => 'Borrar';
+
+  @override
+  String get dsUseForColors =>
+      'Actualiza los colores de la app usando esta imagen';
+
+  @override
+  String get dsImgGetFailed => 'Error al intentar obtener la imagen';
+
+  @override
+  String get dsImgSetFailed => 'Error al intentar actualizar la imagen';
+
+  @override
+  String get dsImgPermission =>
+      'Algunas webs restringen el acceso a sus imágenes.\nIntenta usar una imagen de otra página.';
+
+  @override
+  String get dsUseFull => '¿Usar la imagen completa?';
+
+  @override
+  String get dsFit => '¿Cómo debe quedar?';
+
+  @override
+  String get dsCrop => 'Recortar';
+
+  @override
+  String get dsNoWeb => 'La edición de imágenes no es compatible en la web';
+
+  @override
+  String get dsRotateLeft => 'Girar a la izquierda';
+
+  @override
+  String get dsRotateRight => 'Girar a la derecha';
+
+  @override
+  String get dsShowScroll => 'Mostrar barras de desplazamiento';
+
+  @override
+  String dsResetButton(Object themeType) {
+    return '¿Restablecer el diseño del botón del $themeType?';
+  }
+
+  @override
+  String dsResetPage(Object themeType) {
+    return '¿Restablecer el diseño de la página del $themeType?';
+  }
+
+  @override
+  String get tsPageTitle => 'Configuración del texto';
+
+  @override
+  String tsBatchOverride(Object setting) {
+    return 'Ya has realizado cambios de \"$setting\" granulares en la configuración avanzada.\n\n¿Seguro que quieres anular esos cambios con una actualización por lotes?';
+  }
+
+  @override
+  String get tsTextBackground => 'Opacidad del fondo del texto';
+
+  @override
+  String get tsIconSize => 'Tamaño del icono';
+
+  @override
+  String tsLinkHint(Object style) {
+    return 'Activar para editar $style';
+  }
+
+  @override
+  String get tsDisplay => 'Despliegue';
+
+  @override
+  String get tsHeadline => 'Encabezado';
+
+  @override
+  String get tsTitle => 'Título';
+
+  @override
+  String get tsBody => 'Cuerpo';
+
+  @override
+  String get tsLabel => 'Etiqueta';
+
+  @override
+  String get tsFontFamily => 'Familia de fuente';
+
+  @override
+  String get tsFontSize => 'Tamaño de fuente';
+
+  @override
+  String get tsBold => 'Negrita';
+
+  @override
+  String get tsItalic => 'Cursiva';
+
+  @override
+  String get tsUnderline => 'Subrayado';
+
+  @override
+  String get tsLetterSpacing => 'Espaciado entre letras';
+
+  @override
+  String get tsWordSpacing => 'Espaciado entre palabras';
+
+  @override
+  String get tsLineHeight => 'Altura de línea';
+
+  @override
+  String get tsDisplayP1 => '¿Se ';
+
+  @override
+  String get tsDisplayLink => 'despliegue';
+
+  @override
+  String get tsDisplayP2 => ' bien esto?';
+
+  @override
+  String get tsHeadlineP1 => '¿Se diferencian los ';
+
+  @override
+  String get tsHeadlineLink => 'encabezados';
+
+  @override
+  String get tsHeadlineP2 => '...';
+
+  @override
+  String get tsTitleP1 => 'de los ';
+
+  @override
+  String get tsTitleLink => 'títulos?';
+
+  @override
+  String get tsBodyP1 => '¿Y ';
+
+  @override
+  String get tsBodyLink => 'el cuerpo?';
+
+  @override
+  String get tsBodyP2 => ' ¿Se puede leer bien?';
+
+  @override
+  String get tsLabelP1 => '¿Y ';
+
+  @override
+  String get tsLabelLink => 'las etiquetas?';
+
+  @override
+  String get tsLabelP2 => ' ¿No muy grandes, no muy pequeñas?';
+
+  @override
+  String tsReset(Object themeType) {
+    return '¿Restablecer los estilos de texto de $themeType?';
+  }
+}

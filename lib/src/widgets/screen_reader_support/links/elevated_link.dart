@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
@@ -41,24 +41,21 @@ class EzElevatedLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: tooltip ?? hint,
-        excludeFromSemantics: true,
-        child: Semantics(
-          button: true,
-          link: true,
-          hint: '$text; $hint',
-          child: ExcludeSemantics(
-            child: Link(
-              uri: url,
-              builder: (_, FollowLink? followLink) => EzElevatedButton(
-                config,
-                onPressed: followLink,
-                text: text,
-              ),
-            ),
-          ),
+    message: tooltip ?? hint,
+    excludeFromSemantics: true,
+    child: Semantics(
+      button: true,
+      link: true,
+      hint: '$text; $hint',
+      child: ExcludeSemantics(
+        child: Link(
+          uri: url,
+          builder: (_, FollowLink? followLink) =>
+              EzElevatedButton(config, onPressed: followLink, text: text),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class EzElevatedIconLink extends StatelessWidget {
@@ -98,23 +95,19 @@ class EzElevatedIconLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: tooltip ?? hint,
-        excludeFromSemantics: true,
-        child: Semantics(
-          button: true,
-          link: true,
-          hint: '$label; $hint',
-          child: ExcludeSemantics(
-            child: Link(
-              uri: url,
-              builder: (_, FollowLink? followLink) => EzElevatedIconButton(
-                config,
-                onPressed: followLink,
-                icon: icon,
-                label: label,
-              ),
-            ),
-          ),
+    message: tooltip ?? hint,
+    excludeFromSemantics: true,
+    child: Semantics(
+      button: true,
+      link: true,
+      hint: '$label; $hint',
+      child: ExcludeSemantics(
+        child: Link(
+          uri: url,
+          builder: (_, FollowLink? followLink) =>
+              EzElevatedIconButton(config, onPressed: followLink, icon: icon, label: label),
         ),
-      );
+      ),
+    ),
+  );
 }

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,11 +18,11 @@ class EzBackFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'back_fab',
-        tooltip: config.ezL10n.gBack,
-        onPressed: () => Navigator.of(context).maybePop(),
-        child: EzIcon(config, Icons.arrow_back),
-      );
+    heroTag: 'back_fab',
+    tooltip: config.ezL10n.gBack,
+    onPressed: () => Navigator.of(context).maybePop(),
+    child: EzIcon(config, Icons.arrow_back),
+  );
 }
 
 class EzConfigFAB extends StatelessWidget {
@@ -37,27 +37,27 @@ class EzConfigFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuAnchor(
-        builder: (_, MenuController controller, __) => FloatingActionButton(
-          heroTag: 'config_fab',
-          tooltip: config.ezL10n.ssConfigTip,
-          onPressed: () => toggleMenu(controller),
-          child: EzIcon(config, Icons.save),
-        ),
-        menuChildren: <Widget>[
-          EzMenuButton(
-            config,
-            label: config.ezL10n.ssSaveConfig,
-            icon: EzIcon(config, Icons.download),
-            onPressed: () => EzCM.saveConfig(config, context: context, skip: skip),
-          ),
-          EzMenuButton(
-            config,
-            label: config.ezL10n.ssLoadConfig,
-            icon: EzIcon(config, Icons.upload),
-            onPressed: () => ezConfigLoader(config, context: context),
-          ),
-        ],
-      );
+    builder: (_, MenuController controller, __) => FloatingActionButton(
+      heroTag: 'config_fab',
+      tooltip: config.ezL10n.ssConfigTip,
+      onPressed: () => toggleMenu(controller),
+      child: EzIcon(config, Icons.save),
+    ),
+    menuChildren: <Widget>[
+      EzMenuButton(
+        config,
+        label: config.ezL10n.ssSaveConfig,
+        icon: EzIcon(config, Icons.download),
+        onPressed: () => EzCM.saveConfig(config, context: context, skip: skip),
+      ),
+      EzMenuButton(
+        config,
+        label: config.ezL10n.ssLoadConfig,
+        icon: EzIcon(config, Icons.upload),
+        onPressed: () => ezConfigLoader(config, context: context),
+      ),
+    ],
+  );
 }
 
 class EzUpdaterFAB extends StatefulWidget {
@@ -97,10 +97,7 @@ class EzUpdaterFAB extends StatefulWidget {
     this.gPlay,
     this.appStore,
     this.github,
-  }) : assert(
-          isWeb || github != null,
-          'GitHub URL must be provided when isWeb is false',
-        );
+  }) : assert(isWeb || github != null, 'GitHub URL must be provided when isWeb is false');
 
   @override
   State<EzUpdaterFAB> createState() => _EzUpdaterState();
@@ -115,10 +112,10 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
 
   /// Platform aware instructions
   String hardRefresh() => switch (EzCM.platform) {
-        TargetPlatform.android || TargetPlatform.iOS => widget.config.ezL10n.gHardRefreshMobile,
-        TargetPlatform.macOS => widget.config.ezL10n.gHardRefreshMac,
-        _ => widget.config.ezL10n.gHardRefresh,
-      };
+    TargetPlatform.android || TargetPlatform.iOS => widget.config.ezL10n.gHardRefreshMobile,
+    TargetPlatform.macOS => widget.config.ezL10n.gHardRefreshMac,
+    _ => widget.config.ezL10n.gHardRefresh,
+  };
 
   // Init //
 
@@ -173,35 +170,34 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
 
   @override
   Widget build(BuildContext context) => Visibility(
-        visible: !isLatest,
-        child: widget.isWeb // Trinary required, if/else breaks iOS web links
-            ? FloatingActionButton(
-                heroTag: 'updater_fab',
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (_) => EzAlertDialog(
-                    widget.config,
-                    title: Text(
-                      widget.config.ezL10n.gUpdates,
-                      textAlign: TextAlign.center,
-                    ),
-                    content: Text(hardRefresh(), textAlign: TextAlign.center),
-                  ),
-                ),
-                tooltip: widget.config.ezL10n.gUpdates,
-                backgroundColor: widget.config.colors.secondary,
-                foregroundColor: widget.config.colors.onSecondary,
-                child: EzIcon(widget.config, Icons.update),
-              )
-            : FloatingActionButton(
-                heroTag: 'updater_fab',
-                onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
-                tooltip: widget.config.ezL10n.gUpdates,
-                backgroundColor: widget.config.colors.secondary,
-                foregroundColor: widget.config.colors.onSecondary,
-                child: EzIcon(widget.config, Icons.update),
+    visible: !isLatest,
+    child:
+        widget
+            .isWeb // Trinary required, if/else breaks iOS web links
+        ? FloatingActionButton(
+            heroTag: 'updater_fab',
+            onPressed: () => showDialog(
+              context: context,
+              builder: (_) => EzAlertDialog(
+                widget.config,
+                title: Text(widget.config.ezL10n.gUpdates, textAlign: TextAlign.center),
+                content: Text(hardRefresh(), textAlign: TextAlign.center),
               ),
-      );
+            ),
+            tooltip: widget.config.ezL10n.gUpdates,
+            backgroundColor: widget.config.colors.secondary,
+            foregroundColor: widget.config.colors.onSecondary,
+            child: EzIcon(widget.config, Icons.update),
+          )
+        : FloatingActionButton(
+            heroTag: 'updater_fab',
+            onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
+            tooltip: widget.config.ezL10n.gUpdates,
+            backgroundColor: widget.config.colors.secondary,
+            foregroundColor: widget.config.colors.onSecondary,
+            child: EzIcon(widget.config, Icons.update),
+          ),
+  );
 }
 
 class EzRebuildFAB extends StatelessWidget {
@@ -213,11 +209,11 @@ class EzRebuildFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'rebuild_fab',
-        onPressed: () => config.rebuildUI(allECT),
-        tooltip: config.ezL10n.gApplyChanges,
-        backgroundColor: config.colors.secondary,
-        foregroundColor: config.colors.onSecondary,
-        child: EzIcon(config, Icons.build),
-      );
+    heroTag: 'rebuild_fab',
+    onPressed: () => config.rebuildUI(allECT),
+    tooltip: config.ezL10n.gApplyChanges,
+    backgroundColor: config.colors.secondary,
+    foregroundColor: config.colors.onSecondary,
+    child: EzIcon(config, Icons.build),
+  );
 }

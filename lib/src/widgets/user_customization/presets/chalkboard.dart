@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,14 +18,9 @@ class EzChalkboardConfig extends StatelessWidget {
   final Future<void> Function(bool)? extra;
 
   /// Dark theme only config; sets [ThemeMode.dark], resets it, and...
-  /// Sets a [ColorScheme] similar to [ezHighContrastDark], but with a [chalkboardGreen] surface and [empathSand] accents
+  /// Sets a [ColorScheme] similar to [ezHighContrastDark], but with a [chalkboardGreen] surface and [ywtSand] accents
   /// Has mostly default design settings, but a [fingerPaint] based [TextTheme]
-  const EzChalkboardConfig(
-    this.config, {
-    super.key,
-    required this.autoConfirm,
-    this.extra,
-  });
+  const EzChalkboardConfig(this.config, {super.key, required this.autoConfirm, this.extra});
 
   static Future<bool> onPressed(
     EzCP config,
@@ -46,10 +41,7 @@ class EzChalkboardConfig extends StatelessWidget {
         builder: (BuildContext dCon) => EzAlertDialog(
           config,
           title: Text(config.ezL10n.gAttention, textAlign: TextAlign.center),
-          content: Text(
-            config.ezL10n.ssDarkOnly,
-            textAlign: TextAlign.center,
-          ),
+          content: Text(config.ezL10n.ssDarkOnly, textAlign: TextAlign.center),
           actions: ezActionPair(
             config,
             onConfirm: () => Navigator.of(dCon).pop(true),
@@ -85,7 +77,7 @@ class EzChalkboardConfig extends StatelessWidget {
         outline: halfWhite,
 
         // Primary
-        primary: empathSand,
+        primary: ywtSand,
         onPrimary: Colors.black,
         primaryContainer: chalkboardGreen,
         onPrimaryContainer: Colors.black,
@@ -97,7 +89,7 @@ class EzChalkboardConfig extends StatelessWidget {
         onSecondaryContainer: Colors.black,
 
         // Tertiary
-        tertiary: empathSand,
+        tertiary: ywtSand,
         onTertiary: Colors.black,
         tertiaryContainer: chalkboardGreen,
         onTertiaryContainer: Colors.black,
@@ -182,23 +174,24 @@ class EzChalkboardConfig extends StatelessWidget {
         backgroundColor: chalkboardGreen,
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        overlayColor: empathSand,
+        overlayColor: ywtSand,
         side: BorderSide.none,
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
-        padding: EdgeInsets.all(
-          EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding,
-        ),
+        padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
       ),
       onPressed: () async {
         final bool uSure = autoConfirm ||
             (config.themeMode == ThemeMode.dark) ||
             (await _confirm(config, context: context) ?? false);
         if (uSure) {
-          await config.rebuildUI(allECT, changes: () async {
-            await _makeItSo();
-            await extra?.call(autoConfirm);
-          });
+          await config.rebuildUI(
+            allECT,
+            changes: () async {
+              await _makeItSo();
+              await extra?.call(autoConfirm);
+            },
+          );
         }
       },
       text: config.ezL10n.ssChalkboard,

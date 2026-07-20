@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,19 +19,15 @@ class EzRowCol extends StatelessWidget {
 
   /// [row] that will switch to a [col] when the context's [ScreenSize] <= [breakpoint]
   /// Will always be [col] if [EzScreenSize] is not in the Widget tree
-  EzRowCol({
-    super.key,
-    this.breakpoint = ScreenSize.small,
-    required this.row,
-    required this.col,
-  })  : assert(
-          row.runtimeType == Row || row.runtimeType == EzRow || row.runtimeType == EzScrollView,
-          'row Widget can be a Row, EzRow, or EzScrollView',
-        ),
-        assert(
-          col.runtimeType == Column || col.runtimeType == EzScrollView,
-          'col Widget can be a Column or EzScrollView',
-        );
+  EzRowCol({super.key, this.breakpoint = ScreenSize.small, required this.row, required this.col})
+    : assert(
+        row.runtimeType == Row || row.runtimeType == EzRow || row.runtimeType == EzScrollView,
+        'row Widget can be a Row, EzRow, or EzScrollView',
+      ),
+      assert(
+        col.runtimeType == Column || col.runtimeType == EzScrollView,
+        'col Widget can be a Column or EzScrollView',
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +46,19 @@ class EzRowCol extends StatelessWidget {
     MainAxisSize mainAxisSize = MainAxisSize.min,
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
     required List<Widget> children,
-  })  : row = EzScrollView(
-          config,
-          scrollDirection: Axis.horizontal,
-          reverseHands: reverseHands,
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          children: children,
-        ),
-        col = EzCol(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          children: children,
-        );
+  }) : row = EzScrollView(
+         config,
+         scrollDirection: Axis.horizontal,
+         reverseHands: reverseHands,
+         mainAxisAlignment: mainAxisAlignment,
+         mainAxisSize: mainAxisSize,
+         crossAxisAlignment: crossAxisAlignment,
+         children: children,
+       ),
+       col = EzCol(
+         mainAxisAlignment: mainAxisAlignment,
+         mainAxisSize: mainAxisSize,
+         crossAxisAlignment: crossAxisAlignment,
+         children: children,
+       );
 }

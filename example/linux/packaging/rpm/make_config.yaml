@@ -3,10 +3,10 @@ icon: linux/assets/app-icon.png
 summary: Checkout Open UI, a sandbox app where every aspect of the UI can be controlled by you.
 group: Applications/Development Tools
 vendor: Empathetech LLC
-packager: Empathetech LLC
-packagerEmail: support@empathetech.net
+packager: YWT
+packagerEmail: support@ywt.llc
 license: GPLv3
-url: https://github.com/Empathetech-LLC/empathetech_flutter_ui/tree/main/example
+url: https://github.com/YWT-LLC/open_ui/tree/main/example
 
 build_arch: x86_64
 

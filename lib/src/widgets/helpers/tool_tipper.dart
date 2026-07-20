@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
@@ -19,13 +19,11 @@ class EzToolTipper extends StatelessWidget {
   final InlineSpan? richMessage;
 
   /// Classic question mark tool tip
-  const EzToolTipper(
-    this.config, {
-    super.key,
-    this.message,
-    this.richMessage,
-  }) : assert(((message == null) != (richMessage == null)),
-            'Either message or richMessage must be provided, but not both');
+  const EzToolTipper(this.config, {super.key, this.message, this.richMessage})
+    : assert(
+        ((message == null) != (richMessage == null)),
+        'Either message or richMessage must be provided, but not both',
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +90,7 @@ class EzToolTipper extends StatelessWidget {
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
-          child: EzIcon(
-            config,
-            Icons.help_outline,
-            color: config.colors.outline,
-          ),
+          child: EzIcon(config, Icons.help_outline, color: config.colors.outline),
         ),
       ),
       baseColor: config.colors.surface,

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -41,42 +41,47 @@ class EzQuickConfig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
-        config,
-        onPressed: () => ezModal(
-          config,
-          context: context,
-          builder: (_) {
-            bool dewIt = EzCM.updateBoth;
+    config,
+    onPressed: () => ezModal(
+      config,
+      context: context,
+      builder: (_) {
+        bool dewIt = EzCM.updateBoth;
 
-            return StatefulBuilder(
-              builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
-                // Update both/auto confirm toggle
-                EzSwitchPair(
-                  config,
-                  key: ValueKey<String>('dis-$dewIt'),
-                  value: dewIt,
-                  text: config.ezL10n.ssDewIt,
-                  onChanged: (bool? value) {
-                    if (value == null) return;
-                    setModal(() => dewIt = value);
-                  },
-                ),
-                EzSpacer(config.spacing * 0.5),
+        return StatefulBuilder(
+          builder: (_, StateSetter setModal) => ezModalScroll(
+            config,
+            children: <Widget>[
+              // Update both/auto confirm toggle
+              EzSwitchPair(
+                config,
+                key: ValueKey<String>('dis-$dewIt'),
+                value: dewIt,
+                text: config.ezL10n.ssDewIt,
+                onChanged: (bool? value) {
+                  if (value == null) return;
+                  setModal(() => dewIt = value);
+                },
+              ),
+              EzSpacer(config.spacing * 0.5),
 
-                // Choices
-                EzWrap(children: <Widget>[
+              // Choices
+              EzWrap(
+                children: <Widget>[
                   wrapIt(EzBigButtonsConfig(config, updateBoth: dewIt, extra: extraBig)),
                   wrapIt(EzHighVisibilityConfig(config, updateBoth: dewIt, extra: extraVis)),
                   wrapIt(EzChalkboardConfig(config, autoConfirm: dewIt, extra: extraChalk)),
                   wrapIt(EzNebulaConfig(config, autoConfirm: dewIt, extra: extraNebula)),
                   wrapIt(EzWallHolesConfig(config, autoConfirm: dewIt, extra: extraWall)),
-                ]),
-                EzSpacer(config.spacing * 1.5),
-              ]),
-            );
-          },
-        ),
-        icon: EzIcon(config, Icons.edit),
-        label: config.ezL10n.ssLoadPreset,
-      );
+                ],
+              ),
+              EzSpacer(config.spacing * 1.5),
+            ],
+          ),
+        );
+      },
+    ),
+    icon: EzIcon(config, Icons.edit),
+    label: config.ezL10n.ssLoadPreset,
+  );
 }

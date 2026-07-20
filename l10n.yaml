@@ -1,8 +1,8 @@
 arb-dir: lib/src/l10n
 output-dir: lib/src/l10n
-template-arb-file: efui_lang_en.arb
-output-localization-file: efui_lang.dart
-output-class: EFUILang
+template-arb-file: oui_lang_en.arb
+output-localization-file: oui_lang.dart
+output-class: OUILang
 use-deferred-loading: true
 gen-inputs-and-outputs-list: lib/src/l10n
 required-resource-attributes: false

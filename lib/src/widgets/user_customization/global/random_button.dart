@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
@@ -13,19 +13,14 @@ class EzConfigRandomizer extends StatelessWidget {
   final EzCP config;
 
   /// [EzAlertDialog.title] that shows on click
-  /// Defaults to [EFUILang.ssRandomize]
+  /// Defaults to [OUILang.ssRandomize]
   final String? dialogTitle;
 
   /// [ezRichUndoWarning] passthrough
   final Set<String>? saveSkip;
 
   /// [EzElevatedIconButton] for [EzCM.randomize]
-  const EzConfigRandomizer(
-    this.config, {
-    super.key,
-    this.dialogTitle,
-    this.saveSkip,
-  });
+  const EzConfigRandomizer(this.config, {super.key, this.dialogTitle, this.saveSkip});
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
@@ -36,18 +31,18 @@ class EzConfigRandomizer extends StatelessWidget {
             config,
             title: Text(
               dialogTitle ??
-                  config.ezL10n.ssRandomize(config.isDark
-                      ? config.ezL10n.gDark.toLowerCase()
-                      : config.ezL10n.gLight.toLowerCase()),
+                  config.ezL10n.ssRandomize(
+                    config.isDark
+                        ? config.ezL10n.gDark.toLowerCase()
+                        : config.ezL10n.gLight.toLowerCase(),
+                  ),
               textAlign: TextAlign.center,
             ),
             content: ezRichUndoWarning(config, context: context, skip: saveSkip),
             actions: ezActionPair(
               config,
-              onConfirm: () => config.rebuildUI(
-                allECT,
-                changes: () => EzCM.randomize(config.isDark),
-              ),
+              onConfirm: () =>
+                  config.rebuildUI(allECT, changes: () => EzCM.randomize(config.isDark)),
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),
             ),

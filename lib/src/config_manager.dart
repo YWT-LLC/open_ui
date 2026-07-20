@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../empathetech_flutter_ui.dart';
+import '../open_ui.dart';
 
 import 'dart:math';
 import 'dart:convert';
@@ -38,10 +38,10 @@ class EzCM {
   /// [english] or [americanEnglish] is recommended
   final Locale _localeFallback;
 
-  /// Fallback [EFUILang] for unsupported [Locale]s
-  /// [EFUILang.delegate] load the [_localeFallback]
+  /// Fallback [OUILang] for unsupported [Locale]s
+  /// [OUILang.delegate] load the [_localeFallback]
   /// Constructors cannot be async, so the load must be awaited externally/beforehand
-  final EFUILang _l10nFallback;
+  final OUILang _l10nFallback;
 
   /// [SharedPreferencesAsync] instance
   final SharedPreferencesAsync _preferences;
@@ -75,7 +75,7 @@ class EzCM {
     required TargetPlatform platform,
     required bool onMobile,
     required Locale localeFallback,
-    required EFUILang l10nFallback,
+    required OUILang l10nFallback,
     required SharedPreferencesAsync preferences,
     FlutterSecureStorage? securePreferences,
     required Map<String, dynamic> defaults,
@@ -105,7 +105,7 @@ class EzCM {
   /// [assetPaths] => [AssetImage] paths for this app
   /// [orientations] => [DeviceOrientation] the app supports
   /// [localeFallback] => Fallback [Locale] for unsupported [Locale]s
-  /// [l10nFallback] => Fallback [EFUILang] for unsupported [Locale]s
+  /// [l10nFallback] => Fallback [OUILang] for unsupported [Locale]s
   /// [preferences] => [SharedPreferencesAsync] instance
   /// [securePreferences] => Optional [FlutterSecureStorage] instance
   /// [defaults] => Default config; brand colors, text styles, design settings, etc.
@@ -116,7 +116,7 @@ class EzCM {
     required Set<String> assetPaths,
     required List<DeviceOrientation> orientations,
     required Locale localeFallback,
-    required EFUILang l10nFallback,
+    required OUILang l10nFallback,
     required SharedPreferencesWithCache preferences,
     FlutterSecureStorage? securePreferences,
     required Map<String, dynamic> defaults,
@@ -183,7 +183,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       _instance = EzCM._(
         appName: appName,
         androidPackage: androidPackage,
-        assetPaths: <String>{...assetPaths, ...efuiAssetPaths},
+        assetPaths: <String>{...assetPaths, ...ouiAssetPaths},
         orientations: orientations,
         platform: getBasePlatform(),
         onMobile: isMobile(),
@@ -223,8 +223,8 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Fallback [Locale] for unsupported [Locale]s
   static Locale get localeFallback => _instance!._localeFallback;
 
-  /// Fallback [EFUILang] for unsupported [Locale]s
-  static EFUILang get l10nFallback => _instance!._l10nFallback;
+  /// Fallback [OUILang] for unsupported [Locale]s
+  static OUILang get l10nFallback => _instance!._l10nFallback;
 
   /// Get the [key]s (nullable) [bool] value
   /// Uses the stored values from [SharedPreferencesAsync]
@@ -399,7 +399,8 @@ Must be one of [int, bool, double, String, List<String>]''');
           // We'll try this below, it seems Dart sometimes 'downgrades' String to dynamic
         } else {
           ezLog(
-              'Skipping [${entry.key}], mismatched types: $expectedType != ${entry.value.runtimeType}');
+            'Skipping [${entry.key}], mismatched types: $expectedType != ${entry.value.runtimeType}',
+          );
           continue;
         }
       }
@@ -531,8 +532,10 @@ Must be one of [int, bool, double, String, List<String>]''');
         (onMobile ? defaultMobilePadding : defaultDesktopPadding) * getScalar(),
       );
 
-      await setString(darkButtonShapeKey,
-          EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value);
+      await setString(
+        darkButtonShapeKey,
+        EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value,
+      );
       await setDouble(darkBorderWidthKey, random.nextDouble() * 3);
 
       await setBool(darkLineLinksKey, random.nextBool());
@@ -547,8 +550,10 @@ Must be one of [int, bool, double, String, List<String>]''');
       }
 
       await setInt(darkAnimationDurationKey, random.nextInt(1000));
-      await setString(darkTransitionTypeKey,
-          EzTransitionType.values[random.nextInt(EzTransitionType.values.length)].value);
+      await setString(
+        darkTransitionTypeKey,
+        EzTransitionType.values[random.nextInt(EzTransitionType.values.length)].value,
+      );
       await setBool(darkTransitionFadeKey, random.nextBool());
 
       await setBool(darkShowScrollKey, random.nextBool());
@@ -564,10 +569,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       final double descriptionScale = getScalar();
 
       await setString(darkDisplayFontFamilyKey, attentionStyle);
-      await setDouble(
-        darkDisplayFontSizeKey,
-        defaultDisplaySize * attentionScale,
-      );
+      await setDouble(darkDisplayFontSizeKey, defaultDisplaySize * attentionScale);
       await setBool(darkDisplayBoldedKey, false);
       await setBool(darkDisplayItalicizedKey, false);
       await setBool(darkDisplayUnderlinedKey, random.nextBool());
@@ -576,10 +578,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setDouble(darkDisplayWordSpacingKey, defaultWordSpacing);
 
       await setString(darkHeadlineFontFamilyKey, attentionStyle);
-      await setDouble(
-        darkHeadlineFontSizeKey,
-        defaultHeadlineSize * attentionScale,
-      );
+      await setDouble(darkHeadlineFontSizeKey, defaultHeadlineSize * attentionScale);
       await setBool(darkHeadlineBoldedKey, false);
       await setBool(darkHeadlineItalicizedKey, false);
       await setBool(darkHeadlineUnderlinedKey, false);
@@ -587,10 +586,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setDouble(darkHeadlineLetterSpacingKey, defaultLetterSpacing);
       await setDouble(darkHeadlineWordSpacingKey, defaultWordSpacing);
 
-      await setString(
-        darkTitleFontFamilyKey,
-        styleOptions[random.nextInt(styleOptions.length)],
-      );
+      await setString(darkTitleFontFamilyKey, styleOptions[random.nextInt(styleOptions.length)]);
       await setDouble(darkTitleFontSizeKey, defaultTitleSize * attentionScale);
       await setBool(darkTitleBoldedKey, false);
       await setBool(darkTitleItalicizedKey, false);
@@ -609,10 +605,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setDouble(darkBodyWordSpacingKey, defaultWordSpacing);
 
       await setString(darkLabelFontFamilyKey, descriptionStyle);
-      await setDouble(
-        darkLabelFontSizeKey,
-        defaultLabelSize * descriptionScale,
-      );
+      await setDouble(darkLabelFontSizeKey, defaultLabelSize * descriptionScale);
       await setBool(darkLabelBoldedKey, false);
       await setBool(darkLabelItalicizedKey, false);
       await setBool(darkLabelUnderlinedKey, false);
@@ -675,8 +668,10 @@ Must be one of [int, bool, double, String, List<String>]''');
         (onMobile ? defaultMobilePadding : defaultDesktopPadding) * getScalar(),
       );
 
-      await setString(lightButtonShapeKey,
-          EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value);
+      await setString(
+        lightButtonShapeKey,
+        EzButtonShape.values[random.nextInt(EzButtonShape.values.length)].value,
+      );
       await setDouble(lightBorderWidthKey, random.nextDouble() * 3);
 
       await setBool(lightLineLinksKey, random.nextBool());
@@ -691,8 +686,10 @@ Must be one of [int, bool, double, String, List<String>]''');
       }
 
       await setInt(lightAnimationDurationKey, random.nextInt(1000));
-      await setString(lightTransitionTypeKey,
-          EzTransitionType.values[random.nextInt(EzTransitionType.values.length)].value);
+      await setString(
+        lightTransitionTypeKey,
+        EzTransitionType.values[random.nextInt(EzTransitionType.values.length)].value,
+      );
       await setBool(lightTransitionFadeKey, random.nextBool());
 
       await setBool(lightShowScrollKey, random.nextBool());
@@ -708,10 +705,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       final double descriptionScale = getScalar();
 
       await setString(lightDisplayFontFamilyKey, attentionStyle);
-      await setDouble(
-        lightDisplayFontSizeKey,
-        defaultDisplaySize * attentionScale,
-      );
+      await setDouble(lightDisplayFontSizeKey, defaultDisplaySize * attentionScale);
       await setBool(lightDisplayBoldedKey, false);
       await setBool(lightDisplayItalicizedKey, false);
       await setBool(lightDisplayUnderlinedKey, random.nextBool());
@@ -720,10 +714,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setDouble(lightDisplayWordSpacingKey, defaultWordSpacing);
 
       await setString(lightHeadlineFontFamilyKey, attentionStyle);
-      await setDouble(
-        lightHeadlineFontSizeKey,
-        defaultHeadlineSize * attentionScale,
-      );
+      await setDouble(lightHeadlineFontSizeKey, defaultHeadlineSize * attentionScale);
       await setBool(lightHeadlineBoldedKey, false);
       await setBool(lightHeadlineItalicizedKey, false);
       await setBool(lightHeadlineUnderlinedKey, false);
@@ -731,10 +722,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setDouble(lightHeadlineLetterSpacingKey, defaultLetterSpacing);
       await setDouble(lightHeadlineWordSpacingKey, defaultWordSpacing);
 
-      await setString(
-        lightTitleFontFamilyKey,
-        styleOptions[random.nextInt(styleOptions.length)],
-      );
+      await setString(lightTitleFontFamilyKey, styleOptions[random.nextInt(styleOptions.length)]);
       await setDouble(lightTitleFontSizeKey, defaultTitleSize * attentionScale);
       await setBool(lightTitleBoldedKey, false);
       await setBool(lightTitleItalicizedKey, false);
@@ -753,10 +741,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setDouble(lightBodyWordSpacingKey, defaultWordSpacing);
 
       await setString(lightLabelFontFamilyKey, descriptionStyle);
-      await setDouble(
-        lightLabelFontSizeKey,
-        defaultLabelSize * descriptionScale,
-      );
+      await setDouble(lightLabelFontSizeKey, defaultLabelSize * descriptionScale);
       await setBool(lightLabelBoldedKey, false);
       await setBool(lightLabelItalicizedKey, false);
       await setBool(lightLabelUnderlinedKey, false);
@@ -774,10 +759,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Remove the custom value for [key]
   /// When [reset] is true, the default value is restored (if present)
   /// By default, both the live and [SharedPreferencesAsync] values are modified
-  static Future<bool> remove(
-    String key, {
-    bool reset = true,
-  }) async {
+  static Future<bool> remove(String key, {bool reset = true}) async {
     try {
       await _instance!._preferences.remove(key);
 
@@ -796,10 +778,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// When [reset] is true, the default value is restored (if present)
   /// By default, both the live and [SharedPreferencesAsync] values are modified
   /// Returns false if any keys fail to be removed, but all keys will be attempted
-  static Future<bool> removeKeys(
-    Set<String> keys, {
-    bool reset = true,
-  }) async {
+  static Future<bool> removeKeys(Set<String> keys, {bool reset = true}) async {
     bool success = true;
     for (final String key in keys) {
       success &= await remove(key, reset: reset);

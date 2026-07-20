@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
@@ -45,15 +45,15 @@ class EzMenuLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Link(
-        uri: uri,
-        builder: (_, FollowLink? followLink) => EzMenuButton(
-          config,
-          onPressed: () => launchUrl(uri),
-          semanticsLabel: semanticsLabel,
-          icon: icon,
-          label: label,
-          textStyle: textStyle,
-          textAlign: textAlign,
-        ),
-      );
+    uri: uri,
+    builder: (_, FollowLink? followLink) => EzMenuButton(
+      config,
+      onPressed: () => launchUrl(uri),
+      semanticsLabel: semanticsLabel,
+      icon: icon,
+      label: label,
+      textStyle: textStyle,
+      textAlign: textAlign,
+    ),
+  );
 }

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -25,10 +25,10 @@ class EzScaffold extends Scaffold {
     super.backgroundColor,
     required this.fabs,
   }) : super(
-          floatingActionButton: EzCol(children: fabs),
-          floatingActionButtonLocation: config.isLefty
-              ? FloatingActionButtonLocation.startFloat
-              : FloatingActionButtonLocation.endFloat,
-          resizeToAvoidBottomInset: false,
-        );
+         floatingActionButton: EzCol(children: fabs),
+         floatingActionButtonLocation: config.isLefty
+             ? FloatingActionButtonLocation.startFloat
+             : FloatingActionButtonLocation.endFloat,
+         resizeToAvoidBottomInset: false,
+       );
 }

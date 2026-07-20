@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -44,33 +44,30 @@ class EzCLI extends StatelessWidget {
   }) : _cmdController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) => EzCol(children: <Widget>[
-        // Title
-        EzText(
-          config,
-          text: 'CLI',
-          style: config.titleStyle,
-          textAlign: TextAlign.center,
-        ),
+  Widget build(BuildContext context) => EzCol(
+    children: <Widget>[
+      // Title
+      EzText(config, text: 'CLI', style: config.titleStyle, textAlign: TextAlign.center),
 
-        // Field
-        EzTextField(
-          controller: _cmdController,
-          constraints: ezTextFieldConstraints(context),
-          hintText: 'echo "Hello, World!"',
-          onFieldSubmitted: (String value) async {
-            await ezCmd(
-              value,
-              dir: dir,
-              onSuccess: onSuccess,
-              onFailure: onFailure,
-              onError: onError,
-              debug: debug,
-              readout: readout,
-            );
-            _cmdController.clear();
-          },
-          validator: null,
-        ),
-      ]);
+      // Field
+      EzTextField(
+        controller: _cmdController,
+        constraints: ezTextFieldConstraints(context),
+        hintText: 'echo "Hello, World!"',
+        onFieldSubmitted: (String value) async {
+          await ezCmd(
+            value,
+            dir: dir,
+            onSuccess: onSuccess,
+            onFailure: onFailure,
+            onError: onError,
+            debug: debug,
+            readout: readout,
+          );
+          _cmdController.clear();
+        },
+        validator: null,
+      ),
+    ],
+  );
 }

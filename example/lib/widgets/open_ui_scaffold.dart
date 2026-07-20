@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -7,7 +7,7 @@ import '../utils/export.dart';
 import './export.dart';
 
 import 'package:flutter/material.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class OpenUIScaffold extends StatelessWidget {
   /// EzConfig Provider
@@ -35,7 +35,7 @@ class OpenUIScaffold extends StatelessWidget {
   /// For [EzCP.backFABs]
   final bool isHome;
 
-  /// Standardized [Scaffold] for all of the EFUI example app's screens
+  /// Standardized [Scaffold] for all of the Open UI example app's screens
   const OpenUIScaffold(
     this.config, {
     super.key,
@@ -87,16 +87,12 @@ class OpenUIScaffold extends StatelessWidget {
             leadingWidth: toolbarHeight,
             title: Text(title, textAlign: TextAlign.center),
             actions: <Widget>[
-              running ? const SizedBox.shrink() : (config.isLefty ? EzBackAction(config) : options)
+              running ? const SizedBox.shrink() : (config.isLefty ? EzBackAction(config) : options),
             ],
           ),
         ),
         body: body,
-        fabs: <Widget>[
-          updater(config),
-          if (fabs != null) ...fabs!,
-          ...config.backFABs(isHome),
-        ],
+        fabs: <Widget>[updater(config), if (fabs != null) ...fabs!, ...config.backFABs(isHome)],
       ),
     );
   }

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 enum EzTextSettingType { display, headline, title, body, label }
 
 extension EzTSTConfig on EzTextSettingType {
-  String title(EFUILang l10n) => switch (this) {
+  String title(OUILang l10n) => switch (this) {
         EzTextSettingType.display => l10n.tsDisplay,
         EzTextSettingType.headline => l10n.tsHeadline,
         EzTextSettingType.title => l10n.tsTitle,
@@ -19,7 +19,7 @@ extension EzTSTConfig on EzTextSettingType {
         EzTextSettingType.label => l10n.tsLabel,
       };
 
-  String label(EFUILang l10n) => title(l10n).toLowerCase();
+  String label(OUILang l10n) => title(l10n).toLowerCase();
 
   // Bold/weight //
 

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -23,13 +23,7 @@ class EzCountdownTimer extends StatefulWidget {
 
   /// An animated circle/pie countdown timer
   /// Default [radius] is for use in a [SnackBar]
-  const EzCountdownTimer(
-    this.config, {
-    super.key,
-    required this.duration,
-    this.radius,
-    this.color,
-  });
+  const EzCountdownTimer(this.config, {super.key, required this.duration, this.radius, this.color});
 
   @override
   State<EzCountdownTimer> createState() => _EzCountdownTimerState();
@@ -42,10 +36,7 @@ class _EzCountdownTimerState extends State<EzCountdownTimer> with SingleTickerPr
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation = Tween<double>(begin: 1.0, end: 0.0).animate(_controller);
     _controller.forward();
   }
@@ -85,10 +76,7 @@ class EzCountdownPainter extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.fill;
     canvas.drawArc(
-      Rect.fromCircle(
-        center: Offset(size.width / 2, size.height / 2),
-        radius: size.width / 2,
-      ),
+      Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: size.width / 2),
       -pi / 2,
       2 * -pi * progress,
       true,

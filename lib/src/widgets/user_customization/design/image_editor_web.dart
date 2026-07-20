@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:extended_image/extended_image.dart';
@@ -33,16 +33,13 @@ class EzImageEditor extends StatelessWidget {
     this.cropAspectRatio,
     this.initialCropAspectRatio,
   }) : assert(
-          cropAspectRatio == null ||
-              initialCropAspectRatio == null ||
-              cropAspectRatio == initialCropAspectRatio,
-          'If both cropAspectRatio and initialCropAspectRatio are provided, they must be equal.',
-        );
+         cropAspectRatio == null ||
+             initialCropAspectRatio == null ||
+             cropAspectRatio == initialCropAspectRatio,
+         'If both cropAspectRatio and initialCropAspectRatio are provided, they must be equal.',
+       );
 
   @override
-  Widget build(BuildContext context) => Text(
-        config.ezL10n.dsNoWeb,
-        style: config.bodyStyle,
-        textAlign: TextAlign.center,
-      );
+  Widget build(BuildContext context) =>
+      Text(config.ezL10n.dsNoWeb, style: config.bodyStyle, textAlign: TextAlign.center);
 }

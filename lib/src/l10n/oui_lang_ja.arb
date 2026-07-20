@@ -1,0 +1,313 @@
+{
+  "@@locale": "ja",
+
+  "gApply": "適用",
+  "gApplyChanges": "変更を適用",
+  "gContinue": "続行",
+  "gOpen": "開く",
+  "gOpenLink": "リンクを開く",
+  "gSkip": "スキップ",
+  "gSuccess": "成功",
+  "gSuccessExl": "成功しました！",
+  "gYes": "はい",
+
+  "gAnd": "および",
+  "gHelp": "ヘルプ",
+  "gNA": "該当なし",
+  "gNAHint": "該当しません",
+  "gOptional": "任意",
+  "gOptions": "オプション",
+  "gRequired": "必須",
+  "gThe": "その",
+
+  "gBack": "戻る",
+  "gCancel": "キャンセル",
+  "gClose": "閉じる",
+  "gDisabled": "無効",
+  "gError": "エラー",
+  "gFailure": "失敗",
+  "gNo": "いいえ",
+  "gRedo": "やり直す",
+  "gUndo": "元に戻す",
+
+  "gSettings": "設定",
+  "gGlobal": "グローバル",
+  "gColor": "カラー",
+  "gDesign": "デザイン",
+  "gLayout": "レイアウト",
+  "gText": "テキスト",
+
+  "gDark": "ダーク",
+  "gLight": "ライト",
+  "gSystem": "システム",
+
+  "gEditing": "編集中の項目: ",
+  "gEditingHint": "アクティブにして編集",
+  "gDarkTheme": "ダークテーマ",
+  "gLightTheme": "ライトテーマ",
+  "gBothThemes": "両方のテーマ",
+
+  "gLeft": "左",
+  "gRight": "右",
+
+  "gAdvanced": "詳細",
+  "gQuick": "クイック",
+
+  "gDecrease": "減らす",
+  "gIncrease": "増やす",
+  "gMaximum": "最大",
+  "gMinimum": "最小",
+  "gCenterReset": "中央を長押ししてリセット",
+
+  "gLoadingAnim": "読み込み中。YWTのロゴが砂時計のように回転しています。",
+
+  "gPlay": "再生",
+  "gPause": "一時停止",
+  "gReplay": "もう一度再生",
+  "gMute": "ミュート",
+  "gUnMute": "ミュート解除",
+  "gPlaybackSpeed": "再生速度",
+  "gFBF": "コマ送り",
+  "gCaptions": "字幕 / キャプション",
+  "gCaptionsHint": "長押しでフォントを変更",
+  "gFullscreen": "全画面表示",
+
+  "gMachineTranslated": "機械翻訳",
+
+  "gUpdates": "利用可能なアップデートがあります",
+  "gHardRefresh": "ページのハードリフレッシュを行ってください...\nCtrl + Shift + R",
+  "gHardRefreshMac": "ページのハードリフレッシュを行ってください...\nCommand + Shift + R",
+  "gHardRefreshMobile": "ブラウザのメニューからページを更新してください。",
+
+  "gEnterURL": "URLを入力",
+  "gValidURL": "有効なURLを入力してください",
+
+  "g404Wonder": "さまよう者すべてが迷うわけではない。",
+  "g404": "しかし、この場合は異なります：404 ページが見つかりません。",
+  "g404Note": "注: Flutter webは次のようなハッシュルーティングを使用します...\nhttps://www.example.com/#/destination",
+
+  "gOpenSource": "オープンソース",
+  "gOpenYWT": "YWT LLCへのリンクを開く",
+  "gOpenUISourceHint": "OpenUIのGitHubページを開く",
+  "gOpenUIReleases": "Open UIのリリースぺージを開く",
+
+  "gSupportEmail": "サポートメール",
+  "gClipboard": "{thing} がクリップボードにコピーされました。",
+  
+  "gAttention": "注意",
+  "gCurrently": "現在:",
+  "gSetToValue": "{name} は {value} に設定されています",
+  "gRemove": "削除",
+  "gReset": "リセット",
+  "gResetTo": "リセット先:",
+  "gResetValue": "{name} をリセットしますか？",
+  "gResetValueTo": "{name} を {value} にリセット",
+  "gResetAll": "すべてリセット",
+  "gUndoWarn1": "自動で元に戻すことはできません。\n",
+  "gSave": "保存",
+  "gSaveHint": "アクティブにしてJSON設定ファイルを保存します。",
+  "gSwitchHint": "スイッチを切り替える",
+  "gUndoWarn2": " 現在の設定を保存して、後で手動で復元できるようにしてください。",
+  "gValue": "値",
+
+  "gSource": "ソース:",
+  "gCreator": "作成者",
+  "gMadeBy": "制作",
+  "gYou": "あなたによる設定",
+
+
+
+  "ssNavHint": "設定ページを開く",
+  "ssHaveFun": "お楽しみください！",
+
+  "ssDominantHand": "利き手",
+  "ssThemeMode": "テーマモード",
+  
+  "ssLanguage": "言語",
+  "ssLangHint": "アクティブにしてアプリの言語を変更します",
+
+  "ssUpdateDark": "ダークテーマを更新",
+  "ssUpdateLight": "ライトテーマを更新",
+  "ssUpdateBoth": "両方のテーマモードを更新",
+
+  "ssLoadPreset": "プリセットを読み込む",
+  "ssLoadPresetHint": "アクティブにしてプリセットを表示します",
+  "ssDewIt": "両方更新/自動確認",
+  "ssBigButtons": "大きなボタン",
+  "ssHighVisibility": "高視認性",
+  "ssChalkboard": "黒板",
+  "ssNebula": "星雲",
+  "ssWallHoles": "壁の穴",
+
+  "ssDarkOnly": "これはダークテーマのプリセットです。\nテーマモードをダークに設定し、そのテーマを更新します。\n\n続行しますか？",
+  "ssLightOnly": "これはライトテーマのプリセットです。\nテーマモードをライトに設定し、そのテーマを更新します。\n\n続行しますか？",
+  "ssApplied": "{config} が適用されました。",
+  "ssTryMe": "お試し",
+
+  "ssRandom": "ランダム化",
+  "ssRandomize": "{themeType}テーマをランダム化しますか？",
+
+  "ssConfigTip": "設定の保存/読み込み",
+  "ssSaveConfig": "設定を保存",
+  "ssConfigSaved": "設定が {path} に保存されました",
+  "ssWrongConfigExt": "ファイルは次の形式で保存されませんでした: ",
+  "ssLoadConfig": "設定を読み込む",
+
+  "ssResetAll": "すべての設定をリセットしますか？",
+  "ssResetAppearance": "すべての外観設定をリセットしますか？",
+  "ssResetBoth": "両方のテーマモードをリセット",
+
+
+
+  "csPageTitle": "カラー設定",
+
+  "csSchemeBase": "画像からスキーム\nを作成",
+  "csFromImage": "画像からカラースキームが生成されます。",
+
+  "csMonoChrome": "モノクロスキームを使用",
+  "csHighContrast": "ハイコントラストスキームを使用",
+
+  "csPrimary": "プライマリ",
+  "csPrimaryContainer": "プライマリ\nアウトライン",
+  "csSecondary": "セカンダリ",
+  "csSecondaryContainer": "セカンダリ\nアウトライン",
+  "csTertiary": "ターシャリ",
+  "csTertiaryContainer": "ターシャリ\nアウトライン",
+  "csError": "エラー",
+  "csErrorContainer": "エラー\nアウトライン",
+  "csOutline": "ヒント\nテキスト",
+  "csOutlineVariant": "ヒント\nアウトライン",
+  "csSurface": "ボタン\n背景",
+  "csSurfaceDim": "アラート && アプリバー\n背景",
+  "csSurfaceContainer": "ページ && モーダル\n背景",
+  "csOnSurface": "テキスト",
+  "csScrim": "モーダル\nカバー",
+  "csShadow": "シャドウ",
+  "csSurfaceTint": "サーフェス\nティント",
+
+  "csPickerTitle": "色を選択",
+  "csPickerHint": "カラーピッカーを開きます。長押しでその他のオプションを表示します。",
+  "csRecommended": "推奨コントラストを使用しますか？",
+  "csUseCustom": "カスタムを使用",
+  "csCurrVal": "現在のカラー値:",
+
+  "csReset": "{themeType}カラーをリセットしますか？",
+  "csColorScheme": "カラースキーム",
+
+
+
+  "dsPageTitle": "デザイン設定",
+
+  "dsButton": "ボタン",
+  "dsPage": "ページ",
+
+  "dsNone": "なし",
+  "dsSystem": "システム",
+
+  "dsPadding": "パディング",
+
+  "dsStyle": "スタイル",
+  "dsBorderWidth": "ボーダー幅",
+  "dsPill": "ピル",
+  "dsRectangle": "長方形",
+  "dsRoundRectangle": "角丸長方形",
+  "dsLeftGram": "左平行四辺形",
+  "dsRightGram": "右平行四辺形",
+  "dsGem": "宝石",
+  "dsJewel": "ジュエル",
+
+  "dsAlwaysUnderline": "リンクに常に下線を引く",
+  "dsShowBack": "戻るボタンを表示",
+
+  "dsMargin": "マージン",
+  "dsSpacing": "間隔",
+
+  "dsPageTransition": "ページ遷移",
+  "dsTurnX": "水平回転",
+  "dsTurnY": "垂直回転",
+  "dsRotate": "回転",
+  "dsSlideX": "水平スライド",
+  "dsSlideY": "垂直スライド",
+  "dsZoom": "ズーム",
+  "dsFadeTransition": "フェード遷移",  
+
+  "dsAnimStyle": "アニメーションスタイル",
+  "dsPlay": "アニメーションを再生",
+  "dsMilliseconds": "ミリ秒",
+  "dsCurve": "カーブ",
+  "dsBounce": "バウンス",
+  "dsEase": "イーズ",
+  "dsElastic": "エラスティック",
+  "dsLinear": "リニア",
+
+  "dsBackgroundImg": "背景画像",
+  "dsImgSettingHint": "{title} 画像を更新",
+  "dsReFit": "リフィット",
+  "dsFromFile": "ファイルから",
+  "dsFromCamera": "カメラから",
+  "dsFromNetwork": "URLから",
+  "dsSolidColor": "単色",
+  "dsResetIt": "リセットする",
+  "dsClearIt": "クリアする",
+  "dsUseForColors": "この画像を使用してアプリのカラーを更新する",
+
+  "dsImgGetFailed": "画像の取得に失敗しました",
+  "dsImgSetFailed": "画像の更新に失敗しました",
+  "dsImgPermission": "一部のサイトでは、他者による画像へのアクセスが許可されていません。\n別のホストの画像を試してください。",
+
+  "dsUseFull": "画像全体を使用しますか？",
+  "dsFit": "どのようにフィットさせますか？",
+
+  "dsCrop": "切り抜き",
+  "dsNoWeb": "Webでは画像編集はサポートされていません",
+  "dsRotateLeft": "左に回転",
+  "dsRotateRight": "右に回転",
+
+  "dsShowScroll": "スクロールバーを表示",
+
+  "dsResetButton": "{themeType}ボタンのデザインをリセットしますか？",
+  "dsResetPage": "{themeType}ページのデザインをリセットしますか？",
+
+
+
+  "tsPageTitle": "テキスト設定",
+
+  "tsBatchOverride": "すでに詳細設定で細かな「{setting}」の変更が行われています。\n\nそれらの変更を上書きして一括更新を適用してもよろしいですか？",
+
+  "tsTextBackground": "テキスト背景の不透明度",
+  "tsIconSize": "アイコンサイズ",
+
+  "tsLinkHint": "アクティブにして {style} を編集",
+
+  "tsDisplay": "ディスプレイ",
+  "tsHeadline": "見出し",
+  "tsTitle": "タイトル",
+  "tsBody": "本文",
+  "tsLabel": "ラベル",
+
+  "tsFontFamily": "フォントファミリー",
+  "tsFontSize": "フォントサイズ",
+  "tsBold": "太字",
+  "tsItalic": "斜体",
+  "tsUnderline": "下線",
+  "tsLetterSpacing": "文字間隔",
+  "tsWordSpacing": "単語間隔",
+  "tsLineHeight": "行の高さ",
+
+  "tsDisplayP1": "この",
+  "tsDisplayLink": "ディスプレイ",
+  "tsDisplayP2": "は見やすいですか？",
+  "tsHeadlineP1": "これらの",
+  "tsHeadlineLink": "見出し",
+  "tsHeadlineP2": "は...",
+  "tsTitleP1": "次の",
+  "tsTitleLink": "タイトルと区別できますか？",
+  "tsBodyP1": "では、",
+  "tsBodyLink": "本文",
+  "tsBodyP2": "はどうですか？ 読みやすいですか？",
+  "tsLabelP1": "そして",
+  "tsLabelLink": "ラベル",
+  "tsLabelP2": "についてはどうでしょう？ 大きすぎず、小さすぎませんか？",
+
+  "tsReset": "{themeType}テキストのスタイルをリセットしますか？"
+}

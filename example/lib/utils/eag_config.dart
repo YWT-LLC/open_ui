@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -19,7 +19,7 @@ const String l10nConfigKey = 'l10nConfig';
 const String analysisOptionsKey = 'analysisOptions';
 const String vsCodeConfigKey = 'vsCodeConfig';
 
-/// JSON-serializable configuration for an Empathetech app
+/// JSON-serializable configuration for an Open UI app
 class EAGConfig {
   final String appName;
   final String publisherName;

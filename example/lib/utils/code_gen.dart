@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -7,11 +7,11 @@ import '../utils/export.dart';
 
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 //* Consts *//
 
-const String openUIProdPage = 'https://www.empathetech.net/#/products/open-ui';
+const String openUIProdPage = 'https://www.ywt.llc/#/products/open-ui';
 
 // Defaults taken from...
 // https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization#configuring-the-l10n-yaml-file
@@ -63,15 +63,13 @@ Future<void> genREADME({
   try {
     await File('$dir/README.md').writeAsString('''# $appName
 
-An empathetic Flutter project.
-
 ## <br>Getting Started
 
 Some helpful documentation if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab) (Flutter)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook) (Flutter)
-- [EFUI: Digital accessibility made Ez](https://github.com/Empathetech-LLC/empathetech_flutter_ui) (Empathetech)
+- [Open UI: Digital accessibility made Ez](https://github.com/YWT-LLC/open_ui) (YWT)
 
 And videos:
 
@@ -101,18 +99,18 @@ Some (free) things that will make your life easier...
 
 Thanks for using Open UI! We hope you find it helpful.
 
-All that we ask is that you leave the credits/acknowledgements to Empathetech LLC in the code.
+All that we ask is that you leave the credits/acknowledgements to YWT in the code.
 
 That, and/or donate via one of the many options we provide.
 
 ### <br>Building with user customization in mind
 
-As your app grows, use [EFUI](https://github.com/Empathetech-LLC/empathetech_flutter_ui) to keep things Ez
+As your app grows, use [Open UI](https://github.com/YWT-LLC/open_ui) to keep things Ez
 
-* [Responsive design](https://github.com/Empathetech-LLC/empathetech_flutter_ui/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
-* [Screen reader support](https://github.com/Empathetech-LLC/empathetech_flutter_ui/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
-* [User customization](https://github.com/Empathetech-LLC/empathetech_flutter_ui/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
-* [Helpers](https://github.com/Empathetech-LLC/empathetech_flutter_ui/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
+* [Responsive design](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
+* [Screen reader support](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
+* [User customization](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
+* [Helpers](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
 
 ### <br>Localization
 
@@ -128,7 +126,7 @@ to generate the new aliases.
 
 $appName began with [Open UI]($openUIProdPage)'s app generation service.
 
-It is free and open source, maintained by [Empathetech LLC](https://www.empathetech.net/).
+It is free and open source, maintained by [YWT](https://www.ywt.llc/).
 
 <br>**P.S.** `Getting Started` and `Maintaining Momentum` are for ${config.publisherName}, we recommend (re)moving them if this project is going to be made public.
 ''');
@@ -223,7 +221,7 @@ dependencies:
   shared_preferences: ^2.5.5
 
   # Community
-  empathetech_flutter_ui: ^12.1.0
+  open_ui: ^12.1.0
   provider: ^6.1.5+1
 
 dev_dependencies:
@@ -282,7 +280,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 void main() async {
   // Configure the app //
@@ -296,7 +294,7 @@ void main() async {
     assetPaths: <String>{},
     orientations: DeviceOrientation.values,
     localeFallback: americanEnglish,
-    l10nFallback: await EFUILang.delegate.load(americanEnglish),
+    l10nFallback: await OUILang.delegate.load(americanEnglish),
     preferences: await SharedPreferencesWithCache.create(
       cacheOptions: SharedPreferencesWithCacheOptions(
         allowList: allEZConfigKeys.keys.toSet(),
@@ -307,23 +305,23 @@ void main() async {
 
   // Run the app //
   
-  final (Locale storedLocale, EFUILang storedEFUILang) = await ezStoredL10n();
+  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
 
   runApp($classCaseAppName(
     storedLocale,
-    storedEFUILang,
+    storedOUILang,
     await $l10nClass.delegate.load(storedLocale),
   ));
 }
 
 class $classCaseAppName extends StatelessWidget {
   final Locale storedLocale;
-  final EFUILang storedEFUILang;
+  final OUILang storedOUILang;
   final $l10nClass storedLang;
   
   const $classCaseAppName(
     this.storedLocale,
-    this.storedEFUILang,
+    this.storedOUILang,
     this.storedLang, {
     super.key,
   });
@@ -333,7 +331,7 @@ class $classCaseAppName extends StatelessWidget {
       localizationsDelegates: ezLocalizationsDelegates(Lang.localizationsDelegates),
       supportedLocales: $l10nClass.supportedLocales,
       locale: storedLocale,
-      el10n: storedEFUILang,
+      el10n: storedOUILang,
       appCache: ${classCaseAppName}Cache(storedLocale, storedLang),
       routerConfig: GoRouter(
         navigatorKey: ezRootNav,
@@ -409,7 +407,7 @@ class $classCaseAppName extends StatelessWidget {
     // write consts
     await File('$dir/lib/utils/consts.dart').writeAsString("""$copyright
 
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 /// $titleCaseAppName
 const String appName = '$titleCaseAppName';
@@ -427,7 +425,7 @@ const Map<String, Object> ${camelCaseAppName}Config = <String, Object>${configSt
 import './export.dart';
 
 import 'package:flutter/material.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class ${classCaseAppName}Cache extends EzAppCache {
   Locale _locale;
@@ -469,7 +467,7 @@ export '../l10n/${ezClassToSnake(l10nClass)}.dart';
     await File('$dir/lib/widgets/fabulous.dart').writeAsString("""$copyright
 
 import 'package:flutter/material.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class CountFAB extends StatelessWidget {
   /// EzConfig Provider
@@ -509,7 +507,7 @@ import '../screens/export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class SettingsButton extends StatelessWidget {
   /// EzConfig Provider
@@ -530,7 +528,7 @@ class SettingsButton extends StatelessWidget {
       );
 }
 
-class EFUICredits extends StatelessWidget {
+class OUICredits extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
@@ -538,20 +536,20 @@ class EFUICredits extends StatelessWidget {
 
   /// [EzMenuButton] for opening Open UI's product page
   /// Honor system: keep a version of this in your app
-  /// Remove iff appropriate contributions have been made to Empathetech LLC
-  /// https://www.empathetech.net/#/contribute
-  EFUICredits(this.config, {super.key}) : _label = config.isLefty ? config.ezL10n.gMadeBy : config.ezL10n.gCreator;
+  /// Remove iff appropriate contributions have been made to YWT
+  /// https://www.ywt.llc/#/contribute
+  OUICredits(this.config, {super.key}) : _label = config.isLefty ? config.ezL10n.gMadeBy : config.ezL10n.gCreator;
 
   @override
   Widget build(BuildContext context) => Tooltip(
-      message: config.ezL10n.gOpenEmpathetech,
+      message: config.ezL10n.gOpenYWT,
       excludeFromSemantics: true,
       child: EzMenuLink(config,
-        uri: Uri.parse('https://www.empathetech.net/#/products/open-ui'),
+        uri: Uri.parse('https://www.ywt.llc/#/products/open-ui'),
         icon: EzIcon(config, Icons.settings),
         label: _label,
         semanticsLabel:
-            '\${config.isLefty ? '\${config.ezL10n.gSettings} \$_label' : '\$_label \${config.ezL10n.gSettings}'}. \${config.ezL10n.gOpenEmpathetech}',
+            '\${config.isLefty ? '\${config.ezL10n.gSettings} \$_label' : '\$_label \${config.ezL10n.gSettings}'}. \${config.ezL10n.gOpenYWT}',
       ),
     );
 }
@@ -564,7 +562,7 @@ import '../utils/export.dart';
 import './export.dart';
 
 import 'package:flutter/material.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class ${classCaseAppName}Scaffold extends StatelessWidget {
   /// EzConfig Provider
@@ -586,7 +584,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
   /// For [EzCP.backFABs]
   final bool isHome;
 
-  /// Standardized [Scaffold] for all of the EFUI example app's screens
+  /// Standardized [Scaffold] for all of the Open UI example app's screens
   const ${classCaseAppName}Scaffold(this.config, {
     super.key,
     this.title = appName,
@@ -613,7 +611,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         icon: Icon(Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
       ),
       menuChildren: <Widget>[
-        (showSettings) ? SettingsButton(config, parentContext: context) : EFUICredits(config),
+        (showSettings) ? SettingsButton(config, parentContext: context) : OUICredits(config),
       ],
     );
 
@@ -662,7 +660,7 @@ import '../widgets/export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key});
@@ -713,7 +711,7 @@ import '../widgets/export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -781,7 +779,7 @@ import '../../widgets/export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   /// Optionally override the starting position
@@ -933,12 +931,7 @@ Future<void> genL10n({
       : getArbDir(config);
 
   // Make dir
-  await ezCmd(
-    'mkdir -p $arbPath',
-    dir: dir,
-    onFailure: onFailure,
-    readout: readout,
-  );
+  await ezCmd('mkdir -p $arbPath', dir: dir, onFailure: onFailure, readout: readout);
 
   // Make files
   try {
@@ -1064,10 +1057,7 @@ Future<void> genAnalysis({
     onFailure(e.toString());
   }
 
-  ezLog(
-    'Analysis options (lint rules) successfully generated',
-    buffer: readout,
-  );
+  ezLog('Analysis options (lint rules) successfully generated', buffer: readout);
 }
 
 /// Launch config
@@ -1078,12 +1068,7 @@ Future<void> genVSCode({
   required ValueNotifier<String> readout,
 }) async {
   // Make dir
-  await ezCmd(
-    'mkdir -p .vscode',
-    dir: dir,
-    onFailure: onFailure,
-    readout: readout,
-  );
+  await ezCmd('mkdir -p .vscode', dir: dir, onFailure: onFailure, readout: readout);
 
   // Make file
   try {

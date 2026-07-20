@@ -1,0 +1,313 @@
+{
+  "@@locale": "fil",
+
+  "gApply": "Ilapat",
+  "gApplyChanges": "Ilapat ang mga pagbabago",
+  "gContinue": "Magpatuloy",
+  "gOpen": "Buksan",
+  "gOpenLink": "Buksan ang link",
+  "gSkip": "Laktawan",
+  "gSuccess": "Tagumpay",
+  "gSuccessExl": "Tagumpay!",
+  "gYes": "Oo",
+
+  "gAnd": "at",
+  "gHelp": "Tulong",
+  "gNA": "N/A",
+  "gNAHint": "Hindi naaangkop",
+  "gOptional": "opsyonal",
+  "gOptions": "Mga Opsyon",
+  "gRequired": "Kinakailangan",
+  "gThe": "Ang",
+
+  "gBack": "Bumalik",
+  "gCancel": "Kanselahin",
+  "gClose": "Isara",
+  "gDisabled": "Naka-disable",
+  "gError": "Error",
+  "gFailure": "Pagkabigo",
+  "gNo": "Hindi",
+  "gRedo": "I-redo",
+  "gUndo": "I-undo",
+
+  "gSettings": "Mga Setting",
+  "gGlobal": "Pangkalahatan",
+  "gColor": "Kulay",
+  "gDesign": "Disenyo",
+  "gLayout": "Layout",
+  "gText": "Teksto",
+
+  "gDark": "Madilim",
+  "gLight": "Maliwanag",
+  "gSystem": "System",
+
+  "gEditing": "Ine-edit: ",
+  "gEditingHint": "I-activate para i-edit",
+  "gDarkTheme": "Madilim na tema",
+  "gLightTheme": "Maliwanag na tema",
+  "gBothThemes": "Parehong tema",
+
+  "gLeft": "Kaliwa",
+  "gRight": "Kanan",
+
+  "gAdvanced": "Advanced",
+  "gQuick": "Mabilis",
+
+  "gDecrease": "Bawasan",
+  "gIncrease": "Dagdagan",
+  "gMaximum": "Maximum",
+  "gMinimum": "Minimum",
+  "gCenterReset": "Pindutin nang matagal ang gitna para i-reset",
+
+  "gLoadingAnim": "Naglo-load. Ang logo ng YWT ay gumagalaw bilang isang umiikot na hourglass.",
+
+  "gPlay": "I-play",
+  "gPause": "I-pause",
+  "gReplay": "I-replay",
+  "gMute": "I-mute",
+  "gUnMute": "I-unmute",
+  "gPlaybackSpeed": "Bilis ng pag-playback",
+  "gFBF": "Paisa-isang frame",
+  "gCaptions": "Mga subtitle/caption",
+  "gCaptionsHint": "Pindutin nang matagal para sa mga font",
+  "gFullscreen": "Fullscreen",
+
+  "gMachineTranslated": "Isinalin ng makina",
+
+  "gUpdates": "May mga available na update",
+  "gHardRefresh": "Mangyaring i-hard refresh ang page...\nCtrl + Shift + R",
+  "gHardRefreshMac": "Mangyaring i-hard refresh ang page...\nCommand + Shift + R",
+  "gHardRefreshMobile": "Mangyaring i-refresh ang page sa menu ng browser.",
+
+  "gEnterURL": "Ilagay ang URL",
+  "gValidURL": "Mangyaring maglagay ng valid na URL",
+
+  "g404Wonder": "Hindi lahat ng naglalagalag ay nawawala.",
+  "g404": "Pero, sa kasong ito: 404 page not found.",
+  "g404Note": "Tandaan: Gumagamit ang Flutter web ng hash routing, tulad ng...\nhttps://www.example.com/#/destination",
+
+  "gOpenSource": "Open source",
+  "gOpenYWT": "Magbukas ng link sa YWT LLC",
+  "gOpenUISourceHint": "Buksan ang GitHub page para sa Open UI",
+  "gOpenUIReleases": "Buksan ang releases page para sa Open UI",
+
+  "gSupportEmail": "Ang aming support Email",
+  "gClipboard": "Nakopya ang {thing} sa clipboard.",
+  
+  "gAttention": "Atensyon",
+  "gCurrently": "Kasalukuyan:",
+  "gSetToValue": "Ang {name} ay nakatakda sa {value}",
+  "gRemove": "Alisin",
+  "gReset": "I-reset",
+  "gResetTo": "I-reset sa:",
+  "gResetValue": "I-reset ang {name}?",
+  "gResetValueTo": "I-reset ang {name} sa {value}",
+  "gResetAll": "I-reset lahat",
+  "gUndoWarn1": "Hindi awtomatikong maa-undo.\n",
+  "gSave": "I-save",
+  "gSaveHint": "I-activate para i-save ang JSON config file.",
+  "gSwitchHint": "I-flip ang switch",
+  "gUndoWarn2": " ang iyong kasalukuyang config para ma-restore ito nang manual.",
+  "gValue": "Value",
+
+  "gSource": "Pinagmulan:",
+  "gCreator": "Tagalikha ng",
+  "gMadeBy": "Ginawa ni",
+  "gYou": "Itinakda mo",
+
+
+
+  "ssNavHint": "Buksan ang page ng mga setting",
+  "ssHaveFun": "Magsaya!",
+
+  "ssDominantHand": "Dominanteng kamay",
+  "ssThemeMode": "Mode ng tema",
+  
+  "ssLanguage": "Wika",
+  "ssLangHint": "I-activate para baguhin ang wika ng app",
+
+  "ssUpdateDark": "I-update ang madilim na tema",
+  "ssUpdateLight": "I-update ang maliwanag na tema",
+  "ssUpdateBoth": "I-update ang parehong mode ng tema",
+
+  "ssLoadPreset": "I-load ang preset",
+  "ssLoadPresetHint": "I-activate para ipakita ang mga preset",
+  "ssDewIt": "I-update pareho/awtomatikong kumpirmahin",
+  "ssBigButtons": "Malalaking button",
+  "ssHighVisibility": "Mataas na visibility",
+  "ssChalkboard": "Chalkboard",
+  "ssNebula": "Nebula",
+  "ssWallHoles": "Mga butas sa pader",
+
+  "ssDarkOnly": "Ito ay isang preset ng madilim na tema.\nItatakda nito ang mode ng tema sa madilim, at iu-update ang temang iyon.\n\nMagpatuloy?",
+  "ssLightOnly": "Ito ay isang preset ng maliwanag na tema.\nItatakda nito ang mode ng tema sa maliwanag, at iu-update ang temang iyon.\n\nMagpatuloy?",
+  "ssApplied": "Nailapat ang {config}.",
+  "ssTryMe": "Subukan ako",
+
+  "ssRandom": "I-randomize",
+  "ssRandomize": "I-randomize ang {themeType} na tema?",
+
+  "ssConfigTip": "I-save/i-load ang config",
+  "ssSaveConfig": "I-save ang config",
+  "ssConfigSaved": "Ang iyong configuration ay nai-save sa {path}",
+  "ssWrongConfigExt": "Hindi nai-save ang file bilang ",
+  "ssLoadConfig": "I-load ang config",
+
+  "ssResetAll": "I-reset lahat ng mga setting?",
+  "ssResetAppearance": "I-reset lahat ng mga setting ng hitsura?",
+  "ssResetBoth": "I-reset ang parehong mode ng tema",
+
+
+
+  "csPageTitle": "Mga setting ng kulay",
+
+  "csSchemeBase": "Bumuo ng scheme\nmula sa larawan",
+  "csFromImage": "Isang color scheme ang bubuuin mula sa larawan.",
+
+  "csMonoChrome": "Gumamit ng monochrome scheme",
+  "csHighContrast": "Gumamit ng high contrast scheme",
+
+  "csPrimary": "Pangunahin",
+  "csPrimaryContainer": "Pangunahing\noutline",
+  "csSecondary": "Sekundarya",
+  "csSecondaryContainer": "Sekundaryang\noutline",
+  "csTertiary": "Tersiyaryo",
+  "csTertiaryContainer": "Tersiyaryong\noutline",
+  "csError": "Error",
+  "csErrorContainer": "Outline ng\nerror",
+  "csOutline": "Hint\nna teksto",
+  "csOutlineVariant": "Hint\noutline",
+  "csSurface": "Background ng\nbutton",
+  "csSurfaceDim": "Background ng alert\n&& app bar",
+  "csSurfaceContainer": "Background ng page\n&& modal",
+  "csOnSurface": "Teksto",
+  "csScrim": "Cover ng\nmodal",
+  "csShadow": "Anino",
+  "csSurfaceTint": "Tint ng\nsurface",
+
+  "csPickerTitle": "Pumili ng kulay",
+  "csPickerHint": "Magbukas ng tagapili ng kulay. Pindutin nang matagal para sa higit pang mga opsyon.",
+  "csRecommended": "Gamitin ang rekomendasyon sa contrast?",
+  "csUseCustom": "Gamitin ang custom",
+  "csCurrVal": "Kasalukuyang value ng kulay:",
+
+  "csReset": "I-reset ang mga kulay ng {themeType}?",
+  "csColorScheme": "color scheme",
+
+
+
+  "dsPageTitle": "Mga setting ng disenyo",
+
+  "dsButton": "Button",
+  "dsPage": "Page",
+
+  "dsNone": "Wala",
+  "dsSystem": "System",
+
+  "dsPadding": "Padding",
+
+  "dsStyle": "Estilo",
+  "dsBorderWidth": "Lapad ng border",
+  "dsPill": "Pill",
+  "dsRectangle": "Parihaba",
+  "dsRoundRectangle": "Parihabang may bilugan na kanto",
+  "dsLeftGram": "Left parallel",
+  "dsRightGram": "Right parallel",
+  "dsGem": "Gem",
+  "dsJewel": "Jewel",
+
+  "dsAlwaysUnderline": "Palaging salungguhitan ang mga link",
+  "dsShowBack": "Ipakita ang back button",
+
+  "dsMargin": "Margin",
+  "dsSpacing": "Spacing",
+
+  "dsPageTransition": "Paglipat ng page",
+  "dsTurnX": "Pahalang na pag-ikot",
+  "dsTurnY": "Patayong pag-ikot",
+  "dsRotate": "I-rotate",
+  "dsSlideX": "Pahalang na pag-slide",
+  "dsSlideY": "Patayong pag-slide",
+  "dsZoom": "I-zoom",
+  "dsFadeTransition": "Fade na paglipat",  
+
+  "dsAnimStyle": "Estilo ng animation",
+  "dsPlay": "I-play ang animation",
+  "dsMilliseconds": "Millisecond",
+  "dsCurve": "Curve",
+  "dsBounce": "Bounce",
+  "dsEase": "Ease",
+  "dsElastic": "Elastic",
+  "dsLinear": "Linear",
+
+  "dsBackgroundImg": "Larawan sa background",
+  "dsImgSettingHint": "I-update ang larawan sa {title}",
+  "dsReFit": "I-fit muli",
+  "dsFromFile": "Mula sa file",
+  "dsFromCamera": "Mula sa camera",
+  "dsFromNetwork": "Mula sa URL",
+  "dsSolidColor": "Solid na kulay",
+  "dsResetIt": "I-reset ito",
+  "dsClearIt": "I-clear ito",
+  "dsUseForColors": "I-update ang mga kulay ng app gamit ang larawang ito",
+
+  "dsImgGetFailed": "Bigo na makuha ang larawan",
+  "dsImgSetFailed": "Bigo na i-update ang larawan",
+  "dsImgPermission": "Hindi pinapayagan ng ilang site na ma-access ng iba ang kanilang mga larawan.\nSubukan ang isang larawan mula sa ibang host.",
+
+  "dsUseFull": "Gamitin ang buong larawan?",
+  "dsFit": "Paano ito dapat magkasya?",
+
+  "dsCrop": "I-crop",
+  "dsNoWeb": "Hindi suportado ang pag-edit ng larawan sa web",
+  "dsRotateLeft": "I-rotate pakaliwa",
+  "dsRotateRight": "I-rotate pakanan",
+
+  "dsShowScroll": "Ipakita ang mga scrollbar",
+
+  "dsResetButton": "I-reset ang disenyo ng button ng {themeType}?",
+  "dsResetPage": "I-reset ang disenyo ng page ng {themeType}?",
+
+
+
+  "tsPageTitle": "Mga setting ng teksto",
+
+  "tsBatchOverride": "Nakagawa ka na ng mga detalyadong pagbabago sa \"{setting}\" sa mga advanced na setting.\n\nSigurado ka bang gusto mong i-override ang mga pagbabagong iyon ng isang batch update?",
+
+  "tsTextBackground": "Opacity ng background ng teksto",
+  "tsIconSize": "Laki ng icon",
+
+  "tsLinkHint": "I-activate para i-edit ang {style}",
+
+  "tsDisplay": "Display",
+  "tsHeadline": "Headline",
+  "tsTitle": "Pamagat",
+  "tsBody": "Katawan",
+  "tsLabel": "Label",
+
+  "tsFontFamily": "Pamilya ng font",
+  "tsFontSize": "Laki ng font",
+  "tsBold": "Bold",
+  "tsItalic": "Italic",
+  "tsUnderline": "Salungguhit",
+  "tsLetterSpacing": "Puwang ng mga titik",
+  "tsWordSpacing": "Puwang ng mga salita",
+  "tsLineHeight": "Taas ng linya",
+
+  "tsDisplayP1": "Maayos ba ang pag-",
+  "tsDisplayLink": "display",
+  "tsDisplayP2": " nito?",
+  "tsHeadlineP1": "Malinaw ba ang mga ",
+  "tsHeadlineLink": "headline",
+  "tsHeadlineP2": "...",
+  "tsTitleP1": "mula sa mga ",
+  "tsTitleLink": "pamagat?",
+  "tsBodyP1": "Paano naman ",
+  "tsBodyLink": "ang katawan?",
+  "tsBodyP2": " Madali ba itong basahin?",
+  "tsLabelP1": "At ",
+  "tsLabelLink": "ang mga label?",
+  "tsLabelP2": " Hindi masyadong malaki, hindi masyadong maliit?",
+
+  "tsReset": "I-reset ang mga estilo ng teksto ng {themeType}?"
+}

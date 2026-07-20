@@ -1,0 +1,313 @@
+{
+  "@@locale": "es",
+
+  "gApply": "Aplicar",
+  "gApplyChanges": "Aplicar cambios",
+  "gContinue": "Continuar",
+  "gOpen": "Abrir",
+  "gOpenLink": "Abrir enlace",
+  "gSkip": "Saltar",
+  "gSuccess": "Éxito",
+  "gSuccessExl": "¡Éxito!",
+  "gYes": "Sí",
+
+  "gAnd": "y",
+  "gHelp": "Ayuda",
+  "gNA": "N/D",
+  "gNAHint": "No disponible",
+  "gOptional": "opcional",
+  "gOptions": "Opciones",
+  "gRequired": "Requerido",
+  "gThe": "El",
+
+  "gBack": "Atrás",
+  "gCancel": "Cancelar",
+  "gClose": "Cerrar",
+  "gDisabled": "Deshabilitado",
+  "gError": "Error",
+  "gFailure": "Fracaso",
+  "gNo": "No",
+  "gRedo": "Rehacer",
+  "gUndo": "Deshacer",
+
+  "gSettings": "Ajustes",
+  "gGlobal": "Global",
+  "gColor": "Color",
+  "gDesign": "Diseño",
+  "gLayout": "Esquema",
+  "gText": "Texto",
+
+  "gDark": "Oscuro",
+  "gLight": "Claro",
+  "gSystem": "Sistema",
+
+  "gEditing": "Editando: ",
+  "gEditingHint": "Activar para editar",
+  "gDarkTheme": "Tema oscuro",
+  "gLightTheme": "Tema claro",
+  "gBothThemes": "Ambos temas",
+
+  "gLeft": "Izquierda",
+  "gRight": "Derecha",
+
+  "gAdvanced": "Avanzado",
+  "gQuick": "Rápido",
+
+  "gDecrease": "Disminuir",
+  "gIncrease": "Aumentar",
+  "gMaximum": "Máximo",
+  "gMinimum": "Mínimo",
+  "gCenterReset": "Mantén el centro para restablecer",
+
+  "gLoadingAnim": "Cargando. El logotipo empático animado como un reloj de arena giratorio.",
+
+  "gPlay": "Reproducir",
+  "gPause": "Pausa",
+  "gReplay": "Repetir",
+  "gMute": "Silenciar",
+  "gUnMute": "Desactivar silencio",
+  "gPlaybackSpeed": "Velocidad de reproducción",
+  "gFBF": "Fotograma a fotograma",
+  "gCaptions": "Subtítulos/captions",
+  "gCaptionsHint": "Mantén pulsado para fuentes",
+  "gFullscreen": "Pantalla completa",
+
+  "gMachineTranslated": "Traducción automática",
+
+  "gUpdates": "Actualizaciones disponibles",
+  "gHardRefresh": "Por favor, actualice la página...\nCtrl + Shift + R",
+  "gHardRefreshMac": "Por favor, actualice la página...\nCommand + Shift + R",
+  "gHardRefreshMobile": "Actualice la página en el menú del navegador.",
+  
+  "gEnterURL": "Inserta el link",
+  "gValidURL": "Por favor, introduzca una URL válida",
+
+  "g404Wonder": "No todos los que deambulan están perdidos.",
+  "g404": "Pero, en este caso: 404 página no encontrada.",
+  "g404Note": "Nota: Flutter web utiliza enrutamiento hash, como...\nhttps://www.example.com/#/settings",
+
+  "gOpenSource": "Código abierto",
+  "gOpenYWT": "Abrir un enlace a YWT LLC",
+  "gOpenUISourceHint": "Abrir la página de GitHub de Open UI",
+  "gOpenUIReleases": "Abrir la página de lanzamientos de Open UI",
+  
+  "gSupportEmail": "Nuestro Email de soporte",
+  "gClipboard": "{thing} ha sido copiado al portapapeles.",
+
+  "gAttention": "Atención",
+  "gCurrently": "Actualmente:",
+  "gSetToValue": "{name} está configurado a {value}",
+  "gRemove": "Quitar",
+  "gReset": "Restablecer",
+  "gResetTo": "Restablecer:",
+  "gResetValue": "¿Restablecer {name}?",
+  "gResetValueTo": "Restablecer {name} a {value}",
+  "gResetAll": "Restablecer todo",
+  "gUndoWarn1": "No se puede deshacer automáticamente.\n",
+  "gSave": "Guarde",
+  "gSaveHint": "Activar para guardar un archivo de configuración JSON.",
+  "gSwitchHint": "Accionar el interruptor",
+  "gUndoWarn2": " su configuración actual para restaurarla manualmente.",
+  "gValue": "Valor",
+
+  "gSource": "Fuente:",
+  "gCreator": "Creador de",
+  "gMadeBy": "Hecho por",
+  "gYou": "Configurado por ti",
+  
+
+
+  "ssNavHint": "Abrir la página de configuración",
+  "ssHaveFun": "¡Diviértete!",
+
+  "ssDominantHand": "Mano preferente",
+  "ssThemeMode": "Modo del tema",
+  
+  "ssLanguage": "Idioma",
+  "ssLangHint": "Activar para cambiar el idioma de la aplicación",
+
+  "ssUpdateDark": "Actualizar tema oscuro",
+  "ssUpdateLight": "Actualizar tema claro",
+  "ssUpdateBoth": "Actualizar ambos modos de tema",
+
+  "ssLoadPreset": "Cargar preajuste",
+  "ssLoadPresetHint": "Activar para mostrar ajustes preestablecidos",
+  "ssDewIt": "Actualizar ambos/confirmación automática",
+  "ssBigButtons": "Botones grandes",
+  "ssHighVisibility": "Alta visibilidad",
+  "ssChalkboard": "Pizarra",
+  "ssNebula": "Nebulosa",
+  "ssWallHoles": "Agujeros en la pared",
+
+  "ssDarkOnly": "Este es un preajuste de tema oscuro.\nCambiará el modo del tema a oscuro y actualizará ese tema.\n\n¿Continuar?",
+  "ssLightOnly": "Este es un preajuste de tema claro.\nCambiará el modo del tema a claro y actualizará ese tema.\n\n¿Continuar?",
+  "ssApplied": "{config} aplicado.",
+  "ssTryMe": "Pruébame",
+
+  "ssRandom": "Randomiser",
+  "ssRandomize": "Thème {themeType} aléatoire ?",
+
+  "ssConfigTip": "Guardar/cargar configuración",
+  "ssSaveConfig": "Guardar configuración",
+  "ssConfigSaved": "Su configuración se ha guardado en {path}",
+  "ssWrongConfigExt": "El archivo no se guardó como ",
+  "ssLoadConfig": "Cargar configuración",
+
+  "ssResetAll": "¿Restablecer todas las configuraciones?",
+  "ssResetAppearance": "¿Restablecer todos los ajustes de apariencia?",
+  "ssResetBoth": "Restablecer ambos modos de tema",
+
+
+
+  "csPageTitle": "Configuración de color",
+
+  "csSchemeBase": "Crear tema\nusando imagen",
+  "csFromImage": "Se generará un esquema de color a partir de la imagen.",
+
+  "csMonoChrome": "Usar esquema monocromático",
+  "csHighContrast": "Usar esquema de alto contraste",
+
+  "csPrimary": "Principal",
+  "csPrimaryContainer": "Esquema\nprincipal",
+  "csSecondary": "Secundario",
+  "csSecondaryContainer": "Esquema\nsecundario",
+  "csTertiary": "Terciario",
+  "csTertiaryContainer": "Esquema\nterciario",
+  "csError": "Error",
+  "csErrorContainer": "Esquema de\nerror",
+  "csOutline": "Texto de\nsugerencia",
+  "csOutlineVariant": "Esquema de\nsugerencia",
+  "csSurface": "Fondo de\nbotón",
+  "csSurfaceDim": "Fondo de\nalerta && app bar",
+  "csSurfaceContainer": "Fondo de\npágina && modal",
+  "csOnSurface": "Texto",
+  "csScrim": "Cubierta\nmodal",
+  "csShadow": "Sombra",
+  "csSurfaceTint": "Tinte de\nsuperficie",
+
+  "csPickerTitle": "Selecciona un color",
+  "csPickerHint": "Abre un selector de color. Mantén pulsado para ver más opciones.",
+  "csRecommended": "¿Usar contraste recomendado?",
+  "csUseCustom": "Usar personalizado",
+  "csCurrVal": "Valor de color actual:",
+  
+  "csReset": "Restablecer los colores de {themeType}?",
+  "csColorScheme": "esquema de color",
+
+
+
+  "dsPageTitle": "Configuración de diseño",
+
+  "dsButton": "Botón",
+  "dsPage": "Página",
+
+  "dsNone": "Ninguna",
+  "dsSystem": "Sistema",
+
+  "dsPadding": "Acolchado",
+
+  "dsStyle": "Estilo",
+  "dsBorderWidth": "Ancho del borde",
+  "dsPill": "Píldora",
+  "dsRectangle": "Rectángulo",
+  "dsRoundRectangle": "Rectángulo redondeado",
+  "dsLeftGram": "Paralelo izquierdo",
+  "dsRightGram": "Paralelo derecho",
+  "dsGem": "Gema",
+  "dsJewel": "Joya",
+
+  "dsAlwaysUnderline": "Subraya siempre los enlaces",
+  "dsShowBack": "Mostrar botón de retroceso",
+  
+  "dsMargin": "Margen",
+  "dsSpacing": "Espaciado",
+
+  "dsPageTransition": "Transición de página",
+  "dsTurnX": "Giro horizontal",
+  "dsTurnY": "Giro vertical",
+  "dsRotate": "Girar",
+  "dsSlideX": "Diapositiva horizontal",
+  "dsSlideY": "Diapositiva vertical",
+  "dsZoom": "Zoom",
+  "dsFadeTransition": "Transición de desvanecimiento",
+
+  "dsAnimStyle": "Estilo de la animación",
+  "dsPlay": "Reproducir animación",
+  "dsMilliseconds": "Milisegundos",
+  "dsCurve": "Curva",
+  "dsBounce": "Rebotar",
+  "dsEase": "Aliviar",
+  "dsElastic": "Elástico",
+  "dsLinear": "Lineal",
+
+  "dsBackgroundImg": "Imagen de fondo",
+  "dsImgSettingHint": "Actualizar la imagen {title}",
+  "dsReFit": "Reajustar",
+  "dsFromFile": "Usando un archivo",
+  "dsFromCamera": "Usando la cámara",
+  "dsFromNetwork": "Usando un link",
+  "dsSolidColor": "Color sólido",
+  "dsResetIt": "Restablecer",
+  "dsClearIt": "Borrar",
+  "dsUseForColors": "Actualiza los colores de la app usando esta imagen",
+
+  "dsImgGetFailed": "Error al intentar obtener la imagen",
+  "dsImgSetFailed": "Error al intentar actualizar la imagen",
+  "dsImgPermission": "Algunas webs restringen el acceso a sus imágenes.\nIntenta usar una imagen de otra página.",
+
+  "dsUseFull": "¿Usar la imagen completa?",
+  "dsFit": "¿Cómo debe quedar?",
+
+  "dsCrop": "Recortar",
+  "dsNoWeb": "La edición de imágenes no es compatible en la web",
+  "dsRotateLeft": "Girar a la izquierda",
+  "dsRotateRight": "Girar a la derecha",
+
+  "dsShowScroll": "Mostrar barras de desplazamiento",
+
+  "dsResetButton": "¿Restablecer el diseño del botón del {themeType}?",
+  "dsResetPage": "¿Restablecer el diseño de la página del {themeType}?",
+
+
+
+  "tsPageTitle": "Configuración del texto",
+
+  "tsBatchOverride": "Ya has realizado cambios de \"{setting}\" granulares en la configuración avanzada.\n\n¿Seguro que quieres anular esos cambios con una actualización por lotes?",
+
+  "tsTextBackground": "Opacidad del fondo del texto",
+  "tsIconSize": "Tamaño del icono",
+
+  "tsLinkHint": "Activar para editar {style}",
+
+  "tsDisplay": "Despliegue",
+  "tsHeadline": "Encabezado",
+  "tsTitle": "Título",
+  "tsBody": "Cuerpo",
+  "tsLabel": "Etiqueta",
+
+  "tsFontFamily": "Familia de fuente",
+  "tsFontSize": "Tamaño de fuente",
+  "tsBold": "Negrita",
+  "tsItalic": "Cursiva",
+  "tsUnderline": "Subrayado",
+  "tsLetterSpacing": "Espaciado entre letras",
+  "tsWordSpacing": "Espaciado entre palabras",
+  "tsLineHeight": "Altura de línea",
+
+  "tsDisplayP1": "¿Se ",
+  "tsDisplayLink": "despliegue",
+  "tsDisplayP2": " bien esto?",
+  "tsHeadlineP1": "¿Se diferencian los ",
+  "tsHeadlineLink": "encabezados",
+  "tsHeadlineP2": "...",
+  "tsTitleP1": "de los ",
+  "tsTitleLink": "títulos?",
+  "tsBodyP1": "¿Y ",
+  "tsBodyLink": "el cuerpo?",
+  "tsBodyP2": " ¿Se puede leer bien?",
+  "tsLabelP1": "¿Y ",
+  "tsLabelLink": "las etiquetas?",
+  "tsLabelP2": " ¿No muy grandes, no muy pequeñas?",
+
+  "tsReset": "¿Restablecer los estilos de texto de {themeType}?"
+}

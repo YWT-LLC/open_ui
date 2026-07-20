@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -93,11 +93,11 @@ double _snackWidth(
     // Undo width
     (showUndo
         ? (config.marginVal +
-            ezTextSize(
-              undoMsg ?? config.ezL10n.gUndo,
-              context: context,
-              style: config.bodyStyle,
-            ).width)
+              ezTextSize(
+                undoMsg ?? config.ezL10n.gUndo,
+                context: context,
+                style: config.bodyStyle,
+              ).width)
         : 0) +
     // Timer width
     (config.marginVal + config.iconSize + config.padding) +

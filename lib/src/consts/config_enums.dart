@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -70,7 +70,7 @@ extension EACConfig on EzAnimationCurve {
         EzAnimationCurve.linear => esLinear,
       };
 
-  String name(EFUILang l10n) => switch (this) {
+  String name(OUILang l10n) => switch (this) {
         EzAnimationCurve.bounce => l10n.dsBounce,
         EzAnimationCurve.ease => l10n.dsEase,
         EzAnimationCurve.elastic => l10n.dsElastic,
@@ -120,15 +120,7 @@ final Map<String?, BoxFit?> boxFitLib = <String?, BoxFit?>{
 
 //* Button shapes *//
 
-enum EzButtonShape {
-  pill,
-  rect,
-  roundRect,
-  leftGram,
-  rightGram,
-  gem,
-  jewel,
-}
+enum EzButtonShape { pill, rect, roundRect, leftGram, rightGram, gem, jewel }
 
 // enum values //
 
@@ -220,7 +212,7 @@ extension EBSConfig on EzButtonShape {
           ),
       };
 
-  String name(EFUILang l10n) => switch (this) {
+  String name(OUILang l10n) => switch (this) {
         EzButtonShape.pill => l10n.dsPill,
         EzButtonShape.rect => l10n.dsRectangle,
         EzButtonShape.roundRect => l10n.dsRoundRectangle,
@@ -256,16 +248,7 @@ extension EBSConfig on EzButtonShape {
 
 //* Page transitions *//
 
-enum EzTransitionType {
-  none,
-  system,
-  turnX,
-  turnY,
-  rotate,
-  slideX,
-  slideY,
-  zoom,
-}
+enum EzTransitionType { none, system, turnX, turnY, rotate, slideX, slideY, zoom }
 
 // EzConfig values //
 
@@ -302,7 +285,7 @@ extension ETTConfig on EzTransitionType {
         EzTransitionType.zoom => esZoom,
       };
 
-  String name(EFUILang l10n) => switch (this) {
+  String name(OUILang l10n) => switch (this) {
         EzTransitionType.none => l10n.dsNone,
         EzTransitionType.system => l10n.dsSystem,
         EzTransitionType.turnX => l10n.dsTurnX,
@@ -322,12 +305,15 @@ extension ETTConfig on EzTransitionType {
                 ? EzCM.platform == TargetPlatform.iOS
                     ? Icons.phone_iphone
                     : Icons.phone_android
-                : Icons.computer),
+                : Icons.computer,
+          ),
         EzTransitionType.turnX => EzIcon(config, Icons.flip),
         EzTransitionType.turnY => EzIcon(config, Icons.u_turn_left),
         EzTransitionType.rotate => EzIcon(config, Icons.rotate_90_degrees_cw),
-        EzTransitionType.slideX => EzIcon(config,
-            config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right),
+        EzTransitionType.slideX => EzIcon(
+            config,
+            config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right,
+          ),
         EzTransitionType.slideY => EzIcon(config, Icons.keyboard_double_arrow_up),
         EzTransitionType.zoom => EzIcon(config, Icons.zoom_in),
       };

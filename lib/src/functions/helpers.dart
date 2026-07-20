@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'dart:io';
 import 'dart:math';
@@ -160,81 +160,76 @@ Future<void> ezColorPicker(
       isDismissible: false,
       showDragHandle: false,
       context: context,
-      builder: (BuildContext mCon) => ezModalScroll(config, children: <Widget>[
-        EzHeader(config),
+      builder: (BuildContext mCon) => ezModalScroll(
+        config,
+        children: <Widget>[
+          EzHeader(config),
 
-        // The magic
-        ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-          child: ColorPicker(
-            color: startColor,
-            padding: EdgeInsets.zero,
-            spacing: config.spacing / 2,
-            runSpacing: config.spacing / 2,
-            columnSpacing: config.spacing,
-            mainAxisSize: MainAxisSize.min,
-            pickersEnabled: const <ColorPickerType, bool>{
-              ColorPickerType.both: false,
-              ColorPickerType.primary: false,
-              ColorPickerType.accent: false,
-              ColorPickerType.bw: false,
-              ColorPickerType.custom: false,
-              ColorPickerType.customSecondary: false,
-              ColorPickerType.wheel: true,
-            },
-            onColorChanged: onColorChange,
-            showRecentColors: true,
-            enableOpacity: true,
-            opacityThumbRadius: min(config.padding, 25.0),
-            opacityTrackHeight: min(config.padding * 2, 50.0),
-            showColorCode: true,
+          // The magic
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+            child: ColorPicker(
+              color: startColor,
+              padding: EdgeInsets.zero,
+              spacing: config.spacing / 2,
+              runSpacing: config.spacing / 2,
+              columnSpacing: config.spacing,
+              mainAxisSize: MainAxisSize.min,
+              pickersEnabled: const <ColorPickerType, bool>{
+                ColorPickerType.both: false,
+                ColorPickerType.primary: false,
+                ColorPickerType.accent: false,
+                ColorPickerType.bw: false,
+                ColorPickerType.custom: false,
+                ColorPickerType.customSecondary: false,
+                ColorPickerType.wheel: true,
+              },
+              onColorChanged: onColorChange,
+              showRecentColors: true,
+              enableOpacity: true,
+              opacityThumbRadius: min(config.padding, 25.0),
+              opacityTrackHeight: min(config.padding * 2, 50.0),
+              showColorCode: true,
+            ),
           ),
-        ),
-        config.margin,
+          config.margin,
 
-        // The choice(s)
-        EzRow(
-          config,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            EzTextIconButton(
-              config,
-              icon: EzIcon(config, Icons.cancel),
-              label: denyMsg ?? config.ezL10n.gCancel,
-              onPressed: () {
-                onDeny();
-                if (mCon.mounted) Navigator.of(mCon).pop();
-              },
-            ),
-            config.rowSpacer,
-            EzTextIconButton(
-              config,
-              icon: EzIcon(config, Icons.check),
-              label: confirmMsg ?? config.ezL10n.gApply,
-              onPressed: () {
-                onConfirm();
-                if (mCon.mounted) Navigator.of(mCon).pop();
-              },
-            ),
-          ],
-        ),
-        config.separator,
-      ]),
+          // The choice(s)
+          EzRow(
+            config,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              EzTextIconButton(
+                config,
+                icon: EzIcon(config, Icons.cancel),
+                label: denyMsg ?? config.ezL10n.gCancel,
+                onPressed: () {
+                  onDeny();
+                  if (mCon.mounted) Navigator.of(mCon).pop();
+                },
+              ),
+              config.rowSpacer,
+              EzTextIconButton(
+                config,
+                icon: EzIcon(config, Icons.check),
+                label: confirmMsg ?? config.ezL10n.gApply,
+                onPressed: () {
+                  onConfirm();
+                  if (mCon.mounted) Navigator.of(mCon).pop();
+                },
+              ),
+            ],
+          ),
+          config.separator,
+        ],
+      ),
     );
 
 /// Returns an appropriate width for a [DropdownMenu]
-double ezDropdownWidth(
-  EzCP config, {
-  required BuildContext context,
-  required String entry,
-}) =>
+double ezDropdownWidth(EzCP config, {required BuildContext context, required String entry}) =>
     2 * config.marginVal +
-    ezTextSize(
-      entry,
-      context: context,
-      style: config.bodyStyle,
-    ).width +
+    ezTextSize(entry, context: context, style: config.bodyStyle).width +
     config.padding +
     max(config.padding + config.iconSize, kMinInteractiveDimension);
 
@@ -257,18 +252,11 @@ Widget ezFlag(EzCP config, {required Locale locale, bool inDistress = false}) {
   final Widget flag = (locale.countryCode == null)
       ? CountryFlag.fromLanguageCode(
           locale.languageCode,
-          theme: ImageTheme(
-            shape: const Circle(),
-            width: flagPadding,
-          ),
+          theme: ImageTheme(shape: const Circle(), width: flagPadding),
         )
       : CountryFlag.fromCountryCode(
           locale.countryCode!,
-          theme: ImageTheme(
-            height: flagPadding,
-            width: flagPadding,
-            shape: const Circle(),
-          ),
+          theme: ImageTheme(height: flagPadding, width: flagPadding, shape: const Circle()),
         );
 
   return inDistress ? Transform.rotate(angle: pi, child: flag) : flag;
@@ -277,8 +265,9 @@ Widget ezFlag(EzCP config, {required Locale locale, bool inDistress = false}) {
 /// Scale Widgets based on IconSize
 /// For Widgets that don't do it automatically, like [Radio] and [Checkbox]
 double ezIconRatio(EzCP config) => max(
-    config.iconSize / EzCM.getDefault(config.isDark ? darkIconSizeKey : lightIconSizeKey),
-    config.padding / EzCM.getDefault(config.isDark ? darkPaddingKey : lightPaddingKey));
+      config.iconSize / EzCM.getDefault(config.isDark ? darkIconSizeKey : lightIconSizeKey),
+      config.padding / EzCM.getDefault(config.isDark ? darkPaddingKey : lightPaddingKey),
+    );
 
 /// Recommended size for an image
 /// Starts with 160.0, chosen by visual inspection
@@ -303,13 +292,14 @@ String ezLocaleName(Locale locale, BuildContext context) {
 
 /// Required if you want to use Haitian Creole (ht)
 Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
-        List<LocalizationsDelegate<dynamic>> local) =>
+  List<LocalizationsDelegate<dynamic>> local,
+) =>
     <LocalizationsDelegate<dynamic>>{
       const LocaleNamesLocalizationsDelegate(),
       CreoleMaterialLocalizations.delegate,
       CreoleCupertinoLocalizations.delegate,
       const CreoleWidgetsLocalizationsDelegate(),
-      ...EFUILang.localizationsDelegates,
+      ...OUILang.localizationsDelegates,
       ...local,
     };
 
@@ -328,10 +318,7 @@ Future<dynamic> ezLogAlert(
     context: context,
     builder: (_) => EzAlertDialog(
       config,
-      title: Text(
-        title ?? config.ezL10n.gAttention,
-        textAlign: TextAlign.center,
-      ),
+      title: Text(title ?? config.ezL10n.gAttention, textAlign: TextAlign.center),
       contents: <Widget>[Text(message, textAlign: TextAlign.center)],
       actions: customActions,
       needsClose: needsClose,
@@ -341,16 +328,18 @@ Future<dynamic> ezLogAlert(
 
 /// Disable screen interaction while [changes] are taking place
 Future<void> ezNoTouch(Future<dynamic> Function() changes) async {
-  unawaited(ezRootNav.currentState!.push(
-    // Open progress layer
-    PageRouteBuilder<Widget>(
-      opaque: false,
-      transitionsBuilder: (_, __, ___, Widget child) => child,
-      transitionDuration: Duration.zero,
-      reverseTransitionDuration: Duration.zero,
-      pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
+  unawaited(
+    ezRootNav.currentState!.push(
+      // Open progress layer
+      PageRouteBuilder<Widget>(
+        opaque: false,
+        transitionsBuilder: (_, __, ___, Widget child) => child,
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+        pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
+      ),
     ),
-  ));
+  );
 
   await changes();
   ezRootNav.currentState!.pop();
@@ -387,8 +376,8 @@ Page<dynamic> ezPageBuilder(
       },
     );
 
-/// Returns the app's current [Locale] and it's corresponding [EFUILang]
-Future<(Locale, EFUILang)> ezStoredL10n() async {
+/// Returns the app's current [Locale] and it's corresponding [OUILang]
+Future<(Locale, OUILang)> ezStoredL10n() async {
   final List<String>? localeData = EzCM.get(appLocaleKey);
   if (localeData == null || localeData.isEmpty) {
     return (EzCM.localeFallback, EzCM.l10nFallback);
@@ -399,9 +388,9 @@ Future<(Locale, EFUILang)> ezStoredL10n() async {
   final Locale locale =
       (countryCode != null) ? Locale(languageCode, countryCode) : Locale(languageCode);
 
-  late final EFUILang el10n;
+  late final OUILang el10n;
   try {
-    el10n = await EFUILang.delegate.load(locale);
+    el10n = await OUILang.delegate.load(locale);
   } catch (_) {
     el10n = EzCM.l10nFallback;
   }
@@ -420,7 +409,7 @@ BoxConstraints ezTextFieldConstraints(BuildContext bc, {double prop = 0.75}) {
   );
 }
 
-/// [EFUILang.gBothThemes], [EFUILang.gDarkTheme], or [EFUILang.gLightTheme]
+/// [OUILang.gBothThemes], [OUILang.gDarkTheme], or [OUILang.gLightTheme]
 /// Based on [EzCM.updateBoth] && [EzCP.isDark]
 String ezThemeString(EzCP config, {required bool bothable}) => ((bothable && EzCM.updateBoth)
         ? (config.locale.languageCode == english.languageCode

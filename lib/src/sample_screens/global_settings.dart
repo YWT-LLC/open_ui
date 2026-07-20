@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -52,7 +52,7 @@ class EzGlobalSettings extends StatelessWidget {
   /// [EzResetButton.dynamicTitle] passthrough
   final String Function()? resetTitle;
 
-  /// Empathetech settings landing page
+  /// Settings landing page
   /// Contains global settings and [EzElevatedIconButton]s that lead to the rest of the settings pages
   /// Recommended to use as a [Scaffold.body]
   const EzGlobalSettings(
@@ -74,37 +74,34 @@ class EzGlobalSettings extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => EzCol(children: <Widget>[
-        config.spacer,
-        EzDominantHandSwitch(config),
-        config.spacer,
-        EzThemeModeSwitch(config),
-        if (!excludeLocaleSetting) ...<Widget>[
+  Widget build(BuildContext context) => EzCol(
+        children: <Widget>[
           config.spacer,
-          EzLocaleSetting(
+          EzDominantHandSwitch(config),
+          config.spacer,
+          EzThemeModeSwitch(config),
+          if (!excludeLocaleSetting) ...<Widget>[
+            config.spacer,
+            EzLocaleSetting(
+              config,
+              skip: skipLocales ?? <Locale>{arabic, english, chinese},
+              inDistress: inDistress,
+            ),
+          ],
+          if (additionalSettings != null) ...additionalSettings!,
+          quickConfigSpacer ?? config.separator,
+          EzQuickConfig(
             config,
-            skip: skipLocales ?? <Locale>{arabic, english, chinese},
-            inDistress: inDistress,
+            extraBig: extraBig,
+            extraVis: extraVis,
+            extraChalk: extraChalk,
+            extraNebula: extraNebula,
+            extraWall: extraWall,
           ),
+          config.spacer,
+          EzConfigRandomizer(config, saveSkip: saveSkip),
+          config.separator,
+          EzResetButton(config, resetSkip: resetSkip, saveSkip: saveSkip, dynamicTitle: resetTitle),
         ],
-        if (additionalSettings != null) ...additionalSettings!,
-        quickConfigSpacer ?? config.separator,
-        EzQuickConfig(
-          config,
-          extraBig: extraBig,
-          extraVis: extraVis,
-          extraChalk: extraChalk,
-          extraNebula: extraNebula,
-          extraWall: extraWall,
-        ),
-        config.spacer,
-        EzConfigRandomizer(config, saveSkip: saveSkip),
-        config.separator,
-        EzResetButton(
-          config,
-          resetSkip: resetSkip,
-          saveSkip: saveSkip,
-          dynamicTitle: resetTitle,
-        ),
-      ]);
+      );
 }

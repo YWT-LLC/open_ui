@@ -1,11 +1,11 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import 'advanced_settings.dart';
 import 'quick_settings.dart';
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +33,7 @@ class EzTextSettings extends StatelessWidget {
   /// Shared for both themes
   final Set<String>? saveSkip;
 
-  /// Empathetech text settings
+  /// Ez to use text settings
   /// Recommended to use as a [Scaffold.body]
   const EzTextSettings(
     this.config, {

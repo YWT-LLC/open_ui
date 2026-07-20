@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -17,34 +17,30 @@ class EzDominantHandSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzScrollView(
-        config,
-        scrollDirection: Axis.horizontal,
-        reverseHands: true,
-        children: <Widget>[
-          // Label
-          EzText(
-            config,
-            text: config.ezL10n.ssDominantHand,
-            textAlign: TextAlign.center,
-          ),
-          config.margin,
+    config,
+    scrollDirection: Axis.horizontal,
+    reverseHands: true,
+    children: <Widget>[
+      // Label
+      EzText(config, text: config.ezL10n.ssDominantHand, textAlign: TextAlign.center),
+      config.margin,
 
-          // Button
-          EzDropdownMenu<bool>(
-            config,
-            widthEntry: config.ezL10n.gRight,
-            dropdownMenuEntries: <DropdownMenuEntry<bool>>[
-              DropdownMenuEntry<bool>(value: false, label: config.ezL10n.gRight),
-              DropdownMenuEntry<bool>(value: true, label: config.ezL10n.gLeft),
-            ],
-            enableSearch: false,
-            initialSelection: config.isLefty,
-            onSelected: (bool? makeLeft) async {
-              if (makeLeft == null || makeLeft == config.isLefty) return;
-              await EzCM.setBool(isLeftyKey, makeLeft);
-              await config.rebuildUI(noECT);
-            },
-          ),
+      // Button
+      EzDropdownMenu<bool>(
+        config,
+        widthEntry: config.ezL10n.gRight,
+        dropdownMenuEntries: <DropdownMenuEntry<bool>>[
+          DropdownMenuEntry<bool>(value: false, label: config.ezL10n.gRight),
+          DropdownMenuEntry<bool>(value: true, label: config.ezL10n.gLeft),
         ],
-      );
+        enableSearch: false,
+        initialSelection: config.isLefty,
+        onSelected: (bool? makeLeft) async {
+          if (makeLeft == null || makeLeft == config.isLefty) return;
+          await EzCM.setBool(isLeftyKey, makeLeft);
+          await config.rebuildUI(noECT);
+        },
+      ),
+    ],
+  );
 }

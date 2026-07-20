@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 
 // Helpers //
 
-/// 404 [EFUILang.gError]
+/// 404 [OUILang.gError]
 String ez404() => ezRootIsMounted
     ? '404 ${Provider.of<EzCP>(ezRootContext, listen: false).ezL10n.gError}'
     : '404';
@@ -37,23 +37,29 @@ bool ezFitCheck(TextStyle? a, TextStyle? b) {
 /// Or another [context] where the [EzTextStyleProvider]s are in present
 bool ezTextRebuildCheck(EzCP config, {required BuildContext context}) {
   return !(ezFitCheck(
-          config.displayStyle, Provider.of<EzDisplayStyleProvider>(context, listen: false).value) &&
-      ezFitCheck(config.headlineStyle,
-          Provider.of<EzHeadlineStyleProvider>(context, listen: false).value) &&
+        config.displayStyle,
+        Provider.of<EzDisplayStyleProvider>(context, listen: false).value,
+      ) &&
       ezFitCheck(
-          config.titleStyle, Provider.of<EzTitleStyleProvider>(context, listen: false).value) &&
+        config.headlineStyle,
+        Provider.of<EzHeadlineStyleProvider>(context, listen: false).value,
+      ) &&
       ezFitCheck(
-          config.bodyStyle, Provider.of<EzBodyStyleProvider>(context, listen: false).value) &&
+        config.titleStyle,
+        Provider.of<EzTitleStyleProvider>(context, listen: false).value,
+      ) &&
       ezFitCheck(
-          config.labelStyle, Provider.of<EzLabelStyleProvider>(context, listen: false).value));
+        config.bodyStyle,
+        Provider.of<EzBodyStyleProvider>(context, listen: false).value,
+      ) &&
+      ezFitCheck(
+        config.labelStyle,
+        Provider.of<EzLabelStyleProvider>(context, listen: false).value,
+      ));
 }
 
 /// Returns the soon-to-be rendered [Size] of [text] via a [TextPainter]
-Size ezTextSize(
-  String text, {
-  required BuildContext context,
-  required TextStyle? style,
-}) {
+Size ezTextSize(String text, {required BuildContext context, required TextStyle? style}) {
   final TextPainter textPainter = TextPainter(
     text: TextSpan(text: text, style: style),
     maxLines: 1,
@@ -71,7 +77,7 @@ void ezWindowNamer(String title) => SystemChrome.setApplicationSwitcherDescripti
         label: title,
         primaryColor: ezRootIsMounted
             ? Provider.of<EzCP>(ezRootContext, listen: false).colors.primary.toARGB32()
-            : empathPurpleHex,
+            : ywtPurpleHex,
       ),
     );
 
@@ -84,10 +90,8 @@ String ezFirstWord(String text) => text.split(RegExp(r'[_\s]+')).first;
 // Converters //
 
 /// snake_case -> camelCase
-String ezSnakeToCamel(String name) => name.replaceAllMapped(
-      RegExp(r'_(\w)'),
-      (Match match) => match.group(1)!.toUpperCase(),
-    );
+String ezSnakeToCamel(String name) =>
+    name.replaceAllMapped(RegExp(r'_(\w)'), (Match match) => match.group(1)!.toUpperCase());
 
 // snake_case -> ClassCase
 String ezSnakeToClass(String name) =>
@@ -95,35 +99,25 @@ String ezSnakeToClass(String name) =>
 
 /// snake_case -> Title Case
 String ezSnakeToTitle(String name) => name
-    .replaceAllMapped(
-      RegExp(r'_(\w)'),
-      (Match match) => ' ${match.group(1)!.toUpperCase()}',
-    )
+    .replaceAllMapped(RegExp(r'_(\w)'), (Match match) => ' ${match.group(1)!.toUpperCase()}')
     .replaceRange(0, 1, name[0].toUpperCase());
 
 /// camelCase -> snake_case
-String ezCamelToSnake(String name) => name.replaceAllMapped(
-      RegExp(r'[A-Z]'),
-      (Match match) => '_${match.group(0)!.toLowerCase()}',
-    );
+String ezCamelToSnake(String name) =>
+    name.replaceAllMapped(RegExp(r'[A-Z]'), (Match match) => '_${match.group(0)!.toLowerCase()}');
 
 /// camelCase -> ClassCase
 String ezCamelToClass(String name) => name.replaceRange(0, 1, name[0].toUpperCase());
 
 /// camelCase -> Title Case
 String ezCamelToTitle(String name) => name
-    .replaceAllMapped(
-      RegExp(r'[A-Z]'),
-      (Match match) => ' ${match.group(0)!}',
-    )
+    .replaceAllMapped(RegExp(r'[A-Z]'), (Match match) => ' ${match.group(0)!}')
     .replaceRange(0, 1, name[0].toUpperCase());
 
 /// ClassCase -> snake_case
-String ezClassToSnake(String name) =>
-    name.replaceRange(0, 1, name[0].toLowerCase()).replaceAllMapped(
-          RegExp(r'[A-Z]'),
-          (Match match) => '_${match.group(0)!.toLowerCase()}',
-        );
+String ezClassToSnake(String name) => name
+    .replaceRange(0, 1, name[0].toLowerCase())
+    .replaceAllMapped(RegExp(r'[A-Z]'), (Match match) => '_${match.group(0)!.toLowerCase()}');
 
 /// ClassCase -> camelCase
 String ezClassToCamel(String name) => name.replaceRange(0, 1, name[0].toLowerCase());
@@ -134,10 +128,7 @@ String ezClassToTitle(String name) =>
 
 /// Title Case -> snake_case
 String ezTitleToSnake(String name) => name
-    .replaceAllMapped(
-      RegExp(r'\s(\w)'),
-      (Match match) => '_${match.group(1)!.toLowerCase()}',
-    )
+    .replaceAllMapped(RegExp(r'\s(\w)'), (Match match) => '_${match.group(1)!.toLowerCase()}')
     .replaceRange(0, 1, name[0].toLowerCase());
 
 /// Title Case -> camelCase

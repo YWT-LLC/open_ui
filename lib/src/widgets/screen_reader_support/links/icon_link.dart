@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
@@ -60,8 +60,10 @@ class EzIconLink extends StatefulWidget {
     this.url,
     required this.hint,
     this.tooltip,
-  }) : assert((onTap == null) != (url == null),
-            'Either onTap or url should be provided, but not both.');
+  }) : assert(
+         (onTap == null) != (url == null),
+         'Either onTap or url should be provided, but not both.',
+       );
 
   @override
   State<EzIconLink> createState() => _EzIconLinkState();
@@ -78,8 +80,11 @@ class _EzIconLinkState extends State<EzIconLink> {
       decorationColor: widget.config.colors.primary,
     );
 
-    void underline(bool addIt) => setState(() => textStyle =
-        textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
+    void underline(bool addIt) => setState(
+      () => textStyle = textStyle?.copyWith(
+        decoration: addIt ? TextDecoration.underline : TextDecoration.none,
+      ),
+    );
 
     // Return the build //
 
@@ -97,11 +102,7 @@ class _EzIconLinkState extends State<EzIconLink> {
                   onFocusChange: (bool hasFocus) => underline(hasFocus),
                   icon: widget.icon,
                   iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
-                  label: Text(
-                    widget.label,
-                    style: textStyle,
-                    textAlign: widget.textAlign,
-                  ),
+                  label: Text(widget.label, style: textStyle, textAlign: widget.textAlign),
                 )
               : Link(
                   uri: widget.url,
@@ -111,11 +112,7 @@ class _EzIconLinkState extends State<EzIconLink> {
                     onFocusChange: (bool hasFocus) => underline(hasFocus),
                     icon: widget.icon,
                     iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
-                    label: Text(
-                      widget.label,
-                      style: textStyle,
-                      textAlign: widget.textAlign,
-                    ),
+                    label: Text(widget.label, style: textStyle, textAlign: widget.textAlign),
                   ),
                 ),
         ),

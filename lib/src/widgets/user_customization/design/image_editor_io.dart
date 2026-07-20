@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'dart:io';
 import 'dart:math';
@@ -44,11 +44,11 @@ class EzImageEditor extends StatefulWidget {
     this.cropAspectRatio,
     this.initialCropAspectRatio,
   }) : assert(
-          cropAspectRatio == null ||
-              initialCropAspectRatio == null ||
-              cropAspectRatio == initialCropAspectRatio,
-          'If both cropAspectRatio and initialCropAspectRatio are provided, they must be equal.',
-        );
+         cropAspectRatio == null ||
+             initialCropAspectRatio == null ||
+             cropAspectRatio == initialCropAspectRatio,
+         'If both cropAspectRatio and initialCropAspectRatio are provided, they must be equal.',
+       );
 
   @override
   State<EzImageEditor> createState() => _EzImageEditorState();
@@ -78,23 +78,24 @@ class _EzImageEditorState extends State<EzImageEditor> {
     required Color color,
     required String name,
     required String tooltip,
-  }) =>
-      Tooltip(
-        message: tooltip,
-        excludeFromSemantics: false,
-        child: ExcludeSemantics(
-          child: EzCol(children: <Widget>[
-            EzIcon(config, icon, color: color),
-            widget.config.margin,
-            EzText(
-              widget.config,
-              text: name,
-              textAlign: TextAlign.center,
-              style: widget.config.labelStyle?.copyWith(color: color),
-            ),
-          ]),
-        ),
-      );
+  }) => Tooltip(
+    message: tooltip,
+    excludeFromSemantics: false,
+    child: ExcludeSemantics(
+      child: EzCol(
+        children: <Widget>[
+          EzIcon(config, icon, color: color),
+          widget.config.margin,
+          EzText(
+            widget.config,
+            text: name,
+            textAlign: TextAlign.center,
+            style: widget.config.labelStyle?.copyWith(color: color),
+          ),
+        ],
+      ),
+    ),
+  );
 
   // Init //
 
@@ -119,238 +120,231 @@ class _EzImageEditorState extends State<EzImageEditor> {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: EzCol(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            // Preview
-            Expanded(
-              child: ExtendedImage.file(
-                File(widget.path),
-                fit: BoxFit.contain,
-                mode: ExtendedImageMode.editor,
-                extendedImageEditorKey: editorKey,
-                enableLoadState: true,
-                cacheRawData: true,
-                initEditorConfigHandler: (_) => EditorConfig(
-                  cropAspectRatio: widget.cropAspectRatio ?? liveAspectRatio(),
-                  initialCropAspectRatio: widget.initialCropAspectRatio ?? liveAspectRatio(),
-                  initCropRectType: widget.initCropRectType,
-                  cropRectPadding: EdgeInsets.only(
-                    top: widget.config.spacing,
-                    left: widget.config.spacing,
-                    right: widget.config.spacing,
-                  ),
-                  hitTestSize: max(widget.config.padding, kMinInteractiveDimension),
-                  controller: _editorController,
+    child: EzCol(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        // Preview
+        Expanded(
+          child: ExtendedImage.file(
+            File(widget.path),
+            fit: BoxFit.contain,
+            mode: ExtendedImageMode.editor,
+            extendedImageEditorKey: editorKey,
+            enableLoadState: true,
+            cacheRawData: true,
+            initEditorConfigHandler: (_) => EditorConfig(
+              cropAspectRatio: widget.cropAspectRatio ?? liveAspectRatio(),
+              initialCropAspectRatio: widget.initialCropAspectRatio ?? liveAspectRatio(),
+              initCropRectType: widget.initCropRectType,
+              cropRectPadding: EdgeInsets.only(
+                top: widget.config.spacing,
+                left: widget.config.spacing,
+                right: widget.config.spacing,
+              ),
+              hitTestSize: max(widget.config.padding, kMinInteractiveDimension),
+              controller: _editorController,
+            ),
+          ),
+        ),
+
+        // Key && controls
+        Padding(
+          padding: EdgeInsets.all(widget.config.spacing),
+          child: EzScrollView(
+            widget.config,
+            scrollDirection: Axis.horizontal,
+            startCentered: true,
+            showScrollHint: true,
+            children: <Widget>[
+              // Rotate left
+              EzIconButton(
+                widget.config,
+                tooltip: widget.config.ezL10n.dsRotateLeft,
+                enabled: !processing,
+                onPressed: () {
+                  _editorController.rotate(
+                    degree: -90.0,
+                    rotateCropRect: false,
+                    animation: rotateDuration.inMilliseconds > 0 ? true : false,
+                    duration: rotateDuration,
+                  );
+                  setState(() {});
+                },
+                icon: const Icon(Icons.rotate_left),
+              ),
+              widget.config.rowSpacer,
+
+              // Rotate right
+              EzIconButton(
+                widget.config,
+                tooltip: widget.config.ezL10n.dsRotateRight,
+                enabled: !processing,
+                onPressed: () {
+                  _editorController.rotate(
+                    rotateCropRect: false,
+                    animation: rotateDuration.inMilliseconds > 0 ? true : false,
+                    duration: rotateDuration,
+                  );
+                  setState(() {});
+                },
+                icon: const Icon(Icons.rotate_right),
+              ),
+
+              // Div
+              SizedBox(
+                height: widget.config.iconSize + widget.config.padding,
+                child: VerticalDivider(
+                  width: widget.config.spacing * 2,
+                  color: widget.config.colors.secondary,
                 ),
               ),
-            ),
 
-            // Key && controls
-            Padding(
-              padding: EdgeInsets.all(widget.config.spacing),
-              child: EzScrollView(
+              // Reset
+              EzIconButton(
                 widget.config,
-                scrollDirection: Axis.horizontal,
-                startCentered: true,
-                showScrollHint: true,
-                children: <Widget>[
-                  // Rotate left
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.dsRotateLeft,
-                    enabled: !processing,
-                    onPressed: () {
-                      _editorController.rotate(
-                        degree: -90.0,
-                        rotateCropRect: false,
-                        animation: rotateDuration.inMilliseconds > 0 ? true : false,
-                        duration: rotateDuration,
-                      );
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.rotate_left),
-                  ),
-                  widget.config.rowSpacer,
-
-                  // Rotate right
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.dsRotateRight,
-                    enabled: !processing,
-                    onPressed: () {
-                      _editorController.rotate(
-                        rotateCropRect: false,
-                        animation: rotateDuration.inMilliseconds > 0 ? true : false,
-                        duration: rotateDuration,
-                      );
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.rotate_right),
-                  ),
-
-                  // Div
-                  SizedBox(
-                    height: widget.config.iconSize + widget.config.padding,
-                    child: VerticalDivider(
-                      width: widget.config.spacing * 2,
-                      color: widget.config.colors.secondary,
-                    ),
-                  ),
-
-                  // Reset
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.gReset,
-                    enabled: !processing,
-                    onPressed: () {
-                      _editorController.reset();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.refresh),
-                  ),
-                  widget.config.rowSpacer,
-
-                  // Undo
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.gUndo,
-                    enabled: !processing && _editorController.canUndo,
-                    onPressed: () {
-                      _editorController.undo();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.undo),
-                  ),
-                  widget.config.rowSpacer,
-
-                  // Redo
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.gRedo,
-                    enabled: !processing && _editorController.canRedo,
-                    onPressed: () {
-                      _editorController.redo();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.redo),
-                  ),
-
-                  // Div
-                  SizedBox(
-                    height: widget.config.iconSize + widget.config.padding,
-                    child: VerticalDivider(
-                      width: widget.config.spacing * 2,
-                      color: widget.config.colors.secondary,
-                    ),
-                  ),
-
-                  // Done
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.gApply,
-                    onPressed: () async {
-                      // Check exit cases
-                      if (processing) return;
-
-                      final ExtendedImageEditorState? state = editorKey.currentState;
-                      if (state == null) return;
-
-                      setState(() => processing = true);
-
-                      try {
-                        // Get image data
-                        final Uint8List imgData = state.rawImageData;
-                        img.Image? src = img.decodeImage(imgData);
-
-                        if (src == null) {
-                          setState(() => processing = false);
-                          return;
-                        }
-
-                        // Get the edits
-                        final EditActionDetails? editAction = state.editAction;
-                        final Rect? cropRect = state.getCropRect();
-
-                        // Apply the edits
-                        if (editAction != null) {
-                          src = img.bakeOrientation(src);
-
-                          if (editAction.hasRotateDegrees) {
-                            src = img.copyRotate(
-                              src,
-                              angle: editAction.rotateDegrees,
-                            );
-                          }
-
-                          if (editAction.needCrop && cropRect != null) {
-                            src = img.copyCrop(
-                              src,
-                              x: cropRect.left.toInt(),
-                              y: cropRect.top.toInt(),
-                              width: cropRect.width.toInt(),
-                              height: cropRect.height.toInt(),
-                            );
-                          }
-                        }
-
-                        // Encode the image
-                        late final Uint8List fileData;
-                        switch (fileExt) {
-                          case 'bmp':
-                            fileData = await compute(img.encodeBmp, src);
-                            break;
-                          case 'gif':
-                            fileData = await compute(img.encodeGif, src);
-                            break;
-                          case 'png':
-                            fileData = await compute(img.encodePng, src);
-                            break;
-                          default:
-                            fileExt = 'jpg';
-                            fileData = await compute(img.encodeJpg, src);
-                            break;
-                        }
-
-                        // Save to a new file
-                        final Directory tempDir = await getTemporaryDirectory();
-                        final String newPath =
-                            '${tempDir.path}/edited_${DateTime.now().millisecondsSinceEpoch}.$fileExt';
-                        final File newFile = File(newPath)..writeAsBytesSync(fileData);
-
-                        // Return the new file path
-                        setState(() => processing = false);
-                        if (context.mounted) {
-                          Navigator.pop(context, newFile.path);
-                        }
-                      } catch (e) {
-                        (context.mounted)
-                            ? await ezLogAlert(
-                                widget.config,
-                                context: context,
-                                message: e.toString(),
-                              )
-                            : ezLog(e.toString());
-                        setState(() => processing = false);
-                      }
-                    },
-                    icon: processing ? const CircularProgressIndicator() : const Icon(Icons.check),
-                  ),
-                  widget.config.rowSpacer,
-
-                  // Cancel
-                  EzIconButton(
-                    widget.config,
-                    tooltip: widget.config.ezL10n.gCancel,
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.delete),
-                  ),
-                ],
+                tooltip: widget.config.ezL10n.gReset,
+                enabled: !processing,
+                onPressed: () {
+                  _editorController.reset();
+                  setState(() {});
+                },
+                icon: const Icon(Icons.refresh),
               ),
-            ),
-          ],
+              widget.config.rowSpacer,
+
+              // Undo
+              EzIconButton(
+                widget.config,
+                tooltip: widget.config.ezL10n.gUndo,
+                enabled: !processing && _editorController.canUndo,
+                onPressed: () {
+                  _editorController.undo();
+                  setState(() {});
+                },
+                icon: const Icon(Icons.undo),
+              ),
+              widget.config.rowSpacer,
+
+              // Redo
+              EzIconButton(
+                widget.config,
+                tooltip: widget.config.ezL10n.gRedo,
+                enabled: !processing && _editorController.canRedo,
+                onPressed: () {
+                  _editorController.redo();
+                  setState(() {});
+                },
+                icon: const Icon(Icons.redo),
+              ),
+
+              // Div
+              SizedBox(
+                height: widget.config.iconSize + widget.config.padding,
+                child: VerticalDivider(
+                  width: widget.config.spacing * 2,
+                  color: widget.config.colors.secondary,
+                ),
+              ),
+
+              // Done
+              EzIconButton(
+                widget.config,
+                tooltip: widget.config.ezL10n.gApply,
+                onPressed: () async {
+                  // Check exit cases
+                  if (processing) return;
+
+                  final ExtendedImageEditorState? state = editorKey.currentState;
+                  if (state == null) return;
+
+                  setState(() => processing = true);
+
+                  try {
+                    // Get image data
+                    final Uint8List imgData = state.rawImageData;
+                    img.Image? src = img.decodeImage(imgData);
+
+                    if (src == null) {
+                      setState(() => processing = false);
+                      return;
+                    }
+
+                    // Get the edits
+                    final EditActionDetails? editAction = state.editAction;
+                    final Rect? cropRect = state.getCropRect();
+
+                    // Apply the edits
+                    if (editAction != null) {
+                      src = img.bakeOrientation(src);
+
+                      if (editAction.hasRotateDegrees) {
+                        src = img.copyRotate(src, angle: editAction.rotateDegrees);
+                      }
+
+                      if (editAction.needCrop && cropRect != null) {
+                        src = img.copyCrop(
+                          src,
+                          x: cropRect.left.toInt(),
+                          y: cropRect.top.toInt(),
+                          width: cropRect.width.toInt(),
+                          height: cropRect.height.toInt(),
+                        );
+                      }
+                    }
+
+                    // Encode the image
+                    late final Uint8List fileData;
+                    switch (fileExt) {
+                      case 'bmp':
+                        fileData = await compute(img.encodeBmp, src);
+                        break;
+                      case 'gif':
+                        fileData = await compute(img.encodeGif, src);
+                        break;
+                      case 'png':
+                        fileData = await compute(img.encodePng, src);
+                        break;
+                      default:
+                        fileExt = 'jpg';
+                        fileData = await compute(img.encodeJpg, src);
+                        break;
+                    }
+
+                    // Save to a new file
+                    final Directory tempDir = await getTemporaryDirectory();
+                    final String newPath =
+                        '${tempDir.path}/edited_${DateTime.now().millisecondsSinceEpoch}.$fileExt';
+                    final File newFile = File(newPath)..writeAsBytesSync(fileData);
+
+                    // Return the new file path
+                    setState(() => processing = false);
+                    if (context.mounted) {
+                      Navigator.pop(context, newFile.path);
+                    }
+                  } catch (e) {
+                    (context.mounted)
+                        ? await ezLogAlert(widget.config, context: context, message: e.toString())
+                        : ezLog(e.toString());
+                    setState(() => processing = false);
+                  }
+                },
+                icon: processing ? const CircularProgressIndicator() : const Icon(Icons.check),
+              ),
+              widget.config.rowSpacer,
+
+              // Cancel
+              EzIconButton(
+                widget.config,
+                tooltip: widget.config.ezL10n.gCancel,
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.delete),
+              ),
+            ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 
   @override
   void dispose() {

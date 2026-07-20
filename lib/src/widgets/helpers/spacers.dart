@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -20,20 +20,12 @@ class EzSpacer extends StatelessWidget {
   final bool horizontal;
 
   /// [SizedBox] with [space] dimensions for organizing your layout
-  const EzSpacer(
-    this.space, {
-    super.key,
-    this.vertical = true,
-    this.horizontal = true,
-  });
+  const EzSpacer(this.space, {super.key, this.vertical = true, this.horizontal = true});
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: SizedBox(
-          height: vertical ? space : null,
-          width: horizontal ? space : null,
-        ),
-      );
+    child: SizedBox(height: vertical ? space : null, width: horizontal ? space : null),
+  );
 }
 
 class EzDivider extends StatelessWidget {
@@ -64,14 +56,9 @@ class EzDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-        constraints: constraints,
-        child: Divider(
-          height: height,
-          thickness: thickness,
-          color: color,
-          radius: radius,
-        ),
-      );
+    constraints: constraints,
+    child: Divider(height: height, thickness: thickness, color: color, radius: radius),
+  );
 }
 
 class EzTitledDivider extends StatelessWidget {
@@ -111,19 +98,16 @@ class EzTitledDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-        constraints: constraints,
-        child: EzCol(children: <Widget>[
-          EzSpacer(height / 2),
-          Divider(
-            height: margin,
-            thickness: thickness,
-            color: color,
-            radius: radius,
-          ),
-          title,
-          EzSpacer(height / 2),
-        ]),
-      );
+    constraints: constraints,
+    child: EzCol(
+      children: <Widget>[
+        EzSpacer(height / 2),
+        Divider(height: margin, thickness: thickness, color: color, radius: radius),
+        title,
+        EzSpacer(height / 2),
+      ],
+    ),
+  );
 }
 
 class EzHeader extends StatelessWidget {
@@ -134,10 +118,10 @@ class EzHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: SizedBox.square(
-            dimension:
-                (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0),
-      );
+    child: SizedBox.square(
+      dimension: (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0,
+    ),
+  );
 }
 
 class EzSwapSpacer extends StatelessWidget {
@@ -191,13 +175,13 @@ class EzFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       (human || (config.locale.languageCode == defaultLocale.languageCode))
-          ? config.separator
-          : Padding(
-              padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
-              child: Text(
-                config.ezL10n.gMachineTranslated,
-                style: config.labelStyle,
-                textAlign: textAlign,
-              ),
-            );
+      ? config.separator
+      : Padding(
+          padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
+          child: Text(
+            config.ezL10n.gMachineTranslated,
+            style: config.labelStyle,
+            textAlign: textAlign,
+          ),
+        );
 }

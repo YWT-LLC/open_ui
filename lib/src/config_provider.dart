@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../empathetech_flutter_ui.dart';
+import '../open_ui.dart';
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class EzCP extends ChangeNotifier {
   late ThemeData _theme;
 
   late Locale _locale;
-  late EFUILang _l10n;
+  late OUILang _l10n;
   bool _ltr;
 
   late EzColorCache _color;
@@ -34,7 +34,7 @@ class EzCP extends ChangeNotifier {
   EzCP({
     required bool isDark,
     required Locale locale,
-    required EFUILang el10n,
+    required OUILang el10n,
     required EzAppCache appCache,
   })  : _isDark = isDark,
         _locale = locale,
@@ -208,8 +208,8 @@ class EzCP extends ChangeNotifier {
   /// Current language for the app
   Locale get locale => _locale;
 
-  /// EFUI localizations for the [locale]
-  EFUILang get ezL10n => _l10n;
+  /// Open UI localizations for the [locale]
+  OUILang get ezL10n => _l10n;
 
   /// Text direction for the [locale]
   bool get isLTR => _ltr;
@@ -235,10 +235,7 @@ class EzCP extends ChangeNotifier {
 
   BorderSide borderSide({Color? color}) => _design.borderWidth == 0
       ? BorderSide.none
-      : BorderSide(
-          color: color ?? _theme.colorScheme.primaryContainer,
-          width: _design.borderWidth,
-        );
+      : BorderSide(color: color ?? _theme.colorScheme.primaryContainer, width: _design.borderWidth);
 
   bool get lineLinks => _design.lineLinks;
   bool get showBackFAB => _design.showBackFAB;
@@ -324,7 +321,7 @@ class EzCP extends ChangeNotifier {
 
   /// Set the apps [Locale] from storage and load corresponding localizations
   Future<void> rebuildLocale() async {
-    final (Locale, EFUILang) result = await ezStoredL10n();
+    final (Locale, OUILang) result = await ezStoredL10n();
     _locale = result.$1;
     _l10n = result.$2;
     _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
@@ -483,10 +480,7 @@ class EzTextCache {
 
   /// Theme aware tracker for frequently used text values...
   /// Background opacity, icon size
-  EzTextCache({
-    required this.backgroundOpacity,
-    required this.iconSize,
-  });
+  EzTextCache({required this.backgroundOpacity, required this.iconSize});
 }
 
 abstract class EzAppCache {

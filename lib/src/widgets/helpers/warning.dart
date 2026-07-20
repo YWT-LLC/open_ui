@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class EzWarning extends StatelessWidget {
   final String body;
 
   /// Warning [String] to grab the user's attention
-  /// Defaults to [EFUILang.gAttention]
+  /// Defaults to [OUILang.gAttention]
   final String? title;
 
   /// [Card] wrapper designed to grab attention for warnings...
@@ -31,37 +31,35 @@ class EzWarning extends StatelessWidget {
           child: Card(
             child: Container(
               padding: EdgeInsets.all(config.marginVal),
-              child: EzCol(children: <Widget>[
-                // Title
-                EzScrollView(
-                  config,
-                  scrollDirection: Axis.horizontal,
-                  startCentered: true,
-                  children: <Widget>[
-                    // Thing1
-                    EzIcon(config, Icons.warning, color: config.colors.secondary),
-                    config.rowMargin,
+              child: EzCol(
+                children: <Widget>[
+                  // Title
+                  EzScrollView(
+                    config,
+                    scrollDirection: Axis.horizontal,
+                    startCentered: true,
+                    children: <Widget>[
+                      // Thing1
+                      EzIcon(config, Icons.warning, color: config.colors.secondary),
+                      config.rowMargin,
 
-                    Text(
-                      title ?? config.ezL10n.gAttention,
-                      style: config.titleStyle,
-                      textAlign: TextAlign.center,
-                    ),
-                    config.rowMargin,
+                      Text(
+                        title ?? config.ezL10n.gAttention,
+                        style: config.titleStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                      config.rowMargin,
 
-                    // Thing 2
-                    EzIcon(config, Icons.warning, color: config.colors.secondary),
-                  ],
-                ),
-                config.spacer,
+                      // Thing 2
+                      EzIcon(config, Icons.warning, color: config.colors.secondary),
+                    ],
+                  ),
+                  config.spacer,
 
-                // Body
-                Text(
-                  body,
-                  style: config.bodyStyle,
-                  textAlign: TextAlign.center,
-                ),
-              ]),
+                  // Body
+                  Text(body, style: config.bodyStyle, textAlign: TextAlign.center),
+                ],
+              ),
             ),
           ),
         ),

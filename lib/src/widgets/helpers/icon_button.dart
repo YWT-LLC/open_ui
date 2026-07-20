@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -53,21 +53,23 @@ class EzIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconButton(
-        onPressed: enabled ? onPressed : doNothing,
-        onLongPress: enabled ? onLongPress : doNothing,
-        tooltip: tooltip,
-        style: style ??
-            ((!enabled || fauxDisabled)
-                ? IconButton.styleFrom(
-                    foregroundColor: config.colors.outline,
-                    side: config.borderSide(color: config.colors.outlineVariant),
-                    overlayColor: config.colors.outline,
-                    shadowColor: Colors.transparent,
-                    iconSize: iconSize ?? config.iconSize)
-                : null),
-        icon: icon,
-        iconSize: iconSize ?? config.iconSize,
-      );
+    onPressed: enabled ? onPressed : doNothing,
+    onLongPress: enabled ? onLongPress : doNothing,
+    tooltip: tooltip,
+    style:
+        style ??
+        ((!enabled || fauxDisabled)
+            ? IconButton.styleFrom(
+                foregroundColor: config.colors.outline,
+                side: config.borderSide(color: config.colors.outlineVariant),
+                overlayColor: config.colors.outline,
+                shadowColor: Colors.transparent,
+                iconSize: iconSize ?? config.iconSize,
+              )
+            : null),
+    icon: icon,
+    iconSize: iconSize ?? config.iconSize,
+  );
 }
 
 class EzIcon extends Icon {

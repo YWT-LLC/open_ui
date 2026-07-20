@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -47,8 +47,9 @@ abstract class EzTextStyleProvider extends ChangeNotifier {
 
   /// Toggle the [TextStyle.decoration] based on the passed [underline]
   void underline(bool underline) {
-    _style =
-        _style.copyWith(decoration: underline ? TextDecoration.underline : TextDecoration.none);
+    _style = _style.copyWith(
+      decoration: underline ? TextDecoration.underline : TextDecoration.none,
+    );
     notifyListeners();
   }
 

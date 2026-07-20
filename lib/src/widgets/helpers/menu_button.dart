@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -47,17 +47,17 @@ class EzMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
-        style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
-        onPressed: enabled ? onPressed : doNothing,
-        leadingIcon: label == null ? null : (config.isLefty ? icon : null),
-        trailingIcon: label == null ? null : (config.isLefty ? null : icon),
-        semanticsLabel: semanticsLabel,
-        child: (label == null)
-            ? icon
-            : Text(
-                label!,
-                style: textStyle ?? config.bodyStyle,
-                textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
-              ),
-      );
+    style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+    onPressed: enabled ? onPressed : doNothing,
+    leadingIcon: label == null ? null : (config.isLefty ? icon : null),
+    trailingIcon: label == null ? null : (config.isLefty ? null : icon),
+    semanticsLabel: semanticsLabel,
+    child: (label == null)
+        ? icon
+        : Text(
+            label!,
+            style: textStyle ?? config.bodyStyle,
+            textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
+          ),
+  );
 }

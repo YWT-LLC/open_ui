@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -16,46 +16,42 @@ class EzThemeModeSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzScrollView(
+    config,
+    scrollDirection: Axis.horizontal,
+    reverseHands: true,
+    children: <Widget>[
+      // Label
+      EzText(config, text: config.ezL10n.ssThemeMode, textAlign: TextAlign.center),
+      config.margin,
+
+      // Button
+      EzDropdownMenu<ThemeMode>(
         config,
-        scrollDirection: Axis.horizontal,
-        reverseHands: true,
-        children: <Widget>[
-          // Label
-          EzText(
-            config,
-            text: config.ezL10n.ssThemeMode,
-            textAlign: TextAlign.center,
-          ),
-          config.margin,
-
-          // Button
-          EzDropdownMenu<ThemeMode>(
-            config,
-            widthEntry: config.ezL10n.gSystem,
-            dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
-              DropdownMenuEntry<ThemeMode>(value: ThemeMode.system, label: config.ezL10n.gSystem),
-              DropdownMenuEntry<ThemeMode>(value: ThemeMode.light, label: config.ezL10n.gLight),
-              DropdownMenuEntry<ThemeMode>(value: ThemeMode.dark, label: config.ezL10n.gDark),
-            ],
-            enableSearch: false,
-            initialSelection: config.themeMode,
-            onSelected: (ThemeMode? choice) async {
-              if (choice == null || choice == config.themeMode) return;
-
-              switch (choice) {
-                case ThemeMode.dark:
-                  await EzCM.setBool(isDarkThemeKey, true);
-                  break;
-                case ThemeMode.light:
-                  await EzCM.setBool(isDarkThemeKey, false);
-                  break;
-                case ThemeMode.system:
-                  await EzCM.remove(isDarkThemeKey);
-                  break;
-              }
-              await config.rebuildThemeMode();
-            },
-          ),
+        widthEntry: config.ezL10n.gSystem,
+        dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
+          DropdownMenuEntry<ThemeMode>(value: ThemeMode.system, label: config.ezL10n.gSystem),
+          DropdownMenuEntry<ThemeMode>(value: ThemeMode.light, label: config.ezL10n.gLight),
+          DropdownMenuEntry<ThemeMode>(value: ThemeMode.dark, label: config.ezL10n.gDark),
         ],
-      );
+        enableSearch: false,
+        initialSelection: config.themeMode,
+        onSelected: (ThemeMode? choice) async {
+          if (choice == null || choice == config.themeMode) return;
+
+          switch (choice) {
+            case ThemeMode.dark:
+              await EzCM.setBool(isDarkThemeKey, true);
+              break;
+            case ThemeMode.light:
+              await EzCM.setBool(isDarkThemeKey, false);
+              break;
+            case ThemeMode.system:
+              await EzCM.remove(isDarkThemeKey);
+              break;
+          }
+          await config.rebuildThemeMode();
+        },
+      ),
+    ],
+  );
 }

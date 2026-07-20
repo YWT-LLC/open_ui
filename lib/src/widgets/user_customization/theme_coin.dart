@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -24,16 +24,17 @@ class _EzThemeCoinState extends State<EzThemeCoin> {
 
   @override
   Widget build(BuildContext context) {
-    final String editing = widget.config.ezL10n.gEditing +
+    final String editing =
+        widget.config.ezL10n.gEditing +
         (both
             ? widget.config.ezL10n.gBothThemes
             : (widget.config.isDark
-                ? widget.config.ezL10n.gDarkTheme
-                : widget.config.ezL10n.gLightTheme));
+                  ? widget.config.ezL10n.gDarkTheme
+                  : widget.config.ezL10n.gLightTheme));
     final String reverse = both
         ? (widget.config.isDark
-            ? '${widget.config.ezL10n.gThe} ${widget.config.ezL10n.gDarkTheme.toLowerCase()}'
-            : '${widget.config.ezL10n.gThe} ${widget.config.ezL10n.gLightTheme.toLowerCase()}')
+              ? '${widget.config.ezL10n.gThe} ${widget.config.ezL10n.gDarkTheme.toLowerCase()}'
+              : '${widget.config.ezL10n.gThe} ${widget.config.ezL10n.gLightTheme.toLowerCase()}')
         : widget.config.ezL10n.gBothThemes;
 
     return Semantics(

@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -56,15 +56,15 @@ final Map<String, TextStyle> googleStyles = <String, TextStyle>{
 /// Passes [starter] to the [gFont]'s textStyle param
 /// Returns [starter] if [gFont] is not found/supported
 TextStyle fuseWithGFont({required TextStyle starter, required String gFont}) => switch (gFont) {
-      alexBrush => GoogleFonts.alexBrush(textStyle: starter),
-      atkinsonHyperlegible => GoogleFonts.atkinsonHyperlegible(textStyle: starter),
-      fingerPaint => GoogleFonts.fingerPaint(textStyle: starter),
-      lexend => GoogleFonts.lexend(textStyle: starter),
-      noto => GoogleFonts.notoSans(textStyle: starter),
-      openSans => GoogleFonts.openSans(textStyle: starter),
-      pressStart2P => GoogleFonts.pressStart2p(textStyle: starter),
-      readexPro => GoogleFonts.readexPro(textStyle: starter),
-      roboto => GoogleFonts.roboto(textStyle: starter),
-      sourceCodePro => GoogleFonts.sourceCodePro(textStyle: starter),
-      _ => starter,
-    };
+  alexBrush => GoogleFonts.alexBrush(textStyle: starter),
+  atkinsonHyperlegible => GoogleFonts.atkinsonHyperlegible(textStyle: starter),
+  fingerPaint => GoogleFonts.fingerPaint(textStyle: starter),
+  lexend => GoogleFonts.lexend(textStyle: starter),
+  noto => GoogleFonts.notoSans(textStyle: starter),
+  openSans => GoogleFonts.openSans(textStyle: starter),
+  pressStart2P => GoogleFonts.pressStart2p(textStyle: starter),
+  readexPro => GoogleFonts.readexPro(textStyle: starter),
+  roboto => GoogleFonts.roboto(textStyle: starter),
+  sourceCodePro => GoogleFonts.sourceCodePro(textStyle: starter),
+  _ => starter,
+};

@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -15,7 +15,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:after_layout/after_layout.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -56,12 +56,14 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   late String namePreview = l10n(configWatcher(context)).csNamePreview;
   bool validName = false;
 
-  final TextEditingController publisherTC =
-      TextEditingController(text: EzCM.get(publisherBackupKey));
+  final TextEditingController publisherTC = TextEditingController(
+    text: EzCM.get(publisherBackupKey),
+  );
   late String pubPreview = l10n(configWatcher(context)).csPubPreview;
 
-  final TextEditingController descriptionTC =
-      TextEditingController(text: EzCM.get(descriptionBackupKey));
+  final TextEditingController descriptionTC = TextEditingController(
+    text: EzCM.get(descriptionBackupKey),
+  );
 
   final TextEditingController domainTC = TextEditingController(text: EzCM.get(domainBackupKey));
   bool exampleDomain = false;
@@ -160,17 +162,11 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
     if (!isMac) return;
 
     final ValueNotifier<String> flutterPath = ValueNotifier<String>('');
-    await ezCmd(
-      'which flutter',
-      dir: '/',
-      debug: false,
-      readout: flutterPath,
-    );
+    await ezCmd('which flutter', dir: '/', debug: false, readout: flutterPath);
 
-    final String success = flutterPath.value.split('\n').firstWhere(
-          (String line) => line.contains('flutter/bin'),
-          orElse: () => '',
-        );
+    final String success = flutterPath.value
+        .split('\n')
+        .firstWhere((String line) => line.contains('flutter/bin'), orElse: () => '');
 
     if (success.isNotEmpty) {
       final String finalPath = success.replaceAll('flutter/bin/flutter', 'flutter/bin');
@@ -325,14 +321,15 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               config.separator,
 
               // Default app config //
-
               EzRichText(
                 config,
                 children: <InlineSpan>[
                   EzPlainText(
-                    text: l10n(config).csGenApp(isDesktop
-                        ? (validName ? namePreview : l10n(config).csTheApp)
-                        : l10n(config).csTheConfig),
+                    text: l10n(config).csGenApp(
+                      isDesktop
+                          ? (validName ? namePreview : l10n(config).csTheApp)
+                          : l10n(config).csTheConfig,
+                    ),
                   ),
                   EzInlineLink(
                     config,
@@ -343,8 +340,10 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     hint: config.ezL10n.ssNavHint,
                   ),
                   EzPlainText(
-                      text: l10n(config)
-                          .csSetColors(validName ? namePreview : l10n(config).csYourApp)),
+                    text: l10n(
+                      config,
+                    ).csSetColors(validName ? namePreview : l10n(config).csYourApp),
+                  ),
                   EzInlineLink(
                     config,
                     text: l10n(config).csHere,
@@ -359,7 +358,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               config.separator,
 
               // Advanced settings //
-
               ExpansionTile(
                 controller: advancedEC,
                 onExpansionChanged: (_) => setState(() {}),
@@ -547,7 +545,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       config,
                       onPressed: () async {
                         final String? selectedDirectory = await FilePicker.getDirectoryPath(
-                            dialogTitle: l10n(config).csFlutterPath);
+                          dialogTitle: l10n(config).csFlutterPath,
+                        );
 
                         if (selectedDirectory == null) return;
 
@@ -566,10 +565,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                 EzRichText(
                   config,
                   children: <InlineSpan>[
-                    EzPlainText(
-                      text: '${l10n(config).csNotInstalled} ',
-                      style: config.bodyStyle,
-                    ),
+                    EzPlainText(text: '${l10n(config).csNotInstalled} ', style: config.bodyStyle),
                     EzInlineLink(
                       config,
                       text: l10n(config).rsInstall,
@@ -579,17 +575,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       hint: l10n(config).rsInstallHint,
                       tooltip: installFlutter,
                     ),
-                    EzPlainText(
-                      text: '.',
-                      style: config.bodyStyle,
-                    ),
+                    EzPlainText(text: '.', style: config.bodyStyle),
                   ],
                 ),
                 config.separator,
               ],
 
               // Make it so //
-
               EzScrollView(
                 config,
                 scrollDirection: Axis.horizontal,
@@ -817,7 +809,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               launchTC.text = vscDefault;
             },
             state: () => setState(() {}),
-          )
+          ),
         ],
         isHome: true,
       ),
@@ -865,7 +857,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   ]
 }''';
 
-  /// Recommended Empathetech l10n config
+  /// Recommended l10n config
   static const String l10nDefault = '''arb-dir: lib/l10n
 output-dir: lib/l10n
 template-arb-file: lang_en.arb
@@ -877,7 +869,7 @@ required-resource-attributes: false
 format: true
 suppress-warnings: false''';
 
-  /// Recommended Empathetech lints
+  /// Recommended lints
   static const String analysisDefault = '''include: package:flutter_lints/flutter.yaml
 
 analyzer:
@@ -1030,11 +1022,8 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
             widget.config,
             children: <Widget>[
               Flexible(
-                child: Text(
-                  widget.title,
-                  style: widget.config.bodyStyle,
-                  textAlign: TextAlign.start,
-                ),
+                child:
+                    Text(widget.title, style: widget.config.bodyStyle, textAlign: TextAlign.start),
               ),
               widget.config.rowMargin,
               Semantics(
@@ -1094,19 +1083,17 @@ class _LicensePicker extends StatefulWidget {
 }
 
 class _LicensePickerState extends State<_LicensePicker> {
-  Widget radio({
-    required String title,
-    required String value,
-  }) =>
-      EzCol(children: <Widget>[
-        EzTextButton(
-          widget.config,
-          text: title,
-          textAlign: TextAlign.center,
-          onPressed: () => widget.onChanged(value),
-        ),
-        ExcludeSemantics(child: EzRadio<String>(widget.config, value: value)),
-      ]);
+  Widget radio({required String title, required String value}) => EzCol(
+        children: <Widget>[
+          EzTextButton(
+            widget.config,
+            text: title,
+            textAlign: TextAlign.center,
+            onPressed: () => widget.onChanged(value),
+          ),
+          ExcludeSemantics(child: EzRadio<String>(widget.config, value: value)),
+        ],
+      );
 
   @override
   Widget build(BuildContext context) => Theme(
@@ -1127,11 +1114,7 @@ class _LicensePickerState extends State<_LicensePicker> {
             widget.config,
             children: <Widget>[
               Flexible(
-                child: Text(
-                  'LICENSE',
-                  textAlign: TextAlign.start,
-                  style: widget.config.bodyStyle,
-                ),
+                child: Text('LICENSE', textAlign: TextAlign.start, style: widget.config.bodyStyle),
               ),
               widget.config.rowMargin,
               Semantics(

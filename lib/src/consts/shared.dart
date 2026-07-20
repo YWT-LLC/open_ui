@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -18,21 +18,18 @@ const String nebulaPath = 'assets/nebula.jpg';
 const String wallHolesPath = 'assets/wall-holes.jpg';
 
 /// [nebulaPath], [wallHolesPath]
-const Set<String> efuiAssetPaths = <String>{
-  nebulaPath,
-  wallHolesPath,
-};
+const Set<String> ouiAssetPaths = <String>{nebulaPath, wallHolesPath};
 
 // For use //
 
 /// [AssetImage] for [nebulaPath]
-const AssetImage nebulaAsset = AssetImage(nebulaPath, package: 'empathetech_flutter_ui');
+const AssetImage nebulaAsset = AssetImage(nebulaPath, package: 'open_ui');
 
 /// [AssetImage] for [wallHolesPath]
-const AssetImage wallHolesAsset = AssetImage(wallHolesPath, package: 'empathetech_flutter_ui');
+const AssetImage wallHolesAsset = AssetImage(wallHolesPath, package: 'open_ui');
 
 /// [nebulaPath]
-const Map<String, AssetImage> efuiImageLookup = <String, AssetImage>{
+const Map<String, AssetImage> ouiImageLookup = <String, AssetImage>{
   nebulaPath: nebulaAsset,
   wallHolesPath: wallHolesAsset,
 };
@@ -41,7 +38,7 @@ const Map<String, AssetImage> efuiImageLookup = <String, AssetImage>{
 
 /// A *required* [NavigatorState] key for your router config
 /// UI redraws/rebuilds assume it is present
-/// If you're migrating your existing app to EFUI, please find and replace any current navigator state key with this one
+/// If you're migrating your existing app to Open UI, please find and replace any current navigator state key with this one
 final GlobalKey<NavigatorState> ezRootNav = GlobalKey<NavigatorState>();
 
 /// /

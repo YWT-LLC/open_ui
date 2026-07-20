@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
@@ -61,8 +61,10 @@ class EzImageLink extends StatelessWidget {
     this.height,
     this.fit,
     this.alignment = Alignment.center,
-  }) : assert((onTap == null) != (url == null),
-            'Either onTap or url should be provided, but not both.');
+  }) : assert(
+         (onTap == null) != (url == null),
+         'Either onTap or url should be provided, but not both.',
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +92,8 @@ class EzImageLink extends StatelessWidget {
               ? InkWell(focusColor: focusColor, onTap: onTap, child: child)
               : Link(
                   uri: url,
-                  builder: (_, FollowLink? followLink) => InkWell(
-                    focusColor: focusColor,
-                    onTap: followLink,
-                    child: child,
-                  ),
+                  builder: (_, FollowLink? followLink) =>
+                      InkWell(focusColor: focusColor, onTap: followLink, child: child),
                 ),
         ),
       ),

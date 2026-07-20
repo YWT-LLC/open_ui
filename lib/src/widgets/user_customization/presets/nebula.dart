@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,12 +18,7 @@ class EzNebulaConfig extends StatelessWidget {
   final Future<void> Function(bool)? extra;
 
   /// Dark theme only config, will set [ThemeMode.dark]
-  const EzNebulaConfig(
-    this.config, {
-    super.key,
-    required this.autoConfirm,
-    this.extra,
-  });
+  const EzNebulaConfig(this.config, {super.key, required this.autoConfirm, this.extra});
 
   /// When true, skips the "This is a dark theme only..." dialog
   static Future<bool> onPressed(
@@ -45,10 +40,7 @@ class EzNebulaConfig extends StatelessWidget {
         builder: (BuildContext dCon) => EzAlertDialog(
           config,
           title: Text(config.ezL10n.gAttention, textAlign: TextAlign.center),
-          content: Text(
-            config.ezL10n.ssDarkOnly,
-            textAlign: TextAlign.center,
-          ),
+          content: Text(config.ezL10n.ssDarkOnly, textAlign: TextAlign.center),
           actions: ezActionPair(
             config,
             onConfirm: () => Navigator.of(dCon).pop(true),
@@ -75,7 +67,7 @@ class EzNebulaConfig extends StatelessWidget {
     await loadColorScheme(
       ColorScheme(
         // Surface
-        surface: empathPurple.withValues(alpha: _nO),
+        surface: ywtPurple.withValues(alpha: _nO),
         surfaceDim: _hintOPurple,
         surfaceContainer: _hintOPurple,
 
@@ -84,21 +76,21 @@ class EzNebulaConfig extends StatelessWidget {
         outline: halfWhite,
 
         // Primary
-        primary: empathSand,
+        primary: ywtSand,
         onPrimary: Colors.black,
-        primaryContainer: empathSand.withValues(alpha: 0.5),
+        primaryContainer: ywtSand.withValues(alpha: 0.5),
         onPrimaryContainer: Colors.black,
 
         // Secondary
-        secondary: empathEucalyptus,
+        secondary: ywtEucalyptus,
         onSecondary: Colors.black,
-        secondaryContainer: empathEucalyptus.withValues(alpha: 0.5),
+        secondaryContainer: ywtEucalyptus.withValues(alpha: 0.5),
         onSecondaryContainer: Colors.black,
 
         // Tertiary
-        tertiary: empathPurple,
+        tertiary: ywtPurple,
         onTertiary: Colors.white,
-        tertiaryContainer: empathPurple.withValues(alpha: 0.5),
+        tertiaryContainer: ywtPurple.withValues(alpha: 0.5),
         onTertiaryContainer: Colors.white,
 
         // Error
@@ -109,7 +101,7 @@ class EzNebulaConfig extends StatelessWidget {
 
         // Misc
         outlineVariant: dimWhite,
-        shadow: empathPurple.withValues(alpha: _nO),
+        shadow: ywtPurple.withValues(alpha: _nO),
         surfaceTint: Colors.transparent,
         scrim: Colors.black,
         brightness: Brightness.dark,
@@ -157,18 +149,15 @@ class EzNebulaConfig extends StatelessWidget {
     );
 
     return Container(
-      decoration: ShapeDecoration(
-        color: _hintOPurple,
-        shape: EzButtonShape.jewel.shape,
-      ),
+      decoration: ShapeDecoration(color: _hintOPurple, shape: EzButtonShape.jewel.shape),
       child: EzElevatedButton(
         config,
         style: ElevatedButton.styleFrom(
-          backgroundColor: empathPurple.withValues(alpha: _nO),
+          backgroundColor: ywtPurple.withValues(alpha: _nO),
           foregroundColor: Colors.white,
-          shadowColor: empathPurple.withValues(alpha: _nO),
-          overlayColor: empathSand,
-          side: BorderSide(color: empathSand.withValues(alpha: 0.5)),
+          shadowColor: ywtPurple.withValues(alpha: _nO),
+          overlayColor: ywtSand,
+          side: BorderSide(color: ywtSand.withValues(alpha: 0.5)),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
           padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
@@ -178,10 +167,13 @@ class EzNebulaConfig extends StatelessWidget {
               (config.themeMode == ThemeMode.dark) ||
               (await _confirm(config, context: context) ?? false);
           if (uSure) {
-            await config.rebuildUI(allECT, changes: () async {
-              await _makeItSo();
-              await extra?.call(autoConfirm);
-            });
+            await config.rebuildUI(
+              allECT,
+              changes: () async {
+                await _makeItSo();
+                await extra?.call(autoConfirm);
+              },
+            );
           }
         },
         text: config.ezL10n.ssNebula,

@@ -1,17 +1,17 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import '../../utils/export.dart';
 import '../../widgets/export.dart';
-import 'package:efui_bios/efui_bios.dart';
+import 'package:oui_bios/oui_bios.dart';
 
 import 'dart:io';
 import 'package:xml/xml.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class GenerateScreen extends StatefulWidget {
   final EAGConfig gen;
@@ -83,7 +83,8 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     style: ezSubTitleStyle(config.styles),
                     textAlign: TextAlign.center,
                     url: Uri.parse(
-                        'https://github.com/Empathetech-LLC/empathetech_flutter_ui/tree/main/example/lib/screens/generator/generate.dart'),
+                      'https://github.com/YWT-LLC/open_ui/tree/main/example/lib/screens/generator/generate.dart',
+                    ),
                     hint: l10n(config).gsSeeNBelieveHint,
                   ),
                 ],
@@ -130,12 +131,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
   /// Runs immediately after a successful [rmUnused]
   Future<void> addStuff(EzCP config) async {
-    await genREADME(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genREADME(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
     await genVersionTracking(
       config: widget.gen,
@@ -144,47 +140,17 @@ class _GenerateScreenState extends State<GenerateScreen> {
       readout: readout,
     );
 
-    await genLicense(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genLicense(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
-    await genPubspec(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genPubspec(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
-    await genLib(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genLib(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
-    await genL10n(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genL10n(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
-    await genAnalysis(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genAnalysis(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
-    await genVSCode(
-      config: widget.gen,
-      dir: projDir,
-      onFailure: onFailure,
-      readout: readout,
-    );
+    await genVSCode(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
     await runStuff(config);
   }
@@ -200,8 +166,9 @@ class _GenerateScreenState extends State<GenerateScreen> {
       final File macOSReleaseEntitlements = File('$projDir/macos/Runner/Release.entitlements');
 
       final XmlDocument debugDoc = XmlDocument.parse(await macOSDebugEntitlements.readAsString());
-      final XmlDocument releaseDoc =
-          XmlDocument.parse(await macOSReleaseEntitlements.readAsString());
+      final XmlDocument releaseDoc = XmlDocument.parse(
+        await macOSReleaseEntitlements.readAsString(),
+      );
 
       const String networkClientKey = 'com.apple.security.network.client';
 
@@ -244,11 +211,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
       ezLog('pub upgrade...', buffer: readout);
       runResult = await Process.run(
         '${flutterPath}flutter',
-        <String>[
-          'pub',
-          'upgrade',
-          '--major-versions',
-        ],
+        <String>['pub', 'upgrade', '--major-versions'],
         runInShell: true,
         workingDirectory: projDir,
       );
@@ -258,11 +221,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
       ezLog('pub tighten...', buffer: readout);
       runResult = await Process.run(
         '${flutterPath}flutter',
-        <String>[
-          'pub',
-          'upgrade',
-          '--tighten',
-        ],
+        <String>['pub', 'upgrade', '--tighten'],
         runInShell: true,
         workingDirectory: projDir,
       );
@@ -308,11 +267,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
               config,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FailureHeader(
-                  config,
-                  message: failureMessage,
-                  richMessage: richFailureMessage,
-                ),
+                FailureHeader(config, message: failureMessage, richMessage: richFailureMessage),
                 if (showDelete == true) ...<Widget>[
                   config.spacer,
                   DeleteOption(
@@ -322,10 +277,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     style: ezSubTitleStyle(config.styles),
                   ),
                 ],
-                if (showDelete == null) ...<Widget>[
-                  config.spacer,
-                  LinkOption(config),
-                ],
+                if (showDelete == null) ...<Widget>[config.spacer, LinkOption(config)],
               ],
             ),
           ),
@@ -337,75 +289,78 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(builder: (_, EzCP config, __) {
-      if (!ran) {
-        ran = true;
-        genStuff(config);
-      }
+    return Consumer<EzCP>(
+      builder: (_, EzCP config, __) {
+        if (!ran) {
+          ran = true;
+          genStuff(config);
+        }
 
-      return OpenUIScaffold(
-        config,
-        body: EzScreen(
+        return OpenUIScaffold(
           config,
-          child: EzScrollView(config, children: <Widget>[
-            SizedBox(
-              height: heightOf(context) / 3,
-              width: double.infinity,
-              child: header(config),
-            ),
-            Container(
-              alignment: Alignment.topCenter,
-              constraints: BoxConstraints(
-                minWidth: widthOf(context) * 0.667,
-                maxWidth: widthOf(context) * 0.667,
-              ),
-              child: ExpansionTile(
-                controller: ec,
-                onExpansionChanged: (_) => setState(() {}),
-                expandedAlignment: Alignment.topCenter,
-                expandedCrossAxisAlignment: CrossAxisAlignment.center,
-                showTrailingIcon: false,
-                title: EzRow(
-                  config,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Flexible(
-                      child: Text(
-                        l10n(config).gsConsole,
-                        style: config.titleStyle,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    config.rowMargin,
-                    EzIconButton(
-                      config,
-                      icon: Icon(
-                        ezVisIcon(config, ec.isExpanded),
-                        semanticLabel: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
-                      ),
-                      onPressed: () => ec.isExpanded ? ec.collapse() : ec.expand(),
-                      tooltip: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
-                    ),
-                  ],
+          body: EzScreen(
+            config,
+            child: EzScrollView(
+              config,
+              children: <Widget>[
+                SizedBox(
+                  height: heightOf(context) / 3,
+                  width: double.infinity,
+                  child: header(config),
                 ),
-                children: <Widget>[
-                  ValueListenableBuilder<String>(
-                    valueListenable: readout,
-                    builder: (_, String value, __) => Text(
-                      value,
-                      style: config.bodyStyle,
-                      textAlign: TextAlign.start,
-                    ),
+                Container(
+                  alignment: Alignment.topCenter,
+                  constraints: BoxConstraints(
+                    minWidth: widthOf(context) * 0.667,
+                    maxWidth: widthOf(context) * 0.667,
                   ),
-                ],
-              ),
+                  child: ExpansionTile(
+                    controller: ec,
+                    onExpansionChanged: (_) => setState(() {}),
+                    expandedAlignment: Alignment.topCenter,
+                    expandedCrossAxisAlignment: CrossAxisAlignment.center,
+                    showTrailingIcon: false,
+                    title: EzRow(
+                      config,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: Text(
+                            l10n(config).gsConsole,
+                            style: config.titleStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        config.rowMargin,
+                        EzIconButton(
+                          config,
+                          icon: Icon(
+                            ezVisIcon(config, ec.isExpanded),
+                            semanticLabel:
+                                ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
+                          ),
+                          onPressed: () => ec.isExpanded ? ec.collapse() : ec.expand(),
+                          tooltip: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
+                        ),
+                      ],
+                    ),
+                    children: <Widget>[
+                      ValueListenableBuilder<String>(
+                        valueListenable: readout,
+                        builder: (_, String value, __) =>
+                            Text(value, style: config.bodyStyle, textAlign: TextAlign.start),
+                      ),
+                    ],
+                  ),
+                ),
+                config.separator,
+              ],
             ),
-            config.separator,
-          ]),
-        ),
-        title: l10n(config).gsPageTitle,
-        running: genState == GeneratorState.running,
-      );
-    });
+          ),
+          title: l10n(config).gsPageTitle,
+          running: genState == GeneratorState.running,
+        );
+      },
+    );
   }
 }

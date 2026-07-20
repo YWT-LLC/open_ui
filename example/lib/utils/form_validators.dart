@@ -1,19 +1,14 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import './export.dart';
 
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 /// Allows letters (upper and lower case) and underscores
-String? validateAppName(
-  EzCP config,
-  String? value, {
-  Function? onSuccess,
-  Function? onFailure,
-}) {
+String? validateAppName(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
     return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName.toLowerCase()}';
@@ -26,12 +21,7 @@ String? validateAppName(
   }
 }
 
-String? validatePublisher(
-  EzCP config,
-  String? value, {
-  Function? onSuccess,
-  Function? onFailure,
-}) {
+String? validatePublisher(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
     return config.ezL10n.gRequired;
@@ -57,12 +47,7 @@ String? validateDescription(
 }
 
 /// Validates name.extension domains
-String? validateDomain(
-  EzCP config,
-  String? value, {
-  Function? onSuccess,
-  Function? onFailure,
-}) {
+String? validateDomain(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
     return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName}';

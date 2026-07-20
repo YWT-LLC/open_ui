@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class SettingsButton extends StatelessWidget {
   final EzCP config;
@@ -71,15 +71,15 @@ class UploadButton extends StatelessWidget {
 class OpenSourceButton extends StatelessWidget {
   final EzCP config;
 
-  /// [EzMenuButton] for opening the EFUI GitHub repo
+  /// [EzMenuButton] for opening the Open UI GitHub repo
   const OpenSourceButton(this.config, {super.key});
 
   @override
   Widget build(BuildContext context) => EzMenuLink(
         config,
-        uri: Uri.parse('https://github.com/Empathetech-LLC/empathetech_flutter_ui'),
+        uri: Uri.parse('https://github.com/YWT-LLC/open_ui'),
         icon: EzIcon(config, LineIcons.github),
         label: config.ezL10n.gOpenSource,
-        semanticsLabel: '${config.ezL10n.gOpenSource}: ${config.ezL10n.gEFUISourceHint}',
+        semanticsLabel: '${config.ezL10n.gOpenSource}: ${config.ezL10n.gOpenUISourceHint}',
       );
 }

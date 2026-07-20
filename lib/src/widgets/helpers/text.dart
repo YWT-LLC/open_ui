@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -21,12 +21,8 @@ class EzNewLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: Text(
-          '',
-          style: style,
-          textAlign: textAlign ?? TextAlign.start,
-        ),
-      );
+    child: Text('', style: style, textAlign: textAlign ?? TextAlign.start),
+  );
 }
 
 class EzText extends StatelessWidget {
@@ -79,19 +75,19 @@ class EzText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzTextBackground(
-        config,
-        text: Text(
-          text,
-          style: style ?? config.bodyStyle,
-          textAlign: textAlign,
-          semanticsLabel: semanticsLabel,
-          maxLines: maxLines,
-          overflow: overflow,
-        ),
-        shape: shape,
-        baseColor: baseColor,
-        backgroundColor: backgroundColor,
-      );
+    config,
+    text: Text(
+      text,
+      style: style ?? config.bodyStyle,
+      textAlign: textAlign,
+      semanticsLabel: semanticsLabel,
+      maxLines: maxLines,
+      overflow: overflow,
+    ),
+    shape: shape,
+    baseColor: baseColor,
+    backgroundColor: backgroundColor,
+  );
 }
 
 // TODO: track round vs sharp, like in the clock widget (consolidate that when done?)
@@ -136,18 +132,21 @@ class EzTextBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: padding ??
-            ((backgroundColor == null && config.textBackgroundOpacity < oneP)
-                ? EdgeInsets.zero
-                : EdgeInsets.all(config.marginVal)),
-        decoration: BoxDecoration(
-          color: backgroundColor ??
-              (baseColor ?? config.colors.surfaceContainer)
-                  .withValues(alpha: config.textBackgroundOpacity),
-          borderRadius: shape.radius,
-        ),
-        child: text,
-      );
+    padding:
+        padding ??
+        ((backgroundColor == null && config.textBackgroundOpacity < oneP)
+            ? EdgeInsets.zero
+            : EdgeInsets.all(config.marginVal)),
+    decoration: BoxDecoration(
+      color:
+          backgroundColor ??
+          (baseColor ?? config.colors.surfaceContainer).withValues(
+            alpha: config.textBackgroundOpacity,
+          ),
+      borderRadius: shape.radius,
+    ),
+    child: text,
+  );
 }
 
 class EzTextField extends StatefulWidget {
@@ -251,27 +250,27 @@ class _EzTextFieldState extends State<EzTextField> {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-        constraints: error ? widget.errorConstraints ?? widget.constraints : widget.constraints,
-        child: TextFormField(
-          autofillHints: widget.autofillHints,
-          autovalidateMode: widget.autovalidateMode,
-          controller: widget.controller,
-          focusNode: widget.focusNode,
-          decoration: InputDecoration(hintText: widget.hintText),
-          keyboardType: widget.keyboardType,
-          maxLines: widget.maxLines,
-          onChanged: widget.onChanged,
-          onEditingComplete: widget.onEditingComplete,
-          onFieldSubmitted: widget.onFieldSubmitted,
-          onTap: widget.onTap,
-          onTapAlwaysCalled: widget.onTapAlwaysCalled,
-          onTapOutside: widget.onTapOutside,
-          readOnly: widget.readOnly,
-          style: widget.style,
-          textAlign: widget.textAlign,
-          textAlignVertical: widget.textAlignVertical,
-          textInputAction: widget.textInputAction,
-          validator: widget.validator,
-        ),
-      );
+    constraints: error ? widget.errorConstraints ?? widget.constraints : widget.constraints,
+    child: TextFormField(
+      autofillHints: widget.autofillHints,
+      autovalidateMode: widget.autovalidateMode,
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      decoration: InputDecoration(hintText: widget.hintText),
+      keyboardType: widget.keyboardType,
+      maxLines: widget.maxLines,
+      onChanged: widget.onChanged,
+      onEditingComplete: widget.onEditingComplete,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      onTap: widget.onTap,
+      onTapAlwaysCalled: widget.onTapAlwaysCalled,
+      onTapOutside: widget.onTapOutside,
+      readOnly: widget.readOnly,
+      style: widget.style,
+      textAlign: widget.textAlign,
+      textAlignVertical: widget.textAlignVertical,
+      textInputAction: widget.textInputAction,
+      validator: widget.validator,
+    ),
+  );
 }

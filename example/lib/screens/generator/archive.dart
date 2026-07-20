@@ -1,17 +1,17 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import '../../utils/export.dart';
 import '../../widgets/export.dart';
-import 'package:efui_bios/efui_bios.dart';
+import 'package:oui_bios/oui_bios.dart';
 
 import 'dart:convert';
+import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:file_saver/file_saver.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 class ArchiveScreen extends StatefulWidget {
   final EAGConfig archive;
@@ -62,10 +62,8 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
         GeneratorState.running => SizedBox(
             height: heightOf(context) / 3,
             width: double.infinity,
-            child: EmpathyLoading(
-              semantics: config.ezL10n.gLoadingAnim,
-              colorScheme: config.colors,
-            ),
+            child:
+                EmpathyLoading(semantics: config.ezL10n.gLoadingAnim, colorScheme: config.colors),
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(
@@ -85,7 +83,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                       hint: config.ezL10n.gOpenUIReleases,
                     ),
                     EzPlainText(text: l10n(config).asToGen(widget.archive.appName)),
-                  ]
+                  ],
                 ],
                 style: ezSubTitleStyle(config.styles),
                 textAlign: TextAlign.center,
@@ -100,19 +98,19 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   bool ran = false;
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<EzCP>(builder: (_, EzCP config, __) {
-      if (!ran) {
-        ran = true;
-        archive(config);
-      }
+  Widget build(BuildContext context) => Consumer<EzCP>(
+        builder: (_, EzCP config, __) {
+          if (!ran) {
+            ran = true;
+            archive(config);
+          }
 
-      return OpenUIScaffold(
-        config,
-        body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
-        title: l10n(config).asPageTitle,
-        running: genState == GeneratorState.running,
+          return OpenUIScaffold(
+            config,
+            body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
+            title: l10n(config).asPageTitle,
+            running: genState == GeneratorState.running,
+          );
+        },
       );
-    });
-  }
 }

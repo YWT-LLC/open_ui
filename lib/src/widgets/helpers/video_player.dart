@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class EzVideoPlayer extends StatefulWidget {
   /// Whether the video should replay when complete
   final bool autoLoop;
 
-  /// An Empathetech video player
+  /// An Ez to use [VideoPlayer]
   const EzVideoPlayer(
     this.config, {
     super.key,
@@ -135,18 +135,19 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     handleMobileHover();
   }
 
-  Future<void> skipForward(VideoPlayerValue value) => widget.controller.seekTo(value.position +
-      (fbf ? const Duration(milliseconds: 20) : Duration(seconds: widget.skipTime)));
+  Future<void> skipForward(VideoPlayerValue value) => widget.controller.seekTo(
+        value.position +
+            (fbf ? const Duration(milliseconds: 20) : Duration(seconds: widget.skipTime)),
+      );
 
-  Future<void> skipBackward(VideoPlayerValue value) => widget.controller.seekTo(value.position -
-      (fbf ? const Duration(milliseconds: 20) : Duration(seconds: widget.skipTime)));
+  Future<void> skipBackward(VideoPlayerValue value) => widget.controller.seekTo(
+        value.position -
+            (fbf ? const Duration(milliseconds: 20) : Duration(seconds: widget.skipTime)),
+      );
 
   void showVolumeLabel() {
     showVolume?.cancel();
-    showVolume = Timer(
-      const Duration(milliseconds: 500),
-      () => showVolume?.cancel(),
-    );
+    showVolume = Timer(const Duration(milliseconds: 500), () => showVolume?.cancel());
   }
 
   /// Get the percent of the total video that is complete from the passed [Duration]
@@ -179,16 +180,14 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     if (widget.aspectRatio >= 1.0) {
-      await SystemChrome.setPreferredOrientations(
-        const <DeviceOrientation>[
-          DeviceOrientation.landscapeLeft,
-          DeviceOrientation.landscapeRight,
-        ],
-      );
+      await SystemChrome.setPreferredOrientations(const <DeviceOrientation>[
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
     } else {
-      await SystemChrome.setPreferredOrientations(
-        const <DeviceOrientation>[DeviceOrientation.portraitUp],
-      );
+      await SystemChrome.setPreferredOrientations(const <DeviceOrientation>[
+        DeviceOrientation.portraitUp,
+      ]);
     }
 
     setState(() => twinRunning = true);
@@ -592,9 +591,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
                                 // Time label
                                 Padding(
-                                  padding: EdgeInsets.only(
-                                    right: widget.config.spacing,
-                                  ),
+                                  padding: EdgeInsets.only(right: widget.config.spacing),
                                   child: Text(
                                     '${ezVideoTime(value.position)} / ${ezVideoTime(value.duration)}',
                                     style: labelStyle,
@@ -604,9 +601,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
                                 // Playback speed selector
                                 Padding(
-                                  padding: EdgeInsets.only(
-                                    right: widget.config.spacing,
-                                  ),
+                                  padding: EdgeInsets.only(right: widget.config.spacing),
                                   child: EzRow(
                                     widget.config,
                                     reverseHands: false,
@@ -615,8 +610,9 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         widget.config,
                                         enabled: !fbf && value.playbackSpeed > 0.25,
                                         onPressed: () async {
-                                          await widget.controller
-                                              .setPlaybackSpeed(value.playbackSpeed - 0.25);
+                                          await widget.controller.setPlaybackSpeed(
+                                            value.playbackSpeed - 0.25,
+                                          );
                                           handleMobileHover();
                                         },
                                         tooltip:
@@ -647,8 +643,9 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         widget.config,
                                         enabled: !fbf && value.playbackSpeed < 2.0,
                                         onPressed: () async {
-                                          await widget.controller
-                                              .setPlaybackSpeed(value.playbackSpeed + 0.25);
+                                          await widget.controller.setPlaybackSpeed(
+                                            value.playbackSpeed + 0.25,
+                                          );
                                           handleMobileHover();
                                         },
                                         tooltip:

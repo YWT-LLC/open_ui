@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -43,17 +43,17 @@ class EzCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
-        child: Transform.scale(
-          scale: max(1.0, _scale),
-          child: Checkbox(
-            value: value,
-            onChanged: onChanged,
-            isError: isError,
-            semanticLabel: semanticLabel,
-          ),
-        ),
-      );
+    padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
+    child: Transform.scale(
+      scale: max(1.0, _scale),
+      child: Checkbox(
+        value: value,
+        onChanged: onChanged,
+        isError: isError,
+        semanticLabel: semanticLabel,
+      ),
+    ),
+  );
 }
 
 class EzCheckboxPair extends StatelessWidget {
@@ -128,30 +128,30 @@ class EzCheckboxPair extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzRow(
+    config,
+    reverseHands: reverseHands,
+    mainAxisSize: mainAxisSize,
+    mainAxisAlignment: mainAxisAlignment,
+    crossAxisAlignment: crossAxisAlignment,
+    children: <Widget>[
+      Flexible(
+        child: EzText(
+          config,
+          text: text,
+          style: style,
+          textAlign: textAlign,
+          semanticsLabel: semanticsLabel,
+          baseColor: baseColor,
+          backgroundColor: backgroundColor,
+        ),
+      ),
+      EzCheckbox(
         config,
-        reverseHands: reverseHands,
-        mainAxisSize: mainAxisSize,
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        children: <Widget>[
-          Flexible(
-            child: EzText(
-              config,
-              text: text,
-              style: style,
-              textAlign: textAlign,
-              semanticsLabel: semanticsLabel,
-              baseColor: baseColor,
-              backgroundColor: backgroundColor,
-            ),
-          ),
-          EzCheckbox(
-            config,
-            padding: padding,
-            value: value,
-            onChanged: onChanged,
-            semanticLabel: semanticLabel,
-          ),
-        ],
-      );
+        padding: padding,
+        value: value,
+        onChanged: onChanged,
+        semanticLabel: semanticLabel,
+      ),
+    ],
+  );
 }

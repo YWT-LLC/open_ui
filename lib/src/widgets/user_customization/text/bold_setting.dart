@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -34,26 +34,26 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
 
   @override
   Widget build(BuildContext context) => EzIconButton(
-        widget.config,
-        onPressed: () async {
-          isBold = !isBold;
+    widget.config,
+    onPressed: () async {
+      isBold = !isBold;
 
-          await EzCM.setBool(widget.type.boldKey(widget.config.isDark), isBold);
-          if (EzCM.updateBoth) {
-            await EzCM.setBool(widget.type.boldMirror(widget.config.isDark), isBold);
-          }
+      await EzCM.setBool(widget.type.boldKey(widget.config.isDark), isBold);
+      if (EzCM.updateBoth) {
+        await EzCM.setBool(widget.type.boldMirror(widget.config.isDark), isBold);
+      }
 
-          widget.notifierCallback(isBold);
-          if (context.mounted) {
-            widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-          }
+      widget.notifierCallback(isBold);
+      if (context.mounted) {
+        widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+      }
 
-          setState(() {});
-        },
-        tooltip: widget.config.ezL10n.tsBold,
-        icon: Icon(
-          Icons.format_bold_outlined,
-          color: isBold ? widget.config.colors.primary : widget.config.colors.outline,
-        ),
-      );
+      setState(() {});
+    },
+    tooltip: widget.config.ezL10n.tsBold,
+    icon: Icon(
+      Icons.format_bold_outlined,
+      color: isBold ? widget.config.colors.primary : widget.config.colors.outline,
+    ),
+  );
 }

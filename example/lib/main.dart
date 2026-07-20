@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -12,7 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 void main() async {
   // Configure the app //
@@ -26,11 +26,9 @@ void main() async {
     assetPaths: <String>{},
     defaults: isMobile() ? mobileDefaults : desktopDefaults,
     localeFallback: americanEnglish,
-    l10nFallback: await EFUILang.delegate.load(americanEnglish),
+    l10nFallback: await OUILang.delegate.load(americanEnglish),
     preferences: await SharedPreferencesWithCache.create(
-      cacheOptions: SharedPreferencesWithCacheOptions(
-        allowList: allEZConfigKeys.keys.toSet(),
-      ),
+      cacheOptions: SharedPreferencesWithCacheOptions(allowList: allEZConfigKeys.keys.toSet()),
     ),
     orientations: DeviceOrientation.values,
   );
@@ -49,33 +47,24 @@ void main() async {
 
   // Run the app //
 
-  final (Locale storedLocale, EFUILang storedEFUILang) = await ezStoredL10n();
+  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
 
-  runApp(OpenUI(
-    storedLocale,
-    storedEFUILang,
-    await Lang.delegate.load(storedLocale),
-  ));
+  runApp(OpenUI(storedLocale, storedOUILang, await Lang.delegate.load(storedLocale)));
 }
 
 class OpenUI extends StatelessWidget {
   final Locale storedLocale;
-  final EFUILang storedEFUILang;
+  final OUILang storedOUILang;
   final Lang storedLang;
 
-  const OpenUI(
-    this.storedLocale,
-    this.storedEFUILang,
-    this.storedLang, {
-    super.key,
-  });
+  const OpenUI(this.storedLocale, this.storedOUILang, this.storedLang, {super.key});
 
   @override
   Widget build(BuildContext context) => EzConfigurableApp(
         localizationsDelegates: ezLocalizationsDelegates(Lang.localizationsDelegates),
         supportedLocales: Lang.supportedLocales,
         locale: storedLocale,
-        el10n: storedEFUILang,
+        el10n: storedOUILang,
         appCache: OpenUICache(storedLocale, storedLang),
         routerConfig: GoRouter(
           navigatorKey: ezRootNav,
@@ -94,7 +83,11 @@ class OpenUI extends StatelessWidget {
                   path: archiveScreenPath,
                   name: archiveScreenPath,
                   pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                      configWatcher(pbc), pbc, pbs, ArchiveScreen((pbs.extra as EAGConfig))),
+                    configWatcher(pbc),
+                    pbc,
+                    pbs,
+                    ArchiveScreen((pbs.extra as EAGConfig)),
+                  ),
                 ),
 
                 // Generate
@@ -102,7 +95,11 @@ class OpenUI extends StatelessWidget {
                   path: generateScreenPath,
                   name: generateScreenPath,
                   pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                      configWatcher(pbc), pbc, pbs, GenerateScreen((pbs.extra as EAGConfig))),
+                    configWatcher(pbc),
+                    pbc,
+                    pbs,
+                    GenerateScreen((pbs.extra as EAGConfig)),
+                  ),
                 ),
 
                 // Settings

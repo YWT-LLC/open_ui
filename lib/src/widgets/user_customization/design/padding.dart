@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,9 +15,7 @@ class EzPaddingSetting extends StatelessWidget {
   final int _decimals;
 
   /// An ez to use padding setting
-  const EzPaddingSetting(this.config, {super.key})
-      : _steps = 20,
-        _decimals = 0;
+  const EzPaddingSetting(this.config, {super.key}) : _steps = 20, _decimals = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,94 +37,100 @@ class EzPaddingSetting extends StatelessWidget {
           config,
           context: context,
           builder: (_) => StatefulBuilder(
-            builder: (_, StateSetter setModal) => ezModalScroll(config, children: <Widget>[
-              // Preview
-              Semantics(
-                button: false,
-                readOnly: true,
-                label: config.ezL10n.gSetToValue(
-                  config.ezL10n.dsPadding,
-                  currValue.toStringAsFixed(_decimals),
-                ),
-                child: ExcludeSemantics(
-                  child: EzCol(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      // Title
-                      Text(
-                        config.ezL10n.dsPadding,
-                        style: config.titleStyle,
-                        textAlign: TextAlign.center,
-                      ),
+            builder: (_, StateSetter setModal) => ezModalScroll(
+              config,
+              children: <Widget>[
+                // Preview
+                Semantics(
+                  button: false,
+                  readOnly: true,
+                  label: config.ezL10n.gSetToValue(
+                    config.ezL10n.dsPadding,
+                    currValue.toStringAsFixed(_decimals),
+                  ),
+                  child: ExcludeSemantics(
+                    child: EzCol(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        // Title
+                        Text(
+                          config.ezL10n.dsPadding,
+                          style: config.titleStyle,
+                          textAlign: TextAlign.center,
+                        ),
 
-                      // Preview
-                      config.spacer,
-                      EzScrollView(
-                        config,
-                        scrollDirection: Axis.horizontal,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          EzElevatedButton(
-                            config,
-                            enabled: false,
-                            style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
-                            text: config.ezL10n.gCurrently,
-                          ),
-                          config.rowSpacer,
-                          EzElevatedButton(
-                            config,
-                            enabled: false,
-                            style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
-                            text: currValue.toStringAsFixed(_decimals),
-                          ),
-                        ],
-                      ),
-                      config.spacer,
-                    ],
+                        // Preview
+                        config.spacer,
+                        EzScrollView(
+                          config,
+                          scrollDirection: Axis.horizontal,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            EzElevatedButton(
+                              config,
+                              enabled: false,
+                              style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
+                              text: config.ezL10n.gCurrently,
+                            ),
+                            config.rowSpacer,
+                            EzElevatedButton(
+                              config,
+                              enabled: false,
+                              style: ElevatedButton.styleFrom(padding: EdgeInsets.all(currValue)),
+                              text: currValue.toStringAsFixed(_decimals),
+                            ),
+                          ],
+                        ),
+                        config.spacer,
+                      ],
+                    ),
                   ),
                 ),
-              ),
 
-              // Slider
-              ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-                child: Slider(
-                  // Slider values
-                  value: currValue,
-                  min: minPadding,
-                  max: maxPadding,
-                  divisions: _steps,
+                // Slider
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                  child: Slider(
+                    // Slider values
+                    value: currValue,
+                    min: minPadding,
+                    max: maxPadding,
+                    divisions: _steps,
 
-                  // Slider functions
-                  onChanged: (double value) => setModal(() => currValue = value),
-                  onChangeEnd: (double value) async {
-                    await EzCM.setDouble(configKey, value);
-                    if (EzCM.updateBoth) {
-                      await EzCM.setDouble(config.isDark ? lightPaddingKey : darkPaddingKey, value);
-                    }
-                  },
+                    // Slider functions
+                    onChanged: (double value) => setModal(() => currValue = value),
+                    onChangeEnd: (double value) async {
+                      await EzCM.setDouble(configKey, value);
+                      if (EzCM.updateBoth) {
+                        await EzCM.setDouble(
+                          config.isDark ? lightPaddingKey : darkPaddingKey,
+                          value,
+                        );
+                      }
+                    },
 
-                  // Slider semantics
-                  semanticFormatterCallback: (double value) => value.toStringAsFixed(_decimals),
+                    // Slider semantics
+                    semanticFormatterCallback: (double value) => value.toStringAsFixed(_decimals),
+                  ),
                 ),
-              ),
-              config.spacer,
+                config.spacer,
 
-              // Reset button
-              EzElevatedIconButton(
-                config,
-                onPressed: () async {
-                  await EzCM.remove(configKey);
-                  if (EzCM.updateBoth) {
-                    await EzCM.remove(config.isDark ? lightPaddingKey : darkPaddingKey);
-                  }
-                  setModal(() => currValue = defaultValue);
-                },
-                icon: EzIcon(config, Icons.refresh),
-                label: '${config.ezL10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
-              ),
-              config.separator,
-            ]),
+                // Reset button
+                EzElevatedIconButton(
+                  config,
+                  onPressed: () async {
+                    await EzCM.remove(configKey);
+                    if (EzCM.updateBoth) {
+                      await EzCM.remove(config.isDark ? lightPaddingKey : darkPaddingKey);
+                    }
+                    setModal(() => currValue = defaultValue);
+                  },
+                  icon: EzIcon(config, Icons.refresh),
+                  label: '${config.ezL10n.gResetTo} ${defaultValue.toStringAsFixed(_decimals)}',
+                ),
+                config.separator,
+              ],
+            ),
           ),
         );
 

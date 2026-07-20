@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,10 +63,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     // 'on' (aka text) color //
 
     // Get its background pair
-    final String backgroundKey = widget.configKey.replaceAll(
-      textColorPrefix,
-      '',
-    );
+    final String backgroundKey = widget.configKey.replaceAll(textColorPrefix, '');
 
     // Find the recommended contrast color for the background
     final int? backgroundColorValue = EzCM.get(backgroundKey);
@@ -85,19 +82,13 @@ class _ColorSettingState extends State<EzColorSetting> {
       context: context,
       builder: (BuildContext dCon) => EzAlertDialog(
         widget.config,
-        title: Text(
-          widget.config.ezL10n.csRecommended,
-          textAlign: TextAlign.center,
-        ),
+        title: Text(widget.config.ezL10n.csRecommended, textAlign: TextAlign.center),
         // Recommended color preview
         contents: <Widget>[
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: backgroundColor,
-                width: widget.config.borderWidth,
-              ),
+              border: Border.all(color: backgroundColor, width: widget.config.borderWidth),
             ),
             child: CircleAvatar(
               backgroundColor: Color(recommended),
@@ -135,48 +126,49 @@ class _ColorSettingState extends State<EzColorSetting> {
   /// If there is no default value, the key will simply be removed from [EzCP]
   /// If a value is found, a preview of the reset color is shown and the user can confirm/deny
   Future<dynamic> reset() => showDialog(
-        context: context,
-        builder: (BuildContext dCon) {
-          final int? resetValue = EzCM.getDefault(widget.configKey);
-          final String currColorLabel = currColor.toARGB32().toRadixString(16).toUpperCase();
+    context: context,
+    builder: (BuildContext dCon) {
+      final int? resetValue = EzCM.getDefault(widget.configKey);
+      final String currColorLabel = currColor.toARGB32().toRadixString(16).toUpperCase();
 
-          return EzAlertDialog(
+      return EzAlertDialog(
+        widget.config,
+        title: Text(
+          widget.config.ezL10n.gResetValue(
+            getColorName(widget.config.ezL10n, widget.configKey).toLowerCase(),
+          ),
+          textAlign: TextAlign.center,
+        ),
+        contents: <Widget>[
+          // Label
+          Text(widget.config.ezL10n.csCurrVal, textAlign: TextAlign.center),
+          widget.config.margin,
+
+          // Copy-able value
+          EzTextIconButton(
             widget.config,
-            title: Text(
-              widget.config.ezL10n
-                  .gResetValue(getColorName(widget.config.ezL10n, widget.configKey).toLowerCase()),
-              textAlign: TextAlign.center,
-            ),
-            contents: <Widget>[
-              // Label
-              Text(widget.config.ezL10n.csCurrVal, textAlign: TextAlign.center),
-              widget.config.margin,
-
-              // Copy-able value
-              EzTextIconButton(
-                widget.config,
-                onPressed: () => Clipboard.setData(ClipboardData(text: currColorLabel)),
-                icon: EzIcon(widget.config, Icons.copy),
-                label: currColorLabel,
-              ),
-            ],
-            actions: ezActionPair(
-              widget.config,
-              onConfirm: () async {
-                // Remove the user's configKey and reset the current state
-                await EzCM.remove(widget.configKey);
-                if (resetValue != null) {
-                  setState(() => currColor = Color(resetValue));
-                }
-                await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
-              },
-              confirmIsDestructive: true,
-              onDeny: () => Navigator.of(dCon).pop(),
-            ),
-            needsClose: false,
-          );
-        },
+            onPressed: () => Clipboard.setData(ClipboardData(text: currColorLabel)),
+            icon: EzIcon(widget.config, Icons.copy),
+            label: currColorLabel,
+          ),
+        ],
+        actions: ezActionPair(
+          widget.config,
+          onConfirm: () async {
+            // Remove the user's configKey and reset the current state
+            await EzCM.remove(widget.configKey);
+            if (resetValue != null) {
+              setState(() => currColor = Color(resetValue));
+            }
+            await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
+          },
+          confirmIsDestructive: true,
+          onDeny: () => Navigator.of(dCon).pop(),
+        ),
+        needsClose: false,
       );
+    },
+  );
 
   // Return the build //
 

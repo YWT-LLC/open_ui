@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,10 +19,7 @@ Widget ezRichUndoWarning(
     config,
     children: <InlineSpan>[
       // Cannot be undone
-      EzPlainText(
-        text: config.ezL10n.gUndoWarn1,
-        style: config.bodyStyle,
-      ),
+      EzPlainText(text: config.ezL10n.gUndoWarn1, style: config.bodyStyle),
 
       // Save link
       EzInlineLink(
@@ -35,10 +32,7 @@ Widget ezRichUndoWarning(
       ),
 
       // Can restore manually
-      EzPlainText(
-        text: config.ezL10n.gUndoWarn2,
-        style: config.bodyStyle,
-      ),
+      EzPlainText(text: config.ezL10n.gUndoWarn2, style: config.bodyStyle),
     ],
     textBackground: false,
     style: config.bodyStyle,

@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -20,18 +20,9 @@ class EzHighVisibilityConfig extends StatelessWidget {
   /// Resets the current config and applies the [ezHighContrastLight] | [ezHighContrastDark] color scheme
   /// With text theme built with [atkinsonHyperlegible] and is slightly larger than the default
   /// Spacing is also increased, but not as much as [EzBigButtonsConfig]
-  const EzHighVisibilityConfig(
-    this.config, {
-    super.key,
-    required this.updateBoth,
-    this.extra,
-  });
+  const EzHighVisibilityConfig(this.config, {super.key, required this.updateBoth, this.extra});
 
-  static Future<void> onPressed(
-    EzCP config,
-    bool updateBoth, {
-    bool monoChrome = false,
-  }) async {
+  static Future<void> onPressed(EzCP config, bool updateBoth, {bool monoChrome = false}) async {
     if (updateBoth || config.isDark) {
       // Reset //
 
@@ -234,10 +225,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
               foregroundColor: Colors.white,
               shadowColor: Colors.transparent,
               overlayColor: Colors.white,
-              side: const BorderSide(
-                color: halfWhite,
-                width: defaultBorderWidth,
-              ),
+              side: const BorderSide(color: halfWhite, width: defaultBorderWidth),
               shape: EzButtonShape.pill.shape,
               textStyle: localBody,
               padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
@@ -247,18 +235,18 @@ class EzHighVisibilityConfig extends StatelessWidget {
               foregroundColor: Colors.black,
               shadowColor: Colors.transparent,
               overlayColor: Colors.black,
-              side: const BorderSide(
-                color: halfBlack,
-                width: defaultBorderWidth,
-              ),
+              side: const BorderSide(color: halfBlack, width: defaultBorderWidth),
               shape: EzButtonShape.pill.shape,
               textStyle: localBody,
               padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
             ),
-      onPressed: () => config.rebuildUI(allECT, changes: () async {
-        await onPressed(config, updateBoth);
-        await extra?.call(updateBoth);
-      }),
+      onPressed: () => config.rebuildUI(
+        allECT,
+        changes: () async {
+          await onPressed(config, updateBoth);
+          await extra?.call(updateBoth);
+        },
+      ),
       text: config.ezL10n.ssHighVisibility,
       textStyle: localBody,
     );

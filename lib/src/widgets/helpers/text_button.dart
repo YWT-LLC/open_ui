@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -56,20 +56,22 @@ class EzTextButton extends StatefulWidget {
 class _EzTextButtonState extends State<EzTextButton> {
   @override
   Widget build(BuildContext context) => TextButton(
-        onPressed: widget.onPressed,
-        onLongPress: widget.onLongPress,
-        style: widget.inline
-            ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
-                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero))
-            : widget.style,
-        child: Text(
-          widget.text,
-          semanticsLabel: widget.semantics,
-          style: (widget.textStyle ?? widget.config.bodyStyle)
-              ?.copyWith(decorationColor: widget.config.colors.primary),
-          textAlign: widget.textAlign,
-        ),
-      );
+    onPressed: widget.onPressed,
+    onLongPress: widget.onLongPress,
+    style: widget.inline
+        ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
+            padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
+          )
+        : widget.style,
+    child: Text(
+      widget.text,
+      semanticsLabel: widget.semantics,
+      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+        decorationColor: widget.config.colors.primary,
+      ),
+      textAlign: widget.textAlign,
+    ),
+  );
 }
 
 class EzTextIconButton extends StatefulWidget {
@@ -126,20 +128,22 @@ class EzTextIconButton extends StatefulWidget {
 class _EzTextIconButtonState extends State<EzTextIconButton> {
   @override
   Widget build(BuildContext context) => TextButton.icon(
-        onPressed: widget.onPressed,
-        onLongPress: widget.onLongPress,
-        style: widget.inline
-            ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
-                padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero))
-            : widget.style,
-        icon: widget.icon,
-        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
-        label: Text(
-          widget.label,
-          semanticsLabel: widget.semantics,
-          style: (widget.textStyle ?? widget.config.bodyStyle)
-              ?.copyWith(decorationColor: widget.config.colors.primary),
-          textAlign: widget.textAlign,
-        ),
-      );
+    onPressed: widget.onPressed,
+    onLongPress: widget.onLongPress,
+    style: widget.inline
+        ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
+            padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
+          )
+        : widget.style,
+    icon: widget.icon,
+    iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+    label: Text(
+      widget.label,
+      semanticsLabel: widget.semantics,
+      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+        decorationColor: widget.config.colors.primary,
+      ),
+      textAlign: widget.textAlign,
+    ),
+  );
 }

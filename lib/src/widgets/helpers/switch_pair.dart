@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -114,13 +114,13 @@ class EzSwitchPair extends StatefulWidget {
     this.canChange,
     this.afterChanged,
     this.trackOutlineWidth,
-  })  : assert((value == null) != (valueKey == null), 'Provide value OR valueKey, but not both'),
-        assert((value == null) == (onChanged == null), 'Must pair value and onChanged'),
-        assert((valueKey == null) != (onChanged == null), 'Cannot use onChanged with valueKey'),
-        assert(
-            ((afterChanged == null) && (value == null) ||
-                ((afterChanged == null) != (value == null))),
-            'Cannot use afterChanged with value');
+  }) : assert((value == null) != (valueKey == null), 'Provide value OR valueKey, but not both'),
+       assert((value == null) == (onChanged == null), 'Must pair value and onChanged'),
+       assert((valueKey == null) != (onChanged == null), 'Cannot use onChanged with valueKey'),
+       assert(
+         ((afterChanged == null) && (value == null) || ((afterChanged == null) != (value == null))),
+         'Cannot use afterChanged with value',
+       );
 
   @override
   State<EzSwitchPair> createState() => _EzSwitchPairState();
@@ -160,60 +160,56 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   @override
   Widget build(BuildContext context) => EzRow(
-        widget.config,
-        reverseHands: widget.reverseHands,
-        mainAxisSize: widget.mainAxisSize,
-        mainAxisAlignment: widget.mainAxisAlignment,
-        crossAxisAlignment: widget.crossAxisAlignment,
-        children: <Widget>[
-          Flexible(
-            child: widget.clickable
-                ? EzLink(
-                    widget.config,
-                    text: widget.text,
-                    textColor: widget.config.colors.onSurface,
-                    backgroundColor: widget.textBackground,
-                    style: widget.config.bodyStyle,
-                    textAlign: widget.textAlign,
-                    hint: widget.semanticsLabel ?? widget.config.ezL10n.gSwitchHint,
-                    onTap: () => onChanged(!value),
-                  )
-                : EzText(
-                    widget.config,
-                    text: widget.text,
-                    backgroundColor: widget.textBackground,
-                    style: widget.config.bodyStyle,
-                    textAlign: widget.textAlign,
-                    semanticsLabel: widget.semanticsLabel,
-                  ),
-          ),
-          Transform.scale(
-            scale: max(1.0, ezIconRatio(widget.config)),
-            // Could be PlatformSwitch
-            // Dev's opinion: Material switches are better
-            child: Switch(
-              value: value,
-              onChanged: onChanged,
-              activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
-              inactiveThumbColor: widget.config.colors.outline,
-              trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
-                  ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
-                  : null,
-              trackOutlineWidth: widget.trackOutlineWidth,
-              padding: widget.config.isLefty
-                  ? EdgeInsets.only(right: widget.config.marginVal)
-                  : EdgeInsets.only(left: widget.config.marginVal),
-            ),
-          ),
-          if (widget.tipper != null || widget.bigTipper != null)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-              child: EzToolTipper(
+    widget.config,
+    reverseHands: widget.reverseHands,
+    mainAxisSize: widget.mainAxisSize,
+    mainAxisAlignment: widget.mainAxisAlignment,
+    crossAxisAlignment: widget.crossAxisAlignment,
+    children: <Widget>[
+      Flexible(
+        child: widget.clickable
+            ? EzLink(
                 widget.config,
-                message: widget.tipper,
-                richMessage: widget.bigTipper,
+                text: widget.text,
+                textColor: widget.config.colors.onSurface,
+                backgroundColor: widget.textBackground,
+                style: widget.config.bodyStyle,
+                textAlign: widget.textAlign,
+                hint: widget.semanticsLabel ?? widget.config.ezL10n.gSwitchHint,
+                onTap: () => onChanged(!value),
+              )
+            : EzText(
+                widget.config,
+                text: widget.text,
+                backgroundColor: widget.textBackground,
+                style: widget.config.bodyStyle,
+                textAlign: widget.textAlign,
+                semanticsLabel: widget.semanticsLabel,
               ),
-            )
-        ],
-      );
+      ),
+      Transform.scale(
+        scale: max(1.0, ezIconRatio(widget.config)),
+        // Could be PlatformSwitch
+        // Dev's opinion: Material switches are better
+        child: Switch(
+          value: value,
+          onChanged: onChanged,
+          activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
+          inactiveThumbColor: widget.config.colors.outline,
+          trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
+              ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
+              : null,
+          trackOutlineWidth: widget.trackOutlineWidth,
+          padding: widget.config.isLefty
+              ? EdgeInsets.only(right: widget.config.marginVal)
+              : EdgeInsets.only(left: widget.config.marginVal),
+        ),
+      ),
+      if (widget.tipper != null || widget.bigTipper != null)
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+          child: EzToolTipper(widget.config, message: widget.tipper, richMessage: widget.bigTipper),
+        ),
+    ],
+  );
 }

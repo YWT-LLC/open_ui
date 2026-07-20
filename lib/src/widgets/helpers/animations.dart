@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -35,18 +35,18 @@ class EzAnimSwitch extends AnimatedSwitcher {
     this.reverse = false,
     super.child,
   }) : super(
-          switchInCurve: config.animCurve,
-          switchOutCurve: config.animCurve,
-          duration: ezDuration(config.animDur, mod: mod),
-          transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
-            config,
-            a,
-            w,
-            forceType: forceType,
-            forceFade: forceFade,
-            reverse: reverse,
-          ),
-        );
+         switchInCurve: config.animCurve,
+         switchOutCurve: config.animCurve,
+         duration: ezDuration(config.animDur, mod: mod),
+         transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
+           config,
+           a,
+           w,
+           forceType: forceType,
+           forceFade: forceFade,
+           reverse: reverse,
+         ),
+       );
 }
 
 class EzAnimVis extends EzAnimSwitch {
@@ -68,9 +68,7 @@ class EzAnimVis extends EzAnimSwitch {
     super.reverse = false,
     required this.visible,
     required this.kid,
-  }) : super(
-          child: visible ? kid : const SizedBox.shrink(key: ValueKey<String>('[-_-]~')),
-        );
+  }) : super(child: visible ? kid : const SizedBox.shrink(key: ValueKey<String>('[-_-]~')));
 }
 
 class EzAnimHide extends EzAnimSwitch {
@@ -98,14 +96,14 @@ class EzAnimHide extends EzAnimSwitch {
     required this.size,
     required this.kid,
   }) : super(
-          child: visible
-              ? kid
-              : SizedBox(
-                  key: const ValueKey<String>('[-_-]~'),
-                  height: size.height,
-                  width: size.width,
-                ),
-        );
+         child: visible
+             ? kid
+             : SizedBox(
+                 key: const ValueKey<String>('[-_-]~'),
+                 height: size.height,
+                 width: size.width,
+               ),
+       );
 }
 
 class EzFauxCarousel extends StatelessWidget {
@@ -135,24 +133,21 @@ class EzFauxCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedSwitcher(
-        duration: ezDuration(config.animDur, mod: animMod),
-        switchInCurve: config.animCurve,
-        switchOutCurve: config.animCurve,
-        transitionBuilder: (Widget w, Animation<double> a) {
-          final double sign = (w.key == ValueKey<int>(position)) ? 1.0 : -1.0;
-          final double direction = (config.isLTR ? 1.0 : -1.0) * delta.sign;
+    duration: ezDuration(config.animDur, mod: animMod),
+    switchInCurve: config.animCurve,
+    switchOutCurve: config.animCurve,
+    transitionBuilder: (Widget w, Animation<double> a) {
+      final double sign = (w.key == ValueKey<int>(position)) ? 1.0 : -1.0;
+      final double direction = (config.isLTR ? 1.0 : -1.0) * delta.sign;
 
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: Offset(direction * sign, 0.0),
-              end: Offset.zero,
-            ).animate(CurvedAnimation(parent: a, curve: config.animCurve)),
-            child: FadeTransition(opacity: a, child: w),
-          );
-        },
-        child: KeyedSubtree(
-          key: ValueKey<int>(position),
-          child: child,
-        ),
+      return SlideTransition(
+        position: Tween<Offset>(
+          begin: Offset(direction * sign, 0.0),
+          end: Offset.zero,
+        ).animate(CurvedAnimation(parent: a, curve: config.animCurve)),
+        child: FadeTransition(opacity: a, child: w),
       );
+    },
+    child: KeyedSubtree(key: ValueKey<int>(position), child: child),
+  );
 }

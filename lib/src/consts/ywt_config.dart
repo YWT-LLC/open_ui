@@ -1,0 +1,799 @@
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
+ * See LICENSE for distribution and usage details.
+ */
+
+import '../../open_ui.dart';
+
+import 'package:flutter/material.dart';
+
+//*** Brand config ***//
+//** Default **//
+
+//* Color settings *//
+
+const int blackHex = 0xFF000000;
+const int whiteHex = 0xFFFFFFFF;
+const int redHex = 0xFFFF0000;
+
+const int halfRedHex = 0x80FF0000;
+const int transparentHex = 0x00000000;
+
+// Secondary //
+
+/// 0xFFDAA520
+/// Open source consumers: DO NOT USE
+const int ywtSandHex = 0xFFDAA520;
+
+/// 0xFFDAA520
+/// Open source consumers: DO NOT USE
+const Color ywtSand = Color(ywtSandHex);
+
+/// 0x33DAA520
+/// Open source consumers: DO NOT USE
+const int ywtSandDimHex = 0x33DAA520;
+
+/// 0x33DAA520
+/// Open source consumers: DO NOT USE
+const Color ywtSandDim = Color(ywtSandDimHex);
+
+// Dark:Primary | Light:Tertiary //
+
+/// 0xFF20DAA5
+/// Open source consumers: DO NOT USE
+const int ywtEucalyptusHex = 0xFF20DAA5;
+
+/// 0xFF20DAA5
+/// Open source consumers: DO NOT USE
+const Color ywtEucalyptus = Color(ywtEucalyptusHex);
+
+/// 0x3320DAA5
+/// Open source consumers: DO NOT USE
+const int ywtEucalyptusDimHex = 0x3320DAA5;
+
+/// 0x3320DAA5
+/// Open source consumers: DO NOT USE
+const Color ywtEucalyptusDim = Color(ywtEucalyptusDimHex);
+
+// Dark:Tertiary | Light:Primary //
+
+/// 0xFFA520DA
+/// Open source consumers: DO NOT USE
+const int ywtPurpleHex = 0xFFA520DA;
+
+/// 0xFFA520DA
+/// Open source consumers: DO NOT USE
+const Color ywtPurple = Color(ywtPurpleHex);
+
+/// 0x33A520DA
+/// Open source consumers: DO NOT USE
+const int ywtPurpleDimHex = 0x33A520DA;
+
+/// 0x33A520DA
+/// Open source consumers: DO NOT USE
+const Color ywtPurpleDim = Color(ywtPurpleDimHex);
+
+// Dark //
+
+/// 0xFF111111 == 17 of each
+const int darkSurfaceContainerHex = 0xFF111111;
+
+/// 0xFF111111 == 17 of each
+const Color darkSurfaceContainer = Color(darkSurfaceContainerHex);
+
+/// 0xFF191919 == 25 of each
+const int darkSurfaceDimHex = 0xFF191919;
+
+/// 0xFF191919 == 25 of each
+const Color darkSurfaceDim = Color(darkSurfaceDimHex);
+
+/// 0xFF222222 == 34 of each
+const int darkSurfaceHex = 0xFF222222;
+
+/// 0xFF222222 == 34 of each
+const Color darkSurface = Color(darkSurfaceHex);
+
+/// 0x80FFFFFF
+const int halfWhiteHex = 0x80FFFFFF;
+
+/// 0x80FFFFFF
+const Color halfWhite = Color(halfWhiteHex);
+
+/// 0x33FFFFFF
+const int dimWhiteHex = 0x33FFFFFF;
+
+/// 0x33FFFFFF
+const Color dimWhite = Color(dimWhiteHex);
+
+// Light //
+
+/// 0xFFF0F0F0 == -15 of each
+const int lightSurfaceContainerHex = 0xFFF0F0F0;
+
+/// 0xFFF0F0F0 == -15 of each
+const Color lightSurfaceContainer = Color(lightSurfaceContainerHex);
+
+/// 0xFFF8F8F8 == -7 of each
+const int lightSurfaceDimHex = 0xFFF8F8F8;
+
+/// 0xFFF8F8F8 == -7 of each
+const Color lightSurfaceDim = Color(lightSurfaceDimHex);
+
+/// 0xFFFFFFFF == white
+const int lightSurfaceHex = whiteHex;
+
+/// 0xFFFFFFFF == white
+const Color lightSurface = Color(lightSurfaceHex);
+
+/// 0x80000000
+const int halfBlackHex = 0x80000000;
+
+/// 0x80000000
+const Color halfBlack = Color(halfBlackHex);
+
+/// 0x33000000
+const int dimBlackHex = 0x33000000;
+
+/// 0x33FFFFFF
+const Color dimBlack = Color(dimBlackHex);
+
+//* Design settings *//
+
+/// 15.0
+const double defaultMobilePadding = 15.0;
+
+/// 18.0
+const double defaultDesktopPadding = 18.0;
+
+/// 1.5
+const double defaultBorderWidth = 1.5;
+
+/// 0.2 == 0x33
+const double defaultBorderOpacity = 0.2;
+
+/// 7.5
+const double defaultMobileMargin = 7.5;
+
+/// 9.0
+const double defaultDesktopMargin = 9.0;
+
+/// 25.0
+const double defaultMobileSpacing = 25.0;
+
+/// 30.0
+const double defaultDesktopSpacing = 30.0;
+
+/// 400
+const int defaultAnimationDuration = 400;
+
+//* Text settings *//
+
+/// 42.0
+const double defaultDisplaySize = 42.0;
+
+/// 32.0
+const double defaultHeadlineSize = 32.0;
+
+/// 22.0
+const double defaultTitleSize = 22.0;
+
+/// 16.0
+const double defaultBodySize = 16.0;
+
+/// 14.0
+const double defaultLabelSize = 14.0;
+
+/// 42.0, 32.0, 22.0, 16.0, 14.0
+const Map<String, double> fontSizeDefaults = <String, double>{
+  darkDisplayFontSizeKey: defaultDisplaySize,
+  lightDisplayFontSizeKey: defaultDisplaySize,
+  darkHeadlineFontSizeKey: defaultHeadlineSize,
+  lightHeadlineFontSizeKey: defaultHeadlineSize,
+  darkTitleFontSizeKey: defaultTitleSize,
+  lightTitleFontSizeKey: defaultTitleSize,
+  darkBodyFontSizeKey: defaultBodySize,
+  lightBodyFontSizeKey: defaultBodySize,
+  darkLabelFontSizeKey: defaultLabelSize,
+  lightLabelFontSizeKey: defaultLabelSize,
+};
+
+/// 0.0
+const double defaultTextOpacity = 0.0;
+
+/// 20.0
+const double defaultIconSize = 20.0;
+
+/// 2.0
+const double iconDelta = 2.0;
+
+/// 1.5
+const double defaultFontHeight = 1.5;
+
+/// 0.25
+const double defaultLetterSpacing = 0.25;
+
+/// 1.0
+const double defaultWordSpacing = 1.0;
+
+//** Min **//
+
+// Design settings //
+
+/// 10.0
+const double minPadding = 10.0;
+
+/// 0.0
+const double minBorderWidth = 0.0;
+
+/// 0.0
+const double minOpacity = 0.0;
+
+/// 5.0
+const double minMargin = 5.0;
+
+/// 10.0
+const double minSpacing = 10.0;
+
+/// 0
+const int minAnimationDuration = 0;
+
+// Text settings //
+
+/// 21.0
+const double minDisplay = 21.0;
+
+/// 16.0
+const double minHeadline = 16.0;
+
+/// 11.0
+const double minTitle = 11.0;
+
+/// 8.0
+const double minBody = 8.0;
+
+/// 7.0
+const double minLabel = 7.0;
+
+/// 21.0, 16.0, 11.0, 8.0, 7.0
+const Map<String, double> fontSizeMins = <String, double>{
+  darkDisplayFontSizeKey: minDisplay,
+  lightDisplayFontSizeKey: minDisplay,
+  darkHeadlineFontSizeKey: minHeadline,
+  lightHeadlineFontSizeKey: minHeadline,
+  darkTitleFontSizeKey: minTitle,
+  lightTitleFontSizeKey: minTitle,
+  darkBodyFontSizeKey: minBody,
+  lightBodyFontSizeKey: minBody,
+  darkLabelFontSizeKey: minLabel,
+  lightLabelFontSizeKey: minLabel,
+};
+
+/// 16.0
+const double minIconSize = 16.0;
+
+/// 0.0
+const double minLetterSpacing = 0.0;
+
+/// 0.0
+const double minWordSpacing = 0.0;
+
+/// 1.0
+const double minFontHeight = 1.0;
+
+//** Max **//
+
+// Design settings //
+
+/// 30.0
+const double maxPadding = 30.0;
+
+/// 3.0
+const double maxBorderWidth = 3.0;
+
+/// 1.0
+const double maxOpacity = 1.0;
+
+/// 15.0
+const double maxMargin = 15.0;
+
+/// 75.0
+const double maxSpacing = 75.0;
+
+/// 1000
+const int maxAnimationDuration = 1000;
+
+// Text settings //
+
+/// 84.0
+const double maxDisplay = 84.0;
+
+/// 64.0
+const double maxHeadline = 64.0;
+
+/// 42.0
+const double maxTitle = 42.0;
+
+/// 32.0
+const double maxBody = 32.0;
+
+/// 28.0
+const double maxLabel = 28.0;
+
+/// 84.0, 64.0, 42.0, 32.0, 28.0
+const Map<String, double> fontSizeMaxes = <String, double>{
+  darkDisplayFontSizeKey: maxDisplay,
+  lightDisplayFontSizeKey: maxDisplay,
+  darkHeadlineFontSizeKey: maxHeadline,
+  lightHeadlineFontSizeKey: maxHeadline,
+  darkTitleFontSizeKey: maxTitle,
+  lightTitleFontSizeKey: maxTitle,
+  darkBodyFontSizeKey: maxBody,
+  lightBodyFontSizeKey: maxBody,
+  darkLabelFontSizeKey: maxLabel,
+  lightLabelFontSizeKey: maxLabel,
+};
+
+/// 48.0
+const double maxIconSize = 48.0;
+
+/// 2.0
+const double maxLetterSpacing = 2.0;
+
+/// 3.0
+const double maxWordSpacing = 3.0;
+
+/// 2.0
+const double maxFontHeight = 2.0;
+
+//** Maps **//
+
+/// YWT [EzCM] defaults
+/// You do not have permission to use this config in your app
+/// You do have permission to modify this code
+final Map<String, Object> baseYWTConfig = <String, Object>{
+  // Global settings //
+  isLeftyKey: false,
+  // isDarkThemeKey: null => system
+  // appLocaleKey: null => system
+  hubPositionKey: 0,
+  updateBothKey: false,
+
+  // Color settings //
+  advancedColorsKey: false,
+
+  // Dark backgrounds
+  darkColorSchemeImageKey: noImageValue,
+  darkSurfaceKey: darkSurfaceHex,
+  darkSurfaceDimKey: darkSurfaceDimHex,
+  darkSurfaceContainerKey: darkSurfaceContainerHex,
+
+  // Dark text
+  darkOnSurfaceKey: whiteHex,
+  darkOutlineKey: halfWhiteHex,
+
+  // Dark primary
+  darkPrimaryKey: ywtEucalyptusHex,
+  darkOnPrimaryKey: blackHex,
+  darkPrimaryContainerKey: ywtEucalyptusDimHex,
+  darkOnPrimaryContainerKey: blackHex,
+
+  // Dark secondary
+  darkSecondaryKey: ywtSandHex,
+  darkOnSecondaryKey: blackHex,
+  darkSecondaryContainerKey: ywtSandDimHex,
+  darkOnSecondaryContainerKey: blackHex,
+
+  // Dark tertiary
+  darkTertiaryKey: ywtPurpleHex,
+  darkOnTertiaryKey: whiteHex,
+  darkTertiaryContainerKey: ywtPurpleDimHex,
+  darkOnTertiaryContainerKey: whiteHex,
+
+  // Dark erriary
+  darkErrorKey: redHex,
+  darkOnErrorKey: whiteHex,
+  darkErrorContainerKey: halfRedHex,
+  darkOnErrorContainerKey: whiteHex,
+
+  // Dark misc
+  darkOutlineVariantKey: dimWhiteHex,
+  // darkShadowKey
+  darkSurfaceTintKey: transparentHex,
+  darkScrimKey: blackHex,
+
+  // Light backgrounds
+  lightColorSchemeImageKey: noImageValue,
+  lightSurfaceKey: lightSurfaceHex,
+  lightSurfaceDimKey: lightSurfaceDimHex,
+  lightSurfaceContainerKey: lightSurfaceContainerHex,
+
+  // Light text
+  lightOnSurfaceKey: blackHex,
+  lightOutlineKey: halfBlackHex,
+
+  // Light primary
+  lightPrimaryKey: ywtPurpleHex,
+  lightOnPrimaryKey: whiteHex,
+  lightPrimaryContainerKey: ywtPurpleDimHex,
+  lightOnPrimaryContainerKey: whiteHex,
+
+  // Light secondary
+  lightSecondaryKey: ywtSandHex,
+  lightOnSecondaryKey: blackHex,
+  lightSecondaryContainerKey: ywtSandDimHex,
+  lightOnSecondaryContainerKey: blackHex,
+
+  // Light tertiary
+  lightTertiaryKey: ywtEucalyptusHex,
+  lightOnTertiaryKey: blackHex,
+  lightTertiaryContainerKey: ywtEucalyptusDimHex,
+  lightOnTertiaryContainerKey: blackHex,
+
+  // Light erriary
+  lightErrorKey: redHex,
+  lightOnErrorKey: whiteHex,
+  lightErrorContainerKey: halfRedHex,
+  lightOnErrorContainerKey: whiteHex,
+
+  // Light misc
+  lightOutlineVariantKey: dimBlackHex,
+  // lightShadowKey
+  lightSurfaceTintKey: transparentHex,
+  lightScrimKey: whiteHex,
+
+  // Design settings //
+  pageTabKey: false,
+
+  // Dark
+  // margin defined in mobile/desktop configs
+  darkButtonShapeKey: EzButtonShape.pill.value,
+  darkBorderWidthKey: defaultBorderWidth,
+
+  // padding and spacing defined in mobile/desktop configs
+  darkAnimationDurationKey: defaultAnimationDuration,
+  // darkTransitionTypeKey: null (aka system),
+  darkTransitionFadeKey: true,
+
+  darkLineLinksKey: false,
+
+  // backFab defined in mobile/desktop configs
+  darkBackgroundImageKey: noImageValue,
+
+  // darkBackgroundFitKey: null,
+  // darkBackgroundSourceKey: null,
+
+  // showScroll defined in mobile/desktop configs
+
+  // Light
+  // margin defined in mobile/desktop configs
+  lightButtonShapeKey: EzButtonShape.pill.value,
+  lightBorderWidthKey: defaultBorderWidth,
+
+  lightLineLinksKey: false,
+
+  // backFab defined in mobile/desktop configs
+  lightAnimationDurationKey: defaultAnimationDuration,
+  // lightTransitionTypeKey: null (aka system),
+  lightTransitionFadeKey: true,
+
+  lightBackgroundImageKey: noImageValue,
+  // lightBackgroundFitKey: null,
+  // lightBackgroundSourceKey: null,
+
+  // showScroll defined in mobile/desktop configs
+
+  // Text settings //
+  advancedTextKey: false,
+
+  // Dark
+  darkDisplayFontFamilyKey: roboto,
+  darkDisplayFontSizeKey: defaultDisplaySize,
+  darkDisplayBoldedKey: false,
+  darkDisplayItalicizedKey: false,
+  darkDisplayUnderlinedKey: false,
+  darkDisplayFontHeightKey: defaultFontHeight,
+  darkDisplayLetterSpacingKey: defaultLetterSpacing,
+  darkDisplayWordSpacingKey: defaultWordSpacing,
+
+  darkHeadlineFontFamilyKey: roboto,
+  darkHeadlineFontSizeKey: defaultHeadlineSize,
+  darkHeadlineBoldedKey: false,
+  darkHeadlineItalicizedKey: false,
+  darkHeadlineUnderlinedKey: false,
+  darkHeadlineFontHeightKey: defaultFontHeight,
+  darkHeadlineLetterSpacingKey: defaultLetterSpacing,
+  darkHeadlineWordSpacingKey: defaultWordSpacing,
+
+  darkTitleFontFamilyKey: roboto,
+  darkTitleFontSizeKey: defaultTitleSize,
+  darkTitleBoldedKey: true,
+  darkTitleItalicizedKey: false,
+  darkTitleUnderlinedKey: false,
+  darkTitleFontHeightKey: defaultFontHeight,
+  darkTitleLetterSpacingKey: defaultLetterSpacing,
+  darkTitleWordSpacingKey: defaultWordSpacing,
+
+  darkBodyFontFamilyKey: roboto,
+  darkBodyFontSizeKey: defaultBodySize,
+  darkBodyBoldedKey: false,
+  darkBodyItalicizedKey: false,
+  darkBodyUnderlinedKey: false,
+  darkBodyFontHeightKey: defaultFontHeight,
+  darkBodyLetterSpacingKey: defaultLetterSpacing,
+  darkBodyWordSpacingKey: defaultWordSpacing,
+
+  darkLabelFontFamilyKey: roboto,
+  darkLabelFontSizeKey: defaultLabelSize,
+  darkLabelBoldedKey: false,
+  darkLabelItalicizedKey: false,
+  darkLabelUnderlinedKey: false,
+  darkLabelFontHeightKey: defaultFontHeight,
+  darkLabelLetterSpacingKey: defaultLetterSpacing,
+  darkLabelWordSpacingKey: defaultWordSpacing,
+
+  darkTextBackgroundOpacityKey: defaultTextOpacity,
+  darkIconSizeKey: defaultIconSize,
+
+  // Light
+  lightDisplayFontFamilyKey: roboto,
+  lightDisplayFontSizeKey: defaultDisplaySize,
+  lightDisplayBoldedKey: false,
+  lightDisplayItalicizedKey: false,
+  lightDisplayUnderlinedKey: false,
+  lightDisplayFontHeightKey: defaultFontHeight,
+  lightDisplayLetterSpacingKey: defaultLetterSpacing,
+  lightDisplayWordSpacingKey: defaultWordSpacing,
+
+  lightHeadlineFontFamilyKey: roboto,
+  lightHeadlineFontSizeKey: defaultHeadlineSize,
+  lightHeadlineBoldedKey: false,
+  lightHeadlineItalicizedKey: false,
+  lightHeadlineUnderlinedKey: false,
+  lightHeadlineFontHeightKey: defaultFontHeight,
+  lightHeadlineLetterSpacingKey: defaultLetterSpacing,
+  lightHeadlineWordSpacingKey: defaultWordSpacing,
+
+  lightTitleFontFamilyKey: roboto,
+  lightTitleFontSizeKey: defaultTitleSize,
+  lightTitleBoldedKey: true,
+  lightTitleItalicizedKey: false,
+  lightTitleUnderlinedKey: false,
+  lightTitleFontHeightKey: defaultFontHeight,
+  lightTitleLetterSpacingKey: defaultLetterSpacing,
+  lightTitleWordSpacingKey: defaultWordSpacing,
+
+  lightBodyFontFamilyKey: roboto,
+  lightBodyFontSizeKey: defaultBodySize,
+  lightBodyBoldedKey: false,
+  lightBodyItalicizedKey: false,
+  lightBodyUnderlinedKey: false,
+  lightBodyFontHeightKey: defaultFontHeight,
+  lightBodyLetterSpacingKey: defaultLetterSpacing,
+  lightBodyWordSpacingKey: defaultWordSpacing,
+
+  lightLabelFontFamilyKey: roboto,
+  lightLabelFontSizeKey: defaultLabelSize,
+  lightLabelBoldedKey: false,
+  lightLabelItalicizedKey: false,
+  lightLabelUnderlinedKey: false,
+  lightLabelFontHeightKey: defaultFontHeight,
+  lightLabelLetterSpacingKey: defaultLetterSpacing,
+  lightLabelWordSpacingKey: defaultWordSpacing,
+
+  lightTextBackgroundOpacityKey: defaultTextOpacity,
+  lightIconSizeKey: defaultIconSize,
+};
+
+/// [baseYWTConfig] with a more compact layout and hidden scrolls
+/// -- ATTENTION --
+/// For open source consumers: this is YWT's config
+/// You do NOT have permission to use this config in your production app
+final Map<String, Object> ywtMobileConfig = <String, Object>{
+  ...baseYWTConfig,
+
+  // Design //
+
+  // Dark
+  darkPaddingKey: defaultMobilePadding,
+  darkShowBackFABKey: false,
+
+  darkMarginKey: defaultMobileMargin,
+  darkSpacingKey: defaultMobileSpacing,
+  darkShowScrollKey: false,
+
+  // Light
+  lightPaddingKey: defaultMobilePadding,
+  lightShowBackFABKey: false,
+
+  lightMarginKey: defaultMobileMargin,
+  lightSpacingKey: defaultMobileSpacing,
+  lightShowScrollKey: false,
+};
+
+/// [baseYWTConfig] with a more open layout and visible scrolls
+/// -- ATTENTION --
+/// For open source consumers: this is YWT's config
+/// You do NOT have permission to use this config in your production app
+final Map<String, Object> ywtDesktopConfig = <String, Object>{
+  ...baseYWTConfig,
+
+  // Design //
+
+  // Dark
+  darkPaddingKey: defaultDesktopPadding,
+  darkShowBackFABKey: false,
+
+  darkMarginKey: defaultDesktopMargin,
+  darkSpacingKey: defaultDesktopSpacing,
+  darkShowScrollKey: true,
+
+  // Light
+  lightPaddingKey: defaultDesktopPadding,
+  lightShowBackFABKey: false,
+
+  lightMarginKey: defaultDesktopMargin,
+  lightSpacingKey: defaultDesktopSpacing,
+  lightShowScrollKey: true,
+};
+
+/// [EzCM] set to all recommended max values
+/// -- ATTENTION --
+/// Open source do NOT have permission to use this config in production apps
+/// Also, this is intended for testing anyway
+final Map<String, Object> ywtMaxConfig = <String, Object>{
+  ...baseYWTConfig,
+
+  // Design settings //
+  darkPaddingKey: maxPadding,
+  lightPaddingKey: maxPadding,
+
+  darkShowBackFABKey: true,
+  lightShowBackFABKey: true,
+
+  darkMarginKey: maxMargin,
+  lightMarginKey: maxMargin,
+  darkSpacingKey: maxSpacing,
+  lightSpacingKey: maxSpacing,
+
+  darkAnimationDurationKey: maxAnimationDuration,
+  lightAnimationDurationKey: maxAnimationDuration,
+
+  darkShowScrollKey: true,
+  lightShowScrollKey: true,
+
+  // Text settings //
+
+  // Display
+  darkDisplayFontSizeKey: maxDisplay,
+  lightDisplayFontSizeKey: maxDisplay,
+  darkDisplayFontHeightKey: maxFontHeight,
+  lightDisplayFontHeightKey: maxFontHeight,
+  darkDisplayLetterSpacingKey: maxLetterSpacing,
+  lightDisplayLetterSpacingKey: maxLetterSpacing,
+  darkDisplayWordSpacingKey: maxWordSpacing,
+  lightDisplayWordSpacingKey: maxWordSpacing,
+
+  // Headline
+  darkHeadlineFontSizeKey: maxHeadline,
+  lightHeadlineFontSizeKey: maxHeadline,
+  darkHeadlineFontHeightKey: maxFontHeight,
+  lightHeadlineFontHeightKey: maxFontHeight,
+  darkHeadlineLetterSpacingKey: maxLetterSpacing,
+  lightHeadlineLetterSpacingKey: maxLetterSpacing,
+  darkHeadlineWordSpacingKey: maxWordSpacing,
+  lightHeadlineWordSpacingKey: maxWordSpacing,
+
+  // Title
+  darkTitleFontSizeKey: maxTitle,
+  lightTitleFontSizeKey: maxTitle,
+  darkTitleFontHeightKey: maxFontHeight,
+  lightTitleFontHeightKey: maxFontHeight,
+  darkTitleLetterSpacingKey: maxLetterSpacing,
+  lightTitleLetterSpacingKey: maxLetterSpacing,
+  darkTitleWordSpacingKey: maxWordSpacing,
+  lightTitleWordSpacingKey: maxWordSpacing,
+
+  // Body
+  darkBodyFontSizeKey: maxBody,
+  lightBodyFontSizeKey: maxBody,
+  darkBodyFontHeightKey: maxFontHeight,
+  lightBodyFontHeightKey: maxFontHeight,
+  darkBodyLetterSpacingKey: maxLetterSpacing,
+  lightBodyLetterSpacingKey: maxLetterSpacing,
+  darkBodyWordSpacingKey: maxWordSpacing,
+  lightBodyWordSpacingKey: maxWordSpacing,
+
+  // Label
+  darkLabelFontSizeKey: maxLabel,
+  lightLabelFontSizeKey: maxLabel,
+  darkLabelFontHeightKey: maxFontHeight,
+  lightLabelFontHeightKey: maxFontHeight,
+  darkLabelLetterSpacingKey: maxLetterSpacing,
+  lightLabelLetterSpacingKey: maxLetterSpacing,
+  darkLabelWordSpacingKey: maxWordSpacing,
+  lightLabelWordSpacingKey: maxWordSpacing,
+
+  darkIconSizeKey: maxIconSize,
+  lightIconSizeKey: maxIconSize,
+};
+
+/// [EzCM] set to all recommended min values
+/// -- ATTENTION --
+/// Open source do NOT have permission to use this config in production apps
+/// Also, this is intended for testing anyway
+final Map<String, Object> ywtMinConfig = <String, Object>{
+  ...baseYWTConfig,
+
+  // Design settings //
+  darkPaddingKey: minPadding,
+  lightPaddingKey: minPadding,
+
+  darkShowBackFABKey: true,
+  lightShowBackFABKey: true,
+
+  darkAnimationDurationKey: minAnimationDuration,
+  lightAnimationDurationKey: minAnimationDuration,
+
+  darkMarginKey: minMargin,
+  lightMarginKey: minMargin,
+  darkSpacingKey: minSpacing,
+  lightSpacingKey: minSpacing,
+
+  darkShowScrollKey: true,
+  lightShowScrollKey: true,
+
+  // Text settings //
+
+  // Display
+  darkDisplayFontSizeKey: minDisplay,
+  lightDisplayFontSizeKey: minDisplay,
+  darkDisplayFontHeightKey: minFontHeight,
+  lightDisplayFontHeightKey: minFontHeight,
+  darkDisplayLetterSpacingKey: minLetterSpacing,
+  lightDisplayLetterSpacingKey: minLetterSpacing,
+  darkDisplayWordSpacingKey: minWordSpacing,
+  lightDisplayWordSpacingKey: minWordSpacing,
+
+  // Headline
+  darkHeadlineFontSizeKey: minHeadline,
+  lightHeadlineFontSizeKey: minHeadline,
+  darkHeadlineFontHeightKey: minFontHeight,
+  lightHeadlineFontHeightKey: minFontHeight,
+  darkHeadlineLetterSpacingKey: minLetterSpacing,
+  lightHeadlineLetterSpacingKey: minLetterSpacing,
+  darkHeadlineWordSpacingKey: minWordSpacing,
+  lightHeadlineWordSpacingKey: minWordSpacing,
+
+  // Title
+  darkTitleFontSizeKey: minTitle,
+  lightTitleFontSizeKey: minTitle,
+  darkTitleFontHeightKey: minFontHeight,
+  lightTitleFontHeightKey: minFontHeight,
+  darkTitleLetterSpacingKey: minLetterSpacing,
+  lightTitleLetterSpacingKey: minLetterSpacing,
+  darkTitleWordSpacingKey: minWordSpacing,
+  lightTitleWordSpacingKey: minWordSpacing,
+
+  // Body
+  darkBodyFontSizeKey: minBody,
+  lightBodyFontSizeKey: minBody,
+  darkBodyFontHeightKey: minFontHeight,
+  lightBodyFontHeightKey: minFontHeight,
+  darkBodyLetterSpacingKey: minLetterSpacing,
+  lightBodyLetterSpacingKey: minLetterSpacing,
+  darkBodyWordSpacingKey: minWordSpacing,
+  lightBodyWordSpacingKey: minWordSpacing,
+
+  // Label
+  darkLabelFontSizeKey: minLabel,
+  lightLabelFontSizeKey: minLabel,
+  darkLabelFontHeightKey: minFontHeight,
+  lightLabelFontHeightKey: minFontHeight,
+  darkLabelLetterSpacingKey: minLetterSpacing,
+  lightLabelLetterSpacingKey: minLetterSpacing,
+  darkLabelWordSpacingKey: minWordSpacing,
+  lightLabelWordSpacingKey: minWordSpacing,
+
+  darkIconSizeKey: minIconSize,
+  lightIconSizeKey: minIconSize,
+};

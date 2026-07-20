@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -20,33 +20,39 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
   final Color focusColor = colorScheme.primary.withValues(alpha: focusOpacity);
 
-  final Color crucialButtonBackground =
-      colorScheme.surface.withValues(alpha: max(colorScheme.surface.a, focusOpacity));
-  final Color crucialPrimaryBackground =
-      colorScheme.primary.withValues(alpha: max(colorScheme.primary.a, focusOpacity));
-  final Color crucialPrimaryBorder = colorScheme.primaryContainer
-      .withValues(alpha: max(colorScheme.primaryContainer.a, focusOpacity));
-  final Color crucialSecondaryBorder = colorScheme.secondaryContainer
-      .withValues(alpha: max(colorScheme.secondaryContainer.a, focusOpacity));
-  final Color crucialDisabledBorder =
-      colorScheme.outlineVariant.withValues(alpha: max(colorScheme.outlineVariant.a, focusOpacity));
+  final Color crucialButtonBackground = colorScheme.surface.withValues(
+    alpha: max(colorScheme.surface.a, focusOpacity),
+  );
+  final Color crucialPrimaryBackground = colorScheme.primary.withValues(
+    alpha: max(colorScheme.primary.a, focusOpacity),
+  );
+  final Color crucialPrimaryBorder = colorScheme.primaryContainer.withValues(
+    alpha: max(colorScheme.primaryContainer.a, focusOpacity),
+  );
+  final Color crucialSecondaryBorder = colorScheme.secondaryContainer.withValues(
+    alpha: max(colorScheme.secondaryContainer.a, focusOpacity),
+  );
+  final Color crucialDisabledBorder = colorScheme.outlineVariant.withValues(
+    alpha: max(colorScheme.outlineVariant.a, focusOpacity),
+  );
 
   // Design (button) //
 
   const WidgetStateProperty<MouseCursor?> enabledClicks =
       WidgetStateProperty<MouseCursor?>.fromMap(<WidgetStatesConstraint, MouseCursor?>{
-    WidgetState.dragged: SystemMouseCursors.click,
-    WidgetState.focused: SystemMouseCursors.click,
-    WidgetState.hovered: SystemMouseCursors.click,
-    WidgetState.pressed: SystemMouseCursors.click,
-    WidgetState.scrolledUnder: SystemMouseCursors.click,
-    WidgetState.selected: SystemMouseCursors.click,
-  });
+        WidgetState.dragged: SystemMouseCursors.click,
+        WidgetState.focused: SystemMouseCursors.click,
+        WidgetState.hovered: SystemMouseCursors.click,
+        WidgetState.pressed: SystemMouseCursors.click,
+        WidgetState.scrolledUnder: SystemMouseCursors.click,
+        WidgetState.selected: SystemMouseCursors.click,
+      });
 
   final double padding = isDark ? EzCM.get(darkPaddingKey) : EzCM.get(lightPaddingKey);
 
-  final EzButtonShape ezButtonShape =
-      EBSConfig.safeLookup(EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey));
+  final EzButtonShape ezButtonShape = EBSConfig.safeLookup(
+    EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey),
+  );
   final OutlinedBorder buttonShape = ezButtonShape.shape;
 
   final double borderWidth = EzCM.get(isDark ? darkBorderWidthKey : lightBorderWidthKey);
@@ -61,22 +67,25 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
   final int animDuration = EzCM.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
   final int threeQAnim = (animDuration * 0.75).toInt();
 
-  final Curve animCurve =
-      EACConfig.translate(EzCM.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey));
+  final Curve animCurve = EACConfig.translate(
+    EzCM.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey),
+  );
 
   // Text //
 
   final TextTheme textTheme = ezTextTheme(colorScheme.onSurface, isDark: isDark);
 
-  final double textOpacity =
-      EzCM.get(isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey);
+  final double textOpacity = EzCM.get(
+    isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey,
+  );
   final double crucialTextOpacity = max(textOpacity, focusOpacity);
 
   final Color linkTextBackground = colorScheme.surface.withValues(alpha: textOpacity);
   final Color richTextBackground = colorScheme.surfaceContainer.withValues(alpha: textOpacity);
 
-  final Color inputBackground =
-      colorScheme.surface.withValues(alpha: max(colorScheme.surface.a, crucialTextOpacity));
+  final Color inputBackground = colorScheme.surface.withValues(
+    alpha: max(colorScheme.surface.a, crucialTextOpacity),
+  );
   final Color crucialTextShadow = crucialTextOpacity < 1.0
       ? colorScheme.shadow.withValues(alpha: crucialTextOpacity * shadowMod)
       : colorScheme.shadow;
@@ -98,11 +107,9 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
   return ThemeData(
     // UX //
-
     materialTapTargetSize: MaterialTapTargetSize.padded,
 
     // Color scheme //
-
     brightness: brightness,
     colorScheme: colorScheme,
 
@@ -111,11 +118,9 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     scaffoldBackgroundColor: colorScheme.surfaceContainer,
 
     // Transitions //
-
     pageTransitionsTheme: animDuration > minAnimationDuration ? EzTransitions() : EzNoTransitions(),
 
     // Typography //
-
     textTheme: textTheme,
     primaryTextTheme: textTheme,
 
@@ -180,15 +185,10 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     ),
 
     // Divider
-    dividerTheme: DividerThemeData(
-      color: colorScheme.secondary,
-      space: spacing * 3,
-    ),
+    dividerTheme: DividerThemeData(color: colorScheme.secondary, space: spacing * 3),
 
     // Drawer
-    navigationDrawerTheme: NavigationDrawerThemeData(
-      backgroundColor: colorScheme.surfaceDim,
-    ),
+    navigationDrawerTheme: NavigationDrawerThemeData(backgroundColor: colorScheme.surfaceDim),
 
     // Dropdown menu
     dropdownMenuTheme: DropdownMenuThemeData(
@@ -216,10 +216,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
           borderSide: buildBorder(colorScheme.primaryContainer),
           gapPadding: 0,
         ),
-        errorBorder: OutlineInputBorder(
-          borderSide: buildBorder(colorScheme.error),
-          gapPadding: 0,
-        ),
+        errorBorder: OutlineInputBorder(borderSide: buildBorder(colorScheme.error), gapPadding: 0),
         focusedBorder: OutlineInputBorder(
           borderSide: buildBorder(colorScheme.secondaryContainer),
           gapPadding: 0,
@@ -257,10 +254,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
       iconColor: colorScheme.primary,
       collapsedIconColor: colorScheme.primary,
       tilePadding: EdgeInsets.zero,
-      childrenPadding: EdgeInsets.only(
-        left: ltr ? margin * 2 : 0,
-        right: ltr ? 0 : margin * 2,
-      ),
+      childrenPadding: EdgeInsets.only(left: ltr ? margin * 2 : 0, right: ltr ? 0 : margin * 2),
       expandedAlignment: ltr ? Alignment.centerLeft : Alignment.centerRight,
       expansionAnimationStyle: AnimationStyle(
         curve: animCurve,
@@ -351,9 +345,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     ),
 
     // Progress indicator
-    progressIndicatorTheme: ProgressIndicatorThemeData(
-      color: colorScheme.secondary,
-    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: colorScheme.secondary),
 
     // Radio button
     radioTheme: RadioThemeData(
@@ -429,10 +421,7 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     tooltipTheme: TooltipThemeData(
       decoration: BoxDecoration(
         color: colorScheme.surfaceDim,
-        border: Border.all(
-          color: colorScheme.secondary,
-          width: borderWidth,
-        ),
+        border: Border.all(color: colorScheme.secondary, width: borderWidth),
         borderRadius: EzButtonShape.roundRect.radius,
       ),
       textStyle: textTheme.bodyLarge,

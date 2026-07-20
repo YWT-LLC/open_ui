@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2022 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -150,7 +150,9 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
     await EzCM.setInt(darkSecondaryFixedDimKey, colorScheme.secondaryFixedDim.toARGB32());
     await EzCM.setInt(darkOnSecondaryFixedKey, colorScheme.onSecondaryFixed.toARGB32());
     await EzCM.setInt(
-        darkOnSecondaryFixedVariantKey, colorScheme.onSecondaryFixedVariant.toARGB32());
+      darkOnSecondaryFixedVariantKey,
+      colorScheme.onSecondaryFixedVariant.toARGB32(),
+    );
     await EzCM.setInt(darkTertiaryKey, colorScheme.tertiary.toARGB32());
     await EzCM.setInt(darkOnTertiaryKey, colorScheme.onTertiary.toARGB32());
     await EzCM.setInt(darkTertiaryContainerKey, colorScheme.tertiaryContainer.toARGB32());
@@ -174,7 +176,9 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
     await EzCM.setInt(darkSurfaceContainerKey, colorScheme.surfaceContainer.toARGB32());
     await EzCM.setInt(darkSurfaceContainerHighKey, colorScheme.surfaceContainerHigh.toARGB32());
     await EzCM.setInt(
-        darkSurfaceContainerHighestKey, colorScheme.surfaceContainerHighest.toARGB32());
+      darkSurfaceContainerHighestKey,
+      colorScheme.surfaceContainerHighest.toARGB32(),
+    );
     await EzCM.setInt(darkOnSurfaceVariantKey, colorScheme.onSurfaceVariant.toARGB32());
     await EzCM.setInt(darkInverseSurfaceKey, colorScheme.inverseSurface.toARGB32());
     await EzCM.setInt(darkOnInverseSurfaceKey, colorScheme.onInverseSurface.toARGB32());
@@ -205,7 +209,9 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
     await EzCM.setInt(lightSecondaryFixedDimKey, colorScheme.secondaryFixedDim.toARGB32());
     await EzCM.setInt(lightOnSecondaryFixedKey, colorScheme.onSecondaryFixed.toARGB32());
     await EzCM.setInt(
-        lightOnSecondaryFixedVariantKey, colorScheme.onSecondaryFixedVariant.toARGB32());
+      lightOnSecondaryFixedVariantKey,
+      colorScheme.onSecondaryFixedVariant.toARGB32(),
+    );
     await EzCM.setInt(lightTertiaryKey, colorScheme.tertiary.toARGB32());
     await EzCM.setInt(lightOnTertiaryKey, colorScheme.onTertiary.toARGB32());
     await EzCM.setInt(lightTertiaryContainerKey, colorScheme.tertiaryContainer.toARGB32());
@@ -214,7 +220,9 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
     await EzCM.setInt(lightTertiaryFixedDimKey, colorScheme.tertiaryFixedDim.toARGB32());
     await EzCM.setInt(lightOnTertiaryFixedKey, colorScheme.onTertiaryFixed.toARGB32());
     await EzCM.setInt(
-        lightOnTertiaryFixedVariantKey, colorScheme.onTertiaryFixedVariant.toARGB32());
+      lightOnTertiaryFixedVariantKey,
+      colorScheme.onTertiaryFixedVariant.toARGB32(),
+    );
     await EzCM.setInt(lightErrorKey, colorScheme.error.toARGB32());
     await EzCM.setInt(lightOnErrorKey, colorScheme.onError.toARGB32());
     await EzCM.setInt(lightErrorContainerKey, colorScheme.errorContainer.toARGB32());
@@ -226,12 +234,16 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
     await EzCM.setInt(lightSurfaceDimKey, colorScheme.surfaceDim.toARGB32());
     await EzCM.setInt(lightSurfaceBrightKey, colorScheme.surfaceBright.toARGB32());
     await EzCM.setInt(
-        lightSurfaceContainerLowestKey, colorScheme.surfaceContainerLowest.toARGB32());
+      lightSurfaceContainerLowestKey,
+      colorScheme.surfaceContainerLowest.toARGB32(),
+    );
     await EzCM.setInt(lightSurfaceContainerLowKey, colorScheme.surfaceContainerLow.toARGB32());
     await EzCM.setInt(lightSurfaceContainerKey, colorScheme.surfaceContainer.toARGB32());
     await EzCM.setInt(lightSurfaceContainerHighKey, colorScheme.surfaceContainerHigh.toARGB32());
     await EzCM.setInt(
-        lightSurfaceContainerHighestKey, colorScheme.surfaceContainerHighest.toARGB32());
+      lightSurfaceContainerHighestKey,
+      colorScheme.surfaceContainerHighest.toARGB32(),
+    );
     await EzCM.setInt(lightOnSurfaceVariantKey, colorScheme.onSurfaceVariant.toARGB32());
     await EzCM.setInt(lightInverseSurfaceKey, colorScheme.inverseSurface.toARGB32());
     await EzCM.setInt(lightOnInverseSurfaceKey, colorScheme.onInverseSurface.toARGB32());
@@ -279,7 +291,7 @@ Future<String> loadImageColorScheme(String path, Brightness? brightness) async {
 }
 
 /// Get the human readable name of a [key]s color
-String getColorName(EFUILang l10n, String key) => switch (key) {
+String getColorName(OUILang l10n, String key) => switch (key) {
       // Backgrounds
       darkSurfaceKey || lightSurfaceKey => l10n.csSurface,
       darkSurfaceDimKey || lightSurfaceDimKey => l10n.csSurfaceDim,
