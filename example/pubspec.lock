@@ -723,7 +723,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "12.1.0"
+    version: "13.0.0"
   oui_bios:
     dependency: "direct main"
     description:
