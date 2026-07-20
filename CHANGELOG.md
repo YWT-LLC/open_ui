@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [13.0.0] - 2026-07-XX
+### Updated
+- Name
+
 ## [12.1.0] - 2026-06-06
 ### Updated
 - EzConfig && Provider - names and logic

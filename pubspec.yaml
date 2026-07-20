@@ -1,6 +1,6 @@
 name: open_ui
 description: "Build apps for anyone. Open UI makes building truly accessible apps Ez. So anyone can enjoy your great idea!"
-version: 12.1.0
+version: 13.0.0
 repository: https://github.com/YWT-LLC/open_ui
 
 environment:

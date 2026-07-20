@@ -221,7 +221,7 @@ dependencies:
   shared_preferences: ^2.5.5
 
   # Community
-  open_ui: ^12.1.0
+  open_ui: ^13.0.0
   provider: ^6.1.5+1
 
 dev_dependencies:
