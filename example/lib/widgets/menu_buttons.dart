@@ -5,14 +5,15 @@
 
 import '../utils/export.dart';
 import '../screens/export.dart';
+import 'package:oui_bios/oui_bios.dart';
 
 import 'dart:io';
 import 'dart:convert';
+import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:open_ui/open_ui.dart';
 
 class SettingsButton extends StatelessWidget {
   final EzCP config;
@@ -77,7 +78,7 @@ class OpenSourceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzMenuLink(
         config,
-        uri: Uri.parse('https://github.com/YWT-LLC/open_ui'),
+        uri: Uri.parse(ouiGitHub),
         icon: EzIcon(config, LineIcons.github),
         label: config.ezL10n.gOpenSource,
         semanticsLabel: '${config.ezL10n.gOpenSource}: ${config.ezL10n.gOpenUISourceHint}',

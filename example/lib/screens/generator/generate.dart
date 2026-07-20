@@ -9,9 +9,9 @@ import 'package:oui_bios/oui_bios.dart';
 
 import 'dart:io';
 import 'package:xml/xml.dart';
+import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:open_ui/open_ui.dart';
 
 class GenerateScreen extends StatefulWidget {
   final EAGConfig gen;
@@ -83,7 +83,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     style: ezSubTitleStyle(config.styles),
                     textAlign: TextAlign.center,
                     url: Uri.parse(
-                      'https://github.com/YWT-LLC/open_ui/tree/main/example/lib/screens/generator/generate.dart',
+                      '$ouiGitHub/tree/main/example/lib/screens/generator/generate.dart',
                     ),
                     hint: l10n(config).gsSeeNBelieveHint,
                   ),

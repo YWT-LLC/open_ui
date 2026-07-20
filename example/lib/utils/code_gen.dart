@@ -4,10 +4,11 @@
  */
 
 import '../utils/export.dart';
+import 'package:oui_bios/oui_bios.dart';
 
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:open_ui/open_ui.dart';
+import 'package:flutter/foundation.dart';
 
 //* Consts *//
 
@@ -69,7 +70,7 @@ Some helpful documentation if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab) (Flutter)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook) (Flutter)
-- [Open UI: Digital accessibility made Ez](https://github.com/YWT-LLC/open_ui) (YWT)
+- [Open UI: Digital accessibility made Ez]($ouiGitHub) (YWT)
 
 And videos:
 
@@ -105,12 +106,12 @@ That, and/or donate via one of the many options we provide.
 
 ### <br>Building with user customization in mind
 
-As your app grows, use [Open UI](https://github.com/YWT-LLC/open_ui) to keep things Ez
+As your app grows, use [Open UI]($ouiGitHub) to keep things Ez
 
-* [Responsive design](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
-* [Screen reader support](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
-* [User customization](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
-* [Helpers](https://github.com/YWT-LLC/open_ui/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
+* [Responsive design]($ouiGitHub/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
+* [Screen reader support]($ouiGitHub/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
+* [User customization]($ouiGitHub/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
+* [Helpers]($ouiGitHub/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
 
 ### <br>Localization
 
