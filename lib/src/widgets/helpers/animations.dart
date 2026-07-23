@@ -35,18 +35,18 @@ class EzAnimSwitch extends AnimatedSwitcher {
     this.reverse = false,
     super.child,
   }) : super(
-         switchInCurve: config.animCurve,
-         switchOutCurve: config.animCurve,
-         duration: ezDuration(config.animDur, mod: mod),
-         transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
-           config,
-           a,
-           w,
-           forceType: forceType,
-           forceFade: forceFade,
-           reverse: reverse,
-         ),
-       );
+          switchInCurve: config.animCurve,
+          switchOutCurve: config.animCurve,
+          duration: ezDuration(config.animDur, mod: mod),
+          transitionBuilder: (Widget w, Animation<double> a) => ezTransitionBuilder(
+            config,
+            a,
+            w,
+            forceType: forceType,
+            forceFade: forceFade,
+            reverse: reverse,
+          ),
+        );
 }
 
 class EzAnimVis extends EzAnimSwitch {
@@ -96,14 +96,13 @@ class EzAnimHide extends EzAnimSwitch {
     required this.size,
     required this.kid,
   }) : super(
-         child: visible
-             ? kid
-             : SizedBox(
-                 key: const ValueKey<String>('[-_-]~'),
-                 height: size.height,
-                 width: size.width,
-               ),
-       );
+          child: visible
+              ? kid
+              : SizedBox.fromSize(
+                  key: const ValueKey<String>('[-_-]~'),
+                  size: size,
+                ),
+        );
 }
 
 class EzFauxCarousel extends StatelessWidget {
@@ -133,21 +132,21 @@ class EzFauxCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedSwitcher(
-    duration: ezDuration(config.animDur, mod: animMod),
-    switchInCurve: config.animCurve,
-    switchOutCurve: config.animCurve,
-    transitionBuilder: (Widget w, Animation<double> a) {
-      final double sign = (w.key == ValueKey<int>(position)) ? 1.0 : -1.0;
-      final double direction = (config.isLTR ? 1.0 : -1.0) * delta.sign;
+        duration: ezDuration(config.animDur, mod: animMod),
+        switchInCurve: config.animCurve,
+        switchOutCurve: config.animCurve,
+        transitionBuilder: (Widget w, Animation<double> a) {
+          final double sign = (w.key == ValueKey<int>(position)) ? 1.0 : -1.0;
+          final double direction = (config.isLTR ? 1.0 : -1.0) * delta.sign;
 
-      return SlideTransition(
-        position: Tween<Offset>(
-          begin: Offset(direction * sign, 0.0),
-          end: Offset.zero,
-        ).animate(CurvedAnimation(parent: a, curve: config.animCurve)),
-        child: FadeTransition(opacity: a, child: w),
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset(direction * sign, 0.0),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(parent: a, curve: config.animCurve)),
+            child: FadeTransition(opacity: a, child: w),
+          );
+        },
+        child: KeyedSubtree(key: ValueKey<int>(position), child: child),
       );
-    },
-    child: KeyedSubtree(key: ValueKey<int>(position), child: child),
-  );
 }
