@@ -120,7 +120,15 @@ final Map<String?, BoxFit?> boxFitLib = <String?, BoxFit?>{
 
 //* Button shapes *//
 
-enum EzButtonShape { pill, rect, roundRect, leftGram, rightGram, gem, jewel }
+enum EzButtonShape {
+  pill,
+  rect,
+  roundRect,
+  leftGram,
+  rightGram,
+  gem,
+  jewel,
+}
 
 // enum values //
 
@@ -173,16 +181,6 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.jewel => esJewel,
       };
 
-  BorderRadius get radius => switch (this) {
-        EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
-        EzButtonShape.rect => BorderRadius.zero,
-        EzButtonShape.roundRect => const BorderRadius.all(Radius.circular(ezRoundRadius)),
-        EzButtonShape.leftGram => BorderRadius.zero,
-        EzButtonShape.rightGram => BorderRadius.zero,
-        EzButtonShape.gem => BorderRadius.zero,
-        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
-      };
-
   OutlinedBorder get shape => switch (this) {
         EzButtonShape.pill => RoundedSuperellipseBorder(borderRadius: radius),
         EzButtonShape.rect => const RoundedRectangleBorder(),
@@ -191,6 +189,27 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.rightGram => const ParallelogramBorder(lefty: false),
         EzButtonShape.gem => const GemBorder(),
         EzButtonShape.jewel => BeveledRectangleBorder(borderRadius: radius),
+      };
+
+  BorderRadius get radius => switch (this) {
+        EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
+        EzButtonShape.rect => BorderRadius.zero,
+        EzButtonShape.roundRect => const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.leftGram || EzButtonShape.rightGram => BorderRadius.zero,
+        EzButtonShape.gem => BorderRadius.zero,
+        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
+      };
+
+  BorderRadius get textRadius => switch (this) {
+        EzButtonShape.pill ||
+        EzButtonShape.roundRect =>
+          const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.rect ||
+        EzButtonShape.leftGram ||
+        EzButtonShape.rightGram ||
+        EzButtonShape.gem =>
+          BorderRadius.zero,
+        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
       };
 
   BorderRadius get textFieldRadius => switch (this) {
