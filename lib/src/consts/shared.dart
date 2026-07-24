@@ -91,6 +91,10 @@ const double oneP = 0.01;
 /// Helpful for checking whether to show an animation or not
 const Duration oneMS = Duration(milliseconds: 1);
 
+/// reliable keyboard opening time
+/// 300 milliseconds
+const Duration keyTime = Duration(milliseconds: 300);
+
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';
 
