@@ -94,8 +94,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         // Display preview
         EzText(
           widget.config,
-          text:
-              widget.config.ezL10n.tsDisplayP1 +
+          text: widget.config.ezL10n.tsDisplayP1 +
               widget.config.ezL10n.tsDisplayLink +
               widget.config.ezL10n.tsDisplayP2,
           textAlign: TextAlign.center,
@@ -107,8 +106,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         // Headline preview
         EzText(
           widget.config,
-          text:
-              widget.config.ezL10n.tsHeadlineP1 +
+          text: widget.config.ezL10n.tsHeadlineP1 +
               widget.config.ezL10n.tsHeadlineLink +
               widget.config.ezL10n.tsHeadlineP2,
           textAlign: TextAlign.center,
@@ -130,8 +128,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         // Body preview
         EzText(
           widget.config,
-          text:
-              widget.config.ezL10n.tsBodyP1 +
+          text: widget.config.ezL10n.tsBodyP1 +
               widget.config.ezL10n.tsBodyLink +
               widget.config.ezL10n.tsBodyP2,
           textAlign: TextAlign.center,
@@ -143,8 +140,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         // Label preview
         EzText(
           widget.config,
-          text:
-              widget.config.ezL10n.tsLabelP1 +
+          text: widget.config.ezL10n.tsLabelP1 +
               widget.config.ezL10n.tsLabelLink +
               widget.config.ezL10n.tsLabelP2,
           textAlign: TextAlign.center,
