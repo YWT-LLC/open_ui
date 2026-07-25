@@ -116,6 +116,7 @@ class EzCP extends ChangeNotifier {
           startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
           centerLine: EzNewLine(bodyStyle),
           endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+          richLine: const EzRichLine(),
         );
       }
 
@@ -175,6 +176,7 @@ class EzCP extends ChangeNotifier {
           startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
           centerLine: EzNewLine(bodyStyle),
           endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+          richLine: const EzRichLine(),
         );
       }
 
@@ -282,6 +284,7 @@ class EzCP extends ChangeNotifier {
   EzNewLine get startLine => _layout.startLine;
   EzNewLine get centerLine => _layout.centerLine;
   EzNewLine get endLine => _layout.endLine;
+  EzRichLine get richLine => _layout.richLine;
 
   // Text cache //
 
@@ -457,6 +460,7 @@ class EzLayoutCache {
   final EzNewLine startLine;
   final EzNewLine centerLine;
   final EzNewLine endLine;
+  final EzRichLine richLine;
 
   /// Theme aware tracker for frequently used layout [Widget]s
   /// Spacers and new lines
@@ -471,6 +475,7 @@ class EzLayoutCache {
     required this.startLine,
     required this.centerLine,
     required this.endLine,
+    required this.richLine,
   });
 }
 
