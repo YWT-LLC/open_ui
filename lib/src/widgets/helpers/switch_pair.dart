@@ -20,9 +20,6 @@ class EzSwitchPair extends StatefulWidget {
   /// The switch is unchanged
   final bool fauxDisabled;
 
-  /// Optional override
-  final Color? textBackground;
-
   /// [EzRow.reverseHands] passthrough
   final bool reverseHands;
 
@@ -38,14 +35,11 @@ class EzSwitchPair extends StatefulWidget {
   /// [EzText.text] passthrough
   final String text;
 
-  /// When true, the [text] will be a clickable link (toggles the switch)
-  final bool clickable;
+  /// [Text.semanticsLabel] passthrough
+  final String? textFix;
 
   /// [EzText.textAlign] passthrough
   final TextAlign? textAlign;
-
-  /// [EzText.semanticsLabel] passthrough
-  final String? semanticsLabel;
 
   /// If provided, an [EzToolTipper] will appear next to the [Switch]
   final String? tipper;
@@ -89,7 +83,6 @@ class EzSwitchPair extends StatefulWidget {
     super.key,
     this.enabled = true,
     this.fauxDisabled = false,
-    this.textBackground,
 
     // Row
     this.reverseHands = true,
@@ -99,9 +92,8 @@ class EzSwitchPair extends StatefulWidget {
 
     // Text
     required this.text,
-    this.clickable = false,
+    this.textFix,
     this.textAlign,
-    this.semanticsLabel,
 
     // Tool tip(per)
     this.tipper,
@@ -114,13 +106,14 @@ class EzSwitchPair extends StatefulWidget {
     this.canChange,
     this.afterChanged,
     this.trackOutlineWidth,
-  }) : assert((value == null) != (valueKey == null), 'Provide value OR valueKey, but not both'),
-       assert((value == null) == (onChanged == null), 'Must pair value and onChanged'),
-       assert((valueKey == null) != (onChanged == null), 'Cannot use onChanged with valueKey'),
-       assert(
-         ((afterChanged == null) && (value == null) || ((afterChanged == null) != (value == null))),
-         'Cannot use afterChanged with value',
-       );
+  })  : assert((value == null) != (valueKey == null), 'Provide value OR valueKey, but not both'),
+        assert((value == null) == (onChanged == null), 'Must pair value and onChanged'),
+        assert((valueKey == null) != (onChanged == null), 'Cannot use onChanged with valueKey'),
+        assert(
+          ((afterChanged == null) && (value == null) ||
+              ((afterChanged == null) != (value == null))),
+          'Cannot use afterChanged with value',
+        );
 
   @override
   State<EzSwitchPair> createState() => _EzSwitchPairState();
@@ -160,56 +153,69 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   @override
   Widget build(BuildContext context) => EzRow(
-    widget.config,
-    reverseHands: widget.reverseHands,
-    mainAxisSize: widget.mainAxisSize,
-    mainAxisAlignment: widget.mainAxisAlignment,
-    crossAxisAlignment: widget.crossAxisAlignment,
-    children: <Widget>[
-      Flexible(
-        child: widget.clickable
-            ? EzLink(
+        widget.config,
+        reverseHands: widget.reverseHands,
+        mainAxisSize: widget.mainAxisSize,
+        mainAxisAlignment: widget.mainAxisAlignment,
+        crossAxisAlignment: widget.crossAxisAlignment,
+        children: <Widget>[
+          TextButton(
+            style: (widget.enabled && !widget.fauxDisabled)
+                ? TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                    side: widget.config.borderSide(
+                        color: widget.config.colors.primary.withValues(alpha: focusOpacity)),
+                  )
+                : TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                    side: widget.config.borderSide(color: widget.config.colors.outlineVariant),
+                    overlayColor: widget.config.colors.outline,
+                    shadowColor: Colors.transparent,
+                  ),
+            onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
+            child: EzRow(
+              widget.config,
+              reverseHands: widget.reverseHands,
+              mainAxisAlignment: widget.mainAxisAlignment,
+              crossAxisAlignment: widget.crossAxisAlignment,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                  child: Text(
+                    widget.text,
+                    textAlign: widget.textAlign,
+                    semanticsLabel: widget.textFix,
+                    style: widget.config.lineLinks
+                        ? widget.config.bodyStyle?.copyWith(decoration: TextDecoration.underline)
+                        : widget.config.bodyStyle,
+                  ),
+                ),
+                Transform.scale(
+                  scale: max(1.0, ezIconRatio(widget.config)),
+                  child: Switch(
+                    value: value,
+                    onChanged: onChanged,
+                    activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
+                    inactiveThumbColor: widget.config.colors.outline,
+                    trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
+                        ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
+                        : null,
+                    trackOutlineWidth: widget.trackOutlineWidth,
+                    padding: EdgeInsets.zero,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (widget.tipper != null || widget.bigTipper != null)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+              child: EzToolTipper(
                 widget.config,
-                text: widget.text,
-                textColor: widget.config.colors.onSurface,
-                backgroundColor: widget.textBackground,
-                style: widget.config.bodyStyle,
-                textAlign: widget.textAlign,
-                hint: widget.semanticsLabel ?? widget.config.ezL10n.gSwitchHint,
-                onTap: () => onChanged(!value),
-              )
-            : EzText(
-                widget.config,
-                text: widget.text,
-                backgroundColor: widget.textBackground,
-                style: widget.config.bodyStyle,
-                textAlign: widget.textAlign,
-                semanticsLabel: widget.semanticsLabel,
+                message: widget.tipper,
+                richMessage: widget.bigTipper,
               ),
-      ),
-      Transform.scale(
-        scale: max(1.0, ezIconRatio(widget.config)),
-        // Could be PlatformSwitch
-        // Dev's opinion: Material switches are better
-        child: Switch(
-          value: value,
-          onChanged: onChanged,
-          activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
-          inactiveThumbColor: widget.config.colors.outline,
-          trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
-              ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
-              : null,
-          trackOutlineWidth: widget.trackOutlineWidth,
-          padding: widget.config.isLefty
-              ? EdgeInsets.only(right: widget.config.marginVal)
-              : EdgeInsets.only(left: widget.config.marginVal),
-        ),
-      ),
-      if (widget.tipper != null || widget.bigTipper != null)
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-          child: EzToolTipper(widget.config, message: widget.tipper, richMessage: widget.bigTipper),
-        ),
-    ],
-  );
+            ),
+        ],
+      );
 }

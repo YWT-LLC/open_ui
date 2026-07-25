@@ -40,13 +40,13 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
   const WidgetStateProperty<MouseCursor?> enabledClicks =
       WidgetStateProperty<MouseCursor?>.fromMap(<WidgetStatesConstraint, MouseCursor?>{
-        WidgetState.dragged: SystemMouseCursors.click,
-        WidgetState.focused: SystemMouseCursors.click,
-        WidgetState.hovered: SystemMouseCursors.click,
-        WidgetState.pressed: SystemMouseCursors.click,
-        WidgetState.scrolledUnder: SystemMouseCursors.click,
-        WidgetState.selected: SystemMouseCursors.click,
-      });
+    WidgetState.dragged: SystemMouseCursors.click,
+    WidgetState.focused: SystemMouseCursors.click,
+    WidgetState.hovered: SystemMouseCursors.click,
+    WidgetState.pressed: SystemMouseCursors.click,
+    WidgetState.scrolledUnder: SystemMouseCursors.click,
+    WidgetState.selected: SystemMouseCursors.click,
+  });
 
   final double padding = isDark ? EzCM.get(darkPaddingKey) : EzCM.get(lightPaddingKey);
 
@@ -395,8 +395,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
         (Set<WidgetState> states) =>
             (states.contains(WidgetState.selected)) ? colorScheme.primary : colorScheme.outline,
       ),
-      trackColor: WidgetStateProperty.all(crucialButtonBackground),
-      trackOutlineColor: WidgetStateProperty.all(colorScheme.primaryContainer),
+      trackColor: WidgetStateProperty.all(colorScheme.surfaceContainer),
+      trackOutlineColor: WidgetStateProperty.all(crucialButtonBackground),
       overlayColor: WidgetStateProperty.all(focusColor),
     ),
 
