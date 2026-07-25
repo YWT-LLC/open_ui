@@ -185,9 +185,10 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                     widget.text,
                     textAlign: widget.textAlign,
                     semanticsLabel: widget.textFix,
-                    style: widget.config.lineLinks
-                        ? widget.config.bodyStyle?.copyWith(decoration: TextDecoration.underline)
-                        : widget.config.bodyStyle,
+                    style: widget.config.bodyStyle?.copyWith(
+                      decorationColor: widget.config.colors.primary,
+                      decoration: widget.config.lineLinks ? TextDecoration.underline : null,
+                    ),
                   ),
                 ),
                 Transform.scale(
