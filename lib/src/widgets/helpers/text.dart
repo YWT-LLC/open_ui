@@ -16,13 +16,18 @@ class EzNewLine extends StatelessWidget {
   /// Defaults to [TextAlign.start]
   final TextAlign? textAlign;
 
-  /// Quick wrapper for creating a [TextStyle]d blank line
+  /// Quick wrapper for creating a [TextStyle]d '' [Text]
   const EzNewLine(this.style, {super.key, this.textAlign});
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
         child: Text('', style: style, textAlign: textAlign ?? TextAlign.start),
       );
+}
+
+class EzRichLine extends EzPlainText {
+  /// Quick wrapper for creating a [TextStyle]d '\n' [EzPlainText]
+  const EzRichLine({super.style}) : super(text: '\n');
 }
 
 class EzText extends StatelessWidget {
