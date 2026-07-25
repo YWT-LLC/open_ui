@@ -58,79 +58,78 @@ class EzResetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
-    config,
-    style: ElevatedButton.styleFrom(
-      backgroundColor: config.colors.surface.a < focusOpacity
-          ? config.colors.surface.withValues(alpha: focusOpacity)
-          : config.colors.surface,
-    ),
-    onPressed: () => showDialog(
-      context: context,
-      builder: (_) {
-        bool updateBoth = true;
+        config,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: config.colors.surface.a < focusOpacity
+              ? config.colors.surface.withValues(alpha: focusOpacity)
+              : config.colors.surface,
+        ),
+        onPressed: () => showDialog(
+          context: context,
+          builder: (_) {
+            bool updateBoth = true;
 
-        return StatefulBuilder(
-          builder: (BuildContext dCon, StateSetter setDialog) => EzAlertDialog(
-            config,
-            title: Text(
-              dynamicTitle?.call() ?? config.ezL10n.ssResetAll,
-              textAlign: TextAlign.center,
-            ),
-            content: (dialogContent == null)
-                ? (all ? null : ezRichUndoWarning(config, context: context, standalone: false))
-                : dialogContent,
-            contents: (dialogContent == null)
-                ? (all
-                      ? <Widget>[
-                          ezRichUndoWarning(config, context: context, standalone: false),
-                          config.margin,
-                          EzSwitchPair(
-                            config,
-                            key: ValueKey<String>('ubs-$updateBoth'),
-                            value: updateBoth,
-                            text: config.ezL10n.ssResetBoth,
-                            textBackground: config.colors.surface,
-                            onChanged: (bool? choice) {
-                              if (choice == null) return;
-                              setDialog(() => updateBoth = choice);
-                            },
-                          ),
-                        ]
-                      : null)
-                : null,
-            actions: ezActionPair(
-              config,
-              onConfirm: () => config.rebuildUI(
-                types,
-                changes: () async {
-                  if (onConfirm == null) {
-                    await EzCM.reset(
-                      config.isDark,
-                      skip: resetSkip,
-                      forceOne: !updateBoth,
-                      forceBoth: updateBoth,
-                    );
-                  } else {
-                    await onConfirm!.call();
-                  }
-                },
+            return StatefulBuilder(
+              builder: (BuildContext dCon, StateSetter setDialog) => EzAlertDialog(
+                config,
+                title: Text(
+                  dynamicTitle?.call() ?? config.ezL10n.ssResetAll,
+                  textAlign: TextAlign.center,
+                ),
+                content: (dialogContent == null)
+                    ? (all ? null : ezRichUndoWarning(config, context: context, standalone: false))
+                    : dialogContent,
+                contents: (dialogContent == null)
+                    ? (all
+                        ? <Widget>[
+                            ezRichUndoWarning(config, context: context, standalone: false),
+                            config.margin,
+                            EzSwitchPair(
+                              config,
+                              key: ValueKey<String>('ubs-$updateBoth'),
+                              value: updateBoth,
+                              text: config.ezL10n.ssResetBoth,
+                              onChanged: (bool? choice) {
+                                if (choice == null) return;
+                                setDialog(() => updateBoth = choice);
+                              },
+                            ),
+                          ]
+                        : null)
+                    : null,
+                actions: ezActionPair(
+                  config,
+                  onConfirm: () => config.rebuildUI(
+                    types,
+                    changes: () async {
+                      if (onConfirm == null) {
+                        await EzCM.reset(
+                          config.isDark,
+                          skip: resetSkip,
+                          forceOne: !updateBoth,
+                          forceBoth: updateBoth,
+                        );
+                      } else {
+                        await onConfirm!.call();
+                      }
+                    },
+                  ),
+                  confirmIsDestructive: true,
+                  onDeny: () {
+                    if (onDeny == null) {
+                      doNothing();
+                    } else {
+                      onDeny!.call();
+                    }
+                    if (dCon.mounted) Navigator.of(dCon).pop();
+                  },
+                ),
+                needsClose: false,
               ),
-              confirmIsDestructive: true,
-              onDeny: () {
-                if (onDeny == null) {
-                  doNothing();
-                } else {
-                  onDeny!.call();
-                }
-                if (dCon.mounted) Navigator.of(dCon).pop();
-              },
-            ),
-            needsClose: false,
-          ),
-        );
-      },
-    ),
-    icon: EzIcon(config, Icons.refresh),
-    label: all ? config.ezL10n.gResetAll : config.ezL10n.gReset,
-  );
+            );
+          },
+        ),
+        icon: EzIcon(config, Icons.refresh),
+        label: all ? config.ezL10n.gResetAll : config.ezL10n.gReset,
+      );
 }
