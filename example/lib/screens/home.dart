@@ -306,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             ? MainAxisAlignment.start
                             : MainAxisAlignment.end,
                         text: config.ezL10n.gNA,
-                        semanticsLabel: config.ezL10n.gNAHint,
+                        textFix: config.ezL10n.gNAHint,
                         textAlign: TextAlign.start,
                         value: exampleDomain,
                         onChanged: (bool? value) {
