@@ -235,7 +235,13 @@ double ezDropdownWidth(EzCP config, {required BuildContext context, required Str
 
 /// [Duration] with milliseconds [base]
 /// Provide [mod] to adjust the duration, relative to the base value
-Duration ezDuration(int base, {double mod = 1.0}) => Duration(milliseconds: (base * mod).toInt());
+/// Sometimes [Duration.zero] breaks things, so use [nonZero] for a 1 millisecond [Duration]
+Duration ezDuration(
+  int base, {
+  double mod = 1.0,
+  bool nonZero = false,
+}) =>
+    Duration(milliseconds: min((base * mod).toInt(), nonZero ? 1 : 0));
 
 Widget ezFlag(EzCP config, {required Locale locale, bool inDistress = false}) {
   // Fix language code != flag code
