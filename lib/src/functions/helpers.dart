@@ -241,7 +241,7 @@ Duration ezDuration(
   double mod = 1.0,
   bool nonZero = false,
 }) =>
-    Duration(milliseconds: min((base * mod).toInt(), nonZero ? 10 : 0));
+    Duration(milliseconds: max((base * mod).toInt(), nonZero ? 1 : 0));
 
 Widget ezFlag(EzCP config, {required Locale locale, bool inDistress = false}) {
   // Fix language code != flag code
