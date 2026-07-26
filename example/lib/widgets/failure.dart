@@ -5,8 +5,8 @@
 
 import '../utils/export.dart';
 
-import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
+import 'package:flutter/material.dart';
 
 class FailureHeader extends StatelessWidget {
   /// EzConfig Provider
@@ -22,38 +22,38 @@ class FailureHeader extends StatelessWidget {
 
   /// header [Widget] for a failed run
   const FailureHeader(this.config, {super.key, this.message, this.richMessage})
-    : assert(
-        (message == null) != (richMessage == null),
-        'Either message or richMessage must be provided, not both',
-      );
+      : assert(
+          (message == null) != (richMessage == null),
+          'Either message or richMessage must be provided, not both',
+        );
 
   @override
   Widget build(BuildContext context) => EzCol(
-    children: <Widget>[
-      // Headline
-      Flexible(
-        child: EzText(
-          config,
-          text: config.ezL10n.gFailure,
-          style: config.headlineStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-      config.spacer,
+        children: <Widget>[
+          // Headline
+          Flexible(
+            child: EzText(
+              config,
+              text: config.ezL10n.gFailure,
+              style: config.headlineStyle,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          config.spacer,
 
-      // Error message
-      message != null
-          ? Flexible(
-              child: EzText(
-                config,
-                text: message!,
-                style: ezSubTitleStyle(config.styles),
-                textAlign: TextAlign.center,
-              ),
-            )
-          : richMessage!,
-    ],
-  );
+          // Error message
+          message != null
+              ? Flexible(
+                  child: EzText(
+                    config,
+                    text: message!,
+                    style: ezSubTitleStyle(config.styles),
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              : richMessage!,
+        ],
+      );
 }
 
 class DeleteOption extends StatelessWidget {
@@ -84,42 +84,43 @@ class DeleteOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzCol(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      // Would you like to...
-      EzText(config, text: l10n(config).rsWouldYou, style: style, textAlign: TextAlign.center),
-      config.spacer,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          // Would you like to...
+          EzText(config, text: l10n(config).rsWouldYou, style: style, textAlign: TextAlign.center),
+          config.spacer,
 
-      // Wipe it
-      EzElevatedIconButton(
-        config,
-        onPressed: () => ezCmd(
-          EzCM.platform == TargetPlatform.windows ? 'rmdir /s /q $appName' : 'rm -rf $appName',
-          dir: dir,
-          onSuccess: () async {
-            await ezSnackBar(config, context: context, message: l10n(config).rsNextTime).closed;
-            if (context.mounted) await Navigator.of(context).maybePop();
-          },
-          onFailure: (String message) async {
-            await ezSnackBar(config, context: context, message: l10n(config).rsAnotherOne).closed;
-            if (context.mounted) await Navigator.of(context).maybePop();
-          },
-          readout: readout,
-        ),
-        icon: EzIcon(config, Icons.delete),
-        label: l10n(config).rsWipe,
-      ),
-      config.spacer,
+          // Wipe it
+          EzElevatedIconButton(
+            config,
+            onPressed: () => ezCmd(
+              EzCM.platform == TargetPlatform.windows ? 'rmdir /s /q $appName' : 'rm -rf $appName',
+              dir: dir,
+              onSuccess: () async {
+                await ezSnackBar(config, context: context, message: l10n(config).rsNextTime).closed;
+                if (context.mounted) await Navigator.of(context).maybePop();
+              },
+              onFailure: (String message) async {
+                await ezSnackBar(config, context: context, message: l10n(config).rsAnotherOne)
+                    .closed;
+                if (context.mounted) await Navigator.of(context).maybePop();
+              },
+              readout: readout,
+            ),
+            icon: EzIcon(config, Icons.delete),
+            label: l10n(config).rsWipe,
+          ),
+          config.spacer,
 
-      // Leave
-      EzElevatedIconButton(
-        config,
-        onPressed: () => Navigator.of(context).pop(),
-        icon: EzIcon(config, Icons.arrow_back),
-        label: l10n(config).rsLeave,
-      ),
-    ],
-  );
+          // Leave
+          EzElevatedIconButton(
+            config,
+            onPressed: () => Navigator.of(context).pop(),
+            icon: EzIcon(config, Icons.arrow_back),
+            label: l10n(config).rsLeave,
+          ),
+        ],
+      );
 }
 
 class LinkOption extends StatelessWidget {
@@ -130,23 +131,23 @@ class LinkOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzCol(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      EzText(
-        config,
-        text: l10n(config).rsWouldYou,
-        style: ezSubTitleStyle(config.styles),
-        textAlign: TextAlign.center,
-      ),
-      config.spacer,
-      EzElevatedIconLink(
-        config,
-        url: Uri.parse(installFlutter),
-        tooltip: installFlutter,
-        hint: l10n(config).rsInstallHint,
-        icon: EzIcon(config, Icons.computer),
-        label: l10n(config).rsInstall,
-      ),
-    ],
-  );
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          EzText(
+            config,
+            text: l10n(config).rsWouldYou,
+            style: ezSubTitleStyle(config.styles),
+            textAlign: TextAlign.center,
+          ),
+          config.spacer,
+          EzElevatedIconLink(
+            config,
+            url: Uri.parse(installFlutter),
+            tooltip: installFlutter,
+            hint: l10n(config).rsInstallHint,
+            icon: EzIcon(config, Icons.computer),
+            label: l10n(config).rsInstall,
+          ),
+        ],
+      );
 }
