@@ -150,6 +150,7 @@ class EzTextBackground extends StatelessWidget {
       );
 }
 
+// TODO: make less ugly (more pretty?)
 class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
   final Iterable<String>? autofillHints;
