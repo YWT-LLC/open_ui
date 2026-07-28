@@ -53,23 +53,22 @@ class EzIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconButton(
-    onPressed: enabled ? onPressed : doNothing,
-    onLongPress: enabled ? onLongPress : doNothing,
-    tooltip: tooltip,
-    style:
-        style ??
-        ((!enabled || fauxDisabled)
-            ? IconButton.styleFrom(
-                foregroundColor: config.colors.outline,
-                side: config.borderSide(color: config.colors.outlineVariant),
-                overlayColor: config.colors.outline,
-                shadowColor: Colors.transparent,
-                iconSize: iconSize ?? config.iconSize,
-              )
-            : null),
-    icon: icon,
-    iconSize: iconSize ?? config.iconSize,
-  );
+        onPressed: enabled ? onPressed : doNothing,
+        onLongPress: enabled ? onLongPress : doNothing,
+        tooltip: tooltip,
+        style: style ??
+            ((!enabled || fauxDisabled)
+                ? IconButton.styleFrom(
+                    foregroundColor: config.colors.outline,
+                    side: config.borderSide(color: config.colors.outlineVariant),
+                    overlayColor: config.colors.outline,
+                    shadowColor: Colors.transparent,
+                    iconSize: iconSize ?? config.iconSize,
+                  )
+                : null),
+        icon: icon,
+        iconSize: iconSize ?? config.iconSize,
+      );
 }
 
 class EzIcon extends Icon {
