@@ -17,16 +17,12 @@ class EzSettingsHub extends StatefulWidget {
   /// Optional starting point (default 0/last visited)
   final int? target;
 
-  /// Optional starting sub-section (default true/last visited)
-  final bool? primary;
-
   /// Settings landing page
   const EzSettingsHub(
     this.config, {
     super.key,
     required this.pages,
     this.target,
-    this.primary,
   });
 
   @override
@@ -51,10 +47,8 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
           ),
           SegmentedButton<EzSettingsSection>(
             segments: widget.pages
-                .map(
-                  (EzSettingsSection type) =>
-                      ButtonSegment<EzSettingsSection>(value: type, icon: type.icon),
-                )
+                .map((EzSettingsSection type) =>
+                    ButtonSegment<EzSettingsSection>(value: type, icon: type.icon))
                 .toList(),
             selected: <EzSettingsSection>{currSection},
             showSelectedIcon: false,
@@ -88,7 +82,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                         reverseHands: true,
                         showScrollHint: true,
                         children: <Widget>[
-                          // Quick/Advanced selector
+                          // Subsection selector
                           SegmentedButton<EzSubSetting>(
                             segments: (currSection.subSettings)
                                 .map(
