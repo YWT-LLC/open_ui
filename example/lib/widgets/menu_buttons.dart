@@ -5,7 +5,7 @@
 
 import '../utils/export.dart';
 import '../screens/export.dart';
-import 'package:oui_bios/oui_bios.dart';
+import 'package:ywt_private/ywt_private.dart';
 
 import 'dart:io';
 import 'dart:convert';

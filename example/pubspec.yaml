@@ -29,8 +29,8 @@ dependencies:
   # YWT
   open_ui:
     path: ../
-  oui_bios:
-    path: ../../oui_bios
+  ywt_private:
+    path: ../../ywt_private
 
 dev_dependencies:
   dependency_validator: ^5.0.5

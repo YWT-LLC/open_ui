@@ -49,8 +49,8 @@ dev_dependencies:
 
   ## For example app (Open UI)
   # Local
-  oui_bios:
-    path: ../oui_bios
+  ywt_private:
+    path: ../ywt_private
   
   # Community
   after_layout: ^1.2.0
