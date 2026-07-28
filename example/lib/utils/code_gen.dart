@@ -784,9 +784,9 @@ import 'package:provider/provider.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   final int? target;
-  final bool? primary;
+  final bool? secondary;
 
-  const SettingsHubScreen({super.key, this.target, this.primary}) ;
+  const SettingsHubScreen({super.key, this.target, this.secondary}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -830,7 +830,7 @@ class SettingsHubScreen extends StatelessWidget {
                     EzSubSetting.qckColor,
                     EzSubSetting.advColor,
                   ],
-                  fromStorage: () => EzCM.get(advancedColorsKey) == true
+                  fromStorage: () => (secondary ?? EzCM.get(advancedColorsKey) == true)
                       ? EzSubSetting.advColor
                       : EzSubSetting.qckColor,
                   build: (EzSubSetting subSec) => EzColorSettings(config, target: subSec),
@@ -850,7 +850,7 @@ class SettingsHubScreen extends StatelessWidget {
                     EzSubSetting.butDesign,
                     EzSubSetting.pagDesign,
                   ],
-                  fromStorage: () => EzCM.get(pageTabKey) == true
+                  fromStorage: () => (secondary ?? EzCM.get(pageTabKey) == true)
                       ? EzSubSetting.pagDesign
                       : EzSubSetting.butDesign,
                   build: (EzSubSetting subSec) => EzDesignSettings(config, target: subSec),
@@ -870,7 +870,7 @@ class SettingsHubScreen extends StatelessWidget {
                     EzSubSetting.qckText,
                     EzSubSetting.advText,
                   ],
-                  fromStorage: () => EzCM.get(advancedTextKey) == true
+                  fromStorage: () => (secondary ?? EzCM.get(advancedTextKey) == true)
                       ? EzSubSetting.advText
                       : EzSubSetting.qckText,
                   build: (EzSubSetting subSec) => EzTextSettings(config, target: subSec),
