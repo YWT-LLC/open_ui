@@ -14,12 +14,20 @@ class EzSettingsHub extends StatefulWidget {
   /// Where the magic happens
   final List<EzSettingsSection> pages;
 
-  /// Optional starting point
-  /// Defaults to 0/first
+  /// Optional starting point (default 0/last visited)
   final int? target;
 
+  /// Optional starting sub-section (default true/last visited)
+  final bool? primary;
+
   /// Settings landing page
-  const EzSettingsHub(this.config, {super.key, required this.pages, this.target});
+  const EzSettingsHub(
+    this.config, {
+    super.key,
+    required this.pages,
+    this.target,
+    this.primary,
+  });
 
   @override
   State<EzSettingsHub> createState() => _EzSettingsHubState();
