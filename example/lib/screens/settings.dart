@@ -11,8 +11,9 @@ import 'package:open_ui/open_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   final int? target;
+  final bool? primary;
 
-  const SettingsHubScreen({super.key, this.target});
+  const SettingsHubScreen({super.key, this.target, this.primary});
 
   @override
   Widget build(BuildContext context) {
