@@ -10,10 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:open_ui/open_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
-  /// Optionally override the starting position
-  final int? targetPass;
+  final int? target;
 
-  const SettingsHubScreen({super.key, this.targetPass});
+  const SettingsHubScreen({super.key, this.target});
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +32,8 @@ class SettingsHubScreen extends StatelessWidget {
                   config,
                   EzCM.onMobile
                       ? EzCM.platform == TargetPlatform.iOS
-                            ? Icons.phone_iphone
-                            : Icons.phone_android
+                          ? Icons.phone_iphone
+                          : Icons.phone_android
                       : Icons.computer,
                   semanticLabel: config.ezL10n.gGlobal,
                 ),
@@ -77,7 +76,7 @@ class SettingsHubScreen extends StatelessWidget {
                 build: (EzSubSetting subSec) => EzTextSettings(config, target: subSec),
               ),
             ],
-            target: targetPass,
+            target: target,
           ),
         ),
         title: config.ezL10n.gSettings,
