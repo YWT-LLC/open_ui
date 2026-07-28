@@ -80,9 +80,9 @@ class EzScrollView extends StatefulWidget {
     this.startCentered = false,
     this.children,
   }) : assert(
-         (child == null) != (children == null),
-         'Either child or children should be provided, but not both.',
-       );
+          (child == null) != (children == null),
+          'Either child or children should be provided, but not both.',
+        );
 
   @override
   State<EzScrollView> createState() => _EzScrollViewState();
@@ -162,20 +162,20 @@ class _EzScrollViewState extends State<EzScrollView> {
       child: (widget.child != null)
           ? widget.child!
           : (widget.scrollDirection == Axis.vertical)
-          ? EzCol(
-              mainAxisSize: widget.mainAxisSize,
-              mainAxisAlignment: widget.mainAxisAlignment,
-              crossAxisAlignment: widget.crossAxisAlignment,
-              children: widget.children!,
-            )
-          : EzRow(
-              widget.config,
-              mainAxisSize: widget.mainAxisSize,
-              mainAxisAlignment: widget.mainAxisAlignment,
-              crossAxisAlignment: widget.crossAxisAlignment,
-              reverseHands: widget.reverseHands,
-              children: widget.children!,
-            ),
+              ? EzCol(
+                  mainAxisSize: widget.mainAxisSize,
+                  mainAxisAlignment: widget.mainAxisAlignment,
+                  crossAxisAlignment: widget.crossAxisAlignment,
+                  children: widget.children!,
+                )
+              : EzRow(
+                  widget.config,
+                  mainAxisSize: widget.mainAxisSize,
+                  mainAxisAlignment: widget.mainAxisAlignment,
+                  crossAxisAlignment: widget.crossAxisAlignment,
+                  reverseHands: widget.reverseHands,
+                  children: widget.children!,
+                ),
     );
 
     if (widget.thumbVisibility ?? widget.config.showScroll) {
@@ -304,5 +304,5 @@ class EzScrollBlocker extends NotificationListener<ScrollNotification> {
 
   /// Widget alias for a [ScrollNotification] based [NotificationListener] that's always true
   EzScrollBlocker(this.kid, {super.key})
-    : super(onNotification: (ScrollNotification notification) => true, child: kid);
+      : super(onNotification: (ScrollNotification notification) => true, child: kid);
 }
