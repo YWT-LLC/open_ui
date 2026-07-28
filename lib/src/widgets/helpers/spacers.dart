@@ -24,8 +24,8 @@ class EzSpacer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-    child: SizedBox(height: vertical ? space : null, width: horizontal ? space : null),
-  );
+        child: SizedBox(height: vertical ? space : null, width: horizontal ? space : null),
+      );
 }
 
 class EzDivider extends StatelessWidget {
@@ -56,24 +56,24 @@ class EzDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-    constraints: constraints,
-    child: Divider(height: height, thickness: thickness, color: color, radius: radius),
-  );
+        constraints: constraints,
+        child: Divider(height: height, thickness: thickness, color: color, radius: radius),
+      );
 }
 
 class EzTitledDivider extends StatelessWidget {
   /// [Widget] to display just under the diving line
   final Widget title;
 
-  /// Total vertical space that should be occupied
-  final double height;
-
   /// Vertical space that the [Divider] specifically should occupy
   /// Recommend [EzCP.marginVal]
   final double margin;
 
-  /// Bounds for the [Divider]
-  final BoxConstraints constraints;
+  /// Total vertical space that should be occupied
+  final double height;
+
+  /// [BoxConstraints.maxWidth] value for the [Divider]
+  final double width;
 
   /// [Divider.thickness] passthrough
   final double? thickness;
@@ -88,9 +88,9 @@ class EzTitledDivider extends StatelessWidget {
   const EzTitledDivider(
     this.title, {
     super.key,
-    required this.height,
     required this.margin,
-    this.constraints = const BoxConstraints(maxWidth: 175),
+    required this.height,
+    this.width = 175.0,
     this.thickness,
     this.color,
     this.radius,
@@ -98,16 +98,16 @@ class EzTitledDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-    constraints: constraints,
-    child: EzCol(
-      children: <Widget>[
-        EzSpacer(height / 2),
-        Divider(height: margin, thickness: thickness, color: color, radius: radius),
-        title,
-        EzSpacer(height / 2),
-      ],
-    ),
-  );
+        constraints: BoxConstraints(maxWidth: width),
+        child: EzCol(
+          children: <Widget>[
+            EzSpacer(height / 2),
+            Divider(height: margin, thickness: thickness, color: color, radius: radius),
+            title,
+            EzSpacer(height / 2),
+          ],
+        ),
+      );
 }
 
 class EzHeader extends StatelessWidget {
@@ -118,10 +118,10 @@ class EzHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-    child: SizedBox.square(
-      dimension: (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0,
-    ),
-  );
+        child: SizedBox.square(
+          dimension: (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0,
+        ),
+      );
 }
 
 class EzSwapSpacer extends StatelessWidget {
@@ -175,13 +175,13 @@ class EzFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       (human || (config.locale.languageCode == defaultLocale.languageCode))
-      ? config.separator
-      : Padding(
-          padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
-          child: Text(
-            config.ezL10n.gMachineTranslated,
-            style: config.labelStyle,
-            textAlign: textAlign,
-          ),
-        );
+          ? config.separator
+          : Padding(
+              padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
+              child: Text(
+                config.ezL10n.gMachineTranslated,
+                style: config.labelStyle,
+                textAlign: textAlign,
+              ),
+            );
 }
