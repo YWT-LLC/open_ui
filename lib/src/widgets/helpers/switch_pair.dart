@@ -195,6 +195,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
   Widget build(BuildContext context) => (widget.tipper != null || widget.bigTipper != null)
       ? EzScrollView(
           widget.config,
+          showScrollHint: true,
           scrollDirection: Axis.horizontal,
           reverseHands: widget.reverseHands,
           mainAxisSize: widget.mainAxisSize,
