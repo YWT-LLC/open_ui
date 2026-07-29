@@ -150,3 +150,22 @@ class EzFauxCarousel extends StatelessWidget {
         child: KeyedSubtree(key: ValueKey<int>(position), child: child),
       );
 }
+
+class EzSwipeDetector extends GestureDetector {
+  final void Function() rtl;
+  final void Function() ltr;
+
+  /// [GestureDetector] wrapper specifically for [onHorizontalDragEnd] for swiping [rtl] and [ltr]
+  EzSwipeDetector({
+    super.key,
+    required this.rtl,
+    required this.ltr,
+    required super.child,
+  }) : super(
+          onHorizontalDragEnd: (DragEndDetails details) {
+            if (details.primaryVelocity == null) return;
+            if (details.primaryVelocity! < -ezSwipeV) rtl.call();
+            if (details.primaryVelocity! > ezSwipeV) ltr.call();
+          },
+        );
+}
