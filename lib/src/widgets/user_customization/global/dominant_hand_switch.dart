@@ -17,30 +17,30 @@ class EzDominantHandSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzScrollView(
-    config,
-    scrollDirection: Axis.horizontal,
-    reverseHands: true,
-    children: <Widget>[
-      // Label
-      EzText(config, text: config.ezL10n.ssDominantHand, textAlign: TextAlign.center),
-      config.margin,
-
-      // Button
-      EzDropdownMenu<bool>(
         config,
-        widthEntry: config.ezL10n.gRight,
-        dropdownMenuEntries: <DropdownMenuEntry<bool>>[
-          DropdownMenuEntry<bool>(value: false, label: config.ezL10n.gRight),
-          DropdownMenuEntry<bool>(value: true, label: config.ezL10n.gLeft),
+        reverseHands: true,
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          // Label
+          EzText(config, text: config.ezL10n.ssDominantHand, textAlign: TextAlign.center),
+          config.rowMargin,
+
+          // Button
+          EzDropdownMenu<bool>(
+            config,
+            widthEntry: config.ezL10n.gRight,
+            dropdownMenuEntries: <DropdownMenuEntry<bool>>[
+              DropdownMenuEntry<bool>(value: false, label: config.ezL10n.gRight),
+              DropdownMenuEntry<bool>(value: true, label: config.ezL10n.gLeft),
+            ],
+            enableSearch: false,
+            initialSelection: config.isLefty,
+            onSelected: (bool? makeLeft) async {
+              if (makeLeft == null || makeLeft == config.isLefty) return;
+              await EzCM.setBool(isLeftyKey, makeLeft);
+              await config.rebuildUI(noECT);
+            },
+          ),
         ],
-        enableSearch: false,
-        initialSelection: config.isLefty,
-        onSelected: (bool? makeLeft) async {
-          if (makeLeft == null || makeLeft == config.isLefty) return;
-          await EzCM.setBool(isLeftyKey, makeLeft);
-          await config.rebuildUI(noECT);
-        },
-      ),
-    ],
-  );
+      );
 }
