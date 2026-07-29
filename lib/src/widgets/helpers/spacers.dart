@@ -29,11 +29,14 @@ class EzSpacer extends StatelessWidget {
 }
 
 class EzDivider extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Vertical space that should be occupied
   final double height;
 
-  /// Bounds for the [Divider]
-  final BoxConstraints constraints;
+  /// [BoxConstraints.maxWidth] value for the [Divider]
+  final double width;
 
   /// [Divider.thickness] passthrough
   final double? thickness;
@@ -46,9 +49,10 @@ class EzDivider extends StatelessWidget {
 
   /// A [Divider] wrapped in a [ConstrainedBox]
   const EzDivider(
-    this.height, {
+    this.config, {
     super.key,
-    this.constraints = const BoxConstraints(maxWidth: 175),
+    required this.height,
+    this.width = 175.0,
     this.thickness,
     this.color,
     this.radius,
@@ -56,18 +60,22 @@ class EzDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-        constraints: constraints,
-        child: Divider(height: height, thickness: thickness, color: color, radius: radius),
+        constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
+        child: Divider(
+          height: height,
+          thickness: thickness,
+          color: color,
+          radius: radius,
+        ),
       );
 }
 
 class EzTitledDivider extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Widget] to display just under the diving line
   final Widget title;
-
-  /// Vertical space that the [Divider] specifically should occupy
-  /// Recommend [EzCP.marginVal]
-  final double margin;
 
   /// Total vertical space that should be occupied
   final double height;
@@ -86,9 +94,9 @@ class EzTitledDivider extends StatelessWidget {
 
   /// A [Divider] wrapped in a [ConstrainedBox]
   const EzTitledDivider(
-    this.title, {
+    this.config, {
     super.key,
-    required this.margin,
+    required this.title,
     required this.height,
     this.width = 175.0,
     this.thickness,
@@ -98,11 +106,16 @@ class EzTitledDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: width),
+        constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
         child: EzCol(
           children: <Widget>[
             EzSpacer(height / 2),
-            Divider(height: margin, thickness: thickness, color: color, radius: radius),
+            Divider(
+              height: config.marginVal,
+              thickness: thickness,
+              color: color,
+              radius: radius,
+            ),
             title,
             EzSpacer(height / 2),
           ],
