@@ -384,7 +384,7 @@ const Set<EzCacheType> allECT = <EzCacheType>{
   EzCacheType.color,
   EzCacheType.design,
   EzCacheType.text,
-};
+}; // Set >> ECT.values, faster checks
 const Set<EzCacheType> noECT = <EzCacheType>{};
 
 class EzColorCache {
