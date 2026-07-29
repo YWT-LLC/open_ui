@@ -323,6 +323,16 @@ const Map<String, Type> lightColorKeys = <String, Type>{
 /// For segmented button; 'advancedColors'
 const String advancedColorsKey = 'advancedColors';
 
+/// Auto-managed text colors
+const Map<String, String> ezTextMirrors = <String, String>{
+  darkPrimaryKey: darkOnPrimaryKey,
+  darkSecondaryKey: darkOnSecondaryKey,
+  darkTertiaryKey: darkOnTertiaryKey,
+  lightPrimaryKey: lightOnPrimaryKey,
+  lightSecondaryKey: lightOnSecondaryKey,
+  lightTertiaryKey: lightOnTertiaryKey,
+};
+
 /// [advancedColorsKey], [darkColorKeys], && [lightColorKeys]
 const Map<String, Type> allColorKeys = <String, Type>{
   advancedColorsKey: bool,
