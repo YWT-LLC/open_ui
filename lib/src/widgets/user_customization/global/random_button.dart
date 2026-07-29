@@ -38,7 +38,7 @@ class EzConfigRandomizer extends StatelessWidget {
                   ),
               textAlign: TextAlign.center,
             ),
-            content: ezRichUndoWarning(config, context: context, skip: saveSkip),
+            contents: <Widget>[ezRichUndoWarning(config, context: context, skip: saveSkip)],
             actions: ezActionPair(
               config,
               onConfirm: () =>

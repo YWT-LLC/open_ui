@@ -22,10 +22,6 @@ class EzResetButton extends StatelessWidget {
   /// [EzAlertDialog.title] that shows on click
   final String Function()? dynamicTitle;
 
-  /// Optionally override [EzAlertDialog.content] that shows on click
-  /// Defaults to [ezRichUndoWarning]
-  final Widget? dialogContent;
-
   /// [EzCM.reset] skip passthrough
   /// Moot if [onConfirm] is provided
   final Set<String>? resetSkip;
@@ -49,7 +45,6 @@ class EzResetButton extends StatelessWidget {
     this.all = true,
     this.types = allECT,
     this.saveSkip,
-    this.dialogContent,
     this.dynamicTitle,
     this.resetSkip,
     this.onConfirm,
@@ -76,27 +71,22 @@ class EzResetButton extends StatelessWidget {
                   dynamicTitle?.call() ?? config.ezL10n.ssResetAll,
                   textAlign: TextAlign.center,
                 ),
-                content: (dialogContent == null)
-                    ? (all ? null : ezRichUndoWarning(config, context: context, standalone: false))
-                    : dialogContent,
-                contents: (dialogContent == null)
-                    ? (all
-                        ? <Widget>[
-                            ezRichUndoWarning(config, context: context, standalone: false),
-                            config.margin,
-                            EzSwitchPair(
-                              config,
-                              key: ValueKey<String>('ubs-$updateBoth'),
-                              value: updateBoth,
-                              text: config.ezL10n.ssResetBoth,
-                              onChanged: (bool? choice) {
-                                if (choice == null) return;
-                                setDialog(() => updateBoth = choice);
-                              },
-                            ),
-                          ]
-                        : null)
-                    : null,
+                contents: all
+                    ? <Widget>[
+                        ezRichUndoWarning(config, context: context),
+                        config.margin,
+                        EzSwitchPair(
+                          config,
+                          key: ValueKey<String>('ubs-$updateBoth'),
+                          value: updateBoth,
+                          text: config.ezL10n.ssResetBoth,
+                          onChanged: (bool? choice) {
+                            if (choice == null) return;
+                            setDialog(() => updateBoth = choice);
+                          },
+                        ),
+                      ]
+                    : <Widget>[ezRichUndoWarning(config, context: context)],
                 actions: ezActionPair(
                   config,
                   onConfirm: () => config.rebuildUI(
