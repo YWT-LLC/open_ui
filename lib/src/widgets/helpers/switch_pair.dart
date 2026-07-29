@@ -151,64 +151,57 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 
   // Return the build //
 
-  @override
-  Widget build(BuildContext context) => EzRow(
-        widget.config,
-        reverseHands: widget.reverseHands,
-        mainAxisSize: widget.mainAxisSize,
-        mainAxisAlignment: widget.mainAxisAlignment,
-        crossAxisAlignment: widget.crossAxisAlignment,
-        children: <Widget>[
-          TextButton(
-            style: (widget.enabled && !widget.fauxDisabled)
-                ? TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                    side: widget.config.borderSide(
-                        color: widget.config.colors.primary.withValues(alpha: focusOpacity)),
-                  )
-                : TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                    side: widget.config.borderSide(color: widget.config.colors.outlineVariant),
-                    overlayColor: widget.config.colors.outline,
-                    shadowColor: Colors.transparent,
-                  ),
-            onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
-            child: EzRow(
-              widget.config,
-              reverseHands: widget.reverseHands,
-              mainAxisAlignment: widget.mainAxisAlignment,
-              crossAxisAlignment: widget.crossAxisAlignment,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                  child: Text(
-                    widget.text,
-                    textAlign: widget.textAlign,
-                    semanticsLabel: widget.textFix,
-                    style: widget.config.bodyStyle?.copyWith(
-                      decorationColor: widget.config.colors.primary,
-                      decoration: widget.config.lineLinks ? TextDecoration.underline : null,
-                    ),
-                  ),
-                ),
-                Transform.scale(
-                  scale: max(1.0, ezIconRatio(widget.config)),
-                  child: Switch(
-                    value: value,
-                    onChanged: onChanged,
-                    activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
-                    inactiveThumbColor: widget.config.colors.outline,
-                    trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
-                        ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
-                        : null,
-                    trackOutlineWidth: widget.trackOutlineWidth,
-                    padding: EdgeInsets.zero,
-                  ),
-                ),
-              ],
-            ),
+  TextButton core() => TextButton.icon(
+        style: (widget.enabled && !widget.fauxDisabled)
+            ? TextButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                side: widget.config.borderSide(
+                    color: widget.config.colors.primary.withValues(alpha: focusOpacity)),
+              )
+            : TextButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                side: widget.config.borderSide(color: widget.config.colors.outlineVariant),
+                overlayColor: widget.config.colors.outline,
+                shadowColor: Colors.transparent,
+              ),
+        onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
+        label: Text(
+          widget.text,
+          textAlign: widget.textAlign,
+          semanticsLabel: widget.textFix,
+          style: widget.config.bodyStyle?.copyWith(
+            decorationColor: widget.config.colors.primary,
+            decoration: widget.config.lineLinks ? TextDecoration.underline : null,
           ),
-          if (widget.tipper != null || widget.bigTipper != null)
+        ),
+        icon: Transform.scale(
+          scale: max(1.0, ezIconRatio(widget.config)),
+          child: Switch(
+            value: value,
+            onChanged: onChanged,
+            activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
+            inactiveThumbColor: widget.config.colors.outline,
+            trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
+                ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
+                : null,
+            trackOutlineWidth: widget.trackOutlineWidth,
+            padding: EdgeInsets.zero,
+          ),
+        ),
+        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+      );
+
+  @override
+  Widget build(BuildContext context) => (widget.tipper != null || widget.bigTipper != null)
+      ? EzScrollView(
+          widget.config,
+          scrollDirection: Axis.horizontal,
+          reverseHands: widget.reverseHands,
+          mainAxisSize: widget.mainAxisSize,
+          mainAxisAlignment: widget.mainAxisAlignment,
+          crossAxisAlignment: widget.crossAxisAlignment,
+          children: <Widget>[
+            core(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
               child: EzToolTipper(
@@ -217,6 +210,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                 richMessage: widget.bigTipper,
               ),
             ),
-        ],
-      );
+          ],
+        )
+      : core();
 }
