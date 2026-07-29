@@ -91,9 +91,8 @@ class _ImageSettingState extends State<EzImageSetting> {
   Future<void> showSource() async {
     if (currPath == null || currPath == noImageValue) return;
 
-    final String credits = (widget.sourceKey == null)
-        ? currPath
-        : (EzCM.get(widget.sourceKey!) ?? currPath);
+    final String credits =
+        (widget.sourceKey == null) ? currPath : (EzCM.get(widget.sourceKey!) ?? currPath);
 
     return showDialog(
       context: context,
@@ -362,9 +361,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                     EzIconButton(
                       widget.config,
                       onPressed: () async {
-                        final String? clipText = (await Clipboard.getData(
-                          Clipboard.kTextPlain,
-                        ))?.text;
+                        final String? clipText =
+                            (await Clipboard.getData(Clipboard.kTextPlain))?.text;
                         if (clipText != null) urlController.text = clipText;
                       },
                       icon: const Icon(Icons.paste),
@@ -452,9 +450,8 @@ class _ImageSettingState extends State<EzImageSetting> {
             widget.config,
             onPressed: () async {
               final int? pathARGB = (currPath == null) ? null : int.tryParse(currPath!);
-              Color currColor = pathARGB == null
-                  ? widget.config.colors.surfaceContainer
-                  : Color(pathARGB);
+              Color currColor =
+                  pathARGB == null ? widget.config.colors.surfaceContainer : Color(pathARGB);
 
               await ezColorPicker(
                 widget.config,
@@ -530,9 +527,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           widget.config,
           onPressed: () async {
             final bool? changed = await chooseFit(currPath!);
-            if (changed == true) {
-              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
-            }
+            if (changed == true) await widget.config.rebuildUI(allECT);
           },
           icon: EzIcon(widget.config, Icons.image_aspect_ratio),
           label: widget.config.ezL10n.dsReFit,
@@ -626,9 +621,8 @@ class _ImageSettingState extends State<EzImageSetting> {
             widget.config.spacer,
             EzRow(
               widget.config,
-              mainAxisAlignment: widget.config.isLefty
-                  ? MainAxisAlignment.start
-                  : MainAxisAlignment.end,
+              mainAxisAlignment:
+                  widget.config.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
               children: <Widget>[
                 widget.config.rowSpacer,
                 EzTextButton(
@@ -672,58 +666,58 @@ class _ImageSettingState extends State<EzImageSetting> {
     required double scale,
     required BuildContext modalContext,
     required StateSetter setModal,
-  }) => EzCol(
-    children: <Widget>[
-      GestureDetector(
-        onTap: () => setModal(() => currFit = fit),
-        child: Semantics(
-          hint: fit.name,
-          image: true,
-          button: true,
-          child: ExcludeSemantics(
-            child: Container(
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: widget.config.colors.onSurface,
-                  width: widget.config.borderWidth,
-                ),
-                borderRadius: const BorderRadius.all(Radius.zero),
-              ),
-              child: EzCol(
-                children: <Widget>[
-                  Container(
-                    height:
-                        ezTextSize(
+  }) =>
+      EzCol(
+        children: <Widget>[
+          GestureDetector(
+            onTap: () => setModal(() => currFit = fit),
+            child: Semantics(
+              hint: fit.name,
+              image: true,
+              button: true,
+              child: ExcludeSemantics(
+                child: Container(
+                  width: width,
+                  height: height,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: widget.config.colors.onSurface,
+                      width: widget.config.borderWidth,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.zero),
+                  ),
+                  child: EzCol(
+                    children: <Widget>[
+                      Container(
+                        height: ezTextSize(
+                              fit.name,
+                              style: widget.config.bodyStyle,
+                              context: modalContext,
+                            ).height +
+                            (widget.config.marginVal * 0.25),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: widget.config.colors.surface,
+                          borderRadius: const BorderRadius.all(Radius.zero),
+                        ),
+                        child: Text(
                           fit.name,
                           style: widget.config.bodyStyle,
-                          context: modalContext,
-                        ).height +
-                        (widget.config.marginVal * 0.25),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: widget.config.colors.surface,
-                      borderRadius: const BorderRadius.all(Radius.zero),
-                    ),
-                    child: Text(
-                      fit.name,
-                      style: widget.config.bodyStyle,
-                      textAlign: TextAlign.center,
-                    ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Expanded(
+                        child: Image(image: ezImageProvider(path), fit: fit),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: Image(image: ezImageProvider(path), fit: fit),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
-      ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
-    ],
-  );
+          ExcludeSemantics(child: EzRadio<BoxFit>(widget.config, value: fit)),
+        ],
+      );
 
   // Return the build //
 
@@ -747,9 +741,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             });
             final bool changed = await activateSetting();
 
-            if (changed) {
-              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
-            }
+            if (changed) await widget.config.rebuildUI(allECT);
             setState(() => inProgress = false);
           },
           onLongPress: inProgress ? doNothing : showSource,
@@ -765,15 +757,19 @@ class _ImageSettingState extends State<EzImageSetting> {
               radius: widget.config.iconSize + widget.config.padding,
               foregroundImage:
                   (inProgress || currPath == null || currPath == noImageValue || pathARGB != null)
-                  ? null
-                  : ezImageProvider(currPath!),
+                      ? null
+                      : ezImageProvider(currPath!),
               backgroundColor: (pathARGB != null) ? Color(pathARGB) : Colors.transparent,
               foregroundColor: widget.config.colors.onSurface,
               child: inProgress
                   ? const CircularProgressIndicator()
                   : (currPath == null || currPath == noImageValue)
-                  ? EzIcon(widget.config, Icons.image_search, color: widget.config.colors.primary)
-                  : null,
+                      ? EzIcon(
+                          widget.config,
+                          Icons.image_search,
+                          color: widget.config.colors.primary,
+                        )
+                      : null,
             ),
           ),
           label: widget.label,

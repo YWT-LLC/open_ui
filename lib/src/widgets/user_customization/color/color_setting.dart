@@ -165,7 +165,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                 if (resetValue != null) {
                   setState(() => currColor = Color(resetValue));
                 }
-                await widget.config.rebuildUI(<EzCacheType>{EzCacheType.color, EzCacheType.design});
+                await widget.config.rebuildUI(allECT);
               },
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),
