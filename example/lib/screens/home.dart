@@ -498,8 +498,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               advancedEC.isExpanded
                   ? config.separator
                   : EzDivider(
-                      config.spacing * 3,
-                      constraints: ezTextFieldConstraints(context, prop: 0.333),
+                      height: config.spacing * 3,
+                      width: ezTextFieldConstraints(context, prop: 0.333).maxWidth,
                     ),
 
               // Flutter path picker (Mac only)

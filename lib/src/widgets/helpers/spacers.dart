@@ -29,9 +29,6 @@ class EzSpacer extends StatelessWidget {
 }
 
 class EzDivider extends StatelessWidget {
-  /// EzConfig Provider
-  final EzCP config;
-
   /// Vertical space that should be occupied
   final double height;
 
@@ -48,8 +45,7 @@ class EzDivider extends StatelessWidget {
   final BorderRadius? radius;
 
   /// A [Divider] wrapped in a [ConstrainedBox]
-  const EzDivider(
-    this.config, {
+  const EzDivider({
     super.key,
     required this.height,
     this.width = 175.0,
@@ -60,7 +56,7 @@ class EzDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
+        constraints: BoxConstraints(maxWidth: width),
         child: Divider(
           height: height,
           thickness: thickness,

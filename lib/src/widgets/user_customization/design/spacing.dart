@@ -15,7 +15,9 @@ class EzSpacingSetting extends StatelessWidget {
   final int _decimals;
 
   /// An easy to use spacing setting
-  const EzSpacingSetting(this.config, {super.key}) : _steps = 26, _decimals = 1;
+  const EzSpacingSetting(this.config, {super.key})
+      : _steps = 26,
+        _decimals = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class EzSpacingSetting extends StatelessWidget {
                         EzElevatedButton(config, enabled: false, text: config.ezL10n.gValue),
 
                         // Divider preview
-                        EzDivider(currValue * 3),
+                        EzDivider(height: currValue * 3),
 
                         // Horizontal preview
                         EzScrollView(
