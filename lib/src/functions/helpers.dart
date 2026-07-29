@@ -187,7 +187,7 @@ Future<void> ezColorPicker(
               onColorChanged: onColorChange,
               showRecentColors: true,
               enableOpacity: true,
-              opacityThumbRadius: min(config.padding, 25.0),
+              opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
               opacityTrackHeight: min(config.padding * 2, 50.0),
               showColorCode: true,
             ),
