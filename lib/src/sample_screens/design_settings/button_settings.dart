@@ -7,6 +7,8 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
+// TODO: add icon size setting
+
 class ButtonDesign extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
