@@ -62,7 +62,7 @@ class ButtonDesign extends StatelessWidget {
           config.spacer,
 
           // Button style
-          _ButtonStyleSetting(config),
+          _ButtonStyleSetting(config, styleLabel: styleLabel),
           config.separator,
 
           // Underline links
@@ -145,8 +145,9 @@ class ButtonDesign extends StatelessWidget {
 
 class _ButtonStyleSetting extends StatelessWidget {
   final EzCP config;
+  final String? styleLabel;
 
-  const _ButtonStyleSetting(this.config);
+  const _ButtonStyleSetting(this.config, {this.styleLabel});
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
@@ -287,7 +288,7 @@ class _ButtonStyleSetting extends StatelessWidget {
             await config.rebuildUI(<EzCacheType>{EzCacheType.design});
           }
         },
-        label: config.ezL10n.dsStyle,
+        label: styleLabel ?? config.ezL10n.dsStyle,
         icon: EzIcon(config, Icons.edit),
       );
 }
