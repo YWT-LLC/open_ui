@@ -7,7 +7,7 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODDO: move icon?
+// TODO: move icon?
 
 class QuickTextSettings extends StatefulWidget {
   final EzCP config;
