@@ -215,3 +215,82 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         )
       : core();
 }
+
+class EzFlipFlop extends StatefulWidget {
+  /// EzConfig provider
+  final EzCP config;
+
+  /// Initial state
+  final bool init;
+
+  /// aka true label
+  final String onLabel;
+
+  /// aka false label
+  final String offLabel;
+
+  /// Follow up function
+  final void Function(bool choice) onChanged;
+
+  /// Defaults to [MainAxisAlignment.center]
+  final MainAxisAlignment mainAxisAlignment;
+
+  /// Defaults to [config].bodyStyle
+  final TextStyle? style;
+
+  const EzFlipFlop(
+    this.config, {
+    super.key,
+    required this.init,
+    required this.onLabel,
+    required this.offLabel,
+    required this.onChanged,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+    this.style,
+  });
+
+  @override
+  State<EzFlipFlop> createState() => _EzFlipFlopState();
+}
+
+class _EzFlipFlopState extends State<EzFlipFlop> {
+  late bool curr = widget.init;
+
+  @override
+  Widget build(BuildContext context) => EzRow(
+        widget.config,
+        mainAxisAlignment: widget.mainAxisAlignment,
+        children: <Widget>[
+          EzTextButton(
+            widget.config,
+            text: widget.offLabel,
+            inline: true,
+            textAlign: TextAlign.center,
+            textStyle: widget.style ?? widget.config.bodyStyle,
+            onPressed: () {
+              setState(() => curr = false);
+              widget.onChanged(false);
+            },
+          ),
+          Switch(
+            value: curr,
+            onChanged: widget.onChanged,
+            activeThumbColor: widget.config.colors.primary,
+            trackOutlineColor: WidgetStatePropertyAll<Color>(
+                widget.config.colors.primary.withValues(alpha: focusOpacity)),
+            padding: EdgeInsets.zero,
+          ),
+          EzTextButton(
+            widget.config,
+            text: widget.onLabel,
+            inline: true,
+            textAlign: TextAlign.center,
+            textStyle: widget.style ?? widget.config.bodyStyle,
+            onPressed: () {
+              setState(() => curr = true);
+              widget.onChanged(true);
+            },
+          ),
+        ],
+      );
+}
