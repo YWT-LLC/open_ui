@@ -29,7 +29,7 @@ class EzTextButton extends StatefulWidget {
   /// Optional [Text.semanticsLabel] passthrough
   final String? semantics;
 
-  /// Dictates the padding
+  /// Includes [EdgeInsets.zero] in either [style] or the default [TextButton.styleFrom]
   final bool inline;
 
   /// [TextButton.style] passthrough
@@ -56,22 +56,23 @@ class EzTextButton extends StatefulWidget {
 class _EzTextButtonState extends State<EzTextButton> {
   @override
   Widget build(BuildContext context) => TextButton(
-    onPressed: widget.onPressed,
-    onLongPress: widget.onLongPress,
-    style: widget.inline
-        ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
-            padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
-          )
-        : widget.style,
-    child: Text(
-      widget.text,
-      semanticsLabel: widget.semantics,
-      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-        decorationColor: widget.config.colors.primary,
-      ),
-      textAlign: widget.textAlign,
-    ),
-  );
+        onPressed: widget.onPressed,
+        onLongPress: widget.onLongPress,
+        style: widget.inline
+            ? (widget.style == null
+                ? TextButton.styleFrom(padding: EdgeInsets.zero)
+                : widget.style!
+                    .copyWith(padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero)))
+            : widget.style,
+        child: Text(
+          widget.text,
+          semanticsLabel: widget.semantics,
+          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+            decorationColor: widget.config.colors.primary,
+          ),
+          textAlign: widget.textAlign,
+        ),
+      );
 }
 
 class EzTextIconButton extends StatefulWidget {
@@ -128,22 +129,23 @@ class EzTextIconButton extends StatefulWidget {
 class _EzTextIconButtonState extends State<EzTextIconButton> {
   @override
   Widget build(BuildContext context) => TextButton.icon(
-    onPressed: widget.onPressed,
-    onLongPress: widget.onLongPress,
-    style: widget.inline
-        ? (widget.style ?? widget.config.theme.textButtonTheme.style!).copyWith(
-            padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero),
-          )
-        : widget.style,
-    icon: widget.icon,
-    iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
-    label: Text(
-      widget.label,
-      semanticsLabel: widget.semantics,
-      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-        decorationColor: widget.config.colors.primary,
-      ),
-      textAlign: widget.textAlign,
-    ),
-  );
+        onPressed: widget.onPressed,
+        onLongPress: widget.onLongPress,
+        style: widget.inline
+            ? (widget.style == null
+                ? TextButton.styleFrom(padding: EdgeInsets.zero)
+                : widget.style!
+                    .copyWith(padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero)))
+            : widget.style,
+        icon: widget.icon,
+        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+        label: Text(
+          widget.label,
+          semanticsLabel: widget.semantics,
+          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+            decorationColor: widget.config.colors.primary,
+          ),
+          textAlign: widget.textAlign,
+        ),
+      );
 }
