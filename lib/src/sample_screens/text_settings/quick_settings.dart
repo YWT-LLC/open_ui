@@ -7,8 +7,6 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODO: move icon?
-
 class QuickTextSettings extends StatefulWidget {
   final EzCP config;
 
@@ -151,6 +149,10 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         ),
         widget.config.divider,
 
+        // Icon size
+        EzIconSizeSetting(widget.config, backgroundColor: buttonBackground),
+        widget.config.spacer,
+
         // Text background opacity
         EzText(
           widget.config,
@@ -197,13 +199,9 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
             semanticFormatterCallback: (double value) => value.toStringAsFixed(2),
           ),
         ),
-        widget.config.spacer,
-
-        // Icon size
-        EzIconSizeSetting(widget.config, backgroundColor: buttonBackground),
+        widget.config.separator,
 
         // Reset all
-        widget.config.separator,
         EzResetButton(
           widget.config,
           all: false,
