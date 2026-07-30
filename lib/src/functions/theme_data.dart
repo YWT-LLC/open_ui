@@ -395,8 +395,12 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
         (Set<WidgetState> states) =>
             (states.contains(WidgetState.selected)) ? colorScheme.primary : colorScheme.outline,
       ),
-      trackColor: WidgetStateProperty.all(colorScheme.surfaceContainer),
-      trackOutlineColor: WidgetStateProperty.all(crucialButtonBackground),
+      trackColor: WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) =>
+            ((states.contains(WidgetState.selected)) ? colorScheme.primary : colorScheme.outline)
+                .withValues(alpha: focusOpacity),
+      ),
+      trackOutlineColor: WidgetStateProperty.all(colorScheme.surface),
       overlayColor: WidgetStateProperty.all(focusColor),
     ),
 
