@@ -155,11 +155,13 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         style: (widget.enabled && !widget.fauxDisabled)
             ? TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                backgroundColor: widget.config.colors.surface,
                 side: widget.config.borderSide(
                     color: widget.config.colors.primary.withValues(alpha: focusOpacity)),
               )
             : TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+                backgroundColor: widget.config.colors.surface,
                 side: widget.config.borderSide(color: widget.config.colors.outlineVariant),
                 overlayColor: widget.config.colors.outline,
                 shadowColor: Colors.transparent,
@@ -288,7 +290,8 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
               setState(() => curr = choice);
               widget.onChanged(choice);
             },
-            activeThumbColor: widget.config.colors.primary,
+            thumbColor: WidgetStatePropertyAll<Color>(widget.config.colors.primary),
+            trackColor: WidgetStatePropertyAll<Color>(widget.config.colors.surface),
             trackOutlineColor: WidgetStatePropertyAll<Color>(
                 widget.config.colors.primary.withValues(alpha: focusOpacity)),
             padding: EdgeInsets.zero,
