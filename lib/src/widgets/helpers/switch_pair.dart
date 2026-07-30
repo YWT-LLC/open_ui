@@ -216,6 +216,8 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
       : core();
 }
 
+// TODO: think and/or test through lefty && LTR
+
 class EzFlipFlop extends StatefulWidget {
   /// EzConfig provider
   final EzCP config;
@@ -261,30 +263,48 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
         widget.config,
         mainAxisAlignment: widget.mainAxisAlignment,
         children: <Widget>[
+          // Off/false
           EzTextButton(
             widget.config,
             text: widget.offLabel,
-            inline: true,
-            textAlign: TextAlign.center,
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              alignment: Alignment.centerRight,
+              backgroundColor: widget.config.colors.surfaceContainer,
+            ),
+            textAlign: TextAlign.end,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
               setState(() => curr = false);
               widget.onChanged(false);
             },
           ),
+          widget.config.rowSpacer,
+
+          // Svvitch
           Switch(
             value: curr,
-            onChanged: widget.onChanged,
+            onChanged: (bool choice) {
+              setState(() => curr = choice);
+              widget.onChanged(choice);
+            },
             activeThumbColor: widget.config.colors.primary,
             trackOutlineColor: WidgetStatePropertyAll<Color>(
                 widget.config.colors.primary.withValues(alpha: focusOpacity)),
             padding: EdgeInsets.zero,
           ),
+          widget.config.rowSpacer,
+
+          // On/true
           EzTextButton(
             widget.config,
             text: widget.onLabel,
-            inline: true,
-            textAlign: TextAlign.center,
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              alignment: Alignment.centerLeft,
+              backgroundColor: widget.config.colors.surfaceContainer,
+            ),
+            textAlign: TextAlign.start,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
               setState(() => curr = true);
