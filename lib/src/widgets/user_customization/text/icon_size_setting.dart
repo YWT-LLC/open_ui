@@ -27,82 +27,10 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
 
   @override
   Widget build(BuildContext context) => EzCol(
-    children: <Widget>[
-      Tooltip(
-        message: widget.config.ezL10n.gCenterReset,
-        child: GestureDetector(
-          onLongPress: () async {
-            if (EzCM.updateBoth || widget.config.isDark) {
-              await EzCM.remove(darkIconSizeKey);
-            }
-            if (EzCM.updateBoth || !widget.config.isDark) {
-              await EzCM.remove(lightIconSizeKey);
-            }
-
-            setState(() => iconSize = defaultIconSize);
-
-            if (widget.fullCheck && context.mounted) {
-              widget.config.pingRebuild(
-                iconSize != widget.config.iconSize ||
-                    ezTextRebuildCheck(widget.config, context: context),
-              );
-            } else {
-              widget.config.pingRebuild(iconSize != widget.config.iconSize);
-            }
-          },
-          child: EzText(
-            widget.config,
-            text: widget.config.ezL10n.tsIconSize,
-            style: widget.config.bodyStyle,
-          ),
-        ),
-      ),
-      EzTextBackground(
-        widget.config,
-        text: EzRow(
-          widget.config,
-          reverseHands: false,
-          children: <Widget>[
-            // Minus
-            (iconSize > minIconSize)
-                ? EzIconButton(
-                    widget.config,
-                    onPressed: () async {
-                      iconSize -= iconDelta;
-                      if (EzCM.updateBoth || widget.config.isDark) {
-                        await EzCM.setDouble(darkIconSizeKey, iconSize);
-                      }
-                      if (EzCM.updateBoth || !widget.config.isDark) {
-                        await EzCM.setDouble(lightIconSizeKey, iconSize);
-                      }
-
-                      setState(() {});
-
-                      if (widget.fullCheck && context.mounted) {
-                        widget.config.pingRebuild(
-                          iconSize != widget.config.iconSize ||
-                              ezTextRebuildCheck(widget.config, context: context),
-                        );
-                      } else {
-                        widget.config.pingRebuild(iconSize != widget.config.iconSize);
-                      }
-                    },
-                    tooltip:
-                        '${widget.config.ezL10n.gDecrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
-                    iconSize: iconSize,
-                    icon: const Icon(Icons.remove),
-                  )
-                : EzIconButton(
-                    widget.config,
-                    enabled: false,
-                    tooltip: widget.config.ezL10n.gMinimum,
-                    iconSize: iconSize,
-                    icon: Icon(Icons.remove, color: widget.config.colors.outline),
-                  ),
-            widget.config.rowMargin,
-
-            // Preview
-            GestureDetector(
+        children: <Widget>[
+          Tooltip(
+            message: widget.config.ezL10n.gCenterReset,
+            child: GestureDetector(
               onLongPress: () async {
                 if (EzCM.updateBoth || widget.config.isDark) {
                   await EzCM.remove(darkIconSizeKey);
@@ -122,53 +50,127 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                   widget.config.pingRebuild(iconSize != widget.config.iconSize);
                 }
               },
-              child: Icon(Icons.sync_alt, size: iconSize, color: widget.config.colors.onSurface),
+              child: EzText(
+                widget.config,
+                text: widget.config.ezL10n.tsIconSize,
+                style: widget.config.bodyStyle,
+                backgroundColor: widget.backgroundColor,
+              ),
             ),
-            widget.config.rowMargin,
+          ),
+          EzTextBackground(
+            widget.config,
+            text: EzRow(
+              widget.config,
+              reverseHands: false,
+              children: <Widget>[
+                // Minus
+                (iconSize > minIconSize)
+                    ? EzIconButton(
+                        widget.config,
+                        onPressed: () async {
+                          iconSize -= iconDelta;
+                          if (EzCM.updateBoth || widget.config.isDark) {
+                            await EzCM.setDouble(darkIconSizeKey, iconSize);
+                          }
+                          if (EzCM.updateBoth || !widget.config.isDark) {
+                            await EzCM.setDouble(lightIconSizeKey, iconSize);
+                          }
 
-            // Plus
-            (iconSize < maxIconSize)
-                ? EzIconButton(
-                    widget.config,
-                    onPressed: () async {
-                      iconSize += iconDelta;
-                      if (EzCM.updateBoth || widget.config.isDark) {
-                        await EzCM.setDouble(darkIconSizeKey, iconSize);
-                      }
-                      if (EzCM.updateBoth || !widget.config.isDark) {
-                        await EzCM.setDouble(lightIconSizeKey, iconSize);
-                      }
+                          setState(() {});
 
-                      setState(() {});
+                          if (widget.fullCheck && context.mounted) {
+                            widget.config.pingRebuild(
+                              iconSize != widget.config.iconSize ||
+                                  ezTextRebuildCheck(widget.config, context: context),
+                            );
+                          } else {
+                            widget.config.pingRebuild(iconSize != widget.config.iconSize);
+                          }
+                        },
+                        tooltip:
+                            '${widget.config.ezL10n.gDecrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
+                        iconSize: iconSize,
+                        icon: const Icon(Icons.remove),
+                      )
+                    : EzIconButton(
+                        widget.config,
+                        enabled: false,
+                        tooltip: widget.config.ezL10n.gMinimum,
+                        iconSize: iconSize,
+                        icon: Icon(Icons.remove, color: widget.config.colors.outline),
+                      ),
+                widget.config.rowMargin,
 
-                      if (widget.fullCheck && context.mounted) {
-                        widget.config.pingRebuild(
-                          iconSize != widget.config.iconSize ||
-                              ezTextRebuildCheck(widget.config, context: context),
-                        );
-                      } else {
-                        widget.config.pingRebuild(iconSize != widget.config.iconSize);
-                      }
-                    },
-                    tooltip:
-                        '${widget.config.ezL10n.gIncrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
-                    iconSize: iconSize,
-                    icon: const Icon(Icons.add),
-                  )
-                : EzIconButton(
-                    widget.config,
-                    enabled: false,
-                    tooltip: widget.config.ezL10n.gMaximum,
-                    iconSize: iconSize,
-                    icon: Icon(Icons.add, color: widget.config.colors.outline),
-                  ),
-          ],
-        ),
-        shape: widget.config.buttonShape,
-        padding: EdgeInsets.zero,
-        baseColor: widget.config.colors.surface,
-        backgroundColor: widget.backgroundColor,
-      ),
-    ],
-  );
+                // Preview
+                GestureDetector(
+                  onLongPress: () async {
+                    if (EzCM.updateBoth || widget.config.isDark) {
+                      await EzCM.remove(darkIconSizeKey);
+                    }
+                    if (EzCM.updateBoth || !widget.config.isDark) {
+                      await EzCM.remove(lightIconSizeKey);
+                    }
+
+                    setState(() => iconSize = defaultIconSize);
+
+                    if (widget.fullCheck && context.mounted) {
+                      widget.config.pingRebuild(
+                        iconSize != widget.config.iconSize ||
+                            ezTextRebuildCheck(widget.config, context: context),
+                      );
+                    } else {
+                      widget.config.pingRebuild(iconSize != widget.config.iconSize);
+                    }
+                  },
+                  child:
+                      Icon(Icons.sync_alt, size: iconSize, color: widget.config.colors.onSurface),
+                ),
+                widget.config.rowMargin,
+
+                // Plus
+                (iconSize < maxIconSize)
+                    ? EzIconButton(
+                        widget.config,
+                        onPressed: () async {
+                          iconSize += iconDelta;
+                          if (EzCM.updateBoth || widget.config.isDark) {
+                            await EzCM.setDouble(darkIconSizeKey, iconSize);
+                          }
+                          if (EzCM.updateBoth || !widget.config.isDark) {
+                            await EzCM.setDouble(lightIconSizeKey, iconSize);
+                          }
+
+                          setState(() {});
+
+                          if (widget.fullCheck && context.mounted) {
+                            widget.config.pingRebuild(
+                              iconSize != widget.config.iconSize ||
+                                  ezTextRebuildCheck(widget.config, context: context),
+                            );
+                          } else {
+                            widget.config.pingRebuild(iconSize != widget.config.iconSize);
+                          }
+                        },
+                        tooltip:
+                            '${widget.config.ezL10n.gIncrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
+                        iconSize: iconSize,
+                        icon: const Icon(Icons.add),
+                      )
+                    : EzIconButton(
+                        widget.config,
+                        enabled: false,
+                        tooltip: widget.config.ezL10n.gMaximum,
+                        iconSize: iconSize,
+                        icon: Icon(Icons.add, color: widget.config.colors.outline),
+                      ),
+              ],
+            ),
+            shape: widget.config.buttonShape,
+            padding: EdgeInsets.zero,
+            baseColor: widget.config.colors.surface,
+            backgroundColor: widget.backgroundColor,
+          ),
+        ],
+      );
 }
