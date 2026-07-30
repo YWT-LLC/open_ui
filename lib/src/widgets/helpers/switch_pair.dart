@@ -167,13 +167,16 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
                 shadowColor: Colors.transparent,
               ),
         onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
-        label: Text(
-          widget.text,
-          textAlign: widget.textAlign,
-          semanticsLabel: widget.textFix,
-          style: widget.config.bodyStyle?.copyWith(
-            decorationColor: widget.config.colors.primary,
-            decoration: widget.config.lineLinks ? TextDecoration.underline : null,
+        label: Padding(
+          padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
+          child: Text(
+            widget.text,
+            textAlign: widget.textAlign,
+            semanticsLabel: widget.textFix,
+            style: widget.config.bodyStyle?.copyWith(
+              decorationColor: widget.config.colors.primary,
+              decoration: widget.config.lineLinks ? TextDecoration.underline : null,
+            ),
           ),
         ),
         icon: Transform.scale(
