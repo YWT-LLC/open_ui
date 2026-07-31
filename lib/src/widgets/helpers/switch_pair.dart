@@ -266,6 +266,7 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
   @override
   Widget build(BuildContext context) => EzRow(
         widget.config,
+        reverseHands: false,
         mainAxisAlignment: widget.mainAxisAlignment,
         children: <Widget>[
           // Off/false
