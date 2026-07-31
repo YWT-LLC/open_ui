@@ -38,6 +38,9 @@ class EzResetButton extends StatelessWidget {
   /// DO NOT include a [Navigator.pop], it is included automatically
   final void Function()? onDeny;
 
+  /// Optional [Icon.size] overwrite
+  final double? iconSize;
+
   /// [EzElevatedIconButton] for clearing user settings
   const EzResetButton(
     this.config, {
@@ -49,6 +52,7 @@ class EzResetButton extends StatelessWidget {
     this.resetSkip,
     this.onConfirm,
     this.onDeny,
+    this.iconSize,
   });
 
   @override
@@ -119,7 +123,10 @@ class EzResetButton extends StatelessWidget {
             );
           },
         ),
-        icon: EzIcon(config, Icons.refresh),
+        icon: Icon(
+          Icons.refresh,
+          size: iconSize ?? config.iconSize,
+        ),
         label: all ? config.ezL10n.gResetAll : config.ezL10n.gReset,
       );
 }
