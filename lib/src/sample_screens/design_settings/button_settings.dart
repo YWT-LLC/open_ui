@@ -7,9 +7,7 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// TODO: add icon size setting
-
-class ButtonDesign extends StatelessWidget {
+class ButtonDesign extends StatefulWidget {
   /// EzConfig Provider
   final EzCP config;
 
@@ -50,94 +48,117 @@ class ButtonDesign extends StatelessWidget {
     required this.saveSkip,
   });
 
+  @override
+  State<StatefulWidget> createState() => _ButtonDesignState();
+}
+
+class _ButtonDesignState extends State<ButtonDesign> {
+  late double iconSize = widget.config.iconSize;
+
   // Return the build //
   @override
   Widget build(BuildContext context) => EzCol(
         children: <Widget>[
           // Optional 'before' settings
-          if (prepend != null) ...prepend!,
+          if (widget.prepend != null) ...widget.prepend!,
+
+          // Icon size
+          EzIconSizeSetting(
+            key: UniqueKey(),
+            widget.config,
+            onChanged: (double size) => setState(() => iconSize = size),
+          ),
+          widget.config.spacer,
 
           // Padding
-          EzPaddingSetting(config),
-          config.spacer,
+          EzPaddingSetting(widget.config, iconSize: iconSize),
+          widget.config.spacer,
 
           // Button style
-          _ButtonStyleSetting(config, styleLabel: styleLabel),
-          config.separator,
+          _ButtonStyleSetting(
+            widget.config,
+            styleLabel: widget.styleLabel,
+            iconSize: iconSize,
+          ),
+          widget.config.separator,
 
           // Underline links
           EzSwitchPair(
-            config,
-            key: ValueKey<bool>(config.lineLinks),
-            text: config.ezL10n.dsAlwaysUnderline,
-            valueKey: config.isDark ? darkLineLinksKey : lightLineLinksKey,
+            widget.config,
+            key: ValueKey<bool>(widget.config.lineLinks),
+            text: widget.config.ezL10n.dsAlwaysUnderline,
+            valueKey: widget.config.isDark ? darkLineLinksKey : lightLineLinksKey,
             afterChanged: (bool? value) async {
               if (value == null) return;
               if (EzCM.updateBoth) {
-                await EzCM.setBool(config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
+                await EzCM.setBool(
+                    widget.config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
               }
 
-              await config.rebuildUI(<EzCacheType>{EzCacheType.design, EzCacheType.text});
+              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.design, EzCacheType.text});
             },
           ),
-          config.spacer,
+          widget.config.spacer,
 
           // Show back FAB
           EzSwitchPair(
-            config,
-            text: config.ezL10n.dsShowBack,
-            valueKey: config.isDark ? darkShowBackFABKey : lightShowBackFABKey,
+            widget.config,
+            text: widget.config.ezL10n.dsShowBack,
+            valueKey: widget.config.isDark ? darkShowBackFABKey : lightShowBackFABKey,
             afterChanged: (bool? value) async {
               if (value == null) return;
               if (EzCM.updateBoth) {
-                await EzCM.setBool(config.isDark ? lightShowBackFABKey : darkShowBackFABKey, value);
+                await EzCM.setBool(
+                    widget.config.isDark ? lightShowBackFABKey : darkShowBackFABKey, value);
               }
 
-              await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.design});
             },
           ),
-          config.spacer,
+          widget.config.spacer,
 
           // Show scroll
           EzSwitchPair(
-            config,
-            text: config.ezL10n.dsShowScroll,
-            valueKey: config.isDark ? darkShowScrollKey : lightShowScrollKey,
+            widget.config,
+            text: widget.config.ezL10n.dsShowScroll,
+            valueKey: widget.config.isDark ? darkShowScrollKey : lightShowScrollKey,
             afterChanged: (bool? value) async {
               if (value == null) return;
               if (EzCM.updateBoth) {
-                await EzCM.setBool(config.isDark ? lightShowScrollKey : darkShowScrollKey, value);
+                await EzCM.setBool(
+                    widget.config.isDark ? lightShowScrollKey : darkShowScrollKey, value);
               }
 
-              await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.design});
             },
           ),
 
-          if (append != null) ...append!,
+          if (widget.append != null) ...widget.append!,
 
           // Local reset all
-          resetSpacer ?? config.separator,
+          widget.resetSpacer ?? widget.config.separator,
           EzResetButton(
-            config,
+            widget.config,
             all: false,
-            dynamicTitle: () => config.ezL10n.dsResetButton(ezThemeString(config, bothable: true)),
+            dynamicTitle: () =>
+                widget.config.ezL10n.dsResetButton(ezThemeString(widget.config, bothable: true)),
             onConfirm: () async {
-              if (EzCM.updateBoth || config.isDark) {
+              if (EzCM.updateBoth || widget.config.isDark) {
                 await EzCM.removeKeys(darkButtonDesignKeys.keys.toSet());
-                if (resetExtraDark != null) {
-                  await EzCM.removeKeys(resetExtraDark!);
+                if (widget.resetExtraDark != null) {
+                  await EzCM.removeKeys(widget.resetExtraDark!);
                 }
               }
 
-              if (EzCM.updateBoth || !config.isDark) {
+              if (EzCM.updateBoth || !widget.config.isDark) {
                 await EzCM.removeKeys(lightButtonDesignKeys.keys.toSet());
-                if (resetExtraLight != null) {
-                  await EzCM.removeKeys(resetExtraLight!);
+                if (widget.resetExtraLight != null) {
+                  await EzCM.removeKeys(widget.resetExtraLight!);
                 }
               }
             },
-            resetSkip: resetSkip,
-            saveSkip: saveSkip,
+            resetSkip: widget.resetSkip,
+            saveSkip: widget.saveSkip,
           ),
         ],
       );
@@ -146,8 +167,9 @@ class ButtonDesign extends StatelessWidget {
 class _ButtonStyleSetting extends StatelessWidget {
   final EzCP config;
   final String? styleLabel;
+  final double iconSize;
 
-  const _ButtonStyleSetting(this.config, {this.styleLabel});
+  const _ButtonStyleSetting(this.config, {this.styleLabel, required this.iconSize});
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
@@ -289,6 +311,6 @@ class _ButtonStyleSetting extends StatelessWidget {
           }
         },
         label: styleLabel ?? config.ezL10n.dsStyle,
-        icon: EzIcon(config, Icons.edit),
+        icon: Icon(Icons.edit, size: iconSize),
       );
 }
