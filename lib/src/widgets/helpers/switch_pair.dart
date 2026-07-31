@@ -221,8 +221,6 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
       : core();
 }
 
-// TODO: think and/or test through lefty && LTR
-
 class EzFlipFlop extends StatefulWidget {
   /// EzConfig provider
   final EzCP config;
@@ -275,10 +273,10 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
             text: widget.offLabel,
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
-              alignment: Alignment.centerRight,
+              alignment: widget.config.isLTR ? Alignment.centerRight : Alignment.centerLeft,
               backgroundColor: widget.config.colors.surfaceContainer,
             ),
-            textAlign: TextAlign.end,
+            textAlign: widget.config.isLTR ? TextAlign.end : TextAlign.start,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
               setState(() => curr = false);
@@ -308,10 +306,10 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
             text: widget.onLabel,
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
-              alignment: Alignment.centerLeft,
+              alignment: widget.config.isLTR ? Alignment.centerLeft : Alignment.centerRight,
               backgroundColor: widget.config.colors.surfaceContainer,
             ),
-            textAlign: TextAlign.start,
+            textAlign: widget.config.isLTR ? TextAlign.start : TextAlign.end,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
               setState(() => curr = true);
