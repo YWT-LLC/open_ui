@@ -12,7 +12,7 @@ import 'package:flutter/foundation.dart';
 
 //* Consts *//
 
-const String openUIProdPage = 'https://www.ywt.llc/#/products/open-ui';
+const String openUIProdPage = 'https://ywt.llc/#/products/open-ui';
 
 // Defaults taken from...
 // https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization#configuring-the-l10n-yaml-file
@@ -127,7 +127,7 @@ to generate the new aliases.
 
 $appName began with [Open UI]($openUIProdPage)'s app generation service.
 
-It is free and open source, maintained by [YWT](https://www.ywt.llc/).
+It is free and open source, maintained by [YWT](https://ywt.llc/).
 
 <br>**P.S.** `Getting Started` and `Maintaining Momentum` are for ${config.publisherName}, we recommend (re)moving them if this project is going to be made public.
 ''');
@@ -538,7 +538,7 @@ class OUICredits extends StatelessWidget {
   /// [EzMenuButton] for opening Open UI's product page
   /// Honor system: keep a version of this in your app
   /// Remove iff appropriate contributions have been made to YWT
-  /// https://www.ywt.llc/#/contribute
+  /// https://ywt.llc/#/contribute
   OUICredits(this.config, {super.key}) : _label = config.isLefty ? config.ezL10n.gMadeBy : config.ezL10n.gCreator;
 
   @override
@@ -546,7 +546,7 @@ class OUICredits extends StatelessWidget {
       message: config.ezL10n.gOpenYWT,
       excludeFromSemantics: true,
       child: EzMenuLink(config,
-        uri: Uri.parse('https://www.ywt.llc/#/products/open-ui'),
+        uri: Uri.parse('https://ywt.llc/#/products/open-ui'),
         icon: EzIcon(config, Icons.settings),
         label: _label,
         semanticsLabel:
