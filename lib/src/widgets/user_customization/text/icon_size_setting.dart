@@ -10,21 +10,21 @@ class EzIconSizeSetting extends StatefulWidget {
   /// EzConfig Provider
   final EzCP config;
 
+  /// If you want to track the iconSize changes externally
+  final void Function(double iconSize)? onChanged;
+
   /// Set to false when using this outside of [EzTextSettings]
   final bool fullCheck;
 
   /// [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
 
-  /// If you want to track the iconSize changes externally
-  final void Function(double iconSize)? onChanged;
-
   const EzIconSizeSetting(
     this.config, {
-    super.key,
+    required super.key,
+    required this.onChanged,
     this.fullCheck = true,
     this.backgroundColor,
-    this.onChanged,
   });
 
   @override
