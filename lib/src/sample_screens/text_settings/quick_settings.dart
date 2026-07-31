@@ -155,7 +155,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           key: UniqueKey(),
           widget.config,
           backgroundColor: buttonBackground,
-          onChanged: (double iconSize) => setState(() => iconSize = iconSize),
+          onChanged: (double size) => setState(() => iconSize = size),
         ),
         widget.config.spacer,
 
