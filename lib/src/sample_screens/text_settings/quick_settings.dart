@@ -5,6 +5,7 @@
 
 import '../../../open_ui.dart';
 
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class QuickTextSettings extends StatefulWidget {
@@ -33,6 +34,9 @@ class QuickTextSettings extends StatefulWidget {
 
 class _QuickTextSettingsState extends State<QuickTextSettings> {
   // Gather the build data //
+
+  final Random random = Random();
+  late int resetKey = random.nextInt(rMax);
 
   late double iconSize = widget.config.iconSize;
 
@@ -153,6 +157,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         // Icon size
         EzIconSizeSetting(
           widget.config,
+          key: ValueKey<String>('icon-size-$resetKey'),
           backgroundColor: buttonBackground,
           onChanged: (double size) => setState(() => iconSize = size),
         ),
@@ -209,6 +214,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         // Reset all
         EzResetButton(
           widget.config,
+          key: ValueKey<String>('reset-$resetKey'),
           all: false,
           iconSize: iconSize,
           dynamicTitle: () =>
@@ -224,6 +230,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
               await EzCM.remove(lightOnSurfaceKey);
             }
 
+            resetKey = random.nextInt(rMax);
             setState(() => iconSize =
                 EzCM.getDefault(widget.config.isDark ? darkIconSizeKey : lightIconSizeKey));
           },

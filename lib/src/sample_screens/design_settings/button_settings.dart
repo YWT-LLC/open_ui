@@ -5,6 +5,7 @@
 
 import '../../../open_ui.dart';
 
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ButtonDesign extends StatefulWidget {
@@ -53,6 +54,9 @@ class ButtonDesign extends StatefulWidget {
 }
 
 class _ButtonDesignState extends State<ButtonDesign> {
+  final Random random = Random();
+  late int resetKey = random.nextInt(rMax);
+
   late double iconSize = widget.config.iconSize;
 
   @override
@@ -64,6 +68,8 @@ class _ButtonDesignState extends State<ButtonDesign> {
           // Icon size
           EzIconSizeSetting(
             widget.config,
+            key: ValueKey<String>('icon-size-$resetKey'),
+            fullCheck: false,
             onChanged: (double size) => setState(() => iconSize = size),
           ),
           widget.config.spacer,
@@ -137,6 +143,7 @@ class _ButtonDesignState extends State<ButtonDesign> {
           widget.resetSpacer ?? widget.config.separator,
           EzResetButton(
             widget.config,
+            key: ValueKey<String>('reset-$resetKey'),
             all: false,
             dynamicTitle: () =>
                 widget.config.ezL10n.dsResetButton(ezThemeString(widget.config, bothable: true)),
@@ -159,6 +166,7 @@ class _ButtonDesignState extends State<ButtonDesign> {
                 }
               }
 
+              resetKey = random.nextInt(rMax);
               setState(() => iconSize =
                   EzCM.getDefault(widget.config.isDark ? darkIconSizeKey : lightIconSizeKey));
             },
