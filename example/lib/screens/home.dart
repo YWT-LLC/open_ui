@@ -296,15 +296,16 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     mod: 0.5,
                     forceType: EzTransitionType.zoom,
                     forceFade: false,
-                    child: ConstrainedBox(
+                    child: Container(
                       constraints: ezTextFieldConstraints(context),
+                      padding: EdgeInsets.only(top: config.marginVal),
+                      alignment: (exampleDomain || config.isLefty)
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
                       child: EzSwitchPair(
                         config,
                         key: ValueKey<String>('eds-$exampleDomain'),
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: (exampleDomain || config.isLefty)
-                            ? MainAxisAlignment.start
-                            : MainAxisAlignment.end,
                         text: config.ezL10n.gNA,
                         textFix: config.ezL10n.gNAHint,
                         textAlign: TextAlign.start,
