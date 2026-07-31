@@ -152,7 +152,6 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
 
         // Icon size
         EzIconSizeSetting(
-          key: UniqueKey(),
           widget.config,
           backgroundColor: buttonBackground,
           onChanged: (double size) => setState(() => iconSize = size),
@@ -224,6 +223,9 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
               await EzCM.removeKeys(lightTextKeys.keys.toSet());
               await EzCM.remove(lightOnSurfaceKey);
             }
+
+            setState(() => iconSize =
+                EzCM.getDefault(widget.config.isDark ? darkIconSizeKey : lightIconSizeKey));
           },
         ),
       ],

@@ -55,7 +55,6 @@ class ButtonDesign extends StatefulWidget {
 class _ButtonDesignState extends State<ButtonDesign> {
   late double iconSize = widget.config.iconSize;
 
-  // Return the build //
   @override
   Widget build(BuildContext context) => EzCol(
         children: <Widget>[
@@ -64,7 +63,6 @@ class _ButtonDesignState extends State<ButtonDesign> {
 
           // Icon size
           EzIconSizeSetting(
-            key: UniqueKey(),
             widget.config,
             onChanged: (double size) => setState(() => iconSize = size),
           ),
@@ -156,6 +154,9 @@ class _ButtonDesignState extends State<ButtonDesign> {
                   await EzCM.removeKeys(widget.resetExtraLight!);
                 }
               }
+
+              setState(() => iconSize =
+                  EzCM.getDefault(widget.config.isDark ? darkIconSizeKey : lightIconSizeKey));
             },
             resetSkip: widget.resetSkip,
             saveSkip: widget.saveSkip,
