@@ -42,40 +42,41 @@ class _FontSettingState extends State<EzFontSetting> {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: widget.config.ezL10n.tsFontFamily,
-    child: EzDropdownMenu<String>(
-      widget.config,
-      widthEntry: fingerPaint,
-      textStyle: fuseWithGFont(
-        starter: widget.baseStyle,
-        gFont: currFont ?? EzCM.get(widget.type.fontKey(widget.config.isDark)),
-      ),
-      dropdownMenuEntries: googleStyles.entries
-          .map(
-            (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
-              value: entry.key,
-              label: ezCamelToTitle(entry.key),
-              style: TextButton.styleFrom(textStyle: entry.value),
-            ),
-          )
-          .toList(),
-      enableSearch: false,
-      initialSelection: currFont,
-      onSelected: (String? font) async {
-        if (font == null) return;
-        currFont = font;
+        message: widget.config.ezL10n.tsFontFamily,
+        child: EzDropdownMenu<String>(
+          widget.config,
+          label: null,
+          widthEntry: fingerPaint,
+          menuStyle: fuseWithGFont(
+            starter: widget.baseStyle,
+            gFont: currFont ?? EzCM.get(widget.type.fontKey(widget.config.isDark)),
+          ),
+          dropdownMenuEntries: googleStyles.entries
+              .map(
+                (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
+                  value: entry.key,
+                  label: ezCamelToTitle(entry.key),
+                  style: TextButton.styleFrom(textStyle: entry.value),
+                ),
+              )
+              .toList(),
+          enableSearch: false,
+          initialSelection: currFont,
+          onSelected: (String? font) async {
+            if (font == null) return;
+            currFont = font;
 
-        await EzCM.setString(widget.type.fontKey(widget.config.isDark), font);
-        if (EzCM.updateBoth) {
-          await EzCM.setString(widget.type.fontMirror(widget.config.isDark), font);
-        }
-        widget.notifierCallback(font);
+            await EzCM.setString(widget.type.fontKey(widget.config.isDark), font);
+            if (EzCM.updateBoth) {
+              await EzCM.setString(widget.type.fontMirror(widget.config.isDark), font);
+            }
+            widget.notifierCallback(font);
 
-        if (context.mounted) {
-          widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-        }
-        setState(() {});
-      },
-    ),
-  );
+            if (context.mounted) {
+              widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+            }
+            setState(() {});
+          },
+        ),
+      );
 }

@@ -102,48 +102,49 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: widget.config.ezL10n.tsFontFamily,
-    child: EzDropdownMenu<String>(
-      widget.config,
-      widthEntry: fingerPaint,
-      textStyle: widget.bodyProvider.value,
-      dropdownMenuEntries: googleStyles.entries
-          .map(
-            (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
-              value: entry.key,
-              label: ezCamelToTitle(entry.key),
-              style: TextButton.styleFrom(textStyle: entry.value),
-            ),
-          )
-          .toList(),
-      enableSearch: false,
-      initialSelection: currFont,
-      onSelected: (String? fontFamily) async {
-        if (fontFamily == null) return;
+        message: widget.config.ezL10n.tsFontFamily,
+        child: EzDropdownMenu<String>(
+          widget.config,
+          label: null,
+          widthEntry: fingerPaint,
+          menuStyle: widget.bodyProvider.value,
+          dropdownMenuEntries: googleStyles.entries
+              .map(
+                (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
+                  value: entry.key,
+                  label: ezCamelToTitle(entry.key),
+                  style: TextButton.styleFrom(textStyle: entry.value),
+                ),
+              )
+              .toList(),
+          enableSearch: false,
+          initialSelection: currFont,
+          onSelected: (String? fontFamily) async {
+            if (fontFamily == null) return;
 
-        if (!isUniform) {
-          isUniform = true;
-        }
-        currFont = fontFamily;
+            if (!isUniform) {
+              isUniform = true;
+            }
+            currFont = fontFamily;
 
-        final Map<String, String?> currFonts = EzCM.updateBoth
-            ? <String, String?>{...darkFonts, ...lightFonts}
-            : (widget.config.isDark ? darkFonts : lightFonts);
+            final Map<String, String?> currFonts = EzCM.updateBoth
+                ? <String, String?>{...darkFonts, ...lightFonts}
+                : (widget.config.isDark ? darkFonts : lightFonts);
 
-        for (final String key in currFonts.keys) {
-          await EzCM.setString(key, fontFamily);
-        }
-        widget.displayProvider.fuse(fontFamily);
-        widget.headlineProvider.fuse(fontFamily);
-        widget.titleProvider.fuse(fontFamily);
-        widget.bodyProvider.fuse(fontFamily);
-        widget.labelProvider.fuse(fontFamily);
+            for (final String key in currFonts.keys) {
+              await EzCM.setString(key, fontFamily);
+            }
+            widget.displayProvider.fuse(fontFamily);
+            widget.headlineProvider.fuse(fontFamily);
+            widget.titleProvider.fuse(fontFamily);
+            widget.bodyProvider.fuse(fontFamily);
+            widget.labelProvider.fuse(fontFamily);
 
-        if (context.mounted) {
-          widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-        }
-        setState(() {});
-      },
-    ),
-  );
+            if (context.mounted) {
+              widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+            }
+            setState(() {});
+          },
+        ),
+      );
 }

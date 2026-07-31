@@ -190,40 +190,32 @@ class _AnimDurSetting extends StatelessWidget {
                   ),
                   config.spacer,
 
-                  // TODO: make a string + background? + ezdropdown class && use it EVERYWHERE
-                  // notably: a scroll, rowMargin, and now flexible!
-                  EzRow(
+                  EzDropdownMenu<EzAnimationCurve>(
                     config,
-                    children: <Widget>[
-                      Flexible(child: Text(config.ezL10n.dsCurve, style: config.bodyStyle)),
-                      config.margin,
-                      EzDropdownMenu<EzAnimationCurve>(
-                        config,
-                        widthEntry: EzAnimationCurve.elastic.name(config.ezL10n),
-                        dropdownMenuEntries: EzAnimationCurve.values
-                            .map(
-                              (EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
-                                value: type,
-                                label: type.name(config.ezL10n),
-                              ),
-                            )
-                            .toList(),
-                        enableSearch: false,
-                        initialSelection: curve,
-                        onSelected: (EzAnimationCurve? value) async {
-                          if (value == null) return;
+                    label: config.ezL10n.dsCurve,
+                    widthEntry: EzAnimationCurve.elastic.name(config.ezL10n),
+                    dropdownMenuEntries: EzAnimationCurve.values
+                        .map(
+                          (EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
+                            value: type,
+                            label: type.name(config.ezL10n),
+                          ),
+                        )
+                        .toList(),
+                    enableSearch: false,
+                    initialSelection: curve,
+                    onSelected: (EzAnimationCurve? value) async {
+                      if (value == null) return;
 
-                          if (EzCM.updateBoth || config.isDark) {
-                            await EzCM.setString(darkAnimationCurveKey, value.value);
-                          }
-                          if (EzCM.updateBoth || !config.isDark) {
-                            await EzCM.setString(lightAnimationCurveKey, value.value);
-                          }
+                      if (EzCM.updateBoth || config.isDark) {
+                        await EzCM.setString(darkAnimationCurveKey, value.value);
+                      }
+                      if (EzCM.updateBoth || !config.isDark) {
+                        await EzCM.setString(lightAnimationCurveKey, value.value);
+                      }
 
-                          setModal(() => curve = value);
-                        },
-                      ),
-                    ],
+                      setModal(() => curve = value);
+                    },
                   ),
                   config.separator,
 

@@ -15,18 +15,9 @@ class EzThemeModeSwitch extends StatelessWidget {
   const EzThemeModeSwitch(this.config, {super.key});
 
   @override
-  Widget build(BuildContext context) => EzScrollView(
-    config,
-    scrollDirection: Axis.horizontal,
-    reverseHands: true,
-    children: <Widget>[
-      // Label
-      EzText(config, text: config.ezL10n.ssThemeMode, textAlign: TextAlign.center),
-      config.margin,
-
-      // Button
-      EzDropdownMenu<ThemeMode>(
+  Widget build(BuildContext context) => EzDropdownMenu<ThemeMode>(
         config,
+        label: config.ezL10n.ssThemeMode,
         widthEntry: config.ezL10n.gSystem,
         dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
           DropdownMenuEntry<ThemeMode>(value: ThemeMode.system, label: config.ezL10n.gSystem),
@@ -51,7 +42,5 @@ class EzThemeModeSwitch extends StatelessWidget {
           }
           await config.rebuildThemeMode();
         },
-      ),
-    ],
-  );
+      );
 }
