@@ -150,7 +150,6 @@ class EzTextBackground extends StatelessWidget {
       );
 }
 
-// TODO: make less ugly (more pretty?)
 class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
   final Iterable<String>? autofillHints;
@@ -208,9 +207,6 @@ class EzTextField extends StatefulWidget {
   final TextAlign textAlign;
 
   /// [TextFormField] passthrough
-  final TextAlignVertical textAlignVertical;
-
-  /// [TextFormField] passthrough
   final TextInputAction? textInputAction;
 
   /// [TextFormField] passthrough
@@ -238,7 +234,6 @@ class EzTextField extends StatefulWidget {
     this.readOnly = false,
     this.style,
     this.textAlign = TextAlign.center,
-    this.textAlignVertical = TextAlignVertical.center,
     this.textInputAction,
     required this.validator,
   });
@@ -270,7 +265,6 @@ class _EzTextFieldState extends State<EzTextField> {
           readOnly: widget.readOnly,
           style: widget.style,
           textAlign: widget.textAlign,
-          textAlignVertical: widget.textAlignVertical,
           textInputAction: widget.textInputAction,
           validator: widget.validator,
         ),
