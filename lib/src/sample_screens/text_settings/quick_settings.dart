@@ -34,8 +34,9 @@ class QuickTextSettings extends StatefulWidget {
 class _QuickTextSettingsState extends State<QuickTextSettings> {
   // Gather the build data //
 
-  late double backOpacity = widget.config.textBackgroundOpacity;
+  late double iconSize = widget.config.iconSize;
 
+  late double backOpacity = widget.config.textBackgroundOpacity;
   late Color buttonBackground = widget.config.colors.surface.withValues(alpha: backOpacity);
   late Color textBackground = widget.config.colors.surfaceContainer.withValues(alpha: backOpacity);
 
@@ -150,7 +151,12 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         widget.config.divider,
 
         // Icon size
-        EzIconSizeSetting(widget.config, backgroundColor: buttonBackground),
+        EzIconSizeSetting(
+          key: UniqueKey(),
+          widget.config,
+          backgroundColor: buttonBackground,
+          onChanged: (double iconSize) => setState(() => iconSize = iconSize),
+        ),
         widget.config.spacer,
 
         // Text background opacity
@@ -205,6 +211,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
         EzResetButton(
           widget.config,
           all: false,
+          iconSize: iconSize,
           dynamicTitle: () =>
               widget.config.ezL10n.tsReset(ezThemeString(widget.config, bothable: true)),
           onConfirm: () async {
