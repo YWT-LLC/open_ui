@@ -16,7 +16,16 @@ class EzIconSizeSetting extends StatefulWidget {
   /// [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
 
-  const EzIconSizeSetting(this.config, {super.key, this.fullCheck = true, this.backgroundColor});
+  /// If you want to track the iconSize changes externally
+  final void Function(double iconSize)? onChanged;
+
+  const EzIconSizeSetting(
+    this.config, {
+    super.key,
+    this.fullCheck = true,
+    this.backgroundColor,
+    this.onChanged,
+  });
 
   @override
   State<EzIconSizeSetting> createState() => _EzIconSizeSettingState();
@@ -40,6 +49,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                 }
 
                 setState(() => iconSize = defaultIconSize);
+                widget.onChanged?.call(defaultIconSize);
 
                 if (widget.fullCheck && context.mounted) {
                   widget.config.pingRebuild(
@@ -78,6 +88,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                           }
 
                           setState(() {});
+                          widget.onChanged?.call(iconSize);
 
                           if (widget.fullCheck && context.mounted) {
                             widget.config.pingRebuild(
@@ -113,6 +124,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                     }
 
                     setState(() => iconSize = defaultIconSize);
+                    widget.onChanged?.call(defaultIconSize);
 
                     if (widget.fullCheck && context.mounted) {
                       widget.config.pingRebuild(
@@ -142,6 +154,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                           }
 
                           setState(() {});
+                          widget.onChanged?.call(iconSize);
 
                           if (widget.fullCheck && context.mounted) {
                             widget.config.pingRebuild(
