@@ -260,7 +260,7 @@ class _AnimDurSetting extends StatelessWidget {
           );
 
           if (animDuration != config.animDur.toDouble() || curve.curve != config.animCurve) {
-            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+            await config.rebuildUI();
           }
         },
         label: config.ezL10n.dsAnimStyle,
@@ -471,7 +471,7 @@ class _PageTransitionSetting extends StatelessWidget {
           );
 
           if (currType != config.transitionType || currFade != config.fadedTransition) {
-            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+            await config.rebuildUI();
           }
         },
         icon: EzIcon(config, Icons.slideshow),

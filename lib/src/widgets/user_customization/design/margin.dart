@@ -15,7 +15,9 @@ class EzMarginSetting extends StatelessWidget {
   final int _decimals;
 
   /// An ez to use margin setting
-  const EzMarginSetting(this.config, {super.key}) : _steps = 20, _decimals = 1;
+  const EzMarginSetting(this.config, {super.key})
+      : _steps = 20,
+        _decimals = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +136,7 @@ class EzMarginSetting extends StatelessWidget {
           ),
         );
 
-        if (currValue != backup) await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+        if (currValue != backup) await config.rebuildUI();
       },
       icon: EzIcon(config, Icons.margin),
       label: config.ezL10n.dsMargin,

@@ -88,12 +88,12 @@ class _ButtonDesignState extends State<ButtonDesign> {
             valueKey: widget.config.isDark ? darkLineLinksKey : lightLineLinksKey,
             afterChanged: (bool? value) async {
               if (value == null) return;
+
               if (EzCM.updateBoth) {
                 await EzCM.setBool(
                     widget.config.isDark ? lightLineLinksKey : darkLineLinksKey, value);
               }
-
-              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.design, EzCacheType.text});
+              await widget.config.rebuildUI();
             },
           ),
           widget.config.spacer,
@@ -105,12 +105,12 @@ class _ButtonDesignState extends State<ButtonDesign> {
             valueKey: widget.config.isDark ? darkShowBackFABKey : lightShowBackFABKey,
             afterChanged: (bool? value) async {
               if (value == null) return;
+
               if (EzCM.updateBoth) {
                 await EzCM.setBool(
                     widget.config.isDark ? lightShowBackFABKey : darkShowBackFABKey, value);
               }
-
-              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.design});
+              await widget.config.rebuildUI();
             },
           ),
           widget.config.spacer,
@@ -122,12 +122,12 @@ class _ButtonDesignState extends State<ButtonDesign> {
             valueKey: widget.config.isDark ? darkShowScrollKey : lightShowScrollKey,
             afterChanged: (bool? value) async {
               if (value == null) return;
+
               if (EzCM.updateBoth) {
                 await EzCM.setBool(
                     widget.config.isDark ? lightShowScrollKey : darkShowScrollKey, value);
               }
-
-              await widget.config.rebuildUI(<EzCacheType>{EzCacheType.design});
+              await widget.config.rebuildUI();
             },
           ),
 
@@ -143,6 +143,8 @@ class _ButtonDesignState extends State<ButtonDesign> {
             onConfirm: () async {
               if (EzCM.updateBoth || widget.config.isDark) {
                 await EzCM.removeKeys(darkButtonDesignKeys.keys.toSet());
+                await EzCM.remove(darkIconSizeKey);
+
                 if (widget.resetExtraDark != null) {
                   await EzCM.removeKeys(widget.resetExtraDark!);
                 }
@@ -150,6 +152,8 @@ class _ButtonDesignState extends State<ButtonDesign> {
 
               if (EzCM.updateBoth || !widget.config.isDark) {
                 await EzCM.removeKeys(lightButtonDesignKeys.keys.toSet());
+                await EzCM.remove(lightIconSizeKey);
+
                 if (widget.resetExtraLight != null) {
                   await EzCM.removeKeys(widget.resetExtraLight!);
                 }
@@ -308,7 +312,7 @@ class _ButtonStyleSetting extends StatelessWidget {
           );
 
           if (currShape != config.buttonShape || currWidth != config.borderWidth) {
-            await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+            await config.rebuildUI();
           }
         },
         label: styleLabel ?? config.ezL10n.dsStyle,

@@ -28,40 +28,37 @@ class EzHighContrastColorsSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
-    config,
-    style: config.isDark
-        ? ElevatedButton.styleFrom(
-            backgroundColor: darkSurfaceDim,
-            foregroundColor: Colors.white,
-            iconColor: hceGreen,
-            shadowColor: Colors.transparent,
-            overlayColor: hceGreen,
-            side: config.borderSide(color: halfWhite),
-            textStyle: config.bodyStyle?.copyWith(color: Colors.white),
-          )
-        : ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            iconColor: hcePurple,
-            shadowColor: Colors.transparent,
-            overlayColor: hcePurple,
-            side: config.borderSide(color: halfBlack),
-            textStyle: config.bodyStyle?.copyWith(color: Colors.black),
-          ),
-    onPressed: () => config.rebuildUI(
-      allECT,
-      changes: () async {
-        if (EzCM.updateBoth || config.isDark) {
-          await loadColorScheme(dark, Brightness.dark);
-        }
-        if (EzCM.updateBoth || !config.isDark) {
-          await loadColorScheme(light, Brightness.light);
-        }
-      },
-    ),
-    icon: EzIcon(config, Icons.contrast),
-    label: config.ezL10n.csHighContrast,
-  );
+        config,
+        style: config.isDark
+            ? ElevatedButton.styleFrom(
+                backgroundColor: darkSurfaceDim,
+                foregroundColor: Colors.white,
+                iconColor: hceGreen,
+                shadowColor: Colors.transparent,
+                overlayColor: hceGreen,
+                side: config.borderSide(color: halfWhite),
+                textStyle: config.bodyStyle?.copyWith(color: Colors.white),
+              )
+            : ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                iconColor: hcePurple,
+                shadowColor: Colors.transparent,
+                overlayColor: hcePurple,
+                side: config.borderSide(color: halfBlack),
+                textStyle: config.bodyStyle?.copyWith(color: Colors.black),
+              ),
+        onPressed: () => config.rebuildUI(changes: () async {
+          if (EzCM.updateBoth || config.isDark) {
+            await loadColorScheme(dark, Brightness.dark);
+          }
+          if (EzCM.updateBoth || !config.isDark) {
+            await loadColorScheme(light, Brightness.light);
+          }
+        }),
+        icon: EzIcon(config, Icons.contrast),
+        label: config.ezL10n.csHighContrast,
+      );
 }
 
 /// 0xFF00FFB4

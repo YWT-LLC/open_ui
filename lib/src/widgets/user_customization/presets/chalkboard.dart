@@ -184,14 +184,12 @@ class EzChalkboardConfig extends StatelessWidget {
         final bool uSure = autoConfirm ||
             (config.themeMode == ThemeMode.dark) ||
             (await _confirm(config, context: context) ?? false);
+
         if (uSure) {
-          await config.rebuildUI(
-            allECT,
-            changes: () async {
-              await _makeItSo();
-              await extra?.call(autoConfirm);
-            },
-          );
+          await config.rebuildUI(changes: () async {
+            await _makeItSo();
+            await extra?.call(autoConfirm);
+          });
         }
       },
       text: config.ezL10n.ssChalkboard,

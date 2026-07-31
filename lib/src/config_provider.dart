@@ -44,7 +44,7 @@ class EzCP extends ChangeNotifier {
         _needsRebuild = false {
     _isLefty = EzCM.get(isLeftyKey);
     _getThemeMode();
-    _buildThemeData(allECT);
+    _buildThemeData();
     _appCache.init(isDark);
   }
 
@@ -63,7 +63,7 @@ class EzCP extends ChangeNotifier {
   }
 
   /// Builds fresh themes and config caches
-  void _buildThemeData(Set<EzCacheType> types) {
+  void _buildThemeData() {
     _isLefty = EzCM.get(isLeftyKey);
 
     if (_isDark) {
@@ -76,56 +76,48 @@ class EzCP extends ChangeNotifier {
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      if (needsRebuild || types.contains(EzCacheType.color)) {
-        _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
-      }
+      _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
 
-      if (needsRebuild || types.contains(EzCacheType.design)) {
-        _design = EzDesignCache(
-          // Button
-          padding: EzCM.get(darkPaddingKey),
-          buttonShape: buttonShape,
-          borderWidth: EzCM.get(darkBorderWidthKey),
-          textRadius: buttonShape.radius,
-          textFieldRadius: buttonShape.textFieldRadius,
-          lineLinks: EzCM.get(darkLineLinksKey),
-          showBackFAB: EzCM.get(darkShowBackFABKey),
-          showScroll: EzCM.get(darkShowScrollKey),
+      _design = EzDesignCache(
+        // Button
+        padding: EzCM.get(darkPaddingKey),
+        buttonShape: buttonShape,
+        borderWidth: EzCM.get(darkBorderWidthKey),
+        textRadius: buttonShape.radius,
+        textFieldRadius: buttonShape.textFieldRadius,
+        lineLinks: EzCM.get(darkLineLinksKey),
+        showBackFAB: EzCM.get(darkShowBackFABKey),
+        showScroll: EzCM.get(darkShowScrollKey),
 
-          // Page
-          margin: margin,
-          spacing: spacing,
-          backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
-          backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
-          transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
-          fadedTransition: EzCM.get(darkTransitionFadeKey),
-          animDur: EzCM.get(darkAnimationDurationKey),
-          animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
-        );
-      }
+        // Page
+        margin: margin,
+        spacing: spacing,
+        backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
+        backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
+        transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
+        fadedTransition: EzCM.get(darkTransitionFadeKey),
+        animDur: EzCM.get(darkAnimationDurationKey),
+        animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
+      );
 
-      if (needsRebuild || types.contains(EzCacheType.design) || types.contains(EzCacheType.text)) {
-        _layout = EzLayoutCache(
-          margin: EzSpacer(margin),
-          rowMargin: EzSpacer(margin, vertical: false),
-          spacer: EzSpacer(spacing),
-          rowSpacer: EzSpacer(spacing, vertical: false),
-          swapSpacer: EzSwapSpacer(spacing),
-          separator: EzSpacer(spacing * 2),
-          divider: EzDivider(height: spacing * 3),
-          startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
-          centerLine: EzNewLine(bodyStyle),
-          endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
-          richLine: const EzRichLine(),
-        );
-      }
+      _layout = EzLayoutCache(
+        margin: EzSpacer(margin),
+        rowMargin: EzSpacer(margin, vertical: false),
+        spacer: EzSpacer(spacing),
+        rowSpacer: EzSpacer(spacing, vertical: false),
+        swapSpacer: EzSwapSpacer(spacing),
+        separator: EzSpacer(spacing * 2),
+        divider: EzDivider(height: spacing * 3),
+        startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
+        centerLine: EzNewLine(bodyStyle),
+        endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+        richLine: const EzRichLine(),
+      );
 
-      if (needsRebuild || types.contains(EzCacheType.text)) {
-        _text = EzTextCache(
-          backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
-          iconSize: EzCM.get(darkIconSizeKey),
-        );
-      }
+      _text = EzTextCache(
+        backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
+        iconSize: EzCM.get(darkIconSizeKey),
+      );
     } else {
       _theme = ezThemeData(Brightness.light, _ltr);
 
@@ -136,56 +128,48 @@ class EzCP extends ChangeNotifier {
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      if (needsRebuild || types.contains(EzCacheType.color)) {
-        _color = EzColorCache(schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
-      }
+      _color = EzColorCache(schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
 
-      if (needsRebuild || types.contains(EzCacheType.design)) {
-        _design = EzDesignCache(
-          // Button
-          padding: EzCM.get(lightPaddingKey),
-          buttonShape: buttonShape,
-          borderWidth: EzCM.get(lightBorderWidthKey),
-          textRadius: buttonShape.radius,
-          textFieldRadius: buttonShape.textFieldRadius,
-          lineLinks: EzCM.get(lightLineLinksKey),
-          showBackFAB: EzCM.get(lightShowBackFABKey),
-          showScroll: EzCM.get(lightShowScrollKey),
+      _design = EzDesignCache(
+        // Button
+        padding: EzCM.get(lightPaddingKey),
+        buttonShape: buttonShape,
+        borderWidth: EzCM.get(lightBorderWidthKey),
+        textRadius: buttonShape.radius,
+        textFieldRadius: buttonShape.textFieldRadius,
+        lineLinks: EzCM.get(lightLineLinksKey),
+        showBackFAB: EzCM.get(lightShowBackFABKey),
+        showScroll: EzCM.get(lightShowScrollKey),
 
-          // Page
-          margin: margin,
-          spacing: spacing,
-          backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
-          backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
-          transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
-          fadedTransition: EzCM.get(lightTransitionFadeKey),
-          animDur: EzCM.get(lightAnimationDurationKey),
-          animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
-        );
-      }
+        // Page
+        margin: margin,
+        spacing: spacing,
+        backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
+        backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
+        transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
+        fadedTransition: EzCM.get(lightTransitionFadeKey),
+        animDur: EzCM.get(lightAnimationDurationKey),
+        animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
+      );
 
-      if (needsRebuild || types.contains(EzCacheType.design) || types.contains(EzCacheType.text)) {
-        _layout = EzLayoutCache(
-          margin: EzSpacer(margin),
-          rowMargin: EzSpacer(margin, vertical: false),
-          spacer: EzSpacer(spacing),
-          rowSpacer: EzSpacer(spacing, vertical: false),
-          swapSpacer: EzSwapSpacer(spacing),
-          separator: EzSpacer(spacing * 2),
-          divider: EzDivider(height: spacing * 3),
-          startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
-          centerLine: EzNewLine(bodyStyle),
-          endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
-          richLine: const EzRichLine(),
-        );
-      }
+      _layout = EzLayoutCache(
+        margin: EzSpacer(margin),
+        rowMargin: EzSpacer(margin, vertical: false),
+        spacer: EzSpacer(spacing),
+        rowSpacer: EzSpacer(spacing, vertical: false),
+        swapSpacer: EzSwapSpacer(spacing),
+        separator: EzSpacer(spacing * 2),
+        divider: EzDivider(height: spacing * 3),
+        startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
+        centerLine: EzNewLine(bodyStyle),
+        endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+        richLine: const EzRichLine(),
+      );
 
-      if (needsRebuild || types.contains(EzCacheType.text)) {
-        _text = EzTextCache(
-          backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
-          iconSize: EzCM.get(lightIconSizeKey),
-        );
-      }
+      _text = EzTextCache(
+        backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
+        iconSize: EzCM.get(lightIconSizeKey),
+      );
     }
   }
 
@@ -329,7 +313,7 @@ class EzCP extends ChangeNotifier {
     _l10n = result.$2;
     _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
 
-    await rebuildUI(noECT);
+    await rebuildUI();
   }
 
   /// Reconfigure [ThemeMode] et al. from storage and [rebuildUI]
@@ -344,14 +328,14 @@ class EzCP extends ChangeNotifier {
             ? true
             : false,
     };
-    await rebuildUI(allECT);
+    await rebuildUI();
   }
 
   /// Always does a full rebuild of the [ThemeMode] and relevant [ThemeData]
   /// Only updates the provided cache [types]
   /// If you are making known [changes] prior to the rebuild, it is recommended to provide them here
   /// A fullscreen [CircularProgressIndicator] will prevent user input while the [changes] are awaited
-  Future<void> rebuildUI(Set<EzCacheType> types, {Future<dynamic> Function()? changes}) async {
+  Future<void> rebuildUI({Future<dynamic> Function()? changes}) async {
     await ezNoTouch(() async {
       if (changes != null) await changes();
       final ThemeMode newMode = _getThemeMode();
@@ -364,7 +348,7 @@ class EzCP extends ChangeNotifier {
               ? true
               : false,
       };
-      _buildThemeData(types);
+      _buildThemeData();
 
       await _appCache.rebuild(this);
       _needsRebuild = false;
@@ -376,16 +360,6 @@ class EzCP extends ChangeNotifier {
 }
 
 //* Cache *//
-
-/// Color, Design, Text
-enum EzCacheType { color, design, text }
-
-const Set<EzCacheType> allECT = <EzCacheType>{
-  EzCacheType.color,
-  EzCacheType.design,
-  EzCacheType.text,
-}; // Set >> ECT.values, faster checks
-const Set<EzCacheType> noECT = <EzCacheType>{};
 
 class EzColorCache {
   final String schemeImagePath;

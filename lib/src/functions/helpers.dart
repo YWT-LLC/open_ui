@@ -130,7 +130,7 @@ Future<void> ezConfigLoader(
     return;
   }
 
-  await config.rebuildUI(allECT, changes: extra);
+  await config.rebuildUI(changes: extra);
 }
 
 /// Close any open modals or dialogs

@@ -87,7 +87,7 @@ class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
     final EzCP config = configWatcher(context);
     if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
         config.isDark) {
-      await config.rebuildUI(allECT);
+      await config.rebuildUI();
     }
   }
 

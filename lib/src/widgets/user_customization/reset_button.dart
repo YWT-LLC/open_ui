@@ -16,9 +16,6 @@ class EzResetButton extends StatelessWidget {
   /// When false, the current [EzCM.updateBoth] value is used
   final bool all;
 
-  /// Sections to reset, defaults to all
-  final Set<EzCacheType> types;
-
   /// [EzAlertDialog.title] that shows on click
   final String Function()? dynamicTitle;
 
@@ -46,7 +43,6 @@ class EzResetButton extends StatelessWidget {
     this.config, {
     super.key,
     this.all = true,
-    this.types = allECT,
     this.saveSkip,
     this.dynamicTitle,
     this.resetSkip,
@@ -93,21 +89,18 @@ class EzResetButton extends StatelessWidget {
                     : <Widget>[ezRichUndoWarning(config, context: context)],
                 actions: ezActionPair(
                   config,
-                  onConfirm: () => config.rebuildUI(
-                    types,
-                    changes: () async {
-                      if (onConfirm == null) {
-                        await EzCM.reset(
-                          config.isDark,
-                          skip: resetSkip,
-                          forceOne: !updateBoth,
-                          forceBoth: updateBoth,
-                        );
-                      } else {
-                        await onConfirm!.call();
-                      }
-                    },
-                  ),
+                  onConfirm: () => config.rebuildUI(changes: () async {
+                    if (onConfirm == null) {
+                      await EzCM.reset(
+                        config.isDark,
+                        skip: resetSkip,
+                        forceOne: !updateBoth,
+                        forceBoth: updateBoth,
+                      );
+                    } else {
+                      await onConfirm!.call();
+                    }
+                  }),
                   confirmIsDestructive: true,
                   onDeny: () {
                     if (onDeny == null) {

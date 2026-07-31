@@ -141,7 +141,7 @@ class EzSpacingSetting extends StatelessWidget {
           ),
         );
 
-        if (currValue != backup) await config.rebuildUI(<EzCacheType>{EzCacheType.design});
+        if (currValue != backup) await config.rebuildUI();
       },
       icon: EzIcon(config, Icons.space_bar),
       label: config.ezL10n.dsSpacing,

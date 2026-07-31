@@ -49,8 +49,7 @@ class _ColorSettingState extends State<EzColorSetting> {
         if (ezTextMirrors.containsKey(widget.configKey)) {
           await EzCM.setInt(ezTextMirrors[widget.configKey]!, getTextColor(currColor).toARGB32());
         }
-
-        await widget.config.rebuildUI(allECT);
+        await widget.config.rebuildUI();
       },
       onDeny: () => setState(() => currColor = backup),
     );
@@ -109,7 +108,7 @@ class _ColorSettingState extends State<EzColorSetting> {
               // Update the user's configKey
               await EzCM.setInt(widget.configKey, recommended);
               setState(() => currColor = Color(recommended));
-              await widget.config.rebuildUI(allECT);
+              await widget.config.rebuildUI();
             },
             isDefaultAction: true,
           ),
@@ -165,7 +164,7 @@ class _ColorSettingState extends State<EzColorSetting> {
                 if (resetValue != null) {
                   setState(() => currColor = Color(resetValue));
                 }
-                await widget.config.rebuildUI(allECT);
+                await widget.config.rebuildUI();
               },
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),

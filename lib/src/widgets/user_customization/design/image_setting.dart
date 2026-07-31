@@ -527,7 +527,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           widget.config,
           onPressed: () async {
             final bool? changed = await chooseFit(currPath!);
-            if (changed == true) await widget.config.rebuildUI(allECT);
+            if (changed == true) await widget.config.rebuildUI();
           },
           icon: EzIcon(widget.config, Icons.image_aspect_ratio),
           label: widget.config.ezL10n.dsReFit,
@@ -741,7 +741,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             });
             final bool changed = await activateSetting();
 
-            if (changed) await widget.config.rebuildUI(allECT);
+            if (changed) await widget.config.rebuildUI();
             setState(() => inProgress = false);
           },
           onLongPress: inProgress ? doNothing : showSource,
