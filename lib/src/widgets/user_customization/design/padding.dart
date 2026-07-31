@@ -11,11 +11,16 @@ class EzPaddingSetting extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
+  /// Optional override
+  final double? iconSize;
+
   final int _steps;
   final int _decimals;
 
   /// An ez to use padding setting
-  const EzPaddingSetting(this.config, {super.key}) : _steps = 20, _decimals = 0;
+  const EzPaddingSetting(this.config, {super.key, this.iconSize})
+      : _steps = 20,
+        _decimals = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +141,7 @@ class EzPaddingSetting extends StatelessWidget {
 
         if (currValue != backup) await config.rebuildUI(<EzCacheType>{EzCacheType.design});
       },
-      icon: EzIcon(config, Icons.padding),
+      icon: Icon(Icons.padding, size: iconSize ?? config.iconSize),
       label: config.ezL10n.dsPadding,
     );
   }
