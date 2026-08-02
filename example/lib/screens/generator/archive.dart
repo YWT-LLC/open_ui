@@ -5,7 +5,7 @@
 
 import '../../utils/export.dart';
 import '../../widgets/export.dart';
-import 'package:ywt_private/ywt_private.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:convert';
 import 'package:open_ui/open_ui.dart';
@@ -62,7 +62,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
         GeneratorState.running => SizedBox(
             height: heightOf(context) / 3,
             width: double.infinity,
-            child: YWTime(semantics: config.ezL10n.gLoadingAnim, colorScheme: config.colors),
+            child: ywt.YWTime(semantics: config.ezL10n.gLoadingAnim, colorScheme: config.colors),
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(
@@ -78,7 +78,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                       text: thisAppName,
                       style: ezSubTitleStyle(config.styles),
                       textAlign: TextAlign.center,
-                      url: Uri.parse(openUIReleases),
+                      url: Uri.parse(ywt.openUIReleases),
                       hint: config.ezL10n.gOpenUIReleases,
                     ),
                     EzPlainText(text: l10n(config).asToGen(widget.archive.appName)),

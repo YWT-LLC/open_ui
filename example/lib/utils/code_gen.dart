@@ -4,7 +4,7 @@
  */
 
 import '../utils/export.dart';
-import 'package:ywt_private/ywt_private.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'package:open_ui/open_ui.dart';
@@ -70,7 +70,7 @@ Some helpful documentation if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab) (Flutter)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook) (Flutter)
-- [Open UI: Digital accessibility made Ez]($ouiGitHub) (YWT)
+- [Open UI: Digital accessibility made Ez](${ywt.ouiGitHub}) (YWT)
 
 And videos:
 
@@ -106,12 +106,12 @@ That, and/or donate via one of the many options we provide.
 
 ### <br>Building with user customization in mind
 
-As your app grows, use [Open UI]($ouiGitHub) to keep things Ez
+As your app grows, use [Open UI](${ywt.ouiGitHub}) to keep things Ez
 
-* [Responsive design]($ouiGitHub/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
-* [Screen reader support]($ouiGitHub/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
-* [User customization]($ouiGitHub/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
-* [Helpers]($ouiGitHub/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
+* [Responsive design](${ywt.ouiGitHub}/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
+* [Screen reader support](${ywt.ouiGitHub}/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
+* [User customization](${ywt.ouiGitHub}/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
+* [Helpers](${ywt.ouiGitHub}/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
 
 ### <br>Localization
 

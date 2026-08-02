@@ -5,7 +5,7 @@
 
 import '../../utils/export.dart';
 import '../../widgets/export.dart';
-import 'package:ywt_private/ywt_private.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'package:xml/xml.dart';
@@ -83,7 +83,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     style: ezSubTitleStyle(config.styles),
                     textAlign: TextAlign.center,
                     url: Uri.parse(
-                      '$ouiGitHub/tree/main/example/lib/screens/generator/generate.dart',
+                      '${ywt.ouiGitHub}/tree/main/example/lib/screens/generator/generate.dart',
                     ),
                     hint: l10n(config).gsSeeNBelieveHint,
                   ),
@@ -252,7 +252,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
   }
 
   Widget header(EzCP config) => switch (genState) {
-        GeneratorState.running => YWTime(
+        GeneratorState.running => ywt.YWTime(
             semantics: config.ezL10n.gLoadingAnim,
             colorScheme: config.colors,
           ),

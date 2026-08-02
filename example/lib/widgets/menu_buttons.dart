@@ -5,7 +5,7 @@
 
 import '../utils/export.dart';
 import '../screens/export.dart';
-import 'package:ywt_private/ywt_private.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:convert';
@@ -78,7 +78,7 @@ class OpenSourceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzMenuLink(
         config,
-        uri: Uri.parse(ouiGitHub),
+        uri: Uri.parse(ywt.ouiGitHub),
         icon: EzIcon(config, LineIcons.github),
         label: config.ezL10n.gOpenSource,
         semanticsLabel: '${config.ezL10n.gOpenSource}: ${config.ezL10n.gOpenUISourceHint}',

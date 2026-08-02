@@ -4,7 +4,7 @@
  */
 
 import '../utils/export.dart';
-import 'package:ywt_private/ywt_private.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
@@ -125,8 +125,8 @@ The full (free and open source) app generator can be downloaded from the ''',
               EzLink(
                 config,
                 text: 'GitHub releases',
-                url: Uri.parse(openUIReleases),
-                hint: openUIReleases,
+                url: Uri.parse(ywt.openUIReleases),
+                hint: ywt.openUIReleases,
               ),
             ],
           ),
