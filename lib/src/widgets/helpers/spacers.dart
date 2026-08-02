@@ -73,6 +73,10 @@ class EzTitledDivider extends StatelessWidget {
   /// [Widget] to display just under the diving line
   final Widget title;
 
+  /// When true, [title] is above the [Divider] line
+  /// Default false, aka [title] below the [Divider] line
+  final bool header;
+
   /// Total vertical space that should be occupied
   final double height;
 
@@ -81,6 +85,12 @@ class EzTitledDivider extends StatelessWidget {
 
   /// [Divider.thickness] passthrough
   final double? thickness;
+
+  /// [EzCol.mainAxisAlignment] passthrough
+  final MainAxisAlignment mainAxisAlignment;
+
+  /// [EzCol.crossAxisAlignment] passthrough
+  final CrossAxisAlignment crossAxisAlignment;
 
   /// [Divider.color] passthrough
   final Color? color;
@@ -93,8 +103,11 @@ class EzTitledDivider extends StatelessWidget {
     this.config, {
     super.key,
     required this.title,
+    this.header = false,
     required this.height,
     this.width = 175.0,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
     this.thickness,
     this.color,
     this.radius,
@@ -104,15 +117,18 @@ class EzTitledDivider extends StatelessWidget {
   Widget build(BuildContext context) => ConstrainedBox(
         constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
         child: EzCol(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
           children: <Widget>[
             EzSpacer(height / 2),
+            if (header) title,
             Divider(
               height: config.marginVal,
               thickness: thickness,
               color: color,
               radius: radius,
             ),
-            title,
+            if (!header) title,
             EzSpacer(height / 2),
           ],
         ),
