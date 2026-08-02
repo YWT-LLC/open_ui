@@ -98,6 +98,10 @@ const Duration keyTime = Duration(milliseconds: 300);
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';
 
+/// 'MaterialIcons'
+/// Useful for creating an [Icon] from an [IconData.codePoint] string
+const String matIcons = 'MaterialIcons';
+
 /// 255
 const int rMax = 255;
 
