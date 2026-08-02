@@ -195,12 +195,10 @@ class _AnimDurSetting extends StatelessWidget {
                     label: config.ezL10n.dsCurve,
                     widthEntry: EzAnimationCurve.elastic.name(config.ezL10n),
                     dropdownMenuEntries: EzAnimationCurve.values
-                        .map(
-                          (EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
-                            value: type,
-                            label: type.name(config.ezL10n),
-                          ),
-                        )
+                        .map((EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
+                              value: type,
+                              label: type.name(config.ezL10n),
+                            ))
                         .toList(),
                     enableSearch: false,
                     initialSelection: curve,
