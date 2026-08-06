@@ -178,6 +178,9 @@ class EzFooter extends StatelessWidget {
   /// Just an [EzCP.separator] for this [Locale]
   final Locale defaultLocale;
 
+  /// Optional override
+  final Widget? message;
+
   /// The current screen/page is human translated
   /// Just an [EzCP.separator] when true
   final bool human;
@@ -192,6 +195,7 @@ class EzFooter extends StatelessWidget {
     this.config, {
     super.key,
     this.defaultLocale = english,
+    this.message,
     this.human = false,
     this.textAlign = TextAlign.center,
     this.spacing,
@@ -203,10 +207,11 @@ class EzFooter extends StatelessWidget {
           ? config.separator
           : Padding(
               padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
-              child: Text(
-                config.ezL10n.gMachineTranslated,
-                style: config.labelStyle,
-                textAlign: textAlign,
-              ),
+              child: message ??
+                  Text(
+                    config.ezL10n.gMachineTranslated,
+                    style: config.labelStyle,
+                    textAlign: textAlign,
+                  ),
             );
 }
