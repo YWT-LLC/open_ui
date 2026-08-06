@@ -114,24 +114,24 @@ class EzTitledDivider extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
-        child: EzCol(
-          mainAxisAlignment: mainAxisAlignment,
-          crossAxisAlignment: crossAxisAlignment,
-          children: <Widget>[
-            EzSpacer(height / 2),
-            if (header) title,
-            Divider(
+  Widget build(BuildContext context) => EzCol(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: <Widget>[
+          EzSpacer(height / 2),
+          if (header) title,
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
+            child: Divider(
               height: config.marginVal,
               thickness: thickness,
               color: color,
               radius: radius,
             ),
-            if (!header) title,
-            EzSpacer(height / 2),
-          ],
-        ),
+          ),
+          if (!header) title,
+          EzSpacer(height / 2),
+        ],
       );
 }
 
