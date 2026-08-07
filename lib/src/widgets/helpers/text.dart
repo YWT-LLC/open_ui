@@ -144,7 +144,7 @@ class EzTextBackground extends StatelessWidget {
               (baseColor ?? config.colors.surfaceContainer).withValues(
                 alpha: config.textBackgroundOpacity,
               ),
-          borderRadius: (shape ?? config.buttonShape).textRadius,
+          borderRadius: borderRadius ?? (shape ?? config.buttonShape).textRadius,
         ),
         child: text,
       );
