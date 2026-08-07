@@ -17,12 +17,16 @@ class EzSettingsHub extends StatefulWidget {
   /// Optional starting point (default 0/last visited)
   final int? target;
 
+  /// Optional override, defaults to [EzFooter]
+  final Widget? footer;
+
   /// Settings landing page
   const EzSettingsHub(
     this.config, {
     super.key,
     required this.pages,
     this.target,
+    this.footer,
   });
 
   @override
@@ -121,7 +125,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             delta: delta,
             child: currSection.build(currSubSec),
           ),
-          EzFooter(widget.config),
+          widget.footer ?? EzFooter(widget.config),
         ],
       );
 }
