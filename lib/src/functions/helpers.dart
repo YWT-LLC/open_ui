@@ -104,20 +104,20 @@ Future<void> ezConfigLoader(
   required BuildContext context,
   Future<void> Function()? extra,
 }) async {
-  final FilePickerResult? result = await FilePicker.pickFiles(
+  final PlatformFile? result = await FilePicker.pickFile(
     type: FileType.custom,
     allowedExtensions: <String>['json'],
   );
 
   try {
-    if (result != null && result.files.single.path != null) {
+    if (result != null && result.path != null) {
       if (kIsWeb) {
-        final Uint8List fileBytes = await result.files.first.readAsBytes();
+        final Uint8List fileBytes = await result.readAsBytes();
 
         final String fileContent = utf8.decode(fileBytes);
         await EzCM.loadConfig(config, toLoad: jsonDecode(fileContent));
       } else {
-        final String filePath = result.files.single.path!;
+        final String filePath = result.path!;
         final String fileContent = await File(filePath).readAsString();
 
         await EzCM.loadConfig(config, toLoad: jsonDecode(fileContent));
