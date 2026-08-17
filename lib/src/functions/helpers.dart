@@ -143,6 +143,7 @@ Future<void> ezConfigLoader(
                           context: context, source: ImageSource.gallery);
                       if (dCon.mounted) setDialog(() {});
                     },
+                    onLongPress: () => setDialog(() => darkPath = null),
                   ),
                   config.spacer,
                   EzElevatedIconButton(
@@ -154,12 +155,13 @@ Future<void> ezConfigLoader(
                           context: context, source: ImageSource.gallery);
                       if (dCon.mounted) setDialog(() {});
                     },
+                    onLongPress: () => setDialog(() => lightPath = null),
                   ),
                 ],
                 actions: <EzAction>[
                   EzAction(
                     config,
-                    text: config.ezL10n.gCancel,
+                    text: config.ezL10n.gNo,
                     onPressed: Navigator.of(dCon).pop,
                   ),
                   EzAction(
@@ -174,6 +176,7 @@ Future<void> ezConfigLoader(
           );
 
           if (save == true) {
+            // TODO: fix
             if (darkPath != null) await EzCM.setString(darkBackgroundImageKey, darkPath!);
             if (lightPath != null) await EzCM.setString(darkBackgroundImageKey, lightPath!);
           }
