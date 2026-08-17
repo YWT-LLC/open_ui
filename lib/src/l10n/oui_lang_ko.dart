@@ -395,6 +395,9 @@ class OUILangKo extends OUILang {
   String get ssLoadConfig => '구성 불러오기';
 
   @override
+  String get ssImageToo => '배경 이미지도 포함인가요?';
+
+  @override
   String get ssResetAll => '모든 설정을 초기화하시겠습니까?';
 
   @override

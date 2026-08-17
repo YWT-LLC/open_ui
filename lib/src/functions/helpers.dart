@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -121,6 +122,62 @@ Future<void> ezConfigLoader(
         final String fileContent = await File(filePath).readAsString();
 
         await EzCM.loadConfig(config, toLoad: jsonDecode(fileContent));
+
+        if (context.mounted) {
+          String? darkPath;
+          String? lightPath;
+
+          final bool? save = await showDialog(
+            context: context,
+            builder: (BuildContext dCon) => StatefulBuilder(builder: (_, StateSetter setDialog) {
+              return EzAlertDialog(
+                config,
+                title: Text(config.ezL10n.ssImageToo, textAlign: TextAlign.center),
+                contents: <Widget>[
+                  EzElevatedIconButton(
+                    config,
+                    label: config.ezL10n.gDarkTheme,
+                    icon: EzIcon(config, darkPath == null ? Icons.question_mark : Icons.check),
+                    onPressed: () async {
+                      darkPath = await ezImagePicker(config,
+                          context: context, source: ImageSource.gallery);
+                      if (dCon.mounted) setDialog(() {});
+                    },
+                  ),
+                  config.spacer,
+                  EzElevatedIconButton(
+                    config,
+                    label: config.ezL10n.gLightTheme,
+                    icon: EzIcon(config, lightPath == null ? Icons.question_mark : Icons.check),
+                    onPressed: () async {
+                      lightPath = await ezImagePicker(config,
+                          context: context, source: ImageSource.gallery);
+                      if (dCon.mounted) setDialog(() {});
+                    },
+                  ),
+                ],
+                actions: <EzAction>[
+                  EzAction(
+                    config,
+                    text: config.ezL10n.gCancel,
+                    onPressed: Navigator.of(dCon).pop,
+                  ),
+                  EzAction(
+                    config,
+                    text: config.ezL10n.gSave,
+                    onPressed: () => Navigator.of(dCon).pop(true),
+                  ),
+                ],
+                needsClose: false,
+              );
+            }),
+          );
+
+          if (save == true) {
+            if (darkPath != null) await EzCM.setString(darkBackgroundImageKey, darkPath!);
+            if (lightPath != null) await EzCM.setString(darkBackgroundImageKey, lightPath!);
+          }
+        }
       }
     }
   } catch (e) {

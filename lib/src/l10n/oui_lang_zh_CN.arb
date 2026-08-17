@@ -152,6 +152,7 @@
   "ssConfigSaved": "您的配置已保存到 {path}",
   "ssWrongConfigExt": "文件未保存为 ",
   "ssLoadConfig": "加载配置",
+  "ssImageToo": "也包括背景图片吗？",
 
   "ssResetAll": "重置所有设置？",
   "ssResetAppearance": "重置所有外观设置？",

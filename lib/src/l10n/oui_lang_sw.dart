@@ -399,6 +399,9 @@ class OUILangSw extends OUILang {
   String get ssLoadConfig => 'Pakia usanidi';
 
   @override
+  String get ssImageToo => 'Picha za usuli pia?';
+
+  @override
   String get ssResetAll => 'Kuweka upya mipangilio yote?';
 
   @override

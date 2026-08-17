@@ -401,6 +401,9 @@ class OUILangEs extends OUILang {
   String get ssLoadConfig => 'Cargar configuración';
 
   @override
+  String get ssImageToo => '¿Imágenes de fondo también?';
+
+  @override
   String get ssResetAll => '¿Restablecer todas las configuraciones?';
 
   @override

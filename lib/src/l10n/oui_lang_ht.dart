@@ -399,6 +399,9 @@ class OUILangHt extends OUILang {
   String get ssLoadConfig => 'Chaje konfigirasyon';
 
   @override
+  String get ssImageToo => 'Imaj background tou?';
+
+  @override
   String get ssResetAll => 'Reyajiste tout paramèt yo?';
 
   @override

@@ -152,6 +152,7 @@
   "ssConfigSaved": "आपका कॉन्फ़िगरेशन {path} में सहेज लिया गया है",
   "ssWrongConfigExt": "फ़ाइल को इस रूप में नहीं सहेजा गया ",
   "ssLoadConfig": "कॉन्फ़िग लोड करें",
+  "ssImageToo": "बैकग्राउंड इमेज भी?",
 
   "ssResetAll": "क्या सभी सेटिंग्स रीसेट करें?",
   "ssResetAppearance": "क्या सभी दिखावट (appearance) सेटिंग्स रीसेट करें?",

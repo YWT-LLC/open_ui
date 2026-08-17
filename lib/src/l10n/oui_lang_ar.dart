@@ -397,6 +397,9 @@ class OUILangAr extends OUILang {
   String get ssLoadConfig => 'تحميل التكوين';
 
   @override
+  String get ssImageToo => 'صور الخلفية أيضاً؟';
+
+  @override
   String get ssResetAll => 'إعادة ضبط جميع الإعدادات؟';
 
   @override
@@ -1169,6 +1172,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get ssLoadConfig => 'تحميل التكوين';
+
+  @override
+  String get ssImageToo => 'صور الخلفية أيضاً؟';
 
   @override
   String get ssResetAll => 'إعادة ضبط جميع الإعدادات؟';

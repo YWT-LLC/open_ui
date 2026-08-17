@@ -400,6 +400,9 @@ class OUILangFr extends OUILang {
   String get ssLoadConfig => 'Charger la configuration';
 
   @override
+  String get ssImageToo => 'Des images d\'arrière-plan aussi ?';
+
+  @override
   String get ssResetAll => 'Réinitialiser tous les paramètres ?';
 
   @override

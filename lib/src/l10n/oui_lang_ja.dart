@@ -395,6 +395,9 @@ class OUILangJa extends OUILang {
   String get ssLoadConfig => '設定を読み込む';
 
   @override
+  String get ssImageToo => '背景画像もですか？';
+
+  @override
   String get ssResetAll => 'すべての設定をリセットしますか？';
 
   @override

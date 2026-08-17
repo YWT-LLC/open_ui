@@ -152,6 +152,7 @@
   "ssConfigSaved": "구성이 {path}에 저장되었습니다",
   "ssWrongConfigExt": "파일이 다음으로 저장되지 않았습니다: ",
   "ssLoadConfig": "구성 불러오기",
+  "ssImageToo": "배경 이미지도 포함인가요?",
 
   "ssResetAll": "모든 설정을 초기화하시겠습니까?",
   "ssResetAppearance": "모든 모양 설정을 초기화하시겠습니까?",

@@ -400,6 +400,9 @@ class OUILangHi extends OUILang {
   String get ssLoadConfig => 'कॉन्फ़िग लोड करें';
 
   @override
+  String get ssImageToo => 'बैकग्राउंड इमेज भी?';
+
+  @override
   String get ssResetAll => 'क्या सभी सेटिंग्स रीसेट करें?';
 
   @override

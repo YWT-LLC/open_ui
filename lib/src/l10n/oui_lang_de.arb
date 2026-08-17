@@ -152,6 +152,7 @@
   "ssConfigSaved": "Ihre Konfiguration wurde in {path} gespeichert",
   "ssWrongConfigExt": "Die Datei wurde nicht gespeichert als ",
   "ssLoadConfig": "Konfiguration laden",
+  "ssImageToo": "Auch Hintergrundbilder?",
 
   "ssResetAll": "Alle Einstellungen zurücksetzen?",
   "ssResetAppearance": "Alle Erscheinungsbild-Einstellungen zurücksetzen?",

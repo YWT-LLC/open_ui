@@ -400,6 +400,9 @@ class OUILangDe extends OUILang {
   String get ssLoadConfig => 'Konfiguration laden';
 
   @override
+  String get ssImageToo => 'Auch Hintergrundbilder?';
+
+  @override
   String get ssResetAll => 'Alle Einstellungen zurücksetzen?';
 
   @override

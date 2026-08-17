@@ -149,9 +149,10 @@
 
   "ssConfigTip": "Enregistrer/charger la configuration",
   "ssSaveConfig": "Enregistrer la configuration",
-  "ssLoadConfig": "Charger la configuration",
   "ssConfigSaved": "Votre configuration a été enregistrée dans {path}",
   "ssWrongConfigExt": "Le fichier n'a pas été enregistré comme ",
+  "ssLoadConfig": "Charger la configuration",
+  "ssImageToo": "Des images d'arrière-plan aussi ?",
 
   "ssResetAll": "Réinitialiser tous les paramètres ?",
   "ssResetAppearance": "Réinitialiser tous les paramètres d'apparence ?",

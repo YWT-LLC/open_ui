@@ -152,6 +152,7 @@
   "ssConfigSaved": "Usanidi wako umehifadhiwa kwenye {path}",
   "ssWrongConfigExt": "Faili haikuhifadhiwa kama ",
   "ssLoadConfig": "Pakia usanidi",
+  "ssImageToo": "Picha za usuli pia?",
 
   "ssResetAll": "Kuweka upya mipangilio yote?",
   "ssResetAppearance": "Kuweka upya mipangilio yote ya mwonekano?",

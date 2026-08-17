@@ -152,6 +152,7 @@
   "ssConfigSaved": "Your configuration has been saved to {path}",
   "ssWrongConfigExt": "The file was not saved as ",
   "ssLoadConfig": "Load config",
+  "ssImageToo": "Background images too?",
 
   "ssResetAll": "Reset all settings?",
   "ssResetAppearance": "Reset all appearance settings?",

@@ -400,6 +400,9 @@ class OUILangFil extends OUILang {
   String get ssLoadConfig => 'I-load ang config';
 
   @override
+  String get ssImageToo => 'Pati mga larawan sa background?';
+
+  @override
   String get ssResetAll => 'I-reset lahat ng mga setting?';
 
   @override

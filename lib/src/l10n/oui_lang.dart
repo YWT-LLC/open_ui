@@ -861,6 +861,12 @@ abstract class OUILang {
   /// **'Load config'**
   String get ssLoadConfig;
 
+  /// No description provided for @ssImageToo.
+  ///
+  /// In en, this message translates to:
+  /// **'Background images too?'**
+  String get ssImageToo;
+
   /// No description provided for @ssResetAll.
   ///
   /// In en, this message translates to:

@@ -152,6 +152,7 @@
   "ssConfigSaved": "Ang iyong configuration ay nai-save sa {path}",
   "ssWrongConfigExt": "Hindi nai-save ang file bilang ",
   "ssLoadConfig": "I-load ang config",
+  "ssImageToo": "Pati mga larawan sa background?",
 
   "ssResetAll": "I-reset lahat ng mga setting?",
   "ssResetAppearance": "I-reset lahat ng mga setting ng hitsura?",

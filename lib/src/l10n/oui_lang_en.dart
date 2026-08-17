@@ -398,6 +398,9 @@ class OUILangEn extends OUILang {
   String get ssLoadConfig => 'Load config';
 
   @override
+  String get ssImageToo => 'Background images too?';
+
+  @override
   String get ssResetAll => 'Reset all settings?';
 
   @override
@@ -1172,6 +1175,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get ssLoadConfig => 'Load config';
+
+  @override
+  String get ssImageToo => 'Background images too?';
 
   @override
   String get ssResetAll => 'Reset all settings?';

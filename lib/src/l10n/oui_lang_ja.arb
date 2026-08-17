@@ -152,6 +152,7 @@
   "ssConfigSaved": "設定が {path} に保存されました",
   "ssWrongConfigExt": "ファイルは次の形式で保存されませんでした: ",
   "ssLoadConfig": "設定を読み込む",
+  "ssImageToo": "背景画像もですか？",
 
   "ssResetAll": "すべての設定をリセットしますか？",
   "ssResetAppearance": "すべての外観設定をリセットしますか？",

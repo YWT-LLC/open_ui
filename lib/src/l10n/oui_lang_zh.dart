@@ -393,6 +393,9 @@ class OUILangZh extends OUILang {
   String get ssLoadConfig => '加载配置';
 
   @override
+  String get ssImageToo => '也包括背景图片吗？';
+
+  @override
   String get ssResetAll => '重置所有设置？';
 
   @override
@@ -1160,6 +1163,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get ssLoadConfig => '加载配置';
+
+  @override
+  String get ssImageToo => '也包括背景图片吗？';
 
   @override
   String get ssResetAll => '重置所有设置？';

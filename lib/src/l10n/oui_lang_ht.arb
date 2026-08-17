@@ -152,6 +152,7 @@
   "ssConfigSaved": "Konfigirasyon ou an anrejistre nan {path}",
   "ssWrongConfigExt": "Fichye a pa t anrejistre kòm ",
   "ssLoadConfig": "Chaje konfigirasyon",
+  "ssImageToo": "Imaj background tou?",
 
   "ssResetAll": "Reyajiste tout paramèt yo?",
   "ssResetAppearance": "Reyajiste tout paramèt aparans yo?",

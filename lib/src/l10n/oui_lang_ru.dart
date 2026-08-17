@@ -401,6 +401,9 @@ class OUILangRu extends OUILang {
   String get ssLoadConfig => 'Загрузить конфигурацию';
 
   @override
+  String get ssImageToo => 'Фоновые изображения — тоже?';
+
+  @override
   String get ssResetAll => 'Сбросить все настройки?';
 
   @override

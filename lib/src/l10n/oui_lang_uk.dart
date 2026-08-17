@@ -400,6 +400,9 @@ class OUILangUk extends OUILang {
   String get ssLoadConfig => 'Завантажити конфігурацію';
 
   @override
+  String get ssImageToo => 'Фонові зображення також?';
+
+  @override
   String get ssResetAll => 'Скинути всі налаштування?';
 
   @override

@@ -152,6 +152,7 @@
   "ssConfigSaved": "تم حفظ التكوين الخاص بك في {path}",
   "ssWrongConfigExt": "لم يتم حفظ الملف باسم ",
   "ssLoadConfig": "تحميل التكوين",
+  "ssImageToo": "صور الخلفية أيضاً؟",
 
   "ssResetAll": "إعادة ضبط جميع الإعدادات؟",
   "ssResetAppearance": "إعادة ضبط جميع إعدادات المظهر؟",
