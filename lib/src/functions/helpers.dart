@@ -176,9 +176,8 @@ Future<void> ezConfigLoader(
           );
 
           if (save == true) {
-            // TODO: fix
             if (darkPath != null) await EzCM.setString(darkBackgroundImageKey, darkPath!);
-            if (lightPath != null) await EzCM.setString(darkBackgroundImageKey, lightPath!);
+            if (lightPath != null) await EzCM.setString(lightBackgroundImageKey, lightPath!);
           }
         }
       }

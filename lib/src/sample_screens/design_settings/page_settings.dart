@@ -82,7 +82,7 @@ class PageDesign extends StatelessWidget {
                       config,
                       pathKey: lightBackgroundImageKey,
                       fitKey: lightBackgroundFitKey,
-                      sourceKey: darkBackgroundSourceKey,
+                      sourceKey: lightBackgroundSourceKey,
                       label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                     ),
             ),
