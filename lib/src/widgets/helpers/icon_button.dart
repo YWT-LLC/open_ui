@@ -24,7 +24,7 @@ class EzIconButton extends StatelessWidget {
   final VoidCallback? onLongPress;
 
   /// [IconButton.tooltip] passthrough
-  final String? tooltip;
+  final String tooltip;
 
   /// Uses disabled styling and sets [onPressed] and [onLongPress] to [doNothing] when false
   final bool enabled;
@@ -45,7 +45,7 @@ class EzIconButton extends StatelessWidget {
     this.iconSize,
     this.onPressed,
     this.onLongPress,
-    this.tooltip,
+    required this.tooltip,
     this.enabled = true,
     this.fauxDisabled = false,
     this.style,
