@@ -325,6 +325,7 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
           child: Center(
             child: EzIconButton(
               widget.config,
+              tooltip: widget.config.ezL10n.gPlay,
               onPressed: () =>
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
               icon: Icon(Icons.play_arrow, semanticLabel: widget.config.ezL10n.dsPlay),
@@ -412,6 +413,7 @@ class _PageTransitionSetting extends StatelessWidget {
                                     child: EzIconButton(
                                       config,
                                       icon: type.icon(config),
+                                      tooltip: type.name(config.ezL10n),
                                       onPressed: () async {
                                         if (EzCM.updateBoth || config.isDark) {
                                           await EzCM.setString(darkTransitionTypeKey, type.value);
