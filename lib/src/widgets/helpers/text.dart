@@ -249,7 +249,7 @@ class EzTextField extends StatefulWidget {
 class _EzTextFieldState extends State<EzTextField> {
   bool error = false;
 
-  // TODO: fix, probably need a new strat
+  // TODO: fix, double talks
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
