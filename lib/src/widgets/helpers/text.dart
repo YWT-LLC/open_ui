@@ -173,6 +173,9 @@ class EzTextField extends StatefulWidget {
   /// [InputDecoration] passthrough
   final String hintText;
 
+  /// Optional [Semantics.label]
+  final String? label;
+
   /// [TextFormField] passthrough
   final TextInputType? keyboardType;
 
@@ -223,6 +226,7 @@ class EzTextField extends StatefulWidget {
     this.errorConstraints,
     this.focusNode,
     required this.hintText,
+    this.label,
     this.keyboardType,
     this.maxLines = 1,
     this.onChanged,
@@ -245,28 +249,34 @@ class EzTextField extends StatefulWidget {
 class _EzTextFieldState extends State<EzTextField> {
   bool error = false;
 
+  // TODO: fix, probably need a new strat
+
   @override
   Widget build(BuildContext context) => ConstrainedBox(
         constraints: error ? widget.errorConstraints ?? widget.constraints : widget.constraints,
-        child: TextFormField(
-          autofillHints: widget.autofillHints,
-          autovalidateMode: widget.autovalidateMode,
-          controller: widget.controller,
-          focusNode: widget.focusNode,
-          decoration: InputDecoration(hintText: widget.hintText),
-          keyboardType: widget.keyboardType,
-          maxLines: widget.maxLines,
-          onChanged: widget.onChanged,
-          onEditingComplete: widget.onEditingComplete,
-          onFieldSubmitted: widget.onFieldSubmitted,
-          onTap: widget.onTap,
-          onTapAlwaysCalled: widget.onTapAlwaysCalled,
-          onTapOutside: widget.onTapOutside,
-          readOnly: widget.readOnly,
-          style: widget.style,
-          textAlign: widget.textAlign,
-          textInputAction: widget.textInputAction,
-          validator: widget.validator,
+        child: Semantics(
+          label: widget.label,
+          textField: true,
+          child: TextFormField(
+            autofillHints: widget.autofillHints,
+            autovalidateMode: widget.autovalidateMode,
+            controller: widget.controller,
+            focusNode: widget.focusNode,
+            decoration: InputDecoration(hintText: widget.hintText),
+            keyboardType: widget.keyboardType,
+            maxLines: widget.maxLines,
+            onChanged: widget.onChanged,
+            onEditingComplete: widget.onEditingComplete,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            onTap: widget.onTap,
+            onTapAlwaysCalled: widget.onTapAlwaysCalled,
+            onTapOutside: widget.onTapOutside,
+            readOnly: widget.readOnly,
+            style: widget.style,
+            textAlign: widget.textAlign,
+            textInputAction: widget.textInputAction,
+            validator: widget.validator,
+          ),
         ),
       );
 }

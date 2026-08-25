@@ -227,6 +227,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                 widget.config,
                 fauxDisabled: !lockedAR,
                 icon: const Icon(Icons.aspect_ratio),
+                tooltip: 'Lock', // TODO
                 onPressed: () => setState(() => lockedAR = !lockedAR),
               ),
               widget.config.rowSpacer,

@@ -365,6 +365,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                             (await Clipboard.getData(Clipboard.kTextPlain))?.text;
                         if (clipText != null) urlController.text = clipText;
                       },
+                      tooltip: 'Paste', // TODO
                       icon: const Icon(Icons.paste),
                     ),
                   ],
