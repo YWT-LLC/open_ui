@@ -78,7 +78,13 @@ class OUILangDe extends OUILang {
   String get gFailure => 'Fehlschlag';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'Nein';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'Wiederholen';

@@ -78,7 +78,13 @@ class OUILangZh extends OUILang {
   String get gFailure => '失败';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => '否';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => '重做';

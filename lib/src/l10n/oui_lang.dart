@@ -261,11 +261,23 @@ abstract class OUILang {
   /// **'Failure'**
   String get gFailure;
 
+  /// No description provided for @gLock.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock'**
+  String get gLock;
+
   /// No description provided for @gNo.
   ///
   /// In en, this message translates to:
   /// **'No'**
   String get gNo;
+
+  /// No description provided for @gPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste'**
+  String get gPaste;
 
   /// No description provided for @gRedo.
   ///

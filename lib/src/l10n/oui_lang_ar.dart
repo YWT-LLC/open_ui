@@ -78,7 +78,13 @@ class OUILangAr extends OUILang {
   String get gFailure => 'فشل';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'لا';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'إعادة';

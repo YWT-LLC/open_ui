@@ -78,7 +78,13 @@ class OUILangSw extends OUILang {
   String get gFailure => 'Kushindwa';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'Hapana';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'Fanya upya';

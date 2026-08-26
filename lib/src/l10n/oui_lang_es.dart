@@ -78,7 +78,13 @@ class OUILangEs extends OUILang {
   String get gFailure => 'Fracaso';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'No';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'Rehacer';

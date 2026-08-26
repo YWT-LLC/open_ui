@@ -78,7 +78,13 @@ class OUILangKo extends OUILang {
   String get gFailure => '실패';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => '아니요';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => '다시 실행';

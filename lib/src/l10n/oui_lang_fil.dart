@@ -78,7 +78,13 @@ class OUILangFil extends OUILang {
   String get gFailure => 'Pagkabigo';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'Hindi';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'I-redo';

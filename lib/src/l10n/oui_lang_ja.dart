@@ -78,7 +78,13 @@ class OUILangJa extends OUILang {
   String get gFailure => '失敗';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'いいえ';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'やり直す';

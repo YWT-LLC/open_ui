@@ -78,7 +78,13 @@ class OUILangHt extends OUILang {
   String get gFailure => 'Echèk';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'Non';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'Refè';

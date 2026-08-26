@@ -78,7 +78,13 @@ class OUILangUk extends OUILang {
   String get gFailure => 'Збій';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'Ні';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'Повторити';

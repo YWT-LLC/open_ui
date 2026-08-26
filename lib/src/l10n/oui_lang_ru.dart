@@ -78,7 +78,13 @@ class OUILangRu extends OUILang {
   String get gFailure => 'Сбой';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'Нет';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'Повторить';

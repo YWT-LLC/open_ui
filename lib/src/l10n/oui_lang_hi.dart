@@ -78,7 +78,13 @@ class OUILangHi extends OUILang {
   String get gFailure => 'विफलता';
 
   @override
+  String get gLock => 'Lock';
+
+  @override
   String get gNo => 'नहीं';
+
+  @override
+  String get gPaste => 'Paste';
 
   @override
   String get gRedo => 'फिर से करें';
