@@ -20,10 +20,10 @@ class EzToolTipper extends StatelessWidget {
 
   /// Classic question mark tool tip
   const EzToolTipper(this.config, {super.key, this.message, this.richMessage})
-    : assert(
-        ((message == null) != (richMessage == null)),
-        'Either message or richMessage must be provided, but not both',
-      );
+      : assert(
+          ((message == null) != (richMessage == null)),
+          'Either message or richMessage must be provided, but not both',
+        );
 
   @override
   Widget build(BuildContext context) {
