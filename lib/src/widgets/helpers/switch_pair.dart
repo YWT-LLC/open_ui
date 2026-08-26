@@ -286,17 +286,23 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
           widget.config.rowSpacer,
 
           // Svvitch
-          Switch(
-            value: curr,
-            onChanged: (bool choice) {
-              setState(() => curr = choice);
-              widget.onChanged(choice);
-            },
-            thumbColor: WidgetStatePropertyAll<Color>(widget.config.colors.primary),
-            trackColor: WidgetStatePropertyAll<Color>(widget.config.colors.surface),
-            trackOutlineColor: WidgetStatePropertyAll<Color>(
-                widget.config.colors.primary.withValues(alpha: focusOpacity)),
-            padding: EdgeInsets.zero,
+          Semantics(
+            button: true,
+            hint: curr ? widget.onLabel : widget.offLabel,
+            child: ExcludeSemantics(
+              child: Switch(
+                value: curr,
+                onChanged: (bool choice) {
+                  setState(() => curr = choice);
+                  widget.onChanged(choice);
+                },
+                thumbColor: WidgetStatePropertyAll<Color>(widget.config.colors.primary),
+                trackColor: WidgetStatePropertyAll<Color>(widget.config.colors.surface),
+                trackOutlineColor: WidgetStatePropertyAll<Color>(
+                    widget.config.colors.primary.withValues(alpha: focusOpacity)),
+                padding: EdgeInsets.zero,
+              ),
+            ),
           ),
           widget.config.rowSpacer,
 
