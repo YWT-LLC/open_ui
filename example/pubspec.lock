@@ -253,10 +253,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "80f3ebee5e23b30f1c3163fbc8b4cd49ef959b4a2d8475ed370f17c34d726dc7"
+      sha256: "70e04f5ef83360433ea0099dc18154126536d85ef3cb4f63c2573725e49f608c"
       url: "https://pub.dev"
     source: hosted
-    version: "12.1.0"
+    version: "12.1.1"
   file_picker_darwin:
     dependency: transitive
     description:
