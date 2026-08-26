@@ -249,34 +249,41 @@ class EzTextField extends StatefulWidget {
 class _EzTextFieldState extends State<EzTextField> {
   bool error = false;
 
-  // TODO: fix, double talks
+  Widget core() => TextFormField(
+        autofillHints: widget.autofillHints,
+        autovalidateMode: widget.autovalidateMode,
+        controller: widget.controller,
+        focusNode: widget.focusNode,
+        decoration: InputDecoration(hintText: widget.hintText),
+        keyboardType: widget.keyboardType,
+        maxLines: widget.maxLines,
+        onChanged: widget.onChanged,
+        onEditingComplete: widget.onEditingComplete,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        onTap: widget.onTap,
+        onTapAlwaysCalled: widget.onTapAlwaysCalled,
+        onTapOutside: widget.onTapOutside,
+        readOnly: widget.readOnly,
+        style: widget.style,
+        textAlign: widget.textAlign,
+        textInputAction: widget.textInputAction,
+        validator: widget.validator,
+      );
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
         constraints: error ? widget.errorConstraints ?? widget.constraints : widget.constraints,
-        child: Semantics(
-          label: widget.label,
-          textField: true,
-          child: TextFormField(
-            autofillHints: widget.autofillHints,
-            autovalidateMode: widget.autovalidateMode,
-            controller: widget.controller,
-            focusNode: widget.focusNode,
-            decoration: InputDecoration(hintText: widget.hintText),
-            keyboardType: widget.keyboardType,
-            maxLines: widget.maxLines,
-            onChanged: widget.onChanged,
-            onEditingComplete: widget.onEditingComplete,
-            onFieldSubmitted: widget.onFieldSubmitted,
-            onTap: widget.onTap,
-            onTapAlwaysCalled: widget.onTapAlwaysCalled,
-            onTapOutside: widget.onTapOutside,
-            readOnly: widget.readOnly,
-            style: widget.style,
-            textAlign: widget.textAlign,
-            textInputAction: widget.textInputAction,
-            validator: widget.validator,
-          ),
-        ),
+        child: widget.label == null
+            ? core()
+            : Semantics(
+                label: widget.controller == null
+                    ? widget.label
+                    : widget.controller!.text.isEmpty
+                        ? '${widget.label}: ${widget.hintText}'
+                        : '${widget.label}: ${widget.controller!.text}',
+                textField: true,
+                readOnly: widget.readOnly,
+                child: ExcludeSemantics(child: core()),
+              ),
       );
 }
