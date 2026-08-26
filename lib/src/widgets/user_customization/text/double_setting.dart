@@ -75,7 +75,12 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
   late double currValue;
   final TextEditingController controller = TextEditingController();
 
-  late final Size sizeLimit = ezTextSize(sampleString, context: context, style: widget.style);
+  late final Size sizeLimit = ezTextSize(
+    widget.config,
+    text: sampleString,
+    style: widget.style,
+    textScaler: MediaQuery.textScalerOf(context),
+  );
 
   late double formFieldWidth = max(
     sizeLimit.width + widget.config.padding,
@@ -99,136 +104,139 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: widget.tooltip,
-    child: EzCol(
-      children: <Widget>[
-        EzScrollView(
-          widget.config,
-          scrollDirection: Axis.horizontal,
+        message: widget.tooltip,
+        child: EzCol(
           children: <Widget>[
-            // Minus
-            if (widget.plusMinus) ...<Widget>[
-              (currValue > widget.min)
-                  ? EzIconButton(
-                      widget.config,
-                      onPressed: () async {
-                        currValue -= widget.delta;
-                        controller.text = currValue.toString();
+            EzScrollView(
+              widget.config,
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                // Minus
+                if (widget.plusMinus) ...<Widget>[
+                  (currValue > widget.min)
+                      ? EzIconButton(
+                          widget.config,
+                          onPressed: () async {
+                            currValue -= widget.delta;
+                            controller.text = currValue.toString();
 
-                        await EzCM.setDouble(widget.configKey, currValue);
-                        if (widget.mirrorKey != null) {
-                          await EzCM.setDouble(widget.mirrorKey!, currValue);
-                        }
+                            await EzCM.setDouble(widget.configKey, currValue);
+                            if (widget.mirrorKey != null) {
+                              await EzCM.setDouble(widget.mirrorKey!, currValue);
+                            }
 
-                        widget.notifierCallback(currValue);
-                        if (context.mounted) {
-                          widget.config.pingRebuild(
-                            ezTextRebuildCheck(widget.config, context: context),
-                          );
-                        }
+                            widget.notifierCallback(currValue);
+                            if (context.mounted) {
+                              widget.config.pingRebuild(
+                                ezTextRebuildCheck(widget.config, context: context),
+                              );
+                            }
 
-                        setState(() {});
-                      },
-                      tooltip: '${widget.config.ezL10n.gDecrease} ${widget.tooltip.toLowerCase()}',
-                      icon: const Icon(Icons.remove),
-                    )
-                  : EzIconButton(
-                      widget.config,
-                      enabled: false,
-                      tooltip: widget.config.ezL10n.gMinimum,
-                      icon: Icon(Icons.remove, color: widget.config.colors.outline),
-                    ),
-              widget.config.rowMargin,
-            ],
+                            setState(() {});
+                          },
+                          tooltip:
+                              '${widget.config.ezL10n.gDecrease} ${widget.tooltip.toLowerCase()}',
+                          icon: const Icon(Icons.remove),
+                        )
+                      : EzIconButton(
+                          widget.config,
+                          enabled: false,
+                          tooltip: widget.config.ezL10n.gMinimum,
+                          icon: Icon(Icons.remove, color: widget.config.colors.outline),
+                        ),
+                  widget.config.rowMargin,
+                ],
 
-            // Text field
-            EzTextField(
-              controller: controller,
-              constraints: BoxConstraints(maxWidth: formFieldWidth, maxHeight: formFieldHeight),
-              hintText: widget.initialValue.toString(),
-              keyboardType: TextInputType.number,
-              style: widget.style,
-              validator: (String? value) {
-                if (value == null) return null;
-                final double? doubleVal = double.tryParse(value);
+                // Text field
+                EzTextField(
+                  controller: controller,
+                  constraints: BoxConstraints(maxWidth: formFieldWidth, maxHeight: formFieldHeight),
+                  hintText: widget.initialValue.toString(),
+                  keyboardType: TextInputType.number,
+                  style: widget.style,
+                  validator: (String? value) {
+                    if (value == null) return null;
+                    final double? doubleVal = double.tryParse(value);
 
-                if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
-                  setState(() {
-                    formFieldWidth = (sizeLimit.width + widget.config.padding) * 1.75;
-                    formFieldHeight = (sizeLimit.height + widget.config.padding) * 1.75;
-                  });
-                  return '${widget.min}  <->  ${widget.max}';
-                }
+                    if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
+                      setState(() {
+                        formFieldWidth = (sizeLimit.width + widget.config.padding) * 1.75;
+                        formFieldHeight = (sizeLimit.height + widget.config.padding) * 1.75;
+                      });
+                      return '${widget.min}  <->  ${widget.max}';
+                    }
 
-                setState(() {
-                  formFieldWidth = sizeLimit.width + widget.config.padding;
-                  formFieldHeight = sizeLimit.height + widget.config.padding;
-                });
-                return null;
-              },
-              onFieldSubmitted: (String stringVal) async {
-                final double? doubleVal = double.tryParse(stringVal);
+                    setState(() {
+                      formFieldWidth = sizeLimit.width + widget.config.padding;
+                      formFieldHeight = sizeLimit.height + widget.config.padding;
+                    });
+                    return null;
+                  },
+                  onFieldSubmitted: (String stringVal) async {
+                    final double? doubleVal = double.tryParse(stringVal);
 
-                if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
-                  return;
-                }
-                currValue = doubleVal;
+                    if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
+                      return;
+                    }
+                    currValue = doubleVal;
 
-                await EzCM.setDouble(widget.configKey, doubleVal);
-                if (widget.mirrorKey != null) {
-                  await EzCM.setDouble(widget.mirrorKey!, doubleVal);
-                }
+                    await EzCM.setDouble(widget.configKey, doubleVal);
+                    if (widget.mirrorKey != null) {
+                      await EzCM.setDouble(widget.mirrorKey!, doubleVal);
+                    }
 
-                widget.notifierCallback(doubleVal);
-                if (context.mounted) {
-                  widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-                }
+                    widget.notifierCallback(doubleVal);
+                    if (context.mounted) {
+                      widget.config
+                          .pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+                    }
 
-                setState(() {});
-              },
+                    setState(() {});
+                  },
+                ),
+
+                if (widget.plusMinus) ...<Widget>[
+                  widget.config.rowMargin,
+
+                  // Plus icon
+                  (currValue < widget.max)
+                      ? EzIconButton(
+                          widget.config,
+                          onPressed: () async {
+                            currValue += widget.delta;
+                            controller.text = currValue.toString();
+
+                            await EzCM.setDouble(widget.configKey, currValue);
+                            if (widget.mirrorKey != null) {
+                              await EzCM.setDouble(widget.mirrorKey!, currValue);
+                            }
+
+                            widget.notifierCallback(currValue);
+                            if (context.mounted) {
+                              widget.config.pingRebuild(
+                                ezTextRebuildCheck(widget.config, context: context),
+                              );
+                            }
+
+                            setState(() {});
+                          },
+                          tooltip:
+                              '${widget.config.ezL10n.gIncrease} ${widget.tooltip.toLowerCase()}',
+                          icon: const Icon(Icons.add),
+                        )
+                      : EzIconButton(
+                          widget.config,
+                          enabled: false,
+                          tooltip: widget.config.ezL10n.gMaximum,
+                          icon: Icon(Icons.add, color: widget.config.colors.outline),
+                        ),
+                ],
+              ],
             ),
 
-            if (widget.plusMinus) ...<Widget>[
-              widget.config.rowMargin,
-
-              // Plus icon
-              (currValue < widget.max)
-                  ? EzIconButton(
-                      widget.config,
-                      onPressed: () async {
-                        currValue += widget.delta;
-                        controller.text = currValue.toString();
-
-                        await EzCM.setDouble(widget.configKey, currValue);
-                        if (widget.mirrorKey != null) {
-                          await EzCM.setDouble(widget.mirrorKey!, currValue);
-                        }
-
-                        widget.notifierCallback(currValue);
-                        if (context.mounted) {
-                          widget.config.pingRebuild(
-                            ezTextRebuildCheck(widget.config, context: context),
-                          );
-                        }
-
-                        setState(() {});
-                      },
-                      tooltip: '${widget.config.ezL10n.gIncrease} ${widget.tooltip.toLowerCase()}',
-                      icon: const Icon(Icons.add),
-                    )
-                  : EzIconButton(
-                      widget.config,
-                      enabled: false,
-                      tooltip: widget.config.ezL10n.gMaximum,
-                      icon: Icon(Icons.add, color: widget.config.colors.outline),
-                    ),
-            ],
+            // Label icon
+            widget.icon,
           ],
         ),
-
-        // Label icon
-        widget.icon,
-      ],
-    ),
-  );
+      );
 }

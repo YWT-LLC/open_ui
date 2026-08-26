@@ -86,18 +86,20 @@ double _snackWidth(
     // Text width
     (config.marginVal +
         ezTextSize(
-          message,
-          context: context,
+          config,
+          text: message,
           style: config.theme.snackBarTheme.contentTextStyle,
+          textScaler: MediaQuery.textScalerOf(context),
         ).width) +
     // Undo width
     (showUndo
         ? (config.marginVal +
-              ezTextSize(
-                undoMsg ?? config.ezL10n.gUndo,
-                context: context,
-                style: config.bodyStyle,
-              ).width)
+            ezTextSize(
+              config,
+              text: undoMsg ?? config.ezL10n.gUndo,
+              style: config.bodyStyle,
+              textScaler: MediaQuery.textScalerOf(context),
+            ).width)
         : 0) +
     // Timer width
     (config.marginVal + config.iconSize + config.padding) +

@@ -59,12 +59,16 @@ bool ezTextRebuildCheck(EzCP config, {required BuildContext context}) {
 }
 
 /// Returns the soon-to-be rendered [Size] of [text] via a [TextPainter]
-Size ezTextSize(String text, {required BuildContext context, required TextStyle? style}) {
+Size ezTextSize(
+  EzCP config, {
+  required String text,
+  required TextStyle? style,
+  required TextScaler textScaler,
+}) {
   final TextPainter textPainter = TextPainter(
     text: TextSpan(text: text, style: style),
-    maxLines: 1,
-    textScaler: MediaQuery.textScalerOf(context),
-    textDirection: TextDirection.ltr,
+    textScaler: textScaler,
+    textDirection: config.isLTR ? TextDirection.ltr : TextDirection.rtl,
   )..layout();
 
   return textPainter.size;

@@ -691,9 +691,10 @@ class _ImageSettingState extends State<EzImageSetting> {
                     children: <Widget>[
                       Container(
                         height: ezTextSize(
-                              fit.name,
+                              widget.config,
+                              text: fit.name,
                               style: widget.config.bodyStyle,
-                              context: modalContext,
+                              textScaler: MediaQuery.textScalerOf(modalContext),
                             ).height +
                             (widget.config.marginVal * 0.25),
                         width: double.infinity,

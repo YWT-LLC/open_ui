@@ -288,7 +288,12 @@ Future<void> ezColorPicker(
 /// Returns an appropriate width for a [DropdownMenu]
 double ezDropdownWidth(EzCP config, {required BuildContext context, required String entry}) =>
     2 * config.marginVal +
-    ezTextSize(entry, context: context, style: config.bodyStyle).width +
+    ezTextSize(
+      config,
+      text: entry,
+      style: config.bodyStyle,
+      textScaler: MediaQuery.textScalerOf(context),
+    ).width +
     config.padding +
     max(config.padding + config.iconSize, kMinInteractiveDimension);
 
@@ -494,9 +499,10 @@ double ezToolbarHeight(
 }) =>
     max(
       ezTextSize(
-        title,
-        context: context,
+        config,
+        text: title,
         style: style ?? config.theme.appBarTheme.titleTextStyle,
+        textScaler: MediaQuery.textScalerOf(context),
       ).height,
       includeIconButton
           ? max(config.iconSize + config.padding, kMinInteractiveDimension)
