@@ -10,8 +10,8 @@ import 'package:open_ui/open_ui.dart';
 /// Open UI
 const String thisAppName = 'Open UI';
 
-/// llc.ywt.open_ui
-const String thisPackageName = 'llc.ywt.open_ui';
+/// net.empathetech.open_ui
+const String thisPackageName = 'net.empathetech.open_ui';
 
 // App form //
 

@@ -14,7 +14,7 @@ EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
       appVersion: '4.0.0',
       versionSource:
           'https://raw.githubusercontent.com/YWT-LLC/open_ui/refs/heads/main/example/APP_VERSION',
-      gPlay: 'https://play.google.com/store/apps/details?id=llc.ywt.open_ui',
+      gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
       appStore: 'https://apps.apple.com/us/app/open-ui/id6499560244',
       github: 'https://github.com/YWT-LLC/open_ui/releases',
     );
