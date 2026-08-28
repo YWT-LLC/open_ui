@@ -201,6 +201,7 @@ void ezCloseAll() {
   if (state.canPop()) state.popUntil((Route<dynamic> route) => route is PageRoute<dynamic>);
 }
 
+// TODO: keyboard padding
 /// Wraps a [ColorPicker] in an [EzAlertDialog]
 Future<void> ezColorPicker(
   EzCP config, {
