@@ -11,7 +11,7 @@ import 'package:open_ui/open_ui.dart';
 
 EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
       config,
-      appVersion: '4.0.0',
+      appVersion: '4.0.2',
       versionSource:
           'https://raw.githubusercontent.com/YWT-LLC/open_ui/refs/heads/main/example/APP_VERSION',
       gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
