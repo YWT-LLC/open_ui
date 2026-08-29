@@ -39,7 +39,7 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
     locales = List<Locale>.from(OUILang.supportedLocales);
 
     if (widget.skip != null && widget.skip!.isNotEmpty) {
-      locales.removeWhere((final Locale locale) => widget.skip!.contains(locale));
+      locales.removeWhere((Locale locale) => widget.skip!.contains(locale));
     }
   }
 
