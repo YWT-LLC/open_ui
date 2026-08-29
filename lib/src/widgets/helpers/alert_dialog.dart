@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzAlertDialog extends AlertDialog {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Dialog content becomes [contents] in an [EzScrollView]
   final List<Widget>? contents;
 
@@ -15,7 +18,8 @@ class EzAlertDialog extends AlertDialog {
   final bool needsClose;
 
   /// [AlertDialog] wrapper with custom styling
-  const EzAlertDialog({
+  const EzAlertDialog(
+    this.config, {
     super.key,
     super.title,
     super.content,
@@ -23,29 +27,27 @@ class EzAlertDialog extends AlertDialog {
     super.actions,
     this.needsClose = true,
   }) : assert(
-          (content == null && contents == null) || ((content == null) != (contents == null)),
-          'Either content or contents should be provided, but not both.',
-        );
+         (content == null && contents == null) || ((content == null) != (contents == null)),
+         'Either content or contents should be provided, but not both.',
+       );
 
   @override
   Widget build(BuildContext context) {
     // Define the content //
 
     final Widget? dialogContent =
-        content ?? ((contents == null) ? null : EzScrollView(children: contents!));
+        content ?? ((contents == null) ? null : EzScrollView(config, children: contents!));
 
-    late final Widget closeAction = EzMaterialAction(
-      text: EzConfig.l10n.gClose,
+    late final Widget closeAction = EzAction(
+      config,
+      text: config.ezL10n.gClose,
       onPressed: () => Navigator.of(context).pop(),
     );
 
     late final List<Widget>? closedActions = needsClose
         ? (actions?.length ?? 0) > 1
-            ? <Widget>[...actions!, closeAction]
-            : <Widget>[
-                closeAction,
-                if (actions != null) ...actions!,
-              ]
+              ? <Widget>[...actions!, closeAction]
+              : <Widget>[closeAction, if (actions != null) ...actions!]
         : actions;
 
     // Return the build //
@@ -57,9 +59,9 @@ class EzAlertDialog extends AlertDialog {
         titlePadding: title == null
             ? null
             : EdgeInsets.only(
-                top: EzConfig.marginVal,
-                left: EzConfig.marginVal,
-                right: EzConfig.marginVal,
+                top: config.marginVal,
+                left: config.marginVal,
+                right: config.marginVal,
               ),
 
         // Content
@@ -67,42 +69,39 @@ class EzAlertDialog extends AlertDialog {
         contentPadding: dialogContent == null
             ? null
             : EdgeInsets.only(
-                top: (title == null) ? EzConfig.marginVal : EzConfig.spacing,
-                left: EzConfig.marginVal,
-                right: EzConfig.marginVal,
+                top: (title == null) ? config.marginVal : config.spacing,
+                left: config.marginVal,
+                right: config.marginVal,
               ),
 
         // Actions
         actions: (closedActions == null)
             ? null
             : closedActions.length <= 2
-                ? EzConfig.isLefty
-                    ? closedActions.reversed.toList()
-                    : closedActions
-                : <Widget>[
-                    EzCol(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: closedActions,
-                    ),
-                  ],
+            ? config.isLefty
+                  ? closedActions.reversed.toList()
+                  : closedActions
+            : <Widget>[EzCol(mainAxisAlignment: MainAxisAlignment.center, children: closedActions)],
         actionsAlignment: (closedActions != null && closedActions.length > 2)
             ? MainAxisAlignment.center
-            : EzConfig.isLefty
-                ? MainAxisAlignment.start
-                : MainAxisAlignment.end,
+            : config.isLefty
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.end,
 
         // General
         iconPadding: EdgeInsets.zero,
         buttonPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.all(EzConfig.marginVal),
-        actionsPadding: EzInsets.wrap(EzConfig.spacing),
+        insetPadding: EdgeInsets.all(config.marginVal),
+        actionsPadding: EzInsets.wrap(config.spacing),
       ),
     );
   }
 }
 
-class EzMaterialAction extends StatelessWidget {
+class EzAction extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [EzTextButton.text] passthrough
   final String text;
 
@@ -122,7 +121,8 @@ class EzMaterialAction extends StatelessWidget {
   final TextStyle? style;
 
   /// [EzTextButton] wrapper with custom styling for an [AlertDialog]
-  const EzMaterialAction({
+  const EzAction(
+    this.config, {
     super.key,
     required this.text,
     this.semantics,
@@ -134,19 +134,20 @@ class EzMaterialAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? baseStyle = style ?? EzConfig.styles.bodyLarge;
+    final TextStyle? baseStyle = style ?? config.bodyStyle;
 
     final TextStyle? textStyle = isDefaultAction
         ? baseStyle?.copyWith(fontWeight: FontWeight.bold)
         : isDestructiveAction
-            ? baseStyle?.copyWith(color: EzConfig.colors.error)
-            : baseStyle;
+        ? baseStyle?.copyWith(color: config.colors.error)
+        : baseStyle;
 
     return EzTextButton(
+      config,
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: EzConfig.colors.surfaceDim,
-        padding: EzInsets.wrap(EzConfig.spacing),
+        backgroundColor: config.colors.surfaceDim,
+        padding: EzInsets.wrap(config.spacing),
       ),
       text: text,
       semantics: semantics,
@@ -156,7 +157,8 @@ class EzMaterialAction extends StatelessWidget {
 }
 
 /// Pairs with [EzAlertDialog]
-List<EzMaterialAction> ezActionPair({
+List<EzAction> ezActionPair(
+  EzCP config, {
   String? confirmMsg,
   required void Function() onConfirm,
   bool confirmIsDefault = false,
@@ -166,20 +168,21 @@ List<EzMaterialAction> ezActionPair({
   bool denyIsDefault = false,
   bool denyIsDestructive = false,
   TextStyle? style,
-}) =>
-    <EzMaterialAction>[
-      EzMaterialAction(
-        text: denyMsg ?? EzConfig.l10n.gNo,
-        onPressed: onDeny,
-        isDefaultAction: denyIsDefault,
-        isDestructiveAction: denyIsDestructive,
-        style: style,
-      ),
-      EzMaterialAction(
-        text: confirmMsg ?? EzConfig.l10n.gYes,
-        onPressed: onConfirm,
-        isDefaultAction: confirmIsDefault,
-        isDestructiveAction: confirmIsDestructive,
-        style: style,
-      ),
-    ];
+}) => <EzAction>[
+  EzAction(
+    config,
+    text: denyMsg ?? config.ezL10n.gNo,
+    onPressed: onDeny,
+    isDefaultAction: denyIsDefault,
+    isDestructiveAction: denyIsDestructive,
+    style: style,
+  ),
+  EzAction(
+    config,
+    text: confirmMsg ?? config.ezL10n.gYes,
+    onPressed: onConfirm,
+    isDefaultAction: confirmIsDefault,
+    isDestructiveAction: confirmIsDestructive,
+    style: style,
+  ),
+];

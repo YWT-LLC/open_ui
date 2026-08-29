@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -12,15 +12,7 @@ import 'package:flutter/material.dart';
 
 // consts //
 
-const List<String> _shortWeekdays = <String>[
-  'Len',
-  'Mad',
-  'Mèk',
-  'Jed',
-  'Van',
-  'Sam',
-  'Dim',
-];
+const List<String> _shortWeekdays = <String>['Len', 'Mad', 'Mèk', 'Jed', 'Van', 'Sam', 'Dim'];
 
 const List<String> _weekdays = <String>[
   'Lendi',
@@ -74,20 +66,7 @@ int _getDaysInMonth(int year, int month) {
     return isLeapYear ? 29 : 28;
   }
 
-  const List<int> daysInMonth = <int>[
-    31,
-    -1,
-    31,
-    30,
-    31,
-    30,
-    31,
-    31,
-    30,
-    31,
-    30,
-    31,
-  ];
+  const List<int> daysInMonth = <int>[31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   return daysInMonth[month - 1];
 }
@@ -802,10 +781,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
   }
 
   @override
-  String formatTimeOfDay(
-    TimeOfDay timeOfDay, {
-    bool alwaysUse24HourFormat = false,
-  }) {
+  String formatTimeOfDay(TimeOfDay timeOfDay, {bool alwaysUse24HourFormat = false}) {
     final StringBuffer buffer = StringBuffer();
 
     buffer
@@ -860,11 +836,7 @@ class CreoleMaterialLocalizations implements MaterialLocalizations {
       return null;
     }
 
-    try {
-      return DateTime(year, month, day);
-    } on ArgumentError {
-      return null;
-    }
+    return DateTime(year, month, day);
   }
 
   @override

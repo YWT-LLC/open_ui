@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzRichText extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Text.rich] passthrough
   final List<InlineSpan> children;
 
@@ -20,18 +23,31 @@ class EzRichText extends StatelessWidget {
   /// [Text.rich] passthrough
   final TextAlign textAlign;
 
+  /// Optional [EzTextBackground.borderRadius] passthrough
+  final BorderRadiusGeometry? borderRadius;
+
+  /// Optional [EzTextBackground.baseColor] passthrough
+  final Color? baseColor;
+
+  /// Optional [EzTextBackground.backgroundColor] passthrough
+  final Color? backgroundColor;
+
   /// [Text.rich] wrapper with custom [Semantics] behavior
   /// Recommended to pair with [EzPlainText] and [EzInlineLink] rather than [TextSpan]s
   const EzRichText(
-    this.children, {
+    this.config, {
+    required this.children,
     super.key,
-    this.textBackground = true,
     this.style,
     this.textAlign = TextAlign.start,
+    this.textBackground = true,
+    this.borderRadius,
+    this.baseColor,
+    this.backgroundColor,
   });
 
   String _semanticsLabel() {
-    final StringBuffer label = StringBuffer('');
+    final StringBuffer label = StringBuffer();
 
     for (final InlineSpan child in children) {
       switch (child.runtimeType) {
@@ -56,21 +72,28 @@ class EzRichText extends StatelessWidget {
   }
 
   Text _text() => Text.rich(
-        TextSpan(children: children, semanticsLabel: null),
-        style: style,
-        textAlign: textAlign,
-        softWrap: true,
-        overflow: TextOverflow.clip,
-        textScaler: TextScaler.noScaling,
-        semanticsLabel: null,
-        textWidthBasis: TextWidthBasis.parent,
-      );
+    TextSpan(children: children),
+    style: style,
+    textAlign: textAlign,
+    softWrap: true,
+    overflow: TextOverflow.clip,
+    textScaler: TextScaler.noScaling,
+    textWidthBasis: TextWidthBasis.parent,
+  );
 
   @override
   Widget build(BuildContext context) => Semantics(
-        label: _semanticsLabel(),
-        container: true,
-        explicitChildNodes: true,
-        child: textBackground ? EzTextBackground(_text()) : _text(),
-      );
+    label: _semanticsLabel(),
+    container: true,
+    explicitChildNodes: true,
+    child: textBackground
+        ? EzTextBackground(
+            config,
+            text: _text(),
+            borderRadius: borderRadius,
+            baseColor: baseColor,
+            backgroundColor: backgroundColor,
+          )
+        : _text(),
+  );
 }

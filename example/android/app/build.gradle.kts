@@ -14,9 +14,9 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "net.empathetech.open_ui"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = "28.2.13676358"
-
+    compileSdk = 37
+    ndkVersion = flutter.ndkVersion
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -28,6 +28,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled = true
     }
 
     signingConfigs {

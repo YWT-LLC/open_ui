@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -38,14 +38,5 @@ TargetPlatform getHostPlatform() {
     return TargetPlatform.windows;
   } else {
     return TargetPlatform.linux;
-  }
-}
-
-/// Request/exit a fullscreen window
-Future<void> toggleFullscreen(bool isFull) async {
-  if (isFull) {
-    document.exitFullscreen();
-  } else {
-    document.documentElement?.requestFullscreen();
   }
 }

@@ -1,6 +1,6 @@
 name: example
-description: "Open UI is a sandbox application that demonstrates the power of an Empathetech UI. If you like Open UI, checkout https://github.com/Empathetech-LLC/empathetech_flutter_ui"
-version: 4.0.0+41
+description: "Open UI is an accessibility sandbox, with limitless potential. If you like it, checkout https://github.com/YWT-LLC/open_ui"
+version: 4.0.2+43
 publish_to: 'none'
 
 environment:
@@ -13,30 +13,30 @@ dependencies:
     sdk: flutter
 
   # Flutter (Google)
-  go_router: ^17.2.3
-  intl: ^0.20.2
+  go_router: ^18.0.0
+  intl: ^0.20.3
   shared_preferences: ^2.5.5
 
   # Community
   after_layout: ^1.2.0
-  file_picker: ^12.0.0-beta.4
+  file_picker: ^12.1.2
   file_saver: ^0.4.0
   line_icons: ^2.0.3
   provider: ^6.1.5+1
-  window_manager: ^0.5.1
-  xml: ^6.6.1
+  window_manager: ^0.5.2
+  xml: ^7.0.1
 
-  # Empathetech
-  empathetech_flutter_ui:
+  # YWT
+  open_ui:
     path: ../
-  efui_bios:
-    path: ../../efui_bios
+  ywt_private:
+    path: ../../ywt_private
 
 dev_dependencies:
-  dependency_validator: ^5.0.5
+  dependency_validator: ^5.0.6
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
-  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.8
 
 flutter:
   generate: true
@@ -49,7 +49,7 @@ flutter:
 flutter_launcher_icons:
   image_path: assets/app-icon.png
   adaptive_icon_foreground: assets/app-icon.png
-  adaptive_icon_background: "#FFA520DA"
+  adaptive_icon_background: "#A520DA"
   android: true
   ios: true
   background_color_ios: "#A520DA"
@@ -63,8 +63,10 @@ flutter_launcher_icons:
     generate: true
 
 flutter_native_splash:
-  color: "#A520DA"
   image: assets/app-icon.png
+  image_dark: assets/app-icon.png
+  color: "#A520DA"
+  color_dark: "#A520DA"
   android: true
   ios: true
   web: true

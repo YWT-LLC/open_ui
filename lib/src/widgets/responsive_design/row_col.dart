@@ -1,9 +1,9 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,17 +19,13 @@ class EzRowCol extends StatelessWidget {
 
   /// [row] that will switch to a [col] when the context's [ScreenSize] <= [breakpoint]
   /// Will always be [col] if [EzScreenSize] is not in the Widget tree
-  EzRowCol({
-    super.key,
-    this.breakpoint = ScreenSize.small,
-    required this.row,
-    required this.col,
-  })  : assert(
+  EzRowCol({super.key, this.breakpoint = ScreenSize.small, required this.row, required this.col})
+      : assert(
           row.runtimeType == Row || row.runtimeType == EzRow || row.runtimeType == EzScrollView,
           'row Widget can be a Row, EzRow, or EzScrollView',
         ),
         assert(
-          col.runtimeType == Column || col.runtimeType == EzScrollView,
+          col.runtimeType == Column || col.runtimeType == EzCol || col.runtimeType == EzScrollView,
           'col Widget can be a Column or EzScrollView',
         );
 
@@ -41,7 +37,8 @@ class EzRowCol extends StatelessWidget {
 
   /// Horizontal [EzScrollView] that will switch to a [Column] based on [breakpoint]
   /// Alignment, size, and direction values will be shared (symmetric)
-  EzRowCol.sym({
+  EzRowCol.sym(
+    EzCP config, {
     super.key,
     this.breakpoint = ScreenSize.small,
     bool reverseHands = false,
@@ -50,6 +47,7 @@ class EzRowCol extends StatelessWidget {
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
     required List<Widget> children,
   })  : row = EzScrollView(
+          config,
           scrollDirection: Axis.horizontal,
           reverseHands: reverseHands,
           mainAxisAlignment: mainAxisAlignment,

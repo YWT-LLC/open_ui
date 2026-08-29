@@ -1,18 +1,18 @@
 /* open_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import './screens/export.dart';
 import './utils/export.dart';
 
+import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
 
 void main() async {
   // Configure the app //
@@ -20,18 +20,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
 
-  EzConfig.init(
+  EzCM.init(
     appName: thisAppName,
     androidPackage: thisPackageName,
     assetPaths: <String>{},
     defaults: isMobile() ? mobileDefaults : desktopDefaults,
     localeFallback: americanEnglish,
-    l10nFallback: await EFUILang.delegate.load(americanEnglish),
+    l10nFallback: await OUILang.delegate.load(americanEnglish),
     preferences: await SharedPreferencesWithCache.create(
-      cacheOptions: SharedPreferencesWithCacheOptions(
-        allowList: allEZConfigKeys.keys.toSet(),
-      ),
+      cacheOptions: SharedPreferencesWithCacheOptions(allowList: allEZConfigKeys.keys.toSet()),
     ),
+    orientations: DeviceOrientation.values,
   );
 
   if (!kIsWeb && !isMobile()) {
@@ -48,68 +47,67 @@ void main() async {
 
   // Run the app //
 
-  final (Locale storedLocale, EFUILang storedEFUILang) = await ezStoredL10n();
+  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
 
-  runApp(OpenUI(
-    storedLocale,
-    storedEFUILang,
-    await Lang.delegate.load(storedLocale),
-  ));
+  runApp(OpenUI(storedLocale, storedOUILang, await Lang.delegate.load(storedLocale)));
 }
 
 class OpenUI extends StatelessWidget {
   final Locale storedLocale;
-  final EFUILang storedEFUILang;
+  final OUILang storedOUILang;
   final Lang storedLang;
 
-  const OpenUI(
-    this.storedLocale,
-    this.storedEFUILang,
-    this.storedLang, {
-    super.key,
-  });
+  const OpenUI(this.storedLocale, this.storedOUILang, this.storedLang, {super.key});
 
   @override
   Widget build(BuildContext context) => EzConfigurableApp(
         localizationsDelegates: ezLocalizationsDelegates(Lang.localizationsDelegates),
         supportedLocales: Lang.supportedLocales,
         locale: storedLocale,
-        el10n: storedEFUILang,
+        el10n: storedOUILang,
         appCache: OpenUICache(storedLocale, storedLang),
         routerConfig: GoRouter(
           navigatorKey: ezRootNav,
           initialLocation: homePath,
-          errorBuilder: (_, __) => ErrorScreen(),
+          errorBuilder: (_, __) => const ErrorScreen(),
           routes: <RouteBase>[
             // Home
             GoRoute(
               path: homePath,
               name: homePath,
-              pageBuilder: (BuildContext context, GoRouterState state) =>
-                  ezPageBuilder(context, state, HomeScreen()),
+              pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                  ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
               routes: <RouteBase>[
                 // Archive
                 GoRoute(
                   path: archiveScreenPath,
                   name: archiveScreenPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, ArchiveScreen((state.extra as EAGConfig))),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+                    configWatcher(pbc),
+                    pbc,
+                    pbs,
+                    ArchiveScreen((pbs.extra as EAGConfig)),
+                  ),
                 ),
 
                 // Generate
                 GoRoute(
                   path: generateScreenPath,
                   name: generateScreenPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, GenerateScreen((state.extra as EAGConfig))),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+                    configWatcher(pbc),
+                    pbc,
+                    pbs,
+                    GenerateScreen((pbs.extra as EAGConfig)),
+                  ),
                 ),
 
                 // Settings
                 GoRoute(
                   path: settingsHubPath,
                   name: settingsHubPath,
-                  pageBuilder: (BuildContext context, GoRouterState state) =>
-                      ezPageBuilder(context, state, SettingsHubScreen()),
+                  pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                      ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
                 ),
               ],
             ),

@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzGlobalSettings extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Optionally remove the locale setting
   final bool excludeLocaleSetting;
 
@@ -22,12 +25,11 @@ class EzGlobalSettings extends StatelessWidget {
   /// BYO leading spacer, see [quickConfigSpacer] for trailing spacer
   final List<Widget>? additionalSettings;
 
-  /// [EzConfig.saveConfig] passthrough
+  /// [EzCM.saveConfig] passthrough
   final Set<String>? saveSkip;
 
-  /// Spacer before the [EzQuickConfig]
-  /// If null, [EzQuickConfig] will not be included
-  final Widget quickConfigSpacer;
+  /// Defaults to [EzCP.separator]
+  final Widget? quickConfigSpacer;
 
   /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function(bool)? extraBig;
@@ -50,17 +52,18 @@ class EzGlobalSettings extends StatelessWidget {
   /// [EzResetButton.dynamicTitle] passthrough
   final String Function()? resetTitle;
 
-  /// Empathetech settings landing page
+  /// Settings landing page
   /// Contains global settings and [EzElevatedIconButton]s that lead to the rest of the settings pages
   /// Recommended to use as a [Scaffold.body]
-  const EzGlobalSettings({
+  const EzGlobalSettings(
+    this.config, {
     super.key,
     this.excludeLocaleSetting = false,
     this.skipLocales,
     this.inDistress = const <String>{'US'},
     this.additionalSettings,
     this.saveSkip,
-    this.quickConfigSpacer = const EzSeparator(),
+    this.quickConfigSpacer,
     this.extraBig,
     this.extraVis,
     this.extraChalk,
@@ -71,34 +74,34 @@ class EzGlobalSettings extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => EzCol(children: <Widget>[
-        EzConfig.spacer,
-        const EzDominantHandSwitch(),
-        EzConfig.spacer,
-        const EzThemeModeSwitch(),
-        if (!excludeLocaleSetting) ...<Widget>[
-          EzConfig.spacer,
-          EzLocaleSetting(
-            skip: skipLocales ?? <Locale>{arabic, english, chinese},
-            inDistress: inDistress,
+  Widget build(BuildContext context) => EzCol(
+        children: <Widget>[
+          config.spacer,
+          EzDominantHandSwitch(config),
+          config.spacer,
+          EzThemeModeSwitch(config),
+          if (!excludeLocaleSetting) ...<Widget>[
+            config.spacer,
+            EzLocaleSetting(
+              config,
+              skip: skipLocales ?? <Locale>{arabic, english, chinese},
+              inDistress: inDistress,
+            ),
+          ],
+          if (additionalSettings != null) ...additionalSettings!,
+          quickConfigSpacer ?? config.separator,
+          EzQuickConfig(
+            config,
+            extraBig: extraBig,
+            extraVis: extraVis,
+            extraChalk: extraChalk,
+            extraNebula: extraNebula,
+            extraWall: extraWall,
           ),
+          config.spacer,
+          EzConfigRandomizer(config, saveSkip: saveSkip),
+          config.separator,
+          EzResetButton(config, resetSkip: resetSkip, saveSkip: saveSkip, dynamicTitle: resetTitle),
         ],
-        if (additionalSettings != null) ...additionalSettings!,
-        quickConfigSpacer,
-        EzQuickConfig(
-          extraBig: extraBig,
-          extraVis: extraVis,
-          extraChalk: extraChalk,
-          extraNebula: extraNebula,
-          extraWall: extraWall,
-        ),
-        EzConfig.spacer,
-        EzConfigRandomizer(saveSkip: saveSkip),
-        EzConfig.separator,
-        EzResetButton(
-          resetSkip: resetSkip,
-          saveSkip: saveSkip,
-          dynamicTitle: resetTitle,
-        ),
-      ]);
+      );
 }

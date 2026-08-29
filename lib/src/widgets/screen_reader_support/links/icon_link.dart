@@ -1,14 +1,17 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzIconLink extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// The [TextButton.icon] label will be [Text] with [label] and all provided styling
   final String label;
 
@@ -45,7 +48,8 @@ class EzIconLink extends StatefulWidget {
   /// Or an external link to [url]
   /// Always has a tool [tooltip]; if one is not provided, it will default to [hint]
   /// Highlights [label] with [decorationColor] and adds an [TextDecoration.underline] on hover/focus
-  const EzIconLink({
+  const EzIconLink(
+    this.config, {
     super.key,
     required this.label,
     this.style,
@@ -56,8 +60,10 @@ class EzIconLink extends StatefulWidget {
     this.url,
     required this.hint,
     this.tooltip,
-  }) : assert((onTap == null) != (url == null),
-            'Either onTap or url should be provided, but not both.');
+  }) : assert(
+         (onTap == null) != (url == null),
+         'Either onTap or url should be provided, but not both.',
+       );
 
   @override
   State<EzIconLink> createState() => _EzIconLinkState();
@@ -68,14 +74,17 @@ class _EzIconLinkState extends State<EzIconLink> {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
-      color: widget.textColor ?? EzConfig.colors.onSurface,
+    TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
+      color: widget.textColor ?? widget.config.colors.onSurface,
       decoration: TextDecoration.none,
-      decorationColor: EzConfig.colors.primary,
+      decorationColor: widget.config.colors.primary,
     );
 
-    void underline(bool addIt) => setState(() => textStyle =
-        textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
+    void underline(bool addIt) => setState(
+      () => textStyle = textStyle?.copyWith(
+        decoration: addIt ? TextDecoration.underline : TextDecoration.none,
+      ),
+    );
 
     // Return the build //
 
@@ -89,31 +98,21 @@ class _EzIconLinkState extends State<EzIconLink> {
           child: (widget.onTap != null)
               ? TextButton.icon(
                   onPressed: widget.onTap,
-                  onLongPress: null,
                   onHover: (bool isHovering) => underline(isHovering),
                   onFocusChange: (bool hasFocus) => underline(hasFocus),
                   icon: widget.icon,
-                  iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
-                  label: Text(
-                    widget.label,
-                    style: textStyle,
-                    textAlign: widget.textAlign,
-                  ),
+                  iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+                  label: Text(widget.label, style: textStyle, textAlign: widget.textAlign),
                 )
               : Link(
                   uri: widget.url,
                   builder: (_, FollowLink? followLink) => TextButton.icon(
                     onPressed: followLink,
-                    onLongPress: null,
                     onHover: (bool isHovering) => underline(isHovering),
                     onFocusChange: (bool hasFocus) => underline(hasFocus),
                     icon: widget.icon,
-                    iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
-                    label: Text(
-                      widget.label,
-                      style: textStyle,
-                      textAlign: widget.textAlign,
-                    ),
+                    iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+                    label: Text(widget.label, style: textStyle, textAlign: widget.textAlign),
                   ),
                 ),
         ),

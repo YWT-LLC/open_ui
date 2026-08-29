@@ -1,38 +1,30 @@
 /* open_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import './export.dart';
 
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 /// Allows letters (upper and lower case) and underscores
-String? validateAppName(
-  String? value, {
-  Function? onSuccess,
-  Function? onFailure,
-}) {
+String? validateAppName(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return '${EzConfig.l10n.gRequired}; ${l10n.csInvalidName.toLowerCase()}';
+    return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName.toLowerCase()}';
   } else if (!appNamePattern.hasMatch(value)) {
     onFailure?.call();
-    return l10n.csInvalidName;
+    return l10n(config).csInvalidName;
   } else {
     onSuccess?.call();
     return null;
   }
 }
 
-String? validatePublisher(
-  String? value, {
-  Function? onSuccess,
-  Function? onFailure,
-}) {
+String? validatePublisher(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return EzConfig.l10n.gRequired;
+    return config.ezL10n.gRequired;
   }
 
   onSuccess?.call();
@@ -40,13 +32,14 @@ String? validatePublisher(
 }
 
 String? validateDescription(
+  EzCP config,
   String? value, {
   Function? onSuccess,
   Function? onFailure,
 }) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return EzConfig.l10n.gRequired;
+    return config.ezL10n.gRequired;
   }
 
   onSuccess?.call();
@@ -54,17 +47,13 @@ String? validateDescription(
 }
 
 /// Validates name.extension domains
-String? validateDomain(
-  String? value, {
-  Function? onSuccess,
-  Function? onFailure,
-}) {
+String? validateDomain(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
-    return '${EzConfig.l10n.gRequired}; ${l10n.csInvalidName}';
+    return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName}';
   } else if (!domainPattern.hasMatch(value)) {
     onFailure?.call();
-    return l10n.csInvalidDomain;
+    return l10n(config).csInvalidDomain;
   } else {
     onSuccess?.call();
     return null;

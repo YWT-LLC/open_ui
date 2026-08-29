@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -38,14 +38,14 @@ class EzFABLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Link(
-        uri: uri,
-        builder: (_, FollowLink? followLink) => FloatingActionButton(
-          tooltip: tooltip,
-          foregroundColor: foregroundColor,
-          backgroundColor: backgroundColor,
-          heroTag: heroTag,
-          onPressed: followLink,
-          child: child,
-        ),
-      );
+    uri: uri,
+    builder: (_, FollowLink? followLink) => FloatingActionButton(
+      tooltip: tooltip,
+      foregroundColor: foregroundColor,
+      backgroundColor: backgroundColor,
+      heroTag: heroTag,
+      onPressed: followLink,
+      child: child,
+    ),
+  );
 }

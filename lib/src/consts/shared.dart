@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -18,21 +18,18 @@ const String nebulaPath = 'assets/nebula.jpg';
 const String wallHolesPath = 'assets/wall-holes.jpg';
 
 /// [nebulaPath], [wallHolesPath]
-const Set<String> efuiAssetPaths = <String>{
-  nebulaPath,
-  wallHolesPath,
-};
+const Set<String> ouiAssetPaths = <String>{nebulaPath, wallHolesPath};
 
 // For use //
 
 /// [AssetImage] for [nebulaPath]
-const AssetImage nebulaAsset = AssetImage(nebulaPath, package: 'empathetech_flutter_ui');
+const AssetImage nebulaAsset = AssetImage(nebulaPath, package: 'open_ui');
 
 /// [AssetImage] for [wallHolesPath]
-const AssetImage wallHolesAsset = AssetImage(wallHolesPath, package: 'empathetech_flutter_ui');
+const AssetImage wallHolesAsset = AssetImage(wallHolesPath, package: 'open_ui');
 
 /// [nebulaPath]
-const Map<String, AssetImage> efuiImageLookup = <String, AssetImage>{
+const Map<String, AssetImage> ouiImageLookup = <String, AssetImage>{
   nebulaPath: nebulaAsset,
   wallHolesPath: wallHolesAsset,
 };
@@ -41,7 +38,7 @@ const Map<String, AssetImage> efuiImageLookup = <String, AssetImage>{
 
 /// A *required* [NavigatorState] key for your router config
 /// UI redraws/rebuilds assume it is present
-/// If you're migrating your existing app to EFUI, please find and replace any current navigator state key with this one
+/// If you're migrating your existing app to Open UI, please find and replace any current navigator state key with this one
 final GlobalKey<NavigatorState> ezRootNav = GlobalKey<NavigatorState>();
 
 /// /
@@ -75,6 +72,9 @@ const Set<String> rtlLanguageCodes = <String>{
   'yi', // Yiddish
 };
 
+/// Swipe velocity; 200
+const int ezSwipeV = 200;
+
 //* Theme Data *//
 
 /// Opacity for highlight effects; on hover, on focus, etc
@@ -83,8 +83,24 @@ const Set<String> rtlLanguageCodes = <String>{
 /// 0.12
 const double focusOpacity = 0.125;
 
+/// One percent
+/// Helpful in many cases, for example whether to show opacity or not
+const double oneP = 0.01;
+
+/// One millisecond
+/// Helpful for checking whether to show an animation or not
+const Duration oneMS = Duration(milliseconds: 1);
+
+/// reliable keyboard opening time
+/// 300 milliseconds
+const Duration keyTime = Duration(milliseconds: 300);
+
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';
+
+/// 'MaterialIcons'
+/// Useful for creating an [Icon] from an [IconData.codePoint] string
+const String matIcons = 'MaterialIcons';
 
 /// 255
 const int rMax = 255;

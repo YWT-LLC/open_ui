@@ -1,35 +1,39 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzFontFamilyBatchSetting extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzConfig.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzDisplayStyleProvider displayProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzConfig.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzHeadlineStyleProvider headlineProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzConfig.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzTitleStyleProvider titleProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzConfig.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzBodyStyleProvider bodyProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzConfig.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
   final EzLabelStyleProvider labelProvider;
 
   /// Standardized tool for updating the 5 [TextStyle.fontFamily]s
-  const EzFontFamilyBatchSetting({
+  const EzFontFamilyBatchSetting(
+    this.config, {
     super.key,
     required this.displayProvider,
     required this.headlineProvider,
@@ -89,7 +93,7 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
   void initState() {
     super.initState();
 
-    final Map<String, String?> currFonts = EzConfig.isDark ? darkFonts : lightFonts;
+    final Map<String, String?> currFonts = widget.config.isDark ? darkFonts : lightFonts;
     isUniform = currFonts.values.every((String? font) => font == currFonts.values.first);
     if (isUniform) currFont = currFonts.values.first;
   }
@@ -98,16 +102,20 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: EzConfig.l10n.tsFontFamily,
+        message: widget.config.ezL10n.tsFontFamily,
         child: EzDropdownMenu<String>(
+          widget.config,
+          label: null,
           widthEntry: fingerPaint,
-          textStyle: widget.bodyProvider.value,
+          menuStyle: widget.bodyProvider.value,
           dropdownMenuEntries: googleStyles.entries
-              .map((MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
-                    value: entry.key,
-                    label: ezCamelToTitle(entry.key),
-                    style: TextButton.styleFrom(textStyle: entry.value),
-                  ))
+              .map(
+                (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
+                  value: entry.key,
+                  label: ezCamelToTitle(entry.key),
+                  style: TextButton.styleFrom(textStyle: entry.value),
+                ),
+              )
               .toList(),
           enableSearch: false,
           initialSelection: currFont,
@@ -119,12 +127,12 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
             }
             currFont = fontFamily;
 
-            final Map<String, String?> currFonts = EzConfig.updateBoth
+            final Map<String, String?> currFonts = EzCM.updateBoth
                 ? <String, String?>{...darkFonts, ...lightFonts}
-                : (EzConfig.isDark ? darkFonts : lightFonts);
+                : (widget.config.isDark ? darkFonts : lightFonts);
 
             for (final String key in currFonts.keys) {
-              await EzConfig.setString(key, fontFamily);
+              await EzCM.setString(key, fontFamily);
             }
             widget.displayProvider.fuse(fontFamily);
             widget.headlineProvider.fuse(fontFamily);
@@ -133,7 +141,7 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
             widget.labelProvider.fuse(fontFamily);
 
             if (context.mounted) {
-              EzConfig.pingRebuild(ezTextRebuildCheck(context));
+              widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
             }
             setState(() {});
           },

@@ -1,9 +1,9 @@
 /* open_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 // App config //
 
@@ -42,10 +42,10 @@ const Map<String, Object> openUIDefaults = <String, Object>{
 
 final Map<String, Object> mobileDefaults = <String, Object>{
   ...openUIDefaults,
-  ...empathMobileConfig
+  ...ywtMobileConfig,
 };
 
 final Map<String, Object> desktopDefaults = <String, Object>{
   ...openUIDefaults,
-  ...empathDesktopConfig
+  ...ywtDesktopConfig,
 };

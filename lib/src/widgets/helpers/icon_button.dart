@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzIconButton extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [IconButton.icon] passthrough
   final Widget icon;
 
@@ -21,7 +24,7 @@ class EzIconButton extends StatelessWidget {
   final VoidCallback? onLongPress;
 
   /// [IconButton.tooltip] passthrough
-  final String? tooltip;
+  final String tooltip;
 
   /// Uses disabled styling and sets [onPressed] and [onLongPress] to [doNothing] when false
   final bool enabled;
@@ -35,13 +38,14 @@ class EzIconButton extends StatelessWidget {
   final ButtonStyle? style;
 
   /// [IconButton] wrapper with custom styling
-  const EzIconButton({
+  const EzIconButton(
+    this.config, {
     super.key,
     required this.icon,
     this.iconSize,
     this.onPressed,
     this.onLongPress,
-    this.tooltip,
+    required this.tooltip,
     this.enabled = true,
     this.fauxDisabled = false,
     this.style,
@@ -55,21 +59,26 @@ class EzIconButton extends StatelessWidget {
         style: style ??
             ((!enabled || fauxDisabled)
                 ? IconButton.styleFrom(
-                    foregroundColor: EzConfig.colors.outline,
-                    side: EzConfig.borderSide(color: EzConfig.colors.outlineVariant),
-                    overlayColor: EzConfig.colors.outline,
+                    foregroundColor: config.colors.outline,
+                    side: config.borderSide(color: config.colors.outlineVariant),
+                    overlayColor: config.colors.outline,
                     shadowColor: Colors.transparent,
-                    iconSize: iconSize ?? EzConfig.iconSize)
+                    iconSize: iconSize ?? config.iconSize,
+                  )
                 : null),
         icon: icon,
-        iconSize: iconSize ?? EzConfig.iconSize,
+        iconSize: iconSize ?? config.iconSize,
       );
 }
 
 class EzIcon extends Icon {
-  /// [Icon] wrapper that responds to [EzConfig.iconSize]
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// [Icon] wrapper that responds to [EzCP.iconSize]
   /// [ThemeData.iconTheme] does not seem to be consumed properly
   EzIcon(
+    this.config,
     super.icon, {
     super.key,
     super.fill,
@@ -82,5 +91,5 @@ class EzIcon extends Icon {
     super.textDirection,
     super.applyTextScaling,
     super.blendMode,
-  }) : super(size: EzConfig.iconSize);
+  }) : super(size: config.iconSize);
 }

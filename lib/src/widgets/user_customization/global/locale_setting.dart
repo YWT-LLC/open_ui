@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzLocaleSetting extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Locale]s to [skip]
   final Set<Locale>? skip;
 
@@ -16,7 +19,8 @@ class EzLocaleSetting extends StatefulWidget {
 
   /// [EzElevatedIconButton] for updating the current [Locale]
   /// Opens a [BottomSheet] with a [EzElevatedIconButton] for each supported [Locale]
-  const EzLocaleSetting({
+  const EzLocaleSetting(
+    this.config, {
     super.key,
     this.skip,
     this.inDistress = const <String>{'US'},
@@ -32,12 +36,10 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
   @override
   void initState() {
     super.initState();
-    locales = List<Locale>.from(EFUILang.supportedLocales);
+    locales = List<Locale>.from(OUILang.supportedLocales);
 
     if (widget.skip != null && widget.skip!.isNotEmpty) {
-      locales.removeWhere(
-        (final Locale locale) => widget.skip!.contains(locale),
-      );
+      locales.removeWhere((Locale locale) => widget.skip!.contains(locale));
     }
   }
 
@@ -47,58 +49,63 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
 
   @override
   Widget build(BuildContext context) => Semantics(
-        label: EzConfig.l10n.ssLanguage,
+        label: widget.config.ezL10n.ssLanguage,
         button: true,
-        hint: EzConfig.l10n.ssLangHint,
+        hint: widget.config.ezL10n.ssLangHint,
         child: ExcludeSemantics(
           child: EzElevatedIconButton(
+            widget.config,
             onPressed: () => ezModal(
+              widget.config,
               context: context,
-              builder: (BuildContext mCon) => ezModalScroll(<Widget>[
-                EzWrap(
-                  children: locales
-                      .map(
-                        (Locale locale) => Padding(
-                          padding: EzInsets.wrap(EzConfig.spacing),
-                          child: EzElevatedIconButton(
-                            onPressed: () async {
-                              // Check for no change
-                              if (locale == EzConfig.locale) {
-                                Navigator.of(mCon).pop();
-                                return;
-                              }
+              builder: (BuildContext mCon) => ezModalScroll(
+                widget.config,
+                children: <Widget>[
+                  EzWrap(
+                    children: locales
+                        .map(
+                          (Locale locale) => Padding(
+                            padding: EzInsets.wrap(widget.config.spacing),
+                            child: EzElevatedIconButton(
+                              widget.config,
+                              onPressed: () async {
+                                // Check for no change
+                                if (locale == widget.config.locale) {
+                                  Navigator.of(mCon).pop();
+                                  return;
+                                }
 
-                              // Gather && set data
-                              final List<String> localeData = <String>[locale.languageCode];
-                              if (locale.countryCode != null) {
-                                localeData.add(locale.countryCode!);
-                              }
-                              await EzConfig.setStringList(
-                                appLocaleKey,
-                                localeData,
-                              );
+                                // Gather && set data
+                                final List<String> localeData = <String>[locale.languageCode];
+                                if (locale.countryCode != null) {
+                                  localeData.add(locale.countryCode!);
+                                }
+                                await EzCM.setStringList(appLocaleKey, localeData);
 
-                              // Refresh the UI
-                              await EzConfig.rebuildLocale();
-                            },
-                            icon: ezFlag(
-                              locale,
-                              inDistress: widget.inDistress.contains(locale.countryCode),
+                                // Refresh the UI
+                                await widget.config.rebuildLocale();
+                              },
+                              icon: ezFlag(
+                                widget.config,
+                                locale: locale,
+                                inDistress: widget.inDistress.contains(locale.countryCode),
+                              ),
+                              label: ezLocaleName(locale, mCon),
                             ),
-                            label: ezLocaleName(locale, mCon),
                           ),
-                        ),
-                      )
-                      .toList(),
-                ),
-                EzConfig.spacer,
-              ]),
+                        )
+                        .toList(),
+                  ),
+                  widget.config.spacer,
+                ],
+              ),
             ),
             icon: ezFlag(
-              EzConfig.locale,
-              inDistress: widget.inDistress.contains(EzConfig.locale.countryCode),
+              widget.config,
+              locale: widget.config.locale,
+              inDistress: widget.inDistress.contains(widget.config.locale.countryCode),
             ),
-            label: EzConfig.l10n.ssLanguage,
+            label: widget.config.ezL10n.ssLanguage,
           ),
         ),
       );

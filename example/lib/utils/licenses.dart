@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -9,27 +9,21 @@ String pickLicense({
   required String publisher,
   required String description,
   required String year,
-}) =>
-    switch (license) {
-      mitKey => genMIT(publisher, year),
-      iscKey => genISC(publisher, year),
-      apacheKey => genApache(publisher, year),
-      mozillaKey => genMozilla(),
-      unlicenseKey => genUnlicense(),
-      dwtfywKey => genDWTFYW(),
-      _ => genGNU(appName, publisher, description, year),
-    };
+}) => switch (license) {
+  mitKey => genMIT(publisher, year),
+  iscKey => genISC(publisher, year),
+  apacheKey => genApache(publisher, year),
+  mozillaKey => genMozilla(),
+  unlicenseKey => genUnlicense(),
+  dwtfywKey => genDWTFYW(),
+  _ => genGNU(appName, publisher, description, year),
+};
 
 /// GNU General Public License v3.0
 const String gnuKey = 'GNU General Public License v3.0';
 
 /// GNU General Public License v3.0
-String genGNU(
-  String appName,
-  String publisher,
-  String description,
-  String year,
-) =>
+String genGNU(String appName, String publisher, String description, String year) =>
     """                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
@@ -710,7 +704,8 @@ Public License instead of this License.  But first, please read
 const String mitKey = 'MIT License';
 
 /// MIT License
-String genMIT(String publisher, String year) => '''MIT License
+String genMIT(String publisher, String year) =>
+    '''MIT License
 
 Copyright (c) $year $publisher
 
@@ -737,7 +732,8 @@ SOFTWARE.
 const String iscKey = 'ISC License';
 
 /// ISC License
-String genISC(String publisher, String year) => '''ISC License
+String genISC(String publisher, String year) =>
+    '''ISC License
 
 Copyright (c) $year $publisher
 

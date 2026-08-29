@@ -1,16 +1,17 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../empathetech_flutter_ui.dart';
+import '../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Standardized [SnackBar] with an [EzCountdownTimer]
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
-  BuildContext context, {
+  EzCP config, {
+  required BuildContext context,
   required String message,
   Color? backgroundColor,
   VoidCallback? onVisible,
@@ -18,17 +19,19 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
   Future<void> Function()? undo,
   String? undoMessage,
 }) {
-  final Duration toastLength =
-      (undo == null) ? ezReadingTime(message) : ezReadingTime(message) + const Duration(seconds: 2);
+  final Duration toastLength = (undo == null)
+      ? ezReadingTime(config, message)
+      : ezReadingTime(config, message) + const Duration(seconds: 2);
 
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: backgroundColor,
       showCloseIcon: showCloseIcon ?? true,
       onVisible: onVisible,
-      padding: EdgeInsets.all(EzConfig.marginVal),
+      padding: EdgeInsets.all(config.marginVal),
       width: min(
         _snackWidth(
+          config,
           context: context,
           message: message,
           showCloseIcon: showCloseIcon ?? true,
@@ -38,6 +41,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
         widthOf(context),
       ),
       content: EzRow(
+        config,
         reverseHands: false,
         children: <Widget>[
           // Text
@@ -45,10 +49,11 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
 
           // Undo (conditional)
           if (undo != null) ...<Widget>[
-            EzConfig.rowMargin,
+            config.rowMargin,
             EzTextButton(
-              text: undoMessage ?? EzConfig.l10n.gUndo,
-              textStyle: EzConfig.styles.bodyLarge?.copyWith(color: EzConfig.colors.primary),
+              config,
+              text: undoMessage ?? config.ezL10n.gUndo,
+              textStyle: config.bodyStyle?.copyWith(color: config.colors.primary),
               onPressed: () async {
                 await undo();
                 if (context.mounted) {
@@ -59,8 +64,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
           ],
 
           // Timer
-          EzConfig.rowMargin,
-          EzCountdownTimer(duration: toastLength),
+          config.rowMargin,
+          EzCountdownTimer(config, duration: toastLength),
 
           // Close (inherited, above)
         ],
@@ -70,7 +75,8 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
   );
 }
 
-double _snackWidth({
+double _snackWidth(
+  EzCP config, {
   required BuildContext context,
   required String message,
   required bool showCloseIcon,
@@ -78,23 +84,25 @@ double _snackWidth({
   String? undoMsg,
 }) =>
     // Text width
-    (EzConfig.marginVal +
+    (config.marginVal +
         ezTextSize(
-          message,
-          context: context,
-          style: EzConfig.theme.snackBarTheme.contentTextStyle,
+          config,
+          text: message,
+          style: config.theme.snackBarTheme.contentTextStyle,
+          textScaler: MediaQuery.textScalerOf(context),
         ).width) +
     // Undo width
     (showUndo
-        ? (EzConfig.marginVal +
+        ? (config.marginVal +
             ezTextSize(
-              undoMsg ?? EzConfig.l10n.gUndo,
-              context: context,
-              style: EzConfig.styles.bodyLarge,
+              config,
+              text: undoMsg ?? config.ezL10n.gUndo,
+              style: config.bodyStyle,
+              textScaler: MediaQuery.textScalerOf(context),
             ).width)
         : 0) +
     // Timer width
-    (EzConfig.marginVal + EzConfig.iconSize + EzConfig.padding) +
+    (config.marginVal + config.iconSize + config.padding) +
     // Close width
-    ((showCloseIcon ? (EzConfig.iconSize + (EzConfig.padding / 2) + EzConfig.spacing) : 0) +
-        EzConfig.marginVal);
+    ((showCloseIcon ? (config.iconSize + (config.padding / 2) + config.spacing) : 0) +
+        config.marginVal);

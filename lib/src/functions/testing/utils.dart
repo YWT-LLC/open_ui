@@ -1,5 +1,5 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -10,26 +10,14 @@ import 'package:flutter_test/flutter_test.dart';
 /// Reserving [debugPrint] for temporary logging makes them easier to remove when the time comes
 /// Optionally provide a [prefix] to make log filtering easier (include spaces!)
 /// Also supports logging to a [String] 'buffer' (aka [ValueNotifier])
-void ezLog(
-  String message, {
-  String prefix = '',
-  int? wrapWidth,
-  ValueNotifier<String>? buffer,
-}) {
+void ezLog(String message, {String prefix = '', int? wrapWidth, ValueNotifier<String>? buffer}) {
   debugPrint(prefix + message, wrapWidth: wrapWidth);
   if (buffer != null) buffer.value += ('$message\n');
 }
 
-/// Wait for a desired number of [seconds]
-Future<void> ezPause(int seconds) => Future<void>.delayed(Duration(seconds: seconds));
-
 /// For integration testing
 /// expect([finder], [matcher]) and ensure visibility
-Future<void> ezFind(
-  WidgetTester tester,
-  Finder finder, {
-  Matcher matcher = findsOneWidget,
-}) async {
+Future<void> ezFind(WidgetTester tester, Finder finder, {Matcher matcher = findsOneWidget}) async {
   expect(finder, matcher);
   await tester.ensureVisible(finder);
 }
@@ -43,11 +31,7 @@ Future<void> ezFindText(
   bool skipOffstage = false,
   Matcher matcher = findsOneWidget,
 }) async {
-  final Finder textFinder = find.text(
-    text,
-    findRichText: findRichText,
-    skipOffstage: skipOffstage,
-  );
+  final Finder textFinder = find.text(text, findRichText: findRichText, skipOffstage: skipOffstage);
 
   expect(textFinder, matcher);
   await tester.ensureVisible(textFinder);
@@ -61,10 +45,7 @@ Future<void> ezFindWidget(
   Matcher matcher = findsOneWidget,
   bool skipOffstage = false,
 }) async {
-  final Finder widgetFinder = find.byType(
-    widgetType,
-    skipOffstage: skipOffstage,
-  );
+  final Finder widgetFinder = find.byType(widgetType, skipOffstage: skipOffstage);
 
   expect(widgetFinder, matcher);
   await tester.ensureVisible(widgetFinder);
@@ -72,11 +53,7 @@ Future<void> ezFindWidget(
 
 /// For integration testing
 /// Ensure visibility of, tap at, and settle a [finder] target
-Future<void> ezTouch(
-  WidgetTester tester,
-  Finder finder, {
-  bool warnIfMissed = false,
-}) async {
+Future<void> ezTouch(WidgetTester tester, Finder finder, {bool warnIfMissed = false}) async {
   await tester.ensureVisible(finder);
   await tester.tapAt(tester.getCenter(finder, warnIfMissed: warnIfMissed));
   await tester.pumpAndSettle();
@@ -91,8 +68,9 @@ Future<void> ezTouchText(
   bool skipOffstage = false,
   bool warnIfMissed = false,
 }) async {
-  final Finder finder =
-      find.text(text, findRichText: findRichText, skipOffstage: skipOffstage).last;
+  final Finder finder = find
+      .text(text, findRichText: findRichText, skipOffstage: skipOffstage)
+      .last;
 
   await tester.ensureVisible(finder);
   await tester.tapAt(tester.getCenter(finder, warnIfMissed: warnIfMissed));
@@ -116,32 +94,18 @@ Future<void> ezTouchWidget(
 
 /// For integration testing
 /// Ensure visibility of, long press at, and settle a [finder] target
-Future<void> ezHold(
-  WidgetTester tester,
-  Finder finder, {
-  bool warnIfMissed = false,
-}) async {
+Future<void> ezHold(WidgetTester tester, Finder finder, {bool warnIfMissed = false}) async {
   await tester.ensureVisible(finder);
-  await tester.longPressAt(tester.getCenter(
-    finder,
-    warnIfMissed: warnIfMissed,
-  ));
+  await tester.longPressAt(tester.getCenter(finder, warnIfMissed: warnIfMissed));
   await tester.pumpAndSettle();
 }
 
 /// For integration testing
 /// Ensure visibility of, long press at, and settle a [text] target
-Future<void> ezHoldText(
-  WidgetTester tester,
-  String text, {
-  bool warnIfMissed = false,
-}) async {
+Future<void> ezHoldText(WidgetTester tester, String text, {bool warnIfMissed = false}) async {
   final Finder finder = find.text(text).last;
   await tester.ensureVisible(finder);
-  await tester.longPressAt(tester.getCenter(
-    finder,
-    warnIfMissed: warnIfMissed,
-  ));
+  await tester.longPressAt(tester.getCenter(finder, warnIfMissed: warnIfMissed));
   await tester.pumpAndSettle();
 }
 
@@ -156,29 +120,17 @@ Future<void> ezChaCha(
   Offset rightOffset = const Offset(100, 0),
 }) async {
   await tester.ensureVisible(finder);
-  await tester.timedDrag(
-    finder,
-    leftOffset,
-    const Duration(milliseconds: 500),
-  );
+  await tester.timedDrag(finder, leftOffset, const Duration(milliseconds: 500));
   await tester.pumpAndSettle();
 
   await tester.ensureVisible(finder);
-  await tester.timedDrag(
-    finder,
-    rightOffset,
-    const Duration(milliseconds: 500),
-  );
+  await tester.timedDrag(finder, rightOffset, const Duration(milliseconds: 500));
   await tester.pumpAndSettle();
 }
 
 /// For integration testing
 /// Find and touch the button whose [Tooltip] is [back]
-Future<void> ezTapBack(
-  WidgetTester tester,
-  String back, {
-  bool warnIfMissed = false,
-}) async {
+Future<void> ezTapBack(WidgetTester tester, String back, {bool warnIfMissed = false}) async {
   final Finder backButton = find.byTooltip(back);
 
   await tester.ensureVisible(backButton);
@@ -188,10 +140,7 @@ Future<void> ezTapBack(
 
 /// For integration testing
 /// [WidgetTester.tapAt] the [offset] to dismiss a dialog/modal/etc
-Future<void> ezDismiss(
-  WidgetTester tester, {
-  Offset offset = const Offset(1, 1),
-}) async {
+Future<void> ezDismiss(WidgetTester tester, {Offset offset = const Offset(1, 1)}) async {
   await tester.tapAt(offset);
   await tester.pumpAndSettle();
 }

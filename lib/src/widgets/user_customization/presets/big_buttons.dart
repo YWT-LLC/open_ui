@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzBigButtonsConfig extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Whether both themes should be updated
   final bool updateBoth;
 
@@ -16,76 +19,73 @@ class EzBigButtonsConfig extends StatelessWidget {
 
   /// Doesn't replace, only modifies: larger touch points from default
   /// Slight bump to all layout values, for easier tapping
-  const EzBigButtonsConfig({
-    super.key,
-    required this.updateBoth,
-    this.extra,
-  });
+  const EzBigButtonsConfig(this.config, {super.key, required this.updateBoth, this.extra});
 
-  static Future<void> onPressed(bool updateBoth) async {
+  static Future<void> onPressed(EzCP config, bool updateBoth) async {
     // Don't reset //
 
-    if (updateBoth || EzConfig.isDark) {
+    if (updateBoth || config.isDark) {
       // Design settings //
 
-      await EzConfig.setDouble(darkMarginKey, 12.0);
-      if (EzConfig.onMobile) {
-        await EzConfig.setDouble(darkPaddingKey, 21.0);
-        await EzConfig.setDouble(darkSpacingKey, 30.0);
+      await EzCM.setDouble(darkMarginKey, 12.0);
+      if (EzCM.onMobile) {
+        await EzCM.setDouble(darkPaddingKey, 21.0);
+        await EzCM.setDouble(darkSpacingKey, 30.0);
       } else {
-        await EzConfig.setDouble(darkPaddingKey, 24.0);
-        await EzConfig.setDouble(darkSpacingKey, 36.0);
+        await EzCM.setDouble(darkPaddingKey, 24.0);
+        await EzCM.setDouble(darkSpacingKey, 36.0);
       }
 
-      await EzConfig.setBool(darkShowBackFABKey, true);
+      await EzCM.setBool(darkShowBackFABKey, true);
 
-      await EzConfig.setString(darkButtonShapeKey, EzButtonShape.roundRect.value);
+      await EzCM.setString(darkButtonShapeKey, EzButtonShape.roundRect.value);
 
-      await EzConfig.setBool(darkShowScrollKey, true);
+      await EzCM.setBool(darkShowScrollKey, true);
 
       // Text settings //
 
-      if (EzConfig.iconSize < 25.0) {
-        await EzConfig.setDouble(darkIconSizeKey, 25.0);
+      if (config.iconSize < 25.0) {
+        await EzCM.setDouble(darkIconSizeKey, 25.0);
       }
     }
 
-    if (updateBoth || !EzConfig.isDark) {
+    if (updateBoth || !config.isDark) {
       // Design settings //
 
-      await EzConfig.setDouble(lightMarginKey, 12.0);
-      if (EzConfig.onMobile) {
-        await EzConfig.setDouble(lightPaddingKey, 21.0);
-        await EzConfig.setDouble(lightSpacingKey, 30.0);
+      await EzCM.setDouble(lightMarginKey, 12.0);
+      if (EzCM.onMobile) {
+        await EzCM.setDouble(lightPaddingKey, 21.0);
+        await EzCM.setDouble(lightSpacingKey, 30.0);
       } else {
-        await EzConfig.setDouble(lightPaddingKey, 24.0);
-        await EzConfig.setDouble(lightSpacingKey, 36.0);
+        await EzCM.setDouble(lightPaddingKey, 24.0);
+        await EzCM.setDouble(lightSpacingKey, 36.0);
       }
 
-      await EzConfig.setBool(lightShowBackFABKey, true);
+      await EzCM.setBool(lightShowBackFABKey, true);
 
-      await EzConfig.setString(lightButtonShapeKey, EzButtonShape.roundRect.value);
+      await EzCM.setString(lightButtonShapeKey, EzButtonShape.roundRect.value);
 
-      await EzConfig.setBool(lightShowScrollKey, true);
+      await EzCM.setBool(lightShowScrollKey, true);
 
       // Text settings //
 
-      if (EzConfig.iconSize < 25.0) {
-        await EzConfig.setDouble(lightIconSizeKey, 25.0);
+      if (config.iconSize < 25.0) {
+        await EzCM.setDouble(lightIconSizeKey, 25.0);
       }
     }
   }
 
   @override
   Widget build(BuildContext context) => EzElevatedButton(
+        config,
         style: ElevatedButton.styleFrom(
           shape: EzButtonShape.roundRect.shape,
-          padding: EdgeInsets.all(EzConfig.onMobile ? 22.5 : 25.0),
+          padding: EdgeInsets.all(EzCM.onMobile ? 22.5 : 25.0),
         ),
-        onPressed: () => EzConfig.rebuildUI(changes: () async {
-          await onPressed(updateBoth);
+        onPressed: () => config.rebuildUI(changes: () async {
+          await onPressed(config, updateBoth);
           await extra?.call(updateBoth);
         }),
-        text: EzConfig.l10n.ssBigButtons,
+        text: config.ezL10n.ssBigButtons,
       );
 }

@@ -1,15 +1,18 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzFontDoubleSetting extends StatefulWidget {
-  /// The [EzConfig] key being edited
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// The [EzCM] key being edited
   final String configKey;
 
   /// An alt to updateBoth
@@ -46,7 +49,8 @@ class EzFontDoubleSetting extends StatefulWidget {
 
   /// Standardized tool for updating double [TextStyle] values for the passed [configKey]
   /// For example: [TextStyle.fontSize], [TextStyle.letterSpacing], [TextStyle.wordSpacing], and [TextStyle.height]
-  const EzFontDoubleSetting({
+  const EzFontDoubleSetting(
+    this.config, {
     super.key,
     required this.configKey,
     this.mirrorKey,
@@ -72,13 +76,20 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
   final TextEditingController controller = TextEditingController();
 
   late final Size sizeLimit = ezTextSize(
-    sampleString,
-    context: context,
+    widget.config,
+    text: sampleString,
     style: widget.style,
+    textScaler: MediaQuery.textScalerOf(context),
   );
 
-  late double formFieldWidth = max(sizeLimit.width + EzConfig.padding, kMinInteractiveDimension);
-  late double formFieldHeight = max(sizeLimit.height + EzConfig.padding, kMinInteractiveDimension);
+  late double formFieldWidth = max(
+    sizeLimit.width + widget.config.padding,
+    kMinInteractiveDimension,
+  );
+  late double formFieldHeight = max(
+    sizeLimit.height + widget.config.padding,
+    kMinInteractiveDimension,
+  );
 
   // Init //
 
@@ -94,80 +105,70 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
   @override
   Widget build(BuildContext context) => Tooltip(
         message: widget.tooltip,
-        child: EzCol(children: <Widget>[
-          EzScrollView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              // Minus
-              if (widget.plusMinus) ...<Widget>[
-                (currValue > widget.min)
-                    ? EzIconButton(
-                        onPressed: () async {
-                          currValue -= widget.delta;
-                          controller.text = currValue.toString();
+        child: EzCol(
+          children: <Widget>[
+            EzScrollView(
+              widget.config,
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                // Minus
+                if (widget.plusMinus) ...<Widget>[
+                  (currValue > widget.min)
+                      ? EzIconButton(
+                          widget.config,
+                          onPressed: () async {
+                            currValue -= widget.delta;
+                            controller.text = currValue.toString();
 
-                          await EzConfig.setDouble(
-                            widget.configKey,
-                            currValue,
-                          );
-                          if (widget.mirrorKey != null) {
-                            await EzConfig.setDouble(
-                              widget.mirrorKey!,
-                              currValue,
-                            );
-                          }
+                            await EzCM.setDouble(widget.configKey, currValue);
+                            if (widget.mirrorKey != null) {
+                              await EzCM.setDouble(widget.mirrorKey!, currValue);
+                            }
 
-                          widget.notifierCallback(currValue);
-                          if (context.mounted) {
-                            EzConfig.pingRebuild(ezTextRebuildCheck(context));
-                          }
+                            widget.notifierCallback(currValue);
+                            if (context.mounted) {
+                              widget.config.pingRebuild(
+                                ezTextRebuildCheck(widget.config, context: context),
+                              );
+                            }
 
-                          setState(() {});
-                        },
-                        tooltip: '${EzConfig.l10n.gDecrease} ${widget.tooltip.toLowerCase()}',
-                        icon: EzIcon(Icons.remove),
-                      )
-                    : EzIconButton(
-                        enabled: false,
-                        tooltip: EzConfig.l10n.gMinimum,
-                        icon: EzIcon(
-                          Icons.remove,
-                          color: EzConfig.colors.outline,
+                            setState(() {});
+                          },
+                          tooltip:
+                              '${widget.config.ezL10n.gDecrease} ${widget.tooltip.toLowerCase()}',
+                          icon: const Icon(Icons.remove),
+                        )
+                      : EzIconButton(
+                          widget.config,
+                          enabled: false,
+                          tooltip: widget.config.ezL10n.gMinimum,
+                          icon: Icon(Icons.remove, color: widget.config.colors.outline),
                         ),
-                      ),
-                EzConfig.rowMargin,
-              ],
+                  widget.config.rowMargin,
+                ],
 
-              // Text field
-              Container(
-                constraints: BoxConstraints(
-                  maxWidth: formFieldWidth,
-                  maxHeight: formFieldHeight,
-                ),
-                decoration: BoxDecoration(borderRadius: EzConfig.textFieldRadius),
-                child: TextFormField(
+                // Text field
+                EzTextField(
                   controller: controller,
-                  style: widget.style,
-                  textAlign: TextAlign.center,
-                  textAlignVertical: TextAlignVertical.top,
-                  maxLines: 1,
+                  constraints: BoxConstraints(maxWidth: formFieldWidth, maxHeight: formFieldHeight),
+                  hintText: widget.initialValue.toString(),
                   keyboardType: TextInputType.number,
-                  autovalidateMode: AutovalidateMode.onUnfocus,
+                  style: widget.style,
                   validator: (String? value) {
                     if (value == null) return null;
                     final double? doubleVal = double.tryParse(value);
 
                     if (doubleVal == null || doubleVal < widget.min || doubleVal > widget.max) {
                       setState(() {
-                        formFieldWidth = (sizeLimit.width + EzConfig.padding) * 1.75;
-                        formFieldHeight = (sizeLimit.height + EzConfig.padding) * 1.75;
+                        formFieldWidth = (sizeLimit.width + widget.config.padding) * 1.75;
+                        formFieldHeight = (sizeLimit.height + widget.config.padding) * 1.75;
                       });
                       return '${widget.min}  <->  ${widget.max}';
                     }
 
                     setState(() {
-                      formFieldWidth = sizeLimit.width + EzConfig.padding;
-                      formFieldHeight = sizeLimit.height + EzConfig.padding;
+                      formFieldWidth = sizeLimit.width + widget.config.padding;
+                      formFieldHeight = sizeLimit.height + widget.config.padding;
                     });
                     return null;
                   },
@@ -179,66 +180,63 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                     }
                     currValue = doubleVal;
 
-                    await EzConfig.setDouble(widget.configKey, doubleVal);
+                    await EzCM.setDouble(widget.configKey, doubleVal);
                     if (widget.mirrorKey != null) {
-                      await EzConfig.setDouble(widget.mirrorKey!, doubleVal);
+                      await EzCM.setDouble(widget.mirrorKey!, doubleVal);
                     }
 
                     widget.notifierCallback(doubleVal);
                     if (context.mounted) {
-                      EzConfig.pingRebuild(ezTextRebuildCheck(context));
+                      widget.config
+                          .pingRebuild(ezTextRebuildCheck(widget.config, context: context));
                     }
 
                     setState(() {});
                   },
                 ),
-              ),
 
-              if (widget.plusMinus) ...<Widget>[
-                EzConfig.rowMargin,
+                if (widget.plusMinus) ...<Widget>[
+                  widget.config.rowMargin,
 
-                // Plus icon
-                (currValue < widget.max)
-                    ? EzIconButton(
-                        onPressed: () async {
-                          currValue += widget.delta;
-                          controller.text = currValue.toString();
+                  // Plus icon
+                  (currValue < widget.max)
+                      ? EzIconButton(
+                          widget.config,
+                          onPressed: () async {
+                            currValue += widget.delta;
+                            controller.text = currValue.toString();
 
-                          await EzConfig.setDouble(
-                            widget.configKey,
-                            currValue,
-                          );
-                          if (widget.mirrorKey != null) {
-                            await EzConfig.setDouble(
-                              widget.mirrorKey!,
-                              currValue,
-                            );
-                          }
+                            await EzCM.setDouble(widget.configKey, currValue);
+                            if (widget.mirrorKey != null) {
+                              await EzCM.setDouble(widget.mirrorKey!, currValue);
+                            }
 
-                          widget.notifierCallback(currValue);
-                          if (context.mounted) {
-                            EzConfig.pingRebuild(ezTextRebuildCheck(context));
-                          }
+                            widget.notifierCallback(currValue);
+                            if (context.mounted) {
+                              widget.config.pingRebuild(
+                                ezTextRebuildCheck(widget.config, context: context),
+                              );
+                            }
 
-                          setState(() {});
-                        },
-                        tooltip: '${EzConfig.l10n.gIncrease} ${widget.tooltip.toLowerCase()}',
-                        icon: EzIcon(Icons.add),
-                      )
-                    : EzIconButton(
-                        enabled: false,
-                        tooltip: EzConfig.l10n.gMaximum,
-                        icon: EzIcon(
-                          Icons.add,
-                          color: EzConfig.colors.outline,
+                            setState(() {});
+                          },
+                          tooltip:
+                              '${widget.config.ezL10n.gIncrease} ${widget.tooltip.toLowerCase()}',
+                          icon: const Icon(Icons.add),
+                        )
+                      : EzIconButton(
+                          widget.config,
+                          enabled: false,
+                          tooltip: widget.config.ezL10n.gMaximum,
+                          icon: Icon(Icons.add, color: widget.config.colors.outline),
                         ),
-                      ),
+                ],
               ],
-            ],
-          ),
+            ),
 
-          // Label icon
-          widget.icon,
-        ]),
+            // Label icon
+            widget.icon,
+          ],
+        ),
       );
 }

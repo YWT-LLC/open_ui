@@ -1,55 +1,39 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 /// Remind the user that reset/randomize/etc cannot be undone automatically
 /// Includes and [EzInlineLink] to save current config to JSON
 Widget ezRichUndoWarning(
-  BuildContext context, {
-  bool standalone = true,
+  EzCP config, {
+  required BuildContext context,
   Set<String>? skip,
-}) {
-  final EzRichText text = EzRichText(
-    <InlineSpan>[
-      // Cannot be undone
-      EzPlainText(
-        text: EzConfig.l10n.gUndoWarn1,
-        style: EzConfig.styles.bodyLarge,
-      ),
+}) =>
+    EzRichText(
+      config,
+      children: <InlineSpan>[
+        // Cannot be undone
+        EzPlainText(text: config.ezL10n.gUndoWarn1, style: config.bodyStyle),
 
-      // Save link
-      EzInlineLink(
-        EzConfig.l10n.gSave,
-        onTap: () => EzConfig.saveConfig(context, skip: skip),
-        hint: EzConfig.l10n.gSaveHint,
-        style: EzConfig.styles.bodyLarge,
-        textAlign: TextAlign.center,
-      ),
+        // Save link
+        EzInlineLink(
+          config,
+          text: config.ezL10n.gSave,
+          onTap: () => EzCM.saveConfig(config, context: context, skip: skip),
+          hint: config.ezL10n.gSaveHint,
+          style: config.bodyStyle,
+          textAlign: TextAlign.center,
+        ),
 
-      // Can restore manually
-      EzPlainText(
-        text: EzConfig.l10n.gUndoWarn2,
-        style: EzConfig.styles.bodyLarge,
-      ),
-    ],
-    textBackground: false,
-    style: EzConfig.styles.bodyLarge,
-    textAlign: TextAlign.center,
-  );
-
-  return standalone
-      ? SizedBox(
-          width: ezTextSize(
-            EzConfig.l10n.gSave + EzConfig.l10n.gUndoWarn2,
-            context: context,
-            style: EzConfig.styles.bodyLarge,
-          ).width,
-          child: text,
-        )
-      : text;
-}
+        // Can restore manually
+        EzPlainText(text: config.ezL10n.gUndoWarn2, style: config.bodyStyle),
+      ],
+      textBackground: false,
+      style: config.bodyStyle,
+      textAlign: TextAlign.center,
+    );

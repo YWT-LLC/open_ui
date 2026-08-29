@@ -1,14 +1,17 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
 class EzScrollView extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Scrollbar.controller] passthrough
   final ScrollController? controller;
 
@@ -54,7 +57,8 @@ class EzScrollView extends StatefulWidget {
   /// If [children] are provided the original child parameter will be an [EzRow] or [Column] based on [scrollDirection]
   /// Behaves like a standard [SingleChildScrollView] if [child] is provided
   /// Parameters from [Scrollbar], [SingleChildScrollView] and [EzRow]/[Column] are supported
-  const EzScrollView({
+  const EzScrollView(
+    this.config, {
     super.key,
 
     // Scrollbar
@@ -100,8 +104,8 @@ class _EzScrollViewState extends State<EzScrollView> {
 
     controller.animateTo(
       forward ? controller.position.maxScrollExtent : 0.0,
-      duration: Duration(milliseconds: EzConfig.animDur),
-      curve: EzConfig.animCurve,
+      duration: ezDuration(widget.config.animDur),
+      curve: widget.config.animCurve,
     );
   }
 
@@ -165,6 +169,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                   children: widget.children!,
                 )
               : EzRow(
+                  widget.config,
                   mainAxisSize: widget.mainAxisSize,
                   mainAxisAlignment: widget.mainAxisAlignment,
                   crossAxisAlignment: widget.crossAxisAlignment,
@@ -173,7 +178,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                 ),
     );
 
-    if (widget.thumbVisibility ?? EzConfig.showScroll) {
+    if (widget.thumbVisibility ?? widget.config.showScroll) {
       core = Scrollbar(controller: controller, thumbVisibility: true, child: core);
     }
 
@@ -181,7 +186,7 @@ class _EzScrollViewState extends State<EzScrollView> {
 
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
-        scrollbars: widget.thumbVisibility ?? EzConfig.showScroll,
+        scrollbars: widget.thumbVisibility ?? widget.config.showScroll,
         dragDevices: widget.scrollDirection == Axis.vertical
             ? <PointerDeviceKind>{
                 PointerDeviceKind.invertedStylus,
@@ -224,8 +229,9 @@ class _EzScrollViewState extends State<EzScrollView> {
                                     hoverScroll(event, forward: false),
                                 onExit: stopScroll,
                                 child: EzIcon(
+                                  widget.config,
                                   Icons.arrow_upward,
-                                  color: EzConfig.colors.secondary,
+                                  color: widget.config.colors.secondary,
                                 ),
                               ),
                             ),
@@ -240,8 +246,9 @@ class _EzScrollViewState extends State<EzScrollView> {
                                     hoverScroll(event, forward: false),
                                 onExit: stopScroll,
                                 child: EzIcon(
+                                  widget.config,
                                   Icons.chevron_left,
-                                  color: EzConfig.colors.secondary,
+                                  color: widget.config.colors.secondary,
                                 ),
                               ),
                             ),
@@ -260,8 +267,9 @@ class _EzScrollViewState extends State<EzScrollView> {
                                     hoverScroll(event, forward: true),
                                 onExit: stopScroll,
                                 child: EzIcon(
+                                  widget.config,
                                   Icons.arrow_downward,
-                                  color: EzConfig.colors.secondary,
+                                  color: widget.config.colors.secondary,
                                 ),
                               ),
                             ),
@@ -276,8 +284,9 @@ class _EzScrollViewState extends State<EzScrollView> {
                                     hoverScroll(event, forward: true),
                                 onExit: stopScroll,
                                 child: EzIcon(
+                                  widget.config,
                                   Icons.chevron_right,
-                                  color: EzConfig.colors.secondary,
+                                  color: widget.config.colors.secondary,
                                 ),
                               ),
                             ),
@@ -288,4 +297,12 @@ class _EzScrollViewState extends State<EzScrollView> {
           : core,
     );
   }
+}
+
+class EzScrollBlocker extends NotificationListener<ScrollNotification> {
+  final Widget kid;
+
+  /// Widget alias for a [ScrollNotification] based [NotificationListener] that's always true
+  EzScrollBlocker(this.kid, {super.key})
+      : super(onNotification: (ScrollNotification notification) => true, child: kid);
 }

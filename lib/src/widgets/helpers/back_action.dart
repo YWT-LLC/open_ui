@@ -1,27 +1,28 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 /// Mimics the [AppBar.leading] back button
 /// But can also be used in [AppBar.actions] for left handed layouts
 class EzBackAction extends StatelessWidget {
-  const EzBackAction({super.key});
+  /// EzConfig Provider
+  final EzCP config;
+
+  const EzBackAction(this.config, {super.key});
 
   @override
-  Widget build(BuildContext context) => ezRootNav.currentState!.canPop()
+  Widget build(BuildContext context) => (ezRootNav.currentState?.canPop() ?? false)
       ? EzIconButton(
+          config,
           onPressed: () => Navigator.of(context).maybePop(),
-          tooltip: EzConfig.l10n.gBack,
-          icon: Icon(
-            Icons.arrow_back,
-            semanticLabel: EzConfig.l10n.gBack,
-            size: EzConfig.styles.titleLarge!.fontSize,
-          ),
+          tooltip: config.ezL10n.gBack,
+          iconSize: config.titleStyle!.fontSize,
+          icon: Icon(Icons.arrow_back, semanticLabel: config.ezL10n.gBack),
         )
       : const SizedBox.shrink();
 }

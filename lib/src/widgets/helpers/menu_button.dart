@@ -1,59 +1,63 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class EzMenuButton extends StatefulWidget {
-  /// [MenuItemButton.onPressed] passthrough
-  final void Function()? onPressed;
+class EzMenuButton extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
 
-  /// iconAlignment: [EzConfig.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
+  /// When false, disables [onPressed] and switches the color theme
+  final bool enabled;
+
+  /// iconAlignment: [EzCM.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget? icon;
 
-  /// The text for the user
-  final String label;
+  /// [MenuItemButton.child] will be a [Text] Widget with [label]
+  final String? label;
+
+  /// [MenuItemButton.onPressed] passthrough
+  final void Function()? onPressed;
 
   /// [MenuItemButton.semanticsLabel] passthrough
   final String? semanticsLabel;
 
-  /// Defaults to [TextTheme.bodyLarge]
-  final TextStyle? textStyle;
-
   /// [Text] passthrough
   final TextAlign? textAlign;
 
+  /// Defaults to [TextTheme.bodyLarge]
+  final TextStyle? textStyle;
+
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
-  const EzMenuButton({
+  const EzMenuButton(
+    this.config, {
     super.key,
+    this.enabled = true,
+    this.icon,
+    this.label,
     this.onPressed,
     this.semanticsLabel,
-    this.icon,
-    required this.label,
-    this.textStyle,
     this.textAlign,
-  });
+    this.textStyle,
+  }) : assert(!((icon == null) && (label == null)), 'Icon or label (or both) must be provided');
 
-  @override
-  State<EzMenuButton> createState() => _EzMenuButtonState();
-}
-
-class _EzMenuButtonState extends State<EzMenuButton> {
   @override
   Widget build(BuildContext context) => MenuItemButton(
-        onPressed: widget.onPressed,
-        semanticsLabel: widget.semanticsLabel,
-        leadingIcon: EzConfig.isLefty ? widget.icon : null,
-        trailingIcon: EzConfig.isLefty ? null : widget.icon,
-        child: Text(
-          widget.label,
-          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)?.copyWith(
-            decorationColor: EzConfig.colors.primary,
+    style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+    onPressed: enabled ? onPressed : doNothing,
+    leadingIcon: label == null ? null : (config.isLefty ? icon : null),
+    trailingIcon: label == null ? null : (config.isLefty ? null : icon),
+    semanticsLabel: semanticsLabel,
+    child: (label == null)
+        ? icon
+        : Text(
+            label!,
+            style: textStyle ?? config.bodyStyle,
+            textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
           ),
-          textAlign: widget.textAlign ?? (EzConfig.isLefty ? TextAlign.start : TextAlign.end),
-        ),
-      );
+  );
 }

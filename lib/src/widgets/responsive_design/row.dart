@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzRow extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Row.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
@@ -25,7 +28,8 @@ class EzRow extends StatelessWidget {
   final List<Widget> children;
 
   /// [Row] wrapper that optionally reverses [children] based on [isLeftyKey]'s status
-  const EzRow({
+  const EzRow(
+    this.config, {
     super.key,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.min,
@@ -36,10 +40,9 @@ class EzRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: mainAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        crossAxisAlignment: crossAxisAlignment,
-        children:
-            (reverseHands && EzConfig.isLefty == true) ? children.reversed.toList() : children,
-      );
+    mainAxisAlignment: mainAxisAlignment,
+    mainAxisSize: mainAxisSize,
+    crossAxisAlignment: crossAxisAlignment,
+    children: (reverseHands && config.isLefty == true) ? children.reversed.toList() : children,
+  );
 }

@@ -1,5 +1,5 @@
 /* open_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
@@ -7,10 +7,12 @@ import '../utils/export.dart';
 import './export.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class OpenUIScaffold extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Scaffold.body] passthrough
   final Widget body;
 
@@ -30,75 +32,67 @@ class OpenUIScaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzConfig.backFABs]
-  final bool home;
+  /// For [EzCP.backFABs]
+  final bool isHome;
 
-  /// Standardized [Scaffold] for all of the EFUI example app's screens
+  /// Standardized [Scaffold] for all of the Open UI example app's screens
   const OpenUIScaffold(
-    this.body, {
+    this.config, {
     super.key,
     this.title = thisAppName,
     this.running = false,
     this.showSettings = true,
     this.onUpload,
+    required this.body,
     this.fabs,
-    this.home = false,
+    this.isHome = false,
   });
 
   @override
   Widget build(BuildContext context) {
     // Gather the contextual theme data //
 
-    final double toolbarHeight = ezToolbarHeight(context: context, title: title);
+    final double toolbarHeight = ezToolbarHeight(config, context: context, title: title);
 
     // Define custom widgets //
 
     final Widget options = MenuAnchor(
       builder: (_, MenuController controller, ___) => EzIconButton(
-        onPressed: () => (controller.isOpen) ? controller.close() : controller.open(),
-        tooltip: EzConfig.l10n.gOptions,
-        icon: Icon(
-          Icons.more_vert,
-          semanticLabel: EzConfig.l10n.gOptions,
-          size: EzConfig.styles.titleLarge!.fontSize,
-        ),
+        config,
+        onPressed: () => toggleMenu(controller),
+        tooltip: config.ezL10n.gOptions,
+        iconSize: config.titleStyle!.fontSize,
+        icon: Icon(Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
       ),
       menuChildren: <Widget>[
-        if (showSettings) SettingsButton(context),
-        if (onUpload != null) UploadButton(onUpload!),
-        const OpenSourceButton(),
+        if (showSettings) SettingsButton(config, parentContext: context),
+        if (onUpload != null) UploadButton(config, onUpload: onUpload!),
+        OpenSourceButton(config),
       ],
     );
 
     // Return the build //
 
     return EzAdaptiveParent(
-      small: Consumer<EzConfigProvider>(
-        builder: (_, EzConfigProvider config, __) => EzScaffold(
-          seed: config.seed,
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, toolbarHeight),
-            child: EzAppBar(
-              height: toolbarHeight,
-              leading: running
-                  ? const SizedBox.shrink()
-                  : (EzConfig.isLefty ? options : const EzBackAction()),
-              leadingWidth: toolbarHeight,
-              title: Text(title, textAlign: TextAlign.center),
-              actions: <Widget>[
-                running
-                    ? const SizedBox.shrink()
-                    : (EzConfig.isLefty ? const EzBackAction() : options)
-              ],
-            ),
+      small: EzScaffold(
+        config,
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, toolbarHeight),
+          child: EzAppBar(
+            config,
+            height: toolbarHeight,
+            leading: running
+                ? const SizedBox.shrink()
+                : (config.isLefty ? options : EzBackAction(config)),
+            leadingWidth: toolbarHeight,
+            title: Text(title, textAlign: TextAlign.center),
+            actions: <Widget>[
+              running ? const SizedBox.shrink() : (config.isLefty ? EzBackAction(config) : options),
+            ],
           ),
-          body: body,
-          fabs: <Widget>[
-            updater,
-            if (fabs != null) ...fabs!,
-            ...EzConfig.backFABs(home),
-          ],
         ),
+        body: body,
+        fabs: <Widget>[updater(config), if (fabs != null) ...fabs!, ...config.backFABs(isHome)],
       ),
     );
   }

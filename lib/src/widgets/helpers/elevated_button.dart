@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzElevatedButton extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Easily disable the button
   /// Useful if the functionality is async
   final bool enabled;
@@ -31,7 +34,8 @@ class EzElevatedButton extends StatefulWidget {
   final TextAlign? textAlign;
 
   /// [ElevatedButton] with custom styling and an off switch
-  const EzElevatedButton({
+  const EzElevatedButton(
+    this.config, {
     super.key,
     this.enabled = true,
     this.onPressed,
@@ -49,23 +53,30 @@ class EzElevatedButton extends StatefulWidget {
 class _EzElevatedButtonState extends State<EzElevatedButton> {
   @override
   Widget build(BuildContext context) => ElevatedButton(
-        onPressed: widget.enabled ? widget.onPressed : doNothing,
-        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: widget.enabled
-            ? widget.style
-            : (widget.style ?? EzConfig.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(EzConfig.colors.outline),
-                shadowColor: WidgetStateProperty.all(Colors.transparent),
-              ),
-        child: Text(widget.text,
-            style: (widget.textStyle ?? EzConfig.styles.bodyLarge)?.copyWith(
-              decorationColor: widget.enabled ? EzConfig.colors.primary : EzConfig.colors.outline,
-            ),
-            textAlign: widget.textAlign),
-      );
+    onPressed: widget.enabled ? widget.onPressed : doNothing,
+    onLongPress: widget.enabled ? widget.onLongPress : doNothing,
+    style: widget.enabled
+        ? widget.style
+        : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
+            overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+            shadowColor: WidgetStateProperty.all(Colors.transparent),
+          ),
+    child: Text(
+      widget.text,
+      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+        decorationColor: widget.enabled
+            ? widget.config.colors.primary
+            : widget.config.colors.outline,
+      ),
+      textAlign: widget.textAlign,
+    ),
+  );
 }
 
 class EzElevatedIconButton extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Easily disable the button
   /// Useful if the functionality is async
   final bool enabled;
@@ -92,7 +103,8 @@ class EzElevatedIconButton extends StatefulWidget {
   final TextAlign? textAlign;
 
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
-  const EzElevatedIconButton({
+  const EzElevatedIconButton(
+    this.config, {
     super.key,
     this.enabled = true,
     this.onPressed,
@@ -111,22 +123,24 @@ class EzElevatedIconButton extends StatefulWidget {
 class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
   @override
   Widget build(BuildContext context) => ElevatedButton.icon(
-        onPressed: widget.enabled ? widget.onPressed : doNothing,
-        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: widget.enabled
-            ? widget.style
-            : (widget.style ?? EzConfig.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(EzConfig.colors.outline),
-                shadowColor: WidgetStateProperty.all(Colors.transparent),
-              ),
-        icon: widget.icon,
-        iconAlignment: EzConfig.isLefty ? IconAlignment.start : IconAlignment.end,
-        label: Text(
-          widget.label,
-          style: (widget.textStyle ?? EzConfig.styles.bodyLarge)?.copyWith(
-            decorationColor: widget.enabled ? EzConfig.colors.primary : EzConfig.colors.outline,
+    onPressed: widget.enabled ? widget.onPressed : doNothing,
+    onLongPress: widget.enabled ? widget.onLongPress : doNothing,
+    style: widget.enabled
+        ? widget.style
+        : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
+            overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+            shadowColor: WidgetStateProperty.all(Colors.transparent),
           ),
-          textAlign: widget.textAlign,
-        ),
-      );
+    icon: widget.icon,
+    iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+    label: Text(
+      widget.label,
+      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+        decorationColor: widget.enabled
+            ? widget.config.colors.primary
+            : widget.config.colors.outline,
+      ),
+      textAlign: widget.textAlign,
+    ),
+  );
 }

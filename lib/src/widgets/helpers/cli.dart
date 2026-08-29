@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzCLI extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [ezCmd] passthrough
   final String dir;
 
@@ -29,7 +32,8 @@ class EzCLI extends StatelessWidget {
   final TextEditingController _cmdController;
 
   /// Simple interface for running CLI commands via [ezCmd]
-  EzCLI({
+  EzCLI(
+    this.config, {
     super.key,
     required this.dir,
     required this.onSuccess,
@@ -40,35 +44,30 @@ class EzCLI extends StatelessWidget {
   }) : _cmdController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) => EzCol(children: <Widget>[
-        // Title
-        EzText(
-          'CLI',
-          style: EzConfig.styles.titleLarge,
-          textAlign: TextAlign.center,
-        ),
+  Widget build(BuildContext context) => EzCol(
+    children: <Widget>[
+      // Title
+      EzText(config, text: 'CLI', style: config.titleStyle, textAlign: TextAlign.center),
 
-        // Field
-        ConstrainedBox(
-          constraints: ezTextFieldConstraints(context),
-          child: TextFormField(
-            controller: _cmdController,
-            textAlign: TextAlign.start,
-            maxLines: 1,
-            decoration: const InputDecoration(hintText: 'echo "Hello, World!"'),
-            onFieldSubmitted: (String value) async {
-              await ezCmd(
-                value,
-                dir: dir,
-                onSuccess: onSuccess,
-                onFailure: onFailure,
-                onError: onError,
-                debug: debug,
-                readout: readout,
-              );
-              _cmdController.clear();
-            },
-          ),
-        ),
-      ]);
+      // Field
+      EzTextField(
+        controller: _cmdController,
+        constraints: ezTextFieldConstraints(context),
+        hintText: 'echo "Hello, World!"',
+        onFieldSubmitted: (String value) async {
+          await ezCmd(
+            value,
+            dir: dir,
+            onSuccess: onSuccess,
+            onFailure: onFailure,
+            onError: onError,
+            debug: debug,
+            readout: readout,
+          );
+          _cmdController.clear();
+        },
+        validator: null,
+      ),
+    ],
+  );
 }

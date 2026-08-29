@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzWallHolesConfig extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Like updateBoth, but smaller
   final bool autoConfirm;
 
@@ -15,16 +18,16 @@ class EzWallHolesConfig extends StatelessWidget {
   final Future<void> Function(bool)? extra;
 
   /// !Not Windows
-  const EzWallHolesConfig({
-    super.key,
-    required this.autoConfirm,
-    this.extra,
-  });
+  const EzWallHolesConfig(this.config, {super.key, required this.autoConfirm, this.extra});
 
-  static Future<bool> onPressed(BuildContext context, bool autoConfirm) async {
+  static Future<bool> onPressed(
+    EzCP config,
+    bool autoConfirm, {
+    required BuildContext context,
+  }) async {
     // If the current theme is not light, show a warning dialog
-    if (!autoConfirm || EzConfig.themeMode != ThemeMode.light) {
-      final bool uSure = await _confirm(context) ?? false;
+    if (!autoConfirm || config.themeMode != ThemeMode.light) {
+      final bool uSure = await _confirm(config, context: context) ?? false;
       if (!uSure) return false;
     }
 
@@ -32,15 +35,14 @@ class EzWallHolesConfig extends StatelessWidget {
     return true;
   }
 
-  static Future<bool?> _confirm(BuildContext context) => showDialog(
+  static Future<bool?> _confirm(EzCP config, {required BuildContext context}) => showDialog(
         context: context,
         builder: (BuildContext dCon) => EzAlertDialog(
-          title: Text(EzConfig.l10n.gAttention, textAlign: TextAlign.center),
-          content: Text(
-            EzConfig.l10n.ssLightOnly,
-            textAlign: TextAlign.center,
-          ),
+          config,
+          title: Text(config.ezL10n.gAttention, textAlign: TextAlign.center),
+          content: Text(config.ezL10n.ssLightOnly, textAlign: TextAlign.center),
           actions: ezActionPair(
+            config,
             onConfirm: () => Navigator.of(dCon).pop(true),
             confirmIsDestructive: true,
             onDeny: () => Navigator.of(dCon).pop(false),
@@ -52,13 +54,13 @@ class EzWallHolesConfig extends StatelessWidget {
   static Future<void> _makeItSo() async {
     // Reset //
 
-    await EzConfig.removeKeys(lightColorKeys.keys.toSet());
-    await EzConfig.removeKeys(lightDesignKeys.keys.toSet());
-    await EzConfig.removeKeys(lightTextKeys.keys.toSet());
+    await EzCM.removeKeys(lightColorKeys.keys.toSet());
+    await EzCM.removeKeys(lightDesignKeys.keys.toSet());
+    await EzCM.removeKeys(lightTextKeys.keys.toSet());
 
     // Global settings //
 
-    await EzConfig.setBool(isDarkThemeKey, false);
+    await EzCM.setBool(isDarkThemeKey, false);
 
     // Color settings //
 
@@ -109,55 +111,56 @@ class EzWallHolesConfig extends StatelessWidget {
 
     // Design settings //
 
-    await EzConfig.setString(lightButtonShapeKey, EzButtonShape.rect.value);
-    await EzConfig.setDouble(lightBorderWidthKey, 2.0);
+    await EzCM.setString(lightButtonShapeKey, EzButtonShape.rect.value);
+    await EzCM.setDouble(lightBorderWidthKey, 2.0);
 
-    await EzConfig.setBool(lightLineLinksKey, true);
-    await EzConfig.setBool(lightShowBackFABKey, true);
+    await EzCM.setBool(lightLineLinksKey, true);
+    await EzCM.setBool(lightShowBackFABKey, true);
 
-    await EzConfig.setString(lightBackgroundImageKey, wallHolesPath);
-    await EzConfig.setString(lightBackgroundFitKey, BoxFit.cover.name);
-    await EzConfig.setString(
-        lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
+    await EzCM.setString(lightBackgroundImageKey, wallHolesPath);
+    await EzCM.setString(lightBackgroundFitKey, BoxFit.cover.name);
+    await EzCM.setString(lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
 
-    await EzConfig.setString(lightTransitionTypeKey, EzTransitionType.zoom.value);
-    await EzConfig.setBool(lightTransitionFadeKey, false);
+    await EzCM.setString(lightTransitionTypeKey, EzTransitionType.zoom.value);
+    await EzCM.setBool(lightTransitionFadeKey, false);
 
-    await EzConfig.setInt(lightAnimationDurationKey, 500);
+    await EzCM.setInt(lightAnimationDurationKey, 500);
 
-    await EzConfig.setBool(lightShowScrollKey, true);
+    await EzCM.setBool(lightShowScrollKey, true);
 
     // Text settings //
 
-    await EzConfig.setDouble(lightTextBackgroundOpacityKey, 0.80);
+    await EzCM.setDouble(lightTextBackgroundOpacityKey, 0.80);
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle localBody = ezDefaultBodyStyle(Colors.black);
+    final TextStyle localBody = ezDefaultBodyStyle(Colors.black, isDark: config.isDark);
 
     return EzElevatedButton(
+      config,
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFDAE4F8),
         foregroundColor: Colors.black,
         overlayColor: Colors.white,
-        side: const BorderSide(color: Colors.black, width: 2.0),
+        side: const BorderSide(width: 2.0),
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
-        padding: EdgeInsets.all(EzConfig.onMobile ? defaultMobilePadding : defaultDesktopPadding),
+        padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
       ),
       onPressed: () async {
         final bool uSure = autoConfirm ||
-            (EzConfig.themeMode == ThemeMode.light) ||
-            (await _confirm(context) ?? false);
+            (config.themeMode == ThemeMode.light) ||
+            (await _confirm(config, context: context) ?? false);
+
         if (uSure) {
-          await EzConfig.rebuildUI(changes: () async {
+          await config.rebuildUI(changes: () async {
             await _makeItSo();
             await extra?.call(autoConfirm);
           });
         }
       },
-      text: EzConfig.l10n.ssWallHoles,
+      text: config.ezL10n.ssWallHoles,
       textStyle: localBody,
     );
   }

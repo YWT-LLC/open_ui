@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
-import 'package:empathetech_flutter_ui/empathetech_flutter_ui.dart';
+import 'package:open_ui/open_ui.dart';
 
 class EzLink extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// The [TextButton.child] will be [Text] with [text] and all provided styling
   final String text;
 
@@ -52,8 +55,9 @@ class EzLink extends StatefulWidget {
   /// Always has a [tooltip]; if one is not provided, it will default to [hint]
   /// Adds an [TextDecoration.underline] on hover/focus
   const EzLink(
-    this.text, {
+    this.config, {
     super.key,
+    required this.text,
     this.inline = false,
     this.style,
     this.textColor,
@@ -64,8 +68,10 @@ class EzLink extends StatefulWidget {
     required this.hint,
     this.tooltip,
     this.onHover,
-  }) : assert((onTap == null) != (url == null),
-            'Either onTap or url should be provided, but not both.');
+  }) : assert(
+         (onTap == null) != (url == null),
+         'Either onTap or url should be provided, but not both.',
+       );
 
   @override
   State<EzLink> createState() => _EzLinkState();
@@ -76,76 +82,74 @@ class _EzLinkState extends State<EzLink> {
 
   late final String semantics = '${widget.text}; ${widget.hint}';
 
-  late TextStyle? textStyle = (widget.style ?? EzConfig.styles.bodyLarge)?.copyWith(
-    color: widget.textColor ?? EzConfig.colors.primary,
-    decoration: EzConfig.lineLinks ? TextDecoration.underline : TextDecoration.none,
-    decorationColor: EzConfig.colors.primary,
+  late TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
+    color: widget.textColor ?? widget.config.colors.primary,
+    decoration: widget.config.lineLinks ? TextDecoration.underline : TextDecoration.none,
+    decorationColor: widget.config.colors.primary,
   );
 
   // Define custom functions //
 
-  void underline(bool addIt) => (EzConfig.lineLinks)
+  void underline(bool addIt) => (widget.config.lineLinks)
       ? doNothing()
-      : setState(() => textStyle =
-          textStyle?.copyWith(decoration: addIt ? TextDecoration.underline : TextDecoration.none));
+      : setState(
+          () => textStyle = textStyle?.copyWith(
+            decoration: addIt ? TextDecoration.underline : TextDecoration.none,
+          ),
+        );
 
   // Return the build //
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: widget.tooltip ?? widget.hint,
-        excludeFromSemantics: true,
-        child: Semantics(
-          link: true,
-          hint: semantics,
-          child: ExcludeSemantics(
-            child: (widget.onTap != null)
-                ? TextButton(
-                    style: TextButton.styleFrom(
-                      padding: widget.inline ? EdgeInsets.zero : EzInsets.wrap(EzConfig.marginVal),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      visualDensity: VisualDensity.compact,
-                      minimumSize: Size.zero,
-                      backgroundColor: widget.backgroundColor,
-                    ),
-                    onPressed: widget.onTap,
-                    onLongPress: null,
-                    onHover: (bool isHovering) {
-                      underline(isHovering);
-                      widget.onHover?.call(isHovering);
-                    },
-                    onFocusChange: (bool hasFocus) => underline(hasFocus),
-                    child: Text(
-                      widget.text,
-                      style: textStyle,
-                      textAlign: widget.textAlign,
-                    ),
-                  )
-                : Link(
-                    uri: widget.url,
-                    builder: (_, FollowLink? followLink) => TextButton(
-                      style: TextButton.styleFrom(
-                        padding:
-                            widget.inline ? EdgeInsets.zero : EzInsets.wrap(EzConfig.marginVal),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        visualDensity: VisualDensity.compact,
-                        minimumSize: Size.zero,
-                        backgroundColor: widget.backgroundColor,
-                      ),
-                      onPressed: followLink,
-                      onLongPress: null,
-                      onHover: (bool isHovering) {
-                        underline(isHovering);
-                        widget.onHover?.call(isHovering);
-                      },
-                      onFocusChange: (bool hasFocus) => underline(hasFocus),
-                      child: Text(
-                        widget.text,
-                        style: textStyle,
-                        textAlign: widget.textAlign,
-                      ),
-                    ),
+    message: widget.tooltip ?? widget.hint,
+    excludeFromSemantics: true,
+    child: Semantics(
+      link: true,
+      hint: semantics,
+      child: ExcludeSemantics(
+        child: (widget.onTap != null)
+            ? TextButton(
+                style: TextButton.styleFrom(
+                  padding: widget.inline
+                      ? EdgeInsets.zero
+                      : EdgeInsets.all(widget.config.marginVal),
+                  shape: widget.inline ? null : widget.config.buttonShape.shape,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                  minimumSize: Size.zero,
+                  backgroundColor: widget.backgroundColor,
+                ),
+                onPressed: widget.onTap,
+                onHover: (bool isHovering) {
+                  underline(isHovering);
+                  widget.onHover?.call(isHovering);
+                },
+                onFocusChange: (bool hasFocus) => underline(hasFocus),
+                child: Text(widget.text, style: textStyle, textAlign: widget.textAlign),
+              )
+            : Link(
+                uri: widget.url,
+                builder: (_, FollowLink? followLink) => TextButton(
+                  style: TextButton.styleFrom(
+                    padding: widget.inline
+                        ? EdgeInsets.zero
+                        : EdgeInsets.all(widget.config.marginVal),
+                    shape: widget.inline ? null : widget.config.buttonShape.shape,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: VisualDensity.compact,
+                    minimumSize: Size.zero,
+                    backgroundColor: widget.backgroundColor,
                   ),
-          ),
-        ),
-      );
+                  onPressed: followLink,
+                  onHover: (bool isHovering) {
+                    underline(isHovering);
+                    widget.onHover?.call(isHovering);
+                  },
+                  onFocusChange: (bool hasFocus) => underline(hasFocus),
+                  child: Text(widget.text, style: textStyle, textAlign: widget.textAlign),
+                ),
+              ),
+      ),
+    ),
+  );
 }

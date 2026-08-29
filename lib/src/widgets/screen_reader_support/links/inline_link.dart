@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzInlineLink extends WidgetSpan {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [EzLink.text] passthrough
   final String text;
 
@@ -43,8 +46,9 @@ class EzInlineLink extends WidgetSpan {
   /// The [EzLink] has zero padding and custom [Semantics] for [EzRichText]; [richLabel]
   EzInlineLink(
     // EzLink
-    this.text, {
+    this.config, {
     this.key,
+    required this.text,
     super.style,
     this.textColor,
     this.backgroundColor = Colors.transparent,
@@ -55,21 +59,24 @@ class EzInlineLink extends WidgetSpan {
     this.tooltip,
     this.richLabel, // Not used here, but in EzRichText
     super.alignment = PlaceholderAlignment.middle,
-  })  : assert((onTap == null) != (url == null),
-            'Either onTap or url should be provided, but not both.'),
-        super(
-          child: EzLink(
-            text,
-            key: key,
-            style: style,
-            textColor: textColor,
-            backgroundColor: backgroundColor,
-            textAlign: textAlign,
-            inline: true,
-            onTap: onTap,
-            url: url,
-            hint: hint,
-            tooltip: tooltip,
-          ),
-        );
+  }) : assert(
+         (onTap == null) != (url == null),
+         'Either onTap or url should be provided, but not both.',
+       ),
+       super(
+         child: EzLink(
+           config,
+           text: text,
+           key: key,
+           style: style,
+           textColor: textColor,
+           backgroundColor: backgroundColor,
+           textAlign: textAlign,
+           inline: true,
+           onTap: onTap,
+           url: url,
+           hint: hint,
+           tooltip: tooltip,
+         ),
+       );
 }

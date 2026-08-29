@@ -1,14 +1,17 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzElevatedLink extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
@@ -27,7 +30,8 @@ class EzElevatedLink extends StatelessWidget {
   /// Minimal [EzElevatedButton] wrapped in a [Link]
   /// If you want an [ElevatedButton] with web [Semantics] and context menu
   /// Always has a [tooltip]; if one is not provided, it will default to [hint]
-  const EzElevatedLink({
+  const EzElevatedLink(
+    this.config, {
     super.key,
     this.tooltip,
     required this.hint,
@@ -37,24 +41,27 @@ class EzElevatedLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: tooltip ?? hint,
-        excludeFromSemantics: true,
-        child: Semantics(
-          button: true,
-          link: true,
-          hint: '$text; $hint',
-          child: ExcludeSemantics(
-            child: Link(
-              uri: url,
-              builder: (_, FollowLink? followLink) =>
-                  EzElevatedButton(onPressed: followLink, text: text),
-            ),
-          ),
+    message: tooltip ?? hint,
+    excludeFromSemantics: true,
+    child: Semantics(
+      button: true,
+      link: true,
+      hint: '$text; $hint',
+      child: ExcludeSemantics(
+        child: Link(
+          uri: url,
+          builder: (_, FollowLink? followLink) =>
+              EzElevatedButton(config, onPressed: followLink, text: text),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class EzElevatedIconLink extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
@@ -76,7 +83,8 @@ class EzElevatedIconLink extends StatelessWidget {
   /// Minimal [EzElevatedIconButton] wrapped in a [Link]
   /// If you want an [ElevatedButton.icon] with web [Semantics] and context menu
   /// Always has a [tooltip]; if one is not provided, it will default to [hint]
-  const EzElevatedIconLink({
+  const EzElevatedIconLink(
+    this.config, {
     super.key,
     this.tooltip,
     required this.hint,
@@ -87,22 +95,19 @@ class EzElevatedIconLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Tooltip(
-        message: tooltip ?? hint,
-        excludeFromSemantics: true,
-        child: Semantics(
-          button: true,
-          link: true,
-          hint: '$label; $hint',
-          child: ExcludeSemantics(
-            child: Link(
-              uri: url,
-              builder: (_, FollowLink? followLink) => EzElevatedIconButton(
-                onPressed: followLink,
-                icon: icon,
-                label: label,
-              ),
-            ),
-          ),
+    message: tooltip ?? hint,
+    excludeFromSemantics: true,
+    child: Semantics(
+      button: true,
+      link: true,
+      hint: '$label; $hint',
+      child: ExcludeSemantics(
+        child: Link(
+          uri: url,
+          builder: (_, FollowLink? followLink) =>
+              EzElevatedIconButton(config, onPressed: followLink, icon: icon, label: label),
         ),
-      );
+      ),
+    ),
+  );
 }

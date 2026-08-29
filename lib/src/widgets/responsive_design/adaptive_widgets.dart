@@ -1,12 +1,11 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 // Enum declaration //
 
@@ -17,16 +16,16 @@ enum ScreenSize { small, medium, large }
 
 extension ScreenSizeConfig on ScreenSize {
   double get size => switch (this) {
-        ScreenSize.small => 700.0,
-        ScreenSize.medium => 1000.0,
-        ScreenSize.large => 1300.0,
-      };
+    ScreenSize.small => 700.0,
+    ScreenSize.medium => 1000.0,
+    ScreenSize.large => 1300.0,
+  };
 
   int get order => switch (this) {
-        ScreenSize.small => 0,
-        ScreenSize.medium => 1,
-        ScreenSize.large => 2,
-      };
+    ScreenSize.small => 0,
+    ScreenSize.medium => 1,
+    ScreenSize.large => 2,
+  };
 }
 
 // BTS class //
@@ -36,11 +35,7 @@ class EzScreenSize extends InheritedWidget {
 
   /// [InheritedWidget] to wrap around your [Scaffold]s
   /// Enables real-time responses to screen space changes
-  const EzScreenSize({
-    super.key,
-    required this.screenSize,
-    required super.child,
-  });
+  const EzScreenSize({super.key, required this.screenSize, required super.child});
 
   static EzScreenSize? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<EzScreenSize>();
@@ -53,16 +48,13 @@ class EzScreenSize extends InheritedWidget {
 
 class EzAdaptiveParent extends StatelessWidget {
   /// Think phone thoughts
-  /// Should be tracking [EzConfigProvider.seed] for redraws/rebuilds
-  final Consumer<EzConfigProvider> small;
+  final Widget small;
 
   /// Think tablet thoughts
-  /// Should be tracking [EzConfigProvider.seed] for redraws/rebuilds
-  final Consumer<EzConfigProvider>? medium;
+  final Widget? medium;
 
   /// Think desktop thoughts
-  /// Should be tracking [EzConfigProvider.seed] for redraws/rebuilds
-  final Consumer<EzConfigProvider>? large;
+  final Widget? large;
 
   /// Will be added to all [ScreenSize] calculations
   final double offset;
@@ -96,7 +88,10 @@ class EzAdaptiveParent extends StatelessWidget {
       child = large ?? medium ?? small;
     }
 
-    return EzScreenSize(screenSize: size, child: SelectionArea(child: child));
+    return EzScreenSize(
+      screenSize: size,
+      child: SelectionArea(child: child),
+    );
   }
 }
 
@@ -123,8 +118,8 @@ class EzAdaptiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (EzScreenSize.of(context)?.screenSize.order) {
-        1 => medium ?? small,
-        2 => large ?? medium ?? small,
-        _ => small,
-      };
+    1 => medium ?? small,
+    2 => large ?? medium ?? small,
+    _ => small,
+  };
 }

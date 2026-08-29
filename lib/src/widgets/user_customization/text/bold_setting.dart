@@ -1,13 +1,16 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../../empathetech_flutter_ui.dart';
+import '../../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
 class EzBoldSetting extends StatefulWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// Which [TextStyle] to update
   final EzTextSettingType type;
 
@@ -15,7 +18,8 @@ class EzBoldSetting extends StatefulWidget {
   final void Function(bool bold) notifierCallback;
 
   /// Standardized tool for toggling [FontWeight.bold] in the [TextStyle.fontWeight] that matches [type]
-  const EzBoldSetting({
+  const EzBoldSetting(
+    this.config, {
     required super.key,
     required this.type,
     required this.notifierCallback,
@@ -26,29 +30,30 @@ class EzBoldSetting extends StatefulWidget {
 }
 
 class _EzBoldSettingState extends State<EzBoldSetting> {
-  late bool isBold = EzConfig.get(widget.type.boldKey) ?? false;
+  late bool isBold = EzCM.get(widget.type.boldKey(widget.config.isDark)) ?? false;
 
   @override
   Widget build(BuildContext context) => EzIconButton(
-        onPressed: () async {
-          isBold = !isBold;
+    widget.config,
+    onPressed: () async {
+      isBold = !isBold;
 
-          await EzConfig.setBool(widget.type.boldKey, isBold);
-          if (EzConfig.updateBoth) {
-            await EzConfig.setBool(widget.type.boldMirror, isBold);
-          }
+      await EzCM.setBool(widget.type.boldKey(widget.config.isDark), isBold);
+      if (EzCM.updateBoth) {
+        await EzCM.setBool(widget.type.boldMirror(widget.config.isDark), isBold);
+      }
 
-          widget.notifierCallback(isBold);
-          if (context.mounted) {
-            EzConfig.pingRebuild(ezTextRebuildCheck(context));
-          }
+      widget.notifierCallback(isBold);
+      if (context.mounted) {
+        widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+      }
 
-          setState(() {});
-        },
-        tooltip: EzConfig.l10n.tsBold,
-        icon: EzIcon(
-          Icons.format_bold_outlined,
-          color: isBold ? EzConfig.colors.primary : EzConfig.colors.outline,
-        ),
-      );
+      setState(() {});
+    },
+    tooltip: widget.config.ezL10n.tsBold,
+    icon: Icon(
+      Icons.format_bold_outlined,
+      color: isBold ? widget.config.colors.primary : widget.config.colors.outline,
+    ),
+  );
 }

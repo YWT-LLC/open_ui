@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.2] - 2026-08-29
+### Updated
+- Open UI >> EFUI
+
+## [4.0.1] - 2026-06-06
+### Updated
+- EFUI 12.1.0
+
 ## [4.0.0] - 2026-05-27
 ### Updated
 - EFUI 12.0.0

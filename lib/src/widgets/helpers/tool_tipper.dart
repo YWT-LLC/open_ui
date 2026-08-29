@@ -1,14 +1,17 @@
-/* empathetech_flutter_ui
- * Copyright (c) 2026 Empathetech LLC. All rights reserved.
+/* open_ui
+ * Copyright (c) 2022 YWT (Empathetech LLC). All rights reserved.
  * See LICENSE for distribution and usage details.
  */
 
-import '../../../empathetech_flutter_ui.dart';
+import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 
 class EzToolTipper extends StatelessWidget {
+  /// EzConfig Provider
+  final EzCP config;
+
   /// [Tooltip.message] passthrough
   final String? message;
 
@@ -16,9 +19,11 @@ class EzToolTipper extends StatelessWidget {
   final InlineSpan? richMessage;
 
   /// Classic question mark tool tip
-  const EzToolTipper({super.key, this.message, this.richMessage})
-      : assert(((message == null) != (richMessage == null)),
-            'Either message or richMessage must be provided, but not both');
+  const EzToolTipper(this.config, {super.key, this.message, this.richMessage})
+      : assert(
+          ((message == null) != (richMessage == null)),
+          'Either message or richMessage must be provided, but not both',
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +31,11 @@ class EzToolTipper extends StatelessWidget {
     bool isTooltipVisible = false;
 
     return EzTextBackground(
-      Semantics(
-        label: EzConfig.l10n.gHelp,
+      config,
+      padding: EdgeInsets.all(config.marginVal),
+      shape: config.buttonShape,
+      text: Semantics(
+        label: config.ezL10n.gHelp,
         button: true,
         onTap: () async {
           if (isTooltipVisible) {
@@ -36,7 +44,7 @@ class EzToolTipper extends StatelessWidget {
             key.currentState?.ensureTooltipVisible();
 
             // Wait for auto-announcement to finish
-            await Future<void>.delayed(ezReadingTime(EzConfig.l10n.gHelp));
+            await Future<void>.delayed(ezReadingTime(config, config.ezL10n.gHelp));
             String message = this.message ?? '';
 
             if (richMessage != null) {
@@ -68,7 +76,7 @@ class EzToolTipper extends StatelessWidget {
               await SemanticsService.sendAnnouncement(
                 View.of(context),
                 message,
-                EzConfig.isLTR ? TextDirection.ltr : TextDirection.rtl,
+                config.isLTR ? TextDirection.ltr : TextDirection.rtl,
                 assertiveness: Assertiveness.assertive,
               );
             }
@@ -77,20 +85,16 @@ class EzToolTipper extends StatelessWidget {
         },
         child: Tooltip(
           waitDuration: Duration.zero,
-          exitDuration: const Duration(milliseconds: 500),
+          showDuration: ezReadingTime(config, message ?? richMessage!.toPlainText()),
           triggerMode: TooltipTriggerMode.tap,
-          enableTapToDismiss: false,
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
-          child: EzIcon(
-            Icons.help_outline,
-            color: EzConfig.colors.outline,
-          ),
+          child: EzIcon(config, Icons.help_outline, color: config.colors.outline),
         ),
       ),
-      baseColor: EzConfig.colors.surface,
-      borderRadius: EzConfig.textRadius,
+      baseColor: config.colors.surface,
+      borderRadius: config.textRadius,
     );
   }
 }
