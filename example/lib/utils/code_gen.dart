@@ -761,7 +761,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        title: appName,
         fabs: <Widget>[
           config.spacer,
           CountFAB(config, () => setState(() => count += 1)),
