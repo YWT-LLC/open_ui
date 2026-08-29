@@ -2,9 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [13.0.0] - 2026-07-XX
+## [13.0.0] - 2026-08-29
 ### Updated
 - Name
+
+### Fixed
+- Bugs found in Liminal development
 
 ## [12.1.0] - 2026-06-06
 ### Updated

@@ -1,6 +1,6 @@
 name: example
 description: "Open UI is an accessibility sandbox, with limitless potential. If you like it, checkout https://github.com/YWT-LLC/open_ui"
-version: 4.0.1+42
+version: 4.0.2+43
 publish_to: 'none'
 
 environment:
