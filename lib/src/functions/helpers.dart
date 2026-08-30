@@ -280,10 +280,7 @@ Future<void> ezColorPicker(
               ),
             ],
           ),
-          EzSpacer(
-            config.spacing * 2 + MediaQuery.of(context).viewInsets.bottom,
-            key: UniqueKey(),
-          ),
+          EzKeyboardSpacer(config.spacing * 2),
         ],
       ),
     );
