@@ -28,6 +28,49 @@ class EzSpacer extends StatelessWidget {
       );
 }
 
+class EzKeyboardSpacer extends StatelessWidget {
+  /// The final frontier
+  /// [MediaQuery]'s [EdgeInsets.bottom] will be appended automatically
+  final double space;
+
+  /// Whether [space] should be provided to [SizedBox.width]
+  /// Ignores [MediaQuery]
+  final bool horizontal;
+
+  const EzKeyboardSpacer(this.space, {super.key, this.horizontal = true});
+
+  @override
+  Widget build(BuildContext context) => ExcludeSemantics(
+        child: SizedBox(
+          key: UniqueKey(),
+          height: space + MediaQuery.of(context).viewInsets.bottom,
+          width: horizontal ? space : null,
+        ),
+      );
+}
+
+class EzSwapSpacer extends StatelessWidget {
+  /// The final frontier
+  final double space;
+
+  /// Which [ScreenSize] the Widget should respond to
+  final ScreenSize breakpoint;
+
+  /// When the context's [ScreenSize] > [breakpoint]; [EzSpacer.vertical] => false
+  /// When the context's [ScreenSize] <= [breakpoint]; [EzSpacer.horizontal] => false
+  /// If [EzScreenSize] is not in the Widget tree; [EzSpacer.horizontal] => false
+  const EzSwapSpacer(this.space, {super.key, this.breakpoint = ScreenSize.small});
+
+  @override
+  Widget build(BuildContext context) {
+    final ScreenSize? size = EzScreenSize.of(context)?.screenSize;
+
+    return (size == null || size.order <= breakpoint.order)
+        ? EzSpacer(space, horizontal: false)
+        : EzSpacer(space, vertical: false);
+  }
+}
+
 class EzDivider extends StatelessWidget {
   /// Vertical space that should be occupied
   final double height;
@@ -147,28 +190,6 @@ class EzHeader extends StatelessWidget {
           dimension: (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0,
         ),
       );
-}
-
-class EzSwapSpacer extends StatelessWidget {
-  /// The final frontier
-  final double space;
-
-  /// Which [ScreenSize] the Widget should respond to
-  final ScreenSize breakpoint;
-
-  /// When the context's [ScreenSize] > [breakpoint]; [EzSpacer.vertical] => false
-  /// When the context's [ScreenSize] <= [breakpoint]; [EzSpacer.horizontal] => false
-  /// If [EzScreenSize] is not in the Widget tree; [EzSpacer.horizontal] => false
-  const EzSwapSpacer(this.space, {super.key, this.breakpoint = ScreenSize.small});
-
-  @override
-  Widget build(BuildContext context) {
-    final ScreenSize? size = EzScreenSize.of(context)?.screenSize;
-
-    return (size == null || size.order <= breakpoint.order)
-        ? EzSpacer(space, horizontal: false)
-        : EzSpacer(space, vertical: false);
-  }
 }
 
 class EzFooter extends StatelessWidget {
