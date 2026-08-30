@@ -61,9 +61,9 @@ class EzIconLink extends StatefulWidget {
     required this.hint,
     this.tooltip,
   }) : assert(
-         (onTap == null) != (url == null),
-         'Either onTap or url should be provided, but not both.',
-       );
+          (onTap == null) != (url == null),
+          'Either onTap or url should be provided, but not both.',
+        );
 
   @override
   State<EzIconLink> createState() => _EzIconLinkState();
@@ -81,10 +81,10 @@ class _EzIconLinkState extends State<EzIconLink> {
     );
 
     void underline(bool addIt) => setState(
-      () => textStyle = textStyle?.copyWith(
-        decoration: addIt ? TextDecoration.underline : TextDecoration.none,
-      ),
-    );
+          () => textStyle = textStyle?.copyWith(
+            decoration: addIt ? TextDecoration.underline : TextDecoration.none,
+          ),
+        );
 
     // Return the build //
 

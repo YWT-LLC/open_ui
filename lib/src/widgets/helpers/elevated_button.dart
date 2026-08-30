@@ -53,24 +53,23 @@ class EzElevatedButton extends StatefulWidget {
 class _EzElevatedButtonState extends State<EzElevatedButton> {
   @override
   Widget build(BuildContext context) => ElevatedButton(
-    onPressed: widget.enabled ? widget.onPressed : doNothing,
-    onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-    style: widget.enabled
-        ? widget.style
-        : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-            overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
-            shadowColor: WidgetStateProperty.all(Colors.transparent),
+        onPressed: widget.enabled ? widget.onPressed : doNothing,
+        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
+        style: widget.enabled
+            ? widget.style
+            : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+              ),
+        child: Text(
+          widget.text,
+          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+            decorationColor:
+                widget.enabled ? widget.config.colors.primary : widget.config.colors.outline,
           ),
-    child: Text(
-      widget.text,
-      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-        decorationColor: widget.enabled
-            ? widget.config.colors.primary
-            : widget.config.colors.outline,
-      ),
-      textAlign: widget.textAlign,
-    ),
-  );
+          textAlign: widget.textAlign,
+        ),
+      );
 }
 
 class EzElevatedIconButton extends StatefulWidget {
@@ -123,24 +122,23 @@ class EzElevatedIconButton extends StatefulWidget {
 class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
   @override
   Widget build(BuildContext context) => ElevatedButton.icon(
-    onPressed: widget.enabled ? widget.onPressed : doNothing,
-    onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-    style: widget.enabled
-        ? widget.style
-        : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-            overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
-            shadowColor: WidgetStateProperty.all(Colors.transparent),
+        onPressed: widget.enabled ? widget.onPressed : doNothing,
+        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
+        style: widget.enabled
+            ? widget.style
+            : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+              ),
+        icon: widget.icon,
+        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+        label: Text(
+          widget.label,
+          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
+            decorationColor:
+                widget.enabled ? widget.config.colors.primary : widget.config.colors.outline,
           ),
-    icon: widget.icon,
-    iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
-    label: Text(
-      widget.label,
-      style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-        decorationColor: widget.enabled
-            ? widget.config.colors.primary
-            : widget.config.colors.outline,
-      ),
-      textAlign: widget.textAlign,
-    ),
-  );
+          textAlign: widget.textAlign,
+        ),
+      );
 }

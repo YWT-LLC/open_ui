@@ -43,17 +43,17 @@ class EzCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
-    child: Transform.scale(
-      scale: max(1.0, _scale),
-      child: Checkbox(
-        value: value,
-        onChanged: onChanged,
-        isError: isError,
-        semanticLabel: semanticLabel,
-      ),
-    ),
-  );
+        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
+        child: Transform.scale(
+          scale: max(1.0, _scale),
+          child: Checkbox(
+            value: value,
+            onChanged: onChanged,
+            isError: isError,
+            semanticLabel: semanticLabel,
+          ),
+        ),
+      );
 }
 
 class EzCheckboxPair extends StatelessWidget {
@@ -128,30 +128,30 @@ class EzCheckboxPair extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzRow(
-    config,
-    reverseHands: reverseHands,
-    mainAxisSize: mainAxisSize,
-    mainAxisAlignment: mainAxisAlignment,
-    crossAxisAlignment: crossAxisAlignment,
-    children: <Widget>[
-      Flexible(
-        child: EzText(
-          config,
-          text: text,
-          style: style,
-          textAlign: textAlign,
-          semanticsLabel: semanticsLabel,
-          baseColor: baseColor,
-          backgroundColor: backgroundColor,
-        ),
-      ),
-      EzCheckbox(
         config,
-        padding: padding,
-        value: value,
-        onChanged: onChanged,
-        semanticLabel: semanticLabel,
-      ),
-    ],
-  );
+        reverseHands: reverseHands,
+        mainAxisSize: mainAxisSize,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: <Widget>[
+          Flexible(
+            child: EzText(
+              config,
+              text: text,
+              style: style,
+              textAlign: textAlign,
+              semanticsLabel: semanticsLabel,
+              baseColor: baseColor,
+              backgroundColor: backgroundColor,
+            ),
+          ),
+          EzCheckbox(
+            config,
+            padding: padding,
+            value: value,
+            onChanged: onChanged,
+            semanticLabel: semanticLabel,
+          ),
+        ],
+      );
 }

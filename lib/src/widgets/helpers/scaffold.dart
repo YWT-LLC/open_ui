@@ -25,10 +25,10 @@ class EzScaffold extends Scaffold {
     super.backgroundColor,
     required this.fabs,
   }) : super(
-         floatingActionButton: EzCol(children: fabs),
-         floatingActionButtonLocation: config.isLefty
-             ? FloatingActionButtonLocation.startFloat
-             : FloatingActionButtonLocation.endFloat,
-         resizeToAvoidBottomInset: false,
-       );
+          floatingActionButton: EzCol(children: fabs),
+          floatingActionButtonLocation: config.isLefty
+              ? FloatingActionButtonLocation.startFloat
+              : FloatingActionButtonLocation.endFloat,
+          resizeToAvoidBottomInset: false,
+        );
 }

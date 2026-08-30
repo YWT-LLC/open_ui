@@ -32,71 +32,71 @@ class QuickColorSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => EzCol(
-    children: <Widget>[
-      if (quickHeader != null) ...quickHeader!,
+        children: <Widget>[
+          if (quickHeader != null) ...quickHeader!,
 
-      // From image
-      Semantics(
-        label: config.ezL10n.csSchemeBase.replaceAll('\n', ' '),
-        value: config.ezL10n.gOptional,
-        button: true,
-        hint: config.ezL10n.csFromImage,
-        child: ExcludeSemantics(
-          child: EzImageSetting(
-            config,
-            pathKey: config.isDark ? darkColorSchemeImageKey : lightColorSchemeImageKey,
-            fitKey: null,
-            label: config.ezL10n.csSchemeBase,
-            setColors: true,
-            showEditor: false,
-            showFitOption: false,
+          // From image
+          Semantics(
+            label: config.ezL10n.csSchemeBase.replaceAll('\n', ' '),
+            value: config.ezL10n.gOptional,
+            button: true,
+            hint: config.ezL10n.csFromImage,
+            child: ExcludeSemantics(
+              child: EzImageSetting(
+                config,
+                pathKey: config.isDark ? darkColorSchemeImageKey : lightColorSchemeImageKey,
+                fitKey: null,
+                label: config.ezL10n.csSchemeBase,
+                setColors: true,
+                showEditor: false,
+                showFitOption: false,
+              ),
+            ),
           ),
-        ),
-      ),
-      config.separator,
+          config.separator,
 
-      // High contrast
-      EzHighContrastColorsSetting(config),
-      config.spacer,
+          // High contrast
+          EzHighContrastColorsSetting(config),
+          config.spacer,
 
-      // MonoChrome
-      EzMonoChromeColorsSetting(config),
+          // MonoChrome
+          EzMonoChromeColorsSetting(config),
 
-      // Additional settings
-      if (quickFooter != null) ...quickFooter!,
+          // Additional settings
+          if (quickFooter != null) ...quickFooter!,
 
-      // Local reset
-      resetSpacer,
-      EzResetButton(
-        config,
-        all: false,
-        dynamicTitle: () => config.ezL10n.csReset(ezThemeString(config, bothable: true)),
-        resetSkip: resetSkip,
-        onConfirm: () async {
-          if (EzCM.updateBoth) {
-            await EzCM.removeKeys(allColorKeys.keys.toSet());
-            if (resetExtraDark != null) {
-              await EzCM.removeKeys(resetExtraDark!);
-            }
-            if (resetExtraLight != null) {
-              await EzCM.removeKeys(resetExtraLight!);
-            }
-          } else {
-            if (config.isDark) {
-              await EzCM.removeKeys(darkColorKeys.keys.toSet());
-              if (resetExtraDark != null) {
-                await EzCM.removeKeys(resetExtraDark!);
+          // Local reset
+          resetSpacer,
+          EzResetButton(
+            config,
+            all: false,
+            dynamicTitle: () => config.ezL10n.csReset(ezThemeString(config, bothable: true)),
+            resetSkip: resetSkip,
+            onConfirm: () async {
+              if (EzCM.updateBoth) {
+                await EzCM.removeKeys(allColorKeys.keys.toSet());
+                if (resetExtraDark != null) {
+                  await EzCM.removeKeys(resetExtraDark!);
+                }
+                if (resetExtraLight != null) {
+                  await EzCM.removeKeys(resetExtraLight!);
+                }
+              } else {
+                if (config.isDark) {
+                  await EzCM.removeKeys(darkColorKeys.keys.toSet());
+                  if (resetExtraDark != null) {
+                    await EzCM.removeKeys(resetExtraDark!);
+                  }
+                } else {
+                  await EzCM.removeKeys(lightColorKeys.keys.toSet());
+                  if (resetExtraLight != null) {
+                    await EzCM.removeKeys(resetExtraLight!);
+                  }
+                }
               }
-            } else {
-              await EzCM.removeKeys(lightColorKeys.keys.toSet());
-              if (resetExtraLight != null) {
-                await EzCM.removeKeys(resetExtraLight!);
-              }
-            }
-          }
-        },
-      ),
-      config.separator,
-    ],
-  );
+            },
+          ),
+          config.separator,
+        ],
+      );
 }

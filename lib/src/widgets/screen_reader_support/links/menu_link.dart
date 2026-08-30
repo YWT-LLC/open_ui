@@ -45,15 +45,15 @@ class EzMenuLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Link(
-    uri: uri,
-    builder: (_, FollowLink? followLink) => EzMenuButton(
-      config,
-      onPressed: () => launchUrl(uri),
-      semanticsLabel: semanticsLabel,
-      icon: icon,
-      label: label,
-      textStyle: textStyle,
-      textAlign: textAlign,
-    ),
-  );
+        uri: uri,
+        builder: (_, FollowLink? followLink) => EzMenuButton(
+          config,
+          onPressed: () => launchUrl(uri),
+          semanticsLabel: semanticsLabel,
+          icon: icon,
+          label: label,
+          textStyle: textStyle,
+          textAlign: textAlign,
+        ),
+      );
 }

@@ -47,17 +47,17 @@ class EzMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
-    style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
-    onPressed: enabled ? onPressed : doNothing,
-    leadingIcon: label == null ? null : (config.isLefty ? icon : null),
-    trailingIcon: label == null ? null : (config.isLefty ? null : icon),
-    semanticsLabel: semanticsLabel,
-    child: (label == null)
-        ? icon
-        : Text(
-            label!,
-            style: textStyle ?? config.bodyStyle,
-            textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
-          ),
-  );
+        style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+        onPressed: enabled ? onPressed : doNothing,
+        leadingIcon: label == null ? null : (config.isLefty ? icon : null),
+        trailingIcon: label == null ? null : (config.isLefty ? null : icon),
+        semanticsLabel: semanticsLabel,
+        child: (label == null)
+            ? icon
+            : Text(
+                label!,
+                style: textStyle ?? config.bodyStyle,
+                textAlign: textAlign ?? (config.isLefty ? TextAlign.start : TextAlign.end),
+              ),
+      );
 }

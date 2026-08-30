@@ -16,16 +16,16 @@ enum ScreenSize { small, medium, large }
 
 extension ScreenSizeConfig on ScreenSize {
   double get size => switch (this) {
-    ScreenSize.small => 700.0,
-    ScreenSize.medium => 1000.0,
-    ScreenSize.large => 1300.0,
-  };
+        ScreenSize.small => 700.0,
+        ScreenSize.medium => 1000.0,
+        ScreenSize.large => 1300.0,
+      };
 
   int get order => switch (this) {
-    ScreenSize.small => 0,
-    ScreenSize.medium => 1,
-    ScreenSize.large => 2,
-  };
+        ScreenSize.small => 0,
+        ScreenSize.medium => 1,
+        ScreenSize.large => 2,
+      };
 }
 
 // BTS class //
@@ -118,8 +118,8 @@ class EzAdaptiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (EzScreenSize.of(context)?.screenSize.order) {
-    1 => medium ?? small,
-    2 => large ?? medium ?? small,
-    _ => small,
-  };
+        1 => medium ?? small,
+        2 => large ?? medium ?? small,
+        _ => small,
+      };
 }

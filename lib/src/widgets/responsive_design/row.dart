@@ -40,9 +40,9 @@ class EzRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-    mainAxisAlignment: mainAxisAlignment,
-    mainAxisSize: mainAxisSize,
-    crossAxisAlignment: crossAxisAlignment,
-    children: (reverseHands && config.isLefty == true) ? children.reversed.toList() : children,
-  );
+        mainAxisAlignment: mainAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        crossAxisAlignment: crossAxisAlignment,
+        children: (reverseHands && config.isLefty == true) ? children.reversed.toList() : children,
+      );
 }

@@ -69,9 +69,9 @@ class EzLink extends StatefulWidget {
     this.tooltip,
     this.onHover,
   }) : assert(
-         (onTap == null) != (url == null),
-         'Either onTap or url should be provided, but not both.',
-       );
+          (onTap == null) != (url == null),
+          'Either onTap or url should be provided, but not both.',
+        );
 
   @override
   State<EzLink> createState() => _EzLinkState();
@@ -101,55 +101,54 @@ class _EzLinkState extends State<EzLink> {
   // Return the build //
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: widget.tooltip ?? widget.hint,
-    excludeFromSemantics: true,
-    child: Semantics(
-      link: true,
-      hint: semantics,
-      child: ExcludeSemantics(
-        child: (widget.onTap != null)
-            ? TextButton(
-                style: TextButton.styleFrom(
-                  padding: widget.inline
-                      ? EdgeInsets.zero
-                      : EdgeInsets.all(widget.config.marginVal),
-                  shape: widget.inline ? null : widget.config.buttonShape.shape,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  visualDensity: VisualDensity.compact,
-                  minimumSize: Size.zero,
-                  backgroundColor: widget.backgroundColor,
-                ),
-                onPressed: widget.onTap,
-                onHover: (bool isHovering) {
-                  underline(isHovering);
-                  widget.onHover?.call(isHovering);
-                },
-                onFocusChange: (bool hasFocus) => underline(hasFocus),
-                child: Text(widget.text, style: textStyle, textAlign: widget.textAlign),
-              )
-            : Link(
-                uri: widget.url,
-                builder: (_, FollowLink? followLink) => TextButton(
-                  style: TextButton.styleFrom(
-                    padding: widget.inline
-                        ? EdgeInsets.zero
-                        : EdgeInsets.all(widget.config.marginVal),
-                    shape: widget.inline ? null : widget.config.buttonShape.shape,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: VisualDensity.compact,
-                    minimumSize: Size.zero,
-                    backgroundColor: widget.backgroundColor,
+        message: widget.tooltip ?? widget.hint,
+        excludeFromSemantics: true,
+        child: Semantics(
+          link: true,
+          hint: semantics,
+          child: ExcludeSemantics(
+            child: (widget.onTap != null)
+                ? TextButton(
+                    style: TextButton.styleFrom(
+                      padding:
+                          widget.inline ? EdgeInsets.zero : EdgeInsets.all(widget.config.marginVal),
+                      shape: widget.inline ? null : widget.config.buttonShape.shape,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity: VisualDensity.compact,
+                      minimumSize: Size.zero,
+                      backgroundColor: widget.backgroundColor,
+                    ),
+                    onPressed: widget.onTap,
+                    onHover: (bool isHovering) {
+                      underline(isHovering);
+                      widget.onHover?.call(isHovering);
+                    },
+                    onFocusChange: (bool hasFocus) => underline(hasFocus),
+                    child: Text(widget.text, style: textStyle, textAlign: widget.textAlign),
+                  )
+                : Link(
+                    uri: widget.url,
+                    builder: (_, FollowLink? followLink) => TextButton(
+                      style: TextButton.styleFrom(
+                        padding: widget.inline
+                            ? EdgeInsets.zero
+                            : EdgeInsets.all(widget.config.marginVal),
+                        shape: widget.inline ? null : widget.config.buttonShape.shape,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                        minimumSize: Size.zero,
+                        backgroundColor: widget.backgroundColor,
+                      ),
+                      onPressed: followLink,
+                      onHover: (bool isHovering) {
+                        underline(isHovering);
+                        widget.onHover?.call(isHovering);
+                      },
+                      onFocusChange: (bool hasFocus) => underline(hasFocus),
+                      child: Text(widget.text, style: textStyle, textAlign: widget.textAlign),
+                    ),
                   ),
-                  onPressed: followLink,
-                  onHover: (bool isHovering) {
-                    underline(isHovering);
-                    widget.onHover?.call(isHovering);
-                  },
-                  onFocusChange: (bool hasFocus) => underline(hasFocus),
-                  child: Text(widget.text, style: textStyle, textAlign: widget.textAlign),
-                ),
-              ),
-      ),
-    ),
-  );
+          ),
+        ),
+      );
 }
