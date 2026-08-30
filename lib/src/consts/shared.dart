@@ -72,8 +72,8 @@ const Set<String> rtlLanguageCodes = <String>{
   'yi', // Yiddish
 };
 
-/// Swipe velocity; 200
-const int ezSwipeV = 200;
+/// Swipe velocity; 300
+const int ezSwipeV = 300;
 
 //* Theme Data *//
 
