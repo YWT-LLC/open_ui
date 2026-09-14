@@ -907,7 +907,7 @@ export 'settings.dart';
 
 // Route names //
 
-/// settings-home
+/// settings-hub
 const String settingsHubPath = 'settings-hub';
 """);
   } catch (e) {
