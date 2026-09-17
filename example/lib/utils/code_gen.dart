@@ -482,7 +482,7 @@ class CountFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'count_fab',
+        heroTag: 'count_FAB',
         onPressed: count,
         child: EzIcon(config, Icons.add),
       );

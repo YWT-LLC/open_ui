@@ -107,7 +107,7 @@ class MacStoreFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'mac_store_fab',
+        heroTag: 'mac_store_FAB',
         tooltip: 'EoL',
         onPressed: () => showDialog(
           context: context,
