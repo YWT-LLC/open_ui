@@ -160,6 +160,9 @@ class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
   final TextEditingController? controller;
 
+  /// [TextFormField] passthrough
+  final String? initialValue;
+
   /// [ConstrainedBox] passthrough
   final BoxConstraints constraints;
 
@@ -222,6 +225,7 @@ class EzTextField extends StatefulWidget {
     this.autofillHints,
     this.autovalidateMode = AutovalidateMode.onUnfocus,
     this.controller,
+    this.initialValue,
     required this.constraints,
     this.errorConstraints,
     this.focusNode,
@@ -253,6 +257,7 @@ class _EzTextFieldState extends State<EzTextField> {
         autofillHints: widget.autofillHints,
         autovalidateMode: widget.autovalidateMode,
         controller: widget.controller,
+        initialValue: widget.initialValue,
         focusNode: widget.focusNode,
         decoration: InputDecoration(hintText: widget.hintText),
         keyboardType: widget.keyboardType,
