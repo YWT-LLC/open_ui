@@ -40,6 +40,7 @@ dependencies:
   package_info_plus: ^10.2.1
   permission_handler: ^13.0.1
   provider: ^6.1.5+1
+  window_manager: ^0.5.2
   
 dev_dependencies:
   ## For development
@@ -56,7 +57,6 @@ dev_dependencies:
   after_layout: ^1.2.0
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.8
-  window_manager: ^0.5.2
   xml: ^7.0.1
 
 flutter:
