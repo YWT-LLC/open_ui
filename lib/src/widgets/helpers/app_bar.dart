@@ -10,21 +10,21 @@ class EzAppBar extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
-  final double height;
+  final double? height;
   final Widget? leading;
   final double? leadingWidth;
-  final Widget title;
+  final Widget? title;
   final List<Widget>? actions;
 
   /// [AppBar] wrapped in a [PreferredSize] and local [IconButtonTheme]
   const EzAppBar(
     this.config, {
     super.key,
-    required this.height,
+    this.height,
     this.leading,
     this.leadingWidth,
-    required this.title,
-    required this.actions,
+    this.title,
+    this.actions,
   }) : assert(
           (leading == null) == (leadingWidth == null),
           'If you provide leading you must provide leadingWidth, vice versa',
