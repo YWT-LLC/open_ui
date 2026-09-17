@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -76,6 +77,21 @@ double safeTop(BuildContext context) => MediaQuery.of(context).padding.top;
 
 /// [SafeArea] bottom padding
 double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom;
+
+/// Set a min [size] for the application window
+Future<void> setMindWindow({Size size = const Size(500, 500)}) async {
+  if (!kIsWeb && !isMobile()) {
+    await windowManager.ensureInitialized();
+
+    await windowManager.waitUntilReadyToShow(
+      const WindowOptions(minimumSize: Size(500, 500)),
+      () async {
+        await windowManager.show();
+        await windowManager.focus();
+      },
+    );
+  }
+}
 
 /// Button combo for taking a screenshot on the current (desktop) [TargetPlatform]
 /// Defaults to an empty string on mobile (and unknown) platforms

@@ -9,9 +9,7 @@ import './utils/export.dart';
 import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -33,17 +31,7 @@ void main() async {
     orientations: DeviceOrientation.values,
   );
 
-  if (!kIsWeb && !isMobile()) {
-    await windowManager.ensureInitialized();
-
-    await windowManager.waitUntilReadyToShow(
-      const WindowOptions(minimumSize: Size(500, 500)),
-      () async {
-        await windowManager.show();
-        await windowManager.focus();
-      },
-    );
-  }
+  await setMindWindow();
 
   // Run the app //
 
