@@ -205,11 +205,11 @@ class _ImageSettingState extends State<EzImageSetting> {
     final bool setPath = await EzCM.setString(widget.pathKey, newPath);
     if (!setPath) {
       (mounted)
-          ? await ezLogAlert(
+          ? unawaited(ezLogAlert(
               widget.config,
               context: context,
               message: widget.config.ezL10n.dsImgSetFailed,
-            )
+            ))
           : ezLog(widget.config.ezL10n.dsImgSetFailed);
       return false;
     }
@@ -233,12 +233,12 @@ class _ImageSettingState extends State<EzImageSetting> {
           final String errorMsg =
               '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
           (mounted)
-              ? await ezLogAlert(
+              ? unawaited(ezLogAlert(
                   widget.config,
                   context: context,
                   title: widget.config.ezL10n.dsImgGetFailed,
                   message: errorMsg,
-                )
+                ))
               : ezLog(errorMsg);
         }
       }
@@ -259,12 +259,12 @@ class _ImageSettingState extends State<EzImageSetting> {
           final String errorMsg =
               '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
           (mounted)
-              ? await ezLogAlert(
+              ? unawaited(ezLogAlert(
                   widget.config,
                   context: context,
                   title: widget.config.ezL10n.dsImgGetFailed,
                   message: errorMsg,
-                )
+                ))
               : ezLog(errorMsg);
         }
       }
@@ -410,12 +410,12 @@ class _ImageSettingState extends State<EzImageSetting> {
                     final String errorMsg =
                         '${e.toString()}\n\n${widget.config.ezL10n.dsImgPermission}';
                     (mounted)
-                        ? await ezLogAlert(
+                        ? unawaited(ezLogAlert(
                             widget.config,
                             context: context,
                             title: widget.config.ezL10n.dsImgGetFailed,
                             message: errorMsg,
-                          )
+                          ))
                         : ezLog(errorMsg);
                     return;
                   }

@@ -6,6 +6,7 @@
 import '../../open_ui.dart';
 
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -37,7 +38,7 @@ Future<String?> ezImagePicker(
   } on Exception catch (e) {
     final String errorMsg = '${config.ezL10n.dsImgSetFailed}\n${e.toString()}';
     (context.mounted)
-        ? await ezLogAlert(config, context: context, message: errorMsg)
+        ? unawaited(ezLogAlert(config, context: context, message: errorMsg))
         : ezLog(errorMsg);
     return null;
   }

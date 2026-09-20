@@ -6,6 +6,7 @@
 import '../open_ui.dart';
 
 import 'dart:math';
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -371,7 +372,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       );
     } catch (e) {
       (context.mounted)
-          ? await ezLogAlert(config, context: context, message: e.toString())
+          ? unawaited(ezLogAlert(config, context: context, message: e.toString()))
           : ezLog(e.toString());
       return;
     }

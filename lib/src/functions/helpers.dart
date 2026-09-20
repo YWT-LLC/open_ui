@@ -200,7 +200,7 @@ Future<void> ezConfigLoader(
     }
   } catch (e) {
     (context.mounted)
-        ? await ezLogAlert(config, context: context, message: e.toString())
+        ? unawaited(ezLogAlert(config, context: context, message: e.toString()))
         : ezLog(e.toString());
     return;
   }

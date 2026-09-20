@@ -7,7 +7,7 @@ import '../../../../open_ui.dart';
 
 import 'dart:io';
 import 'dart:math';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/foundation.dart';
@@ -344,7 +344,8 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     }
                   } catch (e) {
                     (context.mounted)
-                        ? await ezLogAlert(widget.config, context: context, message: e.toString())
+                        ? unawaited(
+                            ezLogAlert(widget.config, context: context, message: e.toString()))
                         : ezLog(e.toString());
                     setState(() => processing = false);
                   }
