@@ -12,7 +12,7 @@ class EzScaffold extends Scaffold {
   final EzCP config;
 
   /// [List] of (preferably) [FloatingActionButton]s
-  final List<Widget> fabs;
+  final List<Widget>? fabs;
 
   /// [Scaffold] wrapper with ezPresets
   EzScaffold(
@@ -25,7 +25,7 @@ class EzScaffold extends Scaffold {
     super.backgroundColor,
     required this.fabs,
   }) : super(
-          floatingActionButton: EzCol(children: fabs),
+          floatingActionButton: (fabs == null) ? null : EzCol(children: fabs),
           floatingActionButtonLocation: config.isLefty
               ? FloatingActionButtonLocation.startFloat
               : FloatingActionButtonLocation.endFloat,
