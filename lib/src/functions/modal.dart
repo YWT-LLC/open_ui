@@ -41,13 +41,13 @@ Future<T?> ezModal<T>(
       ),
     );
 
-Future<void> ezFullScreenModal(
+Future<T?> ezFullScreenModal<T>(
   EzCP config, {
   required BuildContext context,
   List<Widget>? fabs,
   required Widget child,
 }) =>
-    ezModal(
+    ezModal<T>(
       config,
       context: context,
       enableDrag: false,
