@@ -35,6 +35,7 @@ class AdvancedColorSettings extends StatelessWidget {
         children: <Widget>[
           // Dynamic color settings
           EzSwapWidget(
+            config,
             expanded: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: widthOf(context) * 0.8),
               child: EzWrap(
