@@ -41,6 +41,26 @@ Future<T?> ezModal<T>(
       ),
     );
 
+Future<void> ezFullScreenModal(
+  EzCP config, {
+  required BuildContext context,
+  List<Widget>? fabs,
+  required Widget child,
+}) =>
+    ezModal(
+      config,
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      showDragHandle: false,
+      constraints: const BoxConstraints.expand(),
+      builder: (_) => EzScaffold(
+        config,
+        body: EzScreen(config, child: child),
+        fabs: fabs,
+      ),
+    );
+
 Widget ezModalScroll(
   EzCP config, {
   ScrollController? controller,
