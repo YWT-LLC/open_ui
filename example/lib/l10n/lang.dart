@@ -123,17 +123,161 @@ abstract class Lang {
     Locale('zh', 'CN')
   ];
 
-  /// No description provided for @csPageTitle.
+  /// No description provided for @asPageTitle.
   ///
   /// In en, this message translates to:
-  /// **'Builder'**
-  String get csPageTitle;
+  /// **'Archiver'**
+  String get asPageTitle;
+
+  /// No description provided for @asToGen.
+  ///
+  /// In en, this message translates to:
+  /// **' for desktop to generate the code for {app_name}'**
+  String asToGen(Object app_name);
+
+  /// No description provided for @asUseIt.
+  ///
+  /// In en, this message translates to:
+  /// **'\n\nUse it on '**
+  String get asUseIt;
+
+  /// No description provided for @csAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced settings'**
+  String get csAdvanced;
 
   /// No description provided for @csAppName.
   ///
   /// In en, this message translates to:
   /// **'App name'**
   String get csAppName;
+
+  /// No description provided for @csBadPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid path'**
+  String get csBadPath;
+
+  /// No description provided for @csBecomes.
+  ///
+  /// In en, this message translates to:
+  /// **'becomes'**
+  String get csBecomes;
+
+  /// No description provided for @csCopyright.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright notice'**
+  String get csCopyright;
+
+  /// No description provided for @csCopyrightTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Will be included at the top of every Dart file'**
+  String get csCopyrightTip;
+
+  /// No description provided for @csDescPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'One or two sentences about your app.'**
+  String get csDescPreview;
+
+  /// No description provided for @csDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get csDescription;
+
+  /// No description provided for @csDomainName.
+  ///
+  /// In en, this message translates to:
+  /// **'Domain name'**
+  String get csDomainName;
+
+  /// No description provided for @csDomainTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Backwards, it is'**
+  String get csDomainTip;
+
+  /// No description provided for @csFileBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Open file browser'**
+  String get csFileBrowser;
+
+  /// No description provided for @csFlutterPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Flutter path'**
+  String get csFlutterPath;
+
+  /// No description provided for @csGenApp.
+  ///
+  /// In en, this message translates to:
+  /// **'When you generate {app_name}, the current '**
+  String csGenApp(Object app_name);
+
+  /// No description provided for @csGenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate app'**
+  String get csGenerate;
+
+  /// No description provided for @csHere.
+  ///
+  /// In en, this message translates to:
+  /// **'here.'**
+  String get csHere;
+
+  /// No description provided for @csHereHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Open an online color scheme builder'**
+  String get csHereHint;
+
+  /// No description provided for @csInvalidDomain.
+  ///
+  /// In en, this message translates to:
+  /// **'\'domain.name\' only; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')'**
+  String get csInvalidDomain;
+
+  /// No description provided for @csInvalidFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Some fields are invalid'**
+  String get csInvalidFields;
+
+  /// No description provided for @csInvalidName.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowercase letters, numbers, and underscores are allowed.'**
+  String get csInvalidName;
+
+  /// No description provided for @csL10nTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Localization (aka translations) config'**
+  String get csL10nTip;
+
+  /// No description provided for @csLaunchTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Adds launch options to VS Code\'s debug menu'**
+  String get csLaunchTip;
+
+  /// No description provided for @csLicenseDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'Open documentation on open source licenses'**
+  String get csLicenseDocs;
+
+  /// No description provided for @csLintTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Lint rules'**
+  String get csLintTip;
 
   /// No description provided for @csNamePreview.
   ///
@@ -147,23 +291,35 @@ abstract class Lang {
   /// **'Best App Ever'**
   String get csNameTip;
 
-  /// No description provided for @csBecomes.
+  /// No description provided for @csNoSpaces.
   ///
   /// In en, this message translates to:
-  /// **'becomes'**
-  String get csBecomes;
+  /// **'Path cannot have spaces'**
+  String get csNoSpaces;
 
-  /// No description provided for @csInvalidName.
+  /// No description provided for @csNotInstalled.
   ///
   /// In en, this message translates to:
-  /// **'Lowercase letters, numbers, and underscores are allowed.'**
-  String get csInvalidName;
+  /// **'Not installed?'**
+  String get csNotInstalled;
 
-  /// No description provided for @csYourApp.
+  /// No description provided for @csOutputPath.
   ///
   /// In en, this message translates to:
-  /// **'your app'**
-  String get csYourApp;
+  /// **'Output path'**
+  String get csOutputPath;
+
+  /// No description provided for @csPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Builder'**
+  String get csPageTitle;
+
+  /// No description provided for @csPathRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Path required. Cannot use root folder.'**
+  String get csPathRequired;
 
   /// No description provided for @csPubName.
   ///
@@ -183,191 +339,11 @@ abstract class Lang {
   /// **'Or, Example Person'**
   String get csPubTip;
 
-  /// No description provided for @csDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Description'**
-  String get csDescription;
-
-  /// No description provided for @csDescPreview.
-  ///
-  /// In en, this message translates to:
-  /// **'One or two sentences about your app.'**
-  String get csDescPreview;
-
-  /// No description provided for @csDomainName.
-  ///
-  /// In en, this message translates to:
-  /// **'Domain name'**
-  String get csDomainName;
-
-  /// No description provided for @csDomainTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Backwards, it is'**
-  String get csDomainTip;
-
-  /// No description provided for @csInvalidDomain.
-  ///
-  /// In en, this message translates to:
-  /// **'\'domain.name\' only; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')'**
-  String get csInvalidDomain;
-
-  /// No description provided for @csGenApp.
-  ///
-  /// In en, this message translates to:
-  /// **'When you generate {app_name}, the current '**
-  String csGenApp(Object app_name);
-
-  /// No description provided for @csTheApp.
-  ///
-  /// In en, this message translates to:
-  /// **'the app'**
-  String get csTheApp;
-
-  /// No description provided for @csTheConfig.
-  ///
-  /// In en, this message translates to:
-  /// **'the config'**
-  String get csTheConfig;
-
-  /// No description provided for @csSetColors.
-  ///
-  /// In en, this message translates to:
-  /// **' (except images) will become the default config for {app_name}.\n\nIt is required to set a custom color scheme. If you need help building one, try starting '**
-  String csSetColors(Object app_name);
-
-  /// No description provided for @csHere.
-  ///
-  /// In en, this message translates to:
-  /// **'here.'**
-  String get csHere;
-
-  /// No description provided for @csHereHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Open an online color scheme builder'**
-  String get csHereHint;
-
-  /// No description provided for @csFileBrowser.
-  ///
-  /// In en, this message translates to:
-  /// **'Open file browser'**
-  String get csFileBrowser;
-
-  /// No description provided for @csFlutterPath.
-  ///
-  /// In en, this message translates to:
-  /// **'Flutter path'**
-  String get csFlutterPath;
-
-  /// No description provided for @csNoSpaces.
-  ///
-  /// In en, this message translates to:
-  /// **'Path cannot have spaces'**
-  String get csNoSpaces;
-
-  /// No description provided for @csNotInstalled.
-  ///
-  /// In en, this message translates to:
-  /// **'Not installed?'**
-  String get csNotInstalled;
-
-  /// No description provided for @csPathRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Path required. Cannot use root folder.'**
-  String get csPathRequired;
-
-  /// No description provided for @csBadPath.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid path'**
-  String get csBadPath;
-
-  /// No description provided for @csAdvanced.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced settings'**
-  String get csAdvanced;
-
-  /// No description provided for @csRestore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore {setting}'**
-  String csRestore(Object setting);
-
-  /// No description provided for @csOutputPath.
-  ///
-  /// In en, this message translates to:
-  /// **'Output path'**
-  String get csOutputPath;
-
-  /// No description provided for @csCopyright.
-  ///
-  /// In en, this message translates to:
-  /// **'Copyright notice'**
-  String get csCopyright;
-
-  /// No description provided for @csCopyrightTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Will be included at the top of every Dart file'**
-  String get csCopyrightTip;
-
-  /// No description provided for @csLicenseDocs.
-  ///
-  /// In en, this message translates to:
-  /// **'Open documentation on open source licenses'**
-  String get csLicenseDocs;
-
-  /// No description provided for @csL10nTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Localization (aka translations) config'**
-  String get csL10nTip;
-
-  /// No description provided for @csLintTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Lint rules'**
-  String get csLintTip;
-
-  /// No description provided for @csLaunchTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Adds launch options to VS Code\'s debug menu'**
-  String get csLaunchTip;
-
-  /// No description provided for @csGenerate.
-  ///
-  /// In en, this message translates to:
-  /// **'Generate app'**
-  String get csGenerate;
-
-  /// No description provided for @csInvalidFields.
-  ///
-  /// In en, this message translates to:
-  /// **'Some fields are invalid'**
-  String get csInvalidFields;
-
   /// No description provided for @csRequired.
   ///
   /// In en, this message translates to:
   /// **'All fields are required'**
   String get csRequired;
-
-  /// No description provided for @csResetHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Activate and confirm what should be reset.'**
-  String get csResetHint;
-
-  /// No description provided for @csResetBuilder.
-  ///
-  /// In en, this message translates to:
-  /// **'Builder values'**
-  String get csResetBuilder;
 
   /// No description provided for @csResetApp.
   ///
@@ -381,35 +357,53 @@ abstract class Lang {
   /// **'Both'**
   String get csResetBoth;
 
+  /// No description provided for @csResetBuilder.
+  ///
+  /// In en, this message translates to:
+  /// **'Builder values'**
+  String get csResetBuilder;
+
+  /// No description provided for @csResetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate and confirm what should be reset.'**
+  String get csResetHint;
+
   /// No description provided for @csResetNothing.
   ///
   /// In en, this message translates to:
   /// **'Nothing'**
   String get csResetNothing;
 
-  /// No description provided for @asPageTitle.
+  /// No description provided for @csRestore.
   ///
   /// In en, this message translates to:
-  /// **'Archiver'**
-  String get asPageTitle;
+  /// **'Restore {setting}'**
+  String csRestore(Object setting);
 
-  /// No description provided for @asUseIt.
+  /// No description provided for @csSetColors.
   ///
   /// In en, this message translates to:
-  /// **'\n\nUse it on '**
-  String get asUseIt;
+  /// **' (except images) will become the default config for {app_name}.\n\nIt is required to set a custom color scheme. If you need help building one, try starting '**
+  String csSetColors(Object app_name);
 
-  /// No description provided for @asToGen.
+  /// No description provided for @csTheApp.
   ///
   /// In en, this message translates to:
-  /// **' for desktop to generate the code for {app_name}'**
-  String asToGen(Object app_name);
+  /// **'the app'**
+  String get csTheApp;
 
-  /// No description provided for @gsPageTitle.
+  /// No description provided for @csTheConfig.
   ///
   /// In en, this message translates to:
-  /// **'Generator'**
-  String get gsPageTitle;
+  /// **'the config'**
+  String get csTheConfig;
+
+  /// No description provided for @csYourApp.
+  ///
+  /// In en, this message translates to:
+  /// **'your app'**
+  String get csYourApp;
 
   /// No description provided for @gsConsole.
   ///
@@ -429,6 +423,24 @@ abstract class Lang {
   /// **'Open UI needs Full Disk Access.\n\nPlease go to...\nSystem Settings > Privacy & Security > Full Disk Access > Enable Open UI; then try again.'**
   String get gsNeedPermission;
 
+  /// No description provided for @gsNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Flutter is not installed'**
+  String get gsNotInstalled;
+
+  /// No description provided for @gsPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Generator'**
+  String get gsPageTitle;
+
+  /// No description provided for @gsPartialSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The code was successfully generated, but some of the project setup failed.'**
+  String get gsPartialSuccess;
+
   /// No description provided for @gsSeeNBelieve.
   ///
   /// In en, this message translates to:
@@ -441,23 +453,11 @@ abstract class Lang {
   /// **'Open Open UI\'s code generation code.'**
   String get gsSeeNBelieveHint;
 
-  /// No description provided for @gsNotInstalled.
+  /// No description provided for @rsAnotherOne.
   ///
   /// In en, this message translates to:
-  /// **'Flutter is not installed'**
-  String get gsNotInstalled;
-
-  /// No description provided for @gsPartialSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'The code was successfully generated, but some of the project setup failed.'**
-  String get gsPartialSuccess;
-
-  /// No description provided for @rsWouldYou.
-  ///
-  /// In en, this message translates to:
-  /// **'would you like to...'**
-  String get rsWouldYou;
+  /// **'Another failure; you should probably take over...'**
+  String get rsAnotherOne;
 
   /// No description provided for @rsInstall.
   ///
@@ -471,6 +471,18 @@ abstract class Lang {
   /// **'Open Flutter\'s installation guide'**
   String get rsInstallHint;
 
+  /// No description provided for @rsLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave it'**
+  String get rsLeave;
+
+  /// No description provided for @rsNextTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Success, fingers crossed for next time!'**
+  String get rsNextTime;
+
   /// No description provided for @rsRun.
   ///
   /// In en, this message translates to:
@@ -483,23 +495,11 @@ abstract class Lang {
   /// **'Wipe it'**
   String get rsWipe;
 
-  /// No description provided for @rsNextTime.
+  /// No description provided for @rsWouldYou.
   ///
   /// In en, this message translates to:
-  /// **'Success, fingers crossed for next time!'**
-  String get rsNextTime;
-
-  /// No description provided for @rsAnotherOne.
-  ///
-  /// In en, this message translates to:
-  /// **'Another failure; you should probably take over...'**
-  String get rsAnotherOne;
-
-  /// No description provided for @rsLeave.
-  ///
-  /// In en, this message translates to:
-  /// **'Leave it'**
-  String get rsLeave;
+  /// **'would you like to...'**
+  String get rsWouldYou;
 }
 
 class _LangDelegate extends LocalizationsDelegate<Lang> {

@@ -9,181 +9,306 @@ class OUILangEn extends OUILang {
   OUILangEn([String locale = 'en']) : super(locale);
 
   @override
+  String get csColorScheme => 'color scheme';
+
+  @override
+  String get csCurrVal => 'Current color value:';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Error\noutline';
+
+  @override
+  String get csFromImage => 'A color scheme will be generated from the image.';
+
+  @override
+  String get csHighContrast => 'Use high contrast scheme';
+
+  @override
+  String get csMonoChrome => 'Use monochrome scheme';
+
+  @override
+  String get csOnSurface => 'Text';
+
+  @override
+  String get csOutline => 'Hint\ntext';
+
+  @override
+  String get csOutlineVariant => 'Hint\noutline';
+
+  @override
+  String get csPageTitle => 'Color settings';
+
+  @override
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
+
+  @override
+  String get csPickerTitle => 'Pick a color';
+
+  @override
+  String get csPrimary => 'Primary';
+
+  @override
+  String get csPrimaryContainer => 'Primary\noutline';
+
+  @override
+  String get csRecommended => 'Use contrast recommendation?';
+
+  @override
+  String csReset(Object themeType) {
+    return 'Reset $themeType colors?';
+  }
+
+  @override
+  String get csSchemeBase => 'Build scheme\nfrom image';
+
+  @override
+  String get csScrim => 'Modal\ncover';
+
+  @override
+  String get csSecondary => 'Secondary';
+
+  @override
+  String get csSecondaryContainer => 'Secondary\noutline';
+
+  @override
+  String get csShadow => 'Shadow';
+
+  @override
+  String get csSurface => 'Button\nbackground';
+
+  @override
+  String get csSurfaceContainer => 'Page && modal\nbackground';
+
+  @override
+  String get csSurfaceDim => 'Alert && app bar\nbackground';
+
+  @override
+  String get csSurfaceTint => 'Surface\ntint';
+
+  @override
+  String get csTertiary => 'Tertiary';
+
+  @override
+  String get csTertiaryContainer => 'Tertiary\noutline';
+
+  @override
+  String get csUseCustom => 'Use custom';
+
+  @override
+  String get dsAlwaysUnderline => 'Always underline links';
+
+  @override
+  String get dsAnimStyle => 'Animation style';
+
+  @override
+  String get dsBackgroundImg => 'Background image';
+
+  @override
+  String get dsBorderWidth => 'Border width';
+
+  @override
+  String get dsBounce => 'Bounce';
+
+  @override
+  String get dsButton => 'Button';
+
+  @override
+  String get dsClearIt => 'Clear it';
+
+  @override
+  String get dsCrop => 'Crop';
+
+  @override
+  String get dsCurve => 'Curve';
+
+  @override
+  String get dsEase => 'Ease';
+
+  @override
+  String get dsElastic => 'Elastic';
+
+  @override
+  String get dsFadeTransition => 'Fade transition';
+
+  @override
+  String get dsFit => 'How should it fit?';
+
+  @override
+  String get dsFromCamera => 'From camera';
+
+  @override
+  String get dsFromFile => 'From file';
+
+  @override
+  String get dsFromNetwork => 'From URL';
+
+  @override
+  String get dsGem => 'Gem';
+
+  @override
+  String get dsImgGetFailed => 'Failed to retrieve image';
+
+  @override
+  String get dsImgPermission =>
+      'Some sites don\'t allow their images to be accessed by others.\nTry an image from another host.';
+
+  @override
+  String get dsImgSetFailed => 'Failed to update image';
+
+  @override
+  String dsImgSettingHint(Object title) {
+    return 'Update the $title image';
+  }
+
+  @override
+  String get dsJewel => 'Jewel';
+
+  @override
+  String get dsLeftGram => 'Left parallel';
+
+  @override
+  String get dsLinear => 'Linear';
+
+  @override
+  String get dsMargin => 'Margin';
+
+  @override
+  String get dsMilliseconds => 'Milliseconds';
+
+  @override
+  String get dsNoWeb => 'Image editing is not supported on web';
+
+  @override
+  String get dsNone => 'None';
+
+  @override
+  String get dsPadding => 'Padding';
+
+  @override
+  String get dsPage => 'Page';
+
+  @override
+  String get dsPageTitle => 'Design settings';
+
+  @override
+  String get dsPageTransition => 'Page transition';
+
+  @override
+  String get dsPill => 'Pill';
+
+  @override
+  String get dsPlay => 'Play animation';
+
+  @override
+  String get dsReFit => 'Re-fit';
+
+  @override
+  String get dsRectangle => 'Rectangle';
+
+  @override
+  String dsResetButton(Object themeType) {
+    return 'Reset $themeType button design?';
+  }
+
+  @override
+  String get dsResetIt => 'Reset it';
+
+  @override
+  String dsResetPage(Object themeType) {
+    return 'Reset $themeType page design?';
+  }
+
+  @override
+  String get dsRightGram => 'Right parallel';
+
+  @override
+  String get dsRotate => 'Rotate';
+
+  @override
+  String get dsRotateLeft => 'Rotate left';
+
+  @override
+  String get dsRotateRight => 'Rotate right';
+
+  @override
+  String get dsRoundRectangle => 'Rounded rectangle';
+
+  @override
+  String get dsShowBack => 'Show back button';
+
+  @override
+  String get dsShowScroll => 'Show scrollbars';
+
+  @override
+  String get dsSlideX => 'Horizontal slide';
+
+  @override
+  String get dsSlideY => 'Vertical slide';
+
+  @override
+  String get dsSolidColor => 'Solid color';
+
+  @override
+  String get dsSpacing => 'Spacing';
+
+  @override
+  String get dsStyle => 'Style';
+
+  @override
+  String get dsSystem => 'System';
+
+  @override
+  String get dsTurnX => 'Horizontal turn';
+
+  @override
+  String get dsTurnY => 'Vertical turn';
+
+  @override
+  String get dsUseForColors => 'Update the app colors using this image';
+
+  @override
+  String get dsUseFull => 'Use full image?';
+
+  @override
+  String get dsZoom => 'Zoom';
+
+  @override
+  String get g404 => 'But, in this case: 404 page not found.';
+
+  @override
+  String get g404Note =>
+      'Note: Flutter web uses hash routing, like...\nhttps://www.example.com/#/destination';
+
+  @override
+  String get g404Wonder => 'Not all who wander are lost.';
+
+  @override
+  String get gAdvanced => 'Advanced';
+
+  @override
+  String get gAnd => 'and';
+
+  @override
   String get gApply => 'Apply';
 
   @override
   String get gApplyChanges => 'Apply changes';
 
   @override
-  String get gContinue => 'Continue';
-
-  @override
-  String get gOpen => 'Open';
-
-  @override
-  String get gOpenLink => 'Open link';
-
-  @override
-  String get gSkip => 'Skip';
-
-  @override
-  String get gSuccess => 'Success';
-
-  @override
-  String get gSuccessExl => 'Success!';
-
-  @override
-  String get gYes => 'Yes';
-
-  @override
-  String get gAnd => 'and';
-
-  @override
-  String get gHelp => 'Help';
-
-  @override
-  String get gNA => 'N/A';
-
-  @override
-  String get gNAHint => 'Not applicable';
-
-  @override
-  String get gOptional => 'optional';
-
-  @override
-  String get gOptions => 'Options';
-
-  @override
-  String get gRequired => 'Required';
-
-  @override
-  String get gThe => 'The';
+  String get gAttention => 'Attention';
 
   @override
   String get gBack => 'Back';
 
   @override
-  String get gCancel => 'Cancel';
-
-  @override
-  String get gClose => 'Close';
-
-  @override
-  String get gDisabled => 'Disabled';
-
-  @override
-  String get gError => 'Error';
-
-  @override
-  String get gFailure => 'Failure';
-
-  @override
-  String get gLock => 'Lock';
-
-  @override
-  String get gNo => 'No';
-
-  @override
-  String get gPaste => 'Paste';
-
-  @override
-  String get gRedo => 'Redo';
-
-  @override
-  String get gUndo => 'Undo';
-
-  @override
-  String get gSettings => 'Settings';
-
-  @override
-  String get gGlobal => 'Global';
-
-  @override
-  String get gColor => 'Color';
-
-  @override
-  String get gDesign => 'Design';
-
-  @override
-  String get gLayout => 'Layout';
-
-  @override
-  String get gText => 'Text';
-
-  @override
-  String get gDark => 'Dark';
-
-  @override
-  String get gLight => 'Light';
-
-  @override
-  String get gSystem => 'System';
-
-  @override
-  String get gEditing => 'Editing: ';
-
-  @override
-  String get gEditingHint => 'Activate to edit';
-
-  @override
-  String get gDarkTheme => 'Dark theme';
-
-  @override
-  String get gLightTheme => 'Light theme';
-
-  @override
   String get gBothThemes => 'Both themes';
 
   @override
-  String get gLeft => 'Left';
-
-  @override
-  String get gRight => 'Right';
-
-  @override
-  String get gAdvanced => 'Advanced';
-
-  @override
-  String get gQuick => 'Quick';
-
-  @override
-  String get gDecrease => 'Decrease';
-
-  @override
-  String get gIncrease => 'Increase';
-
-  @override
-  String get gMaximum => 'Maximum';
-
-  @override
-  String get gMinimum => 'Minimum';
-
-  @override
-  String get gCenterReset => 'Hold center to reset';
-
-  @override
-  String get gLoadingAnim => 'Loading. The YWT hourglass logo is spinning.';
-
-  @override
-  String get gPlay => 'Play';
-
-  @override
-  String get gPause => 'Pause';
-
-  @override
-  String get gReplay => 'Replay';
-
-  @override
-  String get gMute => 'Mute';
-
-  @override
-  String get gUnMute => 'Un-mute';
-
-  @override
-  String get gPlaybackSpeed => 'Playback speed';
-
-  @override
-  String get gFBF => 'Frame by frame';
+  String get gCancel => 'Cancel';
 
   @override
   String get gCaptions => 'Subtitles/captions';
@@ -192,13 +317,66 @@ class OUILangEn extends OUILang {
   String get gCaptionsHint => 'Hold for fonts';
 
   @override
+  String get gCenterReset => 'Hold center to reset';
+
+  @override
+  String gClipboard(Object thing) {
+    return '$thing has been copied to the clipboard.';
+  }
+
+  @override
+  String get gClose => 'Close';
+
+  @override
+  String get gColor => 'Color';
+
+  @override
+  String get gContinue => 'Continue';
+
+  @override
+  String get gCreator => 'Creator of';
+
+  @override
+  String get gCurrently => 'Currently:';
+
+  @override
+  String get gDark => 'Dark';
+
+  @override
+  String get gDarkTheme => 'Dark theme';
+
+  @override
+  String get gDecrease => 'Decrease';
+
+  @override
+  String get gDesign => 'Design';
+
+  @override
+  String get gDisabled => 'Disabled';
+
+  @override
+  String get gEditing => 'Editing: ';
+
+  @override
+  String get gEditingHint => 'Activate to edit';
+
+  @override
+  String get gEnterURL => 'Enter URL';
+
+  @override
+  String get gError => 'Error';
+
+  @override
+  String get gFBF => 'Frame by frame';
+
+  @override
+  String get gFailure => 'Failure';
+
+  @override
   String get gFullscreen => 'Fullscreen';
 
   @override
-  String get gMachineTranslated => 'Machine translated';
-
-  @override
-  String get gUpdates => 'Updates available';
+  String get gGlobal => 'Global';
 
   @override
   String get gHardRefresh =>
@@ -213,57 +391,109 @@ class OUILangEn extends OUILang {
       'Please refresh the page in the browser menu.';
 
   @override
-  String get gEnterURL => 'Enter URL';
+  String get gHelp => 'Help';
 
   @override
-  String get gValidURL => 'Please enter a valid URL';
+  String get gIncrease => 'Increase';
 
   @override
-  String get g404Wonder => 'Not all who wander are lost.';
+  String get gLayout => 'Layout';
 
   @override
-  String get g404 => 'But, in this case: 404 page not found.';
+  String get gLeft => 'Left';
 
   @override
-  String get g404Note =>
-      'Note: Flutter web uses hash routing, like...\nhttps://www.example.com/#/destination';
+  String get gLight => 'Light';
+
+  @override
+  String get gLightTheme => 'Light theme';
+
+  @override
+  String get gLoadingAnim => 'Loading. The YWT hourglass logo is spinning.';
+
+  @override
+  String get gLock => 'Lock';
+
+  @override
+  String get gMachineTranslated => 'Machine translated';
+
+  @override
+  String get gMadeBy => 'Made by';
+
+  @override
+  String get gMaximum => 'Maximum';
+
+  @override
+  String get gMinimum => 'Minimum';
+
+  @override
+  String get gMute => 'Mute';
+
+  @override
+  String get gNA => 'N/A';
+
+  @override
+  String get gNAHint => 'Not applicable';
+
+  @override
+  String get gNo => 'No';
+
+  @override
+  String get gOpen => 'Open';
+
+  @override
+  String get gOpenLink => 'Open link';
 
   @override
   String get gOpenSource => 'Open source';
 
   @override
-  String get gOpenYWT => 'Open a link to YWT';
+  String get gOpenUIReleases => 'Open the releases page for Open UI';
 
   @override
   String get gOpenUISourceHint => 'Open the GitHub page for Open UI';
 
   @override
-  String get gOpenUIReleases => 'Open the releases page for Open UI';
+  String get gOpenYWT => 'Open a link to YWT';
 
   @override
-  String get gSupportEmail => 'Our support Email';
+  String get gOptional => 'optional';
 
   @override
-  String gClipboard(Object thing) {
-    return '$thing has been copied to the clipboard.';
-  }
+  String get gOptions => 'Options';
 
   @override
-  String get gAttention => 'Attention';
+  String get gPaste => 'Paste';
 
   @override
-  String get gCurrently => 'Currently:';
+  String get gPause => 'Pause';
 
   @override
-  String gSetToValue(Object name, Object value) {
-    return '$name is set to $value';
-  }
+  String get gPlay => 'Play';
+
+  @override
+  String get gPlaybackSpeed => 'Playback speed';
+
+  @override
+  String get gQuick => 'Quick';
+
+  @override
+  String get gRedo => 'Redo';
 
   @override
   String get gRemove => 'Remove';
 
   @override
+  String get gReplay => 'Replay';
+
+  @override
+  String get gRequired => 'Required';
+
+  @override
   String get gReset => 'Reset';
+
+  @override
+  String get gResetAll => 'Reset all';
 
   @override
   String get gResetTo => 'Reset:';
@@ -279,10 +509,7 @@ class OUILangEn extends OUILang {
   }
 
   @override
-  String get gResetAll => 'Reset all';
-
-  @override
-  String get gUndoWarn1 => 'Cannot be undone automatically.\n';
+  String get gRight => 'Right';
 
   @override
   String get gSave => 'Save';
@@ -291,52 +518,117 @@ class OUILangEn extends OUILang {
   String get gSaveHint => 'Activate to save a JSON config file.';
 
   @override
-  String get gSwitchHint => 'Flip switch';
+  String gSetToValue(Object name, Object value) {
+    return '$name is set to $value';
+  }
 
   @override
-  String get gUndoWarn2 => ' your current config to restore it manually.';
+  String get gSettings => 'Settings';
 
   @override
-  String get gValue => 'Value';
+  String get gSkip => 'Skip';
 
   @override
   String get gSource => 'Source:';
 
   @override
-  String get gCreator => 'Creator of';
+  String get gSuccess => 'Success';
 
   @override
-  String get gMadeBy => 'Made by';
+  String get gSuccessExl => 'Success!';
+
+  @override
+  String get gSupportEmail => 'Our support Email';
+
+  @override
+  String get gSwitchHint => 'Flip switch';
+
+  @override
+  String get gSystem => 'System';
+
+  @override
+  String get gText => 'Text';
+
+  @override
+  String get gThe => 'The';
+
+  @override
+  String get gUnMute => 'Un-mute';
+
+  @override
+  String get gUndo => 'Undo';
+
+  @override
+  String get gUndoWarn1 => 'Cannot be undone automatically.\n';
+
+  @override
+  String get gUndoWarn2 => ' your current config to restore it manually.';
+
+  @override
+  String get gUpdates => 'Updates available';
+
+  @override
+  String get gValidURL => 'Please enter a valid URL';
+
+  @override
+  String get gValue => 'Value';
+
+  @override
+  String get gYes => 'Yes';
 
   @override
   String get gYou => 'Set by you';
 
   @override
-  String get ssNavHint => 'Open the settings page';
+  String ssApplied(Object config) {
+    return '$config applied.';
+  }
 
   @override
-  String get ssHaveFun => 'Have fun!';
+  String get ssBigButtons => 'Big buttons';
+
+  @override
+  String get ssChalkboard => 'Chalkboard';
+
+  @override
+  String ssConfigSaved(Object path) {
+    return 'Your configuration has been saved to $path';
+  }
+
+  @override
+  String get ssConfigTip => 'Save/load config';
+
+  @override
+  String get ssDarkOnly =>
+      'This is a dark theme preset.\nIt will set the theme mode to dark, and update that theme.\n\nContinue?';
+
+  @override
+  String get ssDewIt => 'Update both/auto confirm';
 
   @override
   String get ssDominantHand => 'Dominant hand';
 
   @override
-  String get ssThemeMode => 'Theme mode';
+  String get ssHaveFun => 'Have fun!';
 
   @override
-  String get ssLanguage => 'Language';
+  String get ssHighVisibility => 'High visibility';
+
+  @override
+  String get ssImageToo => 'Background images too?';
 
   @override
   String get ssLangHint => 'Activate to change the app language';
 
   @override
-  String get ssUpdateDark => 'Update dark theme';
+  String get ssLanguage => 'Language';
 
   @override
-  String get ssUpdateLight => 'Update light theme';
+  String get ssLightOnly =>
+      'This is a light theme preset.\nIt will set the theme mode to light, and update that theme.\n\nContinue?';
 
   @override
-  String get ssUpdateBoth => 'Update both theme modes';
+  String get ssLoadConfig => 'Load config';
 
   @override
   String get ssLoadPreset => 'Load preset';
@@ -345,38 +637,10 @@ class OUILangEn extends OUILang {
   String get ssLoadPresetHint => 'Activate to show presets';
 
   @override
-  String get ssDewIt => 'Update both/auto confirm';
-
-  @override
-  String get ssBigButtons => 'Big buttons';
-
-  @override
-  String get ssHighVisibility => 'High visibility';
-
-  @override
-  String get ssChalkboard => 'Chalkboard';
+  String get ssNavHint => 'Open the settings page';
 
   @override
   String get ssNebula => 'Nebula';
-
-  @override
-  String get ssWallHoles => 'Wall holes';
-
-  @override
-  String get ssDarkOnly =>
-      'This is a dark theme preset.\nIt will set the theme mode to dark, and update that theme.\n\nContinue?';
-
-  @override
-  String get ssLightOnly =>
-      'This is a light theme preset.\nIt will set the theme mode to light, and update that theme.\n\nContinue?';
-
-  @override
-  String ssApplied(Object config) {
-    return '$config applied.';
-  }
-
-  @override
-  String get ssTryMe => 'Try me';
 
   @override
   String get ssRandom => 'Randomize';
@@ -385,26 +649,6 @@ class OUILangEn extends OUILang {
   String ssRandomize(Object themeType) {
     return 'Randomize $themeType theme?';
   }
-
-  @override
-  String get ssConfigTip => 'Save/load config';
-
-  @override
-  String get ssSaveConfig => 'Save config';
-
-  @override
-  String ssConfigSaved(Object path) {
-    return 'Your configuration has been saved to $path';
-  }
-
-  @override
-  String get ssWrongConfigExt => 'The file was not saved as ';
-
-  @override
-  String get ssLoadConfig => 'Load config';
-
-  @override
-  String get ssImageToo => 'Background images too?';
 
   @override
   String get ssResetAll => 'Reset all settings?';
@@ -416,275 +660,28 @@ class OUILangEn extends OUILang {
   String get ssResetBoth => 'Reset both theme modes';
 
   @override
-  String get csPageTitle => 'Color settings';
+  String get ssSaveConfig => 'Save config';
 
   @override
-  String get csSchemeBase => 'Build scheme\nfrom image';
+  String get ssThemeMode => 'Theme mode';
 
   @override
-  String get csFromImage => 'A color scheme will be generated from the image.';
+  String get ssTryMe => 'Try me';
 
   @override
-  String get csMonoChrome => 'Use monochrome scheme';
+  String get ssUpdateBoth => 'Update both theme modes';
 
   @override
-  String get csHighContrast => 'Use high contrast scheme';
+  String get ssUpdateDark => 'Update dark theme';
 
   @override
-  String get csPrimary => 'Primary';
+  String get ssUpdateLight => 'Update light theme';
 
   @override
-  String get csPrimaryContainer => 'Primary\noutline';
+  String get ssWallHoles => 'Wall holes';
 
   @override
-  String get csSecondary => 'Secondary';
-
-  @override
-  String get csSecondaryContainer => 'Secondary\noutline';
-
-  @override
-  String get csTertiary => 'Tertiary';
-
-  @override
-  String get csTertiaryContainer => 'Tertiary\noutline';
-
-  @override
-  String get csError => 'Error';
-
-  @override
-  String get csErrorContainer => 'Error\noutline';
-
-  @override
-  String get csOutline => 'Hint\ntext';
-
-  @override
-  String get csOutlineVariant => 'Hint\noutline';
-
-  @override
-  String get csSurface => 'Button\nbackground';
-
-  @override
-  String get csSurfaceDim => 'Alert && app bar\nbackground';
-
-  @override
-  String get csSurfaceContainer => 'Page && modal\nbackground';
-
-  @override
-  String get csOnSurface => 'Text';
-
-  @override
-  String get csScrim => 'Modal\ncover';
-
-  @override
-  String get csShadow => 'Shadow';
-
-  @override
-  String get csSurfaceTint => 'Surface\ntint';
-
-  @override
-  String get csPickerTitle => 'Pick a color';
-
-  @override
-  String get csPickerHint =>
-      'Open a color picker. Long press for more options.';
-
-  @override
-  String get csRecommended => 'Use contrast recommendation?';
-
-  @override
-  String get csUseCustom => 'Use custom';
-
-  @override
-  String get csCurrVal => 'Current color value:';
-
-  @override
-  String csReset(Object themeType) {
-    return 'Reset $themeType colors?';
-  }
-
-  @override
-  String get csColorScheme => 'color scheme';
-
-  @override
-  String get dsPageTitle => 'Design settings';
-
-  @override
-  String get dsButton => 'Button';
-
-  @override
-  String get dsPage => 'Page';
-
-  @override
-  String get dsNone => 'None';
-
-  @override
-  String get dsSystem => 'System';
-
-  @override
-  String get dsPadding => 'Padding';
-
-  @override
-  String get dsStyle => 'Style';
-
-  @override
-  String get dsBorderWidth => 'Border width';
-
-  @override
-  String get dsPill => 'Pill';
-
-  @override
-  String get dsRectangle => 'Rectangle';
-
-  @override
-  String get dsRoundRectangle => 'Rounded rectangle';
-
-  @override
-  String get dsLeftGram => 'Left parallel';
-
-  @override
-  String get dsRightGram => 'Right parallel';
-
-  @override
-  String get dsGem => 'Gem';
-
-  @override
-  String get dsJewel => 'Jewel';
-
-  @override
-  String get dsAlwaysUnderline => 'Always underline links';
-
-  @override
-  String get dsShowBack => 'Show back button';
-
-  @override
-  String get dsMargin => 'Margin';
-
-  @override
-  String get dsSpacing => 'Spacing';
-
-  @override
-  String get dsPageTransition => 'Page transition';
-
-  @override
-  String get dsTurnX => 'Horizontal turn';
-
-  @override
-  String get dsTurnY => 'Vertical turn';
-
-  @override
-  String get dsRotate => 'Rotate';
-
-  @override
-  String get dsSlideX => 'Horizontal slide';
-
-  @override
-  String get dsSlideY => 'Vertical slide';
-
-  @override
-  String get dsZoom => 'Zoom';
-
-  @override
-  String get dsFadeTransition => 'Fade transition';
-
-  @override
-  String get dsAnimStyle => 'Animation style';
-
-  @override
-  String get dsPlay => 'Play animation';
-
-  @override
-  String get dsMilliseconds => 'Milliseconds';
-
-  @override
-  String get dsCurve => 'Curve';
-
-  @override
-  String get dsBounce => 'Bounce';
-
-  @override
-  String get dsEase => 'Ease';
-
-  @override
-  String get dsElastic => 'Elastic';
-
-  @override
-  String get dsLinear => 'Linear';
-
-  @override
-  String get dsBackgroundImg => 'Background image';
-
-  @override
-  String dsImgSettingHint(Object title) {
-    return 'Update the $title image';
-  }
-
-  @override
-  String get dsReFit => 'Re-fit';
-
-  @override
-  String get dsFromFile => 'From file';
-
-  @override
-  String get dsFromCamera => 'From camera';
-
-  @override
-  String get dsFromNetwork => 'From URL';
-
-  @override
-  String get dsSolidColor => 'Solid color';
-
-  @override
-  String get dsResetIt => 'Reset it';
-
-  @override
-  String get dsClearIt => 'Clear it';
-
-  @override
-  String get dsUseForColors => 'Update the app colors using this image';
-
-  @override
-  String get dsImgGetFailed => 'Failed to retrieve image';
-
-  @override
-  String get dsImgSetFailed => 'Failed to update image';
-
-  @override
-  String get dsImgPermission =>
-      'Some sites don\'t allow their images to be accessed by others.\nTry an image from another host.';
-
-  @override
-  String get dsUseFull => 'Use full image?';
-
-  @override
-  String get dsFit => 'How should it fit?';
-
-  @override
-  String get dsCrop => 'Crop';
-
-  @override
-  String get dsNoWeb => 'Image editing is not supported on web';
-
-  @override
-  String get dsRotateLeft => 'Rotate left';
-
-  @override
-  String get dsRotateRight => 'Rotate right';
-
-  @override
-  String get dsShowScroll => 'Show scrollbars';
-
-  @override
-  String dsResetButton(Object themeType) {
-    return 'Reset $themeType button design?';
-  }
-
-  @override
-  String dsResetPage(Object themeType) {
-    return 'Reset $themeType page design?';
-  }
-
-  @override
-  String get tsPageTitle => 'Text settings';
+  String get ssWrongConfigExt => 'The file was not saved as ';
 
   @override
   String tsBatchOverride(Object setting) {
@@ -692,30 +689,31 @@ class OUILangEn extends OUILang {
   }
 
   @override
-  String get tsTextBackground => 'Text background opacity';
+  String get tsBody => 'Body';
 
   @override
-  String get tsIconSize => 'Icon size';
+  String get tsBodyLink => 'the body?';
 
   @override
-  String tsLinkHint(Object style) {
-    return 'Activate to edit $style';
-  }
+  String get tsBodyP1 => 'How about ';
+
+  @override
+  String get tsBodyP2 => ' Is it easy to read?';
+
+  @override
+  String get tsBold => 'Bold';
 
   @override
   String get tsDisplay => 'Display';
 
   @override
-  String get tsHeadline => 'Headline';
+  String get tsDisplayLink => 'display';
 
   @override
-  String get tsTitle => 'Title';
+  String get tsDisplayP1 => 'Does this ';
 
   @override
-  String get tsBody => 'Body';
-
-  @override
-  String get tsLabel => 'Label';
+  String get tsDisplayP2 => ' well?';
 
   @override
   String get tsFontFamily => 'Font family';
@@ -724,69 +722,71 @@ class OUILangEn extends OUILang {
   String get tsFontSize => 'Font size';
 
   @override
-  String get tsBold => 'Bold';
-
-  @override
-  String get tsItalic => 'Italic';
-
-  @override
-  String get tsUnderline => 'Underline';
-
-  @override
-  String get tsLetterSpacing => 'Letter spacing';
-
-  @override
-  String get tsWordSpacing => 'Word spacing';
-
-  @override
-  String get tsLineHeight => 'Line height';
-
-  @override
-  String get tsDisplayP1 => 'Does this ';
-
-  @override
-  String get tsDisplayLink => 'display';
-
-  @override
-  String get tsDisplayP2 => ' well?';
-
-  @override
-  String get tsHeadlineP1 => 'Are ';
+  String get tsHeadline => 'Headline';
 
   @override
   String get tsHeadlineLink => 'headlines';
 
   @override
+  String get tsHeadlineP1 => 'Are ';
+
+  @override
   String get tsHeadlineP2 => ' distinct...';
 
   @override
-  String get tsTitleP1 => 'from ';
+  String get tsIconSize => 'Icon size';
 
   @override
-  String get tsTitleLink => 'titles?';
+  String get tsItalic => 'Italic';
 
   @override
-  String get tsBodyP1 => 'How about ';
-
-  @override
-  String get tsBodyLink => 'the body?';
-
-  @override
-  String get tsBodyP2 => ' Is it easy to read?';
-
-  @override
-  String get tsLabelP1 => 'And ';
+  String get tsLabel => 'Label';
 
   @override
   String get tsLabelLink => 'the labels?';
 
   @override
+  String get tsLabelP1 => 'And ';
+
+  @override
   String get tsLabelP2 => ' Not too big, not too small?';
+
+  @override
+  String get tsLetterSpacing => 'Letter spacing';
+
+  @override
+  String get tsLineHeight => 'Line height';
+
+  @override
+  String tsLinkHint(Object style) {
+    return 'Activate to edit $style';
+  }
+
+  @override
+  String get tsPageTitle => 'Text settings';
 
   @override
   String tsReset(Object themeType) {
     return 'Reset $themeType text styles?';
   }
+
+  @override
+  String get tsTextBackground => 'Text background opacity';
+
+  @override
+  String get tsTitle => 'Title';
+
+  @override
+  String get tsTitleLink => 'titles?';
+
+  @override
+  String get tsTitleP1 => 'from ';
+
+  @override
+  String get tsUnderline => 'Underline';
+
+  @override
+  String get tsWordSpacing => 'Word spacing';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -794,181 +794,306 @@ class OUILangEnUs extends OUILangEn {
   OUILangEnUs() : super('en_US');
 
   @override
+  String get csColorScheme => 'color scheme';
+
+  @override
+  String get csCurrVal => 'Current color value:';
+
+  @override
+  String get csError => 'Error';
+
+  @override
+  String get csErrorContainer => 'Error\noutline';
+
+  @override
+  String get csFromImage => 'A color scheme will be generated from the image.';
+
+  @override
+  String get csHighContrast => 'Use high contrast scheme';
+
+  @override
+  String get csMonoChrome => 'Use monochrome scheme';
+
+  @override
+  String get csOnSurface => 'Text';
+
+  @override
+  String get csOutline => 'Hint\ntext';
+
+  @override
+  String get csOutlineVariant => 'Hint\noutline';
+
+  @override
+  String get csPageTitle => 'Color settings';
+
+  @override
+  String get csPickerHint =>
+      'Open a color picker. Long press for more options.';
+
+  @override
+  String get csPickerTitle => 'Pick a color';
+
+  @override
+  String get csPrimary => 'Primary';
+
+  @override
+  String get csPrimaryContainer => 'Primary\noutline';
+
+  @override
+  String get csRecommended => 'Use contrast recommendation?';
+
+  @override
+  String csReset(Object themeType) {
+    return 'Reset $themeType colors?';
+  }
+
+  @override
+  String get csSchemeBase => 'Build scheme\nfrom image';
+
+  @override
+  String get csScrim => 'Modal\ncover';
+
+  @override
+  String get csSecondary => 'Secondary';
+
+  @override
+  String get csSecondaryContainer => 'Secondary\noutline';
+
+  @override
+  String get csShadow => 'Shadow';
+
+  @override
+  String get csSurface => 'Button\nbackground';
+
+  @override
+  String get csSurfaceContainer => 'Page && modal\nbackground';
+
+  @override
+  String get csSurfaceDim => 'Alert && app bar\nbackground';
+
+  @override
+  String get csSurfaceTint => 'Surface\ntint';
+
+  @override
+  String get csTertiary => 'Tertiary';
+
+  @override
+  String get csTertiaryContainer => 'Tertiary\noutline';
+
+  @override
+  String get csUseCustom => 'Use custom';
+
+  @override
+  String get dsAlwaysUnderline => 'Always underline links';
+
+  @override
+  String get dsAnimStyle => 'Animation style';
+
+  @override
+  String get dsBackgroundImg => 'Background image';
+
+  @override
+  String get dsBorderWidth => 'Border width';
+
+  @override
+  String get dsBounce => 'Bounce';
+
+  @override
+  String get dsButton => 'Button';
+
+  @override
+  String get dsClearIt => 'Clear it';
+
+  @override
+  String get dsCrop => 'Crop';
+
+  @override
+  String get dsCurve => 'Curve';
+
+  @override
+  String get dsEase => 'Ease';
+
+  @override
+  String get dsElastic => 'Elastic';
+
+  @override
+  String get dsFadeTransition => 'Fade transition';
+
+  @override
+  String get dsFit => 'How should it fit?';
+
+  @override
+  String get dsFromCamera => 'From camera';
+
+  @override
+  String get dsFromFile => 'From file';
+
+  @override
+  String get dsFromNetwork => 'From URL';
+
+  @override
+  String get dsGem => 'Gem';
+
+  @override
+  String get dsImgGetFailed => 'Failed to retrieve image';
+
+  @override
+  String get dsImgPermission =>
+      'Some sites don\'t allow their images to be accessed by others.\nTry an image from another host.';
+
+  @override
+  String get dsImgSetFailed => 'Failed to update image';
+
+  @override
+  String dsImgSettingHint(Object title) {
+    return 'Update the $title image';
+  }
+
+  @override
+  String get dsJewel => 'Jewel';
+
+  @override
+  String get dsLeftGram => 'Left parallel';
+
+  @override
+  String get dsLinear => 'Linear';
+
+  @override
+  String get dsMargin => 'Margin';
+
+  @override
+  String get dsMilliseconds => 'Milliseconds';
+
+  @override
+  String get dsNoWeb => 'Image editing is not supported on web';
+
+  @override
+  String get dsNone => 'None';
+
+  @override
+  String get dsPadding => 'Padding';
+
+  @override
+  String get dsPage => 'Page';
+
+  @override
+  String get dsPageTitle => 'Design settings';
+
+  @override
+  String get dsPageTransition => 'Page transition';
+
+  @override
+  String get dsPill => 'Pill';
+
+  @override
+  String get dsPlay => 'Play animation';
+
+  @override
+  String get dsReFit => 'Re-fit';
+
+  @override
+  String get dsRectangle => 'Rectangle';
+
+  @override
+  String dsResetButton(Object themeType) {
+    return 'Reset $themeType button design?';
+  }
+
+  @override
+  String get dsResetIt => 'Reset it';
+
+  @override
+  String dsResetPage(Object themeType) {
+    return 'Reset $themeType page design?';
+  }
+
+  @override
+  String get dsRightGram => 'Right parallel';
+
+  @override
+  String get dsRotate => 'Rotate';
+
+  @override
+  String get dsRotateLeft => 'Rotate left';
+
+  @override
+  String get dsRotateRight => 'Rotate right';
+
+  @override
+  String get dsRoundRectangle => 'Rounded rectangle';
+
+  @override
+  String get dsShowBack => 'Show back button';
+
+  @override
+  String get dsShowScroll => 'Show scrollbars';
+
+  @override
+  String get dsSlideX => 'Horizontal slide';
+
+  @override
+  String get dsSlideY => 'Vertical slide';
+
+  @override
+  String get dsSolidColor => 'Solid color';
+
+  @override
+  String get dsSpacing => 'Spacing';
+
+  @override
+  String get dsStyle => 'Style';
+
+  @override
+  String get dsSystem => 'System';
+
+  @override
+  String get dsTurnX => 'Horizontal turn';
+
+  @override
+  String get dsTurnY => 'Vertical turn';
+
+  @override
+  String get dsUseForColors => 'Update the app colors using this image';
+
+  @override
+  String get dsUseFull => 'Use full image?';
+
+  @override
+  String get dsZoom => 'Zoom';
+
+  @override
+  String get g404 => 'But, in this case: 404 page not found.';
+
+  @override
+  String get g404Note =>
+      'Note: Flutter web uses hash routing, like...\nhttps://www.example.com/#/destination';
+
+  @override
+  String get g404Wonder => 'Not all who wander are lost.';
+
+  @override
+  String get gAdvanced => 'Advanced';
+
+  @override
+  String get gAnd => 'and';
+
+  @override
   String get gApply => 'Apply';
 
   @override
   String get gApplyChanges => 'Apply changes';
 
   @override
-  String get gContinue => 'Continue';
-
-  @override
-  String get gOpen => 'Open';
-
-  @override
-  String get gOpenLink => 'Open link';
-
-  @override
-  String get gSkip => 'Skip';
-
-  @override
-  String get gSuccess => 'Success';
-
-  @override
-  String get gSuccessExl => 'Success!';
-
-  @override
-  String get gYes => 'Yes';
-
-  @override
-  String get gAnd => 'and';
-
-  @override
-  String get gHelp => 'Help';
-
-  @override
-  String get gNA => 'N/A';
-
-  @override
-  String get gNAHint => 'Not applicable';
-
-  @override
-  String get gOptional => 'optional';
-
-  @override
-  String get gOptions => 'Options';
-
-  @override
-  String get gRequired => 'Required';
-
-  @override
-  String get gThe => 'The';
+  String get gAttention => 'Attention';
 
   @override
   String get gBack => 'Back';
 
   @override
-  String get gCancel => 'Cancel';
-
-  @override
-  String get gClose => 'Close';
-
-  @override
-  String get gDisabled => 'Disabled';
-
-  @override
-  String get gError => 'Error';
-
-  @override
-  String get gFailure => 'Failure';
-
-  @override
-  String get gLock => 'Lock';
-
-  @override
-  String get gNo => 'No';
-
-  @override
-  String get gPaste => 'Paste';
-
-  @override
-  String get gRedo => 'Redo';
-
-  @override
-  String get gUndo => 'Undo';
-
-  @override
-  String get gSettings => 'Settings';
-
-  @override
-  String get gGlobal => 'Global';
-
-  @override
-  String get gColor => 'Color';
-
-  @override
-  String get gDesign => 'Design';
-
-  @override
-  String get gLayout => 'Layout';
-
-  @override
-  String get gText => 'Text';
-
-  @override
-  String get gDark => 'Dark';
-
-  @override
-  String get gLight => 'Light';
-
-  @override
-  String get gSystem => 'System';
-
-  @override
-  String get gEditing => 'Editing: ';
-
-  @override
-  String get gEditingHint => 'Activate to edit';
-
-  @override
-  String get gDarkTheme => 'Dark theme';
-
-  @override
-  String get gLightTheme => 'Light theme';
-
-  @override
   String get gBothThemes => 'Both themes';
 
   @override
-  String get gLeft => 'Left';
-
-  @override
-  String get gRight => 'Right';
-
-  @override
-  String get gAdvanced => 'Advanced';
-
-  @override
-  String get gQuick => 'Quick';
-
-  @override
-  String get gDecrease => 'Decrease';
-
-  @override
-  String get gIncrease => 'Increase';
-
-  @override
-  String get gMaximum => 'Maximum';
-
-  @override
-  String get gMinimum => 'Minimum';
-
-  @override
-  String get gCenterReset => 'Hold center to reset';
-
-  @override
-  String get gLoadingAnim => 'Loading. The YWT hourglass logo is spinning.';
-
-  @override
-  String get gPlay => 'Play';
-
-  @override
-  String get gPause => 'Pause';
-
-  @override
-  String get gReplay => 'Replay';
-
-  @override
-  String get gMute => 'Mute';
-
-  @override
-  String get gUnMute => 'Un-mute';
-
-  @override
-  String get gPlaybackSpeed => 'Playback speed';
-
-  @override
-  String get gFBF => 'Frame by frame';
+  String get gCancel => 'Cancel';
 
   @override
   String get gCaptions => 'Subtitles/captions';
@@ -977,13 +1102,66 @@ class OUILangEnUs extends OUILangEn {
   String get gCaptionsHint => 'Hold for fonts';
 
   @override
+  String get gCenterReset => 'Hold center to reset';
+
+  @override
+  String gClipboard(Object thing) {
+    return '$thing has been copied to the clipboard.';
+  }
+
+  @override
+  String get gClose => 'Close';
+
+  @override
+  String get gColor => 'Color';
+
+  @override
+  String get gContinue => 'Continue';
+
+  @override
+  String get gCreator => 'Creator of';
+
+  @override
+  String get gCurrently => 'Currently:';
+
+  @override
+  String get gDark => 'Dark';
+
+  @override
+  String get gDarkTheme => 'Dark theme';
+
+  @override
+  String get gDecrease => 'Decrease';
+
+  @override
+  String get gDesign => 'Design';
+
+  @override
+  String get gDisabled => 'Disabled';
+
+  @override
+  String get gEditing => 'Editing: ';
+
+  @override
+  String get gEditingHint => 'Activate to edit';
+
+  @override
+  String get gEnterURL => 'Enter URL';
+
+  @override
+  String get gError => 'Error';
+
+  @override
+  String get gFBF => 'Frame by frame';
+
+  @override
+  String get gFailure => 'Failure';
+
+  @override
   String get gFullscreen => 'Fullscreen';
 
   @override
-  String get gMachineTranslated => 'Machine translated';
-
-  @override
-  String get gUpdates => 'Updates available';
+  String get gGlobal => 'Global';
 
   @override
   String get gHardRefresh =>
@@ -998,57 +1176,109 @@ class OUILangEnUs extends OUILangEn {
       'Please refresh the page in the browser menu.';
 
   @override
-  String get gEnterURL => 'Enter URL';
+  String get gHelp => 'Help';
 
   @override
-  String get gValidURL => 'Please enter a valid URL';
+  String get gIncrease => 'Increase';
 
   @override
-  String get g404Wonder => 'Not all who wander are lost.';
+  String get gLayout => 'Layout';
 
   @override
-  String get g404 => 'But, in this case: 404 page not found.';
+  String get gLeft => 'Left';
 
   @override
-  String get g404Note =>
-      'Note: Flutter web uses hash routing, like...\nhttps://www.example.com/#/destination';
+  String get gLight => 'Light';
+
+  @override
+  String get gLightTheme => 'Light theme';
+
+  @override
+  String get gLoadingAnim => 'Loading. The YWT hourglass logo is spinning.';
+
+  @override
+  String get gLock => 'Lock';
+
+  @override
+  String get gMachineTranslated => 'Machine translated';
+
+  @override
+  String get gMadeBy => 'Made by';
+
+  @override
+  String get gMaximum => 'Maximum';
+
+  @override
+  String get gMinimum => 'Minimum';
+
+  @override
+  String get gMute => 'Mute';
+
+  @override
+  String get gNA => 'N/A';
+
+  @override
+  String get gNAHint => 'Not applicable';
+
+  @override
+  String get gNo => 'No';
+
+  @override
+  String get gOpen => 'Open';
+
+  @override
+  String get gOpenLink => 'Open link';
 
   @override
   String get gOpenSource => 'Open source';
 
   @override
-  String get gOpenYWT => 'Open a link to YWT';
+  String get gOpenUIReleases => 'Open the releases page for Open UI';
 
   @override
   String get gOpenUISourceHint => 'Open the GitHub page for Open UI';
 
   @override
-  String get gOpenUIReleases => 'Open the releases page for Open UI';
+  String get gOpenYWT => 'Open a link to YWT';
 
   @override
-  String get gSupportEmail => 'Our support Email';
+  String get gOptional => 'optional';
 
   @override
-  String gClipboard(Object thing) {
-    return '$thing has been copied to the clipboard.';
-  }
+  String get gOptions => 'Options';
 
   @override
-  String get gAttention => 'Attention';
+  String get gPaste => 'Paste';
 
   @override
-  String get gCurrently => 'Currently:';
+  String get gPause => 'Pause';
 
   @override
-  String gSetToValue(Object name, Object value) {
-    return '$name is set to $value';
-  }
+  String get gPlay => 'Play';
+
+  @override
+  String get gPlaybackSpeed => 'Playback speed';
+
+  @override
+  String get gQuick => 'Quick';
+
+  @override
+  String get gRedo => 'Redo';
 
   @override
   String get gRemove => 'Remove';
 
   @override
+  String get gReplay => 'Replay';
+
+  @override
+  String get gRequired => 'Required';
+
+  @override
   String get gReset => 'Reset';
+
+  @override
+  String get gResetAll => 'Reset all';
 
   @override
   String get gResetTo => 'Reset:';
@@ -1064,10 +1294,7 @@ class OUILangEnUs extends OUILangEn {
   }
 
   @override
-  String get gResetAll => 'Reset all';
-
-  @override
-  String get gUndoWarn1 => 'Cannot be undone automatically.\n';
+  String get gRight => 'Right';
 
   @override
   String get gSave => 'Save';
@@ -1076,52 +1303,117 @@ class OUILangEnUs extends OUILangEn {
   String get gSaveHint => 'Activate to save a JSON config file.';
 
   @override
-  String get gSwitchHint => 'Flip switch';
+  String gSetToValue(Object name, Object value) {
+    return '$name is set to $value';
+  }
 
   @override
-  String get gUndoWarn2 => ' your current config to restore it manually.';
+  String get gSettings => 'Settings';
 
   @override
-  String get gValue => 'Value';
+  String get gSkip => 'Skip';
 
   @override
   String get gSource => 'Source:';
 
   @override
-  String get gCreator => 'Creator of';
+  String get gSuccess => 'Success';
 
   @override
-  String get gMadeBy => 'Made by';
+  String get gSuccessExl => 'Success!';
+
+  @override
+  String get gSupportEmail => 'Our support Email';
+
+  @override
+  String get gSwitchHint => 'Flip switch';
+
+  @override
+  String get gSystem => 'System';
+
+  @override
+  String get gText => 'Text';
+
+  @override
+  String get gThe => 'The';
+
+  @override
+  String get gUnMute => 'Un-mute';
+
+  @override
+  String get gUndo => 'Undo';
+
+  @override
+  String get gUndoWarn1 => 'Cannot be undone automatically.\n';
+
+  @override
+  String get gUndoWarn2 => ' your current config to restore it manually.';
+
+  @override
+  String get gUpdates => 'Updates available';
+
+  @override
+  String get gValidURL => 'Please enter a valid URL';
+
+  @override
+  String get gValue => 'Value';
+
+  @override
+  String get gYes => 'Yes';
 
   @override
   String get gYou => 'Set by you';
 
   @override
-  String get ssNavHint => 'Open the settings page';
+  String ssApplied(Object config) {
+    return '$config applied.';
+  }
 
   @override
-  String get ssHaveFun => 'Have fun!';
+  String get ssBigButtons => 'Big buttons';
+
+  @override
+  String get ssChalkboard => 'Chalkboard';
+
+  @override
+  String ssConfigSaved(Object path) {
+    return 'Your configuration has been saved to $path';
+  }
+
+  @override
+  String get ssConfigTip => 'Save/load config';
+
+  @override
+  String get ssDarkOnly =>
+      'This is a dark theme preset.\nIt will set the theme mode to dark, and update that theme.\n\nContinue?';
+
+  @override
+  String get ssDewIt => 'Update both/auto confirm';
 
   @override
   String get ssDominantHand => 'Dominant hand';
 
   @override
-  String get ssThemeMode => 'Theme mode';
+  String get ssHaveFun => 'Have fun!';
 
   @override
-  String get ssLanguage => 'Language';
+  String get ssHighVisibility => 'High visibility';
+
+  @override
+  String get ssImageToo => 'Background images too?';
 
   @override
   String get ssLangHint => 'Activate to change the app language';
 
   @override
-  String get ssUpdateDark => 'Update dark theme';
+  String get ssLanguage => 'Language';
 
   @override
-  String get ssUpdateLight => 'Update light theme';
+  String get ssLightOnly =>
+      'This is a light theme preset.\nIt will set the theme mode to light, and update that theme.\n\nContinue?';
 
   @override
-  String get ssUpdateBoth => 'Update both theme modes';
+  String get ssLoadConfig => 'Load config';
 
   @override
   String get ssLoadPreset => 'Load preset';
@@ -1130,38 +1422,10 @@ class OUILangEnUs extends OUILangEn {
   String get ssLoadPresetHint => 'Activate to show presets';
 
   @override
-  String get ssDewIt => 'Update both/auto confirm';
-
-  @override
-  String get ssBigButtons => 'Big buttons';
-
-  @override
-  String get ssHighVisibility => 'High visibility';
-
-  @override
-  String get ssChalkboard => 'Chalkboard';
+  String get ssNavHint => 'Open the settings page';
 
   @override
   String get ssNebula => 'Nebula';
-
-  @override
-  String get ssWallHoles => 'Wall holes';
-
-  @override
-  String get ssDarkOnly =>
-      'This is a dark theme preset.\nIt will set the theme mode to dark, and update that theme.\n\nContinue?';
-
-  @override
-  String get ssLightOnly =>
-      'This is a light theme preset.\nIt will set the theme mode to light, and update that theme.\n\nContinue?';
-
-  @override
-  String ssApplied(Object config) {
-    return '$config applied.';
-  }
-
-  @override
-  String get ssTryMe => 'Try me';
 
   @override
   String get ssRandom => 'Randomize';
@@ -1170,26 +1434,6 @@ class OUILangEnUs extends OUILangEn {
   String ssRandomize(Object themeType) {
     return 'Randomize $themeType theme?';
   }
-
-  @override
-  String get ssConfigTip => 'Save/load config';
-
-  @override
-  String get ssSaveConfig => 'Save config';
-
-  @override
-  String ssConfigSaved(Object path) {
-    return 'Your configuration has been saved to $path';
-  }
-
-  @override
-  String get ssWrongConfigExt => 'The file was not saved as ';
-
-  @override
-  String get ssLoadConfig => 'Load config';
-
-  @override
-  String get ssImageToo => 'Background images too?';
 
   @override
   String get ssResetAll => 'Reset all settings?';
@@ -1201,275 +1445,28 @@ class OUILangEnUs extends OUILangEn {
   String get ssResetBoth => 'Reset both theme modes';
 
   @override
-  String get csPageTitle => 'Color settings';
+  String get ssSaveConfig => 'Save config';
 
   @override
-  String get csSchemeBase => 'Build scheme\nfrom image';
+  String get ssThemeMode => 'Theme mode';
 
   @override
-  String get csFromImage => 'A color scheme will be generated from the image.';
+  String get ssTryMe => 'Try me';
 
   @override
-  String get csMonoChrome => 'Use monochrome scheme';
+  String get ssUpdateBoth => 'Update both theme modes';
 
   @override
-  String get csHighContrast => 'Use high contrast scheme';
+  String get ssUpdateDark => 'Update dark theme';
 
   @override
-  String get csPrimary => 'Primary';
+  String get ssUpdateLight => 'Update light theme';
 
   @override
-  String get csPrimaryContainer => 'Primary\noutline';
+  String get ssWallHoles => 'Wall holes';
 
   @override
-  String get csSecondary => 'Secondary';
-
-  @override
-  String get csSecondaryContainer => 'Secondary\noutline';
-
-  @override
-  String get csTertiary => 'Tertiary';
-
-  @override
-  String get csTertiaryContainer => 'Tertiary\noutline';
-
-  @override
-  String get csError => 'Error';
-
-  @override
-  String get csErrorContainer => 'Error\noutline';
-
-  @override
-  String get csOutline => 'Hint\ntext';
-
-  @override
-  String get csOutlineVariant => 'Hint\noutline';
-
-  @override
-  String get csSurface => 'Button\nbackground';
-
-  @override
-  String get csSurfaceDim => 'Alert && app bar\nbackground';
-
-  @override
-  String get csSurfaceContainer => 'Page && modal\nbackground';
-
-  @override
-  String get csOnSurface => 'Text';
-
-  @override
-  String get csScrim => 'Modal\ncover';
-
-  @override
-  String get csShadow => 'Shadow';
-
-  @override
-  String get csSurfaceTint => 'Surface\ntint';
-
-  @override
-  String get csPickerTitle => 'Pick a color';
-
-  @override
-  String get csPickerHint =>
-      'Open a color picker. Long press for more options.';
-
-  @override
-  String get csRecommended => 'Use contrast recommendation?';
-
-  @override
-  String get csUseCustom => 'Use custom';
-
-  @override
-  String get csCurrVal => 'Current color value:';
-
-  @override
-  String csReset(Object themeType) {
-    return 'Reset $themeType colors?';
-  }
-
-  @override
-  String get csColorScheme => 'color scheme';
-
-  @override
-  String get dsPageTitle => 'Design settings';
-
-  @override
-  String get dsButton => 'Button';
-
-  @override
-  String get dsPage => 'Page';
-
-  @override
-  String get dsNone => 'None';
-
-  @override
-  String get dsSystem => 'System';
-
-  @override
-  String get dsPadding => 'Padding';
-
-  @override
-  String get dsStyle => 'Style';
-
-  @override
-  String get dsBorderWidth => 'Border width';
-
-  @override
-  String get dsPill => 'Pill';
-
-  @override
-  String get dsRectangle => 'Rectangle';
-
-  @override
-  String get dsRoundRectangle => 'Rounded rectangle';
-
-  @override
-  String get dsLeftGram => 'Left parallel';
-
-  @override
-  String get dsRightGram => 'Right parallel';
-
-  @override
-  String get dsGem => 'Gem';
-
-  @override
-  String get dsJewel => 'Jewel';
-
-  @override
-  String get dsAlwaysUnderline => 'Always underline links';
-
-  @override
-  String get dsShowBack => 'Show back button';
-
-  @override
-  String get dsMargin => 'Margin';
-
-  @override
-  String get dsSpacing => 'Spacing';
-
-  @override
-  String get dsPageTransition => 'Page transition';
-
-  @override
-  String get dsTurnX => 'Horizontal turn';
-
-  @override
-  String get dsTurnY => 'Vertical turn';
-
-  @override
-  String get dsRotate => 'Rotate';
-
-  @override
-  String get dsSlideX => 'Horizontal slide';
-
-  @override
-  String get dsSlideY => 'Vertical slide';
-
-  @override
-  String get dsZoom => 'Zoom';
-
-  @override
-  String get dsFadeTransition => 'Fade transition';
-
-  @override
-  String get dsAnimStyle => 'Animation style';
-
-  @override
-  String get dsPlay => 'Play animation';
-
-  @override
-  String get dsMilliseconds => 'Milliseconds';
-
-  @override
-  String get dsCurve => 'Curve';
-
-  @override
-  String get dsBounce => 'Bounce';
-
-  @override
-  String get dsEase => 'Ease';
-
-  @override
-  String get dsElastic => 'Elastic';
-
-  @override
-  String get dsLinear => 'Linear';
-
-  @override
-  String get dsBackgroundImg => 'Background image';
-
-  @override
-  String dsImgSettingHint(Object title) {
-    return 'Update the $title image';
-  }
-
-  @override
-  String get dsReFit => 'Re-fit';
-
-  @override
-  String get dsFromFile => 'From file';
-
-  @override
-  String get dsFromCamera => 'From camera';
-
-  @override
-  String get dsFromNetwork => 'From URL';
-
-  @override
-  String get dsSolidColor => 'Solid color';
-
-  @override
-  String get dsResetIt => 'Reset it';
-
-  @override
-  String get dsClearIt => 'Clear it';
-
-  @override
-  String get dsUseForColors => 'Update the app colors using this image';
-
-  @override
-  String get dsImgGetFailed => 'Failed to retrieve image';
-
-  @override
-  String get dsImgSetFailed => 'Failed to update image';
-
-  @override
-  String get dsImgPermission =>
-      'Some sites don\'t allow their images to be accessed by others.\nTry an image from another host.';
-
-  @override
-  String get dsUseFull => 'Use full image?';
-
-  @override
-  String get dsFit => 'How should it fit?';
-
-  @override
-  String get dsCrop => 'Crop';
-
-  @override
-  String get dsNoWeb => 'Image editing is not supported on web';
-
-  @override
-  String get dsRotateLeft => 'Rotate left';
-
-  @override
-  String get dsRotateRight => 'Rotate right';
-
-  @override
-  String get dsShowScroll => 'Show scrollbars';
-
-  @override
-  String dsResetButton(Object themeType) {
-    return 'Reset $themeType button design?';
-  }
-
-  @override
-  String dsResetPage(Object themeType) {
-    return 'Reset $themeType page design?';
-  }
-
-  @override
-  String get tsPageTitle => 'Text settings';
+  String get ssWrongConfigExt => 'The file was not saved as ';
 
   @override
   String tsBatchOverride(Object setting) {
@@ -1477,30 +1474,31 @@ class OUILangEnUs extends OUILangEn {
   }
 
   @override
-  String get tsTextBackground => 'Text background opacity';
+  String get tsBody => 'Body';
 
   @override
-  String get tsIconSize => 'Icon size';
+  String get tsBodyLink => 'the body?';
 
   @override
-  String tsLinkHint(Object style) {
-    return 'Activate to edit $style';
-  }
+  String get tsBodyP1 => 'How about ';
+
+  @override
+  String get tsBodyP2 => ' Is it easy to read?';
+
+  @override
+  String get tsBold => 'Bold';
 
   @override
   String get tsDisplay => 'Display';
 
   @override
-  String get tsHeadline => 'Headline';
+  String get tsDisplayLink => 'display';
 
   @override
-  String get tsTitle => 'Title';
+  String get tsDisplayP1 => 'Does this ';
 
   @override
-  String get tsBody => 'Body';
-
-  @override
-  String get tsLabel => 'Label';
+  String get tsDisplayP2 => ' well?';
 
   @override
   String get tsFontFamily => 'Font family';
@@ -1509,67 +1507,69 @@ class OUILangEnUs extends OUILangEn {
   String get tsFontSize => 'Font size';
 
   @override
-  String get tsBold => 'Bold';
-
-  @override
-  String get tsItalic => 'Italic';
-
-  @override
-  String get tsUnderline => 'Underline';
-
-  @override
-  String get tsLetterSpacing => 'Letter spacing';
-
-  @override
-  String get tsWordSpacing => 'Word spacing';
-
-  @override
-  String get tsLineHeight => 'Line height';
-
-  @override
-  String get tsDisplayP1 => 'Does this ';
-
-  @override
-  String get tsDisplayLink => 'display';
-
-  @override
-  String get tsDisplayP2 => ' well?';
-
-  @override
-  String get tsHeadlineP1 => 'Are ';
+  String get tsHeadline => 'Headline';
 
   @override
   String get tsHeadlineLink => 'headlines';
 
   @override
+  String get tsHeadlineP1 => 'Are ';
+
+  @override
   String get tsHeadlineP2 => ' distinct...';
 
   @override
-  String get tsTitleP1 => 'from ';
+  String get tsIconSize => 'Icon size';
 
   @override
-  String get tsTitleLink => 'titles?';
+  String get tsItalic => 'Italic';
 
   @override
-  String get tsBodyP1 => 'How about ';
-
-  @override
-  String get tsBodyLink => 'the body?';
-
-  @override
-  String get tsBodyP2 => ' Is it easy to read?';
-
-  @override
-  String get tsLabelP1 => 'And ';
+  String get tsLabel => 'Label';
 
   @override
   String get tsLabelLink => 'the labels?';
 
   @override
+  String get tsLabelP1 => 'And ';
+
+  @override
   String get tsLabelP2 => ' Not too big, not too small?';
+
+  @override
+  String get tsLetterSpacing => 'Letter spacing';
+
+  @override
+  String get tsLineHeight => 'Line height';
+
+  @override
+  String tsLinkHint(Object style) {
+    return 'Activate to edit $style';
+  }
+
+  @override
+  String get tsPageTitle => 'Text settings';
 
   @override
   String tsReset(Object themeType) {
     return 'Reset $themeType text styles?';
   }
+
+  @override
+  String get tsTextBackground => 'Text background opacity';
+
+  @override
+  String get tsTitle => 'Title';
+
+  @override
+  String get tsTitleLink => 'titles?';
+
+  @override
+  String get tsTitleP1 => 'from ';
+
+  @override
+  String get tsUnderline => 'Underline';
+
+  @override
+  String get tsWordSpacing => 'Word spacing';
 }

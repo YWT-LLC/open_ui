@@ -1,90 +1,66 @@
 {
   "@@locale": "fr",
-
-  "csPageTitle": "Constructeur",
-
+  "asPageTitle": "Archiviste",
+  "asToGen": " pour le bureau pour générer le code pour {app_name}",
+  "asUseIt": "\n\nUtilisez-le sur ",
+  "csAdvanced": "Paramètres avancés",
   "csAppName": "Nom de l'application",
+  "csBadPath": "Chemin invalide",
+  "csBecomes": "devient",
+  "csCopyright": "Avis de droits d'auteur",
+  "csCopyrightTip": "Sera inclus en haut de chaque fichier Dart",
+  "csDescPreview": "Une ou deux phrases sur votre application.",
+  "csDescription": "Description",
+  "csDomainName": "Nom de domaine",
+  "csDomainTip": "À l'envers, c'est",
+  "csFileBrowser": "Ouvrir l'explorateur de fichiers",
+  "csFlutterPath": "Flutter chemin",
+  "csGenApp": "Lorsque vous générez {app_name}, l'actuel ",
+  "csGenerate": "Générer l'application",
+  "csHere": "ici.",
+  "csHereHint": "Ouvrir un générateur de palette de couleurs en ligne",
+  "csInvalidDomain": "'domain.name' seulement; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
+  "csInvalidFields": "Certains champs sont invalides",
+  "csInvalidName": "Les lettres minuscules, les chiffres et les traits de soulignement sont autorisés.",
+  "csL10nTip": "Configuration de localisation (également connue sous le nom de traductions)",
+  "csLaunchTip": "Ajoute des options de lancement au menu de débogage de VS Code",
+  "csLicenseDocs": "Ouvrir la documentation sur les licences open source",
+  "csLintTip": "Règles de lint",
   "csNamePreview": "exemple_app",
   "csNameTip": "La meilleure application de toutes",
-  "csBecomes": "devient",
-  "csInvalidName": "Les lettres minuscules, les chiffres et les traits de soulignement sont autorisés.",
-  "csYourApp": "votre application",
+  "csNoSpaces": "Le chemin ne peut pas contenir d'espaces",
+  "csNotInstalled": "N'est pas installé?",
+  "csOutputPath": "Chemin de sortie",
+  "csPageTitle": "Constructeur",
+  "csPathRequired": "Chemin requis. Impossible d'utiliser le dossier racine.",
   "csPubName": "Nom de l'éditeur",
   "csPubPreview": "Organisation Exemple",
   "csPubTip": "Ou, Personne Exemple",
-  "csDescription": "Description",
-  "csDescPreview": "Une ou deux phrases sur votre application.",
-  "csDomainName": "Nom de domaine",
-  "csDomainTip": "À l'envers, c'est",
-  "csInvalidDomain": "'domain.name' seulement; RegExp(r'^[a-z0-9_]+\\.[a-z]+$')",
-
-  "csGenApp": "Lorsque vous générez {app_name}, l'actuel ",
-  "csTheApp": "l'application",
-  "csTheConfig": "la configuration",
-  "csSetColors": " (sauf les images) deviendra la configuration par défaut pour {app_name}.\n\nIl est requis de définir un schéma de couleurs personnalisé. Si vous avez besoin d'aide pour en construire un, essayez de commencer ",
-  "csHere": "ici.",
-  "csHereHint": "Ouvrir un générateur de palette de couleurs en ligne",
-
-  "csFileBrowser": "Ouvrir l'explorateur de fichiers",
-  "csFlutterPath": "Flutter chemin",
-  "csNoSpaces": "Le chemin ne peut pas contenir d'espaces",
-  "csNotInstalled": "N'est pas installé?",
-  "csPathRequired": "Chemin requis. Impossible d'utiliser le dossier racine.",
-  "csBadPath": "Chemin invalide",
-  
-  "csAdvanced": "Paramètres avancés",
-  "csRestore": "Restaurer {setting}",
-  "csOutputPath": "Chemin de sortie",
-  "csCopyright": "Avis de droits d'auteur",
-  "csCopyrightTip": "Sera inclus en haut de chaque fichier Dart",
-  "csLicenseDocs": "Ouvrir la documentation sur les licences open source",
-  "csL10nTip": "Configuration de localisation (également connue sous le nom de traductions)",
-  "csLintTip": "Règles de lint",
-  "csLaunchTip": "Ajoute des options de lancement au menu de débogage de VS Code",
-
-  "csGenerate": "Générer l'application",
-  "csInvalidFields": "Certains champs sont invalides",
   "csRequired": "Tous les champs sont obligatoires",
-
-  "csResetHint": "Activez et confirmez ce qui doit être réinitialisé.",
-  "csResetBuilder": "Valeurs du constructeur",
   "csResetApp": "Paramètres de l'application",
   "csResetBoth": "Les deux",
+  "csResetBuilder": "Valeurs du constructeur",
+  "csResetHint": "Activez et confirmez ce qui doit être réinitialisé.",
   "csResetNothing": "Rien",
-
-
-
-  "asPageTitle": "Archiviste",
-
-  "asUseIt": "\n\nUtilisez-le sur ",
-  "asToGen": " pour le bureau pour générer le code pour {app_name}",
-  
-
-
-  "gsPageTitle": "Générateur",
-
+  "csRestore": "Restaurer {setting}",
+  "csSetColors": " (sauf les images) deviendra la configuration par défaut pour {app_name}.\n\nIl est requis de définir un schéma de couleurs personnalisé. Si vous avez besoin d'aide pour en construire un, essayez de commencer ",
+  "csTheApp": "l'application",
+  "csTheConfig": "la configuration",
+  "csYourApp": "votre application",
   "gsConsole": "Sortie de la console",
-
   "gsIsReadyIn": "est prêt dans",
-
   "gsNeedPermission": "Open UI nécessite un accès complet au disque. S'il vous plaît, allez à...\nParamètres système > Confidentialité et sécurité > Accès complet au disque > Open UI activé, puis réessayez.",
+  "gsNotInstalled": "Flutter n'est pas installé",
+  "gsPageTitle": "Générateur",
+  "gsPartialSuccess": "Le code a été généré avec succès, mais une partie de la configuration du projet a échoué.",
   "gsSeeNBelieve": "Si vous souhaitez vérifier ce que fait Open UI, allez ",
   "gsSeeNBelieveHint": "Ouvrir le code de génération de code d'Open UI.",
-  "gsNotInstalled": "Flutter n'est pas installé",
-  "gsPartialSuccess": "Le code a été généré avec succès, mais une partie de la configuration du projet a échoué.",
-
-  
-  
-  "rsWouldYou": "Souhaitez-vous...",
-
+  "rsAnotherOne": "Un autre échec ; vous devriez probablement prendre le relais...",
   "rsInstall": "L'installer",
   "rsInstallHint": "Ouvrir le guide d'installation de Flutter",
-
-  "rsRun": "L'exécuter",
-
-  "rsWipe": "L'effacer",
+  "rsLeave": "Le laisser",
   "rsNextTime": "Succès, croisons les doigts pour la prochaine fois !",
-  "rsAnotherOne": "Un autre échec ; vous devriez probablement prendre le relais...",
-
-  "rsLeave": "Le laisser"
+  "rsRun": "L'exécuter",
+  "rsWipe": "L'effacer",
+  "rsWouldYou": "Souhaitez-vous..."
 }

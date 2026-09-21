@@ -9,182 +9,309 @@ class OUILangFr extends OUILang {
   OUILangFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get csColorScheme => 'schéma de couleurs';
+
+  @override
+  String get csCurrVal => 'Valeur de couleur actuelle :';
+
+  @override
+  String get csError => 'Erreur';
+
+  @override
+  String get csErrorContainer => 'Contour\nd\'erreur';
+
+  @override
+  String get csFromImage =>
+      'Un schéma de couleurs sera généré à partir de l\'image.';
+
+  @override
+  String get csHighContrast => 'Utiliser un schéma à contraste élevé';
+
+  @override
+  String get csMonoChrome => 'Utiliser un schéma monochrome';
+
+  @override
+  String get csOnSurface => 'Texte';
+
+  @override
+  String get csOutline => 'Texte\nd\'aide';
+
+  @override
+  String get csOutlineVariant => 'Contour\nd\'aide';
+
+  @override
+  String get csPageTitle => 'Paramètres de couleur';
+
+  @override
+  String get csPickerHint =>
+      'Ouvre un sélecteur de couleurs. Appuyer longuement pour plus d\'options.';
+
+  @override
+  String get csPickerTitle => 'Choisissez une couleur';
+
+  @override
+  String get csPrimary => 'Principal';
+
+  @override
+  String get csPrimaryContainer => 'Contour\nprincipal';
+
+  @override
+  String get csRecommended => 'Utiliser la recommandation de contraste ?';
+
+  @override
+  String csReset(Object themeType) {
+    return 'Réinitialiser les couleurs du $themeType ?';
+  }
+
+  @override
+  String get csSchemeBase => 'Construire le schéma\nà partir de l\'image';
+
+  @override
+  String get csScrim => 'Couverture\nmodale';
+
+  @override
+  String get csSecondary => 'Secondaire';
+
+  @override
+  String get csSecondaryContainer => 'Contour\nsecondaire';
+
+  @override
+  String get csShadow => 'Ombre';
+
+  @override
+  String get csSurface => 'Arrière-plan du\nbouton';
+
+  @override
+  String get csSurfaceContainer => 'Arrière-plan de\nla page && modale';
+
+  @override
+  String get csSurfaceDim => 'Arrière-plan de\nl\'alerte && app bar';
+
+  @override
+  String get csSurfaceTint => 'Teinte de\nsurface';
+
+  @override
+  String get csTertiary => 'Tertiaire';
+
+  @override
+  String get csTertiaryContainer => 'Contour\ntertiaire';
+
+  @override
+  String get csUseCustom => 'Utiliser personnalisé';
+
+  @override
+  String get dsAlwaysUnderline => 'Soulignez toujours les liens';
+
+  @override
+  String get dsAnimStyle => 'Style de l\'animation';
+
+  @override
+  String get dsBackgroundImg => 'Arrière-plan de l\'image';
+
+  @override
+  String get dsBorderWidth => 'Épaisseur de la bordure';
+
+  @override
+  String get dsBounce => 'Rebond';
+
+  @override
+  String get dsButton => 'Bouton';
+
+  @override
+  String get dsClearIt => 'Effacer';
+
+  @override
+  String get dsCrop => 'Recadrer';
+
+  @override
+  String get dsCurve => 'Courbe';
+
+  @override
+  String get dsEase => 'Faciliter';
+
+  @override
+  String get dsElastic => 'Élastique';
+
+  @override
+  String get dsFadeTransition => 'Transition en fondu';
+
+  @override
+  String get dsFit => 'Comment devrait-il s\'adapter ?';
+
+  @override
+  String get dsFromCamera => 'Depuis la caméra';
+
+  @override
+  String get dsFromFile => 'Depuis un fichier';
+
+  @override
+  String get dsFromNetwork => 'Depuis une URL';
+
+  @override
+  String get dsGem => 'Gemme';
+
+  @override
+  String get dsImgGetFailed => 'Impossible de récupérer l\'image';
+
+  @override
+  String get dsImgPermission =>
+      'Certains sites ne permettent pas à d\'autres d\'accéder à leurs images.\nEssayez une image provenant d\'un autre hébergeur.';
+
+  @override
+  String get dsImgSetFailed => 'Échec de la mise à jour de l\'image';
+
+  @override
+  String dsImgSettingHint(Object title) {
+    return 'Mettre à jour l\'image $title';
+  }
+
+  @override
+  String get dsJewel => 'Joyau';
+
+  @override
+  String get dsLeftGram => 'Parallèle gauche';
+
+  @override
+  String get dsLinear => 'Linéaire';
+
+  @override
+  String get dsMargin => 'Marge extérieure';
+
+  @override
+  String get dsMilliseconds => 'Millisecondes';
+
+  @override
+  String get dsNoWeb =>
+      'L\'édition d\'images n\'est pas prise en charge sur le web';
+
+  @override
+  String get dsNone => 'Aucune';
+
+  @override
+  String get dsPadding => 'Marge intérieure';
+
+  @override
+  String get dsPage => 'Page';
+
+  @override
+  String get dsPageTitle => 'Paramètres de conception';
+
+  @override
+  String get dsPageTransition => 'Transition de page';
+
+  @override
+  String get dsPill => 'Pilule';
+
+  @override
+  String get dsPlay => 'Lancer l\'animation';
+
+  @override
+  String get dsReFit => 'Réajuster';
+
+  @override
+  String get dsRectangle => 'Rectangle';
+
+  @override
+  String dsResetButton(Object themeType) {
+    return 'Réinitialiser le design du bouton du $themeType ?';
+  }
+
+  @override
+  String get dsResetIt => 'Réinitialiser';
+
+  @override
+  String dsResetPage(Object themeType) {
+    return 'Réinitialiser le design de la page en $themeType ?';
+  }
+
+  @override
+  String get dsRightGram => 'Parallèle droit';
+
+  @override
+  String get dsRotate => 'Tourner';
+
+  @override
+  String get dsRotateLeft => 'Tourner à gauche';
+
+  @override
+  String get dsRotateRight => 'Tourner à droite';
+
+  @override
+  String get dsRoundRectangle => 'Rectangle arrondi';
+
+  @override
+  String get dsShowBack => 'Afficher le bouton Retour';
+
+  @override
+  String get dsShowScroll => 'Afficher les barres de défilement';
+
+  @override
+  String get dsSlideX => 'Diapositive horizontal';
+
+  @override
+  String get dsSlideY => 'Diapositive vertical';
+
+  @override
+  String get dsSolidColor => 'Couleur unie';
+
+  @override
+  String get dsSpacing => 'Espacement';
+
+  @override
+  String get dsStyle => 'Style';
+
+  @override
+  String get dsSystem => 'Système';
+
+  @override
+  String get dsTurnX => 'Virage horizontal';
+
+  @override
+  String get dsTurnY => 'Virage vertical';
+
+  @override
+  String get dsUseForColors =>
+      'Mettre à jour les couleurs de l\'application à l\'aide de cette image';
+
+  @override
+  String get dsUseFull => 'Utiliser l\'image complète ?';
+
+  @override
+  String get dsZoom => 'Zoom';
+
+  @override
+  String get g404 => 'Mais, dans ce cas : page 404 non trouvée.';
+
+  @override
+  String get g404Note =>
+      'Remarque : Flutter Web utilise le routage par hachage, comme...\nhttps://www.example.com/#/settings';
+
+  @override
+  String get g404Wonder => 'Tous ceux qui errent ne sont pas perdus.';
+
+  @override
+  String get gAdvanced => 'Avancé';
+
+  @override
+  String get gAnd => 'et';
+
+  @override
   String get gApply => 'Appliquer';
 
   @override
   String get gApplyChanges => 'Appliquer les modifications';
 
   @override
-  String get gContinue => 'Continuer';
-
-  @override
-  String get gOpen => 'Ouvrir';
-
-  @override
-  String get gOpenLink => 'Ouvrir le lien';
-
-  @override
-  String get gSkip => 'Passer';
-
-  @override
-  String get gSuccess => 'Succès';
-
-  @override
-  String get gSuccessExl => 'Succès !';
-
-  @override
-  String get gYes => 'Oui';
-
-  @override
-  String get gAnd => 'et';
-
-  @override
-  String get gHelp => 'Aide';
-
-  @override
-  String get gNA => 'N/D';
-
-  @override
-  String get gNAHint => 'Non disponible';
-
-  @override
-  String get gOptional => 'optionnel';
-
-  @override
-  String get gOptions => 'Paramètres';
-
-  @override
-  String get gRequired => 'Requis';
-
-  @override
-  String get gThe => 'Le';
+  String get gAttention => 'Attention';
 
   @override
   String get gBack => 'Retour';
 
   @override
-  String get gCancel => 'Annuler';
-
-  @override
-  String get gClose => 'Fermer';
-
-  @override
-  String get gDisabled => 'Désactivé';
-
-  @override
-  String get gError => 'Erreur';
-
-  @override
-  String get gFailure => 'Échec';
-
-  @override
-  String get gLock => 'Lock';
-
-  @override
-  String get gNo => 'Non';
-
-  @override
-  String get gPaste => 'Paste';
-
-  @override
-  String get gRedo => 'Rétablir';
-
-  @override
-  String get gUndo => 'Annuler';
-
-  @override
-  String get gSettings => 'Paramètres';
-
-  @override
-  String get gGlobal => 'Global';
-
-  @override
-  String get gColor => 'Couleur';
-
-  @override
-  String get gDesign => 'Design';
-
-  @override
-  String get gLayout => 'Mise en page';
-
-  @override
-  String get gText => 'Texte';
-
-  @override
-  String get gDark => 'Sombre';
-
-  @override
-  String get gLight => 'Clair';
-
-  @override
-  String get gSystem => 'Système';
-
-  @override
-  String get gEditing => 'Modification : ';
-
-  @override
-  String get gEditingHint => 'Activer pour modifier';
-
-  @override
-  String get gDarkTheme => 'Thème sombre';
-
-  @override
-  String get gLightTheme => 'Thème clair';
-
-  @override
   String get gBothThemes => 'Les deux thèmes';
 
   @override
-  String get gLeft => 'Gauche';
-
-  @override
-  String get gRight => 'Droite';
-
-  @override
-  String get gAdvanced => 'Avancé';
-
-  @override
-  String get gQuick => 'Rapide';
-
-  @override
-  String get gDecrease => 'Réduire';
-
-  @override
-  String get gIncrease => 'Augmenter';
-
-  @override
-  String get gMaximum => 'Maximum';
-
-  @override
-  String get gMinimum => 'Minimum';
-
-  @override
-  String get gCenterReset => 'Maintenez le centre pour réinitialiser';
-
-  @override
-  String get gLoadingAnim =>
-      'Chargement. Le logo YWT animé comme un sablier tournant.';
-
-  @override
-  String get gPlay => 'Lecture';
-
-  @override
-  String get gPause => 'Pause';
-
-  @override
-  String get gReplay => 'Rejouer';
-
-  @override
-  String get gMute => 'Muet';
-
-  @override
-  String get gUnMute => 'Désactiver le son';
-
-  @override
-  String get gPlaybackSpeed => 'Vitesse de lecture';
-
-  @override
-  String get gFBF => 'Image par image';
+  String get gCancel => 'Annuler';
 
   @override
   String get gCaptions => 'Sous-titres/légendes';
@@ -193,13 +320,66 @@ class OUILangFr extends OUILang {
   String get gCaptionsHint => 'Maintenez pour les polices';
 
   @override
+  String get gCenterReset => 'Maintenez le centre pour réinitialiser';
+
+  @override
+  String gClipboard(Object thing) {
+    return '$thing a été copié dans le presse-papiers.';
+  }
+
+  @override
+  String get gClose => 'Fermer';
+
+  @override
+  String get gColor => 'Couleur';
+
+  @override
+  String get gContinue => 'Continuer';
+
+  @override
+  String get gCreator => 'Créateur de';
+
+  @override
+  String get gCurrently => 'Actuellement :';
+
+  @override
+  String get gDark => 'Sombre';
+
+  @override
+  String get gDarkTheme => 'Thème sombre';
+
+  @override
+  String get gDecrease => 'Réduire';
+
+  @override
+  String get gDesign => 'Design';
+
+  @override
+  String get gDisabled => 'Désactivé';
+
+  @override
+  String get gEditing => 'Modification : ';
+
+  @override
+  String get gEditingHint => 'Activer pour modifier';
+
+  @override
+  String get gEnterURL => 'Entrer l\'URL';
+
+  @override
+  String get gError => 'Erreur';
+
+  @override
+  String get gFBF => 'Image par image';
+
+  @override
+  String get gFailure => 'Échec';
+
+  @override
   String get gFullscreen => 'Plein écran';
 
   @override
-  String get gMachineTranslated => 'Traduction automatique';
-
-  @override
-  String get gUpdates => 'Mises à jour disponibles';
+  String get gGlobal => 'Global';
 
   @override
   String get gHardRefresh => 'Veuillez rafraîchir la page...\nCtrl + Shift + R';
@@ -213,57 +393,110 @@ class OUILangFr extends OUILang {
       'Veuillez actualiser la page dans le menu du navigateur.';
 
   @override
-  String get gEnterURL => 'Entrer l\'URL';
+  String get gHelp => 'Aide';
 
   @override
-  String get gValidURL => 'Veuillez saisir une URL valide';
+  String get gIncrease => 'Augmenter';
 
   @override
-  String get g404Wonder => 'Tous ceux qui errent ne sont pas perdus.';
+  String get gLayout => 'Mise en page';
 
   @override
-  String get g404 => 'Mais, dans ce cas : page 404 non trouvée.';
+  String get gLeft => 'Gauche';
 
   @override
-  String get g404Note =>
-      'Remarque : Flutter Web utilise le routage par hachage, comme...\nhttps://www.example.com/#/settings';
+  String get gLight => 'Clair';
+
+  @override
+  String get gLightTheme => 'Thème clair';
+
+  @override
+  String get gLoadingAnim =>
+      'Chargement. Le logo YWT animé comme un sablier tournant.';
+
+  @override
+  String get gLock => 'Lock';
+
+  @override
+  String get gMachineTranslated => 'Traduction automatique';
+
+  @override
+  String get gMadeBy => 'Fait par';
+
+  @override
+  String get gMaximum => 'Maximum';
+
+  @override
+  String get gMinimum => 'Minimum';
+
+  @override
+  String get gMute => 'Muet';
+
+  @override
+  String get gNA => 'N/D';
+
+  @override
+  String get gNAHint => 'Non disponible';
+
+  @override
+  String get gNo => 'Non';
+
+  @override
+  String get gOpen => 'Ouvrir';
+
+  @override
+  String get gOpenLink => 'Ouvrir le lien';
 
   @override
   String get gOpenSource => 'Open source';
 
   @override
-  String get gOpenYWT => 'Ouvre un lien vers YWT LLC';
+  String get gOpenUIReleases => 'Ouvre la page des versions d\'Open UI';
 
   @override
   String get gOpenUISourceHint => 'Ouvre la page GitHub d\'Open UI';
 
   @override
-  String get gOpenUIReleases => 'Ouvre la page des versions d\'Open UI';
+  String get gOpenYWT => 'Ouvre un lien vers YWT LLC';
 
   @override
-  String get gSupportEmail => 'Notre Email de support';
+  String get gOptional => 'optionnel';
 
   @override
-  String gClipboard(Object thing) {
-    return '$thing a été copié dans le presse-papiers.';
-  }
+  String get gOptions => 'Paramètres';
 
   @override
-  String get gAttention => 'Attention';
+  String get gPaste => 'Paste';
 
   @override
-  String get gCurrently => 'Actuellement :';
+  String get gPause => 'Pause';
 
   @override
-  String gSetToValue(Object name, Object value) {
-    return '$name est défini sur $value';
-  }
+  String get gPlay => 'Lecture';
+
+  @override
+  String get gPlaybackSpeed => 'Vitesse de lecture';
+
+  @override
+  String get gQuick => 'Rapide';
+
+  @override
+  String get gRedo => 'Rétablir';
 
   @override
   String get gRemove => 'Retirer';
 
   @override
+  String get gReplay => 'Rejouer';
+
+  @override
+  String get gRequired => 'Requis';
+
+  @override
   String get gReset => 'Réinitialiser';
+
+  @override
+  String get gResetAll => 'Tout réinitialiser';
 
   @override
   String get gResetTo => 'Réinitialiser :';
@@ -279,10 +512,7 @@ class OUILangFr extends OUILang {
   }
 
   @override
-  String get gResetAll => 'Tout réinitialiser';
-
-  @override
-  String get gUndoWarn1 => 'Impossible d\'annuler automatiquement.\n';
+  String get gRight => 'Droite';
 
   @override
   String get gSave => 'Enregistrez';
@@ -292,53 +522,118 @@ class OUILangFr extends OUILang {
       'Activez pour enregistrer un fichier de configuration JSON.';
 
   @override
+  String gSetToValue(Object name, Object value) {
+    return '$name est défini sur $value';
+  }
+
+  @override
+  String get gSettings => 'Paramètres';
+
+  @override
+  String get gSkip => 'Passer';
+
+  @override
+  String get gSource => 'Source :';
+
+  @override
+  String get gSuccess => 'Succès';
+
+  @override
+  String get gSuccessExl => 'Succès !';
+
+  @override
+  String get gSupportEmail => 'Notre Email de support';
+
+  @override
   String get gSwitchHint => 'Actionner l\'interrupteur';
+
+  @override
+  String get gSystem => 'Système';
+
+  @override
+  String get gText => 'Texte';
+
+  @override
+  String get gThe => 'Le';
+
+  @override
+  String get gUnMute => 'Désactiver le son';
+
+  @override
+  String get gUndo => 'Annuler';
+
+  @override
+  String get gUndoWarn1 => 'Impossible d\'annuler automatiquement.\n';
 
   @override
   String get gUndoWarn2 =>
       ' votre configuration actuelle pour la restaurer manuellement.';
 
   @override
+  String get gUpdates => 'Mises à jour disponibles';
+
+  @override
+  String get gValidURL => 'Veuillez saisir une URL valide';
+
+  @override
   String get gValue => 'Valeur';
 
   @override
-  String get gSource => 'Source :';
-
-  @override
-  String get gCreator => 'Créateur de';
-
-  @override
-  String get gMadeBy => 'Fait par';
+  String get gYes => 'Oui';
 
   @override
   String get gYou => 'Défini par vous';
 
   @override
-  String get ssNavHint => 'Ouvrir la page des paramètres';
+  String ssApplied(Object config) {
+    return '$config appliqué.';
+  }
 
   @override
-  String get ssHaveFun => 'Amusez-vous bien !';
+  String get ssBigButtons => 'Gros boutons';
+
+  @override
+  String get ssChalkboard => 'Tableau noir';
+
+  @override
+  String ssConfigSaved(Object path) {
+    return 'Votre configuration a été enregistrée dans $path';
+  }
+
+  @override
+  String get ssConfigTip => 'Enregistrer/charger la configuration';
+
+  @override
+  String get ssDarkOnly =>
+      'Ceci est un préréglage de thème sombre.\nIl définira le mode de thème sur sombre et mettra à jour ce thème.\n\nContinuer ?';
+
+  @override
+  String get ssDewIt => 'Mettre à jour les deux/confirmation automatique';
 
   @override
   String get ssDominantHand => 'Main dominante';
 
   @override
-  String get ssThemeMode => 'Mode de thème';
+  String get ssHaveFun => 'Amusez-vous bien !';
 
   @override
-  String get ssLanguage => 'Langue';
+  String get ssHighVisibility => 'Haute visibilité';
+
+  @override
+  String get ssImageToo => 'Des images d\'arrière-plan aussi ?';
 
   @override
   String get ssLangHint => 'Activer pour changer la langue de l\'application';
 
   @override
-  String get ssUpdateDark => 'Mettre à jour le thème sombre';
+  String get ssLanguage => 'Langue';
 
   @override
-  String get ssUpdateLight => 'Mettre à jour le thème clair';
+  String get ssLightOnly =>
+      'Ceci est un préréglage de thème clair.\nIl définira le mode de thème sur clair et mettra à jour ce thème.\n\nContinuer ?';
 
   @override
-  String get ssUpdateBoth => 'Mettre à jour les deux modes de thème';
+  String get ssLoadConfig => 'Charger la configuration';
 
   @override
   String get ssLoadPreset => 'Charger un préréglage';
@@ -347,38 +642,10 @@ class OUILangFr extends OUILang {
   String get ssLoadPresetHint => 'Activer pour afficher les préréglages';
 
   @override
-  String get ssDewIt => 'Mettre à jour les deux/confirmation automatique';
-
-  @override
-  String get ssBigButtons => 'Gros boutons';
-
-  @override
-  String get ssHighVisibility => 'Haute visibilité';
-
-  @override
-  String get ssChalkboard => 'Tableau noir';
+  String get ssNavHint => 'Ouvrir la page des paramètres';
 
   @override
   String get ssNebula => 'Nébuleuse';
-
-  @override
-  String get ssWallHoles => 'Trous dans le mur';
-
-  @override
-  String get ssDarkOnly =>
-      'Ceci est un préréglage de thème sombre.\nIl définira le mode de thème sur sombre et mettra à jour ce thème.\n\nContinuer ?';
-
-  @override
-  String get ssLightOnly =>
-      'Ceci est un préréglage de thème clair.\nIl définira le mode de thème sur clair et mettra à jour ce thème.\n\nContinuer ?';
-
-  @override
-  String ssApplied(Object config) {
-    return '$config appliqué.';
-  }
-
-  @override
-  String get ssTryMe => 'Essayez-moi';
 
   @override
   String get ssRandom => 'Randomiser';
@@ -387,26 +654,6 @@ class OUILangFr extends OUILang {
   String ssRandomize(Object themeType) {
     return 'Thème $themeType aléatoire ?';
   }
-
-  @override
-  String get ssConfigTip => 'Enregistrer/charger la configuration';
-
-  @override
-  String get ssSaveConfig => 'Enregistrer la configuration';
-
-  @override
-  String ssConfigSaved(Object path) {
-    return 'Votre configuration a été enregistrée dans $path';
-  }
-
-  @override
-  String get ssWrongConfigExt => 'Le fichier n\'a pas été enregistré comme ';
-
-  @override
-  String get ssLoadConfig => 'Charger la configuration';
-
-  @override
-  String get ssImageToo => 'Des images d\'arrière-plan aussi ?';
 
   @override
   String get ssResetAll => 'Réinitialiser tous les paramètres ?';
@@ -419,278 +666,28 @@ class OUILangFr extends OUILang {
   String get ssResetBoth => 'Réinitialiser les deux modes de thème';
 
   @override
-  String get csPageTitle => 'Paramètres de couleur';
+  String get ssSaveConfig => 'Enregistrer la configuration';
 
   @override
-  String get csSchemeBase => 'Construire le schéma\nà partir de l\'image';
+  String get ssThemeMode => 'Mode de thème';
 
   @override
-  String get csFromImage =>
-      'Un schéma de couleurs sera généré à partir de l\'image.';
+  String get ssTryMe => 'Essayez-moi';
 
   @override
-  String get csMonoChrome => 'Utiliser un schéma monochrome';
+  String get ssUpdateBoth => 'Mettre à jour les deux modes de thème';
 
   @override
-  String get csHighContrast => 'Utiliser un schéma à contraste élevé';
+  String get ssUpdateDark => 'Mettre à jour le thème sombre';
 
   @override
-  String get csPrimary => 'Principal';
+  String get ssUpdateLight => 'Mettre à jour le thème clair';
 
   @override
-  String get csPrimaryContainer => 'Contour\nprincipal';
+  String get ssWallHoles => 'Trous dans le mur';
 
   @override
-  String get csSecondary => 'Secondaire';
-
-  @override
-  String get csSecondaryContainer => 'Contour\nsecondaire';
-
-  @override
-  String get csTertiary => 'Tertiaire';
-
-  @override
-  String get csTertiaryContainer => 'Contour\ntertiaire';
-
-  @override
-  String get csError => 'Erreur';
-
-  @override
-  String get csErrorContainer => 'Contour\nd\'erreur';
-
-  @override
-  String get csOutline => 'Texte\nd\'aide';
-
-  @override
-  String get csOutlineVariant => 'Contour\nd\'aide';
-
-  @override
-  String get csSurface => 'Arrière-plan du\nbouton';
-
-  @override
-  String get csSurfaceDim => 'Arrière-plan de\nl\'alerte && app bar';
-
-  @override
-  String get csSurfaceContainer => 'Arrière-plan de\nla page && modale';
-
-  @override
-  String get csOnSurface => 'Texte';
-
-  @override
-  String get csScrim => 'Couverture\nmodale';
-
-  @override
-  String get csShadow => 'Ombre';
-
-  @override
-  String get csSurfaceTint => 'Teinte de\nsurface';
-
-  @override
-  String get csPickerTitle => 'Choisissez une couleur';
-
-  @override
-  String get csPickerHint =>
-      'Ouvre un sélecteur de couleurs. Appuyer longuement pour plus d\'options.';
-
-  @override
-  String get csRecommended => 'Utiliser la recommandation de contraste ?';
-
-  @override
-  String get csUseCustom => 'Utiliser personnalisé';
-
-  @override
-  String get csCurrVal => 'Valeur de couleur actuelle :';
-
-  @override
-  String csReset(Object themeType) {
-    return 'Réinitialiser les couleurs du $themeType ?';
-  }
-
-  @override
-  String get csColorScheme => 'schéma de couleurs';
-
-  @override
-  String get dsPageTitle => 'Paramètres de conception';
-
-  @override
-  String get dsButton => 'Bouton';
-
-  @override
-  String get dsPage => 'Page';
-
-  @override
-  String get dsNone => 'Aucune';
-
-  @override
-  String get dsSystem => 'Système';
-
-  @override
-  String get dsPadding => 'Marge intérieure';
-
-  @override
-  String get dsStyle => 'Style';
-
-  @override
-  String get dsBorderWidth => 'Épaisseur de la bordure';
-
-  @override
-  String get dsPill => 'Pilule';
-
-  @override
-  String get dsRectangle => 'Rectangle';
-
-  @override
-  String get dsRoundRectangle => 'Rectangle arrondi';
-
-  @override
-  String get dsLeftGram => 'Parallèle gauche';
-
-  @override
-  String get dsRightGram => 'Parallèle droit';
-
-  @override
-  String get dsGem => 'Gemme';
-
-  @override
-  String get dsJewel => 'Joyau';
-
-  @override
-  String get dsAlwaysUnderline => 'Soulignez toujours les liens';
-
-  @override
-  String get dsShowBack => 'Afficher le bouton Retour';
-
-  @override
-  String get dsMargin => 'Marge extérieure';
-
-  @override
-  String get dsSpacing => 'Espacement';
-
-  @override
-  String get dsPageTransition => 'Transition de page';
-
-  @override
-  String get dsTurnX => 'Virage horizontal';
-
-  @override
-  String get dsTurnY => 'Virage vertical';
-
-  @override
-  String get dsRotate => 'Tourner';
-
-  @override
-  String get dsSlideX => 'Diapositive horizontal';
-
-  @override
-  String get dsSlideY => 'Diapositive vertical';
-
-  @override
-  String get dsZoom => 'Zoom';
-
-  @override
-  String get dsFadeTransition => 'Transition en fondu';
-
-  @override
-  String get dsAnimStyle => 'Style de l\'animation';
-
-  @override
-  String get dsPlay => 'Lancer l\'animation';
-
-  @override
-  String get dsMilliseconds => 'Millisecondes';
-
-  @override
-  String get dsCurve => 'Courbe';
-
-  @override
-  String get dsBounce => 'Rebond';
-
-  @override
-  String get dsEase => 'Faciliter';
-
-  @override
-  String get dsElastic => 'Élastique';
-
-  @override
-  String get dsLinear => 'Linéaire';
-
-  @override
-  String get dsBackgroundImg => 'Arrière-plan de l\'image';
-
-  @override
-  String dsImgSettingHint(Object title) {
-    return 'Mettre à jour l\'image $title';
-  }
-
-  @override
-  String get dsReFit => 'Réajuster';
-
-  @override
-  String get dsFromFile => 'Depuis un fichier';
-
-  @override
-  String get dsFromCamera => 'Depuis la caméra';
-
-  @override
-  String get dsFromNetwork => 'Depuis une URL';
-
-  @override
-  String get dsSolidColor => 'Couleur unie';
-
-  @override
-  String get dsResetIt => 'Réinitialiser';
-
-  @override
-  String get dsClearIt => 'Effacer';
-
-  @override
-  String get dsUseForColors =>
-      'Mettre à jour les couleurs de l\'application à l\'aide de cette image';
-
-  @override
-  String get dsImgGetFailed => 'Impossible de récupérer l\'image';
-
-  @override
-  String get dsImgSetFailed => 'Échec de la mise à jour de l\'image';
-
-  @override
-  String get dsImgPermission =>
-      'Certains sites ne permettent pas à d\'autres d\'accéder à leurs images.\nEssayez une image provenant d\'un autre hébergeur.';
-
-  @override
-  String get dsUseFull => 'Utiliser l\'image complète ?';
-
-  @override
-  String get dsFit => 'Comment devrait-il s\'adapter ?';
-
-  @override
-  String get dsCrop => 'Recadrer';
-
-  @override
-  String get dsNoWeb =>
-      'L\'édition d\'images n\'est pas prise en charge sur le web';
-
-  @override
-  String get dsRotateLeft => 'Tourner à gauche';
-
-  @override
-  String get dsRotateRight => 'Tourner à droite';
-
-  @override
-  String get dsShowScroll => 'Afficher les barres de défilement';
-
-  @override
-  String dsResetButton(Object themeType) {
-    return 'Réinitialiser le design du bouton du $themeType ?';
-  }
-
-  @override
-  String dsResetPage(Object themeType) {
-    return 'Réinitialiser le design de la page en $themeType ?';
-  }
-
-  @override
-  String get tsPageTitle => 'Paramètres de texte';
+  String get ssWrongConfigExt => 'Le fichier n\'a pas été enregistré comme ';
 
   @override
   String tsBatchOverride(Object setting) {
@@ -698,30 +695,31 @@ class OUILangFr extends OUILang {
   }
 
   @override
-  String get tsTextBackground => 'Opacité de l\'arrière-plan du texte';
+  String get tsBody => 'Corps';
 
   @override
-  String get tsIconSize => 'Taille de l\'icône';
+  String get tsBodyLink => 'du corps ?';
 
   @override
-  String tsLinkHint(Object style) {
-    return 'Activer pour modifier $style';
-  }
+  String get tsBodyP1 => 'Qu\'en est-il ';
+
+  @override
+  String get tsBodyP2 => ' Est-ce facile à lire ?';
+
+  @override
+  String get tsBold => 'Gras';
 
   @override
   String get tsDisplay => 'Affichage';
 
   @override
-  String get tsHeadline => 'Gros titre';
+  String get tsDisplayLink => 's\'affiche';
 
   @override
-  String get tsTitle => 'Titre';
+  String get tsDisplayP1 => 'Est-ce que ça ';
 
   @override
-  String get tsBody => 'Corps';
-
-  @override
-  String get tsLabel => 'Label';
+  String get tsDisplayP2 => ' bien ?';
 
   @override
   String get tsFontFamily => 'Police de caractères';
@@ -730,67 +728,69 @@ class OUILangFr extends OUILang {
   String get tsFontSize => 'Taille de police';
 
   @override
-  String get tsBold => 'Gras';
-
-  @override
-  String get tsItalic => 'Italique';
-
-  @override
-  String get tsUnderline => 'Souligné';
-
-  @override
-  String get tsLetterSpacing => 'Espacement des lettres';
-
-  @override
-  String get tsWordSpacing => 'Espacement des mots';
-
-  @override
-  String get tsLineHeight => 'Hauteur de ligne';
-
-  @override
-  String get tsDisplayP1 => 'Est-ce que ça ';
-
-  @override
-  String get tsDisplayLink => 's\'affiche';
-
-  @override
-  String get tsDisplayP2 => ' bien ?';
-
-  @override
-  String get tsHeadlineP1 => 'Est-ce que ';
+  String get tsHeadline => 'Gros titre';
 
   @override
   String get tsHeadlineLink => 'les gros titres';
 
   @override
+  String get tsHeadlineP1 => 'Est-ce que ';
+
+  @override
   String get tsHeadlineP2 => ' se différencient...';
 
   @override
-  String get tsTitleP1 => 'des ';
+  String get tsIconSize => 'Taille de l\'icône';
 
   @override
-  String get tsTitleLink => 'titres ?';
+  String get tsItalic => 'Italique';
 
   @override
-  String get tsBodyP1 => 'Qu\'en est-il ';
-
-  @override
-  String get tsBodyLink => 'du corps ?';
-
-  @override
-  String get tsBodyP2 => ' Est-ce facile à lire ?';
-
-  @override
-  String get tsLabelP1 => 'Et ';
+  String get tsLabel => 'Label';
 
   @override
   String get tsLabelLink => 'les labels ?';
 
   @override
+  String get tsLabelP1 => 'Et ';
+
+  @override
   String get tsLabelP2 => ' Ni trop gros, ni trop petits ?';
+
+  @override
+  String get tsLetterSpacing => 'Espacement des lettres';
+
+  @override
+  String get tsLineHeight => 'Hauteur de ligne';
+
+  @override
+  String tsLinkHint(Object style) {
+    return 'Activer pour modifier $style';
+  }
+
+  @override
+  String get tsPageTitle => 'Paramètres de texte';
 
   @override
   String tsReset(Object themeType) {
     return 'Réinitialiser les styles de texte de $themeType ?';
   }
+
+  @override
+  String get tsTextBackground => 'Opacité de l\'arrière-plan du texte';
+
+  @override
+  String get tsTitle => 'Titre';
+
+  @override
+  String get tsTitleLink => 'titres ?';
+
+  @override
+  String get tsTitleP1 => 'des ';
+
+  @override
+  String get tsUnderline => 'Souligné';
+
+  @override
+  String get tsWordSpacing => 'Espacement des mots';
 }
