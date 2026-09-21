@@ -200,7 +200,7 @@ Future<void> ezConfigLoader(
     }
   } catch (e) {
     (context.mounted)
-        ? unawaited(ezLogAlert(config, context: context, message: e.toString()))
+        ? ezLogAlert(config, context: context, message: e.toString())
         : ezLog(e.toString());
     return;
   }
@@ -395,7 +395,7 @@ Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
     };
 
 /// [ezLog] the passed message and display an [EzAlertDialog] to notify the user
-Future<dynamic> ezLogAlert(
+void ezLogAlert(
   EzCP config, {
   required BuildContext context,
   String? title,
@@ -405,14 +405,16 @@ Future<dynamic> ezLogAlert(
 }) {
   ezLog(message);
 
-  return showDialog(
-    context: context,
-    builder: (_) => EzAlertDialog(
-      config,
-      title: Text(title ?? config.ezL10n.gAttention, textAlign: TextAlign.center),
-      contents: <Widget>[Text(message, textAlign: TextAlign.center)],
-      actions: customActions,
-      needsClose: needsClose,
+  return unawaited(
+    showDialog(
+      context: context,
+      builder: (_) => EzAlertDialog(
+        config,
+        title: Text(title ?? config.ezL10n.gAttention, textAlign: TextAlign.center),
+        contents: <Widget>[Text(message, textAlign: TextAlign.center)],
+        actions: customActions,
+        needsClose: needsClose,
+      ),
     ),
   );
 }

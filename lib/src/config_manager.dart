@@ -372,7 +372,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       );
     } catch (e) {
       (context.mounted)
-          ? unawaited(ezLogAlert(config, context: context, message: e.toString()))
+          ? ezLogAlert(config, context: context, message: e.toString())
           : ezLog(e.toString());
       return;
     }

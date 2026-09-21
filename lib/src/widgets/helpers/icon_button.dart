@@ -7,6 +7,82 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
+class EzIcon extends Icon {
+  /// EzConfig Provider
+  final EzCP config;
+
+  /// [Icon] wrapper that responds to [EzCP.iconSize]
+  /// [ThemeData.iconTheme] does not seem to be consumed properly
+  EzIcon(
+    this.config,
+    super.icon, {
+    super.key,
+    super.fill,
+    super.weight,
+    super.grade,
+    super.opticalSize,
+    super.color,
+    super.shadows,
+    super.semanticLabel,
+    super.textDirection,
+    super.applyTextScaling,
+    super.blendMode,
+  }) : super(size: config.iconSize);
+}
+
+class EzIconTouch extends StatelessWidget {
+  final EzCP config;
+  final IconData icon;
+  final double? iconSize;
+  final Color? color;
+  final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
+  final bool enabled;
+  final String tooltip;
+
+  /// Functionally an icon button, but not an [IconButton]
+  const EzIconTouch(
+    this.config, {
+    super.key,
+    required this.icon,
+    this.iconSize,
+    this.color,
+    this.onPressed,
+    this.onLongPress,
+    this.enabled = true,
+    required this.tooltip,
+  });
+
+  @override
+  Widget build(BuildContext context) => enabled
+      ? Tooltip(
+          message: tooltip,
+          child: InkWell(
+            mouseCursor: SystemMouseCursors.click,
+            onTap: onPressed,
+            onLongPress: onLongPress,
+            child: Container(
+              padding: EzInsets.wrap(config.padding),
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              child: EzIcon(config, icon, color: color),
+            ),
+          ),
+        )
+      : Tooltip(
+          message: tooltip,
+          child: InkWell(
+            mouseCursor: SystemMouseCursors.click,
+            onTap: doNothing,
+            onLongPress: doNothing,
+            child: Container(
+              padding: EzInsets.wrap(config.padding),
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              child: EzIcon(config, icon, color: config.colors.outline),
+            ),
+          ),
+        );
+}
+
 class EzIconButton extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
@@ -69,27 +145,4 @@ class EzIconButton extends StatelessWidget {
         icon: icon,
         iconSize: iconSize ?? config.iconSize,
       );
-}
-
-class EzIcon extends Icon {
-  /// EzConfig Provider
-  final EzCP config;
-
-  /// [Icon] wrapper that responds to [EzCP.iconSize]
-  /// [ThemeData.iconTheme] does not seem to be consumed properly
-  EzIcon(
-    this.config,
-    super.icon, {
-    super.key,
-    super.fill,
-    super.weight,
-    super.grade,
-    super.opticalSize,
-    super.color,
-    super.shadows,
-    super.semanticLabel,
-    super.textDirection,
-    super.applyTextScaling,
-    super.blendMode,
-  }) : super(size: config.iconSize);
 }
