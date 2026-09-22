@@ -366,6 +366,13 @@ double ezIconRatio(EzCP config) => max(
 double ezImageSize(EzCP config, {required BuildContext context}) =>
     MediaQuery.textScalerOf(context).scale(160.0) * ezIconRatio(config);
 
+/// Get a locale from a locale code [String]
+/// Does ZERO validation! You need to validate the format elsewhere/outside
+Locale ezLocale(String code) {
+  final List<String> parts = code.split('_');
+  return (parts.length > 1) ? Locale(parts[0], parts[1]) : Locale(code);
+}
+
 /// Get the human readable name for [locale]
 String ezLocaleName(Locale locale, BuildContext context) {
   final String? attempt = LocaleNames.of(context)?.nameOf(locale.languageCode);
