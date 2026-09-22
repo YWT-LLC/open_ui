@@ -410,7 +410,7 @@ class OUILangAr extends OUILang {
   String get gLoadingAnim => 'جارٍ التحميل. شعار YWT يتحرك كساعة رملية دوارة.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'قفل';
 
   @override
   String get gMachineTranslated => 'ترجمة آلية';
@@ -461,7 +461,7 @@ class OUILangAr extends OUILang {
   String get gOptions => 'خيارات';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'لصق';
 
   @override
   String get gPause => 'إيقاف مؤقت';
@@ -1193,6 +1193,9 @@ class OUILangArEg extends OUILangAr {
   String get gLoadingAnim => 'جارٍ التحميل. شعار YWT يتحرك كساعة رملية دوارة.';
 
   @override
+  String get gLock => 'قفل';
+
+  @override
   String get gMachineTranslated => 'ترجمة آلية';
 
   @override
@@ -1239,6 +1242,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gOptions => 'خيارات';
+
+  @override
+  String get gPaste => 'لصق';
 
   @override
   String get gPause => 'إيقاف مؤقت';

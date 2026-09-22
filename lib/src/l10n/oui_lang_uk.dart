@@ -414,7 +414,7 @@ class OUILangUk extends OUILang {
       'Завантаження. Логотип YWT анімований як пісочний годинник, що обертається.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Заблокувати';
 
   @override
   String get gMachineTranslated => 'Машинний переклад';
@@ -465,7 +465,7 @@ class OUILangUk extends OUILang {
   String get gOptions => 'Параметри';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Вставити';
 
   @override
   String get gPause => 'Пауза';

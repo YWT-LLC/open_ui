@@ -415,7 +415,7 @@ class OUILangFr extends OUILang {
       'Chargement. Le logo YWT animé comme un sablier tournant.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Verrouiller';
 
   @override
   String get gMachineTranslated => 'Traduction automatique';
@@ -466,7 +466,7 @@ class OUILangFr extends OUILang {
   String get gOptions => 'Paramètres';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Coller';
 
   @override
   String get gPause => 'Pause';

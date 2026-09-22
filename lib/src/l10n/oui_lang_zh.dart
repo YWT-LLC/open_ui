@@ -407,7 +407,7 @@ class OUILangZh extends OUILang {
   String get gLoadingAnim => '加载中。YWT 标志像旋转的沙漏一样具有动画效果。';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => '锁定';
 
   @override
   String get gMachineTranslated => '机器翻译';
@@ -458,7 +458,7 @@ class OUILangZh extends OUILang {
   String get gOptions => '选项';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => '粘贴';
 
   @override
   String get gPause => '暂停';
@@ -1185,6 +1185,9 @@ class OUILangZhCn extends OUILangZh {
   String get gLoadingAnim => '加载中。YWT 标志像旋转的沙漏一样具有动画效果。';
 
   @override
+  String get gLock => '锁定';
+
+  @override
   String get gMachineTranslated => '机器翻译';
 
   @override
@@ -1231,6 +1234,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get gOptions => '选项';
+
+  @override
+  String get gPaste => '粘贴';
 
   @override
   String get gPause => '暂停';

@@ -416,7 +416,7 @@ class OUILangRu extends OUILang {
       'Загрузка. Логотип YWT анимирован в виде вращающихся песочных часов.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Заблокировать';
 
   @override
   String get gMachineTranslated => 'Машинный перевод';
@@ -467,7 +467,7 @@ class OUILangRu extends OUILang {
   String get gOptions => 'Параметры';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Вставить';
 
   @override
   String get gPause => 'Пауза';

@@ -408,7 +408,7 @@ class OUILangJa extends OUILang {
   String get gLoadingAnim => '読み込み中。YWTのロゴが砂時計のように回転しています。';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'ロック';
 
   @override
   String get gMachineTranslated => '機械翻訳';
@@ -459,7 +459,7 @@ class OUILangJa extends OUILang {
   String get gOptions => 'オプション';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => '貼り付け';
 
   @override
   String get gPause => '一時停止';

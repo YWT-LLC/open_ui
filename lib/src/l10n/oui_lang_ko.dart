@@ -408,7 +408,7 @@ class OUILangKo extends OUILang {
   String get gLoadingAnim => '로딩 중. YWT 로고가 회전하는 모래시계처럼 애니메이션 처리됩니다.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => '잠금';
 
   @override
   String get gMachineTranslated => '기계 번역됨';
@@ -459,7 +459,7 @@ class OUILangKo extends OUILang {
   String get gOptions => '옵션';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => '붙여넣기';
 
   @override
   String get gPause => '일시 정지';

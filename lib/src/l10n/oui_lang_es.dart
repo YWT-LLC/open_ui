@@ -415,7 +415,7 @@ class OUILangEs extends OUILang {
       'Cargando. El logotipo empático animado como un reloj de arena giratorio.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Bloquear';
 
   @override
   String get gMachineTranslated => 'Traducción automática';
@@ -466,7 +466,7 @@ class OUILangEs extends OUILang {
   String get gOptions => 'Opciones';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Pegar';
 
   @override
   String get gPause => 'Pausa';

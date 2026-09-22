@@ -414,7 +414,7 @@ class OUILangSw extends OUILang {
       'Inapakia. Nembo ya YWT inasonga kama glasi ya saa inayozunguka.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Funga';
 
   @override
   String get gMachineTranslated => 'Imetafsiriwa na mashine';
@@ -465,7 +465,7 @@ class OUILangSw extends OUILang {
   String get gOptions => 'Chaguo';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Bandika';
 
   @override
   String get gPause => 'Sitisha';

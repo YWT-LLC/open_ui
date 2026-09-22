@@ -412,7 +412,7 @@ class OUILangHt extends OUILang {
       'Ap chaje. Logo YWT la ap anime tankou yon sabliye k ap vire.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Bloke';
 
   @override
   String get gMachineTranslated => 'Tradui ak machin';
@@ -463,7 +463,7 @@ class OUILangHt extends OUILang {
   String get gOptions => 'Opsyon yo';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Kole';
 
   @override
   String get gPause => 'Poz';

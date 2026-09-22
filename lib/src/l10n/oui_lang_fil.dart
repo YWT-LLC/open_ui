@@ -414,7 +414,7 @@ class OUILangFil extends OUILang {
       'Naglo-load. Ang logo ng YWT ay gumagalaw bilang isang umiikot na hourglass.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'I-lock';
 
   @override
   String get gMachineTranslated => 'Isinalin ng makina';
@@ -465,7 +465,7 @@ class OUILangFil extends OUILang {
   String get gOptions => 'Mga Opsyon';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Idikit';
 
   @override
   String get gPause => 'I-pause';

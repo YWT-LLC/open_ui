@@ -414,7 +414,7 @@ class OUILangHi extends OUILang {
       'लोड हो रहा है। एम्पैथेटिक लोगो एक घूमते हुए घंटे के चश्मे (hourglass) के रूप में एनिमेटेड है।';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'लॉक';
 
   @override
   String get gMachineTranslated => 'मशीन द्वारा अनुवादित';
@@ -465,7 +465,7 @@ class OUILangHi extends OUILang {
   String get gOptions => 'विकल्प';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'पेस्ट';
 
   @override
   String get gPause => 'रोकें';

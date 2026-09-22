@@ -411,7 +411,7 @@ class OUILangDe extends OUILang {
   String get gLoadingAnim => 'Lädt. Das YWT-Logo dreht sich wie eine Sanduhr.';
 
   @override
-  String get gLock => 'Lock';
+  String get gLock => 'Sperren';
 
   @override
   String get gMachineTranslated => 'Maschinell übersetzt';
@@ -462,7 +462,7 @@ class OUILangDe extends OUILang {
   String get gOptions => 'Optionen';
 
   @override
-  String get gPaste => 'Paste';
+  String get gPaste => 'Einfügen';
 
   @override
   String get gPause => 'Pause';
