@@ -86,6 +86,10 @@ class EzElevatedIconButton extends StatefulWidget {
   /// Useful if the functionality is async
   final bool enabled;
 
+  /// Switches to disabled styling when true
+  /// [onPressed] is unchanged
+  final bool fauxDisabled;
+
   /// [ElevatedButton.onPressed] passthrough
   final void Function()? onPressed;
 
@@ -112,6 +116,7 @@ class EzElevatedIconButton extends StatefulWidget {
     this.config, {
     super.key,
     this.enabled = true,
+    this.fauxDisabled = false,
     this.onPressed,
     this.onLongPress,
     this.style,
@@ -130,7 +135,7 @@ class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
   Widget build(BuildContext context) => ElevatedButton.icon(
         onPressed: widget.enabled ? widget.onPressed : doNothing,
         onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: widget.enabled
+        style: (widget.enabled || widget.fauxDisabled)
             ? widget.style
             : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
                 overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
@@ -141,8 +146,9 @@ class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
         label: Text(
           widget.label,
           style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor:
-                widget.enabled ? widget.config.colors.primary : widget.config.colors.outline,
+            decorationColor: (widget.enabled || widget.fauxDisabled)
+                ? widget.config.colors.primary
+                : widget.config.colors.outline,
           ),
           textAlign: widget.textAlign,
         ),
