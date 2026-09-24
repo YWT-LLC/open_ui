@@ -764,7 +764,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               backgroundColor: (pathARGB != null) ? Color(pathARGB) : Colors.transparent,
               foregroundColor: widget.config.colors.onSurface,
               child: inProgress
-                  ? const CircularProgressIndicator()
+                  ? EzLoadingGlass(widget.config)
                   : (currPath == null || currPath == noImageValue)
                       ? EzIcon(
                           widget.config,
