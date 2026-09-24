@@ -1,6 +1,7 @@
 name: open_ui
 description: "Build apps for anyone. Open UI makes building truly accessible apps Ez. So anyone can enjoy your great idea!"
 version: 13.0.0
+publish_to: 'none'
 repository: https://github.com/YWT-LLC/open_ui
 
 environment:
@@ -41,6 +42,10 @@ dependencies:
   permission_handler: ^13.0.1
   provider: ^6.1.5+1
   window_manager: ^0.5.2
+
+  # YWT (local)
+  ywt_private:
+    path: ../ywt_private
   
 dev_dependencies:
   ## For development
@@ -49,10 +54,6 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 
   ## For example app (Open UI)
-  # Local
-  ywt_private:
-    path: ../ywt_private
-  
   # Community
   after_layout: ^1.2.0
   flutter_launcher_icons: ^0.14.4
