@@ -202,7 +202,7 @@ class EzLoadingGlass extends StatelessWidget {
       : ywt.EzLoadingIndicator(
           iconSize: config!.iconSize,
           padding: config!.padding,
-          semantics: 'Loading', // TODO
+          semantics: config!.ezL10n.gLoadingAnim,
           colorScheme: config!.colors,
         );
 }
