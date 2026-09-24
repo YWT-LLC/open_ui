@@ -331,12 +331,10 @@ class EzCP extends ChangeNotifier {
     await rebuildUI();
   }
 
-  /// Always does a full rebuild of the [ThemeMode] and relevant [ThemeData]
-  /// Only updates the provided cache [types]
   /// If you are making known [changes] prior to the rebuild, it is recommended to provide them here
   /// A fullscreen [CircularProgressIndicator] will prevent user input while the [changes] are awaited
   Future<void> rebuildUI({Future<dynamic> Function()? changes}) async {
-    await ezNoTouch(() async {
+    await ezNoTouch(null, () async {
       if (changes != null) await changes();
       final ThemeMode newMode = _getThemeMode();
 

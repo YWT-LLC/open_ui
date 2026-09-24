@@ -348,7 +348,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     setState(() => processing = false);
                   }
                 },
-                icon: processing ? const CircularProgressIndicator() : const Icon(Icons.check),
+                icon: processing ? EzLoadingGlass(widget.config) : const Icon(Icons.check),
               ),
             ],
           ),

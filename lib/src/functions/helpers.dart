@@ -427,7 +427,7 @@ void ezLogAlert(
 }
 
 /// Disable screen interaction while [changes] are taking place
-Future<void> ezNoTouch(Future<dynamic> Function() changes) async {
+Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
   unawaited(
     ezRootNav.currentState!.push(
       // Open progress layer
@@ -436,7 +436,7 @@ Future<void> ezNoTouch(Future<dynamic> Function() changes) async {
         transitionsBuilder: (_, __, ___, Widget child) => child,
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
+        pageBuilder: (_, __, ___) => EzLoadingGlass(config),
       ),
     ),
   );

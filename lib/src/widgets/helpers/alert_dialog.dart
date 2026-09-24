@@ -6,6 +6,7 @@
 import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 class EzAlertDialog extends AlertDialog {
   /// EzConfig Provider
@@ -189,3 +190,19 @@ List<EzAction> ezActionPair(
         style: style,
       ),
     ];
+
+class EzLoadingGlass extends StatelessWidget {
+  final EzCP? config;
+
+  const EzLoadingGlass(this.config, {super.key});
+
+  @override
+  Widget build(BuildContext context) => (config == null)
+      ? const CircularProgressIndicator()
+      : ywt.EzLoadingIndicator(
+          iconSize: config!.iconSize,
+          padding: config!.padding,
+          semantics: 'Loading', // TODO
+          colorScheme: config!.colors,
+        );
+}
