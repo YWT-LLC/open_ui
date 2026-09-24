@@ -436,7 +436,11 @@ Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
         transitionsBuilder: (_, __, ___, Widget child) => child,
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) => EzLoadingGlass(config),
+        pageBuilder: (_, __, ___) => Container(
+          constraints: BoxConstraints.tight(Size.infinite),
+          color: (config?.colors.surface ?? Colors.black).withValues(alpha: 0.5),
+          child: EzLoadingGlass(config),
+        ),
       ),
     ),
   );
