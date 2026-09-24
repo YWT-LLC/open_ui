@@ -1339,7 +1339,7 @@ packages:
     source: hosted
     version: "3.1.4"
   ywt_private:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       path: "../ywt_private"
       relative: true
