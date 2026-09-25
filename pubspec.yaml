@@ -31,7 +31,7 @@ dependencies:
   country_flags: ^4.1.2
   extended_image: ^10.1.0
   file_picker: ^13.1.0
-  file_saver: ^0.5.0
+  file_saver: ^0.6.0
   flex_color_picker: ^4.0.0
   flutter_localized_locales: ^2.0.5
   flutter_secure_storage: ^11.2.0

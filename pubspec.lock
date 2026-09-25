@@ -177,14 +177,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  dartdoc:
-    dependency: "direct dev"
-    description:
-      name: dartdoc
-      sha256: "97647aabda3197d6c88e04b080b0b364c8ccc8fd118760334dba8dccdec0a804"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.9"
   dbus:
     dependency: transitive
     description:
@@ -293,10 +285,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_saver
-      sha256: "3bf1cede4a6c35fb09b597373993f990c1b2abb82dcccce9bed26c174180ff6e"
+      sha256: "9d1be85cafaa728f091ccc9654e7876f915225838ce9ef184c012ab5e12a1607"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.0"
+    version: "0.6.0"
   file_selector_linux:
     dependency: transitive
     description:
@@ -717,14 +709,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
-  markdown:
-    dependency: transitive
-    description:
-      name: markdown
-      sha256: ee85086ad7698b42522c6ad42fe195f1b9898e4d974a1af4576c1a3a176cada9
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.3.1"
   matcher:
     dependency: transitive
     description:
@@ -785,10 +769,10 @@ packages:
     dependency: transitive
     description:
       name: package_config
-      sha256: f096c55ebb7deb7e384101542bfba8c52696c1b56fca2eb62827989ef2353bbc
+      sha256: ffcf4cf3d6c0b74ac43708d9f56625506e8a68aa935abe9d267a7330f320eb5d
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "3.0.0"
   package_info_plus:
     dependency: "direct main"
     description:
