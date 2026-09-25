@@ -848,13 +848,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
       "flutterMode": "debug",
       "program": "lib/main.dart",
     },
-    {
-      "name": "install-${namePreview.replaceAll('_', '-')}",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release",
-      "program": "lib/main.dart",
-    },
   ]
 }''';
 
