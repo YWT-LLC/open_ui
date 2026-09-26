@@ -286,6 +286,12 @@ class OUILangAr extends OUILang {
   String get g404Wonder => 'ليس كل من يتجول تائهاً.';
 
   @override
+  String get gA11Fix => 'أرسل تصحيحًا.';
+
+  @override
+  String get gA11Mistake => 'هل ترى خطأ؟ ';
+
+  @override
   String get gAdvanced => 'متقدم';
 
   @override
@@ -373,6 +379,9 @@ class OUILangAr extends OUILang {
 
   @override
   String get gFullscreen => 'ملء الشاشة';
+
+  @override
+  String get gGitRequired => 'يتطلب حساب GitHub';
 
   @override
   String get gGlobal => 'عام';
@@ -1069,6 +1078,12 @@ class OUILangArEg extends OUILangAr {
   String get g404Wonder => 'ليس كل من يتجول تائهاً.';
 
   @override
+  String get gA11Fix => 'أرسل تصحيحًا.';
+
+  @override
+  String get gA11Mistake => 'هل ترى خطأ؟ ';
+
+  @override
   String get gAdvanced => 'متقدم';
 
   @override
@@ -1156,6 +1171,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gFullscreen => 'ملء الشاشة';
+
+  @override
+  String get gGitRequired => 'يتطلب حساب GitHub';
 
   @override
   String get gGlobal => 'عام';

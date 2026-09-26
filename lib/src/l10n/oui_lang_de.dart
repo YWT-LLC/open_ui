@@ -287,6 +287,12 @@ class OUILangDe extends OUILang {
   String get g404Wonder => 'Nicht alle, die wandern, sind verloren.';
 
   @override
+  String get gA11Fix => 'Korrektur einreichen.';
+
+  @override
+  String get gA11Mistake => 'Fehler gefunden? ';
+
+  @override
   String get gAdvanced => 'Erweitert';
 
   @override
@@ -374,6 +380,9 @@ class OUILangDe extends OUILang {
 
   @override
   String get gFullscreen => 'Vollbild';
+
+  @override
+  String get gGitRequired => 'GitHub-Konto erforderlich';
 
   @override
   String get gGlobal => 'Global';

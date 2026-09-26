@@ -290,6 +290,12 @@ class OUILangRu extends OUILang {
   String get g404Wonder => 'Не все те, кто блуждают, потеряны.';
 
   @override
+  String get gA11Fix => 'Предложите исправление.';
+
+  @override
+  String get gA11Mistake => 'Нашли ошибку? ';
+
+  @override
   String get gAdvanced => 'Расширенные';
 
   @override
@@ -377,6 +383,9 @@ class OUILangRu extends OUILang {
 
   @override
   String get gFullscreen => 'Во весь экран';
+
+  @override
+  String get gGitRequired => 'Требуется аккаунт GitHub';
 
   @override
   String get gGlobal => 'Глобальные';

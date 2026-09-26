@@ -286,6 +286,12 @@ class OUILangKo extends OUILang {
   String get g404Wonder => '방황하는 모든 이가 길을 잃은 것은 아닙니다.';
 
   @override
+  String get gA11Fix => '수정 사항 제출하기.';
+
+  @override
+  String get gA11Mistake => '오류를 발견하셨나요? ';
+
+  @override
   String get gAdvanced => '고급';
 
   @override
@@ -373,6 +379,9 @@ class OUILangKo extends OUILang {
 
   @override
   String get gFullscreen => '전체 화면';
+
+  @override
+  String get gGitRequired => 'GitHub 계정 필요';
 
   @override
   String get gGlobal => '글로벌';

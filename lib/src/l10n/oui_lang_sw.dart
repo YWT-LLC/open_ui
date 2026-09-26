@@ -288,6 +288,12 @@ class OUILangSw extends OUILang {
   String get g404Wonder => 'Sio wote wanaotangatanga wamepotea.';
 
   @override
+  String get gA11Fix => 'Wasilisha masahihisho.';
+
+  @override
+  String get gA11Mistake => 'Unaona kosa? ';
+
+  @override
   String get gAdvanced => 'Ya hali ya juu';
 
   @override
@@ -375,6 +381,9 @@ class OUILangSw extends OUILang {
 
   @override
   String get gFullscreen => 'Skrini nzima';
+
+  @override
+  String get gGitRequired => 'Akaunti ya GitHub inahitajika';
 
   @override
   String get gGlobal => 'Jumla';

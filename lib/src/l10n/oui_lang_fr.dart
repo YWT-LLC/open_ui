@@ -290,6 +290,12 @@ class OUILangFr extends OUILang {
   String get g404Wonder => 'Tous ceux qui errent ne sont pas perdus.';
 
   @override
+  String get gA11Fix => 'Soumettre une correction.';
+
+  @override
+  String get gA11Mistake => 'Vous avez trouvé une erreur ? ';
+
+  @override
   String get gAdvanced => 'Avancé';
 
   @override
@@ -377,6 +383,9 @@ class OUILangFr extends OUILang {
 
   @override
   String get gFullscreen => 'Plein écran';
+
+  @override
+  String get gGitRequired => 'Compte GitHub requis';
 
   @override
   String get gGlobal => 'Global';

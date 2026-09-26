@@ -288,6 +288,12 @@ class OUILangFil extends OUILang {
   String get g404Wonder => 'Hindi lahat ng naglalagalag ay nawawala.';
 
   @override
+  String get gA11Fix => 'Magsumite ng pagwawasto.';
+
+  @override
+  String get gA11Mistake => 'May nakitang mali? ';
+
+  @override
   String get gAdvanced => 'Advanced';
 
   @override
@@ -375,6 +381,9 @@ class OUILangFil extends OUILang {
 
   @override
   String get gFullscreen => 'Fullscreen';
+
+  @override
+  String get gGitRequired => 'Kailangan ng GitHub account';
 
   @override
   String get gGlobal => 'Pangkalahatan';

@@ -287,6 +287,12 @@ class OUILangHt extends OUILang {
   String get g404Wonder => 'Se pa tout moun k ap flannen ki pèdi.';
 
   @override
+  String get gA11Fix => 'Soumèt yon koreksyon.';
+
+  @override
+  String get gA11Mistake => 'Ou wè yon erè? ';
+
+  @override
   String get gAdvanced => 'Avanse';
 
   @override
@@ -374,6 +380,9 @@ class OUILangHt extends OUILang {
 
   @override
   String get gFullscreen => 'Plen ekran';
+
+  @override
+  String get gGitRequired => 'Kont GitHub obligatwa';
 
   @override
   String get gGlobal => 'Global';

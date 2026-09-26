@@ -245,17 +245,17 @@ class EzFooter extends StatelessWidget {
                       ),
                       config.richLine,
                       EzPlainText(
-                        text: 'See a mistake? ', // TODO: l10n
+                        text: config.ezL10n.gA11Mistake,
                         style: config.labelStyle,
                       ),
                       EzInlineLink(
                         config,
-                        text: 'Submit a fix.', // TODO: l10n
+                        text: config.ezL10n.gA11Fix,
                         style: config.labelStyle,
-                        hint: 'GitHub account required',
+                        hint: config.ezL10n.gGitRequired,
                         url: (a11howPath != null)
                             ? Uri.parse(ywt.a11howLive).replace(queryParameters: <String, String>{
-                                'project': a11howPath!,
+                                'project': Uri.encodeFull(a11howPath!),
                                 'locale': config.locale.languageCode,
                               })
                             : Uri.parse(ywt.a11howLive),

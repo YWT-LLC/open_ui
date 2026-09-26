@@ -285,6 +285,12 @@ class OUILangZh extends OUILang {
   String get g404Wonder => '漫游者未必都迷路。';
 
   @override
+  String get gA11Fix => '提交修复。';
+
+  @override
+  String get gA11Mistake => '发现错误了吗？ ';
+
+  @override
   String get gAdvanced => '高级';
 
   @override
@@ -372,6 +378,9 @@ class OUILangZh extends OUILang {
 
   @override
   String get gFullscreen => '全屏';
+
+  @override
+  String get gGitRequired => '需要 GitHub 账号';
 
   @override
   String get gGlobal => '全局';
@@ -1063,6 +1072,12 @@ class OUILangZhCn extends OUILangZh {
   String get g404Wonder => '漫游者未必都迷路。';
 
   @override
+  String get gA11Fix => '提交修复。';
+
+  @override
+  String get gA11Mistake => '发现错误了吗？ ';
+
+  @override
   String get gAdvanced => '高级';
 
   @override
@@ -1150,6 +1165,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get gFullscreen => '全屏';
+
+  @override
+  String get gGitRequired => '需要 GitHub 账号';
 
   @override
   String get gGlobal => '全局';

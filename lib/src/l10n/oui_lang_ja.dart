@@ -286,6 +286,12 @@ class OUILangJa extends OUILang {
   String get g404Wonder => 'さまよう者すべてが迷うわけではない。';
 
   @override
+  String get gA11Fix => '修正を送信する。';
+
+  @override
+  String get gA11Mistake => '間違いを見つけましたか？ ';
+
+  @override
   String get gAdvanced => '詳細';
 
   @override
@@ -373,6 +379,9 @@ class OUILangJa extends OUILang {
 
   @override
   String get gFullscreen => '全画面表示';
+
+  @override
+  String get gGitRequired => 'GitHubアカウントが必要です';
 
   @override
   String get gGlobal => 'グローバル';

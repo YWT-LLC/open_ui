@@ -287,6 +287,12 @@ class OUILangEn extends OUILang {
   String get g404Wonder => 'Not all who wander are lost.';
 
   @override
+  String get gA11Fix => 'Submit a fix.';
+
+  @override
+  String get gA11Mistake => 'See a mistake? ';
+
+  @override
   String get gAdvanced => 'Advanced';
 
   @override
@@ -374,6 +380,9 @@ class OUILangEn extends OUILang {
 
   @override
   String get gFullscreen => 'Fullscreen';
+
+  @override
+  String get gGitRequired => 'GitHub account required';
 
   @override
   String get gGlobal => 'Global';
@@ -1072,6 +1081,12 @@ class OUILangEnUs extends OUILangEn {
   String get g404Wonder => 'Not all who wander are lost.';
 
   @override
+  String get gA11Fix => 'Submit a fix.';
+
+  @override
+  String get gA11Mistake => 'See a mistake? ';
+
+  @override
   String get gAdvanced => 'Advanced';
 
   @override
@@ -1159,6 +1174,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get gFullscreen => 'Fullscreen';
+
+  @override
+  String get gGitRequired => 'GitHub account required';
 
   @override
   String get gGlobal => 'Global';

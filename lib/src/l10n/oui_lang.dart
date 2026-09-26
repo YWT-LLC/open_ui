@@ -657,6 +657,18 @@ abstract class OUILang {
   /// **'Not all who wander are lost.'**
   String get g404Wonder;
 
+  /// No description provided for @gA11Fix.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit a fix.'**
+  String get gA11Fix;
+
+  /// No description provided for @gA11Mistake.
+  ///
+  /// In en, this message translates to:
+  /// **'See a mistake? '**
+  String get gA11Mistake;
+
   /// No description provided for @gAdvanced.
   ///
   /// In en, this message translates to:
@@ -830,6 +842,12 @@ abstract class OUILang {
   /// In en, this message translates to:
   /// **'Fullscreen'**
   String get gFullscreen;
+
+  /// No description provided for @gGitRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub account required'**
+  String get gGitRequired;
 
   /// No description provided for @gGlobal.
   ///

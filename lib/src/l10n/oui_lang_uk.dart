@@ -288,6 +288,12 @@ class OUILangUk extends OUILang {
   String get g404Wonder => 'Не всі ті, хто блукають, загубилися.';
 
   @override
+  String get gA11Fix => 'Запропонуйте виправлення.';
+
+  @override
+  String get gA11Mistake => 'Знайшли помилку? ';
+
+  @override
   String get gAdvanced => 'Розширені';
 
   @override
@@ -375,6 +381,9 @@ class OUILangUk extends OUILang {
 
   @override
   String get gFullscreen => 'На весь екран';
+
+  @override
+  String get gGitRequired => 'Потрібен обліковий запис GitHub';
 
   @override
   String get gGlobal => 'Глобальні';

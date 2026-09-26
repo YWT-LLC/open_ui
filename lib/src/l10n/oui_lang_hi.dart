@@ -288,6 +288,12 @@ class OUILangHi extends OUILang {
   String get g404Wonder => 'भटकने वाले सभी लोग खोए हुए नहीं होते।';
 
   @override
+  String get gA11Fix => 'सुधार सबमिट करें।';
+
+  @override
+  String get gA11Mistake => 'कोई गलती दिखी? ';
+
+  @override
   String get gAdvanced => 'उन्नत';
 
   @override
@@ -375,6 +381,9 @@ class OUILangHi extends OUILang {
 
   @override
   String get gFullscreen => 'पूर्ण स्क्रीन';
+
+  @override
+  String get gGitRequired => 'GitHub अकाउंट आवश्यक है';
 
   @override
   String get gGlobal => 'ग्लोबल';
