@@ -4,6 +4,7 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -202,6 +203,9 @@ class EzFooter extends StatelessWidget {
   /// Optional override
   final Widget? message;
 
+  final String? a11howPath;
+  final String? a11howCode;
+
   /// The current screen/page is human translated
   /// Just an [EzCP.separator] when true
   final bool human;
@@ -217,6 +221,8 @@ class EzFooter extends StatelessWidget {
     super.key,
     this.defaultLocale = english,
     this.message,
+    this.a11howPath,
+    this.a11howCode,
     this.human = false,
     this.textAlign = TextAlign.center,
     this.spacing,
@@ -227,10 +233,35 @@ class EzFooter extends StatelessWidget {
       (human || (config.locale.languageCode == defaultLocale.languageCode))
           ? config.separator
           : Padding(
-              padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
+              padding: EdgeInsets.only(
+                top: spacing ?? (config.spacing * 2),
+                bottom: spacing == null ? config.spacing : spacing! / 2,
+              ),
               child: message ??
-                  Text(
-                    config.ezL10n.gMachineTranslated,
+                  EzRichText(
+                    config,
+                    children: <InlineSpan>[
+                      EzPlainText(
+                        text: config.ezL10n.gMachineTranslated,
+                        style: config.labelStyle,
+                      ),
+                      config.richLine,
+                      EzPlainText(
+                        text: 'See a mistake? ', // TODO: l10n
+                        style: config.labelStyle,
+                      ),
+                      EzInlineLink(
+                        config,
+                        text: 'Submit a fix.', // TODO: l10n
+                        hint: 'GitHub account required',
+                        url: (a11howPath != null && a11howCode != null)
+                            ? Uri.parse(ywt.a11howLive).replace(queryParameters: <String, String>{
+                                'project': a11howPath!,
+                                'locale': a11howCode!,
+                              })
+                            : Uri.parse(ywt.a11howLive),
+                      ),
+                    ],
                     style: config.labelStyle,
                     textAlign: textAlign,
                   ),
