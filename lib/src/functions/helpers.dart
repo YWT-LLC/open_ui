@@ -79,7 +79,7 @@ double safeTop(BuildContext context) => MediaQuery.of(context).padding.top;
 double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom;
 
 /// Set a min [size] for the application window
-Future<void> setMindWindow({Size size = const Size(500, 500)}) async {
+Future<void> setMinWindow({Size size = const Size(500, 500)}) async {
   if (!kIsWeb && !isMobile()) {
     await windowManager.ensureInitialized();
 

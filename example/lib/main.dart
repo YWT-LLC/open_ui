@@ -31,7 +31,7 @@ void main() async {
     orientations: DeviceOrientation.values,
   );
 
-  await setMindWindow();
+  await setMinWindow();
 
   // Run the app //
 
