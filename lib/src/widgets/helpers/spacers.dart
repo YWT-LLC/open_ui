@@ -204,7 +204,6 @@ class EzFooter extends StatelessWidget {
   final Widget? message;
 
   final String? a11howPath;
-  final String? a11howCode;
 
   /// The current screen/page is human translated
   /// Just an [EzCP.separator] when true
@@ -221,8 +220,7 @@ class EzFooter extends StatelessWidget {
     super.key,
     this.defaultLocale = english,
     this.message,
-    this.a11howPath,
-    this.a11howCode,
+    required this.a11howPath,
     this.human = false,
     this.textAlign = TextAlign.center,
     this.spacing,
@@ -253,11 +251,12 @@ class EzFooter extends StatelessWidget {
                       EzInlineLink(
                         config,
                         text: 'Submit a fix.', // TODO: l10n
+                        style: config.labelStyle,
                         hint: 'GitHub account required',
-                        url: (a11howPath != null && a11howCode != null)
+                        url: (a11howPath != null)
                             ? Uri.parse(ywt.a11howLive).replace(queryParameters: <String, String>{
                                 'project': a11howPath!,
-                                'locale': a11howCode!,
+                                'locale': config.locale.languageCode,
                               })
                             : Uri.parse(ywt.a11howLive),
                       ),
