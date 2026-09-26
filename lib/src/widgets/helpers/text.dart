@@ -173,6 +173,9 @@ class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
   final FocusNode? focusNode;
 
+  /// [TextFormField] passthrough
+  final bool obscureText;
+
   /// [InputDecoration] passthrough
   final String hintText;
 
@@ -235,6 +238,7 @@ class EzTextField extends StatefulWidget {
     required this.constraints,
     this.errorConstraints,
     this.focusNode,
+    this.obscureText = false,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
@@ -267,6 +271,7 @@ class _EzTextFieldState extends State<EzTextField> {
         controller: widget.controller,
         initialValue: widget.initialValue,
         focusNode: widget.focusNode,
+        obscureText: widget.obscureText,
         decoration: InputDecoration(
           hintText: widget.hintText,
           prefixIcon: widget.prefixIcon,
