@@ -176,7 +176,13 @@ class EzTextField extends StatefulWidget {
   /// [InputDecoration] passthrough
   final String hintText;
 
-  /// Optional [Semantics.label]
+  /// [InputDecoration] passthrough
+  final Widget? prefixIcon;
+
+  /// [InputDecoration] passthrough
+  final Widget? suffixIcon;
+
+  /// Optional [Semantics] label
   final String? label;
 
   /// [TextFormField] passthrough
@@ -230,6 +236,8 @@ class EzTextField extends StatefulWidget {
     this.errorConstraints,
     this.focusNode,
     required this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
     this.label,
     this.keyboardType,
     this.maxLines = 1,
@@ -259,7 +267,11 @@ class _EzTextFieldState extends State<EzTextField> {
         controller: widget.controller,
         initialValue: widget.initialValue,
         focusNode: widget.focusNode,
-        decoration: InputDecoration(hintText: widget.hintText),
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.suffixIcon,
+        ),
         keyboardType: widget.keyboardType,
         maxLines: widget.maxLines,
         onChanged: widget.onChanged,
