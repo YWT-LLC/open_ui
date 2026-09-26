@@ -254,10 +254,10 @@ class EzFooter extends StatelessWidget {
                         style: config.labelStyle,
                         hint: config.ezL10n.gGitRequired,
                         url: (a11howPath != null)
-                            ? Uri.parse(ywt.a11howLive).replace(queryParameters: <String, String>{
-                                'project': Uri.encodeFull(a11howPath!),
-                                'locale': config.locale.languageCode,
-                              })
+                            ? Uri.parse('${ywt.a11howLive}?${Uri(queryParameters: <String, String>{
+                                    'project': a11howPath!,
+                                    'locale': config.locale.languageCode,
+                                  }).query}')
                             : Uri.parse(ywt.a11howLive),
                       ),
                     ],
