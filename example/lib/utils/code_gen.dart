@@ -70,7 +70,7 @@ Some helpful documentation if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab) (Flutter)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook) (Flutter)
-- [Open UI: Digital accessibility made Ez](${ywt.ouiGitHub}) (YWT)
+- [Open UI: Digital accessibility made Ez](${ywt.openUIGitHub}) (YWT)
 
 And videos:
 
@@ -106,12 +106,12 @@ That, and/or donate via one of the many options we provide.
 
 ### <br>Building with user customization in mind
 
-As your app grows, use [Open UI](${ywt.ouiGitHub}) to keep things Ez
+As your app grows, use [Open UI](${ywt.openUIGitHub}) to keep things Ez
 
-* [Responsive design](${ywt.ouiGitHub}/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
-* [Screen reader support](${ywt.ouiGitHub}/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
-* [User customization](${ywt.ouiGitHub}/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
-* [Helpers](${ywt.ouiGitHub}/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
+* [Responsive design](${ywt.openUIGitHub}/tree/main/lib/src/widgets/responsive_design): `Widget`s that aid in building responsive UI/UX
+* [Screen reader support](${ywt.openUIGitHub}/tree/main/lib/src/widgets/screen_reader_support): `Widget`s with streamlined `Semantics`
+* [User customization](${ywt.openUIGitHub}/tree/main/lib/src/widgets/user_customization): Wrapper `Widget`s that respond to `EzConfig` data when the `ThemeData` doesn't cut it
+* [Helpers](${ywt.openUIGitHub}/tree/main/lib/src/widgets/helpers): Lots of other `Widget`s and functions to make your life Ez, but don't squarely fit into the above categories
 
 ### <br>Localization
 
@@ -694,7 +694,7 @@ class ErrorScreen extends StatelessWidget {
                 style: config.labelStyle,
                 textAlign: TextAlign.center,
               ),
-              EzFooter(config, spacing: 0),
+              EzFooter(config, spacing: 0, a11howPath: null),
             ]),
           ),
         ),

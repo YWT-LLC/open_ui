@@ -83,7 +83,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     style: ezSubTitleStyle(config.styles),
                     textAlign: TextAlign.center,
                     url: Uri.parse(
-                      '${ywt.ouiGitHub}/tree/main/example/lib/screens/generator/generate.dart',
+                      '${ywt.openUIGitHub}/tree/main/example/lib/screens/generator/generate.dart',
                     ),
                     hint: l10n(config).gsSeeNBelieveHint,
                   ),
