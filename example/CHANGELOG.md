@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.0] - 2026-09-27
+### Updated
+- Open UI
+  - a11how integration
+
 ## [4.0.2] - 2026-08-29
 ### Updated
 - Open UI >> EFUI
