@@ -4,6 +4,7 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -125,7 +126,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             delta: delta,
             child: currSection.build(currSubSec),
           ),
-          widget.footer ?? EzFooter(widget.config),
+          widget.footer ?? EzFooter(widget.config, a11howPath: ywt.openUIContributeA11),
         ],
       );
 }

@@ -21,24 +21,45 @@ Future<T?> ezModal<T>(
   bool useSafeArea = true,
   double animMod = 0.75,
   Offset? anchorPoint,
-}) => showModalBottomSheet(
-  context: context,
-  builder: builder,
-  backgroundColor: backgroundColor,
-  constraints: constraints,
-  isScrollControlled: isScrollControlled,
-  isDismissible: isDismissible,
-  enableDrag: enableDrag,
-  showDragHandle: showDragHandle,
-  useSafeArea: useSafeArea,
-  anchorPoint: anchorPoint,
-  sheetAnimationStyle: AnimationStyle(
-    curve: config.animCurve,
-    reverseCurve: config.animCurve,
-    duration: ezDuration(config.animDur, mod: animMod),
-    reverseDuration: ezDuration(config.animDur, mod: animMod),
-  ),
-);
+}) =>
+    showModalBottomSheet(
+      context: context,
+      builder: builder,
+      backgroundColor: backgroundColor,
+      constraints: constraints,
+      isScrollControlled: isScrollControlled,
+      isDismissible: isDismissible,
+      enableDrag: enableDrag,
+      showDragHandle: showDragHandle,
+      useSafeArea: useSafeArea,
+      anchorPoint: anchorPoint,
+      sheetAnimationStyle: AnimationStyle(
+        curve: config.animCurve,
+        reverseCurve: config.animCurve,
+        duration: ezDuration(config.animDur, mod: animMod),
+        reverseDuration: ezDuration(config.animDur, mod: animMod),
+      ),
+    );
+
+Future<T?> ezFullScreenModal<T>(
+  EzCP config, {
+  required BuildContext context,
+  List<Widget>? fabs,
+  required Widget child,
+}) =>
+    ezModal<T>(
+      config,
+      context: context,
+      enableDrag: false,
+      isDismissible: false,
+      showDragHandle: false,
+      constraints: const BoxConstraints.expand(),
+      builder: (_) => EzScaffold(
+        config,
+        body: EzScreen(config, child: child),
+        fabs: fabs,
+      ),
+    );
 
 Widget ezModalScroll(
   EzCP config, {
@@ -47,14 +68,15 @@ Widget ezModalScroll(
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   ScrollPhysics? physics,
   required List<Widget> children,
-}) => Padding(
-  padding: EdgeInsets.symmetric(horizontal: config.marginVal),
-  child: EzScrollView(
-    config,
-    controller: controller,
-    mainAxisAlignment: mainAxisAlignment,
-    crossAxisAlignment: crossAxisAlignment,
-    physics: physics,
-    children: children,
-  ),
-);
+}) =>
+    Padding(
+      padding: EdgeInsets.symmetric(horizontal: config.marginVal),
+      child: EzScrollView(
+        config,
+        controller: controller,
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        physics: physics,
+        children: children,
+      ),
+    );

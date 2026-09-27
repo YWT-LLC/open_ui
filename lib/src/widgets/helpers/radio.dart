@@ -25,18 +25,18 @@ class EzRadio<T> extends StatelessWidget {
 
   /// [Radio] with custom styling and scaling
   EzRadio(this.config, {super.key, this.padding, required this.value, this.toggleable = false})
-    : _scale = ezIconRatio(config);
+      : _scale = ezIconRatio(config);
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
-    decoration: BoxDecoration(
-      color: config.colors.surface.withValues(alpha: config.textBackgroundOpacity),
-      shape: BoxShape.circle,
-    ),
-    child: Transform.scale(
-      scale: max(1.0, _scale),
-      child: Radio<T>(value: value, toggleable: toggleable),
-    ),
-  );
+        padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
+        decoration: BoxDecoration(
+          color: config.colors.surface.withValues(alpha: config.textBackgroundOpacity),
+          shape: BoxShape.circle,
+        ),
+        child: Transform.scale(
+          scale: max(1.0, _scale),
+          child: Radio<T>(value: value, toggleable: toggleable),
+        ),
+      );
 }

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [13.1.0] - 2026-09-27
+### Added
+- keyboard spacer
+- Paste button to color picker
+- Faux disabled to more buttons
+
+### Updated
+- EzFooter; seamlessly contribute fixes to localization mistakes with a11how
+
 ## [13.0.0] - 2026-08-29
 ### Updated
 - Name

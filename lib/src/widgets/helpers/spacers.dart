@@ -4,6 +4,7 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,49 @@ class EzSpacer extends StatelessWidget {
   Widget build(BuildContext context) => ExcludeSemantics(
         child: SizedBox(height: vertical ? space : null, width: horizontal ? space : null),
       );
+}
+
+class EzKeyboardSpacer extends StatelessWidget {
+  /// The final frontier
+  /// [MediaQuery]'s [EdgeInsets.bottom] will be appended automatically
+  final double space;
+
+  /// Whether [space] should be provided to [SizedBox.width]
+  /// Ignores [MediaQuery]
+  final bool horizontal;
+
+  const EzKeyboardSpacer(this.space, {super.key, this.horizontal = true});
+
+  @override
+  Widget build(BuildContext context) => ExcludeSemantics(
+        child: SizedBox(
+          key: UniqueKey(),
+          height: space + MediaQuery.of(context).viewInsets.bottom,
+          width: horizontal ? space : null,
+        ),
+      );
+}
+
+class EzSwapSpacer extends StatelessWidget {
+  /// The final frontier
+  final double space;
+
+  /// Which [ScreenSize] the Widget should respond to
+  final ScreenSize breakpoint;
+
+  /// When the context's [ScreenSize] > [breakpoint]; [EzSpacer.vertical] => false
+  /// When the context's [ScreenSize] <= [breakpoint]; [EzSpacer.horizontal] => false
+  /// If [EzScreenSize] is not in the Widget tree; [EzSpacer.horizontal] => false
+  const EzSwapSpacer(this.space, {super.key, this.breakpoint = ScreenSize.small});
+
+  @override
+  Widget build(BuildContext context) {
+    final ScreenSize? size = EzScreenSize.of(context)?.screenSize;
+
+    return (size == null || size.order <= breakpoint.order)
+        ? EzSpacer(space, horizontal: false)
+        : EzSpacer(space, vertical: false);
+  }
 }
 
 class EzDivider extends StatelessWidget {
@@ -149,28 +193,6 @@ class EzHeader extends StatelessWidget {
       );
 }
 
-class EzSwapSpacer extends StatelessWidget {
-  /// The final frontier
-  final double space;
-
-  /// Which [ScreenSize] the Widget should respond to
-  final ScreenSize breakpoint;
-
-  /// When the context's [ScreenSize] > [breakpoint]; [EzSpacer.vertical] => false
-  /// When the context's [ScreenSize] <= [breakpoint]; [EzSpacer.horizontal] => false
-  /// If [EzScreenSize] is not in the Widget tree; [EzSpacer.horizontal] => false
-  const EzSwapSpacer(this.space, {super.key, this.breakpoint = ScreenSize.small});
-
-  @override
-  Widget build(BuildContext context) {
-    final ScreenSize? size = EzScreenSize.of(context)?.screenSize;
-
-    return (size == null || size.order <= breakpoint.order)
-        ? EzSpacer(space, horizontal: false)
-        : EzSpacer(space, vertical: false);
-  }
-}
-
 class EzFooter extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
@@ -180,6 +202,8 @@ class EzFooter extends StatelessWidget {
 
   /// Optional override
   final Widget? message;
+
+  final String? a11howPath;
 
   /// The current screen/page is human translated
   /// Just an [EzCP.separator] when true
@@ -196,6 +220,7 @@ class EzFooter extends StatelessWidget {
     super.key,
     this.defaultLocale = english,
     this.message,
+    required this.a11howPath,
     this.human = false,
     this.textAlign = TextAlign.center,
     this.spacing,
@@ -206,10 +231,36 @@ class EzFooter extends StatelessWidget {
       (human || (config.locale.languageCode == defaultLocale.languageCode))
           ? config.separator
           : Padding(
-              padding: EdgeInsets.only(top: spacing ?? (config.spacing * 2)),
+              padding: EdgeInsets.only(
+                top: spacing ?? (config.spacing * 2),
+                bottom: spacing == null ? config.spacing : spacing! / 2,
+              ),
               child: message ??
-                  Text(
-                    config.ezL10n.gMachineTranslated,
+                  EzRichText(
+                    config,
+                    children: <InlineSpan>[
+                      EzPlainText(
+                        text: config.ezL10n.gMachineTranslated,
+                        style: config.labelStyle,
+                      ),
+                      config.richLine,
+                      EzPlainText(
+                        text: config.ezL10n.gA11Mistake,
+                        style: config.labelStyle,
+                      ),
+                      EzInlineLink(
+                        config,
+                        text: config.ezL10n.gA11Fix,
+                        style: config.labelStyle,
+                        hint: config.ezL10n.gGitRequired,
+                        url: (a11howPath != null)
+                            ? Uri.parse('${ywt.a11howLive}?${Uri(queryParameters: <String, String>{
+                                    'project': a11howPath!,
+                                    'locale': config.locale.languageCode,
+                                  }).query}')
+                            : Uri.parse(ywt.a11howLive),
+                      ),
+                    ],
                     style: config.labelStyle,
                     textAlign: textAlign,
                   ),

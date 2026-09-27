@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -76,6 +77,21 @@ double safeTop(BuildContext context) => MediaQuery.of(context).padding.top;
 
 /// [SafeArea] bottom padding
 double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom;
+
+/// Set a min [size] for the application window
+Future<void> setMinWindow({Size size = const Size(500, 500)}) async {
+  if (!kIsWeb && !isMobile()) {
+    await windowManager.ensureInitialized();
+
+    await windowManager.waitUntilReadyToShow(
+      const WindowOptions(minimumSize: Size(500, 500)),
+      () async {
+        await windowManager.show();
+        await windowManager.focus();
+      },
+    );
+  }
+}
 
 /// Button combo for taking a screenshot on the current (desktop) [TargetPlatform]
 /// Defaults to an empty string on mobile (and unknown) platforms
@@ -184,7 +200,7 @@ Future<void> ezConfigLoader(
     }
   } catch (e) {
     (context.mounted)
-        ? await ezLogAlert(config, context: context, message: e.toString())
+        ? ezLogAlert(config, context: context, message: e.toString())
         : ezLog(e.toString());
     return;
   }
@@ -229,11 +245,17 @@ Future<void> ezColorPicker(
             constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
             child: ColorPicker(
               color: startColor,
-              padding: EdgeInsets.zero,
-              spacing: config.spacing / 2,
-              runSpacing: config.spacing / 2,
               columnSpacing: config.spacing,
+              copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                pasteButton: true,
+              ),
+              enableOpacity: true,
               mainAxisSize: MainAxisSize.min,
+              onColorChanged: onColorChange,
+              onColorChangeEnd: onColorChange,
+              opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
+              opacityTrackHeight: min(config.padding * 2, 50.0),
+              padding: EdgeInsets.zero,
               pickersEnabled: const <ColorPickerType, bool>{
                 ColorPickerType.both: false,
                 ColorPickerType.primary: false,
@@ -243,12 +265,11 @@ Future<void> ezColorPicker(
                 ColorPickerType.customSecondary: false,
                 ColorPickerType.wheel: true,
               },
-              onColorChanged: onColorChange,
-              showRecentColors: true,
-              enableOpacity: true,
-              opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
-              opacityTrackHeight: min(config.padding * 2, 50.0),
+              runSpacing: config.spacing / 2,
               showColorCode: true,
+              showRecentColors: true,
+              spacing: config.spacing / 2,
+              toolbarSpacing: config.spacing / 2,
             ),
           ),
           config.margin,
@@ -280,10 +301,7 @@ Future<void> ezColorPicker(
               ),
             ],
           ),
-          EzSpacer(
-            config.spacing * 2 + MediaQuery.of(context).viewInsets.bottom,
-            key: UniqueKey(),
-          ),
+          EzKeyboardSpacer(config.spacing * 2),
         ],
       ),
     );
@@ -348,6 +366,13 @@ double ezIconRatio(EzCP config) => max(
 double ezImageSize(EzCP config, {required BuildContext context}) =>
     MediaQuery.textScalerOf(context).scale(160.0) * ezIconRatio(config);
 
+/// Get a locale from a locale code [String]
+/// Does ZERO validation! You need to validate the format elsewhere/outside
+Locale ezLocale(String code) {
+  final List<String> parts = code.split('_');
+  return (parts.length > 1) ? Locale(parts[0], parts[1]) : Locale(code);
+}
+
 /// Get the human readable name for [locale]
 String ezLocaleName(Locale locale, BuildContext context) {
   final String? attempt = LocaleNames.of(context)?.nameOf(locale.languageCode);
@@ -377,7 +402,7 @@ Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
     };
 
 /// [ezLog] the passed message and display an [EzAlertDialog] to notify the user
-Future<dynamic> ezLogAlert(
+void ezLogAlert(
   EzCP config, {
   required BuildContext context,
   String? title,
@@ -387,20 +412,22 @@ Future<dynamic> ezLogAlert(
 }) {
   ezLog(message);
 
-  return showDialog(
-    context: context,
-    builder: (_) => EzAlertDialog(
-      config,
-      title: Text(title ?? config.ezL10n.gAttention, textAlign: TextAlign.center),
-      contents: <Widget>[Text(message, textAlign: TextAlign.center)],
-      actions: customActions,
-      needsClose: needsClose,
+  return unawaited(
+    showDialog(
+      context: context,
+      builder: (_) => EzAlertDialog(
+        config,
+        title: Text(title ?? config.ezL10n.gAttention, textAlign: TextAlign.center),
+        contents: <Widget>[Text(message, textAlign: TextAlign.center)],
+        actions: customActions,
+        needsClose: needsClose,
+      ),
     ),
   );
 }
 
 /// Disable screen interaction while [changes] are taking place
-Future<void> ezNoTouch(Future<dynamic> Function() changes) async {
+Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
   unawaited(
     ezRootNav.currentState!.push(
       // Open progress layer
@@ -409,7 +436,11 @@ Future<void> ezNoTouch(Future<dynamic> Function() changes) async {
         transitionsBuilder: (_, __, ___, Widget child) => child,
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) => const Center(child: CircularProgressIndicator()),
+        pageBuilder: (_, __, ___) => Container(
+          constraints: BoxConstraints.tight(Size.infinite),
+          color: (config?.colors.surface ?? Colors.black).withValues(alpha: 0.5),
+          child: EzLoadingGlass(config),
+        ),
       ),
     ),
   );

@@ -48,35 +48,35 @@ class EzLinkWidget extends StatelessWidget {
     required this.hint,
     required this.child,
   }) : assert(
-         (onTap == null) != (url == null),
-         'Either onTap or url should be provided, but not both.',
-       );
+          (onTap == null) != (url == null),
+          'Either onTap or url should be provided, but not both.',
+        );
 
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: tooltip,
-    excludeFromSemantics: true,
-    child: Semantics(
-      label: label,
-      link: true,
-      image: isImage,
-      hint: hint,
-      child: ExcludeSemantics(
-        child: onTap != null
-            ? InkWell(
-                focusColor: config.colors.primary.withValues(alpha: focusOpacity),
-                onTap: onTap,
-                child: child,
-              )
-            : Link(
-                uri: url,
-                builder: (_, FollowLink? followLink) => InkWell(
-                  focusColor: config.colors.primary.withValues(alpha: focusOpacity),
-                  onTap: followLink,
-                  child: child,
-                ),
-              ),
-      ),
-    ),
-  );
+        message: tooltip,
+        excludeFromSemantics: true,
+        child: Semantics(
+          label: label,
+          link: true,
+          image: isImage,
+          hint: hint,
+          child: ExcludeSemantics(
+            child: onTap != null
+                ? InkWell(
+                    focusColor: config.colors.primary.withValues(alpha: focusOpacity),
+                    onTap: onTap,
+                    child: child,
+                  )
+                : Link(
+                    uri: url,
+                    builder: (_, FollowLink? followLink) => InkWell(
+                      focusColor: config.colors.primary.withValues(alpha: focusOpacity),
+                      onTap: followLink,
+                      child: child,
+                    ),
+                  ),
+          ),
+        ),
+      );
 }

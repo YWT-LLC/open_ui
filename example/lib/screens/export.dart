@@ -21,7 +21,7 @@ const String generateScreenPath = 'app-generator';
 /// config-archiver
 const String archiveScreenPath = 'config-archiver';
 
-/// settings-home
+/// settings-hub
 const String settingsHubPath = 'settings-hub';
 
 /// color-settings

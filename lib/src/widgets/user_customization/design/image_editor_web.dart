@@ -33,11 +33,11 @@ class EzImageEditor extends StatelessWidget {
     this.cropAspectRatio,
     this.initialCropAspectRatio,
   }) : assert(
-         cropAspectRatio == null ||
-             initialCropAspectRatio == null ||
-             cropAspectRatio == initialCropAspectRatio,
-         'If both cropAspectRatio and initialCropAspectRatio are provided, they must be equal.',
-       );
+          cropAspectRatio == null ||
+              initialCropAspectRatio == null ||
+              cropAspectRatio == initialCropAspectRatio,
+          'If both cropAspectRatio and initialCropAspectRatio are provided, they must be equal.',
+        );
 
   @override
   Widget build(BuildContext context) =>

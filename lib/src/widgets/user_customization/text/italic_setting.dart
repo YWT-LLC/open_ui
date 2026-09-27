@@ -34,26 +34,26 @@ class _EzItalicSettingState extends State<EzItalicSetting> {
 
   @override
   Widget build(BuildContext context) => EzIconButton(
-    widget.config,
-    onPressed: () async {
-      isItalic = !isItalic;
+        widget.config,
+        onPressed: () async {
+          isItalic = !isItalic;
 
-      await EzCM.setBool(widget.type.italicKey(widget.config.isDark), isItalic);
-      if (EzCM.updateBoth) {
-        await EzCM.setBool(widget.type.italicMirror(widget.config.isDark), isItalic);
-      }
+          await EzCM.setBool(widget.type.italicKey(widget.config.isDark), isItalic);
+          if (EzCM.updateBoth) {
+            await EzCM.setBool(widget.type.italicMirror(widget.config.isDark), isItalic);
+          }
 
-      widget.notifierCallback(isItalic);
-      if (context.mounted) {
-        widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-      }
+          widget.notifierCallback(isItalic);
+          if (context.mounted) {
+            widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+          }
 
-      setState(() {});
-    },
-    tooltip: widget.config.ezL10n.tsItalic,
-    icon: Icon(
-      Icons.format_italic,
-      color: isItalic ? widget.config.colors.primary : widget.config.colors.outline,
-    ),
-  );
+          setState(() {});
+        },
+        tooltip: widget.config.ezL10n.tsItalic,
+        icon: Icon(
+          Icons.format_italic,
+          color: isItalic ? widget.config.colors.primary : widget.config.colors.outline,
+        ),
+      );
 }

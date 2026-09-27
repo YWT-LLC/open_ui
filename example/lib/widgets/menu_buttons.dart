@@ -78,7 +78,7 @@ class OpenSourceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzMenuLink(
         config,
-        uri: Uri.parse(ywt.ouiGitHub),
+        uri: Uri.parse(ywt.openUIGitHub),
         icon: EzIcon(config, LineIcons.github),
         label: config.ezL10n.gOpenSource,
         semanticsLabel: '${config.ezL10n.gOpenSource}: ${config.ezL10n.gOpenUISourceHint}',

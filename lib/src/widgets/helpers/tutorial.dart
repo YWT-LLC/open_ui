@@ -59,38 +59,39 @@ class EzTutorial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Positioned(
-    top: top,
-    bottom: bottom,
-    left: left,
-    right: right,
-    child: SelectionArea(
-      child: AlertDialog(
-        // Title
-        title: title,
-        titlePadding: EdgeInsets.symmetric(
-          horizontal: config.marginVal,
-          vertical: config.spacing / 2,
+        top: top,
+        bottom: bottom,
+        left: left,
+        right: right,
+        child: SelectionArea(
+          child: AlertDialog(
+            // Title
+            title: title,
+            titlePadding: EdgeInsets.symmetric(
+              horizontal: config.marginVal,
+              vertical: config.spacing / 2,
+            ),
+
+            // Content
+            content: Text(content, semanticsLabel: contentSemantics, textAlign: TextAlign.center),
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: config.marginVal,
+              vertical: config.spacing / 2,
+            ),
+
+            // Actions
+            actions: <Widget>[
+              EzAction(config,
+                  text: acceptMessage, semantics: acceptSemantics, onPressed: onAccept),
+            ],
+            actionsAlignment: config.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
+
+            // General
+            iconPadding: EdgeInsets.zero,
+            buttonPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.all(config.marginVal),
+            actionsPadding: EzInsets.wrap(config.spacing),
+          ),
         ),
-
-        // Content
-        content: Text(content, semanticsLabel: contentSemantics, textAlign: TextAlign.center),
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: config.marginVal,
-          vertical: config.spacing / 2,
-        ),
-
-        // Actions
-        actions: <Widget>[
-          EzAction(config, text: acceptMessage, semantics: acceptSemantics, onPressed: onAccept),
-        ],
-        actionsAlignment: config.isLefty ? MainAxisAlignment.start : MainAxisAlignment.end,
-
-        // General
-        iconPadding: EdgeInsets.zero,
-        buttonPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.all(config.marginVal),
-        actionsPadding: EzInsets.wrap(config.spacing),
-      ),
-    ),
-  );
+      );
 }

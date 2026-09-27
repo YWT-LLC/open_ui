@@ -11,7 +11,7 @@ import 'package:open_ui/open_ui.dart';
 
 EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
       config,
-      appVersion: '4.0.2',
+      appVersion: '4.1.0',
       versionSource:
           'https://raw.githubusercontent.com/YWT-LLC/open_ui/refs/heads/main/example/APP_VERSION',
       gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
@@ -107,7 +107,7 @@ class MacStoreFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'mac_store_fab',
+        heroTag: 'mac_store_FAB',
         tooltip: 'EoL',
         onPressed: () => showDialog(
           context: context,

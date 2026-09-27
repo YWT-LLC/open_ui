@@ -27,5 +27,6 @@ class EzPlainText extends TextSpan {
     List<InlineSpanSemanticsInformation> collector, {
     Locale? inheritedLocale,
     bool inheritedSpellOut = false,
-  }) => collector.add(InlineSpanSemanticsInformation.placeholder);
+  }) =>
+      collector.add(InlineSpanSemanticsInformation.placeholder);
 }

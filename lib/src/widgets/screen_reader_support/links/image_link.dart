@@ -62,9 +62,9 @@ class EzImageLink extends StatelessWidget {
     this.fit,
     this.alignment = Alignment.center,
   }) : assert(
-         (onTap == null) != (url == null),
-         'Either onTap or url should be provided, but not both.',
-       );
+          (onTap == null) != (url == null),
+          'Either onTap or url should be provided, but not both.',
+        );
 
   @override
   Widget build(BuildContext context) {

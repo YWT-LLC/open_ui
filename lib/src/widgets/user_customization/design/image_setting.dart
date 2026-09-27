@@ -205,7 +205,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     final bool setPath = await EzCM.setString(widget.pathKey, newPath);
     if (!setPath) {
       (mounted)
-          ? await ezLogAlert(
+          ? ezLogAlert(
               widget.config,
               context: context,
               message: widget.config.ezL10n.dsImgSetFailed,
@@ -233,7 +233,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           final String errorMsg =
               '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
           (mounted)
-              ? await ezLogAlert(
+              ? ezLogAlert(
                   widget.config,
                   context: context,
                   title: widget.config.ezL10n.dsImgGetFailed,
@@ -259,7 +259,7 @@ class _ImageSettingState extends State<EzImageSetting> {
           final String errorMsg =
               '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
           (mounted)
-              ? await ezLogAlert(
+              ? ezLogAlert(
                   widget.config,
                   context: context,
                   title: widget.config.ezL10n.dsImgGetFailed,
@@ -410,7 +410,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                     final String errorMsg =
                         '${e.toString()}\n\n${widget.config.ezL10n.dsImgPermission}';
                     (mounted)
-                        ? await ezLogAlert(
+                        ? ezLogAlert(
                             widget.config,
                             context: context,
                             title: widget.config.ezL10n.dsImgGetFailed,
@@ -764,7 +764,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               backgroundColor: (pathARGB != null) ? Color(pathARGB) : Colors.transparent,
               foregroundColor: widget.config.colors.onSurface,
               child: inProgress
-                  ? const CircularProgressIndicator()
+                  ? EzLoadingGlass(widget.config)
                   : (currPath == null || currPath == noImageValue)
                       ? EzIcon(
                           widget.config,

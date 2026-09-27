@@ -160,6 +160,9 @@ class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
   final TextEditingController? controller;
 
+  /// [TextFormField] passthrough
+  final String? initialValue;
+
   /// [ConstrainedBox] passthrough
   final BoxConstraints constraints;
 
@@ -170,10 +173,19 @@ class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
   final FocusNode? focusNode;
 
+  /// [TextFormField] passthrough
+  final bool obscureText;
+
   /// [InputDecoration] passthrough
   final String hintText;
 
-  /// Optional [Semantics.label]
+  /// [InputDecoration] passthrough
+  final Widget? prefixIcon;
+
+  /// [InputDecoration] passthrough
+  final Widget? suffixIcon;
+
+  /// Optional [Semantics] label
   final String? label;
 
   /// [TextFormField] passthrough
@@ -222,10 +234,14 @@ class EzTextField extends StatefulWidget {
     this.autofillHints,
     this.autovalidateMode = AutovalidateMode.onUnfocus,
     this.controller,
+    this.initialValue,
     required this.constraints,
     this.errorConstraints,
     this.focusNode,
+    this.obscureText = false,
     required this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
     this.label,
     this.keyboardType,
     this.maxLines = 1,
@@ -253,8 +269,14 @@ class _EzTextFieldState extends State<EzTextField> {
         autofillHints: widget.autofillHints,
         autovalidateMode: widget.autovalidateMode,
         controller: widget.controller,
+        initialValue: widget.initialValue,
         focusNode: widget.focusNode,
-        decoration: InputDecoration(hintText: widget.hintText),
+        obscureText: widget.obscureText,
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.suffixIcon,
+        ),
         keyboardType: widget.keyboardType,
         maxLines: widget.maxLines,
         onChanged: widget.onChanged,

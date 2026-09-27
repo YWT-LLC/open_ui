@@ -7,7 +7,6 @@ import '../../../../open_ui.dart';
 
 import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/foundation.dart';
@@ -344,12 +343,12 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     }
                   } catch (e) {
                     (context.mounted)
-                        ? await ezLogAlert(widget.config, context: context, message: e.toString())
+                        ? ezLogAlert(widget.config, context: context, message: e.toString())
                         : ezLog(e.toString());
                     setState(() => processing = false);
                   }
                 },
-                icon: processing ? const CircularProgressIndicator() : const Icon(Icons.check),
+                icon: processing ? EzLoadingGlass(widget.config) : const Icon(Icons.check),
               ),
             ],
           ),

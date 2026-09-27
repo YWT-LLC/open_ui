@@ -6,6 +6,7 @@
 import '../screens/export.dart';
 import '../utils/export.dart';
 import '../widgets/export.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:async';
@@ -699,7 +700,11 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   ],
                 ],
               ),
-              EzFooter(config, textAlign: TextAlign.start),
+              EzFooter(
+                config,
+                a11howPath: ywt.exampleContributeA11,
+                textAlign: TextAlign.start,
+              ),
             ],
           ),
         ),
@@ -846,13 +851,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "program": "lib/main.dart",
-    },
-    {
-      "name": "install-${namePreview.replaceAll('_', '-')}",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release",
       "program": "lib/main.dart",
     },
   ]

@@ -77,179 +77,179 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
   // Define custom functions //
 
   EzTextStyleProvider providerFromKey(String key) => switch (key) {
-    darkDisplayFontSizeKey || lightDisplayFontSizeKey => displayProvider,
-    darkHeadlineFontSizeKey || lightHeadlineFontSizeKey => headlineProvider,
-    darkTitleFontSizeKey || lightTitleFontSizeKey => titleProvider,
-    darkBodyFontSizeKey || lightBodyFontSizeKey => bodyProvider,
-    darkLabelFontSizeKey || lightLabelFontSizeKey => labelProvider,
-    _ => throw Exception('Invalid key: $key'),
-  };
+        darkDisplayFontSizeKey || lightDisplayFontSizeKey => displayProvider,
+        darkHeadlineFontSizeKey || lightHeadlineFontSizeKey => headlineProvider,
+        darkTitleFontSizeKey || lightTitleFontSizeKey => titleProvider,
+        darkBodyFontSizeKey || lightBodyFontSizeKey => bodyProvider,
+        darkLabelFontSizeKey || lightLabelFontSizeKey => labelProvider,
+        _ => throw Exception('Invalid key: $key'),
+      };
 
   // Return the build //
 
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: config.ezL10n.tsFontSize,
-    child: EzRow(
-      config,
-      reverseHands: false,
-      children: <Widget>[
-        // Minus icon
-        atMin
-            ? EzIconButton(
-                config,
-                enabled: false,
-                tooltip: config.ezL10n.gMinimum,
-                iconSize: _iconSize,
-                icon: Icon(Icons.remove, color: config.colors.outline),
-              )
-            : EzIconButton(
-                config,
-                onPressed: () async {
-                  if (EzCM.updateBoth || config.isDark) {
-                    for (final String key in _darkKeys) {
-                      final EzTextStyleProvider provider = providerFromKey(key);
+        message: config.ezL10n.tsFontSize,
+        child: EzRow(
+          config,
+          reverseHands: false,
+          children: <Widget>[
+            // Minus icon
+            atMin
+                ? EzIconButton(
+                    config,
+                    enabled: false,
+                    tooltip: config.ezL10n.gMinimum,
+                    iconSize: _iconSize,
+                    icon: Icon(Icons.remove, color: config.colors.outline),
+                  )
+                : EzIconButton(
+                    config,
+                    onPressed: () async {
+                      if (EzCM.updateBoth || config.isDark) {
+                        for (final String key in _darkKeys) {
+                          final EzTextStyleProvider provider = providerFromKey(key);
 
-                      final double currSize = provider.value.fontSize ?? EzCM.get(key);
+                          final double currSize = provider.value.fontSize ?? EzCM.get(key);
 
-                      if (currSize != fontSizeMins[key]) {
-                        final double newSize = currSize - (fontSizeDefaults[key]! * delta);
-                        final double sizeLimit = fontSizeMins[key]!;
+                          if (currSize != fontSizeMins[key]) {
+                            final double newSize = currSize - (fontSizeDefaults[key]! * delta);
+                            final double sizeLimit = fontSizeMins[key]!;
 
-                        if (newSize >= sizeLimit) {
-                          await EzCM.setDouble(key, newSize);
-                          provider.resize(newSize);
-                        } else {
-                          await EzCM.setDouble(key, sizeLimit);
-                          provider.resize(sizeLimit);
+                            if (newSize >= sizeLimit) {
+                              await EzCM.setDouble(key, newSize);
+                              provider.resize(newSize);
+                            } else {
+                              await EzCM.setDouble(key, sizeLimit);
+                              provider.resize(sizeLimit);
+                            }
+                          }
                         }
                       }
-                    }
-                  }
 
-                  if (EzCM.updateBoth || !config.isDark) {
-                    for (final String key in _lightKeys) {
-                      final EzTextStyleProvider provider = providerFromKey(key);
+                      if (EzCM.updateBoth || !config.isDark) {
+                        for (final String key in _lightKeys) {
+                          final EzTextStyleProvider provider = providerFromKey(key);
 
-                      final double currSize = provider.value.fontSize ?? EzCM.get(key);
+                          final double currSize = provider.value.fontSize ?? EzCM.get(key);
 
-                      if (currSize != fontSizeMins[key]) {
-                        final double newSize = currSize - (fontSizeDefaults[key]! * delta);
-                        final double sizeLimit = fontSizeMins[key]!;
+                          if (currSize != fontSizeMins[key]) {
+                            final double newSize = currSize - (fontSizeDefaults[key]! * delta);
+                            final double sizeLimit = fontSizeMins[key]!;
 
-                        if (newSize >= sizeLimit) {
-                          await EzCM.setDouble(key, newSize);
-                          provider.resize(newSize);
-                        } else {
-                          await EzCM.setDouble(key, sizeLimit);
-                          provider.resize(sizeLimit);
+                            if (newSize >= sizeLimit) {
+                              await EzCM.setDouble(key, newSize);
+                              provider.resize(newSize);
+                            } else {
+                              await EzCM.setDouble(key, sizeLimit);
+                              provider.resize(sizeLimit);
+                            }
+                          }
                         }
                       }
-                    }
+
+                      if (context.mounted) {
+                        config.pingRebuild(ezTextRebuildCheck(config, context: context));
+                      }
+                    },
+                    tooltip: '${config.ezL10n.gDecrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
+                    iconSize: _iconSize,
+                    icon: const Icon(Icons.remove),
+                  ),
+            config.rowMargin,
+
+            // Core
+            GestureDetector(
+              onLongPress: () async {
+                if (EzCM.updateBoth || config.isDark) {
+                  for (final String key in _darkKeys) {
+                    final EzTextStyleProvider provider = providerFromKey(key);
+
+                    await EzCM.setDouble(key, fontSizeDefaults[key]!);
+                    provider.resize(fontSizeDefaults[key]!);
                   }
+                }
 
-                  if (context.mounted) {
-                    config.pingRebuild(ezTextRebuildCheck(config, context: context));
+                if (EzCM.updateBoth || !config.isDark) {
+                  for (final String key in _lightKeys) {
+                    final EzTextStyleProvider provider = providerFromKey(key);
+
+                    await EzCM.setDouble(key, fontSizeDefaults[key]!);
+                    provider.resize(fontSizeDefaults[key]!);
                   }
-                },
-                tooltip: '${config.ezL10n.gDecrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
-                iconSize: _iconSize,
-                icon: const Icon(Icons.remove),
-              ),
-        config.rowMargin,
+                }
 
-        // Core
-        GestureDetector(
-          onLongPress: () async {
-            if (EzCM.updateBoth || config.isDark) {
-              for (final String key in _darkKeys) {
-                final EzTextStyleProvider provider = providerFromKey(key);
+                if (context.mounted) {
+                  config.pingRebuild(ezTextRebuildCheck(config, context: context));
+                }
+              },
+              child: Icon(Icons.text_fields_sharp, size: _iconSize, color: config.colors.onSurface),
+            ),
+            config.rowMargin,
 
-                await EzCM.setDouble(key, fontSizeDefaults[key]!);
-                provider.resize(fontSizeDefaults[key]!);
-              }
-            }
+            // Plus icon
+            atMax
+                ? EzIconButton(
+                    config,
+                    enabled: false,
+                    tooltip: config.ezL10n.gMaximum,
+                    iconSize: _iconSize,
+                    icon: Icon(Icons.add, color: config.colors.outline),
+                  )
+                : EzIconButton(
+                    config,
+                    onPressed: () async {
+                      if (EzCM.updateBoth || config.isDark) {
+                        for (final String key in _darkKeys) {
+                          final EzTextStyleProvider provider = providerFromKey(key);
 
-            if (EzCM.updateBoth || !config.isDark) {
-              for (final String key in _lightKeys) {
-                final EzTextStyleProvider provider = providerFromKey(key);
+                          final double currSize = provider.value.fontSize ?? EzCM.get(key);
 
-                await EzCM.setDouble(key, fontSizeDefaults[key]!);
-                provider.resize(fontSizeDefaults[key]!);
-              }
-            }
+                          if (currSize != fontSizeMaxes[key]) {
+                            final double newSize = currSize + (fontSizeDefaults[key]! * delta);
+                            final double sizeLimit = fontSizeMaxes[key]!;
 
-            if (context.mounted) {
-              config.pingRebuild(ezTextRebuildCheck(config, context: context));
-            }
-          },
-          child: Icon(Icons.text_fields_sharp, size: _iconSize, color: config.colors.onSurface),
+                            if (newSize <= sizeLimit) {
+                              await EzCM.setDouble(key, newSize);
+                              provider.resize(newSize);
+                            } else {
+                              await EzCM.setDouble(key, sizeLimit);
+                              provider.resize(sizeLimit);
+                            }
+                          }
+                        }
+                      }
+
+                      if (EzCM.updateBoth || !config.isDark) {
+                        for (final String key in _lightKeys) {
+                          final EzTextStyleProvider provider = providerFromKey(key);
+
+                          final double currSize = provider.value.fontSize ?? EzCM.get(key);
+
+                          if (currSize != fontSizeMaxes[key]) {
+                            final double newSize = currSize + (fontSizeDefaults[key]! * delta);
+                            final double sizeLimit = fontSizeMaxes[key]!;
+
+                            if (newSize <= sizeLimit) {
+                              await EzCM.setDouble(key, newSize);
+                              provider.resize(newSize);
+                            } else {
+                              await EzCM.setDouble(key, sizeLimit);
+                              provider.resize(sizeLimit);
+                            }
+                          }
+                        }
+                      }
+
+                      if (context.mounted) {
+                        config.pingRebuild(ezTextRebuildCheck(config, context: context));
+                      }
+                    },
+                    tooltip: '${config.ezL10n.gIncrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
+                    iconSize: _iconSize,
+                    icon: const Icon(Icons.add),
+                  ),
+          ],
         ),
-        config.rowMargin,
-
-        // Plus icon
-        atMax
-            ? EzIconButton(
-                config,
-                enabled: false,
-                tooltip: config.ezL10n.gMaximum,
-                iconSize: _iconSize,
-                icon: Icon(Icons.add, color: config.colors.outline),
-              )
-            : EzIconButton(
-                config,
-                onPressed: () async {
-                  if (EzCM.updateBoth || config.isDark) {
-                    for (final String key in _darkKeys) {
-                      final EzTextStyleProvider provider = providerFromKey(key);
-
-                      final double currSize = provider.value.fontSize ?? EzCM.get(key);
-
-                      if (currSize != fontSizeMaxes[key]) {
-                        final double newSize = currSize + (fontSizeDefaults[key]! * delta);
-                        final double sizeLimit = fontSizeMaxes[key]!;
-
-                        if (newSize <= sizeLimit) {
-                          await EzCM.setDouble(key, newSize);
-                          provider.resize(newSize);
-                        } else {
-                          await EzCM.setDouble(key, sizeLimit);
-                          provider.resize(sizeLimit);
-                        }
-                      }
-                    }
-                  }
-
-                  if (EzCM.updateBoth || !config.isDark) {
-                    for (final String key in _lightKeys) {
-                      final EzTextStyleProvider provider = providerFromKey(key);
-
-                      final double currSize = provider.value.fontSize ?? EzCM.get(key);
-
-                      if (currSize != fontSizeMaxes[key]) {
-                        final double newSize = currSize + (fontSizeDefaults[key]! * delta);
-                        final double sizeLimit = fontSizeMaxes[key]!;
-
-                        if (newSize <= sizeLimit) {
-                          await EzCM.setDouble(key, newSize);
-                          provider.resize(newSize);
-                        } else {
-                          await EzCM.setDouble(key, sizeLimit);
-                          provider.resize(sizeLimit);
-                        }
-                      }
-                    }
-                  }
-
-                  if (context.mounted) {
-                    config.pingRebuild(ezTextRebuildCheck(config, context: context));
-                  }
-                },
-                tooltip: '${config.ezL10n.gIncrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
-                iconSize: _iconSize,
-                icon: const Icon(Icons.add),
-              ),
-      ],
-    ),
-  );
+      );
 }

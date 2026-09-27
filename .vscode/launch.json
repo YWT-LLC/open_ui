@@ -8,12 +8,5 @@
       "flutterMode": "debug",
       "program": "example/lib/main.dart",
     },
-    {
-      "name": "install-open-ui",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release",
-      "program": "example/lib/main.dart",
-    },
   ]
 }

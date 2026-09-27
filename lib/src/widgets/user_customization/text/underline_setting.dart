@@ -34,26 +34,26 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
 
   @override
   Widget build(BuildContext context) => EzIconButton(
-    widget.config,
-    onPressed: () async {
-      isUnderlined = !isUnderlined;
+        widget.config,
+        onPressed: () async {
+          isUnderlined = !isUnderlined;
 
-      await EzCM.setBool(widget.type.underlineKey(widget.config.isDark), isUnderlined);
-      if (EzCM.updateBoth) {
-        await EzCM.setBool(widget.type.underlineMirror(widget.config.isDark), isUnderlined);
-      }
+          await EzCM.setBool(widget.type.underlineKey(widget.config.isDark), isUnderlined);
+          if (EzCM.updateBoth) {
+            await EzCM.setBool(widget.type.underlineMirror(widget.config.isDark), isUnderlined);
+          }
 
-      widget.notifierCallback(isUnderlined);
-      if (context.mounted) {
-        widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
-      }
+          widget.notifierCallback(isUnderlined);
+          if (context.mounted) {
+            widget.config.pingRebuild(ezTextRebuildCheck(widget.config, context: context));
+          }
 
-      setState(() {});
-    },
-    tooltip: widget.config.ezL10n.tsUnderline,
-    icon: Icon(
-      Icons.format_underline,
-      color: isUnderlined ? widget.config.colors.primary : widget.config.colors.outline,
-    ),
-  );
+          setState(() {});
+        },
+        tooltip: widget.config.ezL10n.tsUnderline,
+        icon: Icon(
+          Icons.format_underline,
+          color: isUnderlined ? widget.config.colors.primary : widget.config.colors.outline,
+        ),
+      );
 }

@@ -18,7 +18,7 @@ class EzBackFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'back_fab',
+        heroTag: 'back_FAB',
         tooltip: config.ezL10n.gBack,
         onPressed: () => Navigator.of(context).maybePop(),
         child: EzIcon(config, Icons.arrow_back),
@@ -38,7 +38,7 @@ class EzConfigFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MenuAnchor(
         builder: (_, MenuController controller, __) => FloatingActionButton(
-          heroTag: 'config_fab',
+          heroTag: 'config_FAB',
           tooltip: config.ezL10n.ssConfigTip,
           onPressed: () => toggleMenu(controller),
           child: EzIcon(config, Icons.save),
@@ -173,7 +173,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
         visible: !isLatest,
         child: widget.isWeb // Trinary required, if/else breaks iOS web links
             ? FloatingActionButton(
-                heroTag: 'updater_fab',
+                heroTag: 'updater_FAB',
                 onPressed: () => showDialog(
                   context: context,
                   builder: (_) => EzAlertDialog(
@@ -188,7 +188,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
                 child: EzIcon(widget.config, Icons.update),
               )
             : FloatingActionButton(
-                heroTag: 'updater_fab',
+                heroTag: 'updater_FAB',
                 onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
                 tooltip: widget.config.ezL10n.gUpdates,
                 backgroundColor: widget.config.colors.secondary,
@@ -207,7 +207,7 @@ class EzRebuildFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'rebuild_fab',
+        heroTag: 'rebuild_FAB',
         onPressed: () => config.rebuildUI(),
         tooltip: config.ezL10n.gApplyChanges,
         backgroundColor: config.colors.secondary,

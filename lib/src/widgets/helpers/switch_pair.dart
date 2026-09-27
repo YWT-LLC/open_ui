@@ -271,19 +271,15 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
           EzTextButton(
             widget.config,
             text: widget.offLabel,
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              alignment: widget.config.isLTR ? Alignment.centerRight : Alignment.centerLeft,
-              backgroundColor: widget.config.colors.surfaceContainer,
-            ),
-            textAlign: widget.config.isLTR ? TextAlign.end : TextAlign.start,
+            style: TextButton.styleFrom(backgroundColor: widget.config.colors.surfaceContainer),
+            textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
               setState(() => curr = false);
               widget.onChanged(false);
             },
           ),
-          widget.config.rowSpacer,
+          widget.config.rowMargin,
 
           // Svvitch
           Semantics(
@@ -304,18 +300,14 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
               ),
             ),
           ),
-          widget.config.rowSpacer,
+          widget.config.rowMargin,
 
           // On/true
           EzTextButton(
             widget.config,
             text: widget.onLabel,
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              alignment: widget.config.isLTR ? Alignment.centerLeft : Alignment.centerRight,
-              backgroundColor: widget.config.colors.surfaceContainer,
-            ),
-            textAlign: widget.config.isLTR ? TextAlign.start : TextAlign.end,
+            style: TextButton.styleFrom(backgroundColor: widget.config.colors.surfaceContainer),
+            textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
               setState(() => curr = true);

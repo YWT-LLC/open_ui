@@ -21,37 +21,37 @@ class SuccessHeader extends StatelessWidget {
 
   /// header [Widget] for a successful run
   const SuccessHeader(this.config, {super.key, this.message, this.richMessage})
-    : assert(
-        (message == null) != (richMessage == null),
-        'Either message or richMessage must be provided, but not both.',
-      );
+      : assert(
+          (message == null) != (richMessage == null),
+          'Either message or richMessage must be provided, but not both.',
+        );
 
   @override
   Widget build(BuildContext context) => EzCol(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      // Headline
-      Flexible(
-        child: EzText(
-          config,
-          text: config.ezL10n.gSuccessExl,
-          style: config.headlineStyle,
-          textAlign: TextAlign.center,
-        ),
-      ),
-      config.spacer,
-
-      // Where to go next
-      message == null
-          ? richMessage!
-          : Flexible(
-              child: EzText(
-                config,
-                text: message!,
-                style: ezSubTitleStyle(config.styles),
-                textAlign: TextAlign.center,
-              ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          // Headline
+          Flexible(
+            child: EzText(
+              config,
+              text: config.ezL10n.gSuccessExl,
+              style: config.headlineStyle,
+              textAlign: TextAlign.center,
             ),
-    ],
-  );
+          ),
+          config.spacer,
+
+          // Where to go next
+          message == null
+              ? richMessage!
+              : Flexible(
+                  child: EzText(
+                    config,
+                    text: message!,
+                    style: ezSubTitleStyle(config.styles),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+        ],
+      );
 }

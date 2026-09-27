@@ -6,6 +6,7 @@
 import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 class EzAlertDialog extends AlertDialog {
   /// EzConfig Provider
@@ -27,9 +28,9 @@ class EzAlertDialog extends AlertDialog {
     super.actions,
     this.needsClose = true,
   }) : assert(
-         (content == null && contents == null) || ((content == null) != (contents == null)),
-         'Either content or contents should be provided, but not both.',
-       );
+          (content == null && contents == null) || ((content == null) != (contents == null)),
+          'Either content or contents should be provided, but not both.',
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,8 @@ class EzAlertDialog extends AlertDialog {
 
     late final List<Widget>? closedActions = needsClose
         ? (actions?.length ?? 0) > 1
-              ? <Widget>[...actions!, closeAction]
-              : <Widget>[closeAction, if (actions != null) ...actions!]
+            ? <Widget>[...actions!, closeAction]
+            : <Widget>[closeAction, if (actions != null) ...actions!]
         : actions;
 
     // Return the build //
@@ -78,15 +79,17 @@ class EzAlertDialog extends AlertDialog {
         actions: (closedActions == null)
             ? null
             : closedActions.length <= 2
-            ? config.isLefty
-                  ? closedActions.reversed.toList()
-                  : closedActions
-            : <Widget>[EzCol(mainAxisAlignment: MainAxisAlignment.center, children: closedActions)],
+                ? config.isLefty
+                    ? closedActions.reversed.toList()
+                    : closedActions
+                : <Widget>[
+                    EzCol(mainAxisAlignment: MainAxisAlignment.center, children: closedActions)
+                  ],
         actionsAlignment: (closedActions != null && closedActions.length > 2)
             ? MainAxisAlignment.center
             : config.isLefty
-            ? MainAxisAlignment.start
-            : MainAxisAlignment.end,
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
 
         // General
         iconPadding: EdgeInsets.zero,
@@ -139,8 +142,8 @@ class EzAction extends StatelessWidget {
     final TextStyle? textStyle = isDefaultAction
         ? baseStyle?.copyWith(fontWeight: FontWeight.bold)
         : isDestructiveAction
-        ? baseStyle?.copyWith(color: config.colors.error)
-        : baseStyle;
+            ? baseStyle?.copyWith(color: config.colors.error)
+            : baseStyle;
 
     return EzTextButton(
       config,
@@ -168,21 +171,38 @@ List<EzAction> ezActionPair(
   bool denyIsDefault = false,
   bool denyIsDestructive = false,
   TextStyle? style,
-}) => <EzAction>[
-  EzAction(
-    config,
-    text: denyMsg ?? config.ezL10n.gNo,
-    onPressed: onDeny,
-    isDefaultAction: denyIsDefault,
-    isDestructiveAction: denyIsDestructive,
-    style: style,
-  ),
-  EzAction(
-    config,
-    text: confirmMsg ?? config.ezL10n.gYes,
-    onPressed: onConfirm,
-    isDefaultAction: confirmIsDefault,
-    isDestructiveAction: confirmIsDestructive,
-    style: style,
-  ),
-];
+}) =>
+    <EzAction>[
+      EzAction(
+        config,
+        text: denyMsg ?? config.ezL10n.gNo,
+        onPressed: onDeny,
+        isDefaultAction: denyIsDefault,
+        isDestructiveAction: denyIsDestructive,
+        style: style,
+      ),
+      EzAction(
+        config,
+        text: confirmMsg ?? config.ezL10n.gYes,
+        onPressed: onConfirm,
+        isDefaultAction: confirmIsDefault,
+        isDestructiveAction: confirmIsDestructive,
+        style: style,
+      ),
+    ];
+
+class EzLoadingGlass extends StatelessWidget {
+  final EzCP? config;
+
+  const EzLoadingGlass(this.config, {super.key});
+
+  @override
+  Widget build(BuildContext context) => (config == null)
+      ? const CircularProgressIndicator()
+      : ywt.EzLoadingIndicator(
+          iconSize: config!.iconSize,
+          padding: config!.padding,
+          semantics: config!.ezL10n.gLoadingAnim,
+          colorScheme: config!.colors,
+        );
+}
