@@ -10,10 +10,6 @@ import 'dart:io';
 import 'package:open_ui/open_ui.dart';
 import 'package:flutter/foundation.dart';
 
-//* Consts *//
-
-const String openUIProdPage = 'https://ywt.llc/#/products/open-ui';
-
 // Defaults taken from...
 // https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization#configuring-the-l10n-yaml-file
 
@@ -125,7 +121,7 @@ to generate the new aliases.
 
 ## <br>Credits
 
-$appName began with [Open UI]($openUIProdPage)'s app generation service.
+$appName began with [Open UI](${ywt.openUIProduct})'s app generation service.
 
 It is free and open source, maintained by [YWT](https://ywt.llc/).
 
@@ -165,7 +161,7 @@ All notable changes to this project will be documented in this file.
 
 ## [0.0.0] - ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}
 ### Added
-- ${config.appName} foundation generated via [Open UI]($openUIProdPage)
+- ${config.appName} foundation generated via [Open UI](${ywt.openUIProduct})
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ''');
