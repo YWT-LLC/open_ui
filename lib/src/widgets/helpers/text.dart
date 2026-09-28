@@ -152,6 +152,9 @@ class EzTextBackground extends StatelessWidget {
 
 class EzTextField extends StatefulWidget {
   /// [TextFormField] passthrough
+  final bool autofocus;
+
+  /// [TextFormField] passthrough
   final Iterable<String>? autofillHints;
 
   /// [TextFormField] passthrough
@@ -231,6 +234,7 @@ class EzTextField extends StatefulWidget {
   /// Also has some custom defaults
   const EzTextField({
     super.key,
+    this.autofocus = false,
     this.autofillHints,
     this.autovalidateMode = AutovalidateMode.onUnfocus,
     this.controller,
@@ -266,6 +270,7 @@ class _EzTextFieldState extends State<EzTextField> {
   bool error = false;
 
   Widget core() => TextFormField(
+        autofocus: widget.autofocus,
         autofillHints: widget.autofillHints,
         autovalidateMode: widget.autovalidateMode,
         controller: widget.controller,
