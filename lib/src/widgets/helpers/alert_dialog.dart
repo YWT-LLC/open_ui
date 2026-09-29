@@ -191,9 +191,12 @@ List<EzAction> ezActionPair(
       ),
     ];
 
+/// Open source consumers: DO NOT USE
 class EzLoadingGlass extends StatelessWidget {
+  /// Open source consumers: DO NOT USE
   final EzCP? config;
 
+  /// Open source consumers: DO NOT USE
   const EzLoadingGlass(this.config, {super.key});
 
   @override
