@@ -45,6 +45,10 @@ export 'src/functions/theme_data.dart';
 
 export 'src/l10n/oui_lang.dart';
 
+//* Models *//
+
+export 'src/models/hybrid_action.dart';
+
 //* Sample screens *//
 
 export 'src/sample_screens/color_settings/screen.dart';
