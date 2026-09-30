@@ -106,9 +106,9 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
 
           return OpenUIScaffold(
             config,
-            body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
-            title: l10n(config).asPageTitle,
             running: genState == GeneratorState.running,
+            title: l10n(config).asPageTitle,
+            body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
           );
         },
       );
