@@ -300,62 +300,61 @@ class _GenerateScreenState extends State<GenerateScreen> {
           config,
           body: EzScreen(
             config,
-            child: EzScrollView(
-              config,
-              children: <Widget>[
-                SizedBox(
-                  height: heightOf(context) / 3,
-                  width: double.infinity,
-                  child: header(config),
+            child: EzScrollView(config, children: <Widget>[
+              SizedBox(
+                height: heightOf(context) / 3,
+                width: double.infinity,
+                child: header(config),
+              ),
+              Container(
+                alignment: Alignment.topCenter,
+                constraints: BoxConstraints(
+                  minWidth: widthOf(context) * 0.667,
+                  maxWidth: widthOf(context) * 0.667,
                 ),
-                Container(
-                  alignment: Alignment.topCenter,
-                  constraints: BoxConstraints(
-                    minWidth: widthOf(context) * 0.667,
-                    maxWidth: widthOf(context) * 0.667,
-                  ),
-                  child: ExpansionTile(
-                    controller: ec,
-                    onExpansionChanged: (_) => setState(() {}),
-                    expandedAlignment: Alignment.topCenter,
-                    expandedCrossAxisAlignment: CrossAxisAlignment.center,
-                    showTrailingIcon: false,
-                    title: EzRow(
-                      config,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Flexible(
-                          child: Text(
-                            l10n(config).gsConsole,
-                            style: config.titleStyle,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        config.rowMargin,
-                        EzIconButton(
-                          config,
-                          icon: Icon(
-                            ezVisIcon(config, ec.isExpanded),
-                            semanticLabel:
-                                ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
-                          ),
-                          onPressed: () => ec.isExpanded ? ec.collapse() : ec.expand(),
-                          tooltip: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
-                        ),
-                      ],
-                    ),
+                child: ExpansionTile(
+                  controller: ec,
+                  onExpansionChanged: (_) => setState(() {}),
+                  expandedAlignment: Alignment.topCenter,
+                  expandedCrossAxisAlignment: CrossAxisAlignment.center,
+                  showTrailingIcon: false,
+                  title: EzRow(
+                    config,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      ValueListenableBuilder<String>(
-                        valueListenable: readout,
-                        builder: (_, String value, __) =>
-                            Text(value, style: config.bodyStyle, textAlign: TextAlign.start),
+                      Flexible(
+                        child: Text(
+                          l10n(config).gsConsole,
+                          style: config.titleStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      config.rowMargin,
+                      EzIconButton(
+                        config,
+                        icon: Icon(
+                          ezVisIcon(config, ec.isExpanded),
+                          semanticLabel: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
+                        ),
+                        onPressed: () => ec.isExpanded ? ec.collapse() : ec.expand(),
+                        tooltip: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
                       ),
                     ],
                   ),
+                  children: <Widget>[
+                    ValueListenableBuilder<String>(
+                      valueListenable: readout,
+                      builder: (_, String value, __) => Text(
+                        value,
+                        style: config.bodyStyle,
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
                 ),
-                config.separator,
-              ],
-            ),
+              ),
+              EzFooter(config, a11howPath: ywt.exampleContributeA11),
+            ]),
           ),
           title: l10n(config).gsPageTitle,
           running: genState == GeneratorState.running,
