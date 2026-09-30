@@ -169,9 +169,12 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   // Return the build //
 
   @override
-  Widget build(BuildContext context) => Visibility(
+  Widget build(BuildContext context) => EzAnimVis(
+        widget.config,
+        forceFade: true,
+        forceType: EzTransitionType.none,
         visible: !isLatest,
-        child: widget.isWeb // Trinary required, if/else breaks iOS web links
+        kid: widget.isWeb // Trinary required, if/else breaks iOS web links
             ? FloatingActionButton(
                 heroTag: 'updater_FAB',
                 onPressed: () => showDialog(
