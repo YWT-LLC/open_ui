@@ -92,7 +92,11 @@ class OpenUIScaffold extends StatelessWidget {
           ),
         ),
         body: body,
-        fabs: <Widget>[updater(config), if (fabs != null) ...fabs!, ...config.backFABs(isHome)],
+        fabs: <Widget>[
+          updater(config),
+          if (fabs != null) ...fabs!,
+          ...config.backFABs(isHome: isHome),
+        ],
       ),
     );
   }

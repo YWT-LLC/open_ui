@@ -227,8 +227,8 @@ class EzCP extends ChangeNotifier {
   bool get showBackFAB => _design.showBackFAB;
   bool get showScroll => _design.showScroll;
 
-  List<Widget> backFABs(bool isHome) =>
-      (_design.showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false))
+  List<Widget> backFABs({bool isHome = false, bool override = false}) =>
+      (override || (_design.showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
           ? <Widget>[spacer, EzBackFAB(this)]
           : <Widget>[];
 
