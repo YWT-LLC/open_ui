@@ -36,7 +36,7 @@ dependencies:
   flutter_localized_locales: ^2.0.5
   flutter_secure_storage: ^11.2.0
   font_awesome_flutter: ^11.0.0
-  image: ^4.10.1
+  image: ^4.12.0
   line_icons: ^2.0.3
   package_info_plus: ^10.2.2
   permission_handler: ^13.0.2
