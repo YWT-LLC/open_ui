@@ -39,7 +39,7 @@ class EzCP extends ChangeNotifier {
   })  : _isDark = isDark,
         _locale = locale,
         _l10n = el10n,
-        _ltr = !rtlLanguageCodes.contains(locale.languageCode),
+        _ltr = !rtlCodes.contains(locale.languageCode),
         _appCache = appCache,
         _needsRebuild = false {
     _isLefty = EzCM.get(isLeftyKey);
@@ -311,7 +311,7 @@ class EzCP extends ChangeNotifier {
     final (Locale, OUILang) result = await ezStoredL10n();
     _locale = result.$1;
     _l10n = result.$2;
-    _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
+    _ltr = !rtlCodes.contains(_locale.languageCode);
 
     await rebuildUI();
   }

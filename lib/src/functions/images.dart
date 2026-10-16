@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 /// Returns and [AssetImage], [NetworkImage], or [FileImage] based on the [path]
 ImageProvider ezImageProvider(String path, {double? scale}) {
   if (EzCM.isPathAsset(path)) {
-    return ouiAssetPaths.contains(path) ? ouiImageLookup[path]! : AssetImage(path);
+    return AssetImage(path);
   } else if (ezUrlCheck(path)) {
     return NetworkImage(path, scale: scale ?? 1.0);
   } else {

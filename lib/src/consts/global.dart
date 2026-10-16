@@ -5,40 +5,10 @@
 
 import 'package:flutter/material.dart';
 
-//* Assets *//
-
-// For config //
-
-/// assets/nebula-jeremy-müller.jpg
-/// https://www.pexels.com/@jmueller/
-const String nebulaPath = 'assets/nebula.jpg';
-
-/// assets/wall-holes-carl-wyatt.jpg
-/// https://www.pexels.com/@carl-wyatt-654792/
-const String wallHolesPath = 'assets/wall-holes.jpg';
-
-/// [nebulaPath], [wallHolesPath]
-const Set<String> ouiAssetPaths = <String>{nebulaPath, wallHolesPath};
-
-// For use //
-
-/// [AssetImage] for [nebulaPath]
-const AssetImage nebulaAsset = AssetImage(nebulaPath, package: 'open_ui');
-
-/// [AssetImage] for [wallHolesPath]
-const AssetImage wallHolesAsset = AssetImage(wallHolesPath, package: 'open_ui');
-
-/// [nebulaPath]
-const Map<String, AssetImage> ouiImageLookup = <String, AssetImage>{
-  nebulaPath: nebulaAsset,
-  wallHolesPath: wallHolesAsset,
-};
-
 //* BTS *//
 
 /// A *required* [NavigatorState] key for your router config
 /// UI redraws/rebuilds assume it is present
-/// If you're migrating your existing app to Open UI, please find and replace any current navigator state key with this one
 final GlobalKey<NavigatorState> ezRootNav = GlobalKey<NavigatorState>();
 
 /// /
@@ -52,15 +22,14 @@ const String webImgHint = 'example.com/image.jpg';
 
 //* Localization *//
 
-/// AKA CJK
-const Set<String> picLanguageCodes = <String>{
+const Set<String> cjkCodes = <String>{
   'zh', // Chinese
   'ja', // Japanese
   'ko', // Korean
 };
 
 /// Non-conclusive set
-const Set<String> rtlLanguageCodes = <String>{
+const Set<String> rtlCodes = <String>{
   'ar', // Arabic
   'dv', // Divehi (Maldivian)
   'fa', // Persian (Farsi)

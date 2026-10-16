@@ -693,7 +693,7 @@ Widget ezTransitionBuilder(
 Duration ezReadingTime(EzCP config, String passage) {
   if (passage.trim().isEmpty) return Duration.zero;
 
-  final int words = picLanguageCodes.contains(config.locale.languageCode)
+  final int words = cjkCodes.contains(config.locale.languageCode)
       ? passage.replaceAll(RegExp(r'\s+'), '').length
       : passage.split(RegExp(r'\s+')).where((String w) => w.isNotEmpty).length;
 

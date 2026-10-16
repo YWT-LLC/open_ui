@@ -184,7 +184,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       _instance = EzCM._(
         appName: appName,
         androidPackage: androidPackage,
-        assetPaths: <String>{...assetPaths, ...ouiAssetPaths},
+        assetPaths: assetPaths,
         orientations: orientations,
         platform: getBasePlatform(),
         onMobile: isMobile(),

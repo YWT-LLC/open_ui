@@ -20,7 +20,7 @@ export 'src/consts/custom_delegates/creole.dart';
 export 'src/consts/config_enums.dart';
 export 'src/consts/config_keys.dart';
 export 'src/consts/google_fonts.dart';
-export 'src/consts/shared.dart';
+export 'src/consts/global.dart';
 export 'src/consts/ywt_config.dart';
 
 //* Functions *//
@@ -49,15 +49,15 @@ export 'src/l10n/oui_lang.dart';
 
 export 'src/models/hybrid_action.dart';
 
-//* Sample screens *//
+//* Screens *//
 
-export 'src/sample_screens/color_settings/screen.dart';
-export 'src/sample_screens/design_settings/screen.dart';
-export 'src/sample_screens/text_settings/screen.dart';
-export 'src/sample_screens/global_settings.dart';
+export 'src/screens/color_settings/screen.dart';
+export 'src/screens/design_settings/screen.dart';
+export 'src/screens/text_settings/screen.dart';
+export 'src/screens/global_settings.dart';
 
-export 'src/sample_screens/setting_section.dart';
-export 'src/sample_screens/settings_hub.dart';
+export 'src/screens/setting_section.dart';
+export 'src/screens/settings_hub.dart';
 
 //* Widgets *//
 
