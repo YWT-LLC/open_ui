@@ -218,8 +218,11 @@ dependencies:
   shared_preferences: ^2.5.5
 
   # Community
-  open_ui: ^13.0.0
   provider: ^6.1.5+1
+
+  # Local
+  open_ui:
+    path: ../open_ui
 
 dev_dependencies:
   dependency_validator: ^5.0.5
@@ -632,7 +635,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
         fabs: <Widget>[
           updater(config),
           if (fabs != null) ...fabs!,
-          ...config.backFABs(isHome),
+          ...config.backFABs(isHome: isHome),
         ],
       ),
     );
