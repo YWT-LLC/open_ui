@@ -872,7 +872,7 @@ suppress-warnings: false''';
   static const String analysisDefault = '''include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [lib/l10n/**]
+  exclude: [lib/l10n/**, build/**, android/**, ios/**, web/**, windows/**, macos/**, linux/**]
 
 linter:
   rules:
@@ -913,7 +913,8 @@ linter:
     unnecessary_library_name: true
     unnecessary_new: true
     use_build_context_synchronously: true
-    use_full_hex_values_for_flutter_colors: true''';
+    use_full_hex_values_for_flutter_colors: true
+''';
 
   /// Gets copied to the top of every dart file
   /// Includes the app name, publisher, and year of generation
