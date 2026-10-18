@@ -11,9 +11,6 @@ import 'package:flutter/material.dart';
 /// UI redraws/rebuilds assume it is present
 final GlobalKey<NavigatorState> ezRootNav = GlobalKey<NavigatorState>();
 
-/// /
-const String homePath = '/';
-
 /// SUCCESS
 const String success = 'SUCCESS';
 

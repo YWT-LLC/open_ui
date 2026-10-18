@@ -15,20 +15,9 @@ export 'settings.dart';
 
 // Route names //
 
-/// app-generator
+const String homePath = 'oui';
+
+const String archiveScreenPath = 'config-archiver';
 const String generateScreenPath = 'app-generator';
 
-/// config-archiver
-const String archiveScreenPath = 'config-archiver';
-
-/// settings-hub
 const String settingsHubPath = 'settings-hub';
-
-/// color-settings
-const String colorSettingsPath = 'color-settings';
-
-/// design-settings
-const String designSettingsPath = 'design-settings';
-
-/// text-settings
-const String textSettingsPath = 'text-settings';

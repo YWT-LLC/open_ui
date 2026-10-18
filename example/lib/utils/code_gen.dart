@@ -282,8 +282,59 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Define the router //
+
+final List<RouteBase> routes = <RouteBase>[
+  // Home
+  GoRoute(
+    path: homePath,
+    name: homePath,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+        ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
+    routes: <RouteBase>[
+      // Settings
+      GoRoute(
+        path: settingsHubPath,
+        name: settingsHubPath,
+        pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+            ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
+      ),
+    ],
+  ),
+];
+
+// Define the app //
+
+class $classCaseAppName extends StatelessWidget {
+  final Locale storedLocale;
+  final OUILang storedOUILang;
+  final $l10nClass storedLang;
+  
+  const $classCaseAppName(
+    this.storedLocale,
+    this.storedOUILang,
+    this.storedLang, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => EzConfigurableApp(
+      localizationsDelegates: ezLocalizationsDelegates(Lang.localizationsDelegates),
+      supportedLocales: $l10nClass.supportedLocales,
+      locale: storedLocale,
+      el10n: storedOUILang,
+      appCache: ${classCaseAppName}Cache(storedLocale, storedLang),
+      routerConfig: GoRouter(
+        navigatorKey: ezRootNav,
+        initialLocation: homePath,
+        errorBuilder: (_, GoRouterState state) => const ErrorScreen(),
+        routes: routes,
+      ),
+    );
+}
+
 void main() async {
-  // Configure the app //
+  // Configure the environment //
 
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
@@ -312,51 +363,6 @@ void main() async {
     storedOUILang,
     await $l10nClass.delegate.load(storedLocale),
   ));
-}
-
-class $classCaseAppName extends StatelessWidget {
-  final Locale storedLocale;
-  final OUILang storedOUILang;
-  final $l10nClass storedLang;
-  
-  const $classCaseAppName(
-    this.storedLocale,
-    this.storedOUILang,
-    this.storedLang, {
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) => EzConfigurableApp(
-      localizationsDelegates: ezLocalizationsDelegates(Lang.localizationsDelegates),
-      supportedLocales: $l10nClass.supportedLocales,
-      locale: storedLocale,
-      el10n: storedOUILang,
-      appCache: ${classCaseAppName}Cache(storedLocale, storedLang),
-      routerConfig: GoRouter(
-        navigatorKey: ezRootNav,
-        initialLocation: homePath,
-        errorBuilder: (_, GoRouterState state) => const ErrorScreen(),
-        routes: <RouteBase>[
-          // Home
-          GoRoute(
-            path: homePath,
-            name: homePath,
-            pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-                ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
-            routes: <RouteBase>[
-              // Settings
-              GoRoute(
-                path: settingsHubPath,
-                name: settingsHubPath,
-                pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-                    ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
 }
 """);
 
@@ -906,7 +912,8 @@ export 'settings.dart';
 
 // Route names //
 
-/// settings-hub
+const String homePath = ${config.appName.replaceAll('_', '-')}
+
 const String settingsHubPath = 'settings-hub';
 """);
   } catch (e) {
