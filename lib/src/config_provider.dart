@@ -27,7 +27,7 @@ class EzCP extends ChangeNotifier {
   late EzLayoutCache _layout;
   late EzTextCache _text;
 
-  final EzAppCache _appCache;
+  EzAppCache _appCache;
   bool _needsRebuild;
 
   /// EzConfig Provider
@@ -297,6 +297,14 @@ class EzCP extends ChangeNotifier {
   EzAppCache? get appCache => _appCache;
 
   //* Set *//
+
+  /// SuperCache
+  void swapCache(EzAppCache newCache) {
+    if (_appCache != newCache) {
+      _appCache = newCache;
+      notifyListeners();
+    }
+  }
 
   /// Set [needsRebuild] to [status]
   void pingRebuild(bool status) {
