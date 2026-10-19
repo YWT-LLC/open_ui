@@ -117,7 +117,7 @@ class EzWallHolesConfig extends StatelessWidget {
     await EzCM.setBool(lightLineLinksKey, true);
     await EzCM.setBool(lightShowBackFABKey, true);
 
-    // await EzCM.setString(lightBackgroundImageKey, wallHolesPath); TODO!
+    // await EzCM.setString(lightBackgroundImageKey, wallHolesPath); look up!
     await EzCM.setString(lightBackgroundFitKey, BoxFit.cover.name);
     await EzCM.setString(lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
 

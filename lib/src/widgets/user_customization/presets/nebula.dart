@@ -114,7 +114,7 @@ class EzNebulaConfig extends StatelessWidget {
     await EzCM.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
     await EzCM.setDouble(darkBorderWidthKey, 1.0);
 
-    // await EzCM.setString(darkBackgroundImageKey, nebulaPath); TODO!
+    // await EzCM.setString(darkBackgroundImageKey, nebulaPath); look up!
     await EzCM.setString(darkBackgroundFitKey, BoxFit.cover.name);
     await EzCM.setString(darkBackgroundSourceKey, 'https://www.pexels.com/@jmueller/');
 
