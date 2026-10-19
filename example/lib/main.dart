@@ -18,14 +18,14 @@ final List<RouteBase> routes = <RouteBase>[
   // Home
   GoRoute(
     path: homePath,
-    name: homePath,
+    name: homeName,
     pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
         ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
     routes: <RouteBase>[
       // Archive
       GoRoute(
         path: archiveScreenPath,
-        name: archiveScreenPath,
+        name: archiveScreenName,
         pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
           configWatcher(pbc),
           pbc,
@@ -37,7 +37,7 @@ final List<RouteBase> routes = <RouteBase>[
       // Generate
       GoRoute(
         path: generateScreenPath,
-        name: generateScreenPath,
+        name: generateScreenName,
         pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
           configWatcher(pbc),
           pbc,
@@ -48,8 +48,8 @@ final List<RouteBase> routes = <RouteBase>[
 
       // Settings
       GoRoute(
-        path: settingsHubPath,
-        name: settingsHubPath,
+        path: settingsScreenPath,
+        name: settingsScreenName,
         pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
             ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
       ),

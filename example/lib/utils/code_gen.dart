@@ -15,6 +15,8 @@ import 'package:flutter/foundation.dart';
 
 //* Sub-string getters *//
 
+String appDashName(EAGConfig config) => config.appName.replaceAll('_', '-');
+
 /// Returns the .arb file directory
 String getArbDir(EAGConfig config) {
   for (final String line in config.l10nConfig.split('\n')) {
@@ -288,14 +290,14 @@ final List<RouteBase> routes = <RouteBase>[
   // Home
   GoRoute(
     path: homePath,
-    name: homePath,
+    name: homeName,
     pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
         ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
     routes: <RouteBase>[
       // Settings
       GoRoute(
-        path: settingsHubPath,
-        name: settingsHubPath,
+        path: settingsScreenPath,
+        name: settingsScreenName,
         pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
             ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
       ),
@@ -501,7 +503,7 @@ EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
         'https://raw.githubusercontent.com/USER_PH/REPO_PH/refs/heads/main/APP_VERSION',
     gPlay:
         'https://play.google.com/store/apps/details?id=${config.domainName}.${config.appName}',
-    appStore: 'https://apps.apple.com/us/app/${config.appName.replaceAll('_', '-')}/APP_ID_PH',
+    appStore: 'https://apps.apple.com/us/app/${appDashName(config)}/APP_ID_PH',
     github: 'https://github.com/USER_PH/REPO_PH/releases',
   );
 """);
@@ -528,7 +530,7 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(_) => EzMenuButton(
         config,
-        onPressed: () => parentContext.goNamed(settingsHubPath),
+        onPressed: () => parentContext.goNamed(settingsScreen),
         icon: EzIcon(config, Icons.settings),
         label: config.ezL10n.gSettings,
       );
@@ -912,9 +914,11 @@ export 'settings.dart';
 
 // Route names //
 
-const String homePath = ${config.appName.replaceAll('_', '-')}
+const String homePath = '/';
+const String homeName = '${appDashName(config)}-home';
 
-const String settingsHubPath = 'settings-hub';
+const String settingsScreenPath = 'settings';
+const String settingsScreenName = '${appDashName(config)}-settings';
 """);
   } catch (e) {
     onFailure(e.toString());

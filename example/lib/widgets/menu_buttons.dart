@@ -25,7 +25,7 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzMenuButton(
         config,
-        onPressed: () => parentContext.goNamed(settingsHubPath),
+        onPressed: () => parentContext.goNamed(settingsScreenName),
         icon: EzIcon(config, Icons.settings),
         label: config.ezL10n.gSettings,
       );

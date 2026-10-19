@@ -15,9 +15,14 @@ export 'settings.dart';
 
 // Route names //
 
-const String homePath = 'oui';
+const String homePath = '/';
+const String homeName = 'oui-home';
 
-const String archiveScreenPath = 'config-archiver';
-const String generateScreenPath = 'app-generator';
+const String archiveScreenPath = 'archive';
+const String archiveScreenName = 'oui-archive';
 
-const String settingsHubPath = 'settings-hub';
+const String generateScreenPath = 'generate';
+const String generateScreenName = 'oui-generate';
+
+const String settingsScreenPath = 'settings';
+const String settingsScreenName = 'oui-settings';

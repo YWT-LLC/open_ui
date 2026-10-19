@@ -338,7 +338,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     text: config.ezL10n.gSettings.toLowerCase(),
                     style: ezSubTitleStyle(config.styles),
                     textAlign: TextAlign.start,
-                    onTap: () => context.goNamed(settingsHubPath),
+                    onTap: () => context.goNamed(settingsScreenName),
                     hint: config.ezL10n.ssNavHint,
                   ),
                   EzPlainText(
@@ -602,7 +602,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                                   await checkPath(config, workPathTC))) &&
                           context.mounted) {
                         context.goNamed(
-                          archiveScreenPath,
+                          archiveScreenName,
                           extra: EAGConfig(
                             appName: nameTC.text,
                             publisherName: publisherTC.text,
@@ -657,7 +657,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             await checkPath(config, workPathTC) &&
                             context.mounted) {
                           context.goNamed(
-                            generateScreenPath,
+                            generateScreenName,
                             extra: EAGConfig(
                               appName: nameTC.text,
                               publisherName: publisherTC.text,
