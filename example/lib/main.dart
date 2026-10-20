@@ -15,45 +15,36 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Define the router //
 
 final List<RouteBase> routes = <RouteBase>[
-  // Home
+  // Archive
   GoRoute(
-    path: homePath,
-    name: homeName,
+    path: archiveScreenPath,
+    name: archiveScreenName,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+      configWatcher(pbc),
+      pbc,
+      pbs,
+      ArchiveScreen((pbs.extra as EAGConfig)),
+    ),
+  ),
+
+  // Generate
+  GoRoute(
+    path: generateScreenPath,
+    name: generateScreenName,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+      configWatcher(pbc),
+      pbc,
+      pbs,
+      GenerateScreen((pbs.extra as EAGConfig)),
+    ),
+  ),
+
+  // Settings
+  GoRoute(
+    path: settingsScreenPath,
+    name: settingsScreenName,
     pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-        ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
-    routes: <RouteBase>[
-      // Archive
-      GoRoute(
-        path: archiveScreenPath,
-        name: archiveScreenName,
-        pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-          configWatcher(pbc),
-          pbc,
-          pbs,
-          ArchiveScreen((pbs.extra as EAGConfig)),
-        ),
-      ),
-
-      // Generate
-      GoRoute(
-        path: generateScreenPath,
-        name: generateScreenName,
-        pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-          configWatcher(pbc),
-          pbc,
-          pbs,
-          GenerateScreen((pbs.extra as EAGConfig)),
-        ),
-      ),
-
-      // Settings
-      GoRoute(
-        path: settingsScreenPath,
-        name: settingsScreenName,
-        pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-            ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
-      ),
-    ],
+        ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
   ),
 ];
 
@@ -77,7 +68,16 @@ class OpenUI extends StatelessWidget {
           navigatorKey: ezRootNav,
           initialLocation: homePath,
           errorBuilder: (_, __) => const ErrorScreen(),
-          routes: routes,
+          routes: <RouteBase>[
+            // Home
+            GoRoute(
+              path: homePath,
+              name: homeName,
+              pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                  ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
+              routes: routes,
+            ),
+          ],
         ),
       );
 }

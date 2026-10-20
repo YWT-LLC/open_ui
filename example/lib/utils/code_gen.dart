@@ -287,21 +287,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Define the router //
 
 final List<RouteBase> routes = <RouteBase>[
-  // Home
+  // Settings
   GoRoute(
-    path: homePath,
-    name: homeName,
+    path: settingsScreenPath,
+    name: settingsScreenName,
     pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-        ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
-    routes: <RouteBase>[
-      // Settings
-      GoRoute(
-        path: settingsScreenPath,
-        name: settingsScreenName,
-        pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-            ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
-      ),
-    ],
+        ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
   ),
 ];
 
@@ -330,7 +321,16 @@ class $classCaseAppName extends StatelessWidget {
         navigatorKey: ezRootNav,
         initialLocation: homePath,
         errorBuilder: (_, GoRouterState state) => const ErrorScreen(),
-        routes: routes,
+        routes: <RouteBase>[
+          // Home
+          GoRoute(
+            path: homePath,
+            name: homeName,
+            pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+                ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
+            routes:routes,
+          ),
+        ],
       ),
     );
 }
