@@ -15,7 +15,7 @@ dependencies:
 
   # Flutter (Google)
   google_fonts: ^9.0.0
-  go_router: ^18.1.0
+  go_router: ^18.1.1
   http: ^1.6.0
   image_picker: ^1.2.4
   intl: ^0.20.3
