@@ -21,7 +21,7 @@ class EzLinkWidget extends StatelessWidget {
   final Uri? url;
 
   /// [Semantics] label; What is it?
-  final String label;
+  final String? label;
 
   /// Is this an image?
   final bool isImage;
@@ -43,7 +43,7 @@ class EzLinkWidget extends StatelessWidget {
     this.onTap,
     this.url,
     required this.tooltip,
-    required this.label,
+    this.label,
     this.isImage = false,
     required this.hint,
     required this.child,
