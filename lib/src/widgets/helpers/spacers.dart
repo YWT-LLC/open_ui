@@ -197,17 +197,23 @@ class EzFooter extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
-  /// Just an [EzCP.separator] for this [Locale]
+  /// Just the [spacing] when true
+  final bool blank;
+
+  /// Just [contributeMessage] for this locale
   final Locale defaultLocale;
 
-  /// Optional override
-  final Widget? message;
-
-  final String? a11howPath;
-
-  /// The current screen/page is human translated
-  /// Just an [EzCP.separator] when true
+  /// Just [contributeMessage] when true
   final bool human;
+
+  /// Optional override
+  final Widget? contributeMessage;
+
+  /// Optional override
+  final Widget? translateMessage;
+
+  /// For YWT
+  final String? a11howPath;
 
   /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
   final TextAlign textAlign;
@@ -218,24 +224,36 @@ class EzFooter extends StatelessWidget {
   const EzFooter(
     this.config, {
     super.key,
+    this.blank = false,
     this.defaultLocale = english,
-    this.message,
-    required this.a11howPath,
     this.human = false,
+    this.contributeMessage,
+    this.translateMessage,
+    required this.a11howPath,
     this.textAlign = TextAlign.center,
     this.spacing,
   });
 
   @override
-  Widget build(BuildContext context) =>
-      (human || (config.locale.languageCode == defaultLocale.languageCode))
+  Widget build(BuildContext context) => blank
+      ? spacing == null
           ? config.separator
-          : Padding(
-              padding: EdgeInsets.only(
-                top: spacing ?? (config.spacing * 2),
-                bottom: spacing == null ? config.spacing : spacing! / 2,
-              ),
-              child: message ??
+          : EzSpacer(spacing!)
+      : Padding(
+          padding: EdgeInsets.only(
+            top: spacing ?? (config.spacing * 2),
+            bottom: spacing == null ? config.spacing : spacing! / 2,
+          ),
+          child: (human || (config.locale.languageCode == defaultLocale.languageCode))
+              ? contributeMessage ??
+                  EzLink(
+                    config,
+                    text: 'Developer info',
+                    hint: config.ezL10n.gOpenLink,
+                    tooltip: ywt.websiteContributeMula,
+                    url: Uri.parse(ywt.websiteContributeMula),
+                  )
+              : translateMessage ??
                   EzRichText(
                     config,
                     children: <InlineSpan>[
@@ -264,5 +282,5 @@ class EzFooter extends StatelessWidget {
                     style: config.labelStyle,
                     textAlign: textAlign,
                   ),
-            );
+        );
 }
