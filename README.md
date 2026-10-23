@@ -25,7 +25,7 @@ To accommodate the reduced wiggle room, 11.1 also reduced the number of external
 # <br>Contributing
 ## To the UIniverse
 
-If you build something with Open UI, let us know!
+If you build something with Open UI, share it!
 
 ## <br>Time
 
@@ -33,9 +33,9 @@ Please reach out to the [community](mailto:community@ywt.llc?subject=Becoming%20
 
 ### <br>Translations
 
-If you speak English and a currently unsupported language, please reach out! The more the merrier.
+If you speak a language Open UI doesn't support yet, or see a mistake in one it does, please [contribute](https://ywt.llc/a11how/#/).
 
-If you speak English and a currently supported language, and see something wrong, please reach out! It takes a village.
+As long as you have a GitHub account, you can commit your fixes with one paste & click.
 
 ## <br>Money
 
