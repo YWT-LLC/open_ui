@@ -277,14 +277,12 @@ class _ImageSettingState extends State<EzImageSetting> {
     final List<Widget> options = <Widget>[];
     final String? defaultPath = EzCM.getDefault(widget.pathKey);
 
-    final EdgeInsets wrapPadding = EzInsets.wrap(widget.config.spacing);
-
     // From camera
     // Only works on mobile
     if (!kIsWeb && EzCM.onMobile) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -308,8 +306,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Doesn't work on Web
     if (!kIsWeb) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -332,8 +330,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // From network
     // Works everywhere
     options.add(
-      Padding(
-        padding: wrapPadding,
+      ezWrap(
+        widget.config,
         child: EzElevatedIconButton(
           widget.config,
           onPressed: () => showDialog(
@@ -445,8 +443,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Solid color (optional)
     if (widget.allowSolidColor) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -479,8 +477,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Reset
     if (defaultPath != null && defaultPath != noImageValue) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -501,8 +499,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Clear (optional)
     if (widget.allowClear && currPath != noImageValue) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {

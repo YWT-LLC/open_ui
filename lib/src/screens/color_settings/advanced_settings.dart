@@ -40,23 +40,19 @@ class AdvancedColorSettings extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: widthOf(context) * 0.8),
               child: EzWrap(
                 children: _keys
-                    .map(
-                      (String key) => Padding(
-                        padding: EzInsets.wrap(config.spacing),
-                        child: EzColorSetting(config, key: ValueKey<String>(key), configKey: key),
-                      ),
-                    )
+                    .map((String key) => ezWrap(
+                          config,
+                          child: EzColorSetting(config, key: ValueKey<String>(key), configKey: key),
+                        ))
                     .toList(),
               ),
             ),
             restricted: EzCol(
               children: _keys
-                  .map(
-                    (String key) => Padding(
-                      padding: EzInsets.wrap(config.spacing),
-                      child: EzColorSetting(config, key: ValueKey<String>(key), configKey: key),
-                    ),
-                  )
+                  .map((String key) => ezWrap(
+                        config,
+                        child: EzColorSetting(config, key: ValueKey<String>(key), configKey: key),
+                      ))
                   .toList(),
             ),
           ),

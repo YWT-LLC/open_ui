@@ -74,16 +74,14 @@ class _Options extends StatelessWidget {
     required this.extraWall,
   });
 
-  Widget wrapIt(Widget child) => Padding(padding: EzInsets.wrap(config.spacing), child: child);
-
   @override
   Widget build(BuildContext context) => EzScrollView(config, children: <Widget>[
         EzWrap(children: <Widget>[
-          wrapIt(EzBigButtonsConfig(config, updateBoth: false, extra: extraBig)),
-          wrapIt(EzHighVisibilityConfig(config, updateBoth: false, extra: extraVis)),
-          wrapIt(EzChalkboardConfig(config, autoConfirm: false, extra: extraChalk)),
-          wrapIt(EzNebulaConfig(config, autoConfirm: false, extra: extraNebula)),
-          wrapIt(EzWallHolesConfig(config, autoConfirm: false, extra: extraWall)),
+          ezWrap(config, child: EzBigButtonsConfig(config, updateBoth: false, extra: extraBig)),
+          ezWrap(config, child: EzHighVisibilityConfig(config, updateBoth: false, extra: extraVis)),
+          ezWrap(config, child: EzChalkboardConfig(config, autoConfirm: false, extra: extraChalk)),
+          ezWrap(config, child: EzNebulaConfig(config, autoConfirm: false, extra: extraNebula)),
+          ezWrap(config, child: EzWallHolesConfig(config, autoConfirm: false, extra: extraWall)),
         ]),
         EzSpacer(config.spacing * 1.5),
       ]);

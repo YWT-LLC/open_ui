@@ -64,8 +64,8 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
                   EzWrap(
                     children: locales
                         .map(
-                          (Locale locale) => Padding(
-                            padding: EzInsets.wrap(widget.config.spacing),
+                          (Locale locale) => ezWrap(
+                            widget.config,
                             child: EzElevatedIconButton(
                               widget.config,
                               onPressed: () async {
