@@ -37,6 +37,8 @@ class EzQuickConfig extends StatelessWidget {
     this.extraWall,
   });
 
+  // TODO: get more button that leads to presents. prefers insstalled app if available
+
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         config,
