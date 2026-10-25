@@ -232,8 +232,8 @@ Future<void> ezColorPicker(
   // Define modal data //
 
   final double iconRadius = config.iconSize / 2;
-  final double qHeight = heightOf(context) * 0.25;
-  final double qWidth = widthOf(context) * 0.25;
+  final double qHeight = heightOf(context) / 4;
+  final double qWidth = widthOf(context) / 4;
 
   Color preview = startColor;
 
@@ -247,7 +247,7 @@ Future<void> ezColorPicker(
         // Bottom
         Alignment.bottomCenter => Positioned(
             bottom: 0,
-            left: qWidth * 0.5 - config.padding,
+            left: qWidth / 2 - config.padding,
             child: icon,
           ),
         Alignment.bottomLeft => Positioned(bottom: 0, left: 0, child: icon),
@@ -255,17 +255,17 @@ Future<void> ezColorPicker(
 
         // Center
         Alignment.center => Positioned(
-            top: qHeight * 0.5 - config.padding,
-            left: qWidth * 0.5 - config.padding,
+            top: qHeight / 2 - config.padding,
+            left: qWidth / 2 - config.padding,
             child: icon,
           ),
         Alignment.centerLeft => Positioned(
-            top: qHeight * 0.5 - config.padding,
+            top: qHeight / 2 - config.padding,
             left: 0,
             child: icon,
           ),
         Alignment.centerRight => Positioned(
-            top: qHeight * 0.5 - config.padding,
+            top: qHeight / 2 - config.padding,
             right: 0,
             child: icon,
           ),
@@ -273,7 +273,7 @@ Future<void> ezColorPicker(
         // Top
         Alignment.topCenter => Positioned(
             top: 0,
-            left: qWidth * 0.5 - config.padding,
+            left: qWidth / 2 - config.padding,
             child: icon,
           ),
         Alignment.topLeft => Positioned(top: 0, left: 0, child: icon),
@@ -321,7 +321,6 @@ Future<void> ezColorPicker(
             },
             runSpacing: config.spacing / 2,
             showColorCode: true,
-            showRecentColors: true,
             spacing: config.spacing / 2,
             toolbarSpacing: config.spacing / 2,
           );
@@ -345,10 +344,10 @@ Future<void> ezColorPicker(
               ? Container(
                   constraints: BoxConstraints.tight(Size(
                     ScreenSize.small.size,
-                    heightOf(context) * 0.667, // TODO: make better
+                    330 + config.padding + config.iconSize + (config.spacing * 5),
                   )),
                   child: Stack(children: <Widget>[
-                    Positioned.fill(child: colorPicker()),
+                    Positioned.fill(child: EzScrollView(config, child: colorPicker())),
 
                     // Add gradient color
                     Positioned(
@@ -384,8 +383,12 @@ Future<void> ezColorPicker(
                     .map((MapEntry<int, Color> entry) => InkWell(
                           key: ValueKey<int>(entry.key),
                           onTap: () => setModal(() => gradients.removeAt(entry.key)),
-                          child: ezWrap(
-                            config,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: config.spacing / 2,
+                              right: config.spacing / 2,
+                              bottom: config.spacing,
+                            ),
                             child: entry.value == Colors.transparent
                                 ? CircleAvatar(
                                     backgroundColor: config.colors.surface,
@@ -401,7 +404,6 @@ Future<void> ezColorPicker(
                         ))
                     .toList(),
               ),
-              gradients.isEmpty ? const SizedBox.shrink() : config.halfSpacer,
 
               // Preview
               Container(
