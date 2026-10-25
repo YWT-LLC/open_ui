@@ -228,53 +228,243 @@ Future<void> ezColorPicker(
   required void Function() onConfirm,
   String? denyMsg,
   required void Function() onDeny,
-}) =>
-    ezModal(
-      config,
-      enableDrag: false,
-      isDismissible: false,
-      showDragHandle: false,
-      context: context,
-      builder: (BuildContext mCon) => ezModalScroll(
+}) {
+  // Define modal data //
+
+  final double iconRadius = config.iconSize / 2;
+  final double qHeight = heightOf(context) * 0.25;
+  final double qWidth = widthOf(context) * 0.25;
+
+  Color preview = startColor;
+
+  bool gradient = false;
+  final List<Color> gradients = <Color>[];
+
+  Alignment beginDir = Alignment.centerLeft;
+  Alignment endDir = Alignment.centerRight;
+
+  Positioned iconPosition(Alignment align, Widget icon) => switch (align) {
+        // Bottom
+        Alignment.bottomCenter => Positioned(
+            bottom: 0,
+            left: qWidth * 0.5 - config.padding,
+            child: icon,
+          ),
+        Alignment.bottomLeft => Positioned(bottom: 0, left: 0, child: icon),
+        Alignment.bottomRight => Positioned(bottom: 0, right: 0, child: icon),
+
+        // Center
+        Alignment.center => Positioned(
+            top: qHeight * 0.5 - config.padding,
+            left: qWidth * 0.5 - config.padding,
+            child: icon,
+          ),
+        Alignment.centerLeft => Positioned(
+            top: qHeight * 0.5 - config.padding,
+            left: 0,
+            child: icon,
+          ),
+        Alignment.centerRight => Positioned(
+            top: qHeight * 0.5 - config.padding,
+            right: 0,
+            child: icon,
+          ),
+
+        // Top
+        Alignment.topCenter => Positioned(
+            top: 0,
+            left: qWidth * 0.5 - config.padding,
+            child: icon,
+          ),
+        Alignment.topLeft => Positioned(top: 0, left: 0, child: icon),
+        Alignment.topRight => Positioned(top: 0, right: 0, child: icon),
+        Alignment() => Positioned(top: 0, child: icon),
+      };
+
+  return ezModal(
+    config,
+    enableDrag: false,
+    isDismissible: false,
+    showDragHandle: false,
+    context: context,
+    builder: (BuildContext mCon) => StatefulBuilder(builder: (_, StateSetter setModal) {
+      // Define custom functions //
+
+      void localChange(Color color) {
+        onColorChange(color);
+        setModal(() => preview = color);
+      }
+
+      // Return the modal //
+
+      Widget colorPicker() => ColorPicker(
+            color: preview,
+            columnSpacing: config.spacing,
+            copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+              pasteButton: true,
+            ),
+            enableOpacity: true,
+            mainAxisSize: MainAxisSize.min,
+            onColorChanged: localChange,
+            onColorChangeEnd: localChange,
+            opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
+            opacityTrackHeight: min(config.padding * 2, 50.0),
+            padding: EdgeInsets.zero,
+            pickersEnabled: const <ColorPickerType, bool>{
+              ColorPickerType.both: false,
+              ColorPickerType.primary: false,
+              ColorPickerType.accent: false,
+              ColorPickerType.bw: false,
+              ColorPickerType.custom: false,
+              ColorPickerType.customSecondary: false,
+              ColorPickerType.wheel: true,
+            },
+            runSpacing: config.spacing / 2,
+            showColorCode: true,
+            showRecentColors: true,
+            spacing: config.spacing / 2,
+            toolbarSpacing: config.spacing / 2,
+          );
+
+      return ezModalScroll(
         config,
         children: <Widget>[
+          // Gradient flip
           EzHeader(config),
+          EzFlipFlop(
+            config,
+            init: gradient,
+            onLabel: 'Gradient',
+            offLabel: 'Single',
+            onChanged: (bool choice) => setModal(() => gradient = choice),
+          ),
+          config.spacer,
 
           // The magic
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-            child: ColorPicker(
-              color: startColor,
-              columnSpacing: config.spacing,
-              copyPasteBehavior: const ColorPickerCopyPasteBehavior(
-                pasteButton: true,
-              ),
-              enableOpacity: true,
-              mainAxisSize: MainAxisSize.min,
-              onColorChanged: onColorChange,
-              onColorChangeEnd: onColorChange,
-              opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
-              opacityTrackHeight: min(config.padding * 2, 50.0),
-              padding: EdgeInsets.zero,
-              pickersEnabled: const <ColorPickerType, bool>{
-                ColorPickerType.both: false,
-                ColorPickerType.primary: false,
-                ColorPickerType.accent: false,
-                ColorPickerType.bw: false,
-                ColorPickerType.custom: false,
-                ColorPickerType.customSecondary: false,
-                ColorPickerType.wheel: true,
-              },
-              runSpacing: config.spacing / 2,
-              showColorCode: true,
-              showRecentColors: true,
-              spacing: config.spacing / 2,
-              toolbarSpacing: config.spacing / 2,
-            ),
-          ),
-          config.margin,
+          gradient
+              ? Container(
+                  constraints: BoxConstraints.tight(Size(
+                    ScreenSize.small.size,
+                    heightOf(context) * 0.667, // TODO: make better
+                  )),
+                  child: Stack(children: <Widget>[
+                    Positioned.fill(child: colorPicker()),
 
-          // The choice(s)
+                    // Add gradient color
+                    Positioned(
+                      top: config.spacing + config.padding + config.iconSize,
+                      right: 0,
+                      child: EzIconButton(
+                        config,
+                        icon: const Icon(Icons.add),
+                        tooltip: 'Add to gradients list',
+                        onPressed: () => setModal(() => gradients.add(preview)),
+                      ),
+                    ),
+                  ]),
+                )
+              : Container(
+                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                  child: colorPicker(),
+                ),
+
+          // Gradient settings
+          EzAnimVis(
+            config,
+            visible: gradient,
+            mod: 0.75,
+            forceFade: true,
+            forceType: EzTransitionType.zoom,
+            kid: EzCol(children: <Widget>[
+              // Curr colors
+              EzWrap(
+                children: gradients
+                    .asMap()
+                    .entries
+                    .map((MapEntry<int, Color> entry) => InkWell(
+                          key: ValueKey<int>(entry.key),
+                          onTap: () => setModal(() => gradients.removeAt(entry.key)),
+                          child: ezWrap(
+                            config,
+                            child: entry.value == Colors.transparent
+                                ? CircleAvatar(
+                                    backgroundColor: config.colors.surface,
+                                    foregroundColor: config.colors.onSurface,
+                                    radius: iconRadius + config.padding,
+                                    child: EzIcon(config, Icons.visibility_off),
+                                  )
+                                : CircleAvatar(
+                                    backgroundColor: entry.value,
+                                    radius: iconRadius + config.padding,
+                                  ),
+                          ),
+                        ))
+                    .toList(),
+              ),
+              gradients.isEmpty ? const SizedBox.shrink() : config.halfSpacer,
+
+              // Preview
+              Container(
+                constraints: BoxConstraints.tight(Size(qWidth, qHeight)),
+                child: Stack(children: <Widget>[
+                  // Ze gradient
+                  Positioned.fill(
+                    child: Container(
+                      key: UniqueKey(),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: config.colors.outline,
+                          width: config.borderWidth,
+                        ),
+                        borderRadius: EzButtonShape.roundRect.radius,
+                        gradient: LinearGradient(
+                          begin: beginDir,
+                          end: endDir,
+                          colors: gradients,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Waiting (conditional)
+                  if (gradients.length < 2)
+                    Center(
+                      child: EzText(
+                        config,
+                        text: 'Needs 2+ colors',
+                        textAlign: TextAlign.center,
+                        style: config.bodyStyle,
+                      ),
+                    ),
+
+                  // Begin dir
+                  iconPosition(
+                    beginDir,
+                    EzIconButton(
+                      config,
+                      icon: const Icon(Icons.start),
+                      tooltip: 'Start direction',
+                      onPressed: doNothing,
+                    ),
+                  ),
+
+                  // End dir
+                  iconPosition(
+                    endDir,
+                    EzIconButton(
+                      config,
+                      icon: const Icon(Icons.flag),
+                      tooltip: 'End direction',
+                      onPressed: doNothing,
+                    ),
+                  ),
+                ]),
+              ),
+            ]),
+          ),
+          config.spacer,
+
+          // Exit options
           EzRow(
             config,
             mainAxisSize: MainAxisSize.max,
@@ -303,8 +493,10 @@ Future<void> ezColorPicker(
           ),
           EzKeyboardSpacer(config.spacing * 2),
         ],
-      ),
-    );
+      );
+    }),
+  );
+}
 
 /// Returns an appropriate width for a [DropdownMenu]
 double ezDropdownWidth(EzCP config, {required BuildContext context, required String entry}) =>
