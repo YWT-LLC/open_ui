@@ -468,60 +468,64 @@ Future<void> ezColorPicker(
               ),
 
               // Preview
-              (gradients.length >= 2)
-                  ? Container(
-                      constraints: BoxConstraints.tight(Size(qWidth, qHeight)),
-                      child: Stack(children: <Widget>[
-                        // Ze gradient
-                        Positioned.fill(
-                          child: Container(
-                            key: UniqueKey(),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: config.colors.outline,
-                                width: config.borderWidth,
-                              ),
-                              borderRadius: EzButtonShape.roundRect.radius,
-                              gradient: LinearGradient(
-                                begin: beginDir,
-                                end: endDir,
-                                colors: gradients,
+              EzAnimSwitch(
+                config,
+                mod: 0.75,
+                child: (gradients.length >= 2)
+                    ? Container(
+                        constraints: BoxConstraints.tight(Size(qWidth, qHeight)),
+                        child: Stack(children: <Widget>[
+                          // Ze gradient
+                          Positioned.fill(
+                            child: Container(
+                              key: UniqueKey(),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: config.colors.outline,
+                                  width: config.borderWidth,
+                                ),
+                                borderRadius: EzButtonShape.roundRect.radius,
+                                gradient: LinearGradient(
+                                  begin: beginDir,
+                                  end: endDir,
+                                  colors: gradients,
+                                ),
                               ),
                             ),
                           ),
-                        ),
 
-                        // Begin dir
-                        iconPosition(
-                          beginDir,
-                          dirMenu(
-                            controller: beginMenu,
-                            selected: beginDir,
-                            icon: const Icon(Icons.start),
-                            tooltip: 'Start direction',
-                            onSelected: (Alignment choice) => setModal(() => beginDir = choice),
+                          // Begin dir
+                          iconPosition(
+                            beginDir,
+                            dirMenu(
+                              controller: beginMenu,
+                              selected: beginDir,
+                              icon: const Icon(Icons.start),
+                              tooltip: 'Start direction',
+                              onSelected: (Alignment choice) => setModal(() => beginDir = choice),
+                            ),
                           ),
-                        ),
 
-                        // End dir
-                        iconPosition(
-                          endDir,
-                          dirMenu(
-                            controller: endMenu,
-                            selected: endDir,
-                            icon: const Icon(Icons.flag),
-                            tooltip: 'End direction',
-                            onSelected: (Alignment choice) => setModal(() => endDir = choice),
+                          // End dir
+                          iconPosition(
+                            endDir,
+                            dirMenu(
+                              controller: endMenu,
+                              selected: endDir,
+                              icon: const Icon(Icons.flag),
+                              tooltip: 'End direction',
+                              onSelected: (Alignment choice) => setModal(() => endDir = choice),
+                            ),
                           ),
-                        ),
-                      ]),
-                    )
-                  : EzText(
-                      config,
-                      text: 'Add 2 or more colors',
-                      style: config.bodyStyle,
-                      textAlign: TextAlign.center,
-                    ),
+                        ]),
+                      )
+                    : EzText(
+                        config,
+                        text: 'Add 2 or more colors',
+                        style: config.bodyStyle,
+                        textAlign: TextAlign.center,
+                      ),
+              ),
             ]),
           ),
           config.spacer,
