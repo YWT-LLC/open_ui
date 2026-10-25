@@ -218,9 +218,6 @@ class EzFooter extends StatelessWidget {
   /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
   final TextAlign textAlign;
 
-  /// Optionally override [EzCP.spacing] * 2
-  final double? spacing;
-
   const EzFooter(
     this.config, {
     super.key,
@@ -231,19 +228,13 @@ class EzFooter extends StatelessWidget {
     this.translateMessage,
     required this.a11howPath,
     this.textAlign = TextAlign.center,
-    this.spacing,
   });
 
   @override
   Widget build(BuildContext context) => blank
-      ? spacing == null
-          ? config.separator
-          : EzSpacer(spacing!)
+      ? config.separator
       : Padding(
-          padding: EdgeInsets.only(
-            top: spacing ?? (config.spacing * 2),
-            bottom: spacing == null ? config.spacing : spacing! / 2,
-          ),
+          padding: EdgeInsets.only(top: config.spacing * 4, bottom: config.spacing),
           child: (human || (config.locale.languageCode == defaultLocale.languageCode))
               ? contributeMessage ??
                   EzLink(
