@@ -11,6 +11,10 @@ class EzTextButton extends StatefulWidget {
   /// EzConfig Provider
   final EzCP config;
 
+  /// Easily disable the button
+  /// Useful if the functionality is async
+  final bool enabled;
+
   /// [TextButton.child] will be [Text] with [text], [textStyle], and [textAlign]
   final String text;
 
@@ -39,6 +43,7 @@ class EzTextButton extends StatefulWidget {
   const EzTextButton(
     this.config, {
     super.key,
+    this.enabled = true,
     this.onPressed,
     this.onLongPress,
     required this.text,
@@ -56,13 +61,22 @@ class EzTextButton extends StatefulWidget {
 class _EzTextButtonState extends State<EzTextButton> {
   @override
   Widget build(BuildContext context) => TextButton(
-        onPressed: widget.onPressed,
-        onLongPress: widget.onLongPress,
+        onPressed: widget.enabled ? widget.onPressed : doNothing,
+        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
         style: widget.inline
             ? (widget.style == null
-                ? TextButton.styleFrom(padding: EdgeInsets.zero)
-                : widget.style!
-                    .copyWith(padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero)))
+                ? TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    iconColor: widget.enabled
+                        ? widget.config.colors.primary
+                        : widget.config.colors.outline,
+                  )
+                : widget.style!.copyWith(
+                    padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
+                    iconColor: WidgetStatePropertyAll<Color>(widget.enabled
+                        ? widget.config.colors.primary
+                        : widget.config.colors.outline),
+                  ))
             : widget.style,
         child: Text(
           widget.text,
@@ -78,6 +92,10 @@ class _EzTextButtonState extends State<EzTextButton> {
 class EzTextIconButton extends StatefulWidget {
   /// EzConfig Provider
   final EzCP config;
+
+  /// Easily disable the button
+  /// Useful if the functionality is async
+  final bool enabled;
 
   /// [TextButton.icon] label will be [Text] with [label], [textStyle], and [textAlign]
   final String label;
@@ -111,6 +129,7 @@ class EzTextIconButton extends StatefulWidget {
   const EzTextIconButton(
     this.config, {
     super.key,
+    this.enabled = true,
     required this.label,
     required this.icon,
     this.onPressed,
@@ -129,13 +148,22 @@ class EzTextIconButton extends StatefulWidget {
 class _EzTextIconButtonState extends State<EzTextIconButton> {
   @override
   Widget build(BuildContext context) => TextButton.icon(
-        onPressed: widget.onPressed,
-        onLongPress: widget.onLongPress,
+        onPressed: widget.enabled ? widget.onPressed : doNothing,
+        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
         style: widget.inline
-            ? (widget.style == null
-                ? TextButton.styleFrom(padding: EdgeInsets.zero)
-                : widget.style!
-                    .copyWith(padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero)))
+            ? widget.style == null
+                ? TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    iconColor: widget.enabled
+                        ? widget.config.colors.primary
+                        : widget.config.colors.outline,
+                  )
+                : widget.style!.copyWith(
+                    padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
+                    iconColor: WidgetStatePropertyAll<Color>(widget.enabled
+                        ? widget.config.colors.primary
+                        : widget.config.colors.outline),
+                  )
             : widget.style,
         icon: widget.icon,
         iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
