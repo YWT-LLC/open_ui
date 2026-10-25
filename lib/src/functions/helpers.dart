@@ -243,6 +243,67 @@ Future<void> ezColorPicker(
   Alignment beginDir = Alignment.centerLeft;
   Alignment endDir = Alignment.centerRight;
 
+  // TODO: Save all colors as strings (I think it’s argb rn… that’s ez to toString() I believe)
+  // ...Add delim for gradients. Start dir, delim, end dir, delim, colors (x deims?)
+
+  final MenuController beginMenu = MenuController();
+  final MenuController endMenu = MenuController();
+
+  const List<List<(Alignment, String)>> dirGrid = <List<(Alignment, String)>>[
+    <(Alignment, String)>[
+      (Alignment.topLeft, 'Top left'),
+      (Alignment.topCenter, 'Top center'),
+      (Alignment.topRight, 'Top right'),
+    ],
+    <(Alignment, String)>[
+      (Alignment.centerLeft, 'Center left'),
+      (Alignment.center, 'Center'),
+      (Alignment.centerRight, 'Center right'),
+    ],
+    <(Alignment, String)>[
+      (Alignment.bottomLeft, 'Bottom left'),
+      (Alignment.bottomCenter, 'Bottom center'),
+      (Alignment.bottomRight, 'Bottom right'),
+    ],
+  ];
+
+  Widget dirMenu({
+    required MenuController controller,
+    required Alignment selected,
+    required Icon icon,
+    required String tooltip,
+    required void Function(Alignment choice) onSelected,
+  }) =>
+      MenuAnchor(
+        controller: controller,
+        style: MenuStyle(
+          padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.all(config.spacing / 2)),
+        ),
+        menuChildren: <Widget>[
+          for (final List<(Alignment, String)> row in dirGrid)
+            EzRow(config, reverseHands: false, children: <Widget>[
+              for (final (Alignment align, String label) in row)
+                IconButton(
+                  icon: EzIcon(
+                    config,
+                    align == selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                  ),
+                  tooltip: label,
+                  onPressed: () {
+                    onSelected(align);
+                    controller.close();
+                  },
+                ),
+            ]),
+        ],
+        builder: (_, __, ___) => EzIconButton(
+          config,
+          icon: icon,
+          tooltip: tooltip,
+          onPressed: () => toggleMenu(controller),
+        ),
+      );
+
   Positioned iconPosition(Alignment align, Widget icon) => switch (align) {
         // Bottom
         Alignment.bottomCenter => Positioned(
@@ -406,62 +467,60 @@ Future<void> ezColorPicker(
               ),
 
               // Preview
-              Container(
-                constraints: BoxConstraints.tight(Size(qWidth, qHeight)),
-                child: Stack(children: <Widget>[
-                  // Ze gradient
-                  Positioned.fill(
-                    child: Container(
-                      key: UniqueKey(),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: config.colors.outline,
-                          width: config.borderWidth,
+              (gradients.length >= 2)
+                  ? Container(
+                      constraints: BoxConstraints.tight(Size(qWidth, qHeight)),
+                      child: Stack(children: <Widget>[
+                        // Ze gradient
+                        Positioned.fill(
+                          child: Container(
+                            key: UniqueKey(),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: config.colors.outline,
+                                width: config.borderWidth,
+                              ),
+                              borderRadius: EzButtonShape.roundRect.radius,
+                              gradient: LinearGradient(
+                                begin: beginDir,
+                                end: endDir,
+                                colors: gradients,
+                              ),
+                            ),
+                          ),
                         ),
-                        borderRadius: EzButtonShape.roundRect.radius,
-                        gradient: LinearGradient(
-                          begin: beginDir,
-                          end: endDir,
-                          colors: gradients,
+
+                        // Begin dir
+                        iconPosition(
+                          beginDir,
+                          dirMenu(
+                            controller: beginMenu,
+                            selected: beginDir,
+                            icon: const Icon(Icons.start),
+                            tooltip: 'Start direction',
+                            onSelected: (Alignment choice) => setModal(() => beginDir = choice),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
 
-                  // Waiting (conditional)
-                  if (gradients.length < 2)
-                    Center(
-                      child: EzText(
-                        config,
-                        text: 'Needs 2+ colors',
-                        textAlign: TextAlign.center,
-                        style: config.bodyStyle,
-                      ),
-                    ),
-
-                  // Begin dir
-                  iconPosition(
-                    beginDir,
-                    EzIconButton(
+                        // End dir
+                        iconPosition(
+                          endDir,
+                          dirMenu(
+                            controller: endMenu,
+                            selected: endDir,
+                            icon: const Icon(Icons.flag),
+                            tooltip: 'End direction',
+                            onSelected: (Alignment choice) => setModal(() => endDir = choice),
+                          ),
+                        ),
+                      ]),
+                    )
+                  : EzText(
                       config,
-                      icon: const Icon(Icons.start),
-                      tooltip: 'Start direction',
-                      onPressed: doNothing,
+                      text: 'Add 2 or more colors',
+                      style: config.bodyStyle,
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-
-                  // End dir
-                  iconPosition(
-                    endDir,
-                    EzIconButton(
-                      config,
-                      icon: const Icon(Icons.flag),
-                      tooltip: 'End direction',
-                      onPressed: doNothing,
-                    ),
-                  ),
-                ]),
-              ),
             ]),
           ),
           config.spacer,
@@ -484,6 +543,7 @@ Future<void> ezColorPicker(
               config.rowSpacer,
               EzTextIconButton(
                 config,
+                enabled: !gradient || (gradients.length > 2),
                 icon: EzIcon(config, Icons.check),
                 label: confirmMsg ?? config.ezL10n.gApply,
                 onPressed: () {
