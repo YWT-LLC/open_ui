@@ -625,7 +625,7 @@ final Map<String, Object> ywtDesktopConfig = <String, Object>{
 
   darkMarginKey: defaultDesktopMargin,
   darkSpacingKey: defaultDesktopSpacing,
-  darkShowScrollKey: true,
+  darkShowScrollKey: false,
 
   // Light
   lightPaddingKey: defaultDesktopPadding,
@@ -633,5 +633,5 @@ final Map<String, Object> ywtDesktopConfig = <String, Object>{
 
   lightMarginKey: defaultDesktopMargin,
   lightSpacingKey: defaultDesktopSpacing,
-  lightShowScrollKey: true,
+  lightShowScrollKey: false,
 };
