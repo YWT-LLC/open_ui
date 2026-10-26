@@ -218,7 +218,7 @@ void ezCloseAll() {
 }
 
 /// Wraps a [ColorPicker] in an [EzAlertDialog]
-Future<void> ezColorPicker(
+Future<String?> ezColorPicker(
   EzCP config, {
   required BuildContext context,
   String? title,
@@ -228,7 +228,7 @@ Future<void> ezColorPicker(
   required void Function() onConfirm,
   String? denyMsg,
   required void Function() onDeny,
-}) {
+}) async {
   // Define modal data //
 
   final double iconRadius = config.iconSize / 2;
@@ -343,7 +343,7 @@ Future<void> ezColorPicker(
         Alignment() => Positioned(top: 0, child: icon),
       };
 
-  return ezModal(
+  await ezModal(
     config,
     enableDrag: false,
     isDismissible: false,
@@ -543,6 +543,7 @@ Future<void> ezColorPicker(
                 onPressed: () {
                   onDeny();
                   if (mCon.mounted) Navigator.of(mCon).pop();
+                  setModal(() => preview = startColor);
                 },
               ),
               config.rowSpacer,
@@ -563,6 +564,8 @@ Future<void> ezColorPicker(
       );
     }),
   );
+
+  return preview.toString();
 }
 
 /// Returns an appropriate width for a [DropdownMenu]

@@ -44,10 +44,14 @@ class _ColorSettingState extends State<EzColorSetting> {
       startColor: backup,
       onColorChange: (Color chosenColor) => setState(() => currColor = chosenColor),
       onConfirm: () async {
-        await EzCM.setInt(widget.configKey, currColor.toARGB32());
+        // TODO: account for gradients
+        await EzCM.setString(widget.configKey, currColor.toARGB32().toString());
 
         if (ezTextMirrors.containsKey(widget.configKey)) {
-          await EzCM.setInt(ezTextMirrors[widget.configKey]!, getTextColor(currColor).toARGB32());
+          await EzCM.setString(
+            ezTextMirrors[widget.configKey]!,
+            getTextColor(currColor).toARGB32().toString(),
+          );
         }
         await widget.config.rebuildUI();
       },
@@ -106,7 +110,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             text: widget.config.ezL10n.gYes,
             onPressed: () async {
               // Update the user's configKey
-              await EzCM.setInt(widget.configKey, recommended);
+              await EzCM.setString(widget.configKey, recommended.toString());
               setState(() => currColor = Color(recommended));
               await widget.config.rebuildUI();
             },

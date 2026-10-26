@@ -145,6 +145,7 @@ class EzCM {
       final Set<String> overwritten = preferences.keys.intersection(typeMap.keys.toSet());
 
       // Get the updated values
+      // TODO: account for new string colors
       for (final String key in overwritten) {
         final Type? valueType = typeMap[key];
         dynamic userPref;
