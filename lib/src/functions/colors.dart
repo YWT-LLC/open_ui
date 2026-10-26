@@ -19,11 +19,13 @@ Color getTextColor(Color background) {
 /// Generate a [ColorScheme] based on [EzCM]
 ColorScheme ezColorScheme(Brightness brightness) {
   Color? getColor(String key) {
-    final String? value = EzCM.get(key);
+    final dynamic value = EzCM.get(key);
 
-    return (value == null)
-        ? null
-        : Color(int.parse(value.contains(',') ? value.split(',')[2] : value));
+    return switch (value.runtimeType) {
+      int => Color(value),
+      String => Color(int.parse(value.contains(',') ? value.split(',')[2] : value)),
+      _ => null,
+    };
   }
 
   return (brightness == Brightness.dark)
