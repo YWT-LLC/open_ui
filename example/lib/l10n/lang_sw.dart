@@ -166,7 +166,7 @@ class LangSw extends Lang {
   String get gsConsole => 'Pato la kiweko';
 
   @override
-  String get gsIsReadyIn => 'iko tayari baada ya';
+  String get gsIsReadyIn => 'iko tayari katika';
 
   @override
   String get gsNeedPermission =>

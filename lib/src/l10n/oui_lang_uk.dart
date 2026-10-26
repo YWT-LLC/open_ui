@@ -59,7 +59,7 @@ class OUILangUk extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return 'Скинути $themeType кольори?';
+    return 'Скинути кольори ($themeType)?';
   }
 
   @override
@@ -168,7 +168,7 @@ class OUILangUk extends OUILang {
   String get dsJewel => 'Дорогоцінний камінь';
 
   @override
-  String get dsLeftGram => 'Ліва паралель';
+  String get dsLeftGram => 'Лівий паралелограм';
 
   @override
   String get dsLinear => 'Лінійна';
@@ -211,7 +211,7 @@ class OUILangUk extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'Скинути дизайн $themeType кнопки?';
+    return 'Скинути дизайн кнопок ($themeType)?';
   }
 
   @override
@@ -219,11 +219,11 @@ class OUILangUk extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'Скинути дизайн $themeType сторінки?';
+    return 'Скинути дизайн сторінки ($themeType)?';
   }
 
   @override
-  String get dsRightGram => 'Права паралель';
+  String get dsRightGram => 'Правий паралелограм';
 
   @override
   String get dsRotate => 'Обертання';
@@ -420,7 +420,7 @@ class OUILangUk extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Завантаження. Логотип YWT анімований як пісочний годинник, що обертається.';
+      'Завантаження. Логотип YWT у вигляді пісочного годинника обертається.';
 
   @override
   String get gLock => 'Заблокувати';
@@ -465,7 +465,7 @@ class OUILangUk extends OUILang {
   String get gOpenUISourceHint => 'Відкрити сторінку GitHub для Open UI';
 
   @override
-  String get gOpenYWT => 'Відкрити посилання на YWT LLC';
+  String get gOpenYWT => 'Відкрити посилання на YWT';
 
   @override
   String get gOptional => 'необов\'язково';
@@ -561,7 +561,7 @@ class OUILangUk extends OUILang {
   String get gText => 'Текст';
 
   @override
-  String get gThe => 'Цей';
+  String get gThe => '';
 
   @override
   String get gUnMute => 'Увімкнути звук';
@@ -659,7 +659,7 @@ class OUILangUk extends OUILang {
 
   @override
   String ssRandomize(Object themeType) {
-    return 'Рандомізувати $themeType тему?';
+    return 'Згенерувати випадкову тему ($themeType)?';
   }
 
   @override
@@ -780,7 +780,7 @@ class OUILangUk extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return 'Скинути стилі $themeType тексту?';
+    return 'Скинути стилі тексту ($themeType)?';
   }
 
   @override

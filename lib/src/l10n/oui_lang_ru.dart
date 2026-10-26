@@ -60,7 +60,7 @@ class OUILangRu extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return 'Сбросить $themeType цвета?';
+    return 'Сбросить цвета ($themeType)?';
   }
 
   @override
@@ -213,7 +213,7 @@ class OUILangRu extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'Сбросить дизайн кнопки для $themeType темы?';
+    return 'Сбросить дизайн кнопок ($themeType)?';
   }
 
   @override
@@ -221,7 +221,7 @@ class OUILangRu extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'Сбросить дизайн страницы для $themeType темы?';
+    return 'Сбросить дизайн страницы ($themeType)?';
   }
 
   @override
@@ -422,7 +422,7 @@ class OUILangRu extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Загрузка. Логотип YWT анимирован в виде вращающихся песочных часов.';
+      'Загрузка. Логотип YWT в виде песочных часов вращается.';
 
   @override
   String get gLock => 'Заблокировать';
@@ -467,7 +467,7 @@ class OUILangRu extends OUILang {
   String get gOpenUISourceHint => 'Открыть страницу GitHub для Open UI';
 
   @override
-  String get gOpenYWT => 'Открыть ссылку на YWT LLC';
+  String get gOpenYWT => 'Открыть ссылку на YWT';
 
   @override
   String get gOptional => 'необязательно';
@@ -497,7 +497,7 @@ class OUILangRu extends OUILang {
   String get gRemove => 'Удалить';
 
   @override
-  String get gReplay => 'Повторить';
+  String get gReplay => 'Воспроизвести снова';
 
   @override
   String get gRequired => 'Обязательно';
@@ -564,7 +564,7 @@ class OUILangRu extends OUILang {
   String get gText => 'Текст';
 
   @override
-  String get gThe => 'Этот';
+  String get gThe => '';
 
   @override
   String get gUnMute => 'Включить звук';
@@ -662,7 +662,7 @@ class OUILangRu extends OUILang {
 
   @override
   String ssRandomize(Object themeType) {
-    return 'Случайный выбор для $themeType темы?';
+    return 'Сгенерировать случайную тему ($themeType)?';
   }
 
   @override
@@ -782,7 +782,7 @@ class OUILangRu extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return 'Сбросить стили текста для $themeType темы?';
+    return 'Сбросить стили текста ($themeType)?';
   }
 
   @override

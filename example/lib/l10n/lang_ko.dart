@@ -13,11 +13,11 @@ class LangKo extends Lang {
 
   @override
   String asToGen(Object app_name) {
-    return ' 데스크톱용을 사용하여 $app_name의 코드를 생성합니다';
+    return ' 데스크톱 버전에서 사용하여 $app_name의 코드를 생성하세요';
   }
 
   @override
-  String get asUseIt => '\n\n다음에 사용하세요: ';
+  String get asUseIt => '\n\n';
 
   @override
   String get csAdvanced => '고급 설정';
@@ -29,7 +29,7 @@ class LangKo extends Lang {
   String get csBadPath => '잘못된 경로';
 
   @override
-  String get csBecomes => '변경됨';
+  String get csBecomes => '변환됨';
 
   @override
   String get csCopyright => '저작권 고지';
@@ -166,7 +166,7 @@ class LangKo extends Lang {
 
   @override
   String get gsNeedPermission =>
-      'Open UI에 전체 디스크 접근 권한이 필요합니다.\n\n다음으로 이동하여...\n시스템 설정 > 개인정보 보호 및 보안 > 전체 디스크 접근 권한 > Open UI 활성화; 후 다시 시도해 주세요.';
+      'Open UI에 전체 디스크 접근 권한이 필요합니다.\n\n다음으로 이동하여...\n시스템 설정 > 개인정보 보호 및 보안 > 전체 디스크 접근 권한 > Open UI 활성화; 그런 다음 다시 시도해 주세요.';
 
   @override
   String get gsNotInstalled => 'Flutter가 설치되지 않았습니다';

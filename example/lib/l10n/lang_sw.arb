@@ -48,7 +48,7 @@
   "csTheConfig": "usanidi",
   "csYourApp": "programu yako",
   "gsConsole": "Pato la kiweko",
-  "gsIsReadyIn": "iko tayari baada ya",
+  "gsIsReadyIn": "iko tayari katika",
   "gsNeedPermission": "Open UI inahitaji Ufikiaji Kamili wa Diski.\n\nTafadhali nenda kwenye...\nMipangilio ya Mfumo > Faragha na Usalama > Ufikiaji Kamili wa Diski > Washa Open UI; kisha ujaribu tena.",
   "gsNotInstalled": "Flutter haijasakinishwa",
   "gsPageTitle": "Kizalishi",

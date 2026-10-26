@@ -413,7 +413,7 @@ class OUILangZh extends OUILang {
   String get gLightTheme => '浅色主题';
 
   @override
-  String get gLoadingAnim => '加载中。YWT 标志像旋转的沙漏一样具有动画效果。';
+  String get gLoadingAnim => '加载中。YWT 沙漏标志正在旋转。';
 
   @override
   String get gLock => '锁定';
@@ -458,7 +458,7 @@ class OUILangZh extends OUILang {
   String get gOpenUISourceHint => '打开 Open UI 的 GitHub 页面';
 
   @override
-  String get gOpenYWT => '打开 YWT LLC 的链接';
+  String get gOpenYWT => '打开 YWT 的链接';
 
   @override
   String get gOptional => '可选';
@@ -554,7 +554,7 @@ class OUILangZh extends OUILang {
   String get gText => '文本';
 
   @override
-  String get gThe => '该';
+  String get gThe => '';
 
   @override
   String get gUnMute => '取消静音';
@@ -779,7 +779,7 @@ class OUILangZh extends OUILang {
   String get tsTitle => '标题';
 
   @override
-  String get tsTitleLink => '标题区隔明显吗？';
+  String get tsTitleLink => '标题区分明显吗？';
 
   @override
   String get tsTitleP1 => '';
@@ -1200,7 +1200,7 @@ class OUILangZhCn extends OUILangZh {
   String get gLightTheme => '浅色主题';
 
   @override
-  String get gLoadingAnim => '加载中。YWT 标志像旋转的沙漏一样具有动画效果。';
+  String get gLoadingAnim => '加载中。YWT 沙漏标志正在旋转。';
 
   @override
   String get gLock => '锁定';
@@ -1245,7 +1245,7 @@ class OUILangZhCn extends OUILangZh {
   String get gOpenUISourceHint => '打开 Open UI 的 GitHub 页面';
 
   @override
-  String get gOpenYWT => '打开 YWT LLC 的链接';
+  String get gOpenYWT => '打开 YWT 的链接';
 
   @override
   String get gOptional => '可选';
@@ -1341,7 +1341,7 @@ class OUILangZhCn extends OUILangZh {
   String get gText => '文本';
 
   @override
-  String get gThe => '该';
+  String get gThe => '';
 
   @override
   String get gUnMute => '取消静音';
@@ -1566,7 +1566,7 @@ class OUILangZhCn extends OUILangZh {
   String get tsTitle => '标题';
 
   @override
-  String get tsTitleLink => '标题区隔明显吗？';
+  String get tsTitleLink => '标题区分明显吗？';
 
   @override
   String get tsTitleP1 => '';

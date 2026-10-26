@@ -414,7 +414,7 @@ class OUILangKo extends OUILang {
   String get gLightTheme => '라이트 테마';
 
   @override
-  String get gLoadingAnim => '로딩 중. YWT 로고가 회전하는 모래시계처럼 애니메이션 처리됩니다.';
+  String get gLoadingAnim => '로딩 중. YWT 모래시계 로고가 회전하고 있습니다.';
 
   @override
   String get gLock => '잠금';
@@ -456,10 +456,10 @@ class OUILangKo extends OUILang {
   String get gOpenUIReleases => 'Open UI의 릴리스 페이지 열기';
 
   @override
-  String get gOpenUISourceHint => 'OpenUI용 GitHub 페이지 열기';
+  String get gOpenUISourceHint => 'Open UI의 GitHub 페이지 열기';
 
   @override
-  String get gOpenYWT => 'YWT LLC 링크 열기';
+  String get gOpenYWT => 'YWT 링크 열기';
 
   @override
   String get gOptional => '선택 사항';
@@ -555,7 +555,7 @@ class OUILangKo extends OUILang {
   String get gText => '텍스트';
 
   @override
-  String get gThe => '그';
+  String get gThe => '';
 
   @override
   String get gUnMute => '음소거 해제';
@@ -567,7 +567,7 @@ class OUILangKo extends OUILang {
   String get gUndoWarn1 => '자동으로 실행 취소할 수 없습니다.\n';
 
   @override
-  String get gUndoWarn2 => ' 하여 수동으로 복원할 수 있도록 현재 구성을 저장하세요.';
+  String get gUndoWarn2 => ': 현재 구성을 저장해 두면 수동으로 복원할 수 있습니다.';
 
   @override
   String get gUpdates => '업데이트 가능';
@@ -697,13 +697,13 @@ class OUILangKo extends OUILang {
   String get tsBody => '본문';
 
   @override
-  String get tsBodyLink => '은 어떤가요?';
+  String get tsBodyLink => '본문';
 
   @override
-  String get tsBodyP1 => '본문';
+  String get tsBodyP1 => '';
 
   @override
-  String get tsBodyP2 => ' 읽기 편한가요?';
+  String get tsBodyP2 => '은 어떤가요? 읽기 편한가요?';
 
   @override
   String get tsBold => '굵게';
@@ -730,13 +730,13 @@ class OUILangKo extends OUILang {
   String get tsHeadline => '헤드라인';
 
   @override
-  String get tsHeadlineLink => '제목과';
+  String get tsHeadlineLink => '헤드라인';
 
   @override
-  String get tsHeadlineP1 => '헤드라인이 ';
+  String get tsHeadlineP1 => '';
 
   @override
-  String get tsHeadlineP2 => ' 명확히 구분되나요...';
+  String get tsHeadlineP2 => '이 뚜렷이 구분되나요...';
 
   @override
   String get tsIconSize => '아이콘 크기';
@@ -791,5 +791,5 @@ class OUILangKo extends OUILang {
   String get tsUnderline => '밑줄';
 
   @override
-  String get tsWordSpacing => '어간';
+  String get tsWordSpacing => '단어 간격';
 }

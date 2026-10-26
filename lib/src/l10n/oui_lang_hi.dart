@@ -419,8 +419,7 @@ class OUILangHi extends OUILang {
   String get gLightTheme => 'लाइट थीम';
 
   @override
-  String get gLoadingAnim =>
-      'लोड हो रहा है। एम्पैथेटिक लोगो एक घूमते हुए घंटे के चश्मे (hourglass) के रूप में एनिमेटेड है।';
+  String get gLoadingAnim => 'लोड हो रहा है। YWT का रेतघड़ी लोगो घूम रहा है।';
 
   @override
   String get gLock => 'लॉक';
@@ -465,7 +464,7 @@ class OUILangHi extends OUILang {
   String get gOpenUISourceHint => 'Open UI के लिए GitHub पेज खोलें';
 
   @override
-  String get gOpenYWT => 'YWT LLC का लिंक खोलें';
+  String get gOpenYWT => 'YWT का लिंक खोलें';
 
   @override
   String get gOptional => 'वैकल्पिक';
@@ -561,7 +560,7 @@ class OUILangHi extends OUILang {
   String get gText => 'टेक्स्ट';
 
   @override
-  String get gThe => 'द';
+  String get gThe => '';
 
   @override
   String get gUnMute => 'अन-म्यूट करें';
@@ -574,7 +573,7 @@ class OUILangHi extends OUILang {
 
   @override
   String get gUndoWarn2 =>
-      ' अपनी वर्तमान कॉन्फ़िग को मैन्युअल रूप से पुनर्स्थापित करने के लिए।';
+      ' अपनी वर्तमान कॉन्फ़िग, ताकि बाद में उसे मैन्युअल रूप से पुनर्स्थापित कर सकें।';
 
   @override
   String get gUpdates => 'अपडेट उपलब्ध हैं';
@@ -744,7 +743,7 @@ class OUILangHi extends OUILang {
   String get tsHeadlineP1 => 'क्या ';
 
   @override
-  String get tsHeadlineP2 => ' अलग हैं...';
+  String get tsHeadlineP2 => ' अलग दिखती हैं...';
 
   @override
   String get tsIconSize => 'आइकन का आकार';
@@ -790,10 +789,10 @@ class OUILangHi extends OUILang {
   String get tsTitle => 'शीर्षक';
 
   @override
-  String get tsTitleLink => 'अलग?';
+  String get tsTitleLink => 'शीर्षकों से?';
 
   @override
-  String get tsTitleP1 => 'शीर्षकों से ';
+  String get tsTitleP1 => '';
 
   @override
   String get tsUnderline => 'अंडरलाइन';

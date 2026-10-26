@@ -414,7 +414,7 @@ class OUILangJa extends OUILang {
   String get gLightTheme => 'ライトテーマ';
 
   @override
-  String get gLoadingAnim => '読み込み中。YWTのロゴが砂時計のように回転しています。';
+  String get gLoadingAnim => '読み込み中。YWTの砂時計ロゴが回転しています。';
 
   @override
   String get gLock => 'ロック';
@@ -453,13 +453,13 @@ class OUILangJa extends OUILang {
   String get gOpenSource => 'オープンソース';
 
   @override
-  String get gOpenUIReleases => 'Open UIのリリースぺージを開く';
+  String get gOpenUIReleases => 'Open UIのリリースページを開く';
 
   @override
-  String get gOpenUISourceHint => 'OpenUIのGitHubページを開く';
+  String get gOpenUISourceHint => 'Open UIのGitHubページを開く';
 
   @override
-  String get gOpenYWT => 'YWT LLCへのリンクを開く';
+  String get gOpenYWT => 'YWTへのリンクを開く';
 
   @override
   String get gOptional => '任意';
@@ -555,7 +555,7 @@ class OUILangJa extends OUILang {
   String get gText => 'テキスト';
 
   @override
-  String get gThe => 'その';
+  String get gThe => '';
 
   @override
   String get gUnMute => 'ミュート解除';
@@ -567,7 +567,7 @@ class OUILangJa extends OUILang {
   String get gUndoWarn1 => '自動で元に戻すことはできません。\n';
 
   @override
-  String get gUndoWarn2 => ' 現在の設定を保存して、後で手動で復元できるようにしてください。';
+  String get gUndoWarn2 => '：現在の設定を保存しておくと、手動で復元できます。';
 
   @override
   String get gUpdates => '利用可能なアップデートがあります';

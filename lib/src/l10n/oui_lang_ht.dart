@@ -81,10 +81,10 @@ class OUILangHt extends OUILang {
   String get csSurface => 'Fon\nbouton';
 
   @override
-  String get csSurfaceContainer => 'Paj && fon\nmodal';
+  String get csSurfaceContainer => 'Fon paj\n&& modal';
 
   @override
-  String get csSurfaceDim => 'Alet && fon ba\naplikasyon';
+  String get csSurfaceDim => 'Fon alèt &&\nba aplikasyon';
 
   @override
   String get csSurfaceTint => 'Tent\nsifas';
@@ -417,8 +417,7 @@ class OUILangHt extends OUILang {
   String get gLightTheme => 'Tèm klè';
 
   @override
-  String get gLoadingAnim =>
-      'Ap chaje. Logo YWT la ap anime tankou yon sabliye k ap vire.';
+  String get gLoadingAnim => 'Ap chaje. Logo sabliye YWT la ap vire.';
 
   @override
   String get gLock => 'Bloke';
@@ -463,7 +462,7 @@ class OUILangHt extends OUILang {
   String get gOpenUISourceHint => 'Louvri paj GitHub pou Open UI';
 
   @override
-  String get gOpenYWT => 'Louvri yon lyen pou YWT LLC';
+  String get gOpenYWT => 'Louvri yon lyen pou YWT';
 
   @override
   String get gOptional => 'opsyonèl';
@@ -559,7 +558,7 @@ class OUILangHt extends OUILang {
   String get gText => 'Tèks';
 
   @override
-  String get gThe => 'La';
+  String get gThe => '';
 
   @override
   String get gUnMute => 'Remete son';
@@ -625,7 +624,7 @@ class OUILangHt extends OUILang {
   String get ssHighVisibility => 'Gwo vizibilite';
 
   @override
-  String get ssImageToo => 'Imaj background tou?';
+  String get ssImageToo => 'Imaj de fon tou?';
 
   @override
   String get ssLangHint => 'Aktive pou chanje lang aplikasyon an';

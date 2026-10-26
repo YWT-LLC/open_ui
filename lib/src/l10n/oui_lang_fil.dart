@@ -420,7 +420,7 @@ class OUILangFil extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Naglo-load. Ang logo ng YWT ay gumagalaw bilang isang umiikot na hourglass.';
+      'Naglo-load. Umiikot ang hourglass na logo ng YWT.';
 
   @override
   String get gLock => 'I-lock';
@@ -465,7 +465,7 @@ class OUILangFil extends OUILang {
   String get gOpenUISourceHint => 'Buksan ang GitHub page para sa Open UI';
 
   @override
-  String get gOpenYWT => 'Magbukas ng link sa YWT LLC';
+  String get gOpenYWT => 'Magbukas ng link sa YWT';
 
   @override
   String get gOptional => 'opsyonal';
@@ -740,7 +740,7 @@ class OUILangFil extends OUILang {
   String get tsHeadlineLink => 'headline';
 
   @override
-  String get tsHeadlineP1 => 'Malinaw ba ang mga ';
+  String get tsHeadlineP1 => 'Naiiba ba ang mga ';
 
   @override
   String get tsHeadlineP2 => '...';

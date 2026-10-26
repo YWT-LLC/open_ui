@@ -60,7 +60,7 @@ class OUILangFr extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return 'Réinitialiser les couleurs du $themeType ?';
+    return 'Réinitialiser les couleurs ($themeType) ?';
   }
 
   @override
@@ -85,7 +85,7 @@ class OUILangFr extends OUILang {
   String get csSurfaceContainer => 'Arrière-plan de\nla page && modale';
 
   @override
-  String get csSurfaceDim => 'Arrière-plan de\nl\'alerte && app bar';
+  String get csSurfaceDim => 'Arrière-plan de\nl\'alerte && barre d\'app';
 
   @override
   String get csSurfaceTint => 'Teinte de\nsurface';
@@ -100,13 +100,13 @@ class OUILangFr extends OUILang {
   String get csUseCustom => 'Utiliser personnalisé';
 
   @override
-  String get dsAlwaysUnderline => 'Soulignez toujours les liens';
+  String get dsAlwaysUnderline => 'Toujours souligner les liens';
 
   @override
   String get dsAnimStyle => 'Style de l\'animation';
 
   @override
-  String get dsBackgroundImg => 'Arrière-plan de l\'image';
+  String get dsBackgroundImg => 'Image d\'arrière-plan';
 
   @override
   String get dsBorderWidth => 'Épaisseur de la bordure';
@@ -127,7 +127,7 @@ class OUILangFr extends OUILang {
   String get dsCurve => 'Courbe';
 
   @override
-  String get dsEase => 'Faciliter';
+  String get dsEase => 'Adouci';
 
   @override
   String get dsElastic => 'Élastique';
@@ -213,7 +213,7 @@ class OUILangFr extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'Réinitialiser le design du bouton du $themeType ?';
+    return 'Réinitialiser le design des boutons ($themeType) ?';
   }
 
   @override
@@ -221,7 +221,7 @@ class OUILangFr extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'Réinitialiser le design de la page en $themeType ?';
+    return 'Réinitialiser le design de la page ($themeType) ?';
   }
 
   @override
@@ -246,10 +246,10 @@ class OUILangFr extends OUILang {
   String get dsShowScroll => 'Afficher les barres de défilement';
 
   @override
-  String get dsSlideX => 'Diapositive horizontal';
+  String get dsSlideX => 'Glissement horizontal';
 
   @override
-  String get dsSlideY => 'Diapositive vertical';
+  String get dsSlideY => 'Glissement vertical';
 
   @override
   String get dsSolidColor => 'Couleur unie';
@@ -264,10 +264,10 @@ class OUILangFr extends OUILang {
   String get dsSystem => 'Système';
 
   @override
-  String get dsTurnX => 'Virage horizontal';
+  String get dsTurnX => 'Pivotement horizontal';
 
   @override
-  String get dsTurnY => 'Virage vertical';
+  String get dsTurnY => 'Pivotement vertical';
 
   @override
   String get dsUseForColors =>
@@ -284,7 +284,7 @@ class OUILangFr extends OUILang {
 
   @override
   String get g404Note =>
-      'Remarque : Flutter Web utilise le routage par hachage, comme...\nhttps://www.example.com/#/settings';
+      'Remarque : Flutter Web utilise le routage par hachage, comme...\nhttps://www.example.com/#/destination';
 
   @override
   String get g404Wonder => 'Tous ceux qui errent ne sont pas perdus.';
@@ -391,11 +391,12 @@ class OUILangFr extends OUILang {
   String get gGlobal => 'Global';
 
   @override
-  String get gHardRefresh => 'Veuillez rafraîchir la page...\nCtrl + Shift + R';
+  String get gHardRefresh =>
+      'Veuillez forcer l\'actualisation de la page...\nCtrl + Maj + R';
 
   @override
   String get gHardRefreshMac =>
-      'Veuillez rafraîchir la page...\nCommand + Shift + R';
+      'Veuillez forcer l\'actualisation de la page...\nCommand + Maj + R';
 
   @override
   String get gHardRefreshMobile =>
@@ -420,8 +421,7 @@ class OUILangFr extends OUILang {
   String get gLightTheme => 'Thème clair';
 
   @override
-  String get gLoadingAnim =>
-      'Chargement. Le logo YWT animé comme un sablier tournant.';
+  String get gLoadingAnim => 'Chargement. Le logo sablier de YWT tourne.';
 
   @override
   String get gLock => 'Verrouiller';
@@ -439,13 +439,13 @@ class OUILangFr extends OUILang {
   String get gMinimum => 'Minimum';
 
   @override
-  String get gMute => 'Muet';
+  String get gMute => 'Couper le son';
 
   @override
-  String get gNA => 'N/D';
+  String get gNA => 'N/A';
 
   @override
-  String get gNAHint => 'Non disponible';
+  String get gNAHint => 'Non applicable';
 
   @override
   String get gNo => 'Non';
@@ -466,13 +466,13 @@ class OUILangFr extends OUILang {
   String get gOpenUISourceHint => 'Ouvre la page GitHub d\'Open UI';
 
   @override
-  String get gOpenYWT => 'Ouvre un lien vers YWT LLC';
+  String get gOpenYWT => 'Ouvre un lien vers YWT';
 
   @override
   String get gOptional => 'optionnel';
 
   @override
-  String get gOptions => 'Paramètres';
+  String get gOptions => 'Options';
 
   @override
   String get gPaste => 'Coller';
@@ -551,7 +551,7 @@ class OUILangFr extends OUILang {
   String get gSuccessExl => 'Succès !';
 
   @override
-  String get gSupportEmail => 'Notre Email de support';
+  String get gSupportEmail => 'Notre e-mail d\'assistance';
 
   @override
   String get gSwitchHint => 'Actionner l\'interrupteur';
@@ -566,7 +566,7 @@ class OUILangFr extends OUILang {
   String get gThe => 'Le';
 
   @override
-  String get gUnMute => 'Désactiver le son';
+  String get gUnMute => 'Réactiver le son';
 
   @override
   String get gUndo => 'Annuler';
@@ -657,7 +657,7 @@ class OUILangFr extends OUILang {
   String get ssNebula => 'Nébuleuse';
 
   @override
-  String get ssRandom => 'Randomiser';
+  String get ssRandom => 'Aléatoire';
 
   @override
   String ssRandomize(Object themeType) {
@@ -700,7 +700,7 @@ class OUILangFr extends OUILang {
 
   @override
   String tsBatchOverride(Object setting) {
-    return 'Vous avez déjà apporté des modifications à \"$setting\" dans les paramètres avancés.\n\nÊtes-vous sûr de vouloir remplacer ces modifications par une mise à jour de masse ?';
+    return 'Vous avez déjà apporté des modifications détaillées à \"$setting\" dans les paramètres avancés.\n\nÊtes-vous sûr de vouloir remplacer ces modifications par une mise à jour groupée ?';
   }
 
   @override
@@ -782,7 +782,7 @@ class OUILangFr extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return 'Réinitialiser les styles de texte de $themeType ?';
+    return 'Réinitialiser les styles de texte ($themeType) ?';
   }
 
   @override

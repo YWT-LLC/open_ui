@@ -18,7 +18,7 @@ class OUILangEs extends OUILang {
   String get csError => 'Error';
 
   @override
-  String get csErrorContainer => 'Esquema de\nerror';
+  String get csErrorContainer => 'Contorno de\nerror';
 
   @override
   String get csFromImage =>
@@ -37,7 +37,7 @@ class OUILangEs extends OUILang {
   String get csOutline => 'Texto de\nsugerencia';
 
   @override
-  String get csOutlineVariant => 'Esquema de\nsugerencia';
+  String get csOutlineVariant => 'Contorno de\nsugerencia';
 
   @override
   String get csPageTitle => 'Configuración de color';
@@ -53,18 +53,18 @@ class OUILangEs extends OUILang {
   String get csPrimary => 'Principal';
 
   @override
-  String get csPrimaryContainer => 'Esquema\nprincipal';
+  String get csPrimaryContainer => 'Contorno\nprincipal';
 
   @override
   String get csRecommended => '¿Usar contraste recomendado?';
 
   @override
   String csReset(Object themeType) {
-    return 'Restablecer los colores de $themeType?';
+    return '¿Restablecer los colores ($themeType)?';
   }
 
   @override
-  String get csSchemeBase => 'Crear tema\nusando imagen';
+  String get csSchemeBase => 'Crear esquema\ndesde imagen';
 
   @override
   String get csScrim => 'Cubierta\nmodal';
@@ -73,7 +73,7 @@ class OUILangEs extends OUILang {
   String get csSecondary => 'Secundario';
 
   @override
-  String get csSecondaryContainer => 'Esquema\nsecundario';
+  String get csSecondaryContainer => 'Contorno\nsecundario';
 
   @override
   String get csShadow => 'Sombra';
@@ -85,7 +85,7 @@ class OUILangEs extends OUILang {
   String get csSurfaceContainer => 'Fondo de\npágina && modal';
 
   @override
-  String get csSurfaceDim => 'Fondo de\nalerta && app bar';
+  String get csSurfaceDim => 'Fondo de\nalerta && barra de app';
 
   @override
   String get csSurfaceTint => 'Tinte de\nsuperficie';
@@ -94,13 +94,13 @@ class OUILangEs extends OUILang {
   String get csTertiary => 'Terciario';
 
   @override
-  String get csTertiaryContainer => 'Esquema\nterciario';
+  String get csTertiaryContainer => 'Contorno\nterciario';
 
   @override
   String get csUseCustom => 'Usar personalizado';
 
   @override
-  String get dsAlwaysUnderline => 'Subraya siempre los enlaces';
+  String get dsAlwaysUnderline => 'Subrayar siempre los enlaces';
 
   @override
   String get dsAnimStyle => 'Estilo de la animación';
@@ -127,7 +127,7 @@ class OUILangEs extends OUILang {
   String get dsCurve => 'Curva';
 
   @override
-  String get dsEase => 'Aliviar';
+  String get dsEase => 'Suave';
 
   @override
   String get dsElastic => 'Elástico';
@@ -145,7 +145,7 @@ class OUILangEs extends OUILang {
   String get dsFromFile => 'Usando un archivo';
 
   @override
-  String get dsFromNetwork => 'Usando un link';
+  String get dsFromNetwork => 'Usando una URL';
 
   @override
   String get dsGem => 'Gema';
@@ -187,7 +187,7 @@ class OUILangEs extends OUILang {
   String get dsNone => 'Ninguna';
 
   @override
-  String get dsPadding => 'Acolchado';
+  String get dsPadding => 'Relleno';
 
   @override
   String get dsPage => 'Página';
@@ -212,7 +212,7 @@ class OUILangEs extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return '¿Restablecer el diseño del botón del $themeType?';
+    return '¿Restablecer el diseño de los botones ($themeType)?';
   }
 
   @override
@@ -220,7 +220,7 @@ class OUILangEs extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return '¿Restablecer el diseño de la página del $themeType?';
+    return '¿Restablecer el diseño de la página ($themeType)?';
   }
 
   @override
@@ -245,10 +245,10 @@ class OUILangEs extends OUILang {
   String get dsShowScroll => 'Mostrar barras de desplazamiento';
 
   @override
-  String get dsSlideX => 'Diapositiva horizontal';
+  String get dsSlideX => 'Deslizamiento horizontal';
 
   @override
-  String get dsSlideY => 'Diapositiva vertical';
+  String get dsSlideY => 'Deslizamiento vertical';
 
   @override
   String get dsSolidColor => 'Color sólido';
@@ -283,7 +283,7 @@ class OUILangEs extends OUILang {
 
   @override
   String get g404Note =>
-      'Nota: Flutter web utiliza enrutamiento hash, como...\nhttps://www.example.com/#/settings';
+      'Nota: Flutter web utiliza enrutamiento hash, como...\nhttps://www.example.com/#/destino';
 
   @override
   String get g404Wonder => 'No todos los que deambulan están perdidos.';
@@ -319,7 +319,7 @@ class OUILangEs extends OUILang {
   String get gCancel => 'Cancelar';
 
   @override
-  String get gCaptions => 'Subtítulos/captions';
+  String get gCaptions => 'Subtítulos';
 
   @override
   String get gCaptionsHint => 'Mantén pulsado para fuentes';
@@ -369,7 +369,7 @@ class OUILangEs extends OUILang {
   String get gEditingHint => 'Activar para editar';
 
   @override
-  String get gEnterURL => 'Inserta el link';
+  String get gEnterURL => 'Introduce la URL';
 
   @override
   String get gError => 'Error';
@@ -378,7 +378,7 @@ class OUILangEs extends OUILang {
   String get gFBF => 'Fotograma a fotograma';
 
   @override
-  String get gFailure => 'Fracaso';
+  String get gFailure => 'Fallo';
 
   @override
   String get gFullscreen => 'Pantalla completa';
@@ -391,15 +391,15 @@ class OUILangEs extends OUILang {
 
   @override
   String get gHardRefresh =>
-      'Por favor, actualice la página...\nCtrl + Shift + R';
+      'Por favor, actualiza la página por completo...\nCtrl + Shift + R';
 
   @override
   String get gHardRefreshMac =>
-      'Por favor, actualice la página...\nCommand + Shift + R';
+      'Por favor, actualiza la página por completo...\nCommand + Shift + R';
 
   @override
   String get gHardRefreshMobile =>
-      'Actualice la página en el menú del navegador.';
+      'Actualiza la página desde el menú del navegador.';
 
   @override
   String get gHelp => 'Ayuda';
@@ -408,7 +408,7 @@ class OUILangEs extends OUILang {
   String get gIncrease => 'Aumentar';
 
   @override
-  String get gLayout => 'Esquema';
+  String get gLayout => 'Disposición';
 
   @override
   String get gLeft => 'Izquierda';
@@ -421,7 +421,7 @@ class OUILangEs extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Cargando. El logotipo empático animado como un reloj de arena giratorio.';
+      'Cargando. El logotipo de reloj de arena de YWT está girando.';
 
   @override
   String get gLock => 'Bloquear';
@@ -442,10 +442,10 @@ class OUILangEs extends OUILang {
   String get gMute => 'Silenciar';
 
   @override
-  String get gNA => 'N/D';
+  String get gNA => 'N/A';
 
   @override
-  String get gNAHint => 'No disponible';
+  String get gNAHint => 'No aplicable';
 
   @override
   String get gNo => 'No';
@@ -466,7 +466,7 @@ class OUILangEs extends OUILang {
   String get gOpenUISourceHint => 'Abrir la página de GitHub de Open UI';
 
   @override
-  String get gOpenYWT => 'Abrir un enlace a YWT LLC';
+  String get gOpenYWT => 'Abrir un enlace a YWT';
 
   @override
   String get gOptional => 'opcional';
@@ -524,7 +524,7 @@ class OUILangEs extends OUILang {
   String get gRight => 'Derecha';
 
   @override
-  String get gSave => 'Guarde';
+  String get gSave => 'Guarda';
 
   @override
   String get gSaveHint =>
@@ -532,7 +532,7 @@ class OUILangEs extends OUILang {
 
   @override
   String gSetToValue(Object name, Object value) {
-    return '$name está configurado a $value';
+    return '$name está configurado en $value';
   }
 
   @override
@@ -551,7 +551,7 @@ class OUILangEs extends OUILang {
   String get gSuccessExl => '¡Éxito!';
 
   @override
-  String get gSupportEmail => 'Nuestro Email de soporte';
+  String get gSupportEmail => 'Nuestro correo de soporte';
 
   @override
   String get gSwitchHint => 'Accionar el interruptor';
@@ -576,13 +576,13 @@ class OUILangEs extends OUILang {
 
   @override
   String get gUndoWarn2 =>
-      ' su configuración actual para restaurarla manualmente.';
+      ' tu configuración actual para restaurarla manualmente.';
 
   @override
   String get gUpdates => 'Actualizaciones disponibles';
 
   @override
-  String get gValidURL => 'Por favor, introduzca una URL válida';
+  String get gValidURL => 'Por favor, introduce una URL válida';
 
   @override
   String get gValue => 'Valor';
@@ -606,7 +606,7 @@ class OUILangEs extends OUILang {
 
   @override
   String ssConfigSaved(Object path) {
-    return 'Su configuración se ha guardado en $path';
+    return 'Tu configuración se ha guardado en $path';
   }
 
   @override
@@ -657,11 +657,11 @@ class OUILangEs extends OUILang {
   String get ssNebula => 'Nebulosa';
 
   @override
-  String get ssRandom => 'Randomiser';
+  String get ssRandom => 'Aleatorizar';
 
   @override
   String ssRandomize(Object themeType) {
-    return 'Thème $themeType aléatoire ?';
+    return '¿Aleatorizar el tema $themeType?';
   }
 
   @override
@@ -719,10 +719,10 @@ class OUILangEs extends OUILang {
   String get tsBold => 'Negrita';
 
   @override
-  String get tsDisplay => 'Despliegue';
+  String get tsDisplay => 'Visualización';
 
   @override
-  String get tsDisplayLink => 'despliegue';
+  String get tsDisplayLink => 'visualiza';
 
   @override
   String get tsDisplayP1 => '¿Se ';
@@ -782,7 +782,7 @@ class OUILangEs extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return '¿Restablecer los estilos de texto de $themeType?';
+    return '¿Restablecer los estilos de texto ($themeType)?';
   }
 
   @override

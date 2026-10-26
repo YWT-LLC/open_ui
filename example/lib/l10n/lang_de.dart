@@ -57,7 +57,7 @@ class LangDe extends Lang {
 
   @override
   String csGenApp(Object app_name) {
-    return 'Wenn du $app_name generierst, wird die aktuelle ';
+    return 'Wenn du $app_name generierst, werden die aktuellen ';
   }
 
   @override
