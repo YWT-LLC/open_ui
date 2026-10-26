@@ -34,11 +34,13 @@ dependencies:
   flutter_localized_locales: ^2.0.5
   flutter_secure_storage: ^11.2.0
   font_awesome_flutter: ^11.0.0
+  gradient_borders: ^1.0.4
   image: ^4.12.0
   line_icons: ^2.0.3
   package_info_plus: ^10.2.2
   permission_handler: ^13.0.2
   provider: ^6.1.5+1
+  simple_gradient_text: ^1.4.0
   window_manager: ^0.5.2
 
   # YWT (local)
