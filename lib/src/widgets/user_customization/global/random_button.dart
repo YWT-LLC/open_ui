@@ -48,6 +48,9 @@ class EzConfigRandomizer extends StatelessWidget {
             needsClose: false,
           ),
         ),
+        style: ElevatedButton.styleFrom(
+          shape: ezGradientButtonShape(config, ezRainbow),
+        ),
         icon: EzIcon(config, LineIcons.diceD6),
         label: config.ezL10n.ssRandom,
       );
