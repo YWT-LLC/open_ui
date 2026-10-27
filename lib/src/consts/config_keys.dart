@@ -29,10 +29,6 @@ const Map<String, Type> allGlobalKeys = <String, Type>{
 
 //* Color settings *//
 
-// TODO: custom ones (border, overlay,...?)?
-// TODO: remove some?
-// TODO: int OR String
-
 const String textColorPrefix = 'On';
 
 // Dark theme //
