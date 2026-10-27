@@ -243,7 +243,7 @@ Future<String?> ezColorPicker(
   Alignment beginDir = Alignment.centerLeft;
   Alignment endDir = Alignment.centerRight;
 
-  // TODO: Save all colors as strings (I think it’s argb rn… that’s ez to toString() I believe)
+  // TODO: audit color save/load vibes again
   // TODO: ...Add delim for gradients. Start dir, delim, end dir, delim, colors (x delim?)
 
   final MenuController beginMenu = MenuController();
