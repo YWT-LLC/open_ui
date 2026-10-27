@@ -425,7 +425,7 @@ Future<String?> ezColorPicker(
               : Container(
                   constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
                   child: colorPicker(),
-                ),
+                ), // TODO: l10n
 
           // Gradient settings
           EzAnimVis(
@@ -563,7 +563,15 @@ Future<String?> ezColorPicker(
     }),
   );
 
-  return preview.toString();
+  // TODO: re-handle cancel
+  // TODO: classify?
+  return gradient
+      ? <String>[
+          beginDir.toString(),
+          endDir.toString(),
+          ...gradients.map((Color color) => color.toARGB32().toString()),
+        ].join(',')
+      : preview.toString();
 }
 
 /// Returns an appropriate width for a [DropdownMenu]
