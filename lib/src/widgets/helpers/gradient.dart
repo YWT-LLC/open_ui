@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
+// Text //
+
 class EzFabText extends GradientText {
   const EzFabText(
     super.text, {
@@ -39,6 +41,16 @@ EzFabText ezRainbowText(
         Colors.purple,
       ],
     );
+
+// Icons //
+
+Widget ezGradientIcon(Widget icon, Gradient gradient) => ShaderMask(
+      blendMode: BlendMode.srcIn,
+      shaderCallback: (Rect bounds) => gradient.createShader(bounds),
+      child: icon,
+    );
+
+// Borders //
 
 BoxBorder ezGradientBorder(EzCP config, Gradient gradient) => GradientBoxBorder(
       gradient: gradient,
