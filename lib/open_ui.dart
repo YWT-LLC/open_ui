@@ -75,6 +75,7 @@ export 'src/widgets/helpers/dropdown_menu.dart';
 export 'src/widgets/helpers/elevated_button.dart';
 export 'src/widgets/helpers/fabulous.dart';
 export 'src/widgets/helpers/gestures.dart';
+export 'src/widgets/helpers/gradient.dart';
 export 'src/widgets/helpers/icon_button.dart';
 export 'src/widgets/helpers/menu_button.dart';
 export 'src/widgets/helpers/radio.dart';
