@@ -9,47 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-// Text //
-
-class EzFabText extends GradientText {
-  const EzFabText(
-    super.text, {
-    super.key,
-    required super.colors,
-    super.gradientDirection = GradientDirection.ltr,
-    super.textAlign,
-    super.style,
-  }) : super();
-} // TODO: from key
-
-EzFabText ezRainbowText(
-  String text, {
-  TextStyle? style,
-  TextAlign textAlign = TextAlign.start,
-}) =>
-    EzFabText(
-      text,
-      style: style,
-      textAlign: textAlign,
-      colors: <Color>[
-        Colors.red,
-        Colors.orange,
-        Colors.yellow,
-        Colors.green,
-        Colors.blue,
-        Colors.indigo,
-        Colors.purple,
-      ],
-    );
-
-// Icons //
-
-Widget ezGradientIcon(Widget icon, Gradient gradient) => ShaderMask(
-      blendMode: BlendMode.srcIn,
-      shaderCallback: (Rect bounds) => gradient.createShader(bounds),
-      child: icon,
-    );
-
 // Borders //
 
 BoxBorder ezGradientBorder(EzCP config, Gradient gradient) => GradientBoxBorder(
@@ -129,4 +88,64 @@ OutlinedBorder ezGradientButtonShape(EzCP config, Gradient gradient) => EzGradie
       config,
       shape: config.buttonShape.shape,
       gradient: gradient,
+    );
+
+// Icons //
+
+Widget ezGradientIcon(Widget icon, Gradient gradient) => ShaderMask(
+      blendMode: BlendMode.srcIn,
+      shaderCallback: (Rect bounds) => gradient.createShader(bounds),
+      child: icon,
+    );
+
+// Storage //
+
+final Map<String, AlignmentGeometry> alignLibrary = <String, AlignmentGeometry>{
+  // Bottom
+  Alignment.bottomLeft.toString(): Alignment.bottomLeft,
+  Alignment.bottomCenter.toString(): Alignment.bottomCenter,
+  Alignment.bottomRight.toString(): Alignment.bottomRight,
+
+  // Center
+  Alignment.centerLeft.toString(): Alignment.centerLeft,
+  Alignment.center.toString(): Alignment.center,
+  Alignment.centerRight.toString(): Alignment.centerRight,
+
+  // Top
+  Alignment.topLeft.toString(): Alignment.topLeft,
+  Alignment.topCenter.toString(): Alignment.topCenter,
+  Alignment.topRight.toString(): Alignment.topRight,
+};
+
+// Text //
+
+class EzFabText extends GradientText {
+  const EzFabText(
+    super.text, {
+    super.key,
+    required super.colors,
+    super.gradientDirection = GradientDirection.ltr,
+    super.textAlign,
+    super.style,
+  }) : super();
+} // TODO: from key
+
+EzFabText ezRainbowText(
+  String text, {
+  TextStyle? style,
+  TextAlign textAlign = TextAlign.start,
+}) =>
+    EzFabText(
+      text,
+      style: style,
+      textAlign: textAlign,
+      colors: <Color>[
+        Colors.red,
+        Colors.orange,
+        Colors.yellow,
+        Colors.green,
+        Colors.blue,
+        Colors.indigo,
+        Colors.purple,
+      ],
     );
