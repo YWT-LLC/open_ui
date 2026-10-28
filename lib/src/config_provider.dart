@@ -66,6 +66,19 @@ class EzCP extends ChangeNotifier {
   void _buildThemeData() {
     _isLefty = EzCM.get(isLeftyKey);
 
+    dynamic colorOrGradient(String key) {
+      final String color = EzCM.get(key);
+      final List<String> parts = color.split(',');
+
+      return parts.length > 1
+          ? LinearGradient(
+              begin: alignLibrary[parts[0]] ?? Alignment.centerLeft,
+              end: alignLibrary[parts[1]] ?? Alignment.centerRight,
+              colors: parts.sublist(2).map((String color) => Color(int.parse(color))).toList(),
+            )
+          : Color(int.parse(color));
+    }
+
     if (_isDark) {
       _theme = ezThemeData(Brightness.dark, _ltr);
 
@@ -76,7 +89,40 @@ class EzCP extends ChangeNotifier {
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
+      _color = EzColorCache(
+        schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue,
+
+        // Background
+        surface: colorOrGradient(darkSurfaceKey),
+        surfaceDim: colorOrGradient(darkSurfaceDimKey),
+        surfaceContainer: colorOrGradient(darkSurfaceContainerKey),
+
+        // Text
+        onSurface: colorOrGradient(darkOnSurfaceKey),
+        outline: colorOrGradient(darkOutlineKey),
+
+        // Primary
+        primary: colorOrGradient(darkPrimaryKey),
+        primaryContainer: colorOrGradient(darkPrimaryContainerKey),
+
+        // Secondary
+        secondary: colorOrGradient(darkSecondaryKey),
+        secondaryContainer: colorOrGradient(darkSecondaryContainerKey),
+
+        // Tertiary
+        tertiary: colorOrGradient(darkTertiaryKey),
+        tertiaryContainer: colorOrGradient(darkTertiaryContainerKey),
+
+        // Erriary
+        error: colorOrGradient(darkErrorKey),
+        errorContainer: colorOrGradient(darkErrorContainerKey),
+
+        // Misc
+        outlineVariant: colorOrGradient(darkOutlineVariantKey),
+        shadow: colorOrGradient(darkShadowKey),
+        surfaceTint: colorOrGradient(darkSurfaceTintKey),
+        scrim: colorOrGradient(darkScrimKey),
+      );
 
       _design = EzDesignCache(
         // Button
@@ -129,7 +175,40 @@ class EzCP extends ChangeNotifier {
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
       // Make them so
-      _color = EzColorCache(schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
+      _color = EzColorCache(
+        schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue,
+
+        // Background
+        surface: colorOrGradient(lightSurfaceKey),
+        surfaceDim: colorOrGradient(lightSurfaceDimKey),
+        surfaceContainer: colorOrGradient(lightSurfaceContainerKey),
+
+        // Text
+        onSurface: colorOrGradient(lightOnSurfaceKey),
+        outline: colorOrGradient(lightOutlineKey),
+
+        // Primary
+        primary: colorOrGradient(lightPrimaryKey),
+        primaryContainer: colorOrGradient(lightPrimaryContainerKey),
+
+        // Secondary
+        secondary: colorOrGradient(lightSecondaryKey),
+        secondaryContainer: colorOrGradient(lightSecondaryContainerKey),
+
+        // Tertiary
+        tertiary: colorOrGradient(lightTertiaryKey),
+        tertiaryContainer: colorOrGradient(lightTertiaryContainerKey),
+
+        // Erriary
+        error: colorOrGradient(lightErrorKey),
+        errorContainer: colorOrGradient(lightErrorContainerKey),
+
+        // Misc
+        outlineVariant: colorOrGradient(lightOutlineVariantKey),
+        shadow: colorOrGradient(lightShadowKey),
+        surfaceTint: colorOrGradient(lightSurfaceTintKey),
+        scrim: colorOrGradient(lightScrimKey),
+      );
 
       _design = EzDesignCache(
         // Button
@@ -373,9 +452,73 @@ class EzCP extends ChangeNotifier {
 class EzColorCache {
   final String schemeImagePath;
 
+  // Backgrounds
+  final dynamic surface;
+  final dynamic surfaceDim;
+  final dynamic surfaceContainer;
+
+  // Text
+  final dynamic onSurface;
+  final dynamic outline;
+
+  // Primary
+  final dynamic primary;
+  final dynamic primaryContainer;
+
+  // Secondary
+  final dynamic secondary;
+  final dynamic secondaryContainer;
+
+  // Tertiary
+  final dynamic tertiary;
+  final dynamic tertiaryContainer;
+
+  // Erriary
+  final dynamic error;
+  final dynamic errorContainer;
+
+  // Misc
+  final dynamic outlineVariant;
+  final dynamic shadow;
+  final dynamic surfaceTint;
+  final dynamic scrim;
+
   /// Theme aware tracker for frequently used color values...
   /// Color scheme image(s)
-  EzColorCache({required this.schemeImagePath});
+  EzColorCache({
+    required this.schemeImagePath,
+
+    // Backgrounds
+    required this.surface,
+    required this.surfaceDim,
+    required this.surfaceContainer,
+
+    // Text
+    required this.onSurface,
+    required this.outline,
+
+    // Primary
+    required this.primary,
+    required this.primaryContainer,
+
+    // Secondary
+    required this.secondary,
+    required this.secondaryContainer,
+
+    // Tertiary
+    required this.tertiary,
+    required this.tertiaryContainer,
+
+    // Erriary
+    required this.error,
+    required this.errorContainer,
+
+    // Misc
+    required this.outlineVariant,
+    required this.shadow,
+    required this.surfaceTint,
+    required this.scrim,
+  });
 }
 
 class EzDesignCache {
