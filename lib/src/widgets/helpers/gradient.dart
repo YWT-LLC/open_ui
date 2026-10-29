@@ -6,21 +6,8 @@
 import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/gradient_borders.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-// Borders //
-
-BoxBorder ezGradientBorder(EzCP config, Gradient gradient) => GradientBoxBorder(
-      gradient: gradient,
-      width: config.borderWidth,
-    );
-
-InputBorder ezGradientInputBorder(EzCP config, Gradient gradient) => GradientOutlineInputBorder(
-      gradient: gradient,
-      width: config.borderWidth,
-      borderRadius: config.textFieldRadius,
-    );
+// Border(s) //
 
 class EzGradientOutlinedBorder extends OutlinedBorder {
   final EzCP config;
@@ -117,35 +104,13 @@ final Map<String, AlignmentGeometry> alignLibrary = <String, AlignmentGeometry>{
   Alignment.topRight.toString(): Alignment.topRight,
 };
 
-// Text //
+/// No checks, assumes a valid gradient entry's value is being sent
+LinearGradient ezGradientFromString(String value) {
+  final List<String> parts = value.split(colorSplit);
 
-class EzFabText extends GradientText {
-  const EzFabText(
-    super.text, {
-    super.key,
-    required super.colors,
-    super.gradientDirection = GradientDirection.ltr,
-    super.textAlign,
-    super.style,
-  }) : super();
-} // TODO: from key
-
-EzFabText ezRainbowText(
-  String text, {
-  TextStyle? style,
-  TextAlign textAlign = TextAlign.start,
-}) =>
-    EzFabText(
-      text,
-      style: style,
-      textAlign: textAlign,
-      colors: <Color>[
-        Colors.red,
-        Colors.orange,
-        Colors.yellow,
-        Colors.green,
-        Colors.blue,
-        Colors.indigo,
-        Colors.purple,
-      ],
-    );
+  return LinearGradient(
+    begin: alignLibrary[parts[0]] ?? Alignment.centerLeft,
+    end: alignLibrary[parts[1]] ?? Alignment.centerRight,
+    colors: parts.sublist(2).map((String color) => Color(int.parse(color))).toList(),
+  );
+}
