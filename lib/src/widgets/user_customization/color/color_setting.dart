@@ -29,11 +29,12 @@ class _ColorSettingState extends State<EzColorSetting> {
 
   // Define custom functions //
 
-  Future<void> pickAColor() async {
+  Future<void> pickAColor({bool allowGradient = true}) async {
     final String? picked = await ezColorPicker(
       widget.config,
       context: context,
       picking: currValue,
+      allowGradient: allowGradient,
       onColorChange: (Color chosenColor) => setState(() => currPreview = chosenColor),
     );
 
@@ -78,7 +79,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     final int recommended = getTextColor(backgroundColor).toARGB32();
 
     // Just open a color picker if the value is already what's recommended
-    if (recommended == int.tryParse(currValue)) return pickAColor();
+    if (recommended == int.tryParse(currValue)) return pickAColor(allowGradient: false);
 
     // Otherwise, let the user choose...
     // Recommended, custom, or cancel (close)
