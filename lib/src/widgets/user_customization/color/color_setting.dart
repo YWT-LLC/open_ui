@@ -15,9 +15,6 @@ class EzColorSetting extends StatefulWidget {
   /// [config] key whose [Color] will be updated
   final String configKey;
 
-  /// Creates a tool for [configKey] ColorScheme values via [config]
-  /// When [configKey] is a text color (has [textColorPrefix]), the base color will be used to generate a recommendation via [getTextColor]
-  /// [EzColorSetting] inherits styling from the [ElevatedButton] and [AlertDialog] values in your [ThemeData]
   const EzColorSetting(this.config, {super.key, required this.configKey});
 
   @override
@@ -27,62 +24,61 @@ class EzColorSetting extends StatefulWidget {
 class _ColorSettingState extends State<EzColorSetting> {
   // Define the build data //
 
-  late Color currColor = (EzCM.get(widget.configKey) == null)
-      ? getLiveColor(widget.config.colors, widget.configKey)
-      : Color(EzCM.get(widget.configKey));
+  late String currValue;
+  late dynamic currPreview;
 
   // Define custom functions //
 
-  /// Opens an [ezColorPicker] for updating [currColor]
-  /// Returns the [Color] of what was chosen (null otherwise)
-  Future<void> openColorPicker() {
-    final Color backup = currColor;
-
-    return ezColorPicker(
+  Future<void> pickAColor() async {
+    final String? picked = await ezColorPicker(
       widget.config,
       context: context,
-      startColor: backup,
-      onColorChange: (Color chosenColor) => setState(() => currColor = chosenColor),
-      onConfirm: () async {
-        // TODO: account for gradients
-        await EzCM.setString(widget.configKey, currColor.toARGB32().toString());
-
-        if (ezTextMirrors.containsKey(widget.configKey)) {
-          await EzCM.setString(
-            ezTextMirrors[widget.configKey]!,
-            getTextColor(currColor).toARGB32().toString(),
-          );
-        }
-        await widget.config.rebuildUI();
-      },
-      onDeny: () => setState(() => currColor = backup),
+      picking: currValue,
+      onColorChange: (Color chosenColor) => setState(() => currPreview = chosenColor),
     );
+
+    if (picked != null) {
+      await EzCM.setString(widget.configKey, picked);
+
+      if (ezTextMirrors.containsKey(widget.configKey)) {
+        await EzCM.setString(
+          ezTextMirrors[widget.configKey]!,
+          getTextColor(
+                  picked.contains(colorSplit) ? ezFirstColor(picked) : Color(int.parse(picked)))
+              .toARGB32()
+              .toString(),
+        );
+      }
+
+      currValue = picked;
+      updatePreview(picked);
+
+      await widget.config.rebuildUI();
+    }
   }
 
-  /// Opens an [EzAlertDialog] for users to chose how they want to update the color
-  /// Returns the [Color] of what was chosen (null if none)
   Future<dynamic> changeColor() {
     if (!widget.configKey.contains(textColorPrefix)) {
-      // Base color //
+      // Base color ...
       // Just open a color picker
-
-      return openColorPicker();
+      return pickAColor();
     }
-    // 'on' (aka text) color //
-
+    // 'on' (aka text) color...
     // Get its background pair
     final String backgroundKey = widget.configKey.replaceAll(textColorPrefix, '');
 
     // Find the recommended contrast color for the background
-    final int? backgroundColorValue = EzCM.get(backgroundKey);
+    final String? backgroundColorValue = EzCM.get(backgroundKey);
     final Color backgroundColor = (backgroundColorValue == null)
         ? getLiveColor(widget.config.colors, backgroundKey)
-        : Color(backgroundColorValue);
+        : backgroundColorValue.contains(colorSplit)
+            ? ezFirstColor(backgroundColorValue)
+            : Color(int.parse(backgroundColorValue));
 
     final int recommended = getTextColor(backgroundColor).toARGB32();
 
     // Just open a color picker if the value is already what's recommended
-    if (recommended == currColor.toARGB32()) return openColorPicker();
+    if (recommended == int.tryParse(currValue)) return pickAColor();
 
     // Otherwise, let the user choose...
     // Recommended, custom, or cancel (close)
@@ -111,7 +107,10 @@ class _ColorSettingState extends State<EzColorSetting> {
             onPressed: () async {
               // Update the user's configKey
               await EzCM.setString(widget.configKey, recommended.toString());
-              setState(() => currColor = Color(recommended));
+
+              currValue = recommended.toString();
+              updatePreview(recommended.toString());
+
               await widget.config.rebuildUI();
             },
             isDefaultAction: true,
@@ -120,7 +119,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             widget.config,
             text: widget.config.ezL10n.csUseCustom,
             onPressed: () async {
-              await openColorPicker();
+              await pickAColor();
               if (dCon.mounted) Navigator.of(dCon).pop();
             },
             isDestructiveAction: true,
@@ -130,14 +129,16 @@ class _ColorSettingState extends State<EzColorSetting> {
     );
   }
 
-  /// Opens an [EzAlertDialog] for resetting [configKey] to default
-  /// If there is no default value, the key will simply be removed from [EzCP]
-  /// If a value is found, a preview of the reset color is shown and the user can confirm/deny
   Future<dynamic> reset() => showDialog(
         context: context,
         builder: (BuildContext dCon) {
           final int? resetValue = EzCM.getDefault(widget.configKey);
-          final String currColorLabel = currColor.toARGB32().toRadixString(16).toUpperCase();
+          final String currColorLabel = (currValue.contains(colorSplit)
+                  ? (currPreview as LinearGradient).colors.first
+                  : currPreview as Color)
+              .toARGB32()
+              .toRadixString(16)
+              .toUpperCase();
 
           return EzAlertDialog(
             widget.config,
@@ -166,7 +167,8 @@ class _ColorSettingState extends State<EzColorSetting> {
                 // Remove the user's configKey and reset the current state
                 await EzCM.remove(widget.configKey);
                 if (resetValue != null) {
-                  setState(() => currColor = Color(resetValue));
+                  currValue = resetValue.toString();
+                  updatePreview(resetValue.toString());
                 }
                 await widget.config.rebuildUI();
               },
@@ -177,6 +179,31 @@ class _ColorSettingState extends State<EzColorSetting> {
           );
         },
       );
+
+  void updatePreview(String value) => setState(() => currPreview = ezGradientFromString(value));
+
+  // Init //
+
+  @override
+  void initState() {
+    super.initState();
+
+    final String? stored = EzCM.get(widget.configKey);
+
+    if (stored == null) {
+      final Color liveColor = getLiveColor(widget.config.colors, widget.configKey);
+      currValue = liveColor.toARGB32().toString();
+      currPreview = liveColor;
+    } else if (stored.contains(colorSplit)) {
+      currValue = stored;
+      currPreview = ezGradientFromString(currValue);
+    } else {
+      currValue = stored;
+      currPreview = Color(int.parse(currValue));
+    }
+
+    setState(() {});
+  }
 
   // Return the build //
 
@@ -202,17 +229,26 @@ class _ColorSettingState extends State<EzColorSetting> {
                 width: widget.config.borderWidth,
               ),
             ),
-            child: currColor == Colors.transparent
+            child: currValue == transparentString
                 ? CircleAvatar(
                     backgroundColor: widget.config.colors.surface,
                     foregroundColor: widget.config.colors.onSurface,
                     radius: iconRadius + widget.config.padding,
                     child: EzIcon(widget.config, Icons.visibility_off),
                   )
-                : CircleAvatar(
-                    backgroundColor: currColor,
-                    radius: iconRadius + widget.config.padding,
-                  ),
+                : (currPreview is Color)
+                    ? CircleAvatar(
+                        backgroundColor: currPreview,
+                        radius: iconRadius + widget.config.padding,
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                          gradient: currPreview,
+                          shape: BoxShape.circle,
+                        ),
+                        height: (iconRadius + widget.config.padding) * 2,
+                        width: (iconRadius + widget.config.padding) * 2,
+                      ),
           ),
           label: label,
           textAlign: TextAlign.center,
