@@ -68,7 +68,7 @@ class EzCP extends ChangeNotifier {
 
     dynamic colorOrGradient(String key) {
       final String color = EzCM.get(key);
-      final List<String> parts = color.split(',');
+      final List<String> parts = color.split(colorSplit);
 
       return parts.length > 1
           ? LinearGradient(
