@@ -16,6 +16,12 @@ Color getTextColor(Color background) {
   return Color(((lumR + lumG + lumB) >= 150) ? blackHex : whiteHex);
 }
 
+/// Given a color storage string, return the [Color] or [LinearGradient]'s first color
+Color ezFirstColor(String color) {
+  final List<String> parts = color.split(colorSplit);
+  return Color(int.parse(parts.length > 1 ? parts[2] : color));
+}
+
 /// Generate a [ColorScheme] based on [EzCM]
 ColorScheme ezColorScheme(Brightness brightness) {
   Color? getFirstColor(String key) {
@@ -23,7 +29,7 @@ ColorScheme ezColorScheme(Brightness brightness) {
 
     return switch (value.runtimeType) {
       int => Color(value),
-      String => Color(int.parse(value.contains(',') ? value.split(',')[2] : value)),
+      String => Color(int.parse(value.contains(colorSplit) ? value.split(colorSplit)[2] : value)),
       _ => null,
     };
   }
