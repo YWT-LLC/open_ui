@@ -14,10 +14,12 @@ import 'package:flutter/material.dart';
 
 const int blackHex = 0xFF000000;
 const int whiteHex = 0xFFFFFFFF;
-const int redHex = 0xFFFF0000;
 
+const int redHex = 0xFFFF0000;
 const int halfRedHex = 0x80FF0000;
-const int transparentHex = 0x00000000;
+
+final int transparentHex = Colors.transparent.toARGB32();
+final String transparentString = Colors.transparent.toARGB32().toString();
 
 // Secondary //
 
