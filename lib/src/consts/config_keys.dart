@@ -30,6 +30,7 @@ const Map<String, Type> allGlobalKeys = <String, Type>{
 //* Color settings *//
 
 const String textColorPrefix = 'On';
+const String colorSplit = ',';
 
 // Dark theme //
 
