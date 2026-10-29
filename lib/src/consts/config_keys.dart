@@ -27,6 +27,23 @@ const Map<String, Type> allGlobalKeys = <String, Type>{
   appLocaleKey: List<String>,
 };
 
+//* Audio settings *//
+
+// Dark theme //
+
+// Light theme //
+
+// Shared //
+
+const String mainVolumeKey = 'mainVolume';
+
+const String advancedAudioKey = 'advancedAudio';
+
+const Map<String, Type> allAudioKeys = <String, Type>{
+  mainVolumeKey: int,
+  advancedAudioKey: bool,
+};
+
 //* Color settings *//
 
 const String textColorPrefix = 'On';
@@ -706,10 +723,11 @@ const Map<String, Type> allTextKeys = <String, Type>{
 
 //* Trackers *//
 
-/// [allBTSKeys], [allGlobalKeys], [allColorKeys], [allDesignKeys], [allTextKeys]
+/// [allBTSKeys], [allGlobalKeys], [allAudioKeys], [allColorKeys], [allDesignKeys], [allTextKeys]
 const Map<String, Type> allEZConfigKeys = <String, Type>{
   ...allBTSKeys,
   ...allGlobalKeys,
+  ...allAudioKeys,
   ...allColorKeys,
   ...allDesignKeys,
   ...allTextKeys,

@@ -51,6 +51,7 @@ export 'src/models/hybrid_action.dart';
 
 //* Screens *//
 
+export 'src/screens/audio_settings/screen.dart';
 export 'src/screens/color_settings/screen.dart';
 export 'src/screens/design_settings/screen.dart';
 export 'src/screens/text_settings/screen.dart';
@@ -133,6 +134,9 @@ export 'src/widgets/user_customization/presets/high_visibility.dart';
 export 'src/widgets/user_customization/presets/nebula.dart';
 export 'src/widgets/user_customization/presets/quick_config.dart';
 export 'src/widgets/user_customization/presets/wall_holes.dart';
+
+// Audio
+export 'src/widgets/user_customization/audio/volume_slider.dart';
 
 // Color
 export 'src/widgets/user_customization/color/color_setting.dart';
