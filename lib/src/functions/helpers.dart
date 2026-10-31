@@ -222,12 +222,10 @@ Future<String?> ezColorPicker(
   EzCP config, {
   required BuildContext context,
   String? title,
-  required Color startColor,
+  required String picking,
+  bool allowGradient = true,
   required void Function(Color chosenColor) onColorChange,
-  String? confirmMsg,
-  required void Function() onConfirm,
-  String? denyMsg,
-  required void Function() onDeny,
+  void Function()? onCancel,
 }) async {
   // Define modal data //
 
@@ -235,15 +233,28 @@ Future<String?> ezColorPicker(
   final double qHeight = heightOf(context) / 4;
   final double qWidth = widthOf(context) / 4;
 
-  Color preview = startColor;
+  late dynamic preview;
+  late bool gradient;
 
-  bool gradient = false;
-  final List<Color> gradients = <Color>[];
+  late final List<Color> gradients;
+  late AlignmentGeometry beginDir;
+  late AlignmentGeometry endDir;
 
-  Alignment beginDir = Alignment.centerLeft;
-  Alignment endDir = Alignment.centerRight;
+  if (picking.contains(colorSplit)) {
+    preview = ezGradientFromString(picking);
+    gradient = true;
 
-  // TODO: ...Add delim for gradients. Start dir, delim, end dir, delim, colors (x delim?)
+    gradients = (preview as LinearGradient).colors;
+    beginDir = preview.begin;
+    endDir = preview.end;
+  } else {
+    preview = Color(int.parse(picking));
+    gradient = false;
+
+    gradients = <Color>[];
+    beginDir = Alignment.centerLeft;
+    endDir = Alignment.centerRight;
+  }
 
   final MenuController beginMenu = MenuController();
   final MenuController endMenu = MenuController();
@@ -268,7 +279,7 @@ Future<String?> ezColorPicker(
 
   Widget dirMenu({
     required MenuController controller,
-    required Alignment selected,
+    required AlignmentGeometry selected,
     required Icon icon,
     required String tooltip,
     required void Function(Alignment choice) onSelected,
@@ -303,7 +314,7 @@ Future<String?> ezColorPicker(
         ),
       );
 
-  Positioned iconPosition(Alignment align, Widget icon) => switch (align) {
+  Positioned iconPosition(AlignmentGeometry align, Widget icon) => switch (align) {
         // Bottom
         Alignment.bottomCenter => Positioned(
             bottom: 0,
@@ -338,10 +349,10 @@ Future<String?> ezColorPicker(
           ),
         Alignment.topLeft => Positioned(top: 0, left: 0, child: icon),
         Alignment.topRight => Positioned(top: 0, right: 0, child: icon),
-        Alignment() => Positioned(top: 0, child: icon),
-      };
+        AlignmentGeometry() => Positioned(top: 0, child: icon),
+      }; // TODO: re-verify
 
-  await ezModal(
+  final bool? confirmed = await ezModal<bool>(
     config,
     enableDrag: false,
     isDismissible: false,
@@ -390,14 +401,16 @@ Future<String?> ezColorPicker(
         children: <Widget>[
           // Gradient flip
           EzHeader(config),
-          EzFlipFlop(
-            config,
-            init: gradient,
-            onLabel: 'Gradient',
-            offLabel: 'Single',
-            onChanged: (bool choice) => setModal(() => gradient = choice),
-          ),
-          config.spacer,
+          if (allowGradient) ...<Widget>[
+            EzFlipFlop(
+              config,
+              init: gradient,
+              onLabel: 'Gradient',
+              offLabel: 'Single',
+              onChanged: (bool choice) => setModal(() => gradient = choice),
+            ),
+            config.spacer,
+          ], // TODO: l10n
 
           // The magic
           gradient
@@ -537,11 +550,11 @@ Future<String?> ezColorPicker(
               EzTextIconButton(
                 config,
                 icon: EzIcon(config, Icons.cancel),
-                label: denyMsg ?? config.ezL10n.gCancel,
+                label: config.ezL10n.gCancel,
                 onPressed: () {
-                  onDeny();
-                  if (mCon.mounted) Navigator.of(mCon).pop();
-                  setModal(() => preview = startColor);
+                  setModal(() => preview = picking);
+                  onCancel?.call();
+                  if (mCon.mounted) Navigator.of(mCon).pop(false);
                 },
               ),
               config.rowSpacer,
@@ -549,11 +562,8 @@ Future<String?> ezColorPicker(
                 config,
                 enabled: !gradient || (gradients.length > 2),
                 icon: EzIcon(config, Icons.check),
-                label: confirmMsg ?? config.ezL10n.gApply,
-                onPressed: () {
-                  onConfirm();
-                  if (mCon.mounted) Navigator.of(mCon).pop();
-                },
+                label: config.ezL10n.gApply,
+                onPressed: () => Navigator.of(mCon).pop(true),
               ),
             ],
           ),
@@ -563,15 +573,15 @@ Future<String?> ezColorPicker(
     }),
   );
 
-  // TODO: re-handle cancel
-  // TODO: classify?
-  return gradient
-      ? <String>[
-          beginDir.toString(),
-          endDir.toString(),
-          ...gradients.map((Color color) => color.toARGB32().toString()),
-        ].join(',')
-      : preview.toString();
+  return (confirmed == true)
+      ? gradient
+          ? <String>[
+              beginDir.toString(),
+              endDir.toString(),
+              ...gradients.map((Color color) => color.toARGB32().toString()),
+            ].join(colorSplit)
+          : preview.toString()
+      : null;
 }
 
 /// Returns an appropriate width for a [DropdownMenu]

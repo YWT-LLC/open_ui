@@ -455,7 +455,7 @@ class _ImageSettingState extends State<EzImageSetting> {
               await ezColorPicker(
                 widget.config,
                 context: context,
-                startColor: currColor,
+                picking: currColor,
                 onColorChange: (Color color) => setModal(() => currColor = color),
                 onConfirm: () async {
                   await EzCM.setString(widget.pathKey, currColor.toARGB32().toString());
@@ -464,7 +464,6 @@ class _ImageSettingState extends State<EzImageSetting> {
                     Navigator.of(mCon).pop(currColor.toARGB32().toString());
                   }
                 },
-                onDeny: doNothing,
               );
             },
             icon: EzIcon(widget.config, Icons.color_lens),
