@@ -62,7 +62,7 @@ class _EzElevatedButtonState extends State<EzElevatedButton> {
         onLongPress: widget.enabled ? widget.onLongPress : doNothing,
         style: (!widget.enabled || widget.fauxDisabled)
             ? (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+                overlayColor: WidgetStateProperty.all(widget.config.outlineFill.asColor),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               )
             : widget.style,
@@ -70,8 +70,8 @@ class _EzElevatedButtonState extends State<EzElevatedButton> {
           widget.text,
           style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
             decorationColor: (!widget.enabled || widget.fauxDisabled)
-                ? widget.config.colors.outline
-                : widget.config.colors.primary,
+                ? widget.config.outlineFill.asColor
+                : widget.config.primaryFill.asColor,
           ),
           textAlign: widget.textAlign,
         ),
@@ -138,7 +138,7 @@ class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
         style: (widget.enabled || widget.fauxDisabled)
             ? widget.style
             : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+                overlayColor: WidgetStateProperty.all(widget.config.outlineFill.asColor),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
         icon: widget.icon,
@@ -147,8 +147,8 @@ class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
           widget.label,
           style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
             decorationColor: (widget.enabled || widget.fauxDisabled)
-                ? widget.config.colors.primary
-                : widget.config.colors.outline,
+                ? widget.config.primaryFill.asColor
+                : widget.config.outlineFill.asColor,
           ),
           textAlign: widget.textAlign,
         ),
