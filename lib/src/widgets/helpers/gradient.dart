@@ -157,14 +157,6 @@ class EzGradientBorderSide extends BorderSide {
   int get hashCode => Object.hash(gradient, width, style);
 }
 
-// Icons //
-
-Widget ezGradientIcon(Widget icon, Gradient gradient) => ShaderMask(
-      blendMode: BlendMode.srcIn,
-      shaderCallback: (Rect bounds) => gradient.createShader(bounds),
-      child: icon,
-    );
-
 // Storage //
 
 final Map<String, AlignmentGeometry> alignLibrary = <String, AlignmentGeometry>{
