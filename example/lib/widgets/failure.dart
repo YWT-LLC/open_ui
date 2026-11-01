@@ -47,7 +47,7 @@ class FailureHeader extends StatelessWidget {
                   child: EzText(
                     config,
                     text: message!,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.center,
                   ),
                 )
@@ -136,7 +136,7 @@ class LinkOption extends StatelessWidget {
           EzText(
             config,
             text: l10n(config).rsWouldYou,
-            style: ezSubTitleStyle(config.styles),
+            style: config.subTitleStyle,
             textAlign: TextAlign.center,
           ),
           config.spacer,

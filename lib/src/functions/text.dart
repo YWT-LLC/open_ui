@@ -80,7 +80,7 @@ void ezWindowNamer(String title) => SystemChrome.setApplicationSwitcherDescripti
       ApplicationSwitcherDescription(
         label: title,
         primaryColor: ezRootIsMounted
-            ? Provider.of<EzCP>(ezRootContext, listen: false).colors.primary.toARGB32()
+            ? Provider.of<EzCP>(ezRootContext, listen: false).primaryFill.asColor.toARGB32()
             : ywtPurpleHex,
       ),
     );
@@ -141,16 +141,6 @@ String ezTitleToCamel(String name) =>
 
 /// Title Case -> ClassCase
 String ezTitleToClass(String name) => name.replaceAll(RegExp(r'\s'), '');
-
-// Getters //
-
-/// [TextTheme.headlineLarge] w/ the [TextStyle.fontSize] of [TextTheme.titleLarge]
-TextStyle? ezSubHeadingStyle(TextTheme styles) =>
-    styles.headlineLarge?.copyWith(fontSize: styles.titleLarge?.fontSize);
-
-/// [TextTheme.bodyLarge] w/ the [TextStyle.fontSize] of [TextTheme.titleLarge]
-TextStyle? ezSubTitleStyle(TextTheme styles) =>
-    styles.bodyLarge?.copyWith(fontSize: styles.titleLarge?.fontSize);
 
 // Setters //
 

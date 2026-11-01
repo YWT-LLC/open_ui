@@ -691,7 +691,7 @@ class ErrorScreen extends StatelessWidget {
               EzText(
                 config,
                 text: config.ezL10n.g404,
-                style: ezSubTitleStyle(config.styles),
+                style: config.subTitleStyle,
                 textAlign: TextAlign.center,
               ),
               config.separator,
@@ -755,7 +755,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 Text(
                   l10n(config).hsCounterLabel,
-                  style: ezSubTitleStyle(config.styles),
+                  style: config.subTitleStyle,
                   textAlign: TextAlign.center,
                 ),
                 Text(

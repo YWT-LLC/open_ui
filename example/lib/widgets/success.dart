@@ -48,7 +48,7 @@ class SuccessHeader extends StatelessWidget {
                   child: EzText(
                     config,
                     text: message!,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
