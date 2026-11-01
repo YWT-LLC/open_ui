@@ -18,12 +18,12 @@ class EzCountdownTimer extends StatefulWidget {
   /// Defaults to a [SnackBar] appropriate value
   final double? radius;
 
-  /// Defaults to [ColorScheme.secondary]
-  final Color? color;
+  /// Defaults to [EzCP.secondaryFill]
+  final EzSwitchColor? fill;
 
   /// An animated circle/pie countdown timer
   /// Default [radius] is for use in a [SnackBar]
-  const EzCountdownTimer(this.config, {super.key, required this.duration, this.radius, this.color});
+  const EzCountdownTimer(this.config, {super.key, required this.duration, this.radius, this.fill});
 
   @override
   State<EzCountdownTimer> createState() => _EzCountdownTimerState();
@@ -51,7 +51,7 @@ class _EzCountdownTimerState extends State<EzCountdownTimer> with SingleTickerPr
         size: Size(size, size),
         painter: EzCountdownPainter(
           _animation.value,
-          widget.color ?? widget.config.colors.secondary,
+          widget.fill ?? widget.config.secondaryFill,
         ),
       ),
     );
@@ -66,17 +66,27 @@ class _EzCountdownTimerState extends State<EzCountdownTimer> with SingleTickerPr
 
 class EzCountdownPainter extends CustomPainter {
   final double progress;
-  final Color color;
+  final EzSwitchColor fill;
 
-  EzCountdownPainter(this.progress, this.color);
+  EzCountdownPainter(this.progress, this.fill);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint foregroundPaint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
+    final Rect rect = Rect.fromCircle(
+      center: Offset(size.width / 2, size.height / 2),
+      radius: size.width / 2,
+    );
+
+    final Paint foregroundPaint = Paint()..style = PaintingStyle.fill;
+
+    if (fill.gradient != null) {
+      foregroundPaint.shader = fill.gradient!.createShader(rect);
+    } else {
+      foregroundPaint.color = fill.color!;
+    }
+
     canvas.drawArc(
-      Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: size.width / 2),
+      rect,
       -pi / 2,
       2 * -pi * progress,
       true,
@@ -85,5 +95,6 @@ class EzCountdownPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(EzCountdownPainter oldDelegate) => oldDelegate.progress != progress;
+  bool shouldRepaint(EzCountdownPainter oldDelegate) =>
+      oldDelegate.progress != progress || oldDelegate.fill != fill;
 }
