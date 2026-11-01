@@ -12,15 +12,15 @@ import 'package:provider/provider.dart';
 class EzCP extends ChangeNotifier {
   //* Construct *//
 
+  late Locale _locale;
+  late OUILang _l10n;
+  bool _ltr;
+
   late bool _isLefty;
 
   late ThemeMode _themeMode;
   late bool _isDark;
   late ThemeData _theme;
-
-  late Locale _locale;
-  late OUILang _l10n;
-  bool _ltr;
 
   late EzColorCache _color;
   late EzDesignCache _design;
@@ -36,10 +36,10 @@ class EzCP extends ChangeNotifier {
     required Locale locale,
     required OUILang el10n,
     required EzAppCache appCache,
-  })  : _isDark = isDark,
-        _locale = locale,
+  })  : _locale = locale,
         _l10n = el10n,
         _ltr = !rtlCodes.contains(locale.languageCode),
+        _isDark = isDark,
         _appCache = appCache,
         _needsRebuild = false {
     _isLefty = EzCM.get(isLeftyKey);
@@ -66,17 +66,18 @@ class EzCP extends ChangeNotifier {
   void _buildThemeData() {
     _isLefty = EzCM.get(isLeftyKey);
 
-    dynamic colorOrGradient(String key) {
+    EzSwitchColor colorOrGradient(String key) {
       final String color = EzCM.get(key);
       final List<String> parts = color.split(colorSplit);
 
       return parts.length > 1
-          ? LinearGradient(
+          ? EzSwitchColor(
+              gradient: LinearGradient(
               begin: alignLibrary[parts[0]] ?? Alignment.centerLeft,
               end: alignLibrary[parts[1]] ?? Alignment.centerRight,
               colors: parts.sublist(2).map((String color) => Color(int.parse(color))).toList(),
-            )
-          : Color(int.parse(color));
+            ))
+          : EzSwitchColor(color: Color(int.parse(color)));
     }
 
     if (_isDark) {
@@ -256,6 +257,15 @@ class EzCP extends ChangeNotifier {
 
   //* Get *//
 
+  /// Current language for the app
+  Locale get locale => _locale;
+
+  /// Open UI localizations for the [locale]
+  OUILang get ezL10n => _l10n;
+
+  /// Text direction for the [locale]
+  bool get isLTR => _ltr;
+
   /// Whether the layout should favor left handed users
   bool get isLefty => _isLefty;
 
@@ -272,26 +282,41 @@ class EzCP extends ChangeNotifier {
   /// Current [ThemeData] to match the [themeMode]
   ThemeData get theme => _theme;
 
-  /// Current language for the app
-  Locale get locale => _locale;
-
-  /// Open UI localizations for the [locale]
-  OUILang get ezL10n => _l10n;
-
-  /// Text direction for the [locale]
-  bool get isLTR => _ltr;
-
   // Color cache //
-
-  EzColorCache get color => _color;
 
   String get schemeImagePath => _color.schemeImagePath;
 
+  // Surface
+  EzSwitchColor get surfaceFill => _color.surface;
+  EzSwitchColor get surfaceDimFill => _color.surfaceDim;
+  EzSwitchColor get surfaceContainerFill => _color.surfaceContainer;
+
+  // Text
+  EzSwitchColor get onSurfaceFill => _color.onSurface;
+  EzSwitchColor get outlineFill => _color.outline;
+
+  // Big three
+  EzSwitchColor get primaryFill => _color.primary;
+  EzSwitchColor get primaryContainerFill => _color.primaryContainer;
+
+  EzSwitchColor get secondaryFill => _color.secondary;
+  EzSwitchColor get secondaryContainerFill => _color.secondaryContainer;
+
+  EzSwitchColor get tertiaryFill => _color.tertiary;
+  EzSwitchColor get tertiaryContainerFill => _color.tertiaryContainer;
+
+  // Misc
+  EzSwitchColor get errorFill => _color.error;
+  EzSwitchColor get errorContainerFill => _color.errorContainer;
+
+  EzSwitchColor get outlineVariantFill => _color.outlineVariant;
+  EzSwitchColor get shadowFill => _color.shadow;
+  EzSwitchColor get surfaceTintFill => _color.surfaceTint;
+  EzSwitchColor get scrimFill => _color.scrim;
+
   // Design cache //
-
-  EzDesignCache get design => _design;
-
   // Button
+
   double get padding => _design.padding;
 
   EzButtonShape get buttonShape => _design.buttonShape;
@@ -300,9 +325,19 @@ class EzCP extends ChangeNotifier {
   BorderRadius get textRadius => _design.textRadius;
   BorderRadius get textFieldRadius => _design.textFieldRadius;
 
+  BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
+      ? EzGradientBoxBorder(this, gradient: fill.gradient!)
+      : Border.all(
+          color: fill.color!,
+          width: _design.borderWidth,
+        );
+
   BorderSide borderSide({Color? color}) => _design.borderWidth == 0
       ? BorderSide.none
-      : BorderSide(color: color ?? _theme.colorScheme.primaryContainer, width: _design.borderWidth);
+      : BorderSide(
+          color: color ?? _theme.colorScheme.primaryContainer,
+          width: _design.borderWidth,
+        );
 
   bool get lineLinks => _design.lineLinks;
   bool get showBackFAB => _design.showBackFAB;
@@ -334,8 +369,6 @@ class EzCP extends ChangeNotifier {
 
   // Layout cache (lil page design, lil text) //
 
-  EzLayoutCache get layout => _layout;
-
   EzSpacer get margin => _layout.margin;
   EzSpacer get rowMargin => _layout.rowMargin;
 
@@ -350,25 +383,26 @@ class EzCP extends ChangeNotifier {
   EzNewLine get startLine => _layout.startLine;
   EzNewLine get centerLine => _layout.centerLine;
   EzNewLine get endLine => _layout.endLine;
-  EzRichLine get richLine => _layout.richLine;
+  EzRichLine get richLine => _layout.richLine; // TODO: move to text
 
   // Text cache //
-
-  EzTextCache get text => _text;
 
   double get textBackgroundOpacity => _text.backgroundOpacity;
   double get iconSize => _text.iconSize;
 
   // Theme sub-pointers //
 
-  ColorScheme get colors => _theme.colorScheme;
-
-  TextTheme get styles => _theme.textTheme;
   TextStyle? get displayStyle => _theme.textTheme.displayLarge;
   TextStyle? get headlineStyle => _theme.textTheme.headlineLarge;
   TextStyle? get titleStyle => _theme.textTheme.titleLarge;
   TextStyle? get bodyStyle => _theme.textTheme.bodyLarge;
   TextStyle? get labelStyle => _theme.textTheme.labelLarge;
+
+  TextStyle? get subHeadingStyle =>
+      _theme.textTheme.headlineLarge?.copyWith(fontSize: _theme.textTheme.titleLarge?.fontSize);
+
+  TextStyle? get subTitleStyle =>
+      _theme.textTheme.bodyLarge?.copyWith(fontSize: _theme.textTheme.titleLarge?.fontSize);
 
   /// Toggleable bool for alerting the user to rebuild the UI
   /// Some settings would be too expensive to rebuild on every change, so they update locally and [pingRebuild]
@@ -449,44 +483,53 @@ class EzCP extends ChangeNotifier {
 
 //* Cache *//
 
+class EzSwitchColor {
+  final Gradient? gradient;
+  final Color? color;
+
+  const EzSwitchColor({this.gradient, this.color})
+      : assert((gradient == null) != (color == null), 'One must be provided');
+
+  Color get asColor => color ?? gradient!.colors.first;
+
+  Gradient get asGradient => gradient ?? LinearGradient(colors: <Color>[color!]);
+}
+
 class EzColorCache {
   final String schemeImagePath;
 
   // Backgrounds
-  final dynamic surface;
-  final dynamic surfaceDim;
-  final dynamic surfaceContainer;
+  final EzSwitchColor surface;
+  final EzSwitchColor surfaceDim;
+  final EzSwitchColor surfaceContainer;
 
   // Text
-  final dynamic onSurface;
-  final dynamic outline;
+  final EzSwitchColor onSurface;
+  final EzSwitchColor outline;
 
-  // Primary
-  final dynamic primary;
-  final dynamic primaryContainer;
+  // Big three
+  final EzSwitchColor primary;
+  final EzSwitchColor primaryContainer;
 
-  // Secondary
-  final dynamic secondary;
-  final dynamic secondaryContainer;
+  final EzSwitchColor secondary;
+  final EzSwitchColor secondaryContainer;
 
-  // Tertiary
-  final dynamic tertiary;
-  final dynamic tertiaryContainer;
-
-  // Erriary
-  final dynamic error;
-  final dynamic errorContainer;
+  final EzSwitchColor tertiary;
+  final EzSwitchColor tertiaryContainer;
 
   // Misc
-  final dynamic outlineVariant;
-  final dynamic shadow;
-  final dynamic surfaceTint;
-  final dynamic scrim;
+  final EzSwitchColor error;
+  final EzSwitchColor errorContainer;
+
+  final EzSwitchColor outlineVariant;
+  final EzSwitchColor shadow;
+  final EzSwitchColor surfaceTint;
+  final EzSwitchColor scrim;
 
   /// Theme aware tracker for frequently used color values...
   /// Color scheme image(s)
   EzColorCache({
-    required this.schemeImagePath,
+    required this.schemeImagePath, // TODO: use this lol
 
     // Backgrounds
     required this.surface,
