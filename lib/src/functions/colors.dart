@@ -8,7 +8,7 @@ import '../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 /// Returns the guesstimated most readable text color (black/white) for [background]
-Color getTextColor(Color background) {
+Color ezTextColor(Color background) {
   final int lumR = (background.r * 255.0 * 0.299).round();
   final int lumG = (background.g * 255.0 * 0.587).round();
   final int lumB = (background.b * 255.0 * 0.114).round();

@@ -186,16 +186,16 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
                   ),
                 ),
                 tooltip: widget.config.ezL10n.gUpdates,
-                backgroundColor: widget.config.colors.secondary,
-                foregroundColor: widget.config.colors.onSecondary,
+                backgroundColor: widget.config.secondaryFill.asColor,
+                foregroundColor: widget.config.onSecondary,
                 child: EzIcon(widget.config, Icons.update),
               )
             : FloatingActionButton(
                 heroTag: 'updater_FAB',
                 onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
                 tooltip: widget.config.ezL10n.gUpdates,
-                backgroundColor: widget.config.colors.secondary,
-                foregroundColor: widget.config.colors.onSecondary,
+                backgroundColor: widget.config.secondaryFill.asColor,
+                foregroundColor: widget.config.onSecondary,
                 child: EzIcon(widget.config, Icons.update),
               ),
       );
@@ -213,8 +213,8 @@ class EzRebuildFAB extends StatelessWidget {
         heroTag: 'rebuild_FAB',
         onPressed: () => config.rebuildUI(),
         tooltip: config.ezL10n.gApplyChanges,
-        backgroundColor: config.colors.secondary,
-        foregroundColor: config.colors.onSecondary,
+        backgroundColor: config.secondaryFill.asColor,
+        foregroundColor: config.onSecondary,
         child: EzIcon(config, Icons.build),
       );
 }

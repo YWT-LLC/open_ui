@@ -462,7 +462,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       random.nextInt(256),
       1.0,
     );
-    final Color onPrimary = getTextColor(primary);
+    final Color onPrimary = ezTextColor(primary);
 
     // Build a triadic combo from the seed
     final HSVColor primaryHSV = HSVColor.fromColor(primary);
@@ -475,7 +475,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       primaryHSV.saturation,
       primaryHSV.value,
     ).toColor();
-    final Color onSecondary = getTextColor(secondary);
+    final Color onSecondary = ezTextColor(secondary);
 
     final Color tertiary = HSVColor.fromAHSV(
       1.0,
@@ -483,7 +483,7 @@ Must be one of [int, bool, double, String, List<String>]''');
       primaryHSV.saturation,
       primaryHSV.value,
     ).toColor();
-    final Color onTertiary = getTextColor(tertiary);
+    final Color onTertiary = ezTextColor(tertiary);
 
     if (isDark) {
       // Update color settings //
