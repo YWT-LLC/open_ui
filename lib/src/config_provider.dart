@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EzCP extends ChangeNotifier {
-  //* Construct *//
-
   late Locale _locale;
   late OUILang _l10n;
   bool _ltr;
@@ -83,47 +81,63 @@ class EzCP extends ChangeNotifier {
     if (_isDark) {
       _theme = ezThemeData(Brightness.dark, _ltr);
 
-      // Setup
+      //* Setup (dark) *//
+      // Color //
+
+      final EzSwitchColor surface = colorOrGradient(darkSurfaceKey);
+      final EzSwitchColor primary = colorOrGradient(darkPrimaryKey);
+      final EzSwitchColor secondary = colorOrGradient(darkSecondaryKey);
+      final EzSwitchColor tertiary = colorOrGradient(darkTertiaryKey);
+      final EzSwitchColor error = colorOrGradient(darkErrorKey);
+
+      // Design //
+
       final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(darkButtonShapeKey));
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
+
+      // Text //
+
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
-      // Make them so
+      //* Make them so *//
+      // Color //
+
       _color = EzColorCache(
         schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue,
 
-        // Background
-        surface: colorOrGradient(darkSurfaceKey),
+        // Surface
+        surface: surface,
         surfaceDim: colorOrGradient(darkSurfaceDimKey),
         surfaceContainer: colorOrGradient(darkSurfaceContainerKey),
+        onSurface: ezTextColor(surface.asColor),
 
-        // Text
-        onSurface: colorOrGradient(darkOnSurfaceKey),
-        outline: colorOrGradient(darkOutlineKey),
-
-        // Primary
-        primary: colorOrGradient(darkPrimaryKey),
+        // Big three
+        primary: primary,
         primaryContainer: colorOrGradient(darkPrimaryContainerKey),
+        onPrimary: ezTextColor(primary.asColor),
 
-        // Secondary
-        secondary: colorOrGradient(darkSecondaryKey),
+        secondary: secondary,
         secondaryContainer: colorOrGradient(darkSecondaryContainerKey),
+        onSecondary: ezTextColor(secondary.asColor),
 
-        // Tertiary
-        tertiary: colorOrGradient(darkTertiaryKey),
+        tertiary: tertiary,
         tertiaryContainer: colorOrGradient(darkTertiaryContainerKey),
-
-        // Erriary
-        error: colorOrGradient(darkErrorKey),
-        errorContainer: colorOrGradient(darkErrorContainerKey),
+        onTertiary: ezTextColor(tertiary.asColor),
 
         // Misc
+        error: error,
+        errorContainer: colorOrGradient(darkErrorContainerKey),
+        onError: ezTextColor(error.asColor),
+
+        outline: colorOrGradient(darkOutlineKey),
         outlineVariant: colorOrGradient(darkOutlineVariantKey),
-        shadow: colorOrGradient(darkShadowKey),
         surfaceTint: colorOrGradient(darkSurfaceTintKey),
+        shadow: colorOrGradient(darkShadowKey),
         scrim: colorOrGradient(darkScrimKey),
       );
+
+      // Design //
 
       _design = EzDesignCache(
         // Button
@@ -162,6 +176,8 @@ class EzCP extends ChangeNotifier {
         richLine: const EzRichLine(),
       );
 
+      // Text //
+
       _text = EzTextCache(
         backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
         iconSize: EzCM.get(darkIconSizeKey),
@@ -169,47 +185,63 @@ class EzCP extends ChangeNotifier {
     } else {
       _theme = ezThemeData(Brightness.light, _ltr);
 
-      // Setup
+      //* Setup (light) *//
+      // Color //
+
+      final EzSwitchColor surface = colorOrGradient(lightSurfaceKey);
+      final EzSwitchColor primary = colorOrGradient(lightPrimaryKey);
+      final EzSwitchColor secondary = colorOrGradient(lightSecondaryKey);
+      final EzSwitchColor tertiary = colorOrGradient(lightTertiaryKey);
+      final EzSwitchColor error = colorOrGradient(lightErrorKey);
+
+      // Design //
+
       final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(lightButtonShapeKey));
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
+
+      // Text //
+
       final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
-      // Make them so
+      //* Make them so *//
+      // Color //
+
       _color = EzColorCache(
         schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue,
 
-        // Background
-        surface: colorOrGradient(lightSurfaceKey),
+        // Surface
+        surface: surface,
         surfaceDim: colorOrGradient(lightSurfaceDimKey),
         surfaceContainer: colorOrGradient(lightSurfaceContainerKey),
+        onSurface: ezTextColor(surface.asColor),
 
-        // Text
-        onSurface: colorOrGradient(lightOnSurfaceKey),
-        outline: colorOrGradient(lightOutlineKey),
-
-        // Primary
-        primary: colorOrGradient(lightPrimaryKey),
+        // Big three
+        primary: primary,
         primaryContainer: colorOrGradient(lightPrimaryContainerKey),
+        onPrimary: ezTextColor(primary.asColor),
 
-        // Secondary
-        secondary: colorOrGradient(lightSecondaryKey),
+        secondary: secondary,
         secondaryContainer: colorOrGradient(lightSecondaryContainerKey),
+        onSecondary: ezTextColor(secondary.asColor),
 
-        // Tertiary
-        tertiary: colorOrGradient(lightTertiaryKey),
+        tertiary: tertiary,
         tertiaryContainer: colorOrGradient(lightTertiaryContainerKey),
-
-        // Erriary
-        error: colorOrGradient(lightErrorKey),
-        errorContainer: colorOrGradient(lightErrorContainerKey),
+        onTertiary: ezTextColor(tertiary.asColor),
 
         // Misc
+        error: error,
+        errorContainer: colorOrGradient(lightErrorContainerKey),
+        onError: ezTextColor(error.asColor),
+
+        outline: colorOrGradient(lightOutlineKey),
         outlineVariant: colorOrGradient(lightOutlineVariantKey),
-        shadow: colorOrGradient(lightShadowKey),
         surfaceTint: colorOrGradient(lightSurfaceTintKey),
+        shadow: colorOrGradient(lightShadowKey),
         scrim: colorOrGradient(lightScrimKey),
       );
+
+      // Design //
 
       _design = EzDesignCache(
         // Button
@@ -247,6 +279,8 @@ class EzCP extends ChangeNotifier {
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
         richLine: const EzRichLine(),
       );
+
+      // Text //
 
       _text = EzTextCache(
         backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
@@ -290,29 +324,41 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get surfaceFill => _color.surface;
   EzSwitchColor get surfaceDimFill => _color.surfaceDim;
   EzSwitchColor get surfaceContainerFill => _color.surfaceContainer;
-
-  // Text
-  EzSwitchColor get onSurfaceFill => _color.onSurface;
-  EzSwitchColor get outlineFill => _color.outline;
+  Color get onSurface => _color.onSurface;
 
   // Big three
   EzSwitchColor get primaryFill => _color.primary;
   EzSwitchColor get primaryContainerFill => _color.primaryContainer;
+  Color get onPrimary => _color.onPrimary;
 
   EzSwitchColor get secondaryFill => _color.secondary;
   EzSwitchColor get secondaryContainerFill => _color.secondaryContainer;
+  Color get onSecondary => _color.onSecondary;
 
   EzSwitchColor get tertiaryFill => _color.tertiary;
   EzSwitchColor get tertiaryContainerFill => _color.tertiaryContainer;
+  Color get onTertiary => _color.onTertiary;
 
   // Misc
   EzSwitchColor get errorFill => _color.error;
   EzSwitchColor get errorContainerFill => _color.errorContainer;
+  Color get onError => _color.onError;
 
+  EzSwitchColor get outlineFill => _color.outline;
   EzSwitchColor get outlineVariantFill => _color.outlineVariant;
-  EzSwitchColor get shadowFill => _color.shadow;
   EzSwitchColor get surfaceTintFill => _color.surfaceTint;
+  EzSwitchColor get shadowFill => _color.shadow;
   EzSwitchColor get scrimFill => _color.scrim;
+
+  BoxDecoration boxDeco({
+    BoxShape shape = BoxShape.rectangle,
+    EzSwitchColor? fill,
+  }) =>
+      BoxDecoration(
+        color: (fill ?? _color.surface).color,
+        gradient: (fill ?? _color.surface).gradient,
+        shape: shape,
+      );
 
   // Design cache //
   // Button
@@ -320,10 +366,10 @@ class EzCP extends ChangeNotifier {
   double get padding => _design.padding;
 
   EzButtonShape get buttonShape => _design.buttonShape;
-  double get borderWidth => _design.borderWidth;
-
   BorderRadius get textRadius => _design.textRadius;
   BorderRadius get textFieldRadius => _design.textFieldRadius;
+
+  double get borderWidth => _design.borderWidth;
 
   BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
       ? EzGradientBoxBorder(this, gradient: fill.gradient!)
@@ -332,16 +378,18 @@ class EzCP extends ChangeNotifier {
           width: _design.borderWidth,
         );
 
-  BorderSide borderSide({Color? color}) => _design.borderWidth == 0
+  BorderSide borderSide(EzSwitchColor fill) => _design.borderWidth == 0
       ? BorderSide.none
-      : BorderSide(
-          color: color ?? _theme.colorScheme.primaryContainer,
-          width: _design.borderWidth,
-        );
+      : fill.color == null
+          ? EzGradientBorderSide(this, gradient: fill.gradient!)
+          : BorderSide(
+              color: fill.color!,
+              width: _design.borderWidth,
+            );
 
   bool get lineLinks => _design.lineLinks;
-  bool get showBackFAB => _design.showBackFAB;
   bool get showScroll => _design.showScroll;
+  bool get showBackFAB => _design.showBackFAB;
 
   List<Widget> backFABs({bool isHome = false, bool override = false}) =>
       (override || (_design.showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
@@ -502,28 +550,30 @@ class EzColorCache {
   final EzSwitchColor surface;
   final EzSwitchColor surfaceDim;
   final EzSwitchColor surfaceContainer;
-
-  // Text
-  final EzSwitchColor onSurface;
-  final EzSwitchColor outline;
+  final Color onSurface;
 
   // Big three
   final EzSwitchColor primary;
   final EzSwitchColor primaryContainer;
+  final Color onPrimary;
 
   final EzSwitchColor secondary;
   final EzSwitchColor secondaryContainer;
+  final Color onSecondary;
 
   final EzSwitchColor tertiary;
   final EzSwitchColor tertiaryContainer;
+  final Color onTertiary;
 
   // Misc
   final EzSwitchColor error;
   final EzSwitchColor errorContainer;
+  final Color onError;
 
+  final EzSwitchColor outline;
   final EzSwitchColor outlineVariant;
-  final EzSwitchColor shadow;
   final EzSwitchColor surfaceTint;
+  final EzSwitchColor shadow;
   final EzSwitchColor scrim;
 
   /// Theme aware tracker for frequently used color values...
@@ -535,31 +585,33 @@ class EzColorCache {
     required this.surface,
     required this.surfaceDim,
     required this.surfaceContainer,
-
-    // Text
     required this.onSurface,
-    required this.outline,
 
     // Primary
     required this.primary,
     required this.primaryContainer,
+    required this.onPrimary,
 
     // Secondary
     required this.secondary,
     required this.secondaryContainer,
+    required this.onSecondary,
 
     // Tertiary
     required this.tertiary,
     required this.tertiaryContainer,
+    required this.onTertiary,
 
     // Erriary
     required this.error,
     required this.errorContainer,
+    required this.onError,
 
     // Misc
+    required this.outline,
     required this.outlineVariant,
-    required this.shadow,
     required this.surfaceTint,
+    required this.shadow,
     required this.scrim,
   });
 }
