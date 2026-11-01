@@ -77,6 +77,86 @@ OutlinedBorder ezGradientButtonShape(EzCP config, Gradient gradient) => EzGradie
       gradient: gradient,
     );
 
+class EzGradientBoxBorder extends BoxBorder {
+  final EzCP config;
+  final Gradient gradient;
+
+  const EzGradientBoxBorder(this.config, {required this.gradient});
+
+  @override
+  BorderSide get top => EzGradientBorderSide(config, gradient: gradient);
+
+  @override
+  BorderSide get bottom => EzGradientBorderSide(config, gradient: gradient);
+
+  @override
+  bool get isUniform => true;
+
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.all(config.borderWidth);
+
+  @override
+  void paint(
+    Canvas canvas,
+    Rect rect, {
+    TextDirection? textDirection,
+    BoxShape shape = BoxShape.rectangle,
+    BorderRadius? borderRadius,
+  }) {
+    final double width = config.borderWidth;
+    if (width <= 0) return;
+
+    final Paint paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = width
+      ..shader = gradient.createShader(rect, textDirection: textDirection);
+
+    final Rect inset = rect.deflate(width / 2);
+
+    switch (shape) {
+      case BoxShape.circle:
+        canvas.drawCircle(inset.center, inset.shortestSide / 2, paint);
+      case BoxShape.rectangle:
+        (borderRadius == null || borderRadius == BorderRadius.zero)
+            ? canvas.drawRect(inset, paint)
+            : canvas.drawRRect(borderRadius.toRRect(rect).deflate(width / 2), paint);
+    }
+  }
+
+  @override
+  ShapeBorder scale(double t) => EzGradientBoxBorder(config, gradient: gradient.scale(t));
+
+  @override
+  bool operator ==(Object other) => other is EzGradientBoxBorder && other.gradient == gradient;
+
+  @override
+  int get hashCode => Object.hash(gradient, config.borderWidth);
+}
+
+class EzGradientBorderSide extends BorderSide {
+  final Gradient gradient;
+
+  EzGradientBorderSide(EzCP config, {required this.gradient})
+      : super(
+          color: gradient.colors.first,
+          width: config.borderWidth,
+          style: config.borderWidth <= 0 ? BorderStyle.none : BorderStyle.solid,
+        );
+
+  /// Stroke [Paint] with [gradient] mapped onto [rect]
+  Paint toGradientPaint(Rect rect, {TextDirection? textDirection}) => Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = width
+    ..shader = gradient.createShader(rect, textDirection: textDirection);
+
+  @override
+  bool operator ==(Object other) =>
+      other is EzGradientBorderSide && other.gradient == gradient && other.width == width;
+
+  @override
+  int get hashCode => Object.hash(gradient, width, style);
+}
+
 // Icons //
 
 Widget ezGradientIcon(Widget icon, Gradient gradient) => ShaderMask(
@@ -105,7 +185,7 @@ final Map<String, AlignmentGeometry> alignLibrary = <String, AlignmentGeometry>{
 };
 
 /// No checks, assumes a valid gradient entry's value is being sent
-LinearGradient ezGradientFromString(String value) {
+LinearGradient ezLGFromString(String value) {
   final List<String> parts = value.split(colorSplit);
 
   return LinearGradient(
