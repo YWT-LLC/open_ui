@@ -20,15 +20,12 @@ class EzMenuButton extends StatelessWidget {
   final String? label;
 
   final void Function()? onPressed;
-
   final String? semanticsLabel;
-
   final TextAlign? textAlign;
 
-  /// Defaults to [TextTheme.bodyLarge]
+  /// Defaults to [EzCP.bodyStyle]
   final TextStyle? textStyle;
 
-  /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
   const EzMenuButton(
     this.config, {
     super.key,
@@ -43,7 +40,8 @@ class EzMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
-        style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+        style:
+            enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.outlineFill.asColor),
         onPressed: enabled ? onPressed : doNothing,
         leadingIcon: label == null ? null : (config.isLefty ? icon : null),
         trailingIcon: label == null ? null : (config.isLefty ? null : icon),

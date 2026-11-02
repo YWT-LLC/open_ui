@@ -6,7 +6,6 @@
 import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 class EzAlertDialog extends AlertDialog {
   final EzCP config;
@@ -17,7 +16,6 @@ class EzAlertDialog extends AlertDialog {
   /// Whether a "Close" [Action] should be included
   final bool needsClose;
 
-  /// [AlertDialog] wrapper with custom styling
   const EzAlertDialog(
     this.config, {
     super.key,
@@ -115,7 +113,6 @@ class EzAction extends StatelessWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [EzTextButton] wrapper with custom styling for an [AlertDialog]
   const EzAction(
     this.config, {
     super.key,
@@ -134,7 +131,7 @@ class EzAction extends StatelessWidget {
     final TextStyle? textStyle = isDefaultAction
         ? baseStyle?.copyWith(fontWeight: FontWeight.bold)
         : isDestructiveAction
-            ? baseStyle?.copyWith(color: config.colors.error)
+            ? baseStyle?.copyWith(color: config.errorFill.asColor)
             : baseStyle;
 
     return EzTextButton(
@@ -183,21 +180,11 @@ List<EzAction> ezActionPair(
       ),
     ];
 
-/// Open source consumers: DO NOT USE
 class EzLoadingGlass extends StatelessWidget {
-  /// Open source consumers: DO NOT USE
-  final EzCP? config;
+  final Widget? piece;
 
-  /// Open source consumers: DO NOT USE
-  const EzLoadingGlass(this.config, {super.key});
+  const EzLoadingGlass(this.piece, {super.key});
 
   @override
-  Widget build(BuildContext context) => (config == null)
-      ? const CircularProgressIndicator()
-      : ywt.EzLoadingIndicator(
-          iconSize: config!.iconSize,
-          padding: config!.padding,
-          semantics: config!.ezL10n.gLoadingAnim,
-          colorScheme: config!.colors,
-        );
+  Widget build(BuildContext context) => piece ?? const CircularProgressIndicator();
 }

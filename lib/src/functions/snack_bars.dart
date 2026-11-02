@@ -53,7 +53,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
             EzTextButton(
               config,
               text: undoMessage ?? config.ezL10n.gUndo,
-              textStyle: config.bodyStyle?.copyWith(color: config.colors.primary),
+              textStyle: config.bodyStyle?.copyWith(color: config.primaryFill.asColor),
               onPressed: () async {
                 await undo();
                 if (context.mounted) {
