@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzMonoChromeColorsSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [ThemeData.colorScheme] for [Brightness.dark]

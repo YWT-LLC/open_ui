@@ -8,7 +8,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzMenuButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// When false, disables [onPressed] and switches the color theme
@@ -20,13 +19,10 @@ class EzMenuButton extends StatelessWidget {
   /// [MenuItemButton.child] will be a [Text] Widget with [label]
   final String? label;
 
-  /// [MenuItemButton.onPressed] passthrough
   final void Function()? onPressed;
 
-  /// [MenuItemButton.semanticsLabel] passthrough
   final String? semanticsLabel;
 
-  /// [Text] passthrough
   final TextAlign? textAlign;
 
   /// Defaults to [TextTheme.bodyLarge]

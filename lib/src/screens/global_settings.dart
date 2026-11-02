@@ -8,13 +8,11 @@ import '../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzGlobalSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Optionally remove the locale setting
   final bool excludeLocaleSetting;
 
-  /// [EzLocaleSetting.inDistress] passthrough
   final Set<String> inDistress;
 
   /// Locales to skip in the [EzLocaleSetting]
@@ -25,31 +23,23 @@ class EzGlobalSettings extends StatelessWidget {
   /// BYO leading spacer, see [quickConfigSpacer] for trailing spacer
   final List<Widget>? additionalSettings;
 
-  /// [EzCM.saveConfig] passthrough
   final Set<String>? saveSkip;
 
   /// Defaults to [EzCP.separator]
   final Widget? quickConfigSpacer;
 
-  /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function(bool)? extraBig;
 
-  /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function(bool)? extraVis;
 
-  /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function(bool)? extraChalk;
 
-  /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function(bool)? extraNebula;
 
-  /// [EzBigButtonsConfig.extra] passthrough
   final Future<void> Function(bool)? extraWall;
 
-  /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkip;
 
-  /// [EzResetButton.dynamicTitle] passthrough
   final String Function()? resetTitle;
 
   /// Settings landing page

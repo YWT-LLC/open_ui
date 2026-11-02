@@ -8,7 +8,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzResetButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Set to false for a 'Reset' [ElevatedButton.icon] label rather than 'Reset all'
@@ -19,11 +18,9 @@ class EzResetButton extends StatelessWidget {
   /// [EzAlertDialog.title] that shows on click
   final String Function()? dynamicTitle;
 
-  /// [EzCM.reset] skip passthrough
   /// Moot if [onConfirm] is provided
   final Set<String>? resetSkip;
 
-  /// [ezRichUndoWarning] passthrough
   final Set<String>? saveSkip;
 
   /// Override what happens when the user choses to reset

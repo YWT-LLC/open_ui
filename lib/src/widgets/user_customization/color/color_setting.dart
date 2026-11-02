@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class EzColorSetting extends StatefulWidget {
-  /// EzConfig provider
   final EzCP config;
 
   /// [config] key whose [Color] will be updated

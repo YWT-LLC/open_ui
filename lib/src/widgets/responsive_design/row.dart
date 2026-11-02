@@ -8,23 +8,18 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzRow extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Row.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
-  /// [Row.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
 
-  /// [Row.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
   /// Whether this should respond to [isLeftyKey]'s status
   /// If true, [children] will be reversed
   final bool reverseHands;
 
-  /// [Row.children] passthrough
   final List<Widget> children;
 
   /// [Row] wrapper that optionally reverses [children] based on [isLeftyKey]'s status

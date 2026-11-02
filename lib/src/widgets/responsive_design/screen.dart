@@ -8,13 +8,11 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzScreen extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Screen content
   final Widget child;
 
-  /// [Container.alignment] passthrough
   final AlignmentGeometry? alignment;
 
   /// Margin around the screen content

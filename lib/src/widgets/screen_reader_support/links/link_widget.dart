@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzLinkWidget extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Destination function
@@ -29,10 +28,8 @@ class EzLinkWidget extends StatelessWidget {
   /// [Semantics] hint; what does it do?
   final String hint;
 
-  /// [Tooltip.message] passthrough
   final String tooltip;
 
-  /// [InkWell.child] passthrough
   final Widget child;
 
   /// [InkWell] wrapper that either opens an internal link via [onTap]

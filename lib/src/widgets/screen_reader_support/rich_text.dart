@@ -8,28 +8,21 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzRichText extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Text.rich] passthrough
   final List<InlineSpan> children;
 
   /// Whether a default [EzTextBackground] should be included
   final bool textBackground;
 
-  /// [Text.rich] passthrough
   final TextStyle? style;
 
-  /// [Text.rich] passthrough
   final TextAlign textAlign;
 
-  /// Optional [EzTextBackground.borderRadius] passthrough
   final BorderRadiusGeometry? borderRadius;
 
-  /// Optional [EzTextBackground.baseColor] passthrough
   final Color? baseColor;
 
-  /// Optional [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
 
   /// [Text.rich] wrapper with custom [Semantics] behavior

@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzChalkboardConfig extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Like updateBoth, but smaller

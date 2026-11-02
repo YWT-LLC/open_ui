@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:ywt_private/ywt_private.dart' as ywt;
 
 class EzAlertDialog extends AlertDialog {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Dialog content becomes [contents] in an [EzScrollView]
@@ -102,16 +101,9 @@ class EzAlertDialog extends AlertDialog {
 }
 
 class EzAction extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [EzTextButton.text] passthrough
   final String text;
-
-  /// Optional [Semantics] override for [text]
   final String? semantics;
-
-  /// [EzTextButton.onPressed] passthrough
   final void Function() onPressed;
 
   /// Will add [FontWeight.bold] to [style]

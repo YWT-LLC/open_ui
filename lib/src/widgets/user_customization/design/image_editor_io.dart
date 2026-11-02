@@ -14,23 +14,19 @@ import 'package:path_provider/path_provider.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [File] path of the image being edited
   final String path;
 
-  /// [ExtendedImageMode.editor] cropAspectRatio passthrough
   /// If null, it will mirror the window's aspect ratio
   /// Use [CropAspectRatios.custom] for freeform
   final double? cropAspectRatio;
 
-  /// [ExtendedImageMode.editor] initialCropAspectRatio passthrough
   /// If null, it will mirror the window's aspect ratio
   /// Use [CropAspectRatios.custom] for freeform
   final double? initialCropAspectRatio;
 
-  /// [ExtendedImageMode.editor] initCropRectType passthrough
   final InitCropRectType initCropRectType;
 
   /// Allows the user to crop/zoom/rotate the image

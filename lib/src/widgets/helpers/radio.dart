@@ -9,16 +9,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzRadio<T> extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
-  /// [Radio.value] passthrough
   final T value;
 
-  /// [Radio.toggleable] passthrough
   final bool toggleable;
 
   final double _scale;

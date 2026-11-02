@@ -8,7 +8,6 @@ import 'package:url_launcher/link.dart';
 import 'package:open_ui/open_ui.dart';
 
 class EzLink extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// The [TextButton.child] will be [Text] with [text] and all provided styling
@@ -20,13 +19,11 @@ class EzLink extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// Defaults to [ColorScheme.primary]
   final Color? textColor;
 
-  /// Optional override for [TextButton.style]
   final Color? backgroundColor;
 
   /// Destination function
@@ -45,7 +42,6 @@ class EzLink extends StatefulWidget {
   /// Don't repeat [text] here, it is appended automatically
   final String hint;
 
-  /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
   final String? tooltip;

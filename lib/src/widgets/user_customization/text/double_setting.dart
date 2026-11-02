@@ -9,7 +9,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzFontDoubleSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// The [EzCM] key being edited
@@ -41,7 +40,6 @@ class EzFontDoubleSetting extends StatefulWidget {
   /// Label [icon] below the [EzFontDoubleSetting]
   final Widget icon;
 
-  /// [Tooltip.message] passthrough
   final String tooltip;
 
   /// [TextStyle] for the [TextFormField]

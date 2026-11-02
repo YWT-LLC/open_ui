@@ -10,13 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
 
 class OpenUIScaffold extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Scaffold.body] passthrough
   final Widget body;
 
-  /// [AppBar.title] passthrough (via [Text] widget)
   final String title;
 
   /// For generator pages; whether there are things running

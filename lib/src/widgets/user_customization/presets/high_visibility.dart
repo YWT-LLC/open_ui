@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzHighVisibilityConfig extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Whether both themes should be updated

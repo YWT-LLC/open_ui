@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzIconLink extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// The [TextButton.icon] label will be [Text] with [label] and all provided styling
@@ -18,13 +17,11 @@ class EzIconLink extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [TextButton.icon] passthrough
   final Widget icon;
 
   /// Defaults to [ColorScheme.onSurface]
   final Color? textColor;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// Destination function
@@ -39,7 +36,6 @@ class EzIconLink extends StatefulWidget {
   /// Don't repeat [label] here, it is appended automatically
   final String hint;
 
-  /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
   final String? tooltip;

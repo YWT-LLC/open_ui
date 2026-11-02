@@ -7,16 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
 
 class EzAppBar extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
   final double? height;
   final Widget? leading;
   final double? leadingWidth;
   final Widget? title;
   final List<Widget>? actions;
 
-  /// [AppBar] wrapped in a [PreferredSize] and local [IconButtonTheme]
   const EzAppBar(
     this.config, {
     super.key,
@@ -37,7 +34,7 @@ class EzAppBar extends StatelessWidget {
             side: BorderSide.none,
             padding: EzInsets.wrap(config.marginVal),
             iconSize: config.headlineStyle!.fontSize,
-            backgroundColor: config.colors.surfaceDim,
+            backgroundColor: config.surfaceDimFill.asColor,
           ),
         ),
         child: AppBar(

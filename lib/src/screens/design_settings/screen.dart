@@ -10,7 +10,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzDesignSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Current sub-page
@@ -63,16 +62,12 @@ class EzDesignSettings extends StatelessWidget {
   /// [lightPageDesignKeys] by default
   final Set<String>? resetExtraLightPage;
 
-  /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkipButton;
 
-  /// [EzResetButton.saveSkip] passthrough
   final Set<String>? saveSkipButton;
 
-  /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkipPage;
 
-  /// [EzResetButton.saveSkip] passthrough
   final Set<String>? saveSkipPage;
 
   /// Ez to use image settings

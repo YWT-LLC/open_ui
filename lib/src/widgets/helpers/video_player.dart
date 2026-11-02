@@ -11,10 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class EzVideoPlayer extends StatefulWidget {
-  /// EzConfig provider
   final EzCP config;
 
-  /// [VideoPlayerController] passthrough
   final VideoPlayerController controller;
 
   /// [String] label for screen readers

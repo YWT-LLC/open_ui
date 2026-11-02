@@ -9,41 +9,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
 class EzScrollView extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Scrollbar.controller] passthrough
   final ScrollController? controller;
 
-  /// [Scrollbar.thumbVisibility] passthrough
   final bool? thumbVisibility;
 
   /// If true, when there is scrollable content, a halo of [ColorScheme.secondary] will be shown
   final bool showScrollHint;
 
-  /// [SingleChildScrollView.scrollDirection] passthrough
   final Axis scrollDirection;
 
   /// Only useful when [scrollDirection] is [Axis.horizontal]
   /// Is passed to the [SingleChildScrollView]s [EzRow]
   final bool reverseHands;
 
-  /// [SingleChildScrollView.primary] passthrough
   final bool? primary;
 
-  /// [SingleChildScrollView.physics] passthrough
   final ScrollPhysics? physics;
 
-  /// [SingleChildScrollView.child] passthrough
   final Widget? child;
 
-  /// [EzRow.mainAxisSize]/[Column.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
 
-  /// [EzRow.mainAxisAlignment]/[Column.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
-  /// [EzRow.crossAxisAlignment]/[Column.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
   /// Optionally jump to the center of the scroll upon creation

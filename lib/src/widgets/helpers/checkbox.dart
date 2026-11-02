@@ -9,25 +9,20 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzCheckbox extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
-  /// [Checkbox.value] passthrough
   final bool? value;
 
-  /// [Checkbox.onChanged] passthrough
   final ValueChanged<bool?>? onChanged;
 
   /// Defaults to [ezIconRatio]
   final double _scale;
 
-  /// [Checkbox.isError] passthrough
   final bool isError;
 
-  /// [Checkbox.semanticLabel] passthrough
   final String? semanticLabel;
 
   /// [Checkbox] with custom styling and scaling
@@ -57,49 +52,35 @@ class EzCheckbox extends StatelessWidget {
 }
 
 class EzCheckboxPair extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [EzRow.reverseHands] passthrough
   final bool reverseHands;
 
-  /// [EzRow.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
 
-  /// [EzRow.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
-  /// [EzRow.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// [EzText.text] passthrough
   final String text;
 
-  /// [EzText.style] passthrough
   final TextStyle? style;
 
-  /// [EzText.textAlign] passthrough
   final TextAlign? textAlign;
 
-  /// [EzText.semanticsLabel] passthrough
   final String? semanticsLabel;
 
-  /// [EzText.baseColor] passthrough
   final Color? baseColor;
 
-  /// [EzText.backgroundColor] passthrough
   final Color? backgroundColor;
 
   /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when scale > 1.1
   final EdgeInsetsGeometry? padding;
 
-  /// [Checkbox.value] passthrough
   final bool? value;
 
-  /// [Checkbox.onChanged] passthrough
   final ValueChanged<bool?>? onChanged;
 
-  /// [Checkbox.semanticLabel] passthrough
   final String? semanticLabel;
 
   const EzCheckboxPair(

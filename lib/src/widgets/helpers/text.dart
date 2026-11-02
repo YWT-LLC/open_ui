@@ -8,62 +8,44 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzNewLine extends StatelessWidget {
-  /// [Text.style] passthrough
-  /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [Text.textAlign] passthrough
   /// Defaults to [TextAlign.start]
   final TextAlign? textAlign;
 
-  /// Quick wrapper for creating a [TextStyle]d '' [Text]
+  /// A blank [Text] Widget with [style], wrapped in [ExcludeSemantics]
   const EzNewLine(this.style, {super.key, this.textAlign});
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: Text('', style: style, textAlign: textAlign ?? TextAlign.start),
-      );
+          child: Text(
+        '',
+        style: style,
+        textAlign: textAlign ?? TextAlign.start,
+      ));
 }
 
 class EzRichLine extends EzPlainText {
-  /// Quick wrapper for creating a [TextStyle]d '\n' [EzPlainText]
+  /// [EzPlainText] w/ '\n'
   const EzRichLine({super.style}) : super(text: '\n');
 }
 
 class EzText extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Text.data] passthrough
   final String text;
 
-  /// [Text.style] passthrough
-  /// Defaults to [TextTheme.bodyLarge]
+  /// Defaults to [EzCP.bodyStyle]
   final TextStyle? style;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
-
-  /// [Text.semanticsLabel] passthrough
   final String? semanticsLabel;
-
-  /// [Text.maxLines] passthrough
   final int? maxLines;
-
-  /// [Text.overflow] passthrough
   final TextOverflow? overflow;
-
-  /// [EzTextBackground.shape] passthrough
   final EzButtonShape? shape;
-
-  /// [EzTextBackground.baseColor] passthrough
   final Color? baseColor;
-
-  /// [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
 
   /// Quick wrapper for creating [Text] with a default [EzTextBackground]
-  /// [style] defaults to [TextTheme.bodyLarge]
   const EzText(
     this.config, {
     super.key,
@@ -96,22 +78,17 @@ class EzText extends StatelessWidget {
 }
 
 class EzTextBackground extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// The [Widget] that needs a background
-  /// Doesn't have to be [Text]
+  /// [Text] is merely the recommended widget
   final Widget text;
 
-  /// Optional override
   /// Defaults to [EdgeInsets.all] w/ [EzCP.marginVal]
   /// Override is always present, default is only present when [EzCP.textBackgroundOpacity] >= [oneP]
   final EdgeInsets? padding;
 
-  /// Optional border override ([BoxDecoration] passthrough)
   final BorderRadiusGeometry? borderRadius;
-
-  /// Optional shape override
   final EzButtonShape? shape;
 
   /// Uses [EzCP.textBackgroundOpacity]
@@ -151,83 +128,58 @@ class EzTextBackground extends StatelessWidget {
 }
 
 class EzTextField extends StatefulWidget {
-  /// [TextFormField] passthrough
   final bool autofocus;
 
-  /// [TextFormField] passthrough
   final Iterable<String>? autofillHints;
 
-  /// [TextFormField] passthrough
   final AutovalidateMode? autovalidateMode;
 
-  /// [TextFormField] passthrough
   final TextEditingController? controller;
 
-  /// [TextFormField] passthrough
   final String? initialValue;
 
-  /// [ConstrainedBox] passthrough
   final BoxConstraints constraints;
 
-  /// [ConstrainedBox] passthrough
   /// Always [constraints] if unprovided
   final BoxConstraints? errorConstraints;
 
-  /// [TextFormField] passthrough
   final FocusNode? focusNode;
 
-  /// [TextFormField] passthrough
   final bool obscureText;
 
-  /// [InputDecoration] passthrough
   final String hintText;
 
-  /// [InputDecoration] passthrough
   final Widget? prefixIcon;
 
-  /// [InputDecoration] passthrough
   final Widget? suffixIcon;
 
   /// Optional [Semantics] label
   final String? label;
 
-  /// [TextFormField] passthrough
   final TextInputType? keyboardType;
 
-  /// [TextFormField] passthrough
   final int? maxLines;
 
-  /// [TextFormField] passthrough
   final void Function(String)? onChanged;
 
-  /// [TextFormField] passthrough
   final void Function()? onEditingComplete;
 
-  /// [TextFormField] passthrough
   final void Function(String)? onFieldSubmitted;
 
-  /// [TextFormField] passthrough
   final void Function()? onTap;
 
-  /// [TextFormField] passthrough
   final bool onTapAlwaysCalled;
 
-  /// [TextFormField] passthrough
   final Function(PointerDownEvent)? onTapOutside;
 
-  /// [TextFormField] passthrough
   final bool readOnly;
 
-  /// [TextFormField] passthrough
   final TextStyle? style;
 
-  /// [TextFormField] passthrough
   final TextAlign textAlign;
 
-  /// [TextFormField] passthrough
   final TextInputAction? textInputAction;
 
-  /// [TextFormField] passthrough
   final String? Function(String?)? validator;
 
   /// [TextFormField] wrapped in a stateful [ConstrainedBox] to auto-handle error text

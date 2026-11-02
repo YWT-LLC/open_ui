@@ -10,7 +10,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzColorSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Current sub-page
@@ -28,11 +27,9 @@ class EzColorSettings extends StatelessWidget {
   /// [lightColorKeys] are included by default
   final Set<String>? resetExtraLight;
 
-  /// [EzResetButton.resetSkip] passthrough
   /// Shared for both themes
   final Set<String>? resetSkip;
 
-  /// [EzResetButton.saveSkip] passthrough
   /// Shared for both themes
   final Set<String>? saveSkip;
 

@@ -8,13 +8,10 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzDropdownMenu<T> extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [EzScrollView.reverseHands] passthrough
   final bool reverseHands;
 
-  /// [EzScrollView.showScrollHint] passthrough
   final bool showScrollHint;
 
   /// Will be used in an [EzText] widget
@@ -26,16 +23,12 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// Defaults to [TextAlign.center]
   final TextAlign labelAlign;
 
-  /// [DropdownMenu.enabled] passthrough
   final bool enabled;
 
-  /// [ezDropdownWidth] passthrough
   final String widthEntry;
 
-  /// [DropdownMenu.enableSearch] passthrough
   final bool enableSearch;
 
-  /// [DropdownMenu.keyboardType] passthrough
   final TextInputType? keyboardType;
 
   /// Defaults to [EzCP.bodyStyle]
@@ -44,13 +37,10 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// Defaults to [TextAlign.start]
   final TextAlign menuAlign;
 
-  /// [DropdownMenu.initialSelection] passthrough
   final T? initialSelection;
 
-  /// [DropdownMenu.onSelected] passthrough
   final ValueChanged<T?>? onSelected;
 
-  /// [DropdownMenu.dropdownMenuEntries] passthrough
   final List<DropdownMenuEntry<T>> dropdownMenuEntries;
 
   /// [DropdownMenu] with custom styling

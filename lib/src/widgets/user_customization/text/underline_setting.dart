@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzUnderlineSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Which [TextStyle] to update

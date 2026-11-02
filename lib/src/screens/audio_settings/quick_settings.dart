@@ -8,7 +8,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class QuickAudioSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   const QuickAudioSettings(

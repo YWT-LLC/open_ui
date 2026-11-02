@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzFontFamilyBatchSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Requires the provider to be in the widget tree/context

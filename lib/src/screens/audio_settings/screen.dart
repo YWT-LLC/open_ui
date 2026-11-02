@@ -10,7 +10,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzAudioSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Current sub-page

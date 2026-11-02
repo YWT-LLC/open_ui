@@ -8,35 +8,26 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzInlineLink extends WidgetSpan {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [EzLink.text] passthrough
   final String text;
 
-  /// [EzLink.key] passthrough
   final Key? key;
 
-  /// [EzLink.textColor] passthrough
   final Color? textColor;
 
   /// Defaults to [Colors.transparent]
   final Color backgroundColor;
 
-  /// [EzLink.textAlign] passthrough
   final TextAlign? textAlign;
 
-  /// [EzLink.onTap] passthrough
   final void Function()? onTap;
 
-  /// [EzLink.url] passthrough
   final Uri? url;
 
-  /// [EzLink.hint] passthrough
   /// Don't repeat [text] here, it is appended automatically
   final String hint;
 
-  /// [EzLink.tooltip] passthrough
   final String? tooltip;
 
   /// Message for screen readers when the parent [EzRichText] is focused

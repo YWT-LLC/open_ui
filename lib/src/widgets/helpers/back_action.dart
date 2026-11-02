@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 /// Mimics the [AppBar.leading] back button
 /// But can also be used in [AppBar.actions] for left handed layouts
 class EzBackAction extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   const EzBackAction(this.config, {super.key});

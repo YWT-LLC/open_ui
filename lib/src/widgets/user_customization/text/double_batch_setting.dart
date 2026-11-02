@@ -27,7 +27,6 @@ const List<String> _lightKeys = <String>[
 ];
 
 class EzFontDoubleBatchSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Required for max/min awareness

@@ -28,7 +28,6 @@ class EzCP extends ChangeNotifier {
   EzAppCache _appCache;
   bool _needsRebuild;
 
-  /// EzConfig Provider
   EzCP({
     required bool isDark,
     required Locale locale,

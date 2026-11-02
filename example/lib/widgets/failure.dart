@@ -9,7 +9,6 @@ import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 
 class FailureHeader extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Core [Text] to display... under 'Failure'
@@ -57,7 +56,6 @@ class FailureHeader extends StatelessWidget {
 }
 
 class DeleteOption extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Directory that will be rm -rf'd
@@ -69,7 +67,6 @@ class DeleteOption extends StatelessWidget {
   /// [TextStyle] for 'would you like to...'
   final TextStyle? style;
 
-  /// Optional [ezCmd] readout passthrough
   final ValueNotifier<String>? readout;
 
   /// Iterable [Widget] containing a [EzElevatedIconButton] for wiping the partial build

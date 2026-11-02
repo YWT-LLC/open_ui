@@ -9,7 +9,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzCountdownTimer extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// How long is the countdown

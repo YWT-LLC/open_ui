@@ -9,13 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 
 class EzToolTipper extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Tooltip.message] passthrough
   final String? message;
 
-  /// [Tooltip.richMessage] passthrough
   final InlineSpan? richMessage;
 
   /// Classic question mark tool tip

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Unsupported in web

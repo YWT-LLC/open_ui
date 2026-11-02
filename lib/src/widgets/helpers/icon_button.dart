@@ -8,41 +8,20 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzIcon extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Icon.icon] passthrough
   final IconData? icon;
 
-  /// Optional [Color] or [Gradient] override for the [Icon]
   /// Defaults to [EzCP.primaryFill]
   final EzSwitchColor? fill;
 
-  /// [Icon.fill] passthrough
   final double? iconFill;
-
-  /// [Icon.weight] passthrough
   final double? weight;
-
-  /// [Icon.grade] passthrough
   final double? grade;
-
-  /// [Icon.opticalSize] passthrough
   final double? opticalSize;
-
-  /// [Icon.shadows] passthrough
   final List<Shadow>? shadows;
-
-  /// [Icon.semanticLabel] passthrough
   final String? semanticLabel;
-
-  /// [Icon.textDirection] passthrough
   final TextDirection? textDirection;
-
-  /// [Icon.applyTextScaling] passthrough
   final bool? applyTextScaling;
-
-  /// [Icon.blendMode] passthrough
   final BlendMode? blendMode;
 
   /// [Icon] wrapper that responds to [EzCP.iconSize] and supports [Gradient]s
@@ -144,22 +123,16 @@ class EzIconTouch extends StatelessWidget {
 }
 
 class EzIconButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [IconButton.icon] passthrough
   final Widget icon;
 
-  /// Optional [IconButton.iconSize] passthrough
   final double? iconSize;
 
-  /// [IconButton.onPressed] passthrough
   final VoidCallback? onPressed;
 
-  /// [IconButton.onLongPress] passthrough
   final VoidCallback? onLongPress;
 
-  /// [IconButton.tooltip] passthrough
   final String tooltip;
 
   /// Uses disabled styling and sets [onPressed] and [onLongPress] to [doNothing] when false
@@ -169,7 +142,6 @@ class EzIconButton extends StatelessWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// Optional [IconButton.style] passthrough
   /// Clobbers [enabled] and [fauxDisabled] style changes (style only)
   final ButtonStyle? style;
 

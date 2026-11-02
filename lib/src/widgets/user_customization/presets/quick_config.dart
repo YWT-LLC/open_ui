@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzQuickConfig extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Extra changes for [EzBigButtonsConfig]

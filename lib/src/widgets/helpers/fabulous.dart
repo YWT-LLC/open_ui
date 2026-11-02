@@ -10,7 +10,6 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 class EzBackFAB extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [FloatingActionButton] that goes back; [Navigator.pop]
@@ -26,7 +25,6 @@ class EzBackFAB extends StatelessWidget {
 }
 
 class EzConfigFAB extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Dumps everything (except the current [Locale]) by default
@@ -61,7 +59,6 @@ class EzConfigFAB extends StatelessWidget {
 }
 
 class EzUpdaterFAB extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Local app version
@@ -202,7 +199,6 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
 }
 
 class EzRebuildFAB extends StatelessWidget {
-  /// EzConfig provider
   final EzCP config;
 
   /// [FloatingActionButton] that rebuilds the app when pressed

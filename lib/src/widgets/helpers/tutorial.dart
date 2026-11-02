@@ -7,37 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
 
 class EzTutorial extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Positioned.top] passthrough
   final double? top;
-
-  /// [Positioned.bottom] passthrough
   final double? bottom;
-
-  /// [Positioned.left] passthrough
   final double? left;
-
-  /// [Positioned.right] passthrough
   final double? right;
-
-  /// [AlertDialog.title] passthrough
   final Widget? title;
-
-  /// Value for the [AlertDialog]'s [Text] content
   final String content;
-
-  /// Optional [Semantics] override for [content]
   final String? contentSemantics;
-
-  /// [EzAction.text] passthrough
   final String acceptMessage;
-
-  /// Optional [Semantics] override for [acceptMessage]
   final String? acceptSemantics;
-
-  /// [EzAction.onPressed] passthrough
   final void Function() onAccept;
 
   /// [AlertDialog] wrapped in a [SelectionArea] and [Positioned] widget

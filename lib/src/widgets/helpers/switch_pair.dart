@@ -9,7 +9,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EzSwitchPair extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Easily disable the button
@@ -20,25 +19,18 @@ class EzSwitchPair extends StatefulWidget {
   /// The switch is unchanged
   final bool fauxDisabled;
 
-  /// [EzRow.reverseHands] passthrough
   final bool reverseHands;
 
-  /// [EzRow.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
 
-  /// [EzRow.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
-  /// [EzRow.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// [EzText.text] passthrough
   final String text;
 
-  /// [Text.semanticsLabel] passthrough
   final String? textFix;
 
-  /// [EzText.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// If provided, an [EzToolTipper] will appear next to the [Switch]
@@ -47,7 +39,6 @@ class EzSwitchPair extends StatefulWidget {
   /// If provided, an [EzToolTipper] will appear next to the [Switch]
   final InlineSpan? bigTipper;
 
-  /// [Switch.value] passthrough
   /// Provide [value] OR [valueKey]
   /// Must pair with [onChanged]
   final bool? value;
@@ -62,7 +53,6 @@ class EzSwitchPair extends StatefulWidget {
   /// Optionally provide [afterChanged]
   final String? valueKey;
 
-  /// [Switch.onChanged] passthrough
   /// Provide [onChanged] OR [afterChanged]
   /// Pairs with [value]
   final void Function(bool?)? onChanged;
@@ -72,7 +62,6 @@ class EzSwitchPair extends StatefulWidget {
   /// Pairs with [valueKey]
   final void Function(bool?)? afterChanged;
 
-  /// [Switch.trackOutlineWidth] passthrough
   final WidgetStateProperty<double?>? trackOutlineWidth;
 
   /// [EzRow] with flexible [EzText] and a [Switch]
@@ -222,7 +211,6 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 }
 
 class EzFlipFlop extends StatefulWidget {
-  /// EzConfig provider
   final EzCP config;
 
   /// Initial state

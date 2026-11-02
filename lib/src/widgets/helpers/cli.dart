@@ -8,25 +8,18 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzCLI extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [ezCmd] passthrough
   final String dir;
 
-  /// [ezCmd] passthrough
   final void Function() onSuccess;
 
-  /// [ezCmd] passthrough
   final void Function(String message) onFailure;
 
-  /// [ezCmd] passthrough
   final void Function(String message)? onError;
 
-  /// [ezCmd] passthrough
   final bool debug;
 
-  /// [ezCmd] passthrough
   final ValueNotifier<String>? readout;
 
   final TextEditingController _cmdController;

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class PageDesign extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Optional settings to add to the start of the sub-page

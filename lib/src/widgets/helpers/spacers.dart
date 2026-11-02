@@ -8,25 +8,25 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
-// Default constructors //
+// Spacers //
 
 class EzSpacer extends StatelessWidget {
   /// The final frontier
   final double space;
 
-  /// Whether [space] should be provided to [SizedBox.height]
   final bool vertical;
-
-  /// Whether [space] should be provided to [SizedBox.width]
   final bool horizontal;
 
-  /// [SizedBox] with [space] dimensions for organizing your layout
-  const EzSpacer(this.space, {super.key, this.vertical = true, this.horizontal = true});
+  const EzSpacer(
+    this.space, {
+    super.key,
+    this.vertical = true,
+    this.horizontal = true,
+  });
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
-        child: SizedBox(height: vertical ? space : null, width: horizontal ? space : null),
-      );
+      child: SizedBox(height: vertical ? space : null, width: horizontal ? space : null));
 }
 
 class EzKeyboardSpacer extends StatelessWidget {
@@ -34,11 +34,15 @@ class EzKeyboardSpacer extends StatelessWidget {
   /// [MediaQuery]'s [EdgeInsets.bottom] will be appended automatically
   final double space;
 
-  /// Whether [space] should be provided to [SizedBox.width]
-  /// Ignores [MediaQuery]
+  /// Always ignores [MediaQuery]
   final bool horizontal;
 
-  const EzKeyboardSpacer(this.space, {super.key, this.horizontal = true});
+  /// A spacer that automatically responds to on-screen keyboard open/close
+  const EzKeyboardSpacer(
+    this.space, {
+    super.key,
+    this.horizontal = true,
+  });
 
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
@@ -72,77 +76,106 @@ class EzSwapSpacer extends StatelessWidget {
   }
 }
 
-class EzDivider extends StatelessWidget {
-  /// Vertical space that should be occupied
-  final double height;
+// Dividers //
 
-  /// [BoxConstraints.maxWidth] value for the [Divider]
+Widget _ezDividerFill(EzSwitchColor fill, Widget divider) => (fill.gradient == null)
+    ? divider
+    : ShaderMask(
+        blendMode: BlendMode.srcIn,
+        shaderCallback: (Rect bounds) => fill.gradient!.createShader(bounds),
+        child: divider,
+      );
+
+class EzDivider extends StatelessWidget {
+  final double height;
   final double width;
 
-  /// [Divider.thickness] passthrough
   final double? thickness;
 
-  /// [Divider.color] passthrough
-  final Color? color;
+  final EzSwitchColor fill;
 
-  /// [Divider.radius] passthrough
   final BorderRadius? radius;
 
-  /// A [Divider] wrapped in a [ConstrainedBox]
   const EzDivider({
     super.key,
     required this.height,
     this.width = 175.0,
     this.thickness,
-    this.color,
+    required this.fill,
     this.radius,
   });
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
         constraints: BoxConstraints(maxWidth: width),
-        child: Divider(
-          height: height,
-          thickness: thickness,
-          color: color,
-          radius: radius,
+        child: _ezDividerFill(
+          fill,
+          Divider(
+            height: height,
+            thickness: thickness,
+            color: fill.color,
+            radius: radius,
+          ),
+        ),
+      );
+}
+
+class EzVerticalDivider extends StatelessWidget {
+  final double width;
+  final double height;
+
+  final double? thickness;
+
+  final EzSwitchColor fill;
+
+  final BorderRadius? radius;
+
+  const EzVerticalDivider({
+    super.key,
+    required this.width,
+    this.height = 175.0,
+    this.thickness,
+    required this.fill,
+    this.radius,
+  });
+
+  @override
+  Widget build(BuildContext context) => ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: height),
+        child: _ezDividerFill(
+          fill,
+          VerticalDivider(
+            width: width,
+            thickness: thickness,
+            color: fill.color,
+            radius: radius,
+          ),
         ),
       );
 }
 
 class EzTitledDivider extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Widget] to display just under the diving line
   final Widget title;
 
   /// When true, [title] is above the [Divider] line
   /// Default false, aka [title] below the [Divider] line
   final bool header;
 
-  /// Total vertical space that should be occupied
   final double height;
-
-  /// [BoxConstraints.maxWidth] value for the [Divider]
   final double width;
 
-  /// [Divider.thickness] passthrough
   final double? thickness;
 
-  /// [EzCol.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
 
-  /// [EzCol.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// [Divider.color] passthrough
-  final Color? color;
+  final EzSwitchColor fill;
 
-  /// [Divider.radius] passthrough
   final BorderRadius? radius;
 
-  /// A [Divider] wrapped in a [ConstrainedBox]
+  /// An [EzDivider] with a [title]
   const EzTitledDivider(
     this.config, {
     super.key,
@@ -153,7 +186,7 @@ class EzTitledDivider extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.thickness,
-    this.color,
+    required this.fill,
     this.radius,
   });
 
@@ -164,20 +197,20 @@ class EzTitledDivider extends StatelessWidget {
         children: <Widget>[
           EzSpacer(height / 2),
           if (header) title,
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: width * ezIconRatio(config)),
-            child: Divider(
-              height: config.marginVal,
-              thickness: thickness,
-              color: color,
-              radius: radius,
-            ),
+          EzDivider(
+            height: config.marginVal,
+            width: width * ezIconRatio(config),
+            thickness: thickness,
+            fill: fill,
+            radius: radius,
           ),
           if (!header) title,
           EzSpacer(height / 2),
         ],
       );
 }
+
+// Trimming //
 
 class EzHeader extends StatelessWidget {
   final EzCP config;
@@ -194,10 +227,9 @@ class EzHeader extends StatelessWidget {
 }
 
 class EzFooter extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// Just the [spacing] when true
+  /// Just [EzCP.separator] when true
   final bool blank;
 
   /// Just [contributeMessage] for this locale
@@ -206,10 +238,7 @@ class EzFooter extends StatelessWidget {
   /// Just [contributeMessage] when true
   final bool human;
 
-  /// Optional override
   final Widget? contributeMessage;
-
-  /// Optional override
   final Widget? translateMessage;
 
   /// For YWT
@@ -239,7 +268,7 @@ class EzFooter extends StatelessWidget {
               ? contributeMessage ??
                   EzLink(
                     config,
-                    text: 'Developer info',
+                    text: 'Developer info', // TODO: l10n
                     hint: config.ezL10n.gOpenLink,
                     tooltip: ywt.websiteContributeMula,
                     url: Uri.parse(ywt.websiteContributeMula),

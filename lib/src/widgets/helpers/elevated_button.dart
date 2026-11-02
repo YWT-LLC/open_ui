@@ -8,7 +8,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzElevatedButton extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Easily disable the button
@@ -19,13 +18,10 @@ class EzElevatedButton extends StatefulWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// [ElevatedButton.onPressed] passthrough
   final void Function()? onPressed;
 
-  /// [ElevatedButton.onLongPress] passthrough
   final void Function()? onLongPress;
 
-  /// [ElevatedButton.style] passthrough
   final ButtonStyle? style;
 
   /// [ElevatedButton.child] will be [Text] with [text], [textStyle], and [textAlign]
@@ -34,7 +30,6 @@ class EzElevatedButton extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [ElevatedButton] with custom styling and an off switch
@@ -79,7 +74,6 @@ class _EzElevatedButtonState extends State<EzElevatedButton> {
 }
 
 class EzElevatedIconButton extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Easily disable the button
@@ -90,16 +84,12 @@ class EzElevatedIconButton extends StatefulWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// [ElevatedButton.onPressed] passthrough
   final void Function()? onPressed;
 
-  /// [ElevatedButton.onLongPress] passthrough
   final void Function()? onLongPress;
 
-  /// [ElevatedButton.style] passthrough
   final ButtonStyle? style;
 
-  /// [ElevatedButton.icon] passthrough
   final Widget icon;
 
   /// [ElevatedButton.icon]'s label will be [Text] with [label], [textStyle], and [textAlign]
@@ -108,7 +98,6 @@ class EzElevatedIconButton extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]

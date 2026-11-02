@@ -14,7 +14,6 @@ import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EzImageSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [config] key for the path
@@ -27,7 +26,6 @@ class EzImageSetting extends StatefulWidget {
   /// Optional [config] key for the image source
   final String? sourceKey;
 
-  /// [EzElevatedIconButton.label] passthrough
   final String label;
 
   /// If true, opens an [ezColorPicker] for the user, and saves the hex value (string) as the image path

@@ -8,12 +8,8 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzPaddingSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// Optional override
   final double? iconSize;
-
   final int _steps;
   final int _decimals;
 

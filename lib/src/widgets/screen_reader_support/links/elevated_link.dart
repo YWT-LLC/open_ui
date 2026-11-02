@@ -9,10 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzElevatedLink extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
   final String? tooltip;
@@ -24,7 +22,6 @@ class EzElevatedLink extends StatelessWidget {
   /// Destination URL
   final Uri? url;
 
-  /// [EzElevatedButton.text] passthrough
   final String text;
 
   /// Minimal [EzElevatedButton] wrapped in a [Link]
@@ -59,10 +56,8 @@ class EzElevatedLink extends StatelessWidget {
 }
 
 class EzElevatedIconLink extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
   final String? tooltip;
@@ -74,10 +69,8 @@ class EzElevatedIconLink extends StatelessWidget {
   /// Destination URL
   final Uri? url;
 
-  /// [EzElevatedIconButton.icon] passthrough
   final Widget icon;
 
-  /// [EzElevatedIconButton.label] passthrough
   final String label;
 
   /// Minimal [EzElevatedIconButton] wrapped in a [Link]

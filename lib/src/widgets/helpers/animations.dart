@@ -8,19 +8,14 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzAnimSwitch extends AnimatedSwitcher {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// [ezDuration] passthrough
   final double mod;
 
-  /// [ezTransitionBuilder] passthrough
   final EzTransitionType? forceType;
 
-  /// [ezTransitionBuilder] passthrough
   final bool? forceFade;
 
-  /// [[ezTransitionBuilder] passthrough
   final bool reverse;
 
   /// An [EzCP] controlled [AnimatedSwitcher]
@@ -106,10 +101,8 @@ class EzAnimHide extends EzAnimSwitch {
 }
 
 class EzFauxCarousel extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// Optional [ezDuration] passthrough/override
   final double animMod;
 
   /// Current position in the list

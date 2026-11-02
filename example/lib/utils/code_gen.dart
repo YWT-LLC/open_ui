@@ -478,13 +478,9 @@ import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 
 class CountFAB extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [FloatingActionButton.onPressed] passthrough
   final void Function() count;
 
-  /// Increases the count (for the home screen)
   const CountFAB(this.config, this.count, {super.key});
 
   @override
@@ -518,7 +514,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SettingsButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [BuildContext] to call [GoRouter.goNamed] with
@@ -537,9 +532,7 @@ class SettingsButton extends StatelessWidget {
 }
 
 class OUICredits extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
   final String _label;
 
   /// [EzMenuButton] for opening Open UI's product page
@@ -573,16 +566,12 @@ import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 
 class ${classCaseAppName}Scaffold extends StatelessWidget {
-  /// EzConfig Provider
-  final EzCP config;
-
-  /// [AppBar.title] passthrough (via [Text] widget)
+  final EzCP config;  
   final String title;
 
   /// Whether to include [SettingsButton] in the [MenuAnchor]
   final bool showSettings;
 
-  /// [Scaffold.body] passthrough
   final Widget body;
 
   /// [FloatingActionButton]s to add on top of the [EzUpdaterFAB]

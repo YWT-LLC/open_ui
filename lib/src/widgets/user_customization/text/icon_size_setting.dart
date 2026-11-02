@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
 
 class EzIconSizeSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// If you want to track the iconSize changes externally
@@ -16,7 +15,6 @@ class EzIconSizeSetting extends StatefulWidget {
   /// Set to false when using this outside of [EzTextSettings]
   final bool fullCheck;
 
-  /// [EzTextBackground.backgroundColor] passthrough
   final Color? backgroundColor;
 
   const EzIconSizeSetting(

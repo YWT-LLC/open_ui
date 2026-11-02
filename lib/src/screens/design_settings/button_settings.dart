@@ -9,7 +9,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ButtonDesign extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Extra settings at the beginning
@@ -18,8 +17,7 @@ class ButtonDesign extends StatefulWidget {
   /// Extra settings at the end
   final List<Widget>? append;
 
-  /// Optional style setting label override
-  final String? styleLabel;
+  final String? labelStyle;
 
   /// Defaults to [EzCP.separator]
   final Widget? resetSpacer;
@@ -41,7 +39,7 @@ class ButtonDesign extends StatefulWidget {
     super.key,
     required this.prepend,
     required this.append,
-    this.styleLabel,
+    this.labelStyle,
     this.resetSpacer,
     required this.resetExtraDark,
     required this.resetExtraLight,
@@ -81,7 +79,7 @@ class _ButtonDesignState extends State<ButtonDesign> {
           // Button style
           _ButtonStyleSetting(
             widget.config,
-            styleLabel: widget.styleLabel,
+            styleLabel: widget.labelStyle,
             iconSize: iconSize,
           ),
           widget.config.separator,

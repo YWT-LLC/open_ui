@@ -8,7 +8,6 @@ import '../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzScaffold extends Scaffold {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [List] of (preferably) [FloatingActionButton]s

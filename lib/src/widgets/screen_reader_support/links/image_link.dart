@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzImageLink extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Image.image] passthrough
   final ImageProvider<Object> image;
 
   /// Destination function
@@ -32,16 +29,9 @@ class EzImageLink extends StatelessWidget {
   /// [Tooltip.message] for on hover/focus
   final String tooltip;
 
-  /// [Image.width] passthrough
   final double? width;
-
-  /// [Image.height] passthrough
   final double? height;
-
-  /// [Image.fit] passthrough
   final BoxFit? fit;
-
-  /// [Image.alignment] passthrough
   final AlignmentGeometry alignment;
 
   /// [Image] wrapper that either opens an internal link via [onTap]

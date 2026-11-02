@@ -9,14 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
 class EzConfigRandomizer extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [EzAlertDialog.title] that shows on click
   /// Defaults to [OUILang.ssRandomize]
   final String? dialogTitle;
 
-  /// [ezRichUndoWarning] passthrough
   final Set<String>? saveSkip;
 
   /// [EzElevatedIconButton] for [EzCM.randomize]

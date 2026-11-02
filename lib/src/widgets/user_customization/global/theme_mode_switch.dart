@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzThemeModeSwitch extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Standardized tool for changing the [ThemeMode]

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
 
 class SuccessHeader extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Core message to display... under 'Success'

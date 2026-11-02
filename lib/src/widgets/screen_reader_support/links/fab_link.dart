@@ -7,22 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
 class EzFABLink extends StatelessWidget {
-  /// [Link.uri] passthrough
   final Uri uri;
 
-  /// [FloatingActionButton.tooltip] passthrough
   final String? tooltip;
 
-  /// [FloatingActionButton.foregroundColor] passthrough
   final Color? foregroundColor;
 
-  /// [FloatingActionButton.backgroundColor] passthrough
   final Color? backgroundColor;
 
-  /// [FloatingActionButton.heroTag] passthrough
   final Object? heroTag;
 
-  /// [FloatingActionButton.child] passthrough
   final Widget? child;
 
   /// [FloatingActionButton] wrapped in a [Link]
@@ -38,14 +32,14 @@ class EzFABLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Link(
-    uri: uri,
-    builder: (_, FollowLink? followLink) => FloatingActionButton(
-      tooltip: tooltip,
-      foregroundColor: foregroundColor,
-      backgroundColor: backgroundColor,
-      heroTag: heroTag,
-      onPressed: followLink,
-      child: child,
-    ),
-  );
+        uri: uri,
+        builder: (_, FollowLink? followLink) => FloatingActionButton(
+          tooltip: tooltip,
+          foregroundColor: foregroundColor,
+          backgroundColor: backgroundColor,
+          heroTag: heroTag,
+          onPressed: followLink,
+          child: child,
+        ),
+      );
 }

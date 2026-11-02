@@ -9,7 +9,6 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:flutter/material.dart';
 
 class EzSettingsHub extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Where the magic happens
@@ -18,7 +17,7 @@ class EzSettingsHub extends StatefulWidget {
   /// Optional starting point (default 0/last visited)
   final int? target;
 
-  /// Optional override, defaults to [EzFooter]
+  /// Defaults to [EzFooter]
   final Widget? footer;
 
   /// Settings landing page

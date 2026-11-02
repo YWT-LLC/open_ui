@@ -8,7 +8,6 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 
 class EzLocaleSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [Locale]s to [skip]
