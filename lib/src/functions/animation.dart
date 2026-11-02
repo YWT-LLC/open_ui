@@ -3,34 +3,49 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:ywt_private/ywt_private.dart' as ywt;
+import '../../open_ui.dart';
 
 import 'package:flutter/material.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 class _RipplePainter extends CustomPainter {
-  final Color color;
   final double radius;
+  final EzSwitchColor fill;
+  final double opacity;
 
-  _RipplePainter({required this.color, required this.radius});
+  const _RipplePainter({
+    required this.radius,
+    required this.fill,
+    required this.opacity,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
     if (radius <= 0) return;
 
-    canvas.drawCircle(
-      Offset(size.width / 2, size.height / 2),
-      radius - ywt.strokeWidth / 2,
-      Paint()
-        ..color = color
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = ywt.strokeWidth
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2.0),
-    );
+    final Offset center = Offset(size.width / 2, size.height / 2);
+    final Paint paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = ywt.strokeWidth
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2.0);
+
+    if (fill.color == null) {
+      paint
+        ..shader = fill.gradient!.createShader(Rect.fromCircle(center: center, radius: radius))
+        ..color = Color.fromRGBO(0, 0, 0, opacity);
+    } else {
+      paint.color = fill.color!.withValues(alpha: opacity);
+    }
+
+    canvas.drawCircle(center, radius - ywt.strokeWidth / 2, paint);
   }
 
   @override
   bool shouldRepaint(covariant _RipplePainter oldDelegate) =>
-      oldDelegate.radius != radius || oldDelegate.color != color;
+      oldDelegate.radius != radius ||
+      oldDelegate.opacity != opacity ||
+      oldDelegate.fill.color != fill.color ||
+      oldDelegate.fill.gradient != fill.gradient;
 }
 
 OverlayEntry ezRipple({
@@ -38,7 +53,7 @@ OverlayEntry ezRipple({
   required double width,
   required double height,
   required Offset position,
-  required Color color,
+  required EzSwitchColor fill,
   required double oMin,
 }) =>
     OverlayEntry(
@@ -67,8 +82,9 @@ OverlayEntry ezRipple({
             height: radius * 2,
             child: CustomPaint(
               painter: _RipplePainter(
+                fill: fill,
                 radius: radius,
-                color: color.withValues(alpha: (1.0 + oMin) - controller.value),
+                opacity: ((1.0 + oMin) - controller.value).clamp(0.0, 1.0),
               ),
             ),
           );
