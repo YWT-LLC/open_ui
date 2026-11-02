@@ -4,17 +4,14 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ButtonDesign extends StatefulWidget {
   final EzCP config;
-
-  /// Extra settings at the beginning
   final List<Widget>? prepend;
-
-  /// Extra settings at the end
   final List<Widget>? append;
 
   final String? labelStyle;
@@ -22,16 +19,9 @@ class ButtonDesign extends StatefulWidget {
   /// Defaults to [EzCP.separator]
   final Widget? resetSpacer;
 
-  /// Extra keys for [EzCM.reset]
   final Set<String>? resetExtraDark;
-
-  /// Extra keys for [EzCM.reset]
   final Set<String>? resetExtraLight;
-
-  /// Extra keys for [EzCM.reset]
   final Set<String>? resetSkip;
-
-  /// Extra keys for [EzCM.reset]
   final Set<String>? saveSkip;
 
   const ButtonDesign(
@@ -229,12 +219,10 @@ class _ButtonStyleSetting extends StatelessWidget {
                                     config,
                                     text: shape.name(config.ezL10n),
                                     style: ElevatedButton.styleFrom(
-                                      side: currWidth == 0
-                                          ? BorderSide.none
-                                          : BorderSide(
-                                              color: config.colors.primaryContainer,
-                                              width: currWidth,
-                                            ),
+                                      side: config.borderSide(
+                                        config.primaryContainerFill,
+                                        width: currWidth,
+                                      ),
                                       shape: shape.shape,
                                     ),
                                     onPressed: () async {
@@ -267,7 +255,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                     child: Slider(
                       // Slider values
                       value: currWidth,
-                      max: maxBorderWidth,
+                      max: ywt.maxBorderWidth,
                       divisions: 30,
                       label: currWidth.toStringAsFixed(2),
 

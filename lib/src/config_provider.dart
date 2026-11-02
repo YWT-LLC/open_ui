@@ -382,13 +382,16 @@ class EzCP extends ChangeNotifier {
           width: _design.borderWidth,
         );
 
-  BorderSide borderSide(EzSwitchColor fill) => _design.borderWidth == 0
+  BorderSide borderSide(EzSwitchColor fill, {double? width}) => (width ?? _design.borderWidth) == 0
       ? BorderSide.none
       : fill.color == null
-          ? EzGradientBorderSide(this, gradient: fill.gradient!)
+          ? EzGradientBorderSide(
+              this,
+              gradient: fill.gradient!,
+            )
           : BorderSide(
               color: fill.color!,
-              width: _design.borderWidth,
+              width: width ?? _design.borderWidth,
             );
 
   bool get lineLinks => _design.lineLinks;

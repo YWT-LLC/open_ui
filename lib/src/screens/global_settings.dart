@@ -29,17 +29,11 @@ class EzGlobalSettings extends StatelessWidget {
   final Widget? quickConfigSpacer;
 
   final Future<void> Function(bool)? extraBig;
-
   final Future<void> Function(bool)? extraVis;
-
   final Future<void> Function(bool)? extraChalk;
-
   final Future<void> Function(bool)? extraNebula;
-
   final Future<void> Function(bool)? extraWall;
-
   final Set<String>? resetSkip;
-
   final String Function()? resetTitle;
 
   /// Settings landing page
@@ -85,8 +79,6 @@ class EzGlobalSettings extends StatelessWidget {
             extraBig: extraBig,
             extraVis: extraVis,
             extraChalk: extraChalk,
-            extraNebula: extraNebula,
-            extraWall: extraWall,
           ),
           config.spacer,
           EzConfigRandomizer(config, saveSkip: saveSkip),

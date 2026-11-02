@@ -41,8 +41,9 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
   late double iconSize = widget.config.iconSize;
 
   late double backOpacity = widget.config.textBackgroundOpacity;
-  late Color buttonBackground = widget.config.colors.surface.withValues(alpha: backOpacity);
-  late Color textBackground = widget.config.colors.surfaceContainer.withValues(alpha: backOpacity);
+  late Color buttonBackground = widget.config.surfaceFill.asColor.withValues(alpha: backOpacity);
+  late Color textBackground =
+      widget.config.surfaceContainerFill.asColor.withValues(alpha: backOpacity);
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +154,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           style: widget.labelProvider.value,
           backgroundColor: textBackground,
         ),
-        widget.EzDivider(config),
+        EzDivider(widget.config),
 
         // Icon size
         EzIconSizeSetting(
@@ -184,8 +185,8 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
             onChanged: (double value) {
               setState(() {
                 backOpacity = value;
-                buttonBackground = widget.config.colors.surface.withValues(alpha: backOpacity);
-                textBackground = widget.config.colors.surfaceContainer.withValues(
+                buttonBackground = widget.config.surfaceFill.asColor.withValues(alpha: backOpacity);
+                textBackground = widget.config.surfaceContainerFill.asColor.withValues(
                   alpha: backOpacity,
                 );
               });

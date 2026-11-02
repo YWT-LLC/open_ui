@@ -134,13 +134,18 @@ class EzGradientBoxBorder extends BoxBorder {
 }
 
 class EzGradientBorderSide extends BorderSide {
+  final EzCP config;
   final Gradient gradient;
+  final double? vvidth;
 
-  EzGradientBorderSide(EzCP config, {required this.gradient})
-      : super(
+  EzGradientBorderSide(
+    this.config, {
+    required this.gradient,
+    this.vvidth,
+  }) : super(
           color: gradient.colors.first,
-          width: config.borderWidth,
-          style: config.borderWidth <= 0 ? BorderStyle.none : BorderStyle.solid,
+          width: vvidth ?? config.borderWidth,
+          style: (vvidth ?? config.borderWidth) <= 0 ? BorderStyle.none : BorderStyle.solid,
         );
 
   /// Stroke [Paint] with [gradient] mapped onto [rect]

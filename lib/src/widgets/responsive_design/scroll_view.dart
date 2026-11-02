@@ -10,9 +10,7 @@ import 'package:flutter/gestures.dart';
 
 class EzScrollView extends StatefulWidget {
   final EzCP config;
-
   final ScrollController? controller;
-
   final bool? thumbVisibility;
 
   /// If true, when there is scrollable content, a halo of [ColorScheme.secondary] will be shown
@@ -25,15 +23,10 @@ class EzScrollView extends StatefulWidget {
   final bool reverseHands;
 
   final bool? primary;
-
   final ScrollPhysics? physics;
-
   final Widget? child;
-
   final MainAxisSize mainAxisSize;
-
   final MainAxisAlignment mainAxisAlignment;
-
   final CrossAxisAlignment crossAxisAlignment;
 
   /// Optionally jump to the center of the scroll upon creation
@@ -221,7 +214,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 child: EzIcon(
                                   widget.config,
                                   Icons.arrow_upward,
-                                  color: widget.config.colors.secondary,
+                                  fill: widget.config.secondaryFill,
                                 ),
                               ),
                             ),
@@ -238,7 +231,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 child: EzIcon(
                                   widget.config,
                                   Icons.chevron_left,
-                                  color: widget.config.colors.secondary,
+                                  fill: widget.config.secondaryFill,
                                 ),
                               ),
                             ),
@@ -259,7 +252,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 child: EzIcon(
                                   widget.config,
                                   Icons.arrow_downward,
-                                  color: widget.config.colors.secondary,
+                                  fill: widget.config.secondaryFill,
                                 ),
                               ),
                             ),
@@ -276,7 +269,7 @@ class _EzScrollViewState extends State<EzScrollView> {
                                 child: EzIcon(
                                   widget.config,
                                   Icons.chevron_right,
-                                  color: widget.config.colors.secondary,
+                                  fill: widget.config.secondaryFill,
                                 ),
                               ),
                             ),
