@@ -20,29 +20,21 @@ class EzFontDoubleSetting extends StatefulWidget {
   /// Starting (aka current) value for [configKey]
   final double initialValue;
 
-  /// Only relevant if [plusMinus] is true
-  /// Absolute amount to scale on each click
+  /// Iff [plusMinus] is true
   final double delta;
 
   /// Optionally include plus/minus buttons surrounding the [TextFormField]
   /// Increments/decrements based on [delta]
   final bool plusMinus;
 
-  /// Lower limit for the new value(s)
   final double min;
-
-  /// Upper limit for the new value(s)
   final double max;
 
   /// Use this to live update the [TextStyle] on your UI
   final void Function(double) notifierCallback;
 
-  /// Label [icon] below the [EzFontDoubleSetting]
   final Widget icon;
-
   final String tooltip;
-
-  /// [TextStyle] for the [TextFormField]
   final TextStyle? style;
 
   /// Standardized tool for updating double [TextStyle] values for the passed [configKey]
@@ -140,7 +132,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                           widget.config,
                           enabled: false,
                           tooltip: widget.config.ezL10n.gMinimum,
-                          icon: Icon(Icons.remove, color: widget.config.colors.outline),
+                          icon: const Icon(Icons.remove),
                         ),
                   widget.config.rowMargin,
                 ],
@@ -226,7 +218,7 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                           widget.config,
                           enabled: false,
                           tooltip: widget.config.ezL10n.gMaximum,
-                          icon: Icon(Icons.add, color: widget.config.colors.outline),
+                          icon: const Icon(Icons.add),
                         ),
                 ],
               ],

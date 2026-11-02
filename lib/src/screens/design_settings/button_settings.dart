@@ -79,7 +79,7 @@ class _ButtonDesignState extends State<ButtonDesign> {
           // Button style
           _ButtonStyleSetting(
             widget.config,
-            styleLabel: widget.labelStyle,
+            labelStyle: widget.labelStyle,
             iconSize: iconSize,
           ),
           widget.config.separator,
@@ -177,10 +177,10 @@ class _ButtonDesignState extends State<ButtonDesign> {
 
 class _ButtonStyleSetting extends StatelessWidget {
   final EzCP config;
-  final String? styleLabel;
+  final String? labelStyle;
   final double iconSize;
 
-  const _ButtonStyleSetting(this.config, {this.styleLabel, required this.iconSize});
+  const _ButtonStyleSetting(this.config, {this.labelStyle, required this.iconSize});
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
@@ -321,7 +321,7 @@ class _ButtonStyleSetting extends StatelessWidget {
             await config.rebuildUI();
           }
         },
-        label: styleLabel ?? config.ezL10n.dsStyle,
+        label: labelStyle ?? config.ezL10n.dsStyle,
         icon: Icon(Icons.edit, size: iconSize),
       );
 }

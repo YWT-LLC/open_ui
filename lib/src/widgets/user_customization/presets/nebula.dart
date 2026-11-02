@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -66,30 +67,30 @@ class EzNebulaConfig extends StatelessWidget {
     await loadColorScheme(
       ColorScheme(
         // Surface
-        surface: ywtPurple.withValues(alpha: _nO),
+        surface: ywt.ywtPurple.withValues(alpha: _nO),
         surfaceDim: _hintOPurple,
         surfaceContainer: _hintOPurple,
 
         // Text
         onSurface: Colors.white,
-        outline: halfWhite,
+        outline: ywt.halfWhite,
 
         // Primary
-        primary: ywtSand,
+        primary: ywt.ywtSand,
         onPrimary: Colors.black,
-        primaryContainer: ywtSand.withValues(alpha: 0.5),
+        primaryContainer: ywt.ywtSand.withValues(alpha: 0.5),
         onPrimaryContainer: Colors.black,
 
         // Secondary
-        secondary: ywtEucalyptus,
+        secondary: ywt.ywtEucalyptus,
         onSecondary: Colors.black,
-        secondaryContainer: ywtEucalyptus.withValues(alpha: 0.5),
+        secondaryContainer: ywt.ywtEucalyptus.withValues(alpha: 0.5),
         onSecondaryContainer: Colors.black,
 
         // Tertiary
-        tertiary: ywtPurple,
+        tertiary: ywt.ywtPurple,
         onTertiary: Colors.white,
-        tertiaryContainer: ywtPurple.withValues(alpha: 0.5),
+        tertiaryContainer: ywt.ywtPurple.withValues(alpha: 0.5),
         onTertiaryContainer: Colors.white,
 
         // Error
@@ -99,8 +100,8 @@ class EzNebulaConfig extends StatelessWidget {
         onErrorContainer: Colors.white,
 
         // Misc
-        outlineVariant: dimWhite,
-        shadow: ywtPurple.withValues(alpha: _nO),
+        outlineVariant: ywt.dimWhite,
+        shadow: ywt.ywtPurple.withValues(alpha: _nO),
         surfaceTint: Colors.transparent,
         scrim: Colors.black,
         brightness: Brightness.dark,
@@ -113,7 +114,7 @@ class EzNebulaConfig extends StatelessWidget {
     await EzCM.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
     await EzCM.setDouble(darkBorderWidthKey, 1.0);
 
-    // await EzCM.setString(darkBackgroundImageKey, nebulaPath); look up!
+    // PRESENTS PLACEHOLDER
     await EzCM.setString(darkBackgroundFitKey, BoxFit.cover.name);
     await EzCM.setString(darkBackgroundSourceKey, 'https://www.pexels.com/@jmueller/');
 
@@ -134,15 +135,15 @@ class EzNebulaConfig extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextStyle localBody = fuseWithGFont(
       starter: const TextStyle(
-        fontSize: defaultBodySize,
+        fontSize: ywt.defaultBodySize,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
         decoration: TextDecoration.none,
         color: Colors.white,
-        height: defaultFontHeight,
+        height: ywt.defaultFontHeight,
         leadingDistribution: TextLeadingDistribution.even,
-        letterSpacing: defaultLetterSpacing,
-        wordSpacing: defaultWordSpacing,
+        letterSpacing: ywt.defaultLetterSpacing,
+        wordSpacing: ywt.defaultWordSpacing,
       ),
       gFont: sourceCodePro,
     );
@@ -152,14 +153,15 @@ class EzNebulaConfig extends StatelessWidget {
       child: EzElevatedButton(
         config,
         style: ElevatedButton.styleFrom(
-          backgroundColor: ywtPurple.withValues(alpha: _nO),
+          backgroundColor: ywt.ywtPurple.withValues(alpha: _nO),
           foregroundColor: Colors.white,
-          shadowColor: ywtPurple.withValues(alpha: _nO),
-          overlayColor: ywtSand,
-          side: BorderSide(color: ywtSand.withValues(alpha: 0.5)),
+          shadowColor: ywt.ywtPurple.withValues(alpha: _nO),
+          overlayColor: ywt.ywtSand,
+          side: BorderSide(color: ywt.ywtSand.withValues(alpha: 0.5)),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
-          padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
+          padding:
+              EdgeInsets.all(EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
         ),
         onPressed: () async {
           final bool uSure = autoConfirm ||

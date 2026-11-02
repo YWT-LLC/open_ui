@@ -34,6 +34,7 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
   @override
   Widget build(BuildContext context) => EzIconButton(
         widget.config,
+        fauxDisabled: !isBold,
         onPressed: () async {
           isBold = !isBold;
 
@@ -50,9 +51,6 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
           setState(() {});
         },
         tooltip: widget.config.ezL10n.tsBold,
-        icon: Icon(
-          Icons.format_bold_outlined,
-          color: isBold ? widget.config.colors.primary : widget.config.colors.outline,
-        ),
+        icon: const Icon(Icons.format_bold_outlined),
       );
 }

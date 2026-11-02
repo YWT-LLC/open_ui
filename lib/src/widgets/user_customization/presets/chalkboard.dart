@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -66,43 +67,38 @@ class EzChalkboardConfig extends StatelessWidget {
 
     await loadColorScheme(
       const ColorScheme(
-        // Backgrounds
+        // Surface
         surface: chalkboardGreen,
         surfaceDim: chalkboardGreen,
         surfaceContainer: chalkboardGreen,
-
-        // Text
         onSurface: Colors.white,
-        outline: halfWhite,
 
-        // Primary
-        primary: ywtSand,
+        // Big three
+        primary: ywt.ywtSand,
         onPrimary: Colors.black,
         primaryContainer: chalkboardGreen,
         onPrimaryContainer: Colors.black,
 
-        // Secondary
-        secondary: halfWhite,
+        secondary: ywt.halfWhite,
         onSecondary: Colors.black,
         secondaryContainer: chalkboardGreen,
         onSecondaryContainer: Colors.black,
 
-        // Tertiary
-        tertiary: ywtSand,
+        tertiary: ywt.ywtSand,
         onTertiary: Colors.black,
         tertiaryContainer: chalkboardGreen,
         onTertiaryContainer: Colors.black,
 
-        // Error
+        // Misc
         error: hcError,
         onError: Colors.white,
-        errorContainer: halfWhite,
+        errorContainer: ywt.halfWhite,
         onErrorContainer: Colors.black,
 
-        // Misc
+        outline: ywt.halfWhite,
         outlineVariant: chalkboardGreen,
-        shadow: Colors.transparent,
         surfaceTint: Colors.transparent,
+        shadow: Colors.transparent,
         scrim: Colors.black,
 
         // Extra
@@ -118,17 +114,19 @@ class EzChalkboardConfig extends StatelessWidget {
 
     // Design settings //
 
+    // Button
+    await EzCM.setString(darkButtonShapeKey, EzButtonShape.rect.value);
+
+    await EzCM.setBool(darkShowBackFABKey, false);
+    await EzCM.setBool(darkShowScrollKey, false);
+
+    // Page
     await EzCM.setInt(darkAnimationDurationKey, 450);
 
     await EzCM.setString(darkTransitionTypeKey, EzTransitionType.turnY.value);
     await EzCM.setBool(darkTransitionFadeKey, false);
 
-    await EzCM.setString(darkButtonShapeKey, EzButtonShape.rect.value);
-
     await EzCM.setString(darkBackgroundImageKey, chalkboardGreen.toARGB32().toString());
-
-    await EzCM.setBool(darkShowBackFABKey, false);
-    await EzCM.setBool(darkShowScrollKey, false);
 
     // Text settings //
 
@@ -154,15 +152,15 @@ class EzChalkboardConfig extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextStyle localBody = fuseWithGFont(
       starter: const TextStyle(
-        fontSize: defaultBodySize,
+        fontSize: ywt.defaultBodySize,
         fontWeight: FontWeight.normal,
         fontStyle: FontStyle.normal,
         decoration: TextDecoration.none,
         color: Colors.white,
-        height: defaultFontHeight,
+        height: ywt.defaultFontHeight,
         leadingDistribution: TextLeadingDistribution.even,
-        letterSpacing: defaultLetterSpacing,
-        wordSpacing: defaultWordSpacing,
+        letterSpacing: ywt.defaultLetterSpacing,
+        wordSpacing: ywt.defaultWordSpacing,
       ),
       gFont: fingerPaint,
     );
@@ -173,11 +171,12 @@ class EzChalkboardConfig extends StatelessWidget {
         backgroundColor: chalkboardGreen,
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        overlayColor: ywtSand,
+        overlayColor: ywt.ywtSand,
         side: BorderSide.none,
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
-        padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
+        padding:
+            EdgeInsets.all(EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
       ),
       onPressed: () async {
         final bool uSure = autoConfirm ||

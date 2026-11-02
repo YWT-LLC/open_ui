@@ -20,17 +20,11 @@ class EzSwitchPair extends StatefulWidget {
   final bool fauxDisabled;
 
   final bool reverseHands;
-
   final MainAxisSize mainAxisSize;
-
   final MainAxisAlignment mainAxisAlignment;
-
   final CrossAxisAlignment crossAxisAlignment;
-
   final String text;
-
   final String? textFix;
-
   final TextAlign? textAlign;
 
   /// If provided, an [EzToolTipper] will appear next to the [Switch]

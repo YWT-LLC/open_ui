@@ -18,14 +18,12 @@ class EzTextButton extends StatefulWidget {
   final String text;
 
   final void Function()? onPressed;
-
   final void Function()? onLongPress;
 
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
 
   final TextAlign? textAlign;
-
   final String? semantics;
 
   /// Includes [EdgeInsets.zero] in either [style] or the default [TextButton.styleFrom]

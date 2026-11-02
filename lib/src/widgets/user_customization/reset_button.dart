@@ -51,11 +51,6 @@ class EzResetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         config,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: config.colors.surface.a < focusOpacity
-              ? config.colors.surface.withValues(alpha: focusOpacity)
-              : config.colors.surface,
-        ),
         onPressed: () => showDialog(
           context: context,
           builder: (_) {

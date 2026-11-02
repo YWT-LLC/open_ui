@@ -164,11 +164,10 @@ class EzCP extends ChangeNotifier {
         margin: EzSpacer(margin),
         rowMargin: EzSpacer(margin, vertical: false),
         spacer: EzSpacer(spacing),
+        separator: EzSpacer(spacing * 2),
         rowSpacer: EzSpacer(spacing, vertical: false),
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
-        separator: EzSpacer(spacing * 2),
-        divider: EzDivider(height: spacing * 3, fill: secondary),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
         centerLine: EzNewLine(bodyStyle),
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
@@ -268,11 +267,10 @@ class EzCP extends ChangeNotifier {
         margin: EzSpacer(margin),
         rowMargin: EzSpacer(margin, vertical: false),
         spacer: EzSpacer(spacing),
+        separator: EzSpacer(spacing * 2),
         rowSpacer: EzSpacer(spacing, vertical: false),
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
-        separator: EzSpacer(spacing * 2),
-        divider: EzDivider(height: spacing * 3, fill: secondary),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
         centerLine: EzNewLine(bodyStyle),
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
@@ -427,12 +425,10 @@ class EzCP extends ChangeNotifier {
   EzSpacer get rowMargin => _layout.rowMargin;
 
   EzSpacer get spacer => _layout.spacer;
+  EzSpacer get separator => _layout.separator;
   EzSpacer get rowSpacer => _layout.rowSpacer;
   EzSpacer get halfSpacer => _layout.halfSpacer;
   EzSwapSpacer get swapSpacer => _layout.swapSpacer;
-
-  EzSpacer get separator => _layout.separator;
-  EzDivider get divider => _layout.divider;
 
   EzNewLine get startLine => _layout.startLine;
   EzNewLine get centerLine => _layout.centerLine;
@@ -679,11 +675,10 @@ class EzLayoutCache {
   final EzSpacer margin;
   final EzSpacer rowMargin;
   final EzSpacer spacer;
+  final EzSpacer separator;
   final EzSpacer rowSpacer;
   final EzSpacer halfSpacer;
   final EzSwapSpacer swapSpacer;
-  final EzSpacer separator;
-  final EzDivider divider;
 
   final EzNewLine startLine;
   final EzNewLine centerLine;
@@ -696,11 +691,10 @@ class EzLayoutCache {
     required this.margin,
     required this.rowMargin,
     required this.spacer,
+    required this.separator,
     required this.rowSpacer,
     required this.halfSpacer,
     required this.swapSpacer,
-    required this.separator,
-    required this.divider,
     required this.startLine,
     required this.centerLine,
     required this.endLine,

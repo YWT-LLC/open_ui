@@ -65,7 +65,7 @@ class EzSpacingSetting extends StatelessWidget {
                         EzElevatedButton(config, enabled: false, text: config.ezL10n.gValue),
 
                         // Divider preview
-                        EzDivider(height: currValue * 3),
+                        EzDivider(config, height: currValue * 3),
 
                         // Horizontal preview
                         EzScrollView(

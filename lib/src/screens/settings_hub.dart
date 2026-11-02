@@ -111,7 +111,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                           EzThemeCoin(widget.config, enabled: currSubSec.bothable),
                         ],
                       ),
-                      EzDivider(height: widget.config.spacing),
+                      EzDivider(widget.config, height: widget.config.spacing),
                       widget.config.spacer,
                     ],
                   )

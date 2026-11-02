@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,12 @@ class EzWallHolesConfig extends StatelessWidget {
   final Future<void> Function(bool)? extra;
 
   /// !Not Windows
-  const EzWallHolesConfig(this.config, {super.key, required this.autoConfirm, this.extra});
+  const EzWallHolesConfig(
+    this.config, {
+    super.key,
+    required this.autoConfirm,
+    this.extra,
+  });
 
   static Future<bool> onPressed(
     EzCP config,
@@ -65,28 +71,25 @@ class EzWallHolesConfig extends StatelessWidget {
 
     await loadColorScheme(
       const ColorScheme(
-        // Backgrounds
-        surface: lightSurface,
+        brightness: Brightness.light,
+
+        // Surface
+        surface: ywt.lightSurface,
         surfaceDim: Color(0xFFDAE4F8),
         surfaceContainer: Color(0xFFDAE4F8),
-
-        // Text
         onSurface: Colors.black,
-        outline: halfBlack,
 
-        // Primary
+        // Big three
         primary: Color(0xFF3B77BC),
         onPrimary: Colors.white,
         primaryContainer: Colors.black,
         onPrimaryContainer: Colors.white,
 
-        // Secondary
         secondary: Color(0xFFFCCF03),
         onSecondary: Colors.black,
         secondaryContainer: Colors.black,
         onSecondaryContainer: Colors.white,
 
-        // Tertiary
         tertiary: Color(0xFF81C046),
         onTertiary: Colors.black,
         tertiaryContainer: Colors.black,
@@ -99,11 +102,11 @@ class EzWallHolesConfig extends StatelessWidget {
         onErrorContainer: Colors.white,
 
         // Misc
-        outlineVariant: dimBlack,
-        shadow: Colors.transparent,
+        outline: ywt.halfBlack,
+        outlineVariant: ywt.dimBlack,
         surfaceTint: Colors.transparent,
+        shadow: Colors.transparent,
         scrim: Colors.white,
-        brightness: Brightness.light,
       ),
       Brightness.light,
     );
@@ -116,7 +119,7 @@ class EzWallHolesConfig extends StatelessWidget {
     await EzCM.setBool(lightLineLinksKey, true);
     await EzCM.setBool(lightShowBackFABKey, true);
 
-    // await EzCM.setString(lightBackgroundImageKey, wallHolesPath); look up!
+    // PRESENTS PLACEHOLDER
     await EzCM.setString(lightBackgroundFitKey, BoxFit.cover.name);
     await EzCM.setString(lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
 
@@ -145,7 +148,8 @@ class EzWallHolesConfig extends StatelessWidget {
         side: const BorderSide(width: 2.0),
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
-        padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
+        padding:
+            EdgeInsets.all(EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
       ),
       onPressed: () async {
         final bool uSure = autoConfirm ||

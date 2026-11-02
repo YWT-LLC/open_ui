@@ -88,7 +88,10 @@ Widget _ezDividerFill(EzSwitchColor fill, Widget divider) => (fill.gradient == n
 
 class EzDivider extends StatelessWidget {
   final EzCP config;
-  final double height;
+
+  /// Defaults to [EzCP.spacing] * 3
+  final double? height;
+
   final double width;
   final double? thickness;
 
@@ -100,7 +103,7 @@ class EzDivider extends StatelessWidget {
   const EzDivider(
     this.config, {
     super.key,
-    required this.height,
+    this.height,
     this.width = 175.0,
     this.thickness,
     this.fill,
@@ -113,7 +116,7 @@ class EzDivider extends StatelessWidget {
         child: _ezDividerFill(
           fill ?? config.secondaryFill,
           Divider(
-            height: height,
+            height: height ?? (config.spacing * 3),
             thickness: thickness,
             color: (fill ?? config.secondaryFill).color,
             radius: radius,

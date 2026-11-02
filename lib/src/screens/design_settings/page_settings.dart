@@ -4,6 +4,7 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -172,8 +173,8 @@ class _AnimDurSetting extends StatelessWidget {
                     constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
                     child: Slider(
                       value: animDuration,
-                      min: minAnimationDuration.toDouble(),
-                      max: maxAnimationDuration.toDouble(),
+                      min: ywt.minAnimationDuration.toDouble(),
+                      max: ywt.maxAnimationDuration.toDouble(),
                       divisions: 20,
                       label: animDuration.toStringAsFixed(0),
                       onChanged: (double value) => setModal(() => animDuration = value),
@@ -394,7 +395,7 @@ class _PageTransitionSetting extends StatelessWidget {
                                     textStyle: config.labelStyle,
                                     textAlign: TextAlign.center,
                                     style: TextButton.styleFrom(
-                                      backgroundColor: config.colors.surfaceContainer,
+                                      backgroundColor: config.surfaceContainerFill.asColor,
                                       padding: EdgeInsets.all(config.marginVal),
                                     ),
                                     onPressed: () async {

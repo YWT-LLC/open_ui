@@ -153,7 +153,7 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           style: widget.labelProvider.value,
           backgroundColor: textBackground,
         ),
-        widget.config.divider,
+        widget.EzDivider(config),
 
         // Icon size
         EzIconSizeSetting(

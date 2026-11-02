@@ -3,8 +3,10 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
+
 import 'package:open_ui/open_ui.dart';
+import 'package:flutter/material.dart';
 
 class EzIconSizeSetting extends StatefulWidget {
   final EzCP config;
@@ -46,8 +48,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                   await EzCM.remove(lightIconSizeKey);
                 }
 
-                setState(() => iconSize = defaultIconSize);
-                widget.onChanged?.call(defaultIconSize);
+                setState(() => iconSize = ywt.defaultIconSize);
+                widget.onChanged?.call(ywt.defaultIconSize);
 
                 if (widget.fullCheck && context.mounted) {
                   widget.config.pingRebuild(
@@ -73,11 +75,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
               reverseHands: false,
               children: <Widget>[
                 // Minus
-                (iconSize > minIconSize)
+                (iconSize > ywt.minIconSize)
                     ? EzIconButton(
                         widget.config,
                         onPressed: () async {
-                          iconSize -= iconDelta;
+                          iconSize -= ywt.iconDelta;
                           if (EzCM.updateBoth || widget.config.isDark) {
                             await EzCM.setDouble(darkIconSizeKey, iconSize);
                           }
@@ -107,7 +109,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         enabled: false,
                         tooltip: widget.config.ezL10n.gMinimum,
                         iconSize: iconSize,
-                        icon: Icon(Icons.remove, color: widget.config.colors.outline),
+                        icon: const Icon(Icons.remove),
                       ),
                 widget.config.rowMargin,
 
@@ -121,8 +123,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       await EzCM.remove(lightIconSizeKey);
                     }
 
-                    setState(() => iconSize = defaultIconSize);
-                    widget.onChanged?.call(defaultIconSize);
+                    setState(() => iconSize = ywt.defaultIconSize);
+                    widget.onChanged?.call(ywt.defaultIconSize);
 
                     if (widget.fullCheck && context.mounted) {
                       widget.config.pingRebuild(
@@ -138,11 +140,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                 widget.config.rowMargin,
 
                 // Plus
-                (iconSize < maxIconSize)
+                (iconSize < ywt.maxIconSize)
                     ? EzIconButton(
                         widget.config,
                         onPressed: () async {
-                          iconSize += iconDelta;
+                          iconSize += ywt.iconDelta;
                           if (EzCM.updateBoth || widget.config.isDark) {
                             await EzCM.setDouble(darkIconSizeKey, iconSize);
                           }
@@ -172,14 +174,14 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         enabled: false,
                         tooltip: widget.config.ezL10n.gMaximum,
                         iconSize: iconSize,
-                        icon: Icon(Icons.add, color: widget.config.colors.outline),
+                        icon: const Icon(Icons.add),
                       ),
               ],
             ),
             shape: widget.config.buttonShape,
             borderRadius: widget.config.buttonShape.radius,
             padding: EdgeInsets.zero,
-            baseColor: widget.config.colors.surface,
+            baseColor: widget.config.surfaceFill.asColor,
             backgroundColor: widget.backgroundColor,
           ),
         ],

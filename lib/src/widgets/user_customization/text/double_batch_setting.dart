@@ -29,19 +29,10 @@ const List<String> _lightKeys = <String>[
 class EzFontDoubleBatchSetting extends StatelessWidget {
   final EzCP config;
 
-  /// Required for max/min awareness
   final EzDisplayStyleProvider displayProvider;
-
-  /// Required for max/min awareness
   final EzHeadlineStyleProvider headlineProvider;
-
-  /// Required for max/min awareness
   final EzTitleStyleProvider titleProvider;
-
-  /// Required for max/min awareness
   final EzBodyStyleProvider bodyProvider;
-
-  /// Required for max/min awareness
   final EzLabelStyleProvider labelProvider;
 
   /// Amount to scale (relative to the default value) on each click
@@ -51,7 +42,6 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
 
   /// Must have each iteration of [EzTextStyleProvider] in this parent's widget tree
   /// Updates all [TextStyle.fontSize]s at once by [delta], calculated individually based on each [TextStyle.fontSize]s default value
-  /// Follows [EzCM] limits: [minDisplay], [minHeadline], [maxTitle], etc.
   EzFontDoubleBatchSetting(
     this.config, {
     super.key,
@@ -100,7 +90,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMinimum,
                     iconSize: _iconSize,
-                    icon: Icon(Icons.remove, color: config.colors.outline),
+                    icon: const Icon(Icons.remove),
                   )
                 : EzIconButton(
                     config,
@@ -193,7 +183,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMaximum,
                     iconSize: _iconSize,
-                    icon: Icon(Icons.add, color: config.colors.outline),
+                    icon: const Icon(Icons.add),
                   )
                 : EzIconButton(
                     config,

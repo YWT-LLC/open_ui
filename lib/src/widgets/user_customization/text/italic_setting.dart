@@ -34,6 +34,7 @@ class _EzItalicSettingState extends State<EzItalicSetting> {
   @override
   Widget build(BuildContext context) => EzIconButton(
         widget.config,
+        fauxDisabled: !isItalic,
         onPressed: () async {
           isItalic = !isItalic;
 
@@ -50,9 +51,6 @@ class _EzItalicSettingState extends State<EzItalicSetting> {
           setState(() {});
         },
         tooltip: widget.config.ezL10n.tsItalic,
-        icon: Icon(
-          Icons.format_italic,
-          color: isItalic ? widget.config.colors.primary : widget.config.colors.outline,
-        ),
+        icon: const Icon(Icons.format_italic),
       );
 }

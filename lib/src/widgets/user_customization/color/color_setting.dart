@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -72,7 +73,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     // Find the recommended contrast color for the background
     final String? backgroundColorValue = EzCM.get(backgroundKey);
     final Color backgroundColor = (backgroundColorValue == null)
-        ? getLiveColor(widget.config.colors, backgroundKey)
+        ? getLiveColor(widget.config.theme.colorScheme, backgroundKey)
         : backgroundColorValue.contains(colorSplit)
             ? ezFirstColor(backgroundColorValue)
             : Color(int.parse(backgroundColorValue));
@@ -193,7 +194,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     final String? stored = EzCM.get(widget.configKey);
 
     if (stored == null) {
-      final Color liveColor = getLiveColor(widget.config.colors, widget.configKey);
+      final Color liveColor = getLiveColor(widget.config.theme.colorScheme, widget.configKey);
       currValue = liveColor.toARGB32().toString();
       currPreview = liveColor;
     } else if (stored.contains(colorSplit)) {
@@ -224,33 +225,21 @@ class _ColorSettingState extends State<EzColorSetting> {
           onPressed: changeColor,
           onLongPress: reset,
           icon: Container(
-            decoration: BoxDecoration(
+            decoration: widget.config.boxDeco(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: widget.config.colors.primaryContainer,
-                width: widget.config.borderWidth,
-              ),
+              fill: widget.config.primaryContainerFill,
             ),
-            child: currValue == transparentString
-                ? CircleAvatar(
-                    backgroundColor: widget.config.colors.surface,
+            child: currValue == ywt.transparentString
+                ? EzAvatar(
+                    fill: widget.config.surfaceFill,
                     foregroundColor: widget.config.onSurface,
                     radius: iconRadius + widget.config.padding,
                     child: EzIcon(widget.config, Icons.visibility_off),
                   )
-                : (currPreview is Color)
-                    ? CircleAvatar(
-                        backgroundColor: currPreview,
-                        radius: iconRadius + widget.config.padding,
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                          gradient: currPreview,
-                          shape: BoxShape.circle,
-                        ),
-                        height: (iconRadius + widget.config.padding) * 2,
-                        width: (iconRadius + widget.config.padding) * 2,
-                      ),
+                : EzAvatar(
+                    fill: currPreview,
+                    radius: iconRadius + widget.config.padding,
+                  ),
           ),
           label: label,
           textAlign: TextAlign.center,

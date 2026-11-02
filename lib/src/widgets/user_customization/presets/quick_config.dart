@@ -19,12 +19,6 @@ class EzQuickConfig extends StatelessWidget {
   /// Extra changes for [EzChalkboardConfig]
   final Future<void> Function(bool)? extraChalk;
 
-  /// Extra changes for [EzNebulaConfig]
-  final Future<void> Function(bool)? extraNebula;
-
-  /// Extra changes for [EzWallHolesConfig]
-  final Future<void> Function(bool)? extraWall;
-
   /// Opens a [BottomSheet] with [EzElevatedIconButton]s for different presets
   const EzQuickConfig(
     this.config, {
@@ -32,8 +26,6 @@ class EzQuickConfig extends StatelessWidget {
     this.extraBig,
     this.extraVis,
     this.extraChalk,
-    this.extraNebula,
-    this.extraWall,
   });
 
   @override
@@ -47,8 +39,6 @@ class EzQuickConfig extends StatelessWidget {
             extraBig: extraBig,
             extraVis: extraVis,
             extraChalk: extraChalk,
-            extraNebula: extraNebula,
-            extraWall: extraWall,
           ),
         ),
         icon: EzIcon(config, Icons.edit),
@@ -61,16 +51,12 @@ class _Options extends StatelessWidget {
   final Future<void> Function(bool)? extraBig;
   final Future<void> Function(bool)? extraVis;
   final Future<void> Function(bool)? extraChalk;
-  final Future<void> Function(bool)? extraNebula;
-  final Future<void> Function(bool)? extraWall;
 
   const _Options(
     this.config, {
     required this.extraBig,
     required this.extraVis,
     required this.extraChalk,
-    required this.extraNebula,
-    required this.extraWall,
   });
 
   @override
@@ -79,8 +65,6 @@ class _Options extends StatelessWidget {
           ezWrap(config, child: EzBigButtonsConfig(config, updateBoth: false, extra: extraBig)),
           ezWrap(config, child: EzHighVisibilityConfig(config, updateBoth: false, extra: extraVis)),
           ezWrap(config, child: EzChalkboardConfig(config, autoConfirm: false, extra: extraChalk)),
-          ezWrap(config, child: EzNebulaConfig(config, autoConfirm: false, extra: extraNebula)),
-          ezWrap(config, child: EzWallHolesConfig(config, autoConfirm: false, extra: extraWall)),
         ]),
         EzSpacer(config.spacing * 1.5),
       ]);

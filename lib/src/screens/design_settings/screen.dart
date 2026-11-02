@@ -23,11 +23,7 @@ class EzDesignSettings extends StatelessWidget {
   /// BYO tailing spacer(s)
   final List<Widget>? prependPage;
 
-  /// Optionally re-label the button style button
-  final String? styleLabel;
-
-  /// Whether to include the background image setting
-  /// When true, pairs well with [EzScreen], specifically [EzScreen.useImageDecoration]
+  final String? labelStyle;
   final bool includeBackgroundImage;
 
   /// Optional additional settings at the bottom of the button design tab (above the reset button)
@@ -63,14 +59,11 @@ class EzDesignSettings extends StatelessWidget {
   final Set<String>? resetExtraLightPage;
 
   final Set<String>? resetSkipButton;
-
   final Set<String>? saveSkipButton;
-
   final Set<String>? resetSkipPage;
-
   final Set<String>? saveSkipPage;
 
-  /// Ez to use image settings
+  /// Ez2Use design settings
   /// Recommended to use as a [Scaffold.body]
   const EzDesignSettings(
     this.config, {
@@ -80,7 +73,7 @@ class EzDesignSettings extends StatelessWidget {
     // Button
     this.prependButton,
     this.appendButton,
-    this.styleLabel,
+    this.labelStyle,
     this.resetSpacerButton,
     this.resetExtraDarkButton,
     this.resetExtraLightButton,
@@ -109,7 +102,7 @@ class EzDesignSettings extends StatelessWidget {
                 config,
                 prepend: prependButton,
                 append: appendButton,
-                styleLabel: styleLabel,
+                labelStyle: labelStyle,
                 resetSpacer: resetSpacerButton ?? config.separator,
                 resetExtraDark: resetExtraDarkButton,
                 resetExtraLight: resetExtraLightButton,
