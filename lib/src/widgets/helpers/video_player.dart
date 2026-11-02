@@ -12,49 +12,24 @@ import 'package:video_player/video_player.dart';
 
 class EzVideoPlayer extends StatefulWidget {
   final EzCP config;
-
   final VideoPlayerController controller;
-
-  /// [String] label for screen readers
   final String semantics;
-
-  /// [AspectRatio.aspectRatio] for the video
   final double aspectRatio;
-
-  /// [BoxConstraints.maxHeight] for the video
   final double maxHeight;
-
-  /// [BoxConstraints.maxWidth] for the video
   final double maxWidth;
-
-  /// Whether the video player is in fullscreen mode
   final bool fullscreen;
-
-  /// Whether the video has captions available
   final bool hasCaptions;
-
-  /// Seconds to skip forward/backward on arrow key press
   final int skipTime;
-
-  /// Initial playback speed
   final double speed;
-
-  /// Include volume controls
   final bool hasAudio;
-
-  /// Starting volume
   final double startingVolume;
 
   /// Amount of seconds the controls should show on mobile after user interaction
   final int mobileDelay;
 
-  /// Whether the video should begin upon initialization
   final bool autoPlay;
-
-  /// Whether the video should replay when complete
   final bool autoLoop;
 
-  /// An Ez to use [VideoPlayer]
   const EzVideoPlayer(
     this.config, {
     super.key,
@@ -263,9 +238,9 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
     final TextStyle? labelStyle = widget.config.labelStyle?.copyWith(color: Colors.white);
 
     final SliderThemeData sliderTheme = SliderThemeData(
-      activeTrackColor: widget.config.colors.secondary,
+      activeTrackColor: widget.config.secondaryFill.asColor,
       inactiveTrackColor: halfWhite,
-      thumbColor: widget.config.colors.primary,
+      thumbColor: widget.config.primaryFill.asColor,
     );
 
     // Return the build //

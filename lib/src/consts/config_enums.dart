@@ -316,25 +316,43 @@ extension ETTConfig on EzTransitionType {
       }
           .replaceAll(' ', '\n');
 
-  Icon icon(EzCP config) => switch (this) {
-        EzTransitionType.none => EzIcon(config, Icons.cancel),
+  Widget icon(EzCP config) => switch (this) {
+        EzTransitionType.none => EzIcon(
+            config,
+            Icons.cancel,
+          ),
         EzTransitionType.system => EzIcon(
             config,
             EzCM.onMobile
-                ? EzCM.platform == TargetPlatform.iOS
+                ? (EzCM.platform == TargetPlatform.iOS)
                     ? Icons.phone_iphone
                     : Icons.phone_android
                 : Icons.computer,
           ),
-        EzTransitionType.turnX => EzIcon(config, Icons.flip),
-        EzTransitionType.turnY => EzIcon(config, Icons.u_turn_left),
-        EzTransitionType.rotate => EzIcon(config, Icons.rotate_90_degrees_cw),
+        EzTransitionType.turnX => EzIcon(
+            config,
+            Icons.flip,
+          ),
+        EzTransitionType.turnY => EzIcon(
+            config,
+            Icons.u_turn_left,
+          ),
+        EzTransitionType.rotate => EzIcon(
+            config,
+            Icons.rotate_90_degrees_cw,
+          ),
         EzTransitionType.slideX => EzIcon(
             config,
             config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right,
           ),
-        EzTransitionType.slideY => EzIcon(config, Icons.keyboard_double_arrow_up),
-        EzTransitionType.zoom => EzIcon(config, Icons.zoom_in),
+        EzTransitionType.slideY => EzIcon(
+            config,
+            Icons.keyboard_double_arrow_up,
+          ),
+        EzTransitionType.zoom => EzIcon(
+            config,
+            Icons.zoom_in,
+          ),
       };
 
   /// Defaults to [EzTransitionType.system]

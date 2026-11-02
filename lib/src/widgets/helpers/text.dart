@@ -84,27 +84,30 @@ class EzTextBackground extends StatelessWidget {
   /// [Text] is merely the recommended widget
   final Widget text;
 
-  /// Defaults to [EdgeInsets.all] w/ [EzCP.marginVal]
-  /// Override is always present, default is only present when [EzCP.textBackgroundOpacity] >= [oneP]
+  final EzButtonShape? shape;
+
+  /// Full override, ignores [EzCP.textBackgroundOpacity]
+  /// Defaults to (a responsive) [EdgeInsets.all] w/ [EzCP.marginVal]
   final EdgeInsets? padding;
 
   final BorderRadiusGeometry? borderRadius;
-  final EzButtonShape? shape;
 
-  /// Uses [EzCP.textBackgroundOpacity]
-  /// Defaults to [ColorScheme.surfaceContainer]
+  /// Partial override, still responds to [EzCP.textBackgroundOpacity]
+  /// Defaults to [EzCP.surfaceContainerFill], as a [Color]
   final Color? baseColor;
 
-  /// Full override
+  /// Full override, ignores [EzCP.textBackgroundOpacity]
+  /// Defaults to (a responsive) [EzCP.surfaceContainerFill], as a [Color]
   final Color? backgroundColor;
 
-  /// Create a [Container] for your [text] with a background color that automatically responds to [lightTextBackgroundOpacityKey]/[darkTextBackgroundOpacityKey]
+  /// Create a [Container] for your [text]
+  /// All [Gradient]s become [Color]s - this is for readability!
   const EzTextBackground(
     this.config, {
     super.key,
     required this.text,
-    this.padding,
     this.shape,
+    this.padding,
     this.borderRadius,
     this.baseColor,
     this.backgroundColor,
@@ -118,9 +121,8 @@ class EzTextBackground extends StatelessWidget {
                 : EdgeInsets.all(config.marginVal)),
         decoration: BoxDecoration(
           color: backgroundColor ??
-              (baseColor ?? config.colors.surfaceContainer).withValues(
-                alpha: config.textBackgroundOpacity,
-              ),
+              (baseColor ?? config.surfaceContainerFill.asColor)
+                  .withValues(alpha: config.textBackgroundOpacity),
           borderRadius: borderRadius ?? (shape ?? config.buttonShape).textRadius,
         ),
         child: text,
@@ -129,61 +131,40 @@ class EzTextBackground extends StatelessWidget {
 
 class EzTextField extends StatefulWidget {
   final bool autofocus;
-
   final Iterable<String>? autofillHints;
-
   final AutovalidateMode? autovalidateMode;
-
   final TextEditingController? controller;
-
   final String? initialValue;
-
   final BoxConstraints constraints;
 
   /// Always [constraints] if unprovided
   final BoxConstraints? errorConstraints;
 
   final FocusNode? focusNode;
-
   final bool obscureText;
-
   final String hintText;
-
   final Widget? prefixIcon;
-
   final Widget? suffixIcon;
 
   /// Optional [Semantics] label
   final String? label;
 
   final TextInputType? keyboardType;
-
   final int? maxLines;
-
   final void Function(String)? onChanged;
-
   final void Function()? onEditingComplete;
-
   final void Function(String)? onFieldSubmitted;
-
   final void Function()? onTap;
-
   final bool onTapAlwaysCalled;
-
   final Function(PointerDownEvent)? onTapOutside;
-
   final bool readOnly;
-
   final TextStyle? style;
-
   final TextAlign textAlign;
-
   final TextInputAction? textInputAction;
-
   final String? Function(String?)? validator;
 
   /// [TextFormField] wrapped in a stateful [ConstrainedBox] to auto-handle error text
-  /// Also has some custom defaults
+  /// And some other custom defaults
   const EzTextField({
     super.key,
     this.autofocus = false,

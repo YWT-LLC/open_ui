@@ -10,9 +10,7 @@ import 'package:flutter/semantics.dart';
 
 class EzToolTipper extends StatelessWidget {
   final EzCP config;
-
   final String? message;
-
   final InlineSpan? richMessage;
 
   /// Classic question mark tool tip
@@ -87,10 +85,10 @@ class EzToolTipper extends StatelessWidget {
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
-          child: EzIcon(config, Icons.help_outline, color: config.colors.outline),
+          child: EzIcon(config, Icons.help_outline, fill: config.outlineFill),
         ),
       ),
-      baseColor: config.colors.surface,
+      baseColor: config.surfaceFill.asColor,
       borderRadius: config.textRadius,
     );
   }

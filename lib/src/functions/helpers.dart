@@ -4,6 +4,7 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:math';
@@ -463,14 +464,14 @@ Future<String?> ezColorPicker(
                               bottom: config.spacing,
                             ),
                             child: entry.value == Colors.transparent
-                                ? CircleAvatar(
-                                    backgroundColor: config.colors.surface,
+                                ? EzAvatar(
+                                    fill: config.surfaceFill,
                                     foregroundColor: config.onSurface,
                                     radius: iconRadius + config.padding,
                                     child: EzIcon(config, Icons.visibility_off),
                                   )
-                                : CircleAvatar(
-                                    backgroundColor: entry.value,
+                                : EzAvatar(
+                                    fill: EzSwitchColor(color: entry.value),
                                     radius: iconRadius + config.padding,
                                   ),
                           ),
@@ -491,10 +492,7 @@ Future<String?> ezColorPicker(
                             child: Container(
                               key: UniqueKey(),
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: config.colors.outline,
-                                  width: config.borderWidth,
-                                ),
+                                border: config.boxBorder(config.outlineFill),
                                 borderRadius: EzButtonShape.roundRect.radius,
                                 gradient: LinearGradient(
                                   begin: beginDir,
@@ -714,11 +712,22 @@ Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
         transitionsBuilder: (_, __, ___, Widget child) => child,
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) => Container(
-          constraints: BoxConstraints.tight(Size.infinite),
-          color: (config?.colors.surface ?? Colors.black).withValues(alpha: 0.5),
-          child: EzLoadingGlass(config),
-        ),
+        pageBuilder: (_, __, ___) => config == null
+            ? Container(
+                constraints: BoxConstraints.tight(Size.infinite),
+                color: Colors.black.withValues(alpha: 0.5),
+                child: const CircularProgressIndicator(),
+              )
+            : Container(
+                constraints: BoxConstraints.tight(Size.infinite),
+                decoration: config.boxDeco(opacity: 0.5),
+                child: EzLoadingGlass(ywt.EzLoadingIndicator(
+                  iconSize: config.iconSize,
+                  padding: config.padding,
+                  semantics: config.ezL10n.gLoadingAnim,
+                  colorScheme: config.theme.colorScheme,
+                )),
+              ),
       ),
     ),
   );

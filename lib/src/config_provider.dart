@@ -168,7 +168,7 @@ class EzCP extends ChangeNotifier {
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
         separator: EzSpacer(spacing * 2),
-        divider: EzDivider(height: spacing * 3),
+        divider: EzDivider(height: spacing * 3, fill: secondary),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
         centerLine: EzNewLine(bodyStyle),
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
@@ -272,7 +272,7 @@ class EzCP extends ChangeNotifier {
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
         separator: EzSpacer(spacing * 2),
-        divider: EzDivider(height: spacing * 3),
+        divider: EzDivider(height: spacing * 3, fill: secondary),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
         centerLine: EzNewLine(bodyStyle),
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
@@ -352,12 +352,19 @@ class EzCP extends ChangeNotifier {
   BoxDecoration boxDeco({
     BoxShape shape = BoxShape.rectangle,
     EzSwitchColor? fill,
+    double? opacity,
   }) =>
-      BoxDecoration(
-        color: (fill ?? _color.surface).color,
-        gradient: (fill ?? _color.surface).gradient,
-        shape: shape,
-      );
+      (opacity == null)
+          ? BoxDecoration(
+              color: (fill ?? _color.surface).color,
+              gradient: (fill ?? _color.surface).gradient,
+              shape: shape,
+            )
+          : BoxDecoration(
+              color: (fill ?? _color.surface).color?.withValues(alpha: opacity),
+              gradient: (fill ?? _color.surface).gradient?.withOpacity(opacity),
+              shape: shape,
+            );
 
   // Design cache //
   // Button
