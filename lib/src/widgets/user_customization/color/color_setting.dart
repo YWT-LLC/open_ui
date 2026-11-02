@@ -8,6 +8,9 @@ import '../../../../open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// TODO: quadruple check all the calls to make sure they look good
+// TODO: then, stress test tf out of it in app
+
 class EzColorSetting extends StatefulWidget {
   final EzCP config;
 
