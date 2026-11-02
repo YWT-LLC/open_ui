@@ -132,7 +132,7 @@ The full (free and open source) app generator can be downloaded from the ''',
           ),
         ),
         backgroundColor: config.colors.secondary,
-        foregroundColor: config.colors.onSecondary,
+        foregroundColor: config.onSecondary,
         child: EzIcon(config, Icons.update),
       );
 }

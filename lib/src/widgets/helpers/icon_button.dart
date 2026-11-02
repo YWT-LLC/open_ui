@@ -7,34 +7,94 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class EzIcon extends Icon {
+class EzIcon extends StatelessWidget {
   /// EzConfig Provider
   final EzCP config;
 
-  /// [Icon] wrapper that responds to [EzCP.iconSize]
-  /// [ThemeData.iconTheme] does not seem to be consumed properly
-  EzIcon(
+  /// [Icon.icon] passthrough
+  final IconData? icon;
+
+  /// Optional [Color] or [Gradient] override for the [Icon]
+  /// Defaults to [EzCP.primaryFill]
+  final EzSwitchColor? fill;
+
+  /// [Icon.fill] passthrough
+  final double? iconFill;
+
+  /// [Icon.weight] passthrough
+  final double? weight;
+
+  /// [Icon.grade] passthrough
+  final double? grade;
+
+  /// [Icon.opticalSize] passthrough
+  final double? opticalSize;
+
+  /// [Icon.shadows] passthrough
+  final List<Shadow>? shadows;
+
+  /// [Icon.semanticLabel] passthrough
+  final String? semanticLabel;
+
+  /// [Icon.textDirection] passthrough
+  final TextDirection? textDirection;
+
+  /// [Icon.applyTextScaling] passthrough
+  final bool? applyTextScaling;
+
+  /// [Icon.blendMode] passthrough
+  final BlendMode? blendMode;
+
+  /// [Icon] wrapper that responds to [EzCP.iconSize] and supports [Gradient]s
+  const EzIcon(
     this.config,
-    super.icon, {
+    this.icon, {
     super.key,
-    super.fill,
-    super.weight,
-    super.grade,
-    super.opticalSize,
-    super.color,
-    super.shadows,
-    super.semanticLabel,
-    super.textDirection,
-    super.applyTextScaling,
-    super.blendMode,
-  }) : super(size: config.iconSize);
+    this.fill,
+    this.iconFill,
+    this.weight,
+    this.grade,
+    this.opticalSize,
+    this.shadows,
+    this.semanticLabel,
+    this.textDirection,
+    this.applyTextScaling,
+    this.blendMode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Icon toReturn = Icon(
+      icon,
+      size: config.iconSize,
+      fill: iconFill,
+      weight: weight,
+      grade: grade,
+      opticalSize: opticalSize,
+      color: fill?.color,
+      shadows: shadows,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+      applyTextScaling: applyTextScaling,
+      blendMode: blendMode,
+    );
+    final Gradient? gradient = (fill ?? config.primaryFill).gradient;
+
+    return (gradient == null)
+        ? toReturn
+        : ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (Rect bounds) => gradient.createShader(bounds),
+            child: toReturn,
+          );
+  }
 }
 
 class EzIconTouch extends StatelessWidget {
   final EzCP config;
   final IconData icon;
   final double? iconSize;
-  final Color? color;
+  final EzSwitchColor? fill;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final bool enabled;
@@ -46,7 +106,7 @@ class EzIconTouch extends StatelessWidget {
     super.key,
     required this.icon,
     this.iconSize,
-    this.color,
+    this.fill,
     this.onPressed,
     this.onLongPress,
     this.enabled = true,
@@ -64,7 +124,7 @@ class EzIconTouch extends StatelessWidget {
             child: Container(
               padding: EzInsets.wrap(config.padding),
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: EzIcon(config, icon, color: color),
+              child: EzIcon(config, icon, fill: fill),
             ),
           ),
         )
@@ -77,7 +137,7 @@ class EzIconTouch extends StatelessWidget {
             child: Container(
               padding: EzInsets.wrap(config.padding),
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: EzIcon(config, icon, color: config.colors.outline),
+              child: EzIcon(config, icon, fill: config.outlineFill),
             ),
           ),
         );
@@ -135,9 +195,9 @@ class EzIconButton extends StatelessWidget {
         style: style ??
             ((!enabled || fauxDisabled)
                 ? IconButton.styleFrom(
-                    foregroundColor: config.colors.outline,
-                    side: config.borderSide(color: config.colors.outlineVariant),
-                    overlayColor: config.colors.outline,
+                    foregroundColor: config.outlineFill.asColor,
+                    side: config.borderSide(config.outlineVariantFill),
+                    overlayColor: config.outlineFill.asColor,
                     shadowColor: Colors.transparent,
                     iconSize: iconSize ?? config.iconSize,
                   )

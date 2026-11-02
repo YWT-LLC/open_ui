@@ -241,7 +241,7 @@ Future<String?> ezColorPicker(
   late AlignmentGeometry endDir;
 
   if (picking.contains(colorSplit)) {
-    preview = ezGradientFromString(picking);
+    preview = ezLGFromString(picking);
     gradient = true;
 
     gradients = (preview as LinearGradient).colors;
@@ -465,7 +465,7 @@ Future<String?> ezColorPicker(
                             child: entry.value == Colors.transparent
                                 ? CircleAvatar(
                                     backgroundColor: config.colors.surface,
-                                    foregroundColor: config.colors.onSurface,
+                                    foregroundColor: config.onSurface,
                                     radius: iconRadius + config.padding,
                                     child: EzIcon(config, Icons.visibility_off),
                                   )

@@ -135,8 +135,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       widget.config.pingRebuild(iconSize != widget.config.iconSize);
                     }
                   },
-                  child:
-                      Icon(Icons.sync_alt, size: iconSize, color: widget.config.colors.onSurface),
+                  child: Icon(Icons.sync_alt, size: iconSize, color: widget.config.onSurface),
                 ),
                 widget.config.rowMargin,
 

@@ -85,7 +85,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         widget.config,
         text: Icon(
           Icons.text_fields_sharp,
-          color: widget.config.colors.onSurface,
+          color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
         borderRadius: widget.config.textFieldRadius,
@@ -266,7 +266,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         widget.config,
         text: Icon(
           Icons.horizontal_distribute_sharp,
-          color: widget.config.colors.onSurface,
+          color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
         borderRadius: widget.config.textFieldRadius,
@@ -342,7 +342,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         widget.config,
         text: Icon(
           Icons.space_bar_sharp,
-          color: widget.config.colors.onSurface,
+          color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
         borderRadius: widget.config.textFieldRadius,
@@ -418,7 +418,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
         widget.config,
         text: Icon(
           Icons.format_line_spacing_sharp,
-          color: widget.config.colors.onSurface,
+          color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
         borderRadius: widget.config.textFieldRadius,

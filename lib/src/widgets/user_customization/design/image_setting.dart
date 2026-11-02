@@ -104,7 +104,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 widget.config,
                 text: credits,
                 url: Uri.parse(credits),
-                backgroundColor: widget.config.colors.surfaceDim,
+                backgroundColor: widget.config.surfaceDimFill.asColor,
                 hint: widget.config.ezL10n.gOpenLink,
               )
             : Text(credits, textAlign: TextAlign.center),
@@ -679,7 +679,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                   height: height,
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: widget.config.colors.onSurface,
+                      color: widget.config.onSurface,
                       width: widget.config.borderWidth,
                     ),
                     borderRadius: const BorderRadius.all(Radius.zero),
@@ -748,7 +748,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: widget.config.colors.onSurface,
+                color: widget.config.onSurface,
                 width: widget.config.borderWidth,
               ),
             ),
@@ -759,7 +759,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                       ? null
                       : ezImageProvider(currPath!),
               backgroundColor: (pathARGB != null) ? Color(pathARGB) : Colors.transparent,
-              foregroundColor: widget.config.colors.onSurface,
+              foregroundColor: widget.config.onSurface,
               child: inProgress
                   ? EzLoadingGlass(widget.config)
                   : (currPath == null || currPath == noImageValue)

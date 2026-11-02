@@ -149,7 +149,7 @@ class EzAction extends StatelessWidget {
       config,
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: config.colors.surfaceDim,
+        backgroundColor: config.surfaceDimFill.asColor,
         padding: EzInsets.wrap(config.spacing),
       ),
       text: text,

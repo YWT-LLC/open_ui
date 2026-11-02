@@ -75,7 +75,7 @@ class _EzIconLinkState extends State<EzIconLink> {
   @override
   Widget build(BuildContext context) {
     TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
-      color: widget.textColor ?? widget.config.colors.onSurface,
+      color: widget.textColor ?? widget.config.onSurface,
       decoration: TextDecoration.none,
       decorationColor: widget.config.colors.primary,
     );

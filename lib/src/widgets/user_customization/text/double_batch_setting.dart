@@ -183,7 +183,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                   config.pingRebuild(ezTextRebuildCheck(config, context: context));
                 }
               },
-              child: Icon(Icons.text_fields_sharp, size: _iconSize, color: config.colors.onSurface),
+              child: Icon(Icons.text_fields_sharp, size: _iconSize, color: config.onSurface),
             ),
             config.rowMargin,
 

@@ -73,7 +73,7 @@ class EzMarginSetting extends StatelessWidget {
                           padding: EdgeInsets.all(currValue),
                         ),
                         Container(
-                          color: config.colors.onSurface,
+                          color: config.onSurface,
                           height: heightOf(modalContext) * 0.25,
                           width: widthOf(modalContext) * 0.25,
                           child: Container(

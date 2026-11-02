@@ -336,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   EzInlineLink(
                     config,
                     text: config.ezL10n.gSettings.toLowerCase(),
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.start,
                     onTap: () => context.goNamed(settingsScreenName),
                     hint: config.ezL10n.ssNavHint,
@@ -349,13 +349,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   EzInlineLink(
                     config,
                     text: l10n(config).csHere,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.start,
                     url: Uri.parse('https://www.canva.com/colors/color-wheel/'),
                     hint: l10n(config).csHereHint,
                   ),
                 ],
-                style: ezSubTitleStyle(config.styles),
+                style: config.subTitleStyle,
               ),
               config.separator,
 

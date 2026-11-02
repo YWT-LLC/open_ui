@@ -80,7 +80,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   EzInlineLink(
                     config,
                     text: l10n(config).csHere,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.center,
                     url: Uri.parse(
                       '${ywt.openUIGitHub}/tree/main/example/lib/screens/generator/generate.dart',
@@ -88,7 +88,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     hint: l10n(config).gsSeeNBelieveHint,
                   ),
                 ],
-                style: ezSubTitleStyle(config.styles),
+                style: config.subTitleStyle,
                 textAlign: TextAlign.center,
               );
               genState = GeneratorState.failed;
@@ -274,7 +274,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                     config,
                     appName: widget.gen.appName,
                     dir: workDir,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                   ),
                 ],
                 if (showDelete == null) ...<Widget>[config.spacer, LinkOption(config)],

@@ -44,8 +44,7 @@ class _ColorSettingState extends State<EzColorSetting> {
       if (ezTextMirrors.containsKey(widget.configKey)) {
         await EzCM.setString(
           ezTextMirrors[widget.configKey]!,
-          getTextColor(
-                  picked.contains(colorSplit) ? ezFirstColor(picked) : Color(int.parse(picked)))
+          ezTextColor(picked.contains(colorSplit) ? ezFirstColor(picked) : Color(int.parse(picked)))
               .toARGB32()
               .toString(),
         );
@@ -76,7 +75,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             ? ezFirstColor(backgroundColorValue)
             : Color(int.parse(backgroundColorValue));
 
-    final int recommended = getTextColor(backgroundColor).toARGB32();
+    final int recommended = ezTextColor(backgroundColor).toARGB32();
 
     // Just open a color picker if the value is already what's recommended
     if (recommended == int.tryParse(currValue)) return pickAColor(allowGradient: false);
@@ -135,7 +134,7 @@ class _ColorSettingState extends State<EzColorSetting> {
         builder: (BuildContext dCon) {
           final int? resetValue = EzCM.getDefault(widget.configKey);
           final String currColorLabel = (currValue.contains(colorSplit)
-                  ? (currPreview as LinearGradient).colors.first
+                  ? (currPreview as Gradient).colors.first
                   : currPreview as Color)
               .toARGB32()
               .toRadixString(16)
@@ -181,7 +180,7 @@ class _ColorSettingState extends State<EzColorSetting> {
         },
       );
 
-  void updatePreview(String value) => setState(() => currPreview = ezGradientFromString(value));
+  void updatePreview(String value) => setState(() => currPreview = ezLGFromString(value));
 
   // Init //
 
@@ -197,7 +196,7 @@ class _ColorSettingState extends State<EzColorSetting> {
       currPreview = liveColor;
     } else if (stored.contains(colorSplit)) {
       currValue = stored;
-      currPreview = ezGradientFromString(currValue);
+      currPreview = ezLGFromString(currValue);
     } else {
       currValue = stored;
       currPreview = Color(int.parse(currValue));
@@ -233,7 +232,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             child: currValue == transparentString
                 ? CircleAvatar(
                     backgroundColor: widget.config.colors.surface,
-                    foregroundColor: widget.config.colors.onSurface,
+                    foregroundColor: widget.config.onSurface,
                     radius: iconRadius + widget.config.padding,
                     child: EzIcon(widget.config, Icons.visibility_off),
                   )
