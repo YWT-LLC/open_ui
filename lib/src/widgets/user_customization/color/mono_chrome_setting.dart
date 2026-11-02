@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -30,21 +31,21 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
         config,
         style: config.isDark
             ? ElevatedButton.styleFrom(
-                backgroundColor: darkSurface,
+                backgroundColor: ywt.darkSurface,
                 foregroundColor: Colors.white,
                 iconColor: Colors.white,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.white,
-                side: config.borderSide(color: dimWhite),
+                side: config.borderSide(const EzSwitchColor(color: ywt.dimWhite)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
-                backgroundColor: lightSurface,
+                backgroundColor: ywt.lightSurface,
                 foregroundColor: Colors.black,
                 iconColor: Colors.black,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.black,
-                side: config.borderSide(color: dimBlack),
+                side: config.borderSide(const EzSwitchColor(color: ywt.dimBlack)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {
@@ -63,83 +64,66 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
 /// Custom [ColorScheme.highContrastDark]
 const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
   // Backgrounds
-  surface: darkSurface,
-  surfaceDim: darkSurfaceDim,
-  surfaceContainer: darkSurfaceContainer,
+  surface: ywt.darkSurface,
+  surfaceDim: ywt.darkSurfaceDim,
+  surfaceContainer: ywt.darkSurfaceContainer,
 
-  // Text
-  // onSurface: Colors.white,
-  outline: halfWhite,
-
-  // Primary
+  // Big three
   primary: Colors.white,
-  // onPrimary: Colors.black,
-  primaryContainer: dimWhite,
+  primaryContainer: ywt.dimWhite,
   onPrimaryContainer: Colors.black,
 
-  // Secondary
   secondary: Colors.white,
-  // onSecondary: Colors.black,
-  secondaryContainer: dimWhite,
+  secondaryContainer: ywt.dimWhite,
   onSecondaryContainer: Colors.black,
 
-  // Tertiary
   tertiary: Colors.white,
   onTertiary: Colors.black,
-  tertiaryContainer: dimWhite,
+  tertiaryContainer: ywt.dimWhite,
   onTertiaryContainer: Colors.black,
 
-  // Erriary
+  // Misc
   error: Colors.red,
   onError: Colors.white,
-  errorContainer: dimWhite,
+  errorContainer: ywt.dimWhite,
   onErrorContainer: Colors.black,
 
-  // Misc
-  outlineVariant: dimWhite,
-  shadow: Colors.transparent,
+  outline: ywt.halfWhite,
+  outlineVariant: ywt.dimWhite,
   surfaceTint: Colors.transparent,
+  shadow: Colors.transparent,
   scrim: Colors.black,
 );
 
 /// Custom [ColorScheme.highContrastLight]
 const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
   // Surface
-  // surface: lightSurface,
-  surfaceDim: lightSurfaceDim,
-  surfaceContainer: lightSurfaceContainer,
-
-  // Text
-  // onSurface: Colors.black,
-  outline: halfBlack,
+  surfaceDim: ywt.lightSurfaceDim,
+  surfaceContainer: ywt.lightSurfaceContainer,
 
   // Primary
   primary: Colors.black,
-  // onPrimary: Colors.white,
-  primaryContainer: dimBlack,
+  primaryContainer: ywt.dimBlack,
   onPrimaryContainer: Colors.white,
 
-  // Secondary
   secondary: Colors.black,
   onSecondary: Colors.white,
-  secondaryContainer: dimBlack,
+  secondaryContainer: ywt.dimBlack,
   onSecondaryContainer: Colors.white,
 
-  // Tertiary
   tertiary: Colors.black,
   onTertiary: Colors.white,
-  tertiaryContainer: dimBlack,
+  tertiaryContainer: ywt.dimBlack,
   onTertiaryContainer: Colors.white,
 
-  // Erriary
+  // Misc
   error: Colors.red,
-  // onError: Colors.white,
-  errorContainer: dimBlack,
+  errorContainer: ywt.dimBlack,
   onErrorContainer: Colors.white,
 
-  // Misc
-  outlineVariant: dimBlack,
-  shadow: Colors.transparent,
+  outline: ywt.halfBlack,
+  outlineVariant: ywt.dimBlack,
   surfaceTint: Colors.transparent,
+  shadow: Colors.transparent,
   scrim: Colors.white,
 );

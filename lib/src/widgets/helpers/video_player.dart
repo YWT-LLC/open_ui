@@ -4,6 +4,7 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -239,7 +240,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
     final SliderThemeData sliderTheme = SliderThemeData(
       activeTrackColor: widget.config.secondaryFill.asColor,
-      inactiveTrackColor: halfWhite,
+      inactiveTrackColor: ywt.halfWhite,
       thumbColor: widget.config.primaryFill.asColor,
     );
 
@@ -374,7 +375,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
-                            backgroundColor: halfBlack,
+                            backgroundColor: ywt.halfBlack,
                           ),
                         ],
                       ),
@@ -439,7 +440,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
-                            backgroundColor: halfBlack,
+                            backgroundColor: ywt.halfBlack,
                           ),
                         ),
                       ],
@@ -459,7 +460,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                     forceType: EzTransitionType.none,
                     forceFade: true,
                     kid: Container(
-                      decoration: const BoxDecoration(color: halfBlack),
+                      decoration: const BoxDecoration(color: ywt.halfBlack),
                       child: EzCol(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
