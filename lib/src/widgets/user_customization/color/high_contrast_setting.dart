@@ -9,15 +9,11 @@ import 'package:flutter/material.dart';
 
 class EzHighContrastColorsSetting extends StatelessWidget {
   final EzCP config;
-
-  /// [ThemeData.colorScheme] for [Brightness.dark]
   final ColorScheme dark;
-
-  /// [ThemeData.colorScheme] for [Brightness.light]
   final ColorScheme light;
 
   /// Easily store a custom mono chrome [ColorScheme] to [EzCM]
-  /// [ezHighContrastDark] and [ezHighContrastLight] by default
+  /// Defaults to [ezHighContrastDark] and [ezHighContrastLight]
   const EzHighContrastColorsSetting(
     this.config, {
     super.key,
@@ -35,7 +31,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 iconColor: hceGreen,
                 shadowColor: Colors.transparent,
                 overlayColor: hceGreen,
-                side: config.borderSide(color: halfWhite),
+                side: config.borderSide(const EzSwitchColor(color: halfWhite)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
@@ -44,7 +40,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 iconColor: hcePurple,
                 shadowColor: Colors.transparent,
                 overlayColor: hcePurple,
-                side: config.borderSide(color: halfBlack),
+                side: config.borderSide(const EzSwitchColor(color: halfBlack)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {
