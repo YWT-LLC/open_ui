@@ -4,9 +4,9 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 class _RipplePainter extends CustomPainter {
   final double radius;

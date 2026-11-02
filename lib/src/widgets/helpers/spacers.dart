@@ -87,21 +87,23 @@ Widget _ezDividerFill(EzSwitchColor fill, Widget divider) => (fill.gradient == n
       );
 
 class EzDivider extends StatelessWidget {
+  final EzCP config;
   final double height;
   final double width;
-
   final double? thickness;
 
-  final EzSwitchColor fill;
+  /// Defaults to [EzCP.secondaryFill]
+  final EzSwitchColor? fill;
 
   final BorderRadius? radius;
 
-  const EzDivider({
+  const EzDivider(
+    this.config, {
     super.key,
     required this.height,
     this.width = 175.0,
     this.thickness,
-    required this.fill,
+    this.fill,
     this.radius,
   });
 
@@ -109,11 +111,11 @@ class EzDivider extends StatelessWidget {
   Widget build(BuildContext context) => ConstrainedBox(
         constraints: BoxConstraints(maxWidth: width),
         child: _ezDividerFill(
-          fill,
+          fill ?? config.secondaryFill,
           Divider(
             height: height,
             thickness: thickness,
-            color: fill.color,
+            color: (fill ?? config.secondaryFill).color,
             radius: radius,
           ),
         ),
@@ -121,21 +123,23 @@ class EzDivider extends StatelessWidget {
 }
 
 class EzVerticalDivider extends StatelessWidget {
+  final EzCP config;
   final double width;
   final double height;
-
   final double? thickness;
 
-  final EzSwitchColor fill;
+  /// Defaults to [EzCP.secondaryFill]
+  final EzSwitchColor? fill;
 
   final BorderRadius? radius;
 
-  const EzVerticalDivider({
+  const EzVerticalDivider(
+    this.config, {
     super.key,
     required this.width,
     this.height = 175.0,
     this.thickness,
-    required this.fill,
+    this.fill,
     this.radius,
   });
 
@@ -143,11 +147,11 @@ class EzVerticalDivider extends StatelessWidget {
   Widget build(BuildContext context) => ConstrainedBox(
         constraints: BoxConstraints(maxHeight: height),
         child: _ezDividerFill(
-          fill,
+          fill ?? config.secondaryFill,
           VerticalDivider(
             width: width,
             thickness: thickness,
-            color: fill.color,
+            color: (fill ?? config.secondaryFill).color,
             radius: radius,
           ),
         ),
@@ -164,14 +168,12 @@ class EzTitledDivider extends StatelessWidget {
 
   final double height;
   final double width;
-
   final double? thickness;
-
   final MainAxisAlignment mainAxisAlignment;
-
   final CrossAxisAlignment crossAxisAlignment;
 
-  final EzSwitchColor fill;
+  /// Defaults to [EzCP.secondaryFill]
+  final EzSwitchColor? fill;
 
   final BorderRadius? radius;
 
@@ -186,7 +188,7 @@ class EzTitledDivider extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.thickness,
-    required this.fill,
+    this.fill,
     this.radius,
   });
 
@@ -198,6 +200,7 @@ class EzTitledDivider extends StatelessWidget {
           EzSpacer(height / 2),
           if (header) title,
           EzDivider(
+            config,
             height: config.marginVal,
             width: width * ezIconRatio(config),
             thickness: thickness,

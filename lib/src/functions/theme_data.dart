@@ -4,6 +4,7 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -118,7 +119,8 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     scaffoldBackgroundColor: colorScheme.surfaceContainer,
 
     // Transitions //
-    pageTransitionsTheme: animDuration > minAnimationDuration ? EzTransitions() : EzNoTransitions(),
+    pageTransitionsTheme:
+        animDuration > ywt.minAnimationDuration ? EzTransitions() : EzNoTransitions(),
 
     // Typography //
     textTheme: textTheme,

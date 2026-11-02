@@ -4,6 +4,7 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ Color ezTextColor(Color background) {
   final int lumG = (background.g * 255.0 * 0.587).round();
   final int lumB = (background.b * 255.0 * 0.114).round();
 
-  return Color(((lumR + lumG + lumB) >= 150) ? blackHex : whiteHex);
+  return Color(((lumR + lumG + lumB) >= 150) ? ywt.blackHex : ywt.whiteHex);
 }
 
 /// Given a color storage string, return the [Color] or [LinearGradient]'s first color

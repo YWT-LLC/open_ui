@@ -4,6 +4,7 @@
  */
 
 import '../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:math';
 import 'dart:async';
@@ -493,24 +494,24 @@ Must be one of [int, bool, double, String, List<String>]''');
 
           // Text
           onSurface: Colors.white,
-          outline: halfWhite,
+          outline: ywt.halfWhite,
 
           // Primary
           primary: primary,
           onPrimary: onPrimary,
-          primaryContainer: primary.withValues(alpha: defaultBorderOpacity),
+          primaryContainer: primary.withValues(alpha: ywt.defaultBorderOpacity),
           onPrimaryContainer: onPrimary,
 
           // Secondary
           secondary: secondary,
           onSecondary: onSecondary,
-          secondaryContainer: secondary.withValues(alpha: defaultBorderOpacity),
+          secondaryContainer: secondary.withValues(alpha: ywt.defaultBorderOpacity),
           onSecondaryContainer: onSecondary,
 
           // Tertiary
           tertiary: tertiary,
           onTertiary: onTertiary,
-          tertiaryContainer: tertiary.withValues(alpha: defaultBorderOpacity),
+          tertiaryContainer: tertiary.withValues(alpha: ywt.defaultBorderOpacity),
           onTertiaryContainer: onTertiary,
 
           // Erriary
@@ -534,7 +535,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
       await setDouble(
         darkPaddingKey,
-        (onMobile ? defaultMobilePadding : defaultDesktopPadding) * getScalar(),
+        (onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding) * getScalar(),
       );
 
       await setString(
@@ -547,11 +548,11 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setBool(darkShowBackFABKey, random.nextBool());
 
       if (onMobile) {
-        await setDouble(darkMarginKey, defaultMobileMargin * getScalar());
-        await setDouble(darkSpacingKey, defaultMobileSpacing * getScalar());
+        await setDouble(darkMarginKey, ywt.defaultMobileMargin * getScalar());
+        await setDouble(darkSpacingKey, ywt.defaultMobileSpacing * getScalar());
       } else {
-        await setDouble(darkMarginKey, defaultDesktopMargin * getScalar());
-        await setDouble(darkSpacingKey, defaultDesktopSpacing * getScalar());
+        await setDouble(darkMarginKey, ywt.defaultDesktopMargin * getScalar());
+        await setDouble(darkSpacingKey, ywt.defaultDesktopSpacing * getScalar());
       }
 
       await setInt(darkAnimationDurationKey, random.nextInt(1000));
@@ -574,52 +575,52 @@ Must be one of [int, bool, double, String, List<String>]''');
       final double descriptionScale = getScalar();
 
       await setString(darkDisplayFontFamilyKey, attentionStyle);
-      await setDouble(darkDisplayFontSizeKey, defaultDisplaySize * attentionScale);
+      await setDouble(darkDisplayFontSizeKey, ywt.defaultDisplaySize * attentionScale);
       await setBool(darkDisplayBoldedKey, false);
       await setBool(darkDisplayItalicizedKey, false);
       await setBool(darkDisplayUnderlinedKey, random.nextBool());
-      await setDouble(darkDisplayFontHeightKey, defaultFontHeight);
-      await setDouble(darkDisplayLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(darkDisplayWordSpacingKey, defaultWordSpacing);
+      await setDouble(darkDisplayFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(darkDisplayLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(darkDisplayWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(darkHeadlineFontFamilyKey, attentionStyle);
-      await setDouble(darkHeadlineFontSizeKey, defaultHeadlineSize * attentionScale);
+      await setDouble(darkHeadlineFontSizeKey, ywt.defaultHeadlineSize * attentionScale);
       await setBool(darkHeadlineBoldedKey, false);
       await setBool(darkHeadlineItalicizedKey, false);
       await setBool(darkHeadlineUnderlinedKey, false);
-      await setDouble(darkHeadlineFontHeightKey, defaultFontHeight);
-      await setDouble(darkHeadlineLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(darkHeadlineWordSpacingKey, defaultWordSpacing);
+      await setDouble(darkHeadlineFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(darkHeadlineLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(darkHeadlineWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(darkTitleFontFamilyKey, styleOptions[random.nextInt(styleOptions.length)]);
-      await setDouble(darkTitleFontSizeKey, defaultTitleSize * attentionScale);
+      await setDouble(darkTitleFontSizeKey, ywt.defaultTitleSize * attentionScale);
       await setBool(darkTitleBoldedKey, false);
       await setBool(darkTitleItalicizedKey, false);
       await setBool(darkTitleUnderlinedKey, random.nextBool());
-      await setDouble(darkTitleFontHeightKey, defaultFontHeight);
-      await setDouble(darkTitleLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(darkTitleWordSpacingKey, defaultWordSpacing);
+      await setDouble(darkTitleFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(darkTitleLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(darkTitleWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(darkBodyFontFamilyKey, descriptionStyle);
-      await setDouble(darkBodyFontSizeKey, defaultBodySize * descriptionScale);
+      await setDouble(darkBodyFontSizeKey, ywt.defaultBodySize * descriptionScale);
       await setBool(darkBodyBoldedKey, false);
       await setBool(darkBodyItalicizedKey, false);
       await setBool(darkBodyUnderlinedKey, false);
-      await setDouble(darkBodyFontHeightKey, defaultFontHeight);
-      await setDouble(darkBodyLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(darkBodyWordSpacingKey, defaultWordSpacing);
+      await setDouble(darkBodyFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(darkBodyLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(darkBodyWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(darkLabelFontFamilyKey, descriptionStyle);
-      await setDouble(darkLabelFontSizeKey, defaultLabelSize * descriptionScale);
+      await setDouble(darkLabelFontSizeKey, ywt.defaultLabelSize * descriptionScale);
       await setBool(darkLabelBoldedKey, false);
       await setBool(darkLabelItalicizedKey, false);
       await setBool(darkLabelUnderlinedKey, false);
-      await setDouble(darkLabelFontHeightKey, defaultFontHeight);
-      await setDouble(darkLabelLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(darkLabelWordSpacingKey, defaultWordSpacing);
+      await setDouble(darkLabelFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(darkLabelLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(darkLabelWordSpacingKey, ywt.defaultWordSpacing);
 
       await setDouble(darkTextBackgroundOpacityKey, random.nextDouble());
-      await setDouble(darkIconSizeKey, defaultIconSize * getScalar());
+      await setDouble(darkIconSizeKey, ywt.defaultIconSize * getScalar());
     } else {
       // Update color settings //
 
@@ -629,24 +630,24 @@ Must be one of [int, bool, double, String, List<String>]''');
 
           // Text
           onSurface: Colors.black,
-          outline: halfBlack,
+          outline: ywt.halfBlack,
 
           // Primary
           primary: primary,
           onPrimary: onPrimary,
-          primaryContainer: primary.withValues(alpha: defaultBorderOpacity),
+          primaryContainer: primary.withValues(alpha: ywt.defaultBorderOpacity),
           onPrimaryContainer: onPrimary,
 
           // Secondary
           secondary: secondary,
           onSecondary: onSecondary,
-          secondaryContainer: secondary.withValues(alpha: defaultBorderOpacity),
+          secondaryContainer: secondary.withValues(alpha: ywt.defaultBorderOpacity),
           onSecondaryContainer: onSecondary,
 
           // Tertiary
           tertiary: tertiary,
           onTertiary: onTertiary,
-          tertiaryContainer: tertiary.withValues(alpha: defaultBorderOpacity),
+          tertiaryContainer: tertiary.withValues(alpha: ywt.defaultBorderOpacity),
           onTertiaryContainer: onTertiary,
 
           // Error
@@ -670,7 +671,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
       await setDouble(
         lightPaddingKey,
-        (onMobile ? defaultMobilePadding : defaultDesktopPadding) * getScalar(),
+        (onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding) * getScalar(),
       );
 
       await setString(
@@ -683,11 +684,11 @@ Must be one of [int, bool, double, String, List<String>]''');
       await setBool(lightShowBackFABKey, random.nextBool());
 
       if (onMobile) {
-        await setDouble(lightMarginKey, defaultMobileMargin * getScalar());
-        await setDouble(lightSpacingKey, defaultMobileSpacing * getScalar());
+        await setDouble(lightMarginKey, ywt.defaultMobileMargin * getScalar());
+        await setDouble(lightSpacingKey, ywt.defaultMobileSpacing * getScalar());
       } else {
-        await setDouble(lightMarginKey, defaultDesktopMargin * getScalar());
-        await setDouble(lightSpacingKey, defaultDesktopSpacing * getScalar());
+        await setDouble(lightMarginKey, ywt.defaultDesktopMargin * getScalar());
+        await setDouble(lightSpacingKey, ywt.defaultDesktopSpacing * getScalar());
       }
 
       await setInt(lightAnimationDurationKey, random.nextInt(1000));
@@ -710,52 +711,52 @@ Must be one of [int, bool, double, String, List<String>]''');
       final double descriptionScale = getScalar();
 
       await setString(lightDisplayFontFamilyKey, attentionStyle);
-      await setDouble(lightDisplayFontSizeKey, defaultDisplaySize * attentionScale);
+      await setDouble(lightDisplayFontSizeKey, ywt.defaultDisplaySize * attentionScale);
       await setBool(lightDisplayBoldedKey, false);
       await setBool(lightDisplayItalicizedKey, false);
       await setBool(lightDisplayUnderlinedKey, random.nextBool());
-      await setDouble(lightDisplayFontHeightKey, defaultFontHeight);
-      await setDouble(lightDisplayLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(lightDisplayWordSpacingKey, defaultWordSpacing);
+      await setDouble(lightDisplayFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(lightDisplayLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(lightDisplayWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(lightHeadlineFontFamilyKey, attentionStyle);
-      await setDouble(lightHeadlineFontSizeKey, defaultHeadlineSize * attentionScale);
+      await setDouble(lightHeadlineFontSizeKey, ywt.defaultHeadlineSize * attentionScale);
       await setBool(lightHeadlineBoldedKey, false);
       await setBool(lightHeadlineItalicizedKey, false);
       await setBool(lightHeadlineUnderlinedKey, false);
-      await setDouble(lightHeadlineFontHeightKey, defaultFontHeight);
-      await setDouble(lightHeadlineLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(lightHeadlineWordSpacingKey, defaultWordSpacing);
+      await setDouble(lightHeadlineFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(lightHeadlineLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(lightHeadlineWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(lightTitleFontFamilyKey, styleOptions[random.nextInt(styleOptions.length)]);
-      await setDouble(lightTitleFontSizeKey, defaultTitleSize * attentionScale);
+      await setDouble(lightTitleFontSizeKey, ywt.defaultTitleSize * attentionScale);
       await setBool(lightTitleBoldedKey, false);
       await setBool(lightTitleItalicizedKey, false);
       await setBool(lightTitleUnderlinedKey, random.nextBool());
-      await setDouble(lightTitleFontHeightKey, defaultFontHeight);
-      await setDouble(lightTitleLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(lightTitleWordSpacingKey, defaultWordSpacing);
+      await setDouble(lightTitleFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(lightTitleLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(lightTitleWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(lightBodyFontFamilyKey, descriptionStyle);
-      await setDouble(lightBodyFontSizeKey, defaultBodySize * descriptionScale);
+      await setDouble(lightBodyFontSizeKey, ywt.defaultBodySize * descriptionScale);
       await setBool(lightBodyBoldedKey, false);
       await setBool(lightBodyItalicizedKey, false);
       await setBool(lightBodyUnderlinedKey, false);
-      await setDouble(lightBodyFontHeightKey, defaultFontHeight);
-      await setDouble(lightBodyLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(lightBodyWordSpacingKey, defaultWordSpacing);
+      await setDouble(lightBodyFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(lightBodyLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(lightBodyWordSpacingKey, ywt.defaultWordSpacing);
 
       await setString(lightLabelFontFamilyKey, descriptionStyle);
-      await setDouble(lightLabelFontSizeKey, defaultLabelSize * descriptionScale);
+      await setDouble(lightLabelFontSizeKey, ywt.defaultLabelSize * descriptionScale);
       await setBool(lightLabelBoldedKey, false);
       await setBool(lightLabelItalicizedKey, false);
       await setBool(lightLabelUnderlinedKey, false);
-      await setDouble(lightLabelFontHeightKey, defaultFontHeight);
-      await setDouble(lightLabelLetterSpacingKey, defaultLetterSpacing);
-      await setDouble(lightLabelWordSpacingKey, defaultWordSpacing);
+      await setDouble(lightLabelFontHeightKey, ywt.defaultFontHeight);
+      await setDouble(lightLabelLetterSpacingKey, ywt.defaultLetterSpacing);
+      await setDouble(lightLabelWordSpacingKey, ywt.defaultWordSpacing);
 
       await setDouble(lightTextBackgroundOpacityKey, random.nextDouble());
-      await setDouble(lightIconSizeKey, defaultIconSize * getScalar());
+      await setDouble(lightIconSizeKey, ywt.defaultIconSize * getScalar());
     }
   }
 

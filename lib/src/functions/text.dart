@@ -4,6 +4,7 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -81,7 +82,7 @@ void ezWindowNamer(String title) => SystemChrome.setApplicationSwitcherDescripti
         label: title,
         primaryColor: ezRootIsMounted
             ? Provider.of<EzCP>(ezRootContext, listen: false).primaryFill.asColor.toARGB32()
-            : ywtPurpleHex,
+            : ywt.ywtPurpleHex,
       ),
     );
 

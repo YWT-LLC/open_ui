@@ -500,6 +500,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               advancedEC.isExpanded
                   ? config.separator
                   : EzDivider(
+                      config,
                       height: config.spacing * 3,
                       width: ezTextFieldConstraints(context, prop: 0.333).maxWidth,
                     ),
@@ -1006,9 +1007,9 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
   @override
   Widget build(BuildContext context) => Theme(
         data: widget.config.theme.copyWith(
-          dividerColor: widget.config.colors.surfaceContainer,
+          dividerColor: widget.config.surfaceContainerFill.asColor,
           dividerTheme: DividerThemeData(
-            color: widget.config.colors.surfaceContainer,
+            color: widget.config.surfaceContainerFill.asColor,
             space: 0,
             thickness: 0,
           ),
@@ -1098,9 +1099,9 @@ class _LicensePickerState extends State<_LicensePicker> {
   @override
   Widget build(BuildContext context) => Theme(
         data: widget.config.theme.copyWith(
-          dividerColor: widget.config.colors.surfaceContainer,
+          dividerColor: widget.config.surfaceContainerFill.asColor,
           dividerTheme: DividerThemeData(
-            color: widget.config.colors.surfaceContainer,
+            color: widget.config.surfaceContainerFill.asColor,
             space: 0,
             thickness: 0,
           ),
@@ -1114,7 +1115,11 @@ class _LicensePickerState extends State<_LicensePicker> {
             widget.config,
             children: <Widget>[
               Flexible(
-                child: Text('LICENSE', textAlign: TextAlign.start, style: widget.config.bodyStyle),
+                child: Text(
+                  'LICENSE',
+                  textAlign: TextAlign.start,
+                  style: widget.config.bodyStyle,
+                ),
               ),
               widget.config.rowMargin,
               Semantics(
