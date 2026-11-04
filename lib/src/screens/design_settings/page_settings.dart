@@ -75,14 +75,14 @@ class PageDesign extends StatelessWidget {
                       config,
                       pathKey: darkBackgroundImageKey,
                       fitKey: darkBackgroundFitKey,
-                      sourceKey: darkBackgroundSourceKey,
+                      creditsKey: darkBackgroundSourceKey,
                       label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                     )
                   : EzImageSetting(
                       config,
                       pathKey: lightBackgroundImageKey,
                       fitKey: lightBackgroundFitKey,
-                      sourceKey: lightBackgroundSourceKey,
+                      creditsKey: lightBackgroundSourceKey,
                       label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                     ),
             ),
