@@ -32,6 +32,7 @@ export 'src/functions/testing/utils.dart';
 
 // Core //
 
+export 'src/functions/animation.dart';
 export 'src/functions/cmd.dart';
 export 'src/functions/colors.dart';
 export 'src/functions/helpers.dart';
