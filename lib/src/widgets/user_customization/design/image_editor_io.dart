@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:math';
@@ -67,30 +68,6 @@ class _EzImageEditorState extends State<EzImageEditor> {
     final Size size = MediaQuery.of(context).size;
     return size.width / size.height;
   }
-
-  Widget keyIcon(
-    EzCP config, {
-    required IconData icon,
-    required Color color,
-    required String name,
-    required String tooltip,
-  }) =>
-      Tooltip(
-        message: tooltip,
-        excludeFromSemantics: false,
-        child: ExcludeSemantics(
-          child: EzCol(children: <Widget>[
-            EzIcon(config, icon, color: color),
-            widget.config.margin,
-            EzText(
-              widget.config,
-              text: name,
-              textAlign: TextAlign.center,
-              style: widget.config.labelStyle?.copyWith(color: color),
-            ),
-          ]),
-        ),
-      );
 
   // Init //
 
@@ -344,7 +321,14 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     setState(() => processing = false);
                   }
                 },
-                icon: processing ? EzLoadingGlass(widget.config) : const Icon(Icons.check),
+                icon: processing
+                    ? EzLoadingGlass(ywt.EzLoadingIndicator(
+                        iconSize: widget.config.iconSize,
+                        padding: widget.config.padding,
+                        semantics: widget.config.ezL10n.gLoadingAnim,
+                        colorScheme: widget.config.theme.colorScheme,
+                      ))
+                    : const Icon(Icons.check),
               ),
             ],
           ),

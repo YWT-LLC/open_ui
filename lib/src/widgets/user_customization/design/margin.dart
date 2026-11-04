@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -77,7 +78,8 @@ class EzMarginSetting extends StatelessWidget {
                           width: widthOf(modalContext) * 0.25,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: config.colors.surface,
+                              color: config.surfaceFill.color,
+                              gradient: config.surfaceFill.gradient,
                               image: (config.backgroundImagePath == noImageValue)
                                   ? null
                                   : config.backgroundImage,
@@ -97,8 +99,8 @@ class EzMarginSetting extends StatelessWidget {
                   child: Slider(
                     // Slider values
                     value: currValue,
-                    min: minMargin,
-                    max: maxMargin,
+                    min: ywt.minMargin,
+                    max: ywt.maxMargin,
                     divisions: _steps,
 
                     // Slider functions

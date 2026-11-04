@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 class EzIcon extends StatelessWidget {
   final EzCP config;
   final IconData? icon;
+  final double? size;
 
   /// Defaults to [EzCP.primaryFill]
   final EzSwitchColor? fill;
@@ -29,6 +30,7 @@ class EzIcon extends StatelessWidget {
     this.config,
     this.icon, {
     super.key,
+    this.size,
     this.fill,
     this.iconFill,
     this.weight,
@@ -45,7 +47,7 @@ class EzIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final Icon toReturn = Icon(
       icon,
-      size: config.iconSize,
+      size: size ?? config.iconSize,
       fill: iconFill,
       weight: weight,
       grade: grade,

@@ -382,6 +382,10 @@ class EzCP extends ChangeNotifier {
           width: _design.borderWidth,
         );
 
+  OutlinedBorder outlinedBorder(EzSwitchColor fill, {OutlinedBorder? shape}) => fill.color == null
+      ? EzGradientOutlinedBorder(this, shape: shape ?? buttonShape.shape, gradient: fill.gradient!)
+      : shape ?? buttonShape.shape;
+
   BorderSide borderSide(EzSwitchColor fill, {double? width}) => (width ?? _design.borderWidth) == 0
       ? BorderSide.none
       : fill.color == null

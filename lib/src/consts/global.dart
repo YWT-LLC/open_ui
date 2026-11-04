@@ -3,6 +3,8 @@
  * See LICENSE for distribution and usage details.
  */
 
+import '../../open_ui.dart';
+
 import 'package:flutter/material.dart';
 
 //* BTS *//
@@ -84,7 +86,7 @@ const double selectionOpacity = 0.25;
 /// 1:1 looks foggy
 const double shadowMod = 0.333;
 
-const LinearGradient ezRainbow = LinearGradient(
+const LinearGradient ezRainbowGradient = LinearGradient(
   begin: Alignment.bottomLeft,
   end: Alignment.topRight,
   colors: <Color>[
@@ -97,3 +99,5 @@ const LinearGradient ezRainbow = LinearGradient(
     Colors.purple,
   ],
 );
+
+const EzSwitchColor ezRainbowSwitch = EzSwitchColor(gradient: ezRainbowGradient);

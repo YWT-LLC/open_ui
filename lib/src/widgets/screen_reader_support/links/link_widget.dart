@@ -22,14 +22,12 @@ class EzLinkWidget extends StatelessWidget {
   /// [Semantics] label; What is it?
   final String? label;
 
-  /// Is this an image?
   final bool isImage;
 
   /// [Semantics] hint; what does it do?
   final String hint;
 
   final String tooltip;
-
   final Widget child;
 
   /// [InkWell] wrapper that either opens an internal link via [onTap]
@@ -61,14 +59,14 @@ class EzLinkWidget extends StatelessWidget {
           child: ExcludeSemantics(
             child: onTap != null
                 ? InkWell(
-                    focusColor: config.colors.primary.withValues(alpha: focusOpacity),
+                    focusColor: config.primaryFill.asColor.withValues(alpha: focusOpacity),
                     onTap: onTap,
                     child: child,
                   )
                 : Link(
                     uri: url,
                     builder: (_, FollowLink? followLink) => InkWell(
-                      focusColor: config.colors.primary.withValues(alpha: focusOpacity),
+                      focusColor: config.primaryFill.asColor.withValues(alpha: focusOpacity),
                       onTap: followLink,
                       child: child,
                     ),

@@ -4,6 +4,7 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -98,8 +99,8 @@ class EzSpacingSetting extends StatelessWidget {
                   child: Slider(
                     // Slider values
                     value: currValue,
-                    min: minSpacing,
-                    max: maxSpacing,
+                    min: ywt.minSpacing,
+                    max: ywt.maxSpacing,
                     divisions: _steps,
 
                     // Slider functions

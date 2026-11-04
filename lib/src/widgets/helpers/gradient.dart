@@ -71,17 +71,14 @@ class EzGradientOutlinedBorder extends OutlinedBorder {
       );
 }
 
-OutlinedBorder ezGradientButtonShape(EzCP config, Gradient gradient) => EzGradientOutlinedBorder(
-      config,
-      shape: config.buttonShape.shape,
-      gradient: gradient,
-    );
-
 class EzGradientBoxBorder extends BoxBorder {
   final EzCP config;
   final Gradient gradient;
 
-  const EzGradientBoxBorder(this.config, {required this.gradient});
+  const EzGradientBoxBorder(
+    this.config, {
+    required this.gradient,
+  });
 
   @override
   BorderSide get top => EzGradientBorderSide(config, gradient: gradient);

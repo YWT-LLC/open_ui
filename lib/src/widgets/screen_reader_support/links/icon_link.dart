@@ -73,7 +73,7 @@ class _EzIconLinkState extends State<EzIconLink> {
     TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
       color: widget.textColor ?? widget.config.onSurface,
       decoration: TextDecoration.none,
-      decorationColor: widget.config.colors.primary,
+      decorationColor: widget.config.primaryFill.asColor,
     );
 
     void underline(bool addIt) => setState(

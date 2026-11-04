@@ -79,9 +79,9 @@ class _EzLinkState extends State<EzLink> {
   late final String semantics = '${widget.text}; ${widget.hint}';
 
   late TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
-    color: widget.textColor ?? widget.config.colors.primary,
+    color: widget.textColor ?? widget.config.primaryFill.asColor,
     decoration: widget.config.lineLinks ? TextDecoration.underline : TextDecoration.none,
-    decorationColor: widget.config.colors.primary,
+    decorationColor: widget.config.primaryFill.asColor,
   );
 
   // Define custom functions //
