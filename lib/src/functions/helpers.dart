@@ -82,15 +82,11 @@ double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom
 /// Set a min [size] for the application window
 Future<void> setMinWindow({Size size = const Size(500, 500)}) async {
   if (!kIsWeb && !isMobile()) {
-    await windowManager.ensureInitialized();
+    final Window window = WindowManager.instance.getCurrent()!;
 
-    await windowManager.waitUntilReadyToShow(
-      const WindowOptions(minimumSize: Size(500, 500)),
-      () async {
-        await windowManager.show();
-        await windowManager.focus();
-      },
-    );
+    window.minimumSize = const Size(500, 500).toNative();
+    window.show();
+    window.focus();
   }
 }
 
@@ -225,7 +221,7 @@ Future<String?> ezColorPicker(
   String? title,
   required String picking,
   bool allowGradient = true,
-  required void Function(Color chosenColor) onColorChange,
+  void Function(Color chosenColor)? onColorChange,
   void Function()? onCancel,
 }) async {
   // Define modal data //
@@ -363,7 +359,7 @@ Future<String?> ezColorPicker(
       // Define custom functions //
 
       void localChange(Color color) {
-        onColorChange(color);
+        onColorChange?.call(color);
         setModal(() => preview = color);
       }
 
