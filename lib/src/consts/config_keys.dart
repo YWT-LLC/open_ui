@@ -107,7 +107,6 @@ const String darkOnInverseSurfaceKey = 'darkOnInverseSurface';
 const String darkInversePrimaryKey = 'darkInversePrimary';
 const String darkSurfaceTintKey = 'darkSurfaceTint';
 
-/// Ordered [List] for populating color setting screen(s)
 const List<String> darkColorOrder = <String>[
   // Backgrounds
   darkSurfaceKey,
@@ -143,7 +142,6 @@ const List<String> darkColorOrder = <String>[
 
 const String darkColorSchemeImageKey = 'darkColorSchemeImage';
 
-/// [darkColorSchemeImageKey], [darkColorOrder]
 const Map<String, Type> darkColorKeys = <String, Type>{
   darkColorSchemeImageKey: String,
   darkPrimaryKey: String,
@@ -252,7 +250,6 @@ const String lightOnInverseSurfaceKey = 'lightOnInverseSurface';
 const String lightInversePrimaryKey = 'lightInversePrimary';
 const String lightSurfaceTintKey = 'lightSurfaceTint';
 
-/// Ordered [List] for populating color setting screen(s)
 const List<String> lightColorOrder = <String>[
   // Backgrounds
   lightSurfaceKey,
@@ -288,7 +285,6 @@ const List<String> lightColorOrder = <String>[
 
 const String lightColorSchemeImageKey = 'lightColorSchemeImage';
 
-/// [lightColorSchemeImageKey], [lightColorOrder]
 const Map<String, Type> lightColorKeys = <String, Type>{
   lightColorSchemeImageKey: String,
   lightPrimaryKey: String,
@@ -341,10 +337,8 @@ const Map<String, Type> lightColorKeys = <String, Type>{
 
 // Shared //
 
-/// For segmented button; 'advancedColors'
 const String advancedColorsKey = 'advancedColors';
 
-/// Auto-managed text colors
 const Map<String, String> ezTextMirrors = <String, String>{
   darkPrimaryKey: darkOnPrimaryKey,
   darkSecondaryKey: darkOnSecondaryKey,
@@ -354,7 +348,6 @@ const Map<String, String> ezTextMirrors = <String, String>{
   lightTertiaryKey: lightOnTertiaryKey,
 };
 
-/// [advancedColorsKey], [darkColorKeys], && [lightColorKeys]
 const Map<String, Type> allColorKeys = <String, Type>{
   advancedColorsKey: bool,
   ...darkColorKeys,
@@ -379,8 +372,6 @@ const String lightLineLinksKey = 'lightLineLinks';
 const String lightShowBackFABKey = 'lightShowBackFAB';
 const String lightShowScrollKey = 'lightShowScroll';
 
-/// [darkPaddingKey], [darkButtonShapeKey], [darkBorderWidthKey],
-/// [darkLineLinksKey], [darkShowBackFABKey]
 const Map<String, Type> darkButtonDesignKeys = <String, Type>{
   darkPaddingKey: double,
   darkButtonShapeKey: String,
@@ -390,8 +381,6 @@ const Map<String, Type> darkButtonDesignKeys = <String, Type>{
   darkShowScrollKey: bool,
 };
 
-/// [lightPaddingKey], [lightButtonShapeKey], [lightBorderWidthKey],
-/// [lightLineLinksKey], [lightShowBackFABKey]
 const Map<String, Type> lightButtonDesignKeys = <String, Type>{
   lightPaddingKey: double,
   lightButtonShapeKey: String,
@@ -423,7 +412,6 @@ const String lightBackgroundImageKey = 'lightBackgroundImage';
 const String lightBackgroundFitKey = 'lightBackgroundFit';
 const String lightBackgroundSourceKey = 'lightBackgroundSourceKey';
 
-/// margin, spacing, animations && transitions, backgrounds, navigation, scrolling
 const Map<String, Type> darkPageDesignKeys = <String, Type>{
   darkMarginKey: double,
   darkSpacingKey: double,
@@ -436,7 +424,6 @@ const Map<String, Type> darkPageDesignKeys = <String, Type>{
   darkBackgroundSourceKey: String,
 };
 
-/// margin, spacing, animations && transitions, backgrounds, navigation, scrolling
 const Map<String, Type> lightPageDesignKeys = <String, Type>{
   lightMarginKey: double,
   lightSpacingKey: double,
@@ -451,22 +438,18 @@ const Map<String, Type> lightPageDesignKeys = <String, Type>{
 
 // Shared //
 
-/// pageTab
 const String pageTabKey = 'pageTab';
 
-/// [darkButtonDesignKeys], [darkPageDesignKeys]
 const Map<String, Type> darkDesignKeys = <String, Type>{
   ...darkButtonDesignKeys,
   ...darkPageDesignKeys,
 };
 
-/// [lightButtonDesignKeys], [lightPageDesignKeys]
 const Map<String, Type> lightDesignKeys = <String, Type>{
   ...lightButtonDesignKeys,
   ...lightPageDesignKeys,
 };
 
-/// [pageTabKey], [darkDesignKeys], [lightDesignKeys]
 const Map<String, Type> allDesignKeys = <String, Type>{
   pageTabKey: bool,
   ...darkDesignKeys,
@@ -531,11 +514,6 @@ const String darkLabelFontHeightKey = 'darkLabelFontHeight';
 const String darkTextBackgroundOpacityKey = 'darkTextBackgroundOpacity';
 const String darkIconSizeKey = 'darkIconSize';
 
-/// [display, headline, title, body, label]
-///                 X
-/// [FontFamily, FontSize, FontWeight, FontStyle, LetterSpacing, WordSpacing, FontHeight, FontDecoration]
-/// &&
-/// [backgroundOpacity, iconSize]
 const Map<String, Type> darkTextKeys = <String, Type>{
   // Display
   darkDisplayFontFamilyKey: String,
@@ -648,11 +626,6 @@ const String lightLabelFontHeightKey = 'lightLabelFontHeight';
 const String lightTextBackgroundOpacityKey = 'lightTextBackgroundOpacity';
 const String lightIconSizeKey = 'lightIconSize';
 
-/// [display, headline, title, body, label]
-///                 X
-/// [FontFamily, FontSize, FontWeight, FontStyle, LetterSpacing, WordSpacing, FontHeight, FontDecoration]
-/// &&
-/// [backgroundOpacity, iconSize]
 const Map<String, Type> lightTextKeys = <String, Type>{
   // Display
   lightDisplayFontFamilyKey: String,
@@ -711,10 +684,8 @@ const Map<String, Type> lightTextKeys = <String, Type>{
 
 // Shared //
 
-/// advancedText
 const String advancedTextKey = 'advancedText';
 
-/// [advancedTextKey], [darkTextKeys], [lightTextKeys]
 const Map<String, Type> allTextKeys = <String, Type>{
   advancedTextKey: bool,
   ...darkTextKeys,
@@ -723,7 +694,6 @@ const Map<String, Type> allTextKeys = <String, Type>{
 
 //* Trackers *//
 
-/// [allBTSKeys], [allGlobalKeys], [allAudioKeys], [allColorKeys], [allDesignKeys], [allTextKeys]
 const Map<String, Type> allEZConfigKeys = <String, Type>{
   ...allBTSKeys,
   ...allGlobalKeys,
