@@ -595,7 +595,7 @@ class EzColorCache {
   final EzSwitchColor scrim;
 
   EzColorCache({
-    required this.schemeImagePath, // TODO: use this lol
+    required this.schemeImagePath,
 
     // Backgrounds
     required this.surface,
