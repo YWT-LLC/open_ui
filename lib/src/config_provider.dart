@@ -348,20 +348,23 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get scrimFill => _color.scrim;
 
   BoxDecoration boxDeco({
-    BoxShape shape = BoxShape.rectangle,
     EzSwitchColor? fill,
     double? opacity,
+    BoxShape shape = BoxShape.rectangle,
+    BorderRadius? borderRadius,
   }) =>
       (opacity == null)
           ? BoxDecoration(
               color: (fill ?? _color.surface).color,
               gradient: (fill ?? _color.surface).gradient,
               shape: shape,
+              borderRadius: borderRadius,
             )
           : BoxDecoration(
               color: (fill ?? _color.surface).color?.withValues(alpha: opacity),
               gradient: (fill ?? _color.surface).gradient?.withOpacity(opacity),
               shape: shape,
+              borderRadius: borderRadius,
             );
 
   // Design cache //
@@ -386,17 +389,23 @@ class EzCP extends ChangeNotifier {
       ? EzGradientOutlinedBorder(this, shape: shape ?? buttonShape.shape, gradient: fill.gradient!)
       : shape ?? buttonShape.shape;
 
-  BorderSide borderSide(EzSwitchColor fill, {double? width}) => (width ?? _design.borderWidth) == 0
-      ? BorderSide.none
-      : fill.color == null
-          ? EzGradientBorderSide(
-              this,
-              gradient: fill.gradient!,
-            )
-          : BorderSide(
-              color: fill.color!,
-              width: width ?? _design.borderWidth,
-            );
+  BorderSide borderSide(
+    EzSwitchColor fill, {
+    double? width,
+    double? opacity,
+  }) =>
+      (width ?? _design.borderWidth) == 0
+          ? BorderSide.none
+          : fill.color == null
+              ? EzGradientBorderSide(
+                  this,
+                  gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
+                  vvidth: width ?? _design.borderWidth,
+                )
+              : BorderSide(
+                  color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
+                  width: width ?? _design.borderWidth,
+                );
 
   bool get lineLinks => _design.lineLinks;
   bool get showScroll => _design.showScroll;

@@ -138,15 +138,14 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         style: (widget.enabled && !widget.fauxDisabled)
             ? TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                backgroundColor: widget.config.colors.surface,
-                side: widget.config.borderSide(
-                    color: widget.config.colors.primary.withValues(alpha: focusOpacity)),
+                backgroundColor: widget.config.surfaceFill.asColor,
+                side: widget.config.borderSide(widget.config.primaryFill, opacity: focusOpacity),
               )
             : TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                backgroundColor: widget.config.colors.surface,
-                side: widget.config.borderSide(color: widget.config.colors.outlineVariant),
-                overlayColor: widget.config.colors.outline,
+                backgroundColor: widget.config.surfaceFill.asColor,
+                side: widget.config.borderSide(widget.config.outlineVariantFill),
+                overlayColor: widget.config.outlineFill.asColor,
                 shadowColor: Colors.transparent,
               ),
         onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
@@ -157,7 +156,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             textAlign: widget.textAlign,
             semanticsLabel: widget.textFix,
             style: widget.config.bodyStyle?.copyWith(
-              decorationColor: widget.config.colors.primary,
+              decorationColor: widget.config.primaryFill.asColor,
               decoration: widget.config.lineLinks ? TextDecoration.underline : null,
             ),
           ),
@@ -167,10 +166,10 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
           child: Switch(
             value: value,
             onChanged: onChanged,
-            activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
-            inactiveThumbColor: widget.config.colors.outline,
+            activeThumbColor: widget.fauxDisabled ? widget.config.outlineFill.asColor : null,
+            inactiveThumbColor: widget.config.outlineFill.asColor,
             trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
-                ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
+                ? WidgetStatePropertyAll<Color>(widget.config.outlineVariantFill.asColor)
                 : null,
             trackOutlineWidth: widget.trackOutlineWidth,
             padding: EdgeInsets.zero,
@@ -253,7 +252,8 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
           EzTextButton(
             widget.config,
             text: widget.offLabel,
-            style: TextButton.styleFrom(backgroundColor: widget.config.colors.surfaceContainer),
+            style:
+                TextButton.styleFrom(backgroundColor: widget.config.surfaceContainerFill.asColor),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
@@ -274,10 +274,10 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
                   setState(() => curr = choice);
                   widget.onChanged(choice);
                 },
-                thumbColor: WidgetStatePropertyAll<Color>(widget.config.colors.primary),
-                trackColor: WidgetStatePropertyAll<Color>(widget.config.colors.surface),
+                thumbColor: WidgetStatePropertyAll<Color>(widget.config.primaryFill.asColor),
+                trackColor: WidgetStatePropertyAll<Color>(widget.config.surfaceFill.asColor),
                 trackOutlineColor: WidgetStatePropertyAll<Color>(
-                    widget.config.colors.primary.withValues(alpha: focusOpacity)),
+                    widget.config.primaryFill.asColor.withValues(alpha: focusOpacity)),
                 padding: EdgeInsets.zero,
               ),
             ),
@@ -288,7 +288,8 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
           EzTextButton(
             widget.config,
             text: widget.onLabel,
-            style: TextButton.styleFrom(backgroundColor: widget.config.colors.surfaceContainer),
+            style:
+                TextButton.styleFrom(backgroundColor: widget.config.surfaceContainerFill.asColor),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {

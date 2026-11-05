@@ -62,7 +62,10 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
         GeneratorState.running => SizedBox(
             height: heightOf(context) / 3,
             width: double.infinity,
-            child: ywt.YWTime(semantics: config.ezL10n.gLoadingAnim, colorScheme: config.colors),
+            child: ywt.YWTime(
+              semantics: config.ezL10n.gLoadingAnim,
+              colorScheme: config.theme.colorScheme,
+            ),
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(

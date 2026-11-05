@@ -254,7 +254,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
   Widget header(EzCP config) => switch (genState) {
         GeneratorState.running => ywt.YWTime(
             semantics: config.ezL10n.gLoadingAnim,
-            colorScheme: config.colors,
+            colorScheme: config.theme.colorScheme,
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(

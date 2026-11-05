@@ -59,22 +59,19 @@ class _EzTextButtonState extends State<EzTextButton> {
             ? (widget.style == null
                 ? TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    iconColor: widget.enabled
-                        ? widget.config.colors.primary
-                        : widget.config.colors.outline,
+                    iconColor: widget.enabled ? null : widget.config.outlineFill.asColor,
                   )
                 : widget.style!.copyWith(
                     padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
-                    iconColor: WidgetStatePropertyAll<Color>(widget.enabled
-                        ? widget.config.colors.primary
-                        : widget.config.colors.outline),
+                    iconColor: WidgetStatePropertyAll<Color?>(
+                        widget.enabled ? null : widget.config.outlineFill.asColor),
                   ))
             : widget.style,
         child: Text(
           widget.text,
           semanticsLabel: widget.semantics,
           style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: widget.config.colors.primary,
+            decorationColor: widget.config.primaryFill.asColor,
           ),
           textAlign: widget.textAlign,
         ),
@@ -139,15 +136,12 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
             ? widget.style == null
                 ? TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    iconColor: widget.enabled
-                        ? widget.config.colors.primary
-                        : widget.config.colors.outline,
-                  )
+                    iconColor: widget.enabled ? null : widget.config.outlineFill.asColor,
+                  ) // TODO: verify new null
                 : widget.style!.copyWith(
                     padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
-                    iconColor: WidgetStatePropertyAll<Color>(widget.enabled
-                        ? widget.config.colors.primary
-                        : widget.config.colors.outline),
+                    iconColor: WidgetStatePropertyAll<Color?>(
+                        widget.enabled ? null : widget.config.outlineFill.asColor),
                   )
             : widget.style,
         icon: widget.icon,
@@ -156,7 +150,7 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
           widget.label,
           semanticsLabel: widget.semantics,
           style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: widget.config.colors.primary,
+            decorationColor: widget.config.primaryFill.asColor,
           ),
           textAlign: widget.textAlign,
         ),
