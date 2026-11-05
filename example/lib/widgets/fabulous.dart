@@ -131,9 +131,8 @@ The full (free and open source) app generator can be downloaded from the ''',
             ],
           ),
         ),
-        // backgroundColor: config.colors.secondary, TODO
+        backgroundColor: config.secondaryFill.asColor,
         foregroundColor: config.onSecondary,
         child: EzIcon(config, Icons.update),
       );
-  // TODO: custom floating action button and audit all existing
 }
