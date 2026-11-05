@@ -168,17 +168,17 @@ class EzCP extends ChangeNotifier {
         rowSpacer: EzSpacer(spacing, vertical: false),
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
-        startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
-        centerLine: EzNewLine(bodyStyle),
-        endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
-        richLine: const EzRichLine(),
       );
 
       // Text //
 
       _text = EzTextCache(
-        backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
         iconSize: EzCM.get(darkIconSizeKey),
+        backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
+        startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
+        centerLine: EzNewLine(bodyStyle),
+        endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+        richLine: const EzRichLine(),
       );
     } else {
       _theme = ezThemeData(Brightness.light, _ltr);
@@ -271,17 +271,17 @@ class EzCP extends ChangeNotifier {
         rowSpacer: EzSpacer(spacing, vertical: false),
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
-        startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
-        centerLine: EzNewLine(bodyStyle),
-        endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
-        richLine: const EzRichLine(),
       );
 
       // Text //
 
       _text = EzTextCache(
-        backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
         iconSize: EzCM.get(lightIconSizeKey),
+        backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
+        startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
+        centerLine: EzNewLine(bodyStyle),
+        endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
+        richLine: const EzRichLine(),
       );
     }
   }
@@ -446,15 +446,15 @@ class EzCP extends ChangeNotifier {
   EzSpacer get halfSpacer => _layout.halfSpacer;
   EzSwapSpacer get swapSpacer => _layout.swapSpacer;
 
-  EzNewLine get startLine => _layout.startLine;
-  EzNewLine get centerLine => _layout.centerLine;
-  EzNewLine get endLine => _layout.endLine;
-  EzRichLine get richLine => _layout.richLine; // TODO: move to text
-
   // Text cache //
 
-  double get textBackgroundOpacity => _text.backgroundOpacity;
   double get iconSize => _text.iconSize;
+  double get textBackgroundOpacity => _text.backgroundOpacity;
+
+  EzNewLine get startLine => _text.startLine;
+  EzNewLine get centerLine => _text.centerLine;
+  EzNewLine get endLine => _text.endLine;
+  EzRichLine get richLine => _text.richLine;
 
   // Theme sub-pointers //
 
@@ -594,8 +594,6 @@ class EzColorCache {
   final EzSwitchColor shadow;
   final EzSwitchColor scrim;
 
-  /// Theme aware tracker for frequently used color values...
-  /// Color scheme image(s)
   EzColorCache({
     required this.schemeImagePath, // TODO: use this lol
 
@@ -662,8 +660,6 @@ class EzDesignCache {
   final String backgroundImagePath;
   final BoxFit? backgroundImageFit;
 
-  /// Theme aware tracker for frequently used design values...
-  /// Animation duration
   EzDesignCache({
     // Button
     required this.padding,
@@ -696,13 +692,6 @@ class EzLayoutCache {
   final EzSpacer halfSpacer;
   final EzSwapSpacer swapSpacer;
 
-  final EzNewLine startLine;
-  final EzNewLine centerLine;
-  final EzNewLine endLine;
-  final EzRichLine richLine;
-
-  /// Theme aware tracker for frequently used layout [Widget]s
-  /// Spacers and new lines
   EzLayoutCache({
     required this.margin,
     required this.rowMargin,
@@ -711,20 +700,26 @@ class EzLayoutCache {
     required this.rowSpacer,
     required this.halfSpacer,
     required this.swapSpacer,
+  });
+}
+
+class EzTextCache {
+  final double iconSize;
+  final double backgroundOpacity;
+
+  final EzNewLine startLine;
+  final EzNewLine centerLine;
+  final EzNewLine endLine;
+  final EzRichLine richLine;
+
+  EzTextCache({
+    required this.iconSize,
+    required this.backgroundOpacity,
     required this.startLine,
     required this.centerLine,
     required this.endLine,
     required this.richLine,
   });
-}
-
-class EzTextCache {
-  final double backgroundOpacity;
-  final double iconSize;
-
-  /// Theme aware tracker for frequently used text values...
-  /// Background opacity, icon size
-  EzTextCache({required this.backgroundOpacity, required this.iconSize});
 }
 
 abstract class EzAppCache {
