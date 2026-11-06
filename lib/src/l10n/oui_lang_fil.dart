@@ -9,10 +9,19 @@ class OUILangFil extends OUILang {
   OUILangFil([String locale = 'fil']) : super(locale);
 
   @override
+  String get csAddMore => 'Magdagdag ng 2 o higit pang kulay';
+
+  @override
+  String get csBuildGradient => 'Idagdag sa listahan ng gradient';
+
+  @override
   String get csColorScheme => 'color scheme';
 
   @override
   String get csCurrVal => 'Kasalukuyang value ng kulay:';
+
+  @override
+  String get csEndDir => 'Direksyon ng dulo';
 
   @override
   String get csError => 'Error';
@@ -76,6 +85,9 @@ class OUILangFil extends OUILang {
 
   @override
   String get csShadow => 'Anino';
+
+  @override
+  String get csStartDir => 'Direksyon ng simula';
 
   @override
   String get csSurface => 'Background ng\nbutton';
@@ -315,6 +327,15 @@ class OUILangFil extends OUILang {
   String get gBothThemes => 'Parehong tema';
 
   @override
+  String get gBottomCenter => 'Ibabang gitna';
+
+  @override
+  String get gBottomLeft => 'Ibabang kaliwa';
+
+  @override
+  String get gBottomRight => 'Ibabang kanan';
+
+  @override
   String get gCancel => 'Kanselahin';
 
   @override
@@ -324,7 +345,16 @@ class OUILangFil extends OUILang {
   String get gCaptionsHint => 'Pindutin nang matagal para sa mga font';
 
   @override
+  String get gCenter => 'Gitna';
+
+  @override
+  String get gCenterLeft => 'Gitnang kaliwa';
+
+  @override
   String get gCenterReset => 'Pindutin nang matagal ang gitna para i-reset';
+
+  @override
+  String get gCenterRight => 'Gitnang kanan';
 
   @override
   String gClipboard(Object thing) {
@@ -387,6 +417,9 @@ class OUILangFil extends OUILang {
 
   @override
   String get gGlobal => 'Pangkalahatan';
+
+  @override
+  String get gGradient => 'Gradient';
 
   @override
   String get gHardRefresh =>
@@ -537,6 +570,9 @@ class OUILangFil extends OUILang {
   String get gSettings => 'Mga Setting';
 
   @override
+  String get gSingle => 'Iisa';
+
+  @override
   String get gSkip => 'Laktawan';
 
   @override
@@ -562,6 +598,15 @@ class OUILangFil extends OUILang {
 
   @override
   String get gThe => 'Ang';
+
+  @override
+  String get gTopCenter => 'Itaas na gitna';
+
+  @override
+  String get gTopLeft => 'Itaas na kaliwa';
+
+  @override
+  String get gTopRight => 'Itaas na kanan';
 
   @override
   String get gUnMute => 'I-unmute';

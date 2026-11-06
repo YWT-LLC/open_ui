@@ -9,10 +9,19 @@ class OUILangFr extends OUILang {
   OUILangFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get csAddMore => 'Ajoutez 2 couleurs ou plus';
+
+  @override
+  String get csBuildGradient => 'Ajouter à la liste des dégradés';
+
+  @override
   String get csColorScheme => 'schéma de couleurs';
 
   @override
   String get csCurrVal => 'Valeur de couleur actuelle :';
+
+  @override
+  String get csEndDir => 'Direction de fin';
 
   @override
   String get csError => 'Erreur';
@@ -77,6 +86,9 @@ class OUILangFr extends OUILang {
 
   @override
   String get csShadow => 'Ombre';
+
+  @override
+  String get csStartDir => 'Direction de départ';
 
   @override
   String get csSurface => 'Arrière-plan du\nbouton';
@@ -317,6 +329,15 @@ class OUILangFr extends OUILang {
   String get gBothThemes => 'Les deux thèmes';
 
   @override
+  String get gBottomCenter => 'En bas au centre';
+
+  @override
+  String get gBottomLeft => 'En bas à gauche';
+
+  @override
+  String get gBottomRight => 'En bas à droite';
+
+  @override
   String get gCancel => 'Annuler';
 
   @override
@@ -326,7 +347,16 @@ class OUILangFr extends OUILang {
   String get gCaptionsHint => 'Maintenez pour les polices';
 
   @override
+  String get gCenter => 'Centre';
+
+  @override
+  String get gCenterLeft => 'Au centre à gauche';
+
+  @override
   String get gCenterReset => 'Maintenez le centre pour réinitialiser';
+
+  @override
+  String get gCenterRight => 'Au centre à droite';
 
   @override
   String gClipboard(Object thing) {
@@ -389,6 +419,9 @@ class OUILangFr extends OUILang {
 
   @override
   String get gGlobal => 'Global';
+
+  @override
+  String get gGradient => 'Dégradé';
 
   @override
   String get gHardRefresh =>
@@ -539,6 +572,9 @@ class OUILangFr extends OUILang {
   String get gSettings => 'Paramètres';
 
   @override
+  String get gSingle => 'Unique';
+
+  @override
   String get gSkip => 'Passer';
 
   @override
@@ -564,6 +600,15 @@ class OUILangFr extends OUILang {
 
   @override
   String get gThe => 'Le';
+
+  @override
+  String get gTopCenter => 'En haut au centre';
+
+  @override
+  String get gTopLeft => 'En haut à gauche';
+
+  @override
+  String get gTopRight => 'En haut à droite';
 
   @override
   String get gUnMute => 'Réactiver le son';

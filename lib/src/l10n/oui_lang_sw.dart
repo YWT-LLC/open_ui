@@ -9,10 +9,19 @@ class OUILangSw extends OUILang {
   OUILangSw([String locale = 'sw']) : super(locale);
 
   @override
+  String get csAddMore => 'Ongeza rangi 2 au zaidi';
+
+  @override
+  String get csBuildGradient => 'Ongeza kwenye orodha ya gradienti';
+
+  @override
   String get csColorScheme => 'mpangilio wa rangi';
 
   @override
   String get csCurrVal => 'Thamani ya rangi ya sasa:';
+
+  @override
+  String get csEndDir => 'Mwelekeo wa kumalizia';
 
   @override
   String get csError => 'Hitilafu';
@@ -77,6 +86,9 @@ class OUILangSw extends OUILang {
 
   @override
   String get csShadow => 'Kivuli';
+
+  @override
+  String get csStartDir => 'Mwelekeo wa kuanzia';
 
   @override
   String get csSurface => 'Usuli\nwa kitufe';
@@ -315,6 +327,15 @@ class OUILangSw extends OUILang {
   String get gBothThemes => 'Mandhari zote mbili';
 
   @override
+  String get gBottomCenter => 'Chini katikati';
+
+  @override
+  String get gBottomLeft => 'Chini kushoto';
+
+  @override
+  String get gBottomRight => 'Chini kulia';
+
+  @override
   String get gCancel => 'Ghairi';
 
   @override
@@ -324,7 +345,16 @@ class OUILangSw extends OUILang {
   String get gCaptionsHint => 'Shikilia kwa fonti';
 
   @override
+  String get gCenter => 'Katikati';
+
+  @override
+  String get gCenterLeft => 'Katikati kushoto';
+
+  @override
   String get gCenterReset => 'Shikilia katikati ili kuweka upya';
+
+  @override
+  String get gCenterRight => 'Katikati kulia';
 
   @override
   String gClipboard(Object thing) {
@@ -387,6 +417,9 @@ class OUILangSw extends OUILang {
 
   @override
   String get gGlobal => 'Jumla';
+
+  @override
+  String get gGradient => 'Gradienti';
 
   @override
   String get gHardRefresh =>
@@ -537,6 +570,9 @@ class OUILangSw extends OUILang {
   String get gSettings => 'Mipangilio';
 
   @override
+  String get gSingle => 'Moja';
+
+  @override
   String get gSkip => 'Ruka';
 
   @override
@@ -562,6 +598,15 @@ class OUILangSw extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Juu katikati';
+
+  @override
+  String get gTopLeft => 'Juu kushoto';
+
+  @override
+  String get gTopRight => 'Juu kulia';
 
   @override
   String get gUnMute => 'Acha kunyamazisha';

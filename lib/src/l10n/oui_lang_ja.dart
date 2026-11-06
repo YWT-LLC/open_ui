@@ -9,10 +9,19 @@ class OUILangJa extends OUILang {
   OUILangJa([String locale = 'ja']) : super(locale);
 
   @override
+  String get csAddMore => '2色以上追加してください';
+
+  @override
+  String get csBuildGradient => 'グラデーションリストに追加';
+
+  @override
   String get csColorScheme => 'カラースキーム';
 
   @override
   String get csCurrVal => '現在のカラー値:';
+
+  @override
+  String get csEndDir => '終了方向';
 
   @override
   String get csError => 'エラー';
@@ -75,6 +84,9 @@ class OUILangJa extends OUILang {
 
   @override
   String get csShadow => 'シャドウ';
+
+  @override
+  String get csStartDir => '開始方向';
 
   @override
   String get csSurface => 'ボタン\n背景';
@@ -313,6 +325,15 @@ class OUILangJa extends OUILang {
   String get gBothThemes => '両方のテーマ';
 
   @override
+  String get gBottomCenter => '下中央';
+
+  @override
+  String get gBottomLeft => '左下';
+
+  @override
+  String get gBottomRight => '右下';
+
+  @override
   String get gCancel => 'キャンセル';
 
   @override
@@ -322,7 +343,16 @@ class OUILangJa extends OUILang {
   String get gCaptionsHint => '長押しでフォントを変更';
 
   @override
+  String get gCenter => '中央';
+
+  @override
+  String get gCenterLeft => '左中央';
+
+  @override
   String get gCenterReset => '中央を長押ししてリセット';
+
+  @override
+  String get gCenterRight => '右中央';
 
   @override
   String gClipboard(Object thing) {
@@ -385,6 +415,9 @@ class OUILangJa extends OUILang {
 
   @override
   String get gGlobal => 'グローバル';
+
+  @override
+  String get gGradient => 'グラデーション';
 
   @override
   String get gHardRefresh => 'ページのハードリフレッシュを行ってください...\nCtrl + Shift + R';
@@ -531,6 +564,9 @@ class OUILangJa extends OUILang {
   String get gSettings => '設定';
 
   @override
+  String get gSingle => '単一';
+
+  @override
   String get gSkip => 'スキップ';
 
   @override
@@ -556,6 +592,15 @@ class OUILangJa extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => '上中央';
+
+  @override
+  String get gTopLeft => '左上';
+
+  @override
+  String get gTopRight => '右上';
 
   @override
   String get gUnMute => 'ミュート解除';

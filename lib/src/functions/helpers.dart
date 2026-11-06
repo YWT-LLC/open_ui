@@ -238,21 +238,21 @@ Future<String?> ezColorPicker(
   final MenuController beginMenu = MenuController();
   final MenuController endMenu = MenuController();
 
-  const List<List<(Alignment, String)>> dirGrid = <List<(Alignment, String)>>[
+  final List<List<(Alignment, String)>> dirGrid = <List<(Alignment, String)>>[
     <(Alignment, String)>[
-      (Alignment.topLeft, 'Top left'),
-      (Alignment.topCenter, 'Top center'),
-      (Alignment.topRight, 'Top right'),
+      (Alignment.topLeft, config.ezL10n.gTopLeft),
+      (Alignment.topCenter, config.ezL10n.gTopCenter),
+      (Alignment.topRight, config.ezL10n.gTopRight),
     ],
     <(Alignment, String)>[
-      (Alignment.centerLeft, 'Center left'),
-      (Alignment.center, 'Center'),
-      (Alignment.centerRight, 'Center right'),
+      (Alignment.centerLeft, config.ezL10n.gCenterLeft),
+      (Alignment.center, config.ezL10n.gCenter),
+      (Alignment.centerRight, config.ezL10n.gCenterRight),
     ],
     <(Alignment, String)>[
-      (Alignment.bottomLeft, 'Bottom left'),
-      (Alignment.bottomCenter, 'Bottom center'),
-      (Alignment.bottomRight, 'Bottom right'),
+      (Alignment.bottomLeft, config.ezL10n.gBottomLeft),
+      (Alignment.bottomCenter, config.ezL10n.gBottomCenter),
+      (Alignment.bottomRight, config.ezL10n.gBottomRight),
     ],
   ];
 
@@ -402,12 +402,12 @@ Future<String?> ezColorPicker(
             EzFlipFlop(
               config,
               init: gradient,
-              onLabel: 'Gradient',
-              offLabel: 'Single',
+              onLabel: config.ezL10n.gGradient,
+              offLabel: config.ezL10n.gSingle,
               onChanged: (bool choice) => setModal(() => gradient = choice),
             ),
             config.spacer,
-          ], // TODO: l10n
+          ],
 
           // The magic
           gradient
@@ -426,7 +426,7 @@ Future<String?> ezColorPicker(
                       child: EzIconButton(
                         config,
                         icon: const Icon(Icons.add),
-                        tooltip: 'Add to gradients list',
+                        tooltip: config.ezL10n.csBuildGradient,
                         onPressed: () => setModal(() => gradients.add(preview.asColor)),
                       ),
                     ),
@@ -435,7 +435,7 @@ Future<String?> ezColorPicker(
               : Container(
                   constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
                   child: colorPicker(),
-                ), // TODO: l10n
+                ),
 
           // Gradient settings
           EzAnimVis(
@@ -506,7 +506,7 @@ Future<String?> ezColorPicker(
                               controller: beginMenu,
                               selected: beginDir,
                               icon: const Icon(Icons.start),
-                              tooltip: 'Start direction',
+                              tooltip: config.ezL10n.csStartDir,
                               onSelected: (Alignment choice) => setModal(() => beginDir = choice),
                             ),
                           ),
@@ -518,7 +518,7 @@ Future<String?> ezColorPicker(
                               controller: endMenu,
                               selected: endDir,
                               icon: const Icon(Icons.flag),
-                              tooltip: 'End direction',
+                              tooltip: config.ezL10n.csEndDir,
                               onSelected: (Alignment choice) => setModal(() => endDir = choice),
                             ),
                           ),
@@ -526,7 +526,7 @@ Future<String?> ezColorPicker(
                       )
                     : EzText(
                         config,
-                        text: 'Add 2 or more colors',
+                        text: config.ezL10n.csAddMore,
                         style: config.bodyStyle,
                         textAlign: TextAlign.center,
                       ),

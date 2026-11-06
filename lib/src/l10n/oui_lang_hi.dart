@@ -9,10 +9,19 @@ class OUILangHi extends OUILang {
   OUILangHi([String locale = 'hi']) : super(locale);
 
   @override
+  String get csAddMore => '2 या अधिक रंग जोड़ें';
+
+  @override
+  String get csBuildGradient => 'ग्रेडिएंट सूची में जोड़ें';
+
+  @override
   String get csColorScheme => 'रंग योजना (color scheme)';
 
   @override
   String get csCurrVal => 'वर्तमान रंग का मान:';
+
+  @override
+  String get csEndDir => 'अंत दिशा';
 
   @override
   String get csError => 'त्रुटि';
@@ -77,6 +86,9 @@ class OUILangHi extends OUILang {
 
   @override
   String get csShadow => 'छाया';
+
+  @override
+  String get csStartDir => 'प्रारंभ दिशा';
 
   @override
   String get csSurface => 'बटन\nपृष्ठभूमि';
@@ -315,6 +327,15 @@ class OUILangHi extends OUILang {
   String get gBothThemes => 'दोनों थीम';
 
   @override
+  String get gBottomCenter => 'नीचे बीच में';
+
+  @override
+  String get gBottomLeft => 'नीचे बाएँ';
+
+  @override
+  String get gBottomRight => 'नीचे दाएँ';
+
+  @override
   String get gCancel => 'रद्द करें';
 
   @override
@@ -324,7 +345,16 @@ class OUILangHi extends OUILang {
   String get gCaptionsHint => 'फ़ॉन्ट के लिए दबाकर रखें';
 
   @override
+  String get gCenter => 'बीच में';
+
+  @override
+  String get gCenterLeft => 'बीच में बाएँ';
+
+  @override
   String get gCenterReset => 'रीसेट करने के लिए बीच में दबाकर रखें';
+
+  @override
+  String get gCenterRight => 'बीच में दाएँ';
 
   @override
   String gClipboard(Object thing) {
@@ -387,6 +417,9 @@ class OUILangHi extends OUILang {
 
   @override
   String get gGlobal => 'ग्लोबल';
+
+  @override
+  String get gGradient => 'ग्रेडिएंट';
 
   @override
   String get gHardRefresh =>
@@ -536,6 +569,9 @@ class OUILangHi extends OUILang {
   String get gSettings => 'सेटिंग्स';
 
   @override
+  String get gSingle => 'एकल';
+
+  @override
   String get gSkip => 'छोड़ें';
 
   @override
@@ -561,6 +597,15 @@ class OUILangHi extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => 'ऊपर बीच में';
+
+  @override
+  String get gTopLeft => 'ऊपर बाएँ';
+
+  @override
+  String get gTopRight => 'ऊपर दाएँ';
 
   @override
   String get gUnMute => 'अन-म्यूट करें';

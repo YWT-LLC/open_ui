@@ -9,10 +9,19 @@ class OUILangAr extends OUILang {
   OUILangAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get csAddMore => 'أضف لونين أو أكثر';
+
+  @override
+  String get csBuildGradient => 'أضف إلى قائمة التدرجات';
+
+  @override
   String get csColorScheme => 'مخطط الألوان';
 
   @override
   String get csCurrVal => 'قيمة اللون الحالية:';
+
+  @override
+  String get csEndDir => 'اتجاه النهاية';
 
   @override
   String get csError => 'خطأ';
@@ -75,6 +84,9 @@ class OUILangAr extends OUILang {
 
   @override
   String get csShadow => 'ظل';
+
+  @override
+  String get csStartDir => 'اتجاه البداية';
 
   @override
   String get csSurface => 'خلفية\nالزر';
@@ -313,6 +325,15 @@ class OUILangAr extends OUILang {
   String get gBothThemes => 'كلا المظهرين';
 
   @override
+  String get gBottomCenter => 'أسفل المنتصف';
+
+  @override
+  String get gBottomLeft => 'أسفل اليسار';
+
+  @override
+  String get gBottomRight => 'أسفل اليمين';
+
+  @override
   String get gCancel => 'إلغاء';
 
   @override
@@ -322,7 +343,16 @@ class OUILangAr extends OUILang {
   String get gCaptionsHint => 'اضغط باستمرار لاختيار الخطوط';
 
   @override
+  String get gCenter => 'المنتصف';
+
+  @override
+  String get gCenterLeft => 'وسط اليسار';
+
+  @override
   String get gCenterReset => 'اضغط باستمرار في المنتصف لإعادة الضبط';
+
+  @override
+  String get gCenterRight => 'وسط اليمين';
 
   @override
   String gClipboard(Object thing) {
@@ -385,6 +415,9 @@ class OUILangAr extends OUILang {
 
   @override
   String get gGlobal => 'عام';
+
+  @override
+  String get gGradient => 'تدرج';
 
   @override
   String get gHardRefresh =>
@@ -534,6 +567,9 @@ class OUILangAr extends OUILang {
   String get gSettings => 'الإعدادات';
 
   @override
+  String get gSingle => 'مفرد';
+
+  @override
   String get gSkip => 'تخطي';
 
   @override
@@ -559,6 +595,15 @@ class OUILangAr extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => 'أعلى المنتصف';
+
+  @override
+  String get gTopLeft => 'أعلى اليسار';
+
+  @override
+  String get gTopRight => 'أعلى اليمين';
 
   @override
   String get gUnMute => 'إلغاء كتم الصوت';
@@ -802,10 +847,19 @@ class OUILangArEg extends OUILangAr {
   OUILangArEg() : super('ar_EG');
 
   @override
+  String get csAddMore => 'أضف لونين أو أكثر';
+
+  @override
+  String get csBuildGradient => 'أضف إلى قائمة التدرجات';
+
+  @override
   String get csColorScheme => 'مخطط الألوان';
 
   @override
   String get csCurrVal => 'قيمة اللون الحالية:';
+
+  @override
+  String get csEndDir => 'اتجاه النهاية';
 
   @override
   String get csError => 'خطأ';
@@ -868,6 +922,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get csShadow => 'ظل';
+
+  @override
+  String get csStartDir => 'اتجاه البداية';
 
   @override
   String get csSurface => 'خلفية\nالزر';
@@ -1106,6 +1163,15 @@ class OUILangArEg extends OUILangAr {
   String get gBothThemes => 'كلا المظهرين';
 
   @override
+  String get gBottomCenter => 'أسفل المنتصف';
+
+  @override
+  String get gBottomLeft => 'أسفل اليسار';
+
+  @override
+  String get gBottomRight => 'أسفل اليمين';
+
+  @override
   String get gCancel => 'إلغاء';
 
   @override
@@ -1115,7 +1181,16 @@ class OUILangArEg extends OUILangAr {
   String get gCaptionsHint => 'اضغط باستمرار لاختيار الخطوط';
 
   @override
+  String get gCenter => 'المنتصف';
+
+  @override
+  String get gCenterLeft => 'وسط اليسار';
+
+  @override
   String get gCenterReset => 'اضغط باستمرار في المنتصف لإعادة الضبط';
+
+  @override
+  String get gCenterRight => 'وسط اليمين';
 
   @override
   String gClipboard(Object thing) {
@@ -1178,6 +1253,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gGlobal => 'عام';
+
+  @override
+  String get gGradient => 'تدرج';
 
   @override
   String get gHardRefresh =>
@@ -1327,6 +1405,9 @@ class OUILangArEg extends OUILangAr {
   String get gSettings => 'الإعدادات';
 
   @override
+  String get gSingle => 'مفرد';
+
+  @override
   String get gSkip => 'تخطي';
 
   @override
@@ -1352,6 +1433,15 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => 'أعلى المنتصف';
+
+  @override
+  String get gTopLeft => 'أعلى اليسار';
+
+  @override
+  String get gTopRight => 'أعلى اليمين';
 
   @override
   String get gUnMute => 'إلغاء كتم الصوت';

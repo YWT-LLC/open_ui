@@ -9,10 +9,19 @@ class OUILangZh extends OUILang {
   OUILangZh([String locale = 'zh']) : super(locale);
 
   @override
+  String get csAddMore => '请添加 2 种或更多颜色';
+
+  @override
+  String get csBuildGradient => '添加到渐变列表';
+
+  @override
   String get csColorScheme => '配色方案';
 
   @override
   String get csCurrVal => '当前颜色值：';
+
+  @override
+  String get csEndDir => '结束方向';
 
   @override
   String get csError => '错误';
@@ -75,6 +84,9 @@ class OUILangZh extends OUILang {
 
   @override
   String get csShadow => '阴影';
+
+  @override
+  String get csStartDir => '起始方向';
 
   @override
   String get csSurface => '按钮\n背景';
@@ -312,6 +324,15 @@ class OUILangZh extends OUILang {
   String get gBothThemes => '双主题';
 
   @override
+  String get gBottomCenter => '下中';
+
+  @override
+  String get gBottomLeft => '左下';
+
+  @override
+  String get gBottomRight => '右下';
+
+  @override
   String get gCancel => '取消';
 
   @override
@@ -321,7 +342,16 @@ class OUILangZh extends OUILang {
   String get gCaptionsHint => '长按选择字体';
 
   @override
+  String get gCenter => '居中';
+
+  @override
+  String get gCenterLeft => '左中';
+
+  @override
   String get gCenterReset => '长按中间重置';
+
+  @override
+  String get gCenterRight => '右中';
 
   @override
   String gClipboard(Object thing) {
@@ -384,6 +414,9 @@ class OUILangZh extends OUILang {
 
   @override
   String get gGlobal => '全局';
+
+  @override
+  String get gGradient => '渐变';
 
   @override
   String get gHardRefresh => '请硬刷新页面...\nCtrl + Shift + R';
@@ -530,6 +563,9 @@ class OUILangZh extends OUILang {
   String get gSettings => '设置';
 
   @override
+  String get gSingle => '单色';
+
+  @override
   String get gSkip => '跳过';
 
   @override
@@ -555,6 +591,15 @@ class OUILangZh extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => '上中';
+
+  @override
+  String get gTopLeft => '左上';
+
+  @override
+  String get gTopRight => '右上';
 
   @override
   String get gUnMute => '取消静音';
@@ -796,10 +841,19 @@ class OUILangZhCn extends OUILangZh {
   OUILangZhCn() : super('zh_CN');
 
   @override
+  String get csAddMore => '请添加 2 种或更多颜色';
+
+  @override
+  String get csBuildGradient => '添加到渐变列表';
+
+  @override
   String get csColorScheme => '配色方案';
 
   @override
   String get csCurrVal => '当前颜色值：';
+
+  @override
+  String get csEndDir => '结束方向';
 
   @override
   String get csError => '错误';
@@ -862,6 +916,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get csShadow => '阴影';
+
+  @override
+  String get csStartDir => '起始方向';
 
   @override
   String get csSurface => '按钮\n背景';
@@ -1099,6 +1156,15 @@ class OUILangZhCn extends OUILangZh {
   String get gBothThemes => '双主题';
 
   @override
+  String get gBottomCenter => '下中';
+
+  @override
+  String get gBottomLeft => '左下';
+
+  @override
+  String get gBottomRight => '右下';
+
+  @override
   String get gCancel => '取消';
 
   @override
@@ -1108,7 +1174,16 @@ class OUILangZhCn extends OUILangZh {
   String get gCaptionsHint => '长按选择字体';
 
   @override
+  String get gCenter => '居中';
+
+  @override
+  String get gCenterLeft => '左中';
+
+  @override
   String get gCenterReset => '长按中间重置';
+
+  @override
+  String get gCenterRight => '右中';
 
   @override
   String gClipboard(Object thing) {
@@ -1171,6 +1246,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get gGlobal => '全局';
+
+  @override
+  String get gGradient => '渐变';
 
   @override
   String get gHardRefresh => '请硬刷新页面...\nCtrl + Shift + R';
@@ -1317,6 +1395,9 @@ class OUILangZhCn extends OUILangZh {
   String get gSettings => '设置';
 
   @override
+  String get gSingle => '单色';
+
+  @override
   String get gSkip => '跳过';
 
   @override
@@ -1342,6 +1423,15 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => '上中';
+
+  @override
+  String get gTopLeft => '左上';
+
+  @override
+  String get gTopRight => '右上';
 
   @override
   String get gUnMute => '取消静音';

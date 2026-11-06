@@ -9,10 +9,19 @@ class OUILangKo extends OUILang {
   OUILangKo([String locale = 'ko']) : super(locale);
 
   @override
+  String get csAddMore => '2개 이상의 색상을 추가하세요';
+
+  @override
+  String get csBuildGradient => '그라데이션 목록에 추가';
+
+  @override
   String get csColorScheme => '색상 구성표';
 
   @override
   String get csCurrVal => '현재 색상 값:';
+
+  @override
+  String get csEndDir => '끝 방향';
 
   @override
   String get csError => '오류';
@@ -75,6 +84,9 @@ class OUILangKo extends OUILang {
 
   @override
   String get csShadow => '그림자';
+
+  @override
+  String get csStartDir => '시작 방향';
 
   @override
   String get csSurface => '버튼\n배경';
@@ -313,6 +325,15 @@ class OUILangKo extends OUILang {
   String get gBothThemes => '두 테마 모두';
 
   @override
+  String get gBottomCenter => '아래쪽 가운데';
+
+  @override
+  String get gBottomLeft => '왼쪽 아래';
+
+  @override
+  String get gBottomRight => '오른쪽 아래';
+
+  @override
   String get gCancel => '취소';
 
   @override
@@ -322,7 +343,16 @@ class OUILangKo extends OUILang {
   String get gCaptionsHint => '글꼴을 보려면 길게 누르세요';
 
   @override
+  String get gCenter => '가운데';
+
+  @override
+  String get gCenterLeft => '왼쪽 가운데';
+
+  @override
   String get gCenterReset => '가운데를 길게 누르면 초기화됩니다';
+
+  @override
+  String get gCenterRight => '오른쪽 가운데';
 
   @override
   String gClipboard(Object thing) {
@@ -385,6 +415,9 @@ class OUILangKo extends OUILang {
 
   @override
   String get gGlobal => '글로벌';
+
+  @override
+  String get gGradient => '그라데이션';
 
   @override
   String get gHardRefresh => '페이지를 강력 새로고침하세요...\nCtrl + Shift + R';
@@ -531,6 +564,9 @@ class OUILangKo extends OUILang {
   String get gSettings => '설정';
 
   @override
+  String get gSingle => '단일';
+
+  @override
   String get gSkip => '건너뛰기';
 
   @override
@@ -556,6 +592,15 @@ class OUILangKo extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => '위쪽 가운데';
+
+  @override
+  String get gTopLeft => '왼쪽 위';
+
+  @override
+  String get gTopRight => '오른쪽 위';
 
   @override
   String get gUnMute => '음소거 해제';

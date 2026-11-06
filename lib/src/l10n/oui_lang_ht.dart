@@ -9,10 +9,19 @@ class OUILangHt extends OUILang {
   OUILangHt([String locale = 'ht']) : super(locale);
 
   @override
+  String get csAddMore => 'Ajoute 2 koulè oswa plis';
+
+  @override
+  String get csBuildGradient => 'Ajoute nan lis degrade yo';
+
+  @override
   String get csColorScheme => 'palèt koulè';
 
   @override
   String get csCurrVal => 'Valè koulè kounye a:';
+
+  @override
+  String get csEndDir => 'Direksyon fen';
 
   @override
   String get csError => 'Erè';
@@ -76,6 +85,9 @@ class OUILangHt extends OUILang {
 
   @override
   String get csShadow => 'Lonbraj';
+
+  @override
+  String get csStartDir => 'Direksyon kòmansman';
 
   @override
   String get csSurface => 'Fon\nbouton';
@@ -314,6 +326,15 @@ class OUILangHt extends OUILang {
   String get gBothThemes => 'Tou de tèm yo';
 
   @override
+  String get gBottomCenter => 'Anba nan mitan';
+
+  @override
+  String get gBottomLeft => 'Anba agoch';
+
+  @override
+  String get gBottomRight => 'Anba adwat';
+
+  @override
   String get gCancel => 'Anile';
 
   @override
@@ -323,7 +344,16 @@ class OUILangHt extends OUILang {
   String get gCaptionsHint => 'Kenbe pou polis yo';
 
   @override
+  String get gCenter => 'Mitan';
+
+  @override
+  String get gCenterLeft => 'Nan mitan agoch';
+
+  @override
   String get gCenterReset => 'Kenbe nan mitan pou reyajiste';
+
+  @override
+  String get gCenterRight => 'Nan mitan adwat';
 
   @override
   String gClipboard(Object thing) {
@@ -386,6 +416,9 @@ class OUILangHt extends OUILang {
 
   @override
   String get gGlobal => 'Global';
+
+  @override
+  String get gGradient => 'Degrade';
 
   @override
   String get gHardRefresh => 'Tanpri fòse rafrechi paj la...\nCtrl + Shift + R';
@@ -534,6 +567,9 @@ class OUILangHt extends OUILang {
   String get gSettings => 'Paramèt';
 
   @override
+  String get gSingle => 'Sèl';
+
+  @override
   String get gSkip => 'Sote';
 
   @override
@@ -559,6 +595,15 @@ class OUILangHt extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Anwo nan mitan';
+
+  @override
+  String get gTopLeft => 'Anwo agoch';
+
+  @override
+  String get gTopRight => 'Anwo adwat';
 
   @override
   String get gUnMute => 'Remete son';

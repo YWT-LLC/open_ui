@@ -123,6 +123,18 @@ abstract class OUILang {
     Locale('zh', 'CN')
   ];
 
+  /// No description provided for @csAddMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Add 2 or more colors'**
+  String get csAddMore;
+
+  /// No description provided for @csBuildGradient.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to gradients list'**
+  String get csBuildGradient;
+
   /// No description provided for @csColorScheme.
   ///
   /// In en, this message translates to:
@@ -134,6 +146,12 @@ abstract class OUILang {
   /// In en, this message translates to:
   /// **'Current color value:'**
   String get csCurrVal;
+
+  /// No description provided for @csEndDir.
+  ///
+  /// In en, this message translates to:
+  /// **'End direction'**
+  String get csEndDir;
 
   /// No description provided for @csError.
   ///
@@ -254,6 +272,12 @@ abstract class OUILang {
   /// In en, this message translates to:
   /// **'Shadow'**
   String get csShadow;
+
+  /// No description provided for @csStartDir.
+  ///
+  /// In en, this message translates to:
+  /// **'Start direction'**
+  String get csStartDir;
 
   /// No description provided for @csSurface.
   ///
@@ -711,6 +735,24 @@ abstract class OUILang {
   /// **'Both themes'**
   String get gBothThemes;
 
+  /// No description provided for @gBottomCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom center'**
+  String get gBottomCenter;
+
+  /// No description provided for @gBottomLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom left'**
+  String get gBottomLeft;
+
+  /// No description provided for @gBottomRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom right'**
+  String get gBottomRight;
+
   /// No description provided for @gCancel.
   ///
   /// In en, this message translates to:
@@ -729,11 +771,29 @@ abstract class OUILang {
   /// **'Hold for fonts'**
   String get gCaptionsHint;
 
+  /// No description provided for @gCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Center'**
+  String get gCenter;
+
+  /// No description provided for @gCenterLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Center left'**
+  String get gCenterLeft;
+
   /// No description provided for @gCenterReset.
   ///
   /// In en, this message translates to:
   /// **'Hold center to reset'**
   String get gCenterReset;
+
+  /// No description provided for @gCenterRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Center right'**
+  String get gCenterRight;
 
   /// No description provided for @gClipboard.
   ///
@@ -854,6 +914,12 @@ abstract class OUILang {
   /// In en, this message translates to:
   /// **'Global'**
   String get gGlobal;
+
+  /// No description provided for @gGradient.
+  ///
+  /// In en, this message translates to:
+  /// **'Gradient'**
+  String get gGradient;
 
   /// No description provided for @gHardRefresh.
   ///
@@ -1131,6 +1197,12 @@ abstract class OUILang {
   /// **'Settings'**
   String get gSettings;
 
+  /// No description provided for @gSingle.
+  ///
+  /// In en, this message translates to:
+  /// **'Single'**
+  String get gSingle;
+
   /// No description provided for @gSkip.
   ///
   /// In en, this message translates to:
@@ -1184,6 +1256,24 @@ abstract class OUILang {
   /// In en, this message translates to:
   /// **'The'**
   String get gThe;
+
+  /// No description provided for @gTopCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Top center'**
+  String get gTopCenter;
+
+  /// No description provided for @gTopLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Top left'**
+  String get gTopLeft;
+
+  /// No description provided for @gTopRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Top right'**
+  String get gTopRight;
 
   /// No description provided for @gUnMute.
   ///

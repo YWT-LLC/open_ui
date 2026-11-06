@@ -9,10 +9,19 @@ class OUILangRu extends OUILang {
   OUILangRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get csAddMore => 'Добавьте 2 или более цветов';
+
+  @override
+  String get csBuildGradient => 'Добавить в список градиентов';
+
+  @override
   String get csColorScheme => 'цветовая схема';
 
   @override
   String get csCurrVal => 'Текущее значение цвета:';
+
+  @override
+  String get csEndDir => 'Конечное направление';
 
   @override
   String get csError => 'Ошибка';
@@ -77,6 +86,9 @@ class OUILangRu extends OUILang {
 
   @override
   String get csShadow => 'Тень';
+
+  @override
+  String get csStartDir => 'Начальное направление';
 
   @override
   String get csSurface => 'Фон\nкнопки';
@@ -317,6 +329,15 @@ class OUILangRu extends OUILang {
   String get gBothThemes => 'Обе темы';
 
   @override
+  String get gBottomCenter => 'Снизу по центру';
+
+  @override
+  String get gBottomLeft => 'Снизу слева';
+
+  @override
+  String get gBottomRight => 'Снизу справа';
+
+  @override
   String get gCancel => 'Отмена';
 
   @override
@@ -326,7 +347,16 @@ class OUILangRu extends OUILang {
   String get gCaptionsHint => 'Удерживайте для выбора шрифтов';
 
   @override
+  String get gCenter => 'По центру';
+
+  @override
+  String get gCenterLeft => 'По центру слева';
+
+  @override
   String get gCenterReset => 'Удерживайте центр для сброса';
+
+  @override
+  String get gCenterRight => 'По центру справа';
 
   @override
   String gClipboard(Object thing) {
@@ -389,6 +419,9 @@ class OUILangRu extends OUILang {
 
   @override
   String get gGlobal => 'Глобальные';
+
+  @override
+  String get gGradient => 'Градиент';
 
   @override
   String get gHardRefresh =>
@@ -540,6 +573,9 @@ class OUILangRu extends OUILang {
   String get gSettings => 'Настройки';
 
   @override
+  String get gSingle => 'Один';
+
+  @override
   String get gSkip => 'Пропустить';
 
   @override
@@ -565,6 +601,15 @@ class OUILangRu extends OUILang {
 
   @override
   String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Сверху по центру';
+
+  @override
+  String get gTopLeft => 'Сверху слева';
+
+  @override
+  String get gTopRight => 'Сверху справа';
 
   @override
   String get gUnMute => 'Включить звук';
