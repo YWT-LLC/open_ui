@@ -10,7 +10,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Creates a [ThemeData] from [EzCM] values
-ThemeData ezThemeData(Brightness brightness, bool ltr) {
+ThemeData ezThemeData(
+  Brightness brightness, {
+  required bool ltr,
+  required EzColorCache colors,
+  required EzDesignCache design,
+  required EzTextCache text,
+}) {
   //* Setup *//
 
   final bool isDark = Brightness.dark == brightness;
