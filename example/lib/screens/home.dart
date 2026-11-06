@@ -701,15 +701,17 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   ],
                 ],
               ),
-              EzFooter(
-                config,
-                a11howPath: ywt.exampleContributeA11,
-                textAlign: TextAlign.start,
-              ),
+              config.separator,
             ],
           ),
         ),
         title: l10n(config).csPageTitle,
+        footer: EzFooter(
+          config,
+          a11howPath: ywt.exampleContributeA11,
+          textAlign: TextAlign.start,
+        ),
+        footerAlign: AlignmentDirectional.bottomStart,
         onUpload: (EAGConfig toLoad) async {
           // Disable buttons
           setState(() => canGen = false);

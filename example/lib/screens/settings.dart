@@ -4,22 +4,28 @@
  */
 
 import '../../widgets/export.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
+import 'package:open_ui/open_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:open_ui/open_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   final int? target;
   final bool? secondary;
 
-  const SettingsHubScreen({super.key, this.target, this.secondary});
+  const SettingsHubScreen({
+    super.key,
+    this.target,
+    this.secondary,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Consumer<EzCP>(
       builder: (_, EzCP config, __) => OpenUIScaffold(
         config,
+        title: config.ezL10n.gSettings,
         body: EzScreen(
           config,
           child: EzSettingsHub(
@@ -82,7 +88,7 @@ class SettingsHubScreen extends StatelessWidget {
             target: target,
           ),
         ),
-        title: config.ezL10n.gSettings,
+        footer: EzFooter(config, a11howPath: ywt.openUIContributeA11),
         showSettings: false,
         fabs: <Widget>[
           // Rebuild (conditional)

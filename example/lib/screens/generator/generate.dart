@@ -353,7 +353,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   ],
                 ),
               ),
-              EzFooter(config, a11howPath: ywt.exampleContributeA11),
+              config.separator,
             ]),
           ),
           title: l10n(config).gsPageTitle,

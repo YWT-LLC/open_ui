@@ -19,7 +19,7 @@ class EzScaffold extends Scaffold {
   final Widget? footer;
 
   /// Optional override
-  /// Defaults to [AlignmentDirectional.centerEnd]
+  /// Defaults to [AlignmentDirectional.bottomCenter]
   final AlignmentDirectional? footerAlign;
 
   /// [Scaffold] wrapper with ezPresets
@@ -39,7 +39,7 @@ class EzScaffold extends Scaffold {
               ? FloatingActionButtonLocation.startFloat
               : FloatingActionButtonLocation.endFloat,
           persistentFooterButtons: footer == null ? null : <Widget>[footer],
-          persistentFooterAlignment: footerAlign ?? AlignmentDirectional.centerEnd,
+          persistentFooterAlignment: footerAlign ?? AlignmentDirectional.bottomCenter,
           resizeToAvoidBottomInset: false,
         );
 }
