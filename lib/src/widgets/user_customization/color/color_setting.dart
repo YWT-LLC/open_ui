@@ -32,7 +32,7 @@ class _ColorSettingState extends State<EzColorSetting> {
   // Define the build data //
 
   late String currValue;
-  late dynamic currPreview;
+  late EzSwitchColor currPreview;
 
   // Define custom functions //
 
@@ -42,7 +42,6 @@ class _ColorSettingState extends State<EzColorSetting> {
       context: context,
       picking: currValue,
       allowGradient: allowGradient,
-      onColorChange: (Color chosenColor) => setState(() => currPreview = chosenColor),
     );
 
     if (picked != null) {
@@ -140,12 +139,8 @@ class _ColorSettingState extends State<EzColorSetting> {
         context: context,
         builder: (BuildContext dCon) {
           final int? resetValue = EzCM.getDefault(widget.configKey);
-          final String currColorLabel = (currValue.contains(colorSplit)
-                  ? (currPreview as Gradient).colors.first
-                  : currPreview as Color)
-              .toARGB32()
-              .toRadixString(16)
-              .toUpperCase();
+          final String currColorLabel =
+              currPreview.asColor.toARGB32().toRadixString(16).toUpperCase();
 
           return EzAlertDialog(
             widget.config,
@@ -187,7 +182,11 @@ class _ColorSettingState extends State<EzColorSetting> {
         },
       );
 
-  void updatePreview(String value) => setState(() => currPreview = ezLGFromString(value));
+  EzSwitchColor _buildPreview(String value) => value.contains(colorSplit)
+      ? EzSwitchColor(gradient: ezLGFromString(value))
+      : EzSwitchColor(color: Color(int.parse(value)));
+
+  void updatePreview(String value) => setState(() => currPreview = _buildPreview(value));
 
   // Init //
 
@@ -200,16 +199,10 @@ class _ColorSettingState extends State<EzColorSetting> {
     if (stored == null) {
       final Color liveColor = getLiveColor(widget.config.theme.colorScheme, widget.configKey);
       currValue = liveColor.toARGB32().toString();
-      currPreview = liveColor;
-    } else if (stored is int) {
-      currValue = stored.toString();
-      currPreview = Color(stored);
-    } else if ((stored as String).contains(colorSplit)) {
-      currValue = stored;
-      currPreview = ezLGFromString(currValue);
+      currPreview = EzSwitchColor(color: liveColor);
     } else {
-      currValue = stored;
-      currPreview = Color(int.parse(currValue));
+      currValue = stored.toString();
+      currPreview = _buildPreview(currValue);
     }
 
     setState(() {});
