@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Gradient colors
 
+### Updated
+- ezThemeData to be built from EzCP caches rather than re-reading EzCM
+
 ### Removed
 - A ton of comments
   - None were helpful; this package was previously on pub.dev, so there were a ton of filler comments for the pub score... now there are only useful comments
