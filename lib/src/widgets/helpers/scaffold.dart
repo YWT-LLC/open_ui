@@ -34,7 +34,12 @@ class EzScaffold extends Scaffold {
     this.footerAlign,
     required this.fabs,
   }) : super(
-          floatingActionButton: (fabs == null) ? null : EzCol(children: fabs),
+          floatingActionButton: (fabs == null)
+              ? null
+              : EzCol(children: <Widget>[
+                  ...fabs,
+                  config.margin,
+                ]),
           floatingActionButtonLocation: config.isLefty
               ? FloatingActionButtonLocation.startDocked
               : FloatingActionButtonLocation.endDocked,
