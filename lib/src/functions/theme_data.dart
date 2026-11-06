@@ -15,15 +15,12 @@ ThemeData ezThemeData(
   required bool ltr,
   required EzColorCache colors,
   required EzDesignCache design,
+  required EzLayoutCache layout,
   required EzTextCache text,
 }) {
   //* Setup *//
 
-  final bool isDark = Brightness.dark == brightness;
-
   // Color //
-
-  final ColorScheme colorScheme = ezColorScheme(brightness);
 
   final Color focusColor = colorScheme.primary.withValues(alpha: focusOpacity);
 
@@ -55,37 +52,14 @@ ThemeData ezThemeData(
     WidgetState.selected: SystemMouseCursors.click,
   });
 
-  final double padding = isDark ? EzCM.get(darkPaddingKey) : EzCM.get(lightPaddingKey);
-
-  final EzButtonShape ezButtonShape = EBSConfig.safeLookup(
-    EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey),
-  );
-  final OutlinedBorder buttonShape = ezButtonShape.shape;
-
-  final double borderWidth = EzCM.get(isDark ? darkBorderWidthKey : lightBorderWidthKey);
   BorderSide buildBorder(Color color) =>
       borderWidth == 0 ? BorderSide.none : BorderSide(color: color, width: borderWidth);
 
   // Design (page) //
 
-  final double margin = EzCM.get(isDark ? darkMarginKey : lightMarginKey);
-  final double spacing = EzCM.get(isDark ? darkSpacingKey : lightSpacingKey);
-
-  final int animDuration = EzCM.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
   final int threeQAnim = (animDuration * 0.75).toInt();
 
-  final Curve animCurve = EACConfig.translate(
-    EzCM.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey),
-  );
-
   // Text //
-
-  final TextTheme textTheme = ezTextTheme(colorScheme.onSurface, isDark: isDark);
-
-  final double textOpacity = EzCM.get(
-    isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey,
-  );
-  final double crucialTextOpacity = max(textOpacity, focusOpacity);
 
   final Color linkTextBackground = colorScheme.surface.withValues(alpha: textOpacity);
   final Color richTextBackground = colorScheme.surfaceContainer.withValues(alpha: textOpacity);
@@ -96,8 +70,6 @@ ThemeData ezThemeData(
   final Color crucialTextShadow = crucialTextOpacity < 1.0
       ? colorScheme.shadow.withValues(alpha: crucialTextOpacity * shadowMod)
       : colorScheme.shadow;
-
-  final double iconSize = EzCM.get(isDark ? darkIconSizeKey : lightIconSizeKey);
 
   final IconThemeData iconData = IconThemeData(
     color: colorScheme.primary,
