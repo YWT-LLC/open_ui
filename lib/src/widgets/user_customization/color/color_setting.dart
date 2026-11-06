@@ -18,7 +18,11 @@ class EzColorSetting extends StatefulWidget {
   /// [config] key whose [Color] will be updated
   final String configKey;
 
-  const EzColorSetting(this.config, {super.key, required this.configKey});
+  const EzColorSetting(
+    this.config, {
+    super.key,
+    required this.configKey,
+  });
 
   @override
   State<EzColorSetting> createState() => _ColorSettingState();
@@ -191,13 +195,16 @@ class _ColorSettingState extends State<EzColorSetting> {
   void initState() {
     super.initState();
 
-    final String? stored = EzCM.get(widget.configKey);
+    final dynamic stored = EzCM.get(widget.configKey);
 
     if (stored == null) {
       final Color liveColor = getLiveColor(widget.config.theme.colorScheme, widget.configKey);
       currValue = liveColor.toARGB32().toString();
       currPreview = liveColor;
-    } else if (stored.contains(colorSplit)) {
+    } else if (stored is int) {
+      currValue = stored.toString();
+      currPreview = Color(stored);
+    } else if ((stored as String).contains(colorSplit)) {
       currValue = stored;
       currPreview = ezLGFromString(currValue);
     } else {

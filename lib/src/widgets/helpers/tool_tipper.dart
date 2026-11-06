@@ -43,9 +43,9 @@ class EzToolTipper extends StatelessWidget {
             String message = this.message ?? '';
 
             if (richMessage != null) {
-              if (richMessage.runtimeType == EzInlineLink) {
+              if (richMessage is EzInlineLink) {
                 message = (richMessage as EzInlineLink).hint;
-              } else if (richMessage.runtimeType == TextSpan) {
+              } else if (richMessage is TextSpan) {
                 for (final InlineSpan child in (richMessage as TextSpan).children!) {
                   switch (child.runtimeType) {
                     case const (TextSpan):

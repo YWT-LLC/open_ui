@@ -15,17 +15,21 @@ class EzRowCol extends StatelessWidget {
   final Widget row;
 
   /// Displayed when the context's [ScreenSize] <= [breakpoint]
-  final Column col;
+  final Widget col;
 
   /// [row] that will switch to a [col] when the context's [ScreenSize] <= [breakpoint]
   /// Will always be [col] if [EzScreenSize] is not in the Widget tree
-  EzRowCol({super.key, this.breakpoint = ScreenSize.small, required this.row, required this.col})
-      : assert(
-          row.runtimeType == Row || row.runtimeType == EzRow || row.runtimeType == EzScrollView,
+  const EzRowCol({
+    super.key,
+    this.breakpoint = ScreenSize.small,
+    required this.row,
+    required this.col,
+  })  : assert(
+          row is Row || row is EzRow || row is EzScrollView,
           'row Widget can be a Row, EzRow, or EzScrollView',
         ),
         assert(
-          col.runtimeType == Column || col.runtimeType == EzCol || col.runtimeType == EzScrollView,
+          col is Column || col is EzCol || col is EzScrollView,
           'col Widget can be a Column or EzScrollView',
         );
 

@@ -66,7 +66,7 @@ class EzCP extends ChangeNotifier {
     if (value == null) {
       color = getLiveColor(_theme.colorScheme, key).toARGB32().toString();
     } else {
-      color = (value.runtimeType is String) ? value : value.toString();
+      color = (value is String) ? value : value.toString();
     }
     final List<String> parts = color.split(colorSplit);
 

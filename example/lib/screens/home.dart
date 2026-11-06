@@ -960,7 +960,7 @@ class _BasicField extends StatelessWidget {
                 ),
               ),
               if (tip != null)
-                tip.runtimeType == String
+                (tip is String)
                     ? EzToolTipper(config, message: tip)
                     : EzToolTipper(config, richMessage: tip),
             ],
@@ -1044,7 +1044,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
                 ),
               ),
               if (widget.tip != null) ...<Widget>[
-                widget.tip.runtimeType == String
+                widget.tip is String
                     ? EzToolTipper(widget.config, message: widget.tip)
                     : EzToolTipper(widget.config, richMessage: widget.tip),
               ],
