@@ -40,6 +40,7 @@ class EzScaffold extends Scaffold {
               : FloatingActionButtonLocation.endFloat,
           persistentFooterButtons: footer == null ? null : <Widget>[footer],
           persistentFooterAlignment: footerAlign ?? AlignmentDirectional.bottomCenter,
+          persistentFooterDecoration: const BoxDecoration(),
           resizeToAvoidBottomInset: false,
         );
 }
