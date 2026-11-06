@@ -83,6 +83,7 @@ class EzFooter extends StatelessWidget {
                 config,
                 text: config.ezL10n.gDevInfo,
                 style: config.labelStyle,
+                inline: true,
                 textAlign: textAlign,
                 url: Uri.parse(ywt.websiteContributeMula),
                 hint: config.ezL10n.gOpenLink,
