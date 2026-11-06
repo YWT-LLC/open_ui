@@ -19,9 +19,7 @@ class EzElevatedButton extends StatefulWidget {
   final bool fauxDisabled;
 
   final void Function()? onPressed;
-
   final void Function()? onLongPress;
-
   final ButtonStyle? style;
 
   /// [ElevatedButton.child] will be [Text] with [text], [textStyle], and [textAlign]
