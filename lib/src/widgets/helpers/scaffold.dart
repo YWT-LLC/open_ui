@@ -54,14 +54,14 @@ class EzFooter extends StatelessWidget {
   /// Just [contributeMessage] when true
   final bool human;
 
-  final Widget? contributeMessage;
-  final Widget? translateMessage;
-
   /// For YWT
   final String? a11howPath;
 
   /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
   final TextAlign textAlign;
+
+  final Widget? contributeMessage;
+  final Widget? translateMessage;
 
   /// Contribution/translation links, intended for [EzScaffold.persistentFooter]
   const EzFooter(
@@ -69,10 +69,10 @@ class EzFooter extends StatelessWidget {
     super.key,
     this.defaultLocale = english,
     this.human = false,
-    this.contributeMessage,
-    this.translateMessage,
     required this.a11howPath,
     this.textAlign = TextAlign.center,
+    this.contributeMessage,
+    this.translateMessage,
   });
 
   @override
