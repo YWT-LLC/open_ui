@@ -36,8 +36,8 @@ class EzScaffold extends Scaffold {
   }) : super(
           floatingActionButton: (fabs == null) ? null : EzCol(children: fabs),
           floatingActionButtonLocation: config.isLefty
-              ? FloatingActionButtonLocation.startFloat
-              : FloatingActionButtonLocation.endFloat,
+              ? FloatingActionButtonLocation.startDocked
+              : FloatingActionButtonLocation.endDocked,
           persistentFooterButtons: footer == null ? null : <Widget>[footer],
           persistentFooterAlignment: footerAlign ?? AlignmentDirectional.bottomCenter,
           persistentFooterDecoration: const BoxDecoration(),
