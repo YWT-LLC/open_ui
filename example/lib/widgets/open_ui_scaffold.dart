@@ -5,25 +5,25 @@
 
 import '../utils/export.dart';
 import './export.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
+import 'package:flutter/material.dart';
 
 class OpenUIScaffold extends StatelessWidget {
   final EzCP config;
-
-  final Widget body;
-
   final String title;
-
-  /// For generator pages; whether there are things running
-  final bool running;
+  final Widget body;
+  final Widget? footer;
 
   /// Whether to include [SettingsButton] in the [MenuAnchor]
   final bool showSettings;
 
   /// Whether to include [UploadButton] in the [MenuAnchor]
   final Future<void> Function(EAGConfig)? onUpload;
+
+  /// For generator pages; whether there are things running
+  final bool running;
 
   /// [FloatingActionButton]s to add on top of the [EzUpdaterFAB]
   /// BYO spacing widgets
@@ -37,10 +37,11 @@ class OpenUIScaffold extends StatelessWidget {
     this.config, {
     super.key,
     this.title = thisAppName,
-    this.running = false,
+    required this.body,
+    this.footer,
     this.showSettings = true,
     this.onUpload,
-    required this.body,
+    this.running = false,
     this.fabs,
     this.isHome = false,
   });
@@ -94,6 +95,7 @@ class OpenUIScaffold extends StatelessWidget {
           if (fabs != null) ...fabs!,
           ...config.backFABs(isHome: isHome),
         ],
+        footer: footer ?? EzFooter(config, a11howPath: ywt.exampleContributeA11),
       ),
     );
   }

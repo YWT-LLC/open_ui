@@ -4,7 +4,6 @@
  */
 
 import '../../open_ui.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -17,16 +16,12 @@ class EzSettingsHub extends StatefulWidget {
   /// Optional starting point (default 0/last visited)
   final int? target;
 
-  /// Defaults to [EzFooter]
-  final Widget? footer;
-
   /// Settings landing page
   const EzSettingsHub(
     this.config, {
     super.key,
     required this.pages,
     this.target,
-    this.footer,
   });
 
   @override
@@ -125,7 +120,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             delta: delta,
             child: currSection.build(currSubSec),
           ),
-          widget.footer ?? EzFooter(widget.config, a11howPath: ywt.openUIContributeA11),
+          widget.config.separator,
         ],
       );
 }

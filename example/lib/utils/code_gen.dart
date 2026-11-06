@@ -568,11 +568,11 @@ import 'package:flutter/material.dart';
 class ${classCaseAppName}Scaffold extends StatelessWidget {
   final EzCP config;  
   final String title;
+  final Widget body;
+  final Widget? footer;
 
   /// Whether to include [SettingsButton] in the [MenuAnchor]
   final bool showSettings;
-
-  final Widget body;
 
   /// [FloatingActionButton]s to add on top of the [EzUpdaterFAB]
   /// BYO spacing widgets
@@ -585,8 +585,9 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
   const ${classCaseAppName}Scaffold(this.config, {
     super.key,
     this.title = appName,
-    this.showSettings = true,
     required this.body,
+    this.footer,
+    this.showSettings = true,
     this.fabs,
     this.isHome = false,
   });
@@ -634,6 +635,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           if (fabs != null) ...fabs!,
           ...config.backFABs(isHome: isHome),
         ],
+        footer: footer,
       ),
     );
   }

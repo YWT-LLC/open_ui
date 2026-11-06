@@ -58,6 +58,7 @@ Future<T?> ezFullScreenModal<T>(
         config,
         body: EzScreen(config, child: child),
         fabs: fabs,
+        footer: null,
       ),
     );
 

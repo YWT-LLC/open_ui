@@ -4,7 +4,6 @@
  */
 
 import '../../../open_ui.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:flutter/material.dart';
 
@@ -230,83 +229,4 @@ class EzHeader extends StatelessWidget {
           dimension: (config.spacing > config.marginVal) ? config.spacing - config.marginVal : 0.0,
         ),
       );
-}
-
-class EzFooter extends StatelessWidget {
-  final EzCP config;
-
-  /// Just [EzCP.separator] when true
-  final bool blank;
-
-  /// Just [contributeMessage] for this locale
-  final Locale defaultLocale;
-
-  /// Just [contributeMessage] when true
-  final bool human;
-
-  final Widget? contributeMessage;
-  final Widget? translateMessage;
-
-  /// For YWT
-  final String? a11howPath;
-
-  /// Shout-out: [TextAlign.start] >> [TextAlign.left] || [TextAlign.right]
-  final TextAlign textAlign;
-
-  const EzFooter(
-    this.config, {
-    super.key,
-    this.blank = false,
-    this.defaultLocale = english,
-    this.human = false,
-    this.contributeMessage,
-    this.translateMessage,
-    required this.a11howPath,
-    this.textAlign = TextAlign.center,
-  });
-
-  @override
-  Widget build(BuildContext context) => blank
-      ? config.separator
-      : Padding(
-          padding: EdgeInsets.only(top: config.spacing * 4, bottom: config.spacing),
-          child: (human || (config.locale.languageCode == defaultLocale.languageCode))
-              ? contributeMessage ??
-                  EzLink(
-                    config,
-                    text: config.ezL10n.gDevInfo,
-                    hint: config.ezL10n.gOpenLink,
-                    tooltip: ywt.websiteContributeMula,
-                    url: Uri.parse(ywt.websiteContributeMula),
-                  )
-              : translateMessage ??
-                  EzRichText(
-                    config,
-                    children: <InlineSpan>[
-                      EzPlainText(
-                        text: config.ezL10n.gMachineTranslated,
-                        style: config.labelStyle,
-                      ),
-                      config.richLine,
-                      EzPlainText(
-                        text: config.ezL10n.gA11Mistake,
-                        style: config.labelStyle,
-                      ),
-                      EzInlineLink(
-                        config,
-                        text: config.ezL10n.gA11Fix,
-                        style: config.labelStyle,
-                        hint: config.ezL10n.gGitRequired,
-                        url: (a11howPath != null)
-                            ? Uri.parse('${ywt.a11howLive}?${Uri(queryParameters: <String, String>{
-                                    'project': a11howPath!,
-                                    'locale': config.locale.languageCode,
-                                  }).query}')
-                            : Uri.parse(ywt.a11howLive),
-                      ),
-                    ],
-                    style: config.labelStyle,
-                    textAlign: textAlign,
-                  ),
-        );
 }
