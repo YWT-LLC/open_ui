@@ -9,8 +9,6 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-// TODO: what gradient stuff can/should I do here?
-
 /// Creates a [ThemeData] from [EzCM] values
 ThemeData ezThemeData(Brightness brightness, bool ltr) {
   //* Setup *//
@@ -110,9 +108,11 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
   return ThemeData(
     // UX //
+
     materialTapTargetSize: MaterialTapTargetSize.padded,
 
     // Color scheme //
+
     brightness: brightness,
     colorScheme: colorScheme,
 
@@ -121,10 +121,12 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     scaffoldBackgroundColor: colorScheme.surfaceContainer,
 
     // Transitions //
+
     pageTransitionsTheme:
         animDuration > ywt.minAnimationDuration ? EzTransitions() : EzNoTransitions(),
 
     // Typography //
+
     textTheme: textTheme,
     primaryTextTheme: textTheme,
 
