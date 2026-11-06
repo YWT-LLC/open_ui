@@ -388,6 +388,9 @@ class OUILangEn extends OUILang {
   String get gDesign => 'Design';
 
   @override
+  String get gDevInfo => 'Developer info';
+
+  @override
   String get gDisabled => 'Disabled';
 
   @override
@@ -1225,6 +1228,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get gDesign => 'Design';
+
+  @override
+  String get gDevInfo => 'Developer info';
 
   @override
   String get gDisabled => 'Disabled';

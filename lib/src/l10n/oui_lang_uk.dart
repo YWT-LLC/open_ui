@@ -389,6 +389,9 @@ class OUILangUk extends OUILang {
   String get gDesign => 'Дизайн';
 
   @override
+  String get gDevInfo => 'Інформація про розробника';
+
+  @override
   String get gDisabled => 'Вимкнено';
 
   @override

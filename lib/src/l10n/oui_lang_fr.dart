@@ -391,6 +391,9 @@ class OUILangFr extends OUILang {
   String get gDesign => 'Design';
 
   @override
+  String get gDevInfo => 'Infos développeur';
+
+  @override
   String get gDisabled => 'Désactivé';
 
   @override

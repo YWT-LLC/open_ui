@@ -855,6 +855,12 @@ abstract class OUILang {
   /// **'Design'**
   String get gDesign;
 
+  /// No description provided for @gDevInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Developer info'**
+  String get gDevInfo;
+
   /// No description provided for @gDisabled.
   ///
   /// In en, this message translates to:

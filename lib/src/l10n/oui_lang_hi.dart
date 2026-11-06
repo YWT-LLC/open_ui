@@ -389,6 +389,9 @@ class OUILangHi extends OUILang {
   String get gDesign => 'डिज़ाइन';
 
   @override
+  String get gDevInfo => 'डेवलपर जानकारी';
+
+  @override
   String get gDisabled => 'अक्षम';
 
   @override

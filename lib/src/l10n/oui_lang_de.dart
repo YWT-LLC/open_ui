@@ -388,6 +388,9 @@ class OUILangDe extends OUILang {
   String get gDesign => 'Design';
 
   @override
+  String get gDevInfo => 'Entwicklerinfo';
+
+  @override
   String get gDisabled => 'Deaktiviert';
 
   @override

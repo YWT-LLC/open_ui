@@ -387,6 +387,9 @@ class OUILangAr extends OUILang {
   String get gDesign => 'التصميم';
 
   @override
+  String get gDevInfo => 'معلومات المطور';
+
+  @override
   String get gDisabled => 'معطل';
 
   @override
@@ -1223,6 +1226,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gDesign => 'التصميم';
+
+  @override
+  String get gDevInfo => 'معلومات المطور';
 
   @override
   String get gDisabled => 'معطل';

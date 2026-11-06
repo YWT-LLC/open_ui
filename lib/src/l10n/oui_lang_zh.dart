@@ -386,6 +386,9 @@ class OUILangZh extends OUILang {
   String get gDesign => '设计';
 
   @override
+  String get gDevInfo => '开发者信息';
+
+  @override
   String get gDisabled => '已禁用';
 
   @override
@@ -1216,6 +1219,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get gDesign => '设计';
+
+  @override
+  String get gDevInfo => '开发者信息';
 
   @override
   String get gDisabled => '已禁用';

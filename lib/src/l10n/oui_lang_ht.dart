@@ -388,6 +388,9 @@ class OUILangHt extends OUILang {
   String get gDesign => 'Konsepsyon';
 
   @override
+  String get gDevInfo => 'Enfòmasyon devlopè';
+
+  @override
   String get gDisabled => 'Dezaktive';
 
   @override

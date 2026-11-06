@@ -274,7 +274,7 @@ class EzFooter extends StatelessWidget {
               ? contributeMessage ??
                   EzLink(
                     config,
-                    text: 'Developer info', // TODO: l10n
+                    text: config.ezL10n.gDevInfo,
                     hint: config.ezL10n.gOpenLink,
                     tooltip: ywt.websiteContributeMula,
                     url: Uri.parse(ywt.websiteContributeMula),

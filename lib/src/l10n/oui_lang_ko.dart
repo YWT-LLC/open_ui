@@ -387,6 +387,9 @@ class OUILangKo extends OUILang {
   String get gDesign => '디자인';
 
   @override
+  String get gDevInfo => '개발자 정보';
+
+  @override
   String get gDisabled => '비활성화됨';
 
   @override

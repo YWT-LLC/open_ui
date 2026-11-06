@@ -391,6 +391,9 @@ class OUILangRu extends OUILang {
   String get gDesign => 'Дизайн';
 
   @override
+  String get gDevInfo => 'Информация о разработчике';
+
+  @override
   String get gDisabled => 'Отключено';
 
   @override

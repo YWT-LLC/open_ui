@@ -387,6 +387,9 @@ class OUILangJa extends OUILang {
   String get gDesign => 'デザイン';
 
   @override
+  String get gDevInfo => '開発者情報';
+
+  @override
   String get gDisabled => '無効';
 
   @override

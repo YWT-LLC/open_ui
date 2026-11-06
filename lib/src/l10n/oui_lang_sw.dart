@@ -389,6 +389,9 @@ class OUILangSw extends OUILang {
   String get gDesign => 'Muundo';
 
   @override
+  String get gDevInfo => 'Maelezo ya msanidi';
+
+  @override
   String get gDisabled => 'Imezimwa';
 
   @override

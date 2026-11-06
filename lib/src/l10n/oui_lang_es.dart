@@ -390,6 +390,9 @@ class OUILangEs extends OUILang {
   String get gDesign => 'Diseño';
 
   @override
+  String get gDevInfo => 'Información del desarrollador';
+
+  @override
   String get gDisabled => 'Deshabilitado';
 
   @override

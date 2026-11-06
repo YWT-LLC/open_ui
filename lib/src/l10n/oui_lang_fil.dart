@@ -389,6 +389,9 @@ class OUILangFil extends OUILang {
   String get gDesign => 'Disenyo';
 
   @override
+  String get gDevInfo => 'Impormasyon ng developer';
+
+  @override
   String get gDisabled => 'Naka-disable';
 
   @override
