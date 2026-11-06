@@ -74,7 +74,7 @@ class EzCP extends ChangeNotifier {
       final EzSwitchColor tertiary = _colorOrGradient(darkTertiaryKey, basicColors);
       final EzSwitchColor error = _colorOrGradient(darkErrorKey, basicColors);
 
-      _color = EzColorCache(
+      final EzColorCache colorCache = EzColorCache(
         schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue,
 
         // Surface
@@ -114,7 +114,7 @@ class EzCP extends ChangeNotifier {
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
 
-      _design = EzDesignCache(
+      final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(darkPaddingKey),
         buttonShape: buttonShape,
@@ -136,7 +136,7 @@ class EzCP extends ChangeNotifier {
         animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
       );
 
-      _layout = EzLayoutCache(
+      final EzLayoutCache layoutCache = EzLayoutCache(
         margin: EzSpacer(margin),
         rowMargin: EzSpacer(margin, vertical: false),
         spacer: EzSpacer(spacing),
@@ -150,7 +150,7 @@ class EzCP extends ChangeNotifier {
 
       final TextStyle bodyStyle = ezBodyStyle(basicColors.onSurface, isDark: true);
 
-      _text = EzTextCache(
+      final EzTextCache textCache = EzTextCache(
         iconSize: EzCM.get(darkIconSizeKey),
         backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
@@ -159,12 +159,18 @@ class EzCP extends ChangeNotifier {
         richLine: const EzRichLine(),
       );
 
+      _color = colorCache;
+      _design = designCache;
+      _layout = layoutCache;
+      _text = textCache;
+
       _theme = ezThemeData(
         Brightness.dark,
         ltr: _ltr,
-        colors: _color,
-        design: _design,
-        text: _text,
+        colors: colorCache,
+        design: designCache,
+        layout: layoutCache,
+        text: textCache,
       );
     } else {
       // Color //
@@ -177,7 +183,7 @@ class EzCP extends ChangeNotifier {
       final EzSwitchColor tertiary = _colorOrGradient(lightTertiaryKey, basicColors);
       final EzSwitchColor error = _colorOrGradient(lightErrorKey, basicColors);
 
-      _color = EzColorCache(
+      final EzColorCache colorCache = EzColorCache(
         schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue,
 
         // Surface
@@ -217,7 +223,7 @@ class EzCP extends ChangeNotifier {
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
 
-      _design = EzDesignCache(
+      final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(lightPaddingKey),
         buttonShape: buttonShape,
@@ -239,7 +245,7 @@ class EzCP extends ChangeNotifier {
         animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
       );
 
-      _layout = EzLayoutCache(
+      final EzLayoutCache layoutCache = EzLayoutCache(
         margin: EzSpacer(margin),
         rowMargin: EzSpacer(margin, vertical: false),
         spacer: EzSpacer(spacing),
@@ -253,7 +259,7 @@ class EzCP extends ChangeNotifier {
 
       final TextStyle bodyStyle = ezBodyStyle(basicColors.onSurface, isDark: false);
 
-      _text = EzTextCache(
+      final EzTextCache textCache = EzTextCache(
         iconSize: EzCM.get(lightIconSizeKey),
         backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
@@ -262,12 +268,18 @@ class EzCP extends ChangeNotifier {
         richLine: const EzRichLine(),
       );
 
+      _color = colorCache;
+      _design = designCache;
+      _layout = layoutCache;
+      _text = textCache;
+
       _theme = ezThemeData(
-        Brightness.light,
+        Brightness.dark,
         ltr: _ltr,
-        colors: _color,
-        design: _design,
-        text: _text,
+        colors: colorCache,
+        design: designCache,
+        layout: layoutCache,
+        text: textCache,
       );
     }
   }
