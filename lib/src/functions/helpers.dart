@@ -221,8 +221,6 @@ Future<String?> ezColorPicker(
   String? title,
   required String picking,
   bool allowGradient = true,
-  void Function(Color chosenColor)? onColorChange,
-  void Function()? onCancel,
 }) async {
   // Define modal data //
 
@@ -230,28 +228,12 @@ Future<String?> ezColorPicker(
   final double qHeight = heightOf(context) / 4;
   final double qWidth = widthOf(context) / 4;
 
-  late dynamic preview;
+  late EzSwitchColor preview;
   late bool gradient;
 
   late final List<Color> gradients;
   late AlignmentGeometry beginDir;
   late AlignmentGeometry endDir;
-
-  if (picking.contains(colorSplit)) {
-    preview = ezLGFromString(picking);
-    gradient = true;
-
-    gradients = (preview as LinearGradient).colors;
-    beginDir = preview.begin;
-    endDir = preview.end;
-  } else {
-    preview = Color(int.parse(picking));
-    gradient = false;
-
-    gradients = <Color>[];
-    beginDir = Alignment.centerLeft;
-    endDir = Alignment.centerRight;
-  }
 
   final MenuController beginMenu = MenuController();
   final MenuController endMenu = MenuController();
@@ -349,6 +331,28 @@ Future<String?> ezColorPicker(
         AlignmentGeometry() => Positioned(top: 0, child: icon),
       }; // TODO: re-verify
 
+  // Define modal functions //
+
+  void initPreview() {
+    if (picking.contains(colorSplit)) {
+      preview = EzSwitchColor(gradient: ezLGFromString(picking));
+      gradient = true;
+
+      gradients = preview.gradient!.colors;
+      beginDir = preview.gradient!.begin;
+      endDir = preview.gradient!.end;
+    } else {
+      preview = EzSwitchColor(color: Color(int.parse(picking)));
+      gradient = false;
+
+      gradients = <Color>[];
+      beginDir = Alignment.centerLeft;
+      endDir = Alignment.centerRight;
+    }
+  }
+
+  initPreview();
+
   final bool? confirmed = await ezModal<bool>(
     config,
     enableDrag: false,
@@ -356,17 +360,12 @@ Future<String?> ezColorPicker(
     showDragHandle: false,
     context: context,
     builder: (BuildContext mCon) => StatefulBuilder(builder: (_, StateSetter setModal) {
-      // Define custom functions //
-
-      void localChange(Color color) {
-        onColorChange?.call(color);
-        setModal(() => preview = color);
-      }
+      void localChange(Color color) => setModal(() => preview = EzSwitchColor(color: color));
 
       // Return the modal //
 
       Widget colorPicker() => ColorPicker(
-            color: preview,
+            color: preview.asColor,
             columnSpacing: config.spacing,
             copyPasteBehavior: const ColorPickerCopyPasteBehavior(
               pasteButton: true,
@@ -393,6 +392,7 @@ Future<String?> ezColorPicker(
             toolbarSpacing: config.spacing / 2,
           );
 
+      // TODO: fix error on cancel
       return ezModalScroll(
         config,
         children: <Widget>[
@@ -427,7 +427,7 @@ Future<String?> ezColorPicker(
                         config,
                         icon: const Icon(Icons.add),
                         tooltip: 'Add to gradients list',
-                        onPressed: () => setModal(() => gradients.add(preview)),
+                        onPressed: () => setModal(() => gradients.add(preview.asColor)),
                       ),
                     ),
                   ]),
@@ -546,8 +546,8 @@ Future<String?> ezColorPicker(
                 icon: EzIcon(config, Icons.cancel),
                 label: config.ezL10n.gCancel,
                 onPressed: () {
-                  setModal(() => preview = picking);
-                  onCancel?.call();
+                  initPreview();
+                  setModal(() {});
                   if (mCon.mounted) Navigator.of(mCon).pop(false);
                 },
               ),

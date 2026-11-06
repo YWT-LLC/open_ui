@@ -557,11 +557,13 @@ class EzCP extends ChangeNotifier {
 //* Cache *//
 
 class EzSwitchColor {
-  final Gradient? gradient;
   final Color? color;
+  final LinearGradient? gradient;
 
-  const EzSwitchColor({this.gradient, this.color})
-      : assert((gradient == null) != (color == null), 'One must be provided');
+  const EzSwitchColor({
+    this.gradient,
+    this.color,
+  }) : assert((gradient == null) != (color == null), 'One must be provided');
 
   Color get asColor => color ?? gradient!.colors.first;
 
