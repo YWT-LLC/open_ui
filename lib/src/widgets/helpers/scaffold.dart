@@ -82,19 +82,24 @@ class EzFooter extends StatelessWidget {
               EzLink(
                 config,
                 text: config.ezL10n.gDevInfo,
+                style: config.labelStyle,
+                textAlign: textAlign,
+                url: Uri.parse(ywt.websiteContributeMula),
                 hint: config.ezL10n.gOpenLink,
                 tooltip: ywt.websiteContributeMula,
-                url: Uri.parse(ywt.websiteContributeMula),
               )
           : translateMessage ??
               EzRichText(
                 config,
                 children: <InlineSpan>[
+                  // Machine translated
                   EzPlainText(
                     text: config.ezL10n.gMachineTranslated,
                     style: config.labelStyle,
                   ),
-                  config.richLine,
+                  EzRichLine(style: config.labelStyle),
+
+                  // See a mistake?
                   EzPlainText(
                     text: config.ezL10n.gA11Mistake,
                     style: config.labelStyle,
@@ -103,13 +108,13 @@ class EzFooter extends StatelessWidget {
                     config,
                     text: config.ezL10n.gA11Fix,
                     style: config.labelStyle,
-                    hint: config.ezL10n.gGitRequired,
                     url: (a11howPath != null)
                         ? Uri.parse('${ywt.a11howLive}?${Uri(queryParameters: <String, String>{
                                 'project': a11howPath!,
                                 'locale': config.locale.languageCode,
                               }).query}')
                         : Uri.parse(ywt.a11howLive),
+                    hint: config.ezL10n.gGitRequired,
                   ),
                 ],
                 style: config.labelStyle,
