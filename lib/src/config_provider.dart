@@ -382,7 +382,7 @@ class EzCP extends ChangeNotifier {
 
   double get borderWidth => _design.borderWidth;
 
-  // Has a twin in ezThemeData (good to keep separate)
+  // Has a twin in ezThemeData
   BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
       ? EzGradientBoxBorder(
           gradient: fill.gradient!,
@@ -393,6 +393,7 @@ class EzCP extends ChangeNotifier {
           width: borderWidth,
         );
 
+  // Has a twin in ezThemeData
   OutlinedBorder outlinedBorder(
     EzSwitchColor fill, {
     double? width,
@@ -406,7 +407,7 @@ class EzCP extends ChangeNotifier {
             )
           : shape ?? buttonShape.shape;
 
-  // Has a twin in ezThemeData (good to keep separate)
+  // Has a twin in ezThemeData
   BorderSide borderSide(
     EzSwitchColor fill, {
     double? width,
@@ -423,6 +424,23 @@ class EzCP extends ChangeNotifier {
                   color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
                   width: width ?? borderWidth,
                 );
+
+  // Has a twin in ezThemeData
+  ButtonLayerBuilder? buttonLayer(
+    EzSwitchColor fill, {
+    BoxShape shape = BoxShape.rectangle,
+  }) =>
+      (fill.gradient == null)
+          ? null
+          : (_, __, Widget? child) => Ink(
+                decoration: BoxDecoration(
+                  border: boxBorder(fill),
+                  borderRadius: buttonShape.radius,
+                  gradient: fill.gradient,
+                  shape: shape,
+                ),
+                child: child,
+              );
 
   bool get lineLinks => _design.lineLinks;
   bool get showScroll => _design.showScroll;
