@@ -137,7 +137,7 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
                 ? TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     iconColor: widget.enabled ? null : widget.config.outlineFill.asColor,
-                  ) // TODO: verify new null
+                  )
                 : widget.style!.copyWith(
                     padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
                     iconColor: WidgetStatePropertyAll<Color?>(

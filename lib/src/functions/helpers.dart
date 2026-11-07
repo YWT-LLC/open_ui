@@ -329,7 +329,7 @@ Future<String?> ezColorPicker(
         Alignment.topLeft => Positioned(top: 0, left: 0, child: icon),
         Alignment.topRight => Positioned(top: 0, right: 0, child: icon),
         AlignmentGeometry() => Positioned(top: 0, child: icon),
-      }; // TODO: re-verify
+      };
 
   // Define modal functions //
 

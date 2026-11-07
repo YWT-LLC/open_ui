@@ -455,7 +455,6 @@ class _ImageSettingState extends State<EzImageSetting> {
                   ? currPath!
                   : widget.config.surfaceContainerFill.asColor.toARGB32().toString();
 
-              // TODO: okay to have no onChange?
               final String? chosen = await ezColorPicker(
                 widget.config,
                 context: context,
