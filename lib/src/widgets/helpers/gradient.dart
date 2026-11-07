@@ -7,89 +7,66 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-// Border(s) //
+// Widget(s) //
 
-class EzGradientOutlinedBorder extends OutlinedBorder {
-  final EzCP config;
-  final OutlinedBorder shape;
+class EzGradientBorderSide extends BorderSide {
   final Gradient gradient;
 
-  /// Paints [shape]'s outline with a [gradient] instead of a solid [BorderSide]
-  const EzGradientOutlinedBorder(
-    this.config, {
-    required this.shape,
+  EzGradientBorderSide({
     required this.gradient,
-  }) : super(side: BorderSide.none);
+    required super.width,
+  }) : super(
+          color: gradient.colors.first,
+          style: (width <= 0) ? BorderStyle.none : BorderStyle.solid,
+        );
 
-  @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.all(config.borderWidth);
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) => shape.getOuterPath(
-        rect,
-        textDirection: textDirection,
-      );
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => shape.getOuterPath(
-        rect.deflate(config.borderWidth),
-        textDirection: textDirection,
-      );
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    if (config.borderWidth <= 0) return;
-
-    canvas.drawPath(
-      shape.getOuterPath(rect.deflate(config.borderWidth / 2), textDirection: textDirection),
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = config.borderWidth
-        ..shader = gradient.createShader(rect, textDirection: textDirection),
-    );
-  }
-
-  @override
-  OutlinedBorder copyWith({BorderSide? side}) => this;
-
-  @override
-  ShapeBorder scale(double t) => EzGradientOutlinedBorder(
-        config,
-        shape: shape.scale(t) as OutlinedBorder,
-        gradient: gradient.scale(t),
-      );
+  Paint toGradientPaint(Rect rect, {TextDirection? textDirection}) => Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = width
+    ..shader = gradient.createShader(rect, textDirection: textDirection);
 
   @override
   bool operator ==(Object other) =>
-      other is EzGradientOutlinedBorder && other.shape == shape && other.gradient == gradient;
+      other is EzGradientBorderSide && other.gradient == gradient && other.width == width;
 
   @override
-  int get hashCode => Object.hash(
-        shape,
-        gradient,
-        config.borderWidth,
-      );
+  int get hashCode => Object.hash(gradient, width, style);
 }
 
+/// Paints [fill]'s gradient behind [child] (within [shape]), returns [child] as-is for solid fills
+Widget ezGradientBox(
+  EzSwitchColor fill, {
+  ShapeBorder? shape,
+  required Widget child,
+}) =>
+    (fill.gradient == null)
+        ? child
+        : DecoratedBox(
+            decoration: (shape == null)
+                ? BoxDecoration(gradient: fill.gradient)
+                : ShapeDecoration(gradient: fill.gradient, shape: shape),
+            child: child,
+          );
+
 class EzGradientBoxBorder extends BoxBorder {
-  final double width;
   final Gradient gradient;
+  final double width;
 
   const EzGradientBoxBorder({
-    required this.width,
     required this.gradient,
+    required this.width,
   });
 
   @override
   BorderSide get top => EzGradientBorderSide(
-        width: width,
         gradient: gradient,
+        width: width,
       );
 
   @override
   BorderSide get bottom => EzGradientBorderSide(
-        width: width,
         gradient: gradient,
+        width: width,
       );
 
   @override
@@ -138,82 +115,74 @@ class EzGradientBoxBorder extends BoxBorder {
   int get hashCode => Object.hash(gradient, width);
 }
 
-class EzGradientBorderSide extends BorderSide {
-  final Gradient gradient;
-
-  EzGradientBorderSide({
-    required super.width,
-    required this.gradient,
-  }) : super(
-          color: gradient.colors.first,
-          style: (width <= 0) ? BorderStyle.none : BorderStyle.solid,
+/// [ButtonStyle.backgroundBuilder] for [fill], null for solid fills
+/// Uses [Ink] so splashes/overlays still render on top
+ButtonLayerBuilder? ezGradientLayer(EzSwitchColor fill) => (fill.gradient == null)
+    ? null
+    : (_, __, Widget? child) => Ink(
+          decoration: BoxDecoration(gradient: fill.gradient),
+          child: child,
         );
 
-  /// Stroke [Paint] with [gradient] mapped onto [rect]
-  Paint toGradientPaint(Rect rect, {TextDirection? textDirection}) => Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = width
-    ..shader = gradient.createShader(rect, textDirection: textDirection);
+class EzGradientOutlinedBorder extends OutlinedBorder {
+  final Gradient gradient;
+  final double width;
+  final OutlinedBorder shape;
+
+  /// Paints [shape]'s outline with a [gradient] instead of a solid [BorderSide]
+  const EzGradientOutlinedBorder({
+    required this.gradient,
+    required this.width,
+    required this.shape,
+  }) : super(side: BorderSide.none);
+
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.all(width);
+
+  @override
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) => shape.getOuterPath(
+        rect,
+        textDirection: textDirection,
+      );
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => shape.getOuterPath(
+        rect.deflate(width),
+        textDirection: textDirection,
+      );
+
+  @override
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
+    if (width <= 0) return;
+
+    canvas.drawPath(
+      shape.getOuterPath(rect.deflate(width / 2), textDirection: textDirection),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = width
+        ..shader = gradient.createShader(rect, textDirection: textDirection),
+    );
+  }
+
+  @override
+  OutlinedBorder copyWith({BorderSide? side}) => this;
+
+  @override
+  ShapeBorder scale(double t) => EzGradientOutlinedBorder(
+        gradient: gradient.scale(t),
+        width: width,
+        shape: shape.scale(t) as OutlinedBorder,
+      );
 
   @override
   bool operator ==(Object other) =>
-      other is EzGradientBorderSide && other.gradient == gradient && other.width == width;
+      other is EzGradientOutlinedBorder &&
+      other.gradient == gradient &&
+      other.width == width &&
+      other.shape == shape;
 
   @override
-  int get hashCode => Object.hash(gradient, width, style);
-}
-
-// Widget(s) //
-
-class EzAvatar extends StatelessWidget {
-  final EzSwitchColor fill;
-  final ImageProvider? backgroundImage;
-  final ImageErrorListener? onBackgroundImageError;
-  final Color? foregroundColor;
-  final ImageProvider? foregroundImage;
-  final ImageErrorListener? onForegroundImageError;
-  final double? radius;
-  final double? minRadius;
-  final double? maxRadius;
-  final Widget? child;
-
-  /// [CircleAvatar] wrapper that supports [EzSwitchColor]
-  const EzAvatar({
-    super.key,
-    required this.fill,
-    this.backgroundImage,
-    this.onBackgroundImageError,
-    this.foregroundColor,
-    this.foregroundImage,
-    this.onForegroundImageError,
-    this.radius,
-    this.minRadius,
-    this.maxRadius,
-    this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final CircleAvatar avatar = CircleAvatar(
-      backgroundColor: fill.color ?? Colors.transparent,
-      backgroundImage: backgroundImage,
-      onBackgroundImageError: onBackgroundImageError,
-      foregroundColor: foregroundColor,
-      foregroundImage: foregroundImage,
-      onForegroundImageError: onForegroundImageError,
-      radius: radius,
-      minRadius: minRadius,
-      maxRadius: maxRadius,
-      child: child,
-    );
-
-    return (fill.gradient == null)
-        ? avatar
-        : DecoratedBox(
-            decoration: BoxDecoration(gradient: fill.gradient, shape: BoxShape.circle),
-            child: avatar,
-          );
-  }
+  int get hashCode => Object.hash(gradient, width, shape);
 }
 
 // Storage //
