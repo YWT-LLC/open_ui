@@ -103,10 +103,6 @@ ThemeData ezThemeData(
 
   final TextTheme textTheme = ezTextTheme(colors.onSurface, isDark: brightness == Brightness.dark);
 
-  final Color linkTextBackground = colors.surface.asColor.withValues(alpha: text.backgroundOpacity);
-  final Color richTextBackground =
-      colors.surfaceContainer.asColor.withValues(alpha: text.backgroundOpacity);
-
   final Color inputBackground =
       colors.surface.asColor.withValues(alpha: max(colors.surface.asColor.a, focusOpacity));
 
@@ -258,13 +254,15 @@ ThemeData ezThemeData(
 
     // Expansion tile
     expansionTileTheme: ExpansionTileThemeData(
-      backgroundColor: richTextBackground,
-      collapsedBackgroundColor: richTextBackground,
+      backgroundColor: Colors.transparent,
+      collapsedBackgroundColor: Colors.transparent,
       iconColor: colors.primary.asColor,
       collapsedIconColor: colors.primary.asColor,
       tilePadding: EdgeInsets.zero,
-      childrenPadding:
-          EdgeInsets.only(left: ltr ? design.margin * 2 : 0, right: ltr ? 0 : design.margin * 2),
+      childrenPadding: EdgeInsets.only(
+        left: ltr ? design.margin * 2 : 0,
+        right: ltr ? 0 : design.margin * 2,
+      ),
       expandedAlignment: ltr ? Alignment.centerLeft : Alignment.centerRight,
       expansionAnimationStyle: AnimationStyle(
         curve: design.animCurve,
@@ -273,7 +271,6 @@ ThemeData ezThemeData(
         reverseDuration: Duration(milliseconds: threeQAnim),
       ),
     ),
-    // TODO: make sure expansion tiles use gradients
 
     // Floating action button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -422,7 +419,7 @@ ThemeData ezThemeData(
     // Text button
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: linkTextBackground,
+        backgroundColor: colors.surface.asColor.withValues(alpha: text.backgroundOpacity),
         foregroundColor: colors.onSurface,
         disabledForegroundColor: colors.outline.asColor,
         iconColor: colors.primary.asColor,
