@@ -37,6 +37,7 @@ ThemeData ezThemeData(
     WidgetState.selected: SystemMouseCursors.click,
   });
 
+  // Has a twin in EzCP (good to keep separate)
   BorderSide buildBorder(
     EzSwitchColor fill, {
     double? width,
@@ -54,6 +55,7 @@ ThemeData ezThemeData(
                   width: width ?? design.borderWidth,
                 );
 
+  // Has a twin in EzCP (good to keep separate)
   BoxDecoration buildDecoration(
     EzSwitchColor fill, {
     double? opacity,
@@ -115,9 +117,10 @@ ThemeData ezThemeData(
     brightness: brightness,
     colorScheme: basicColors,
 
-    dividerColor: colors.secondary.asColor,
+    dividerColor: colors.secondary.asColor, // TODO: does ez divider use gradients?
     hoverColor: focusColor,
     scaffoldBackgroundColor: colors.surfaceContainer.asColor,
+    // TODO: make sure ezscreen, ezmodal, ezalert, use gradients
 
     // Transitions //
 
@@ -131,6 +134,7 @@ ThemeData ezThemeData(
 
     iconTheme: iconData,
     primaryIconTheme: iconData,
+    // TODO: audit regular icons, everything should prolly be EzIcon now for gradient
 
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: colors.secondary.asColor,
@@ -150,6 +154,7 @@ ThemeData ezThemeData(
       centerTitle: true,
       titleSpacing: 0,
     ),
+    // TODO: make sure appbar can use gradients
 
     // Bottom sheet
     bottomSheetTheme: BottomSheetThemeData(
@@ -165,6 +170,7 @@ ThemeData ezThemeData(
       shadowColor: crucialTextShadow,
       margin: EdgeInsets.zero,
     ),
+    // TODO: EzCard for gradients
 
     // Checkbox
     checkboxTheme: CheckboxThemeData(
@@ -183,17 +189,23 @@ ThemeData ezThemeData(
 
     // Dialog
     dialogTheme: DialogThemeData(
-      backgroundColor: colors.surfaceDim,
+      backgroundColor: colors.surfaceDim.asColor,
       titleTextStyle: textTheme.titleLarge,
       contentTextStyle: textTheme.bodyLarge,
       alignment: Alignment.center,
     ),
 
     // Divider
-    dividerTheme: DividerThemeData(color: colors.secondary, space: design.spacing * 3),
+    dividerTheme: DividerThemeData(
+      color: colors.secondary.asColor,
+      space: design.spacing * 3,
+    ),
 
     // Drawer
-    navigationDrawerTheme: NavigationDrawerThemeData(backgroundColor: colors.surfaceDim),
+    navigationDrawerTheme: NavigationDrawerThemeData(
+      backgroundColor: colors.surfaceDim.asColor,
+    ),
+    // TODO: make sure drawer can use gradients
 
     // Dropdown menu
     dropdownMenuTheme: DropdownMenuThemeData(
@@ -236,13 +248,13 @@ ThemeData ezThemeData(
     // Elevated button
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colors.surface,
+        backgroundColor: colors.surface.asColor,
         foregroundColor: colors.onSurface,
-        shadowColor: colors.shadow,
-        disabledForegroundColor: colors.outline,
-        iconColor: colors.primary,
-        disabledIconColor: colors.outline,
-        overlayColor: colors.primary,
+        shadowColor: colors.shadow.asColor,
+        disabledForegroundColor: colors.outline.asColor,
+        iconColor: colors.primary.asColor,
+        disabledIconColor: colors.outline.asColor,
+        overlayColor: colors.primary.asColor,
         side: buildBorder(colors.primaryContainer),
         enabledMouseCursor: SystemMouseCursors.click,
         shape: design.buttonShape.shape,
@@ -251,13 +263,14 @@ ThemeData ezThemeData(
         padding: EdgeInsets.all(design.padding),
       ),
     ),
+    // TODO: make sure elevated buttons use gradients
 
     // Expansion tile
     expansionTileTheme: ExpansionTileThemeData(
       backgroundColor: richTextBackground,
       collapsedBackgroundColor: richTextBackground,
-      iconColor: colors.primary,
-      collapsedIconColor: colors.primary,
+      iconColor: colors.primary.asColor,
+      collapsedIconColor: colors.primary.asColor,
       tilePadding: EdgeInsets.zero,
       childrenPadding:
           EdgeInsets.only(left: ltr ? design.margin * 2 : 0, right: ltr ? 0 : design.margin * 2),
@@ -269,6 +282,7 @@ ThemeData ezThemeData(
         reverseDuration: Duration(milliseconds: threeQAnim),
       ),
     ),
+    // TODO: make sure expansion tiles use gradients
 
     // Floating action button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -290,10 +304,10 @@ ThemeData ezThemeData(
     // Icon button
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
-        backgroundColor: colors.surface,
-        foregroundColor: colors.primary,
-        disabledForegroundColor: colors.outline,
-        overlayColor: colors.primary,
+        backgroundColor: colors.surface.asColor,
+        foregroundColor: colors.primary.asColor,
+        disabledForegroundColor: colors.outline.asColor,
+        overlayColor: colors.primary.asColor,
         side: buildBorder(colors.primaryContainer),
         enabledMouseCursor: SystemMouseCursors.click,
         shape: design.buttonShape.shape,
@@ -308,13 +322,13 @@ ThemeData ezThemeData(
       filled: true,
       contentPadding: EdgeInsets.all(design.margin),
       fillColor: inputBackground,
-      prefixIconColor: colors.primary,
-      iconColor: colors.primary,
-      suffixIconColor: colors.primary,
-      hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline),
+      prefixIconColor: colors.primary.asColor,
+      iconColor: colors.primary.asColor,
+      suffixIconColor: colors.primary.asColor,
+      hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline.asColor),
       labelStyle: textTheme.labelLarge,
       helperStyle: textTheme.labelLarge,
-      errorStyle: textTheme.labelLarge!.copyWith(color: colors.error),
+      errorStyle: textTheme.labelLarge!.copyWith(color: colors.error.asColor),
       errorMaxLines: 1,
       border: UnderlineInputBorder(borderSide: buildBorder(colors.primary)),
       disabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.outline)),
@@ -327,7 +341,7 @@ ThemeData ezThemeData(
     // Menu
     menuTheme: MenuThemeData(
       style: MenuStyle(
-        backgroundColor: WidgetStateProperty.all(crucialButtonBackground),
+        backgroundColor: WidgetStateProperty.all(colors.surface.asColor),
         padding: WidgetStateProperty.all(EdgeInsets.zero),
         side: WidgetStateProperty.all(buildBorder(colors.primaryContainer)),
         alignment: Alignment.center,
@@ -337,13 +351,13 @@ ThemeData ezThemeData(
     // Menu button
     menuButtonTheme: MenuButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: crucialButtonBackground,
+        backgroundColor: colors.surface.asColor,
         foregroundColor: colors.onSurface,
-        disabledForegroundColor: colors.outline,
-        iconColor: colors.primary,
-        disabledIconColor: colors.outline,
+        disabledForegroundColor: colors.outline.asColor,
+        iconColor: colors.primary.asColor,
+        disabledIconColor: colors.outline.asColor,
         enabledMouseCursor: SystemMouseCursors.click,
-        overlayColor: colors.primary,
+        overlayColor: colors.primary.asColor,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
         padding: EdgeInsets.all(design.padding),
@@ -351,7 +365,9 @@ ThemeData ezThemeData(
     ),
 
     // Progress indicator
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: colors.secondary),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: colors.secondary.asColor,
+    ),
 
     // Radio button
     radioTheme: RadioThemeData(
@@ -370,12 +386,12 @@ ThemeData ezThemeData(
     // Segmented button
     segmentedButtonTheme: SegmentedButtonThemeData(
       style: SegmentedButton.styleFrom(
-        backgroundColor: colors.surface,
-        selectedBackgroundColor: colors.primary,
+        backgroundColor: colors.surface.asColor,
+        selectedBackgroundColor: colors.primary.asColor,
         enabledMouseCursor: SystemMouseCursors.click,
-        foregroundColor: colors.primary,
+        foregroundColor: colors.primary.asColor,
         selectedForegroundColor: colors.onPrimary,
-        disabledForegroundColor: colors.outline,
+        disabledForegroundColor: colors.outline.asColor,
         side: buildBorder(colors.primaryContainer),
         shape: design.buttonShape.shape,
         textStyle: textTheme.bodyLarge,
@@ -383,12 +399,13 @@ ThemeData ezThemeData(
         padding: EdgeInsets.all(design.padding),
       ),
     ),
+    // TODO: make sure segmented button can use gradients
 
     // Snackbar
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: colors.surfaceDim,
-      closeIconColor: colors.primary,
+      backgroundColor: colors.surfaceDim.asColor,
+      closeIconColor: colors.primary.asColor,
       shape: design.buttonShape.shape.copyWith(side: buildBorder(colors.secondary)),
       contentTextStyle: textTheme.bodyLarge,
       insetPadding: EdgeInsets.all(design.margin),
@@ -399,14 +416,15 @@ ThemeData ezThemeData(
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            (states.contains(WidgetState.selected)) ? colors.primary : colors.outline,
+            (states.contains(WidgetState.selected) ? colors.primary : colors.outline).asColor,
       ),
       trackColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            ((states.contains(WidgetState.selected)) ? colors.primary : colors.outline)
+            (states.contains(WidgetState.selected) ? colors.primary : colors.outline)
+                .asColor
                 .withValues(alpha: focusOpacity),
       ),
-      trackOutlineColor: WidgetStateProperty.all(colors.surface),
+      trackOutlineColor: WidgetStateProperty.all(colors.surface.asColor),
       overlayColor: WidgetStateProperty.all(focusColor),
     ),
 
@@ -415,11 +433,11 @@ ThemeData ezThemeData(
       style: TextButton.styleFrom(
         backgroundColor: linkTextBackground,
         foregroundColor: colors.onSurface,
-        disabledForegroundColor: colors.outline,
-        iconColor: colors.primary,
-        disabledIconColor: colors.outline,
+        disabledForegroundColor: colors.outline.asColor,
+        iconColor: colors.primary.asColor,
+        disabledIconColor: colors.outline.asColor,
         enabledMouseCursor: SystemMouseCursors.click,
-        overlayColor: colors.primary,
+        overlayColor: colors.primary.asColor,
         shape: design.buttonShape.shape,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
@@ -431,10 +449,9 @@ ThemeData ezThemeData(
     tooltipTheme: TooltipThemeData(
       decoration: buildDecoration(
         colors.surfaceDim,
-        border: blarg,
+        border: buildBorder(colors.secondary),
         borderRadius: EzButtonShape.roundRect.radius,
       ),
-      // border: Border.all(color: colors.secondary, width: design.borderWidth),
       textStyle: textTheme.bodyLarge,
       textAlign: TextAlign.center,
       margin: EdgeInsets.all(design.margin),
