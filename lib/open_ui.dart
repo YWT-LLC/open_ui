@@ -91,7 +91,6 @@ export 'src/widgets/helpers/tool_tipper.dart';
 export 'src/widgets/helpers/tutorial.dart';
 export 'src/widgets/helpers/undo_text.dart';
 export 'src/widgets/helpers/video_player.dart';
-export 'src/widgets/helpers/warning.dart';
 
 // Responsive design //
 
