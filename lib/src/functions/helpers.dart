@@ -715,7 +715,7 @@ Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
               )
             : Container(
                 constraints: BoxConstraints.tight(Size.infinite),
-                decoration: config.boxDeco(opacity: 0.5),
+                decoration: config.boxDecoration(opacity: 0.5),
                 child: EzLoadingGlass(ywt.EzLoadingIndicator(
                   iconSize: config.iconSize,
                   padding: config.padding,

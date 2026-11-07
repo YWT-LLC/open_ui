@@ -222,7 +222,7 @@ class _ColorSettingState extends State<EzColorSetting> {
           onPressed: changeColor,
           onLongPress: reset,
           icon: Container(
-            decoration: widget.config.boxDeco(
+            decoration: widget.config.boxDecoration(
               shape: BoxShape.circle,
               fill: widget.config.primaryContainerFill,
             ),

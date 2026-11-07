@@ -348,7 +348,7 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get scrimFill => _color.scrim;
 
   // Has a twin in ezThemeData (good to keep separate)
-  BoxDecoration boxDeco({
+  BoxDecoration boxDecoration({
     EzSwitchColor? fill,
     double? opacity,
     BoxShape shape = BoxShape.rectangle,
@@ -357,18 +357,18 @@ class EzCP extends ChangeNotifier {
   }) =>
       (opacity == null)
           ? BoxDecoration(
+              border: border,
+              borderRadius: borderRadius,
               color: (fill ?? surfaceFill).color,
               gradient: (fill ?? surfaceFill).gradient,
               shape: shape,
-              border: border,
-              borderRadius: borderRadius,
             )
           : BoxDecoration(
+              border: border,
+              borderRadius: borderRadius,
               color: (fill ?? surfaceFill).color?.withValues(alpha: opacity),
               gradient: (fill ?? surfaceFill).gradient?.withOpacity(opacity),
               shape: shape,
-              border: border,
-              borderRadius: borderRadius,
             );
 
   // Design cache //

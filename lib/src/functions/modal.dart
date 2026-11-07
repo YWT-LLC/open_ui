@@ -70,7 +70,8 @@ Widget ezModalScroll(
   ScrollPhysics? physics,
   required List<Widget> children,
 }) =>
-    Padding(
+    Container(
+      decoration: config.boxDecoration(fill: config.surfaceContainerFill),
       padding: EdgeInsets.symmetric(horizontal: config.marginVal),
       child: EzScrollView(
         config,
