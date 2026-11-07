@@ -133,7 +133,7 @@ ThemeData ezThemeData(
     brightness: brightness,
     colorScheme: basicColors,
 
-    dividerColor: colors.secondary.asColor, // TODO: does ez divider use gradients?
+    dividerColor: colors.secondary.asColor,
     hoverColor: focusColor,
     scaffoldBackgroundColor: colors.surfaceContainer.asColor,
     // TODO: make sure ezscreen, ezmodal, ezalert, use gradients
@@ -179,13 +179,6 @@ ThemeData ezThemeData(
       showDragHandle: true,
       dragHandleColor: colors.onSurface,
     ),
-
-    // Card
-    cardTheme: CardThemeData(
-      color: colors.surfaceDim.asColor,
-      margin: EdgeInsets.zero,
-    ),
-    // TODO: EzCard for gradients
 
     // Checkbox
     checkboxTheme: CheckboxThemeData(
