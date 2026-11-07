@@ -243,7 +243,10 @@ ThemeData ezThemeData(
           borderSide: buildBorder(colors.primaryContainer),
           gapPadding: 0,
         ),
-        errorBorder: OutlineInputBorder(borderSide: buildBorder(colors.error), gapPadding: 0),
+        errorBorder: OutlineInputBorder(
+          borderSide: buildBorder(colors.error),
+          gapPadding: 0,
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: buildBorder(colors.secondaryContainer),
           gapPadding: 0,
