@@ -37,18 +37,7 @@ ThemeData ezThemeData(
     WidgetState.selected: SystemMouseCursors.click,
   });
 
-  // Has a twin in EzCP (good to keep separate)
-  BoxBorder buildBox(EzSwitchColor fill) => fill.color == null
-      ? EzGradientBoxBorder(
-          gradient: fill.gradient!,
-          width: design.borderWidth,
-        )
-      : Border.all(
-          color: fill.color!,
-          width: design.borderWidth,
-        );
-
-  // Has a twin in EzCP (good to keep separate)
+  // Has a twin in EzCP
   BorderSide buildBorder(
     EzSwitchColor fill, {
     double? width,
@@ -66,12 +55,18 @@ ThemeData ezThemeData(
                   width: width ?? design.borderWidth,
                 );
 
-  OutlineInputBorder buildOIBorder(EzSwitchColor fill) => OutlineInputBorder(
-        borderSide: buildBorder(fill),
-        gapPadding: 0,
-      );
+  // Has a twin in EzCP
+  BoxBorder buildBox(EzSwitchColor fill) => fill.color == null
+      ? EzGradientBoxBorder(
+          gradient: fill.gradient!,
+          width: design.borderWidth,
+        )
+      : Border.all(
+          color: fill.color!,
+          width: design.borderWidth,
+        );
 
-  // Has a twin in EzCP (good to keep separate)
+  // Has a twin in EzCP
   BoxDecoration buildDecoration(
     EzSwitchColor fill, {
     double? opacity,
@@ -94,6 +89,28 @@ ThemeData ezThemeData(
               border: border,
               borderRadius: borderRadius,
             );
+
+  // Has a twin in EzCp
+  ButtonLayerBuilder? buttonLayer(
+    EzSwitchColor fill, {
+    BoxShape shape = BoxShape.rectangle,
+  }) =>
+      (fill.gradient == null)
+          ? null
+          : (_, __, Widget? child) => Ink(
+                decoration: BoxDecoration(
+                  border: buildBox(fill),
+                  borderRadius: design.buttonShape.radius,
+                  gradient: fill.gradient,
+                  shape: shape,
+                ),
+                child: child,
+              );
+
+  OutlineInputBorder buildOIBorder(EzSwitchColor fill) => OutlineInputBorder(
+        borderSide: buildBorder(fill),
+        gapPadding: 0,
+      );
 
   // Design (page) //
 
@@ -132,7 +149,6 @@ ThemeData ezThemeData(
     dividerColor: colors.secondary.asColor,
     hoverColor: focusColor,
     scaffoldBackgroundColor: colors.surfaceContainer.asColor,
-    // TODO: make sure EzScreen, EzModal, EzAlert, use gradients
 
     // Transitions //
 
@@ -141,11 +157,11 @@ ThemeData ezThemeData(
 
     // Typography //
 
-    textTheme: textTheme,
-    primaryTextTheme: textTheme,
-
     iconTheme: iconData,
     primaryIconTheme: iconData,
+
+    textTheme: textTheme,
+    primaryTextTheme: textTheme,
 
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: colors.secondary.asColor,
@@ -169,9 +185,10 @@ ThemeData ezThemeData(
     // Bottom sheet
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: colors.surfaceContainer.asColor,
+      clipBehavior: Clip.antiAlias,
+      dragHandleColor: colors.onSurface,
       modalBackgroundColor: colors.surfaceContainer.asColor,
       showDragHandle: true,
-      dragHandleColor: colors.onSurface,
     ),
 
     // Checkbox
@@ -191,10 +208,11 @@ ThemeData ezThemeData(
 
     // Dialog
     dialogTheme: DialogThemeData(
-      backgroundColor: colors.surfaceDim.asColor,
-      titleTextStyle: textTheme.titleLarge,
-      contentTextStyle: textTheme.bodyLarge,
       alignment: Alignment.center,
+      backgroundColor: colors.surfaceDim.asColor,
+      clipBehavior: Clip.antiAlias,
+      contentTextStyle: textTheme.bodyLarge,
+      titleTextStyle: textTheme.titleLarge,
     ),
 
     // Divider
@@ -234,22 +252,22 @@ ThemeData ezThemeData(
     // Elevated button
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colors.surface.asColor,
-        foregroundColor: colors.onSurface,
-        shadowColor: colors.shadow.asColor,
-        disabledForegroundColor: colors.outline.asColor,
-        iconColor: colors.primary.asColor,
-        disabledIconColor: colors.outline.asColor,
-        overlayColor: colors.primary.asColor,
-        side: buildBorder(colors.primaryContainer),
-        enabledMouseCursor: SystemMouseCursors.click,
-        shape: design.buttonShape.shape,
-        textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
+        backgroundBuilder: buttonLayer(colors.surface),
+        backgroundColor: colors.surface.asColor,
+        disabledForegroundColor: colors.outline.asColor,
+        disabledIconColor: colors.outline.asColor,
+        enabledMouseCursor: SystemMouseCursors.click,
+        foregroundColor: colors.onSurface,
+        iconColor: colors.primary.asColor,
+        overlayColor: colors.primary.asColor,
         padding: EdgeInsets.all(design.padding),
+        shadowColor: colors.shadow.asColor,
+        shape: design.buttonShape.shape,
+        side: buildBorder(colors.primaryContainer),
+        textStyle: textTheme.bodyLarge,
       ),
     ),
-    // TODO: make sure elevated buttons use gradients
 
     // Expansion tile
     expansionTileTheme: ExpansionTileThemeData(
@@ -386,7 +404,6 @@ ThemeData ezThemeData(
         padding: EdgeInsets.all(design.padding),
       ),
     ),
-    // TODO: make sure segmented button can use gradients
 
     // Snackbar
     snackBarTheme: SnackBarThemeData(
