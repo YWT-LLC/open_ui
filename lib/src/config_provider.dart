@@ -168,7 +168,7 @@ class EzCP extends ChangeNotifier {
         Brightness.dark,
         ltr: _ltr,
         basicColors: basicColors,
-        color: colorCache,
+        colors: colorCache,
         design: designCache,
         layout: layoutCache,
         text: textCache,
@@ -278,7 +278,7 @@ class EzCP extends ChangeNotifier {
         Brightness.dark,
         ltr: _ltr,
         basicColors: basicColors,
-        color: colorCache,
+        colors: colorCache,
         design: designCache,
         layout: layoutCache,
         text: textCache,
@@ -351,6 +351,7 @@ class EzCP extends ChangeNotifier {
     EzSwitchColor? fill,
     double? opacity,
     BoxShape shape = BoxShape.rectangle,
+    BoxBorder? border,
     BorderRadius? borderRadius,
   }) =>
       (opacity == null)
@@ -358,12 +359,14 @@ class EzCP extends ChangeNotifier {
               color: (fill ?? _color.surface).color,
               gradient: (fill ?? _color.surface).gradient,
               shape: shape,
+              border: border,
               borderRadius: borderRadius,
             )
           : BoxDecoration(
               color: (fill ?? _color.surface).color?.withValues(alpha: opacity),
               gradient: (fill ?? _color.surface).gradient?.withOpacity(opacity),
               shape: shape,
+              border: border,
               borderRadius: borderRadius,
             );
 
