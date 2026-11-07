@@ -357,15 +357,15 @@ class EzCP extends ChangeNotifier {
   }) =>
       (opacity == null)
           ? BoxDecoration(
-              color: (fill ?? _color.surface).color,
-              gradient: (fill ?? _color.surface).gradient,
+              color: (fill ?? surfaceFill).color,
+              gradient: (fill ?? surfaceFill).gradient,
               shape: shape,
               border: border,
               borderRadius: borderRadius,
             )
           : BoxDecoration(
-              color: (fill ?? _color.surface).color?.withValues(alpha: opacity),
-              gradient: (fill ?? _color.surface).gradient?.withOpacity(opacity),
+              color: (fill ?? surfaceFill).color?.withValues(alpha: opacity),
+              gradient: (fill ?? surfaceFill).gradient?.withOpacity(opacity),
               shape: shape,
               border: border,
               borderRadius: borderRadius,
@@ -386,16 +386,25 @@ class EzCP extends ChangeNotifier {
   BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
       ? EzGradientBoxBorder(
           gradient: fill.gradient!,
-          width: _design.borderWidth,
+          width: borderWidth,
         )
       : Border.all(
           color: fill.color!,
-          width: _design.borderWidth,
+          width: borderWidth,
         );
 
-  OutlinedBorder outlinedBorder(EzSwitchColor fill, {OutlinedBorder? shape}) => fill.color == null
-      ? EzGradientOutlinedBorder(this, shape: shape ?? buttonShape.shape, gradient: fill.gradient!)
-      : shape ?? buttonShape.shape;
+  OutlinedBorder outlinedBorder(
+    EzSwitchColor fill, {
+    double? width,
+    OutlinedBorder? shape,
+  }) =>
+      fill.color == null
+          ? EzGradientOutlinedBorder(
+              gradient: fill.gradient!,
+              width: width ?? borderWidth,
+              shape: shape ?? buttonShape.shape,
+            )
+          : shape ?? buttonShape.shape;
 
   // Has a twin in ezThemeData (good to keep separate)
   BorderSide borderSide(
@@ -403,16 +412,16 @@ class EzCP extends ChangeNotifier {
     double? width,
     double? opacity,
   }) =>
-      (width ?? _design.borderWidth) == 0
+      (width ?? borderWidth) == 0
           ? BorderSide.none
           : fill.color == null
               ? EzGradientBorderSide(
                   gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
-                  width: width ?? _design.borderWidth,
+                  width: width ?? borderWidth,
                 )
               : BorderSide(
                   color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
-                  width: width ?? _design.borderWidth,
+                  width: width ?? borderWidth,
                 );
 
   bool get lineLinks => _design.lineLinks;
@@ -420,7 +429,7 @@ class EzCP extends ChangeNotifier {
   bool get showBackFAB => _design.showBackFAB;
 
   List<Widget> backFABs({bool isHome = false, bool override = false}) =>
-      (override || (_design.showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
+      (override || (showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
           ? <Widget>[spacer, EzBackFAB(this)]
           : <Widget>[];
 
@@ -439,8 +448,8 @@ class EzCP extends ChangeNotifier {
   BoxFit? get backgroundImageFit => _design.backgroundImageFit;
 
   DecorationImage get backgroundImage => DecorationImage(
-        image: ezImageProvider(_design.backgroundImagePath),
-        fit: _design.backgroundImageFit,
+        image: ezImageProvider(backgroundImagePath),
+        fit: backgroundImageFit,
       );
 
   // Layout cache (lil page design, lil text) //
