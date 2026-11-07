@@ -84,12 +84,10 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                           // Subsection selector
                           SegmentedButton<EzSubSetting>(
                             segments: (currSection.subSettings)
-                                .map(
-                                  (EzSubSetting sub) => ButtonSegment<EzSubSetting>(
-                                    value: sub,
-                                    label: Text(sub.label(widget.config.ezL10n)),
-                                  ),
-                                )
+                                .map((EzSubSetting sub) => ButtonSegment<EzSubSetting>(
+                                      value: sub,
+                                      label: Text(sub.label(widget.config.ezL10n)),
+                                    ))
                                 .toList(),
                             selected: <EzSubSetting>{currSubSec},
                             showSelectedIcon: false,

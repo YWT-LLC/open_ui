@@ -115,14 +115,23 @@ class EzGradientBoxBorder extends BoxBorder {
   int get hashCode => Object.hash(gradient, width);
 }
 
-/// [ButtonStyle.backgroundBuilder] for [fill], null for solid fills
-/// Uses [Ink] so splashes/overlays still render on top
-ButtonLayerBuilder? ezGradientLayer(EzSwitchColor fill) => (fill.gradient == null)
-    ? null
-    : (_, __, Widget? child) => Ink(
-          decoration: BoxDecoration(gradient: fill.gradient),
-          child: child,
-        );
+/// [Ink] wrapper to display [fill]s gradient (when present, null otherwise)
+ButtonLayerBuilder? ezGradientLayer(
+  EzCP config, {
+  required EzSwitchColor fill,
+  BoxShape shape = BoxShape.rectangle,
+}) =>
+    (fill.gradient == null)
+        ? null
+        : (_, __, Widget? child) => Ink(
+              decoration: BoxDecoration(
+                border: config.boxBorder(fill),
+                borderRadius: config.buttonShape.radius,
+                gradient: fill.gradient,
+                shape: shape,
+              ),
+              child: child,
+            );
 
 class EzGradientOutlinedBorder extends OutlinedBorder {
   final Gradient gradient;

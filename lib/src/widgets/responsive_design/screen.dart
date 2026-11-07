@@ -33,10 +33,18 @@ class EzScreen extends StatelessWidget {
 
   Decoration? buildDecoration() {
     final String path = config.backgroundImagePath;
-    if (path == noImageValue) return null;
+    if (path == noImageValue) {
+      return (config.surfaceContainerFill.gradient == null)
+          ? null
+          : BoxDecoration(gradient: config.surfaceContainerFill.gradient);
+    }
 
     final int? isColor = int.tryParse(path);
     if (isColor != null) return BoxDecoration(color: Color(isColor));
+
+    final LinearGradient? isGradient =
+        (path.split(colorSplit).length >= 4) ? ezLGFromString(path) : null;
+    if (isGradient != null) return BoxDecoration(gradient: isGradient);
 
     return BoxDecoration(image: config.backgroundImage);
   }
