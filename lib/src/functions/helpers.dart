@@ -231,7 +231,7 @@ Future<String?> ezColorPicker(
   late EzSwitchColor preview;
   late bool gradient;
 
-  late final List<Color> gradients;
+  late List<Color> gradients;
   late AlignmentGeometry beginDir;
   late AlignmentGeometry endDir;
 
@@ -392,7 +392,6 @@ Future<String?> ezColorPicker(
             toolbarSpacing: config.spacing / 2,
           );
 
-      // TODO: fix error on cancel
       return ezModalScroll(
         config,
         children: <Widget>[
