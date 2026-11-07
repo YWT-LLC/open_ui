@@ -167,7 +167,8 @@ class EzCP extends ChangeNotifier {
       _theme = ezThemeData(
         Brightness.dark,
         ltr: _ltr,
-        colors: colorCache,
+        basicColors: basicColors,
+        color: colorCache,
         design: designCache,
         layout: layoutCache,
         text: textCache,
@@ -276,7 +277,8 @@ class EzCP extends ChangeNotifier {
       _theme = ezThemeData(
         Brightness.dark,
         ltr: _ltr,
-        colors: colorCache,
+        basicColors: basicColors,
+        color: colorCache,
         design: designCache,
         layout: layoutCache,
         text: textCache,
