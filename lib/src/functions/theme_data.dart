@@ -38,6 +38,17 @@ ThemeData ezThemeData(
   });
 
   // Has a twin in EzCP (good to keep separate)
+  BoxBorder buildBox(EzSwitchColor fill) => fill.color == null
+      ? EzGradientBoxBorder(
+          gradient: fill.gradient!,
+          width: design.borderWidth,
+        )
+      : Border.all(
+          color: fill.color!,
+          width: design.borderWidth,
+        );
+
+  // Has a twin in EzCP (good to keep separate)
   BorderSide buildBorder(
     EzSwitchColor fill, {
     double? width,
@@ -166,8 +177,7 @@ ThemeData ezThemeData(
 
     // Card
     cardTheme: CardThemeData(
-      color: colors.surfaceDim.withValues(alpha: crucialTextOpacity),
-      shadowColor: crucialTextShadow,
+      color: colors.surfaceDim.asColor,
       margin: EdgeInsets.zero,
     ),
     // TODO: EzCard for gradients
@@ -212,14 +222,14 @@ ThemeData ezThemeData(
       textStyle: textTheme.bodyLarge,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: colors.surface,
-        prefixIconColor: colors.primary,
-        iconColor: colors.primary,
-        suffixIconColor: colors.primary,
-        hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline),
+        fillColor: colors.surface.asColor,
+        prefixIconColor: colors.primary.asColor,
+        iconColor: colors.primary.asColor,
+        suffixIconColor: colors.primary.asColor,
+        hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline.asColor),
         labelStyle: textTheme.labelLarge,
         helperStyle: textTheme.labelLarge,
-        errorStyle: textTheme.labelLarge?.copyWith(color: colors.error),
+        errorStyle: textTheme.labelLarge?.copyWith(color: colors.error.asColor),
         errorMaxLines: 1,
         border: OutlineInputBorder(
           borderSide: buildBorder(colors.primaryContainer),
@@ -449,7 +459,7 @@ ThemeData ezThemeData(
     tooltipTheme: TooltipThemeData(
       decoration: buildDecoration(
         colors.surfaceDim,
-        border: buildBorder(colors.secondary),
+        border: buildBox(colors.secondary),
         borderRadius: EzButtonShape.roundRect.radius,
       ),
       textStyle: textTheme.bodyLarge,
