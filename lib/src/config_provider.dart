@@ -347,6 +347,7 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get shadowFill => _color.shadow;
   EzSwitchColor get scrimFill => _color.scrim;
 
+  // Has a twin in ezThemeData (good to keep separate)
   BoxDecoration boxDeco({
     EzSwitchColor? fill,
     double? opacity,
@@ -381,6 +382,7 @@ class EzCP extends ChangeNotifier {
 
   double get borderWidth => _design.borderWidth;
 
+  // Has a twin in ezThemeData (good to keep separate)
   BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
       ? EzGradientBoxBorder(this, gradient: fill.gradient!)
       : Border.all(
