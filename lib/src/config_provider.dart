@@ -396,9 +396,8 @@ class EzCP extends ChangeNotifier {
           ? BorderSide.none
           : fill.color == null
               ? EzGradientBorderSide(
-                  this,
                   gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
-                  vvidth: width ?? _design.borderWidth,
+                  width: width ?? _design.borderWidth,
                 )
               : BorderSide(
                   color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),

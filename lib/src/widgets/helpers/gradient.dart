@@ -81,10 +81,16 @@ class EzGradientBoxBorder extends BoxBorder {
   });
 
   @override
-  BorderSide get top => EzGradientBorderSide(config, gradient: gradient);
+  BorderSide get top => EzGradientBorderSide(
+        width: config.borderWidth,
+        gradient: gradient,
+      );
 
   @override
-  BorderSide get bottom => EzGradientBorderSide(config, gradient: gradient);
+  BorderSide get bottom => EzGradientBorderSide(
+        width: config.borderWidth,
+        gradient: gradient,
+      );
 
   @override
   bool get isUniform => true;
@@ -131,18 +137,14 @@ class EzGradientBoxBorder extends BoxBorder {
 }
 
 class EzGradientBorderSide extends BorderSide {
-  final EzCP config;
   final Gradient gradient;
-  final double? vvidth;
 
-  EzGradientBorderSide(
-    this.config, {
+  EzGradientBorderSide({
+    required super.width,
     required this.gradient,
-    this.vvidth,
   }) : super(
           color: gradient.colors.first,
-          width: vvidth ?? config.borderWidth,
-          style: (vvidth ?? config.borderWidth) <= 0 ? BorderStyle.none : BorderStyle.solid,
+          style: (width <= 0) ? BorderStyle.none : BorderStyle.solid,
         );
 
   /// Stroke [Paint] with [gradient] mapped onto [rect]
