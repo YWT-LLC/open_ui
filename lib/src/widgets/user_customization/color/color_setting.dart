@@ -9,9 +9,6 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// TODO: quadruple check all the calls to make sure they look good
-// TODO: then, stress test tf out of it in app
-
 class EzColorSetting extends StatefulWidget {
   final EzCP config;
 
