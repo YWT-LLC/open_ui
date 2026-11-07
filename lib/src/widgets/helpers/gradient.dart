@@ -72,23 +72,23 @@ class EzGradientOutlinedBorder extends OutlinedBorder {
 }
 
 class EzGradientBoxBorder extends BoxBorder {
-  final EzCP config;
+  final double width;
   final Gradient gradient;
 
-  const EzGradientBoxBorder(
-    this.config, {
+  const EzGradientBoxBorder({
+    required this.width,
     required this.gradient,
   });
 
   @override
   BorderSide get top => EzGradientBorderSide(
-        width: config.borderWidth,
+        width: width,
         gradient: gradient,
       );
 
   @override
   BorderSide get bottom => EzGradientBorderSide(
-        width: config.borderWidth,
+        width: width,
         gradient: gradient,
       );
 
@@ -96,7 +96,7 @@ class EzGradientBoxBorder extends BoxBorder {
   bool get isUniform => true;
 
   @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.all(config.borderWidth);
+  EdgeInsetsGeometry get dimensions => EdgeInsets.all(width);
 
   @override
   void paint(
@@ -106,7 +106,6 @@ class EzGradientBoxBorder extends BoxBorder {
     BoxShape shape = BoxShape.rectangle,
     BorderRadius? borderRadius,
   }) {
-    final double width = config.borderWidth;
     if (width <= 0) return;
 
     final Paint paint = Paint()
@@ -127,13 +126,16 @@ class EzGradientBoxBorder extends BoxBorder {
   }
 
   @override
-  ShapeBorder scale(double t) => EzGradientBoxBorder(config, gradient: gradient.scale(t));
+  ShapeBorder scale(double t) => EzGradientBoxBorder(
+        gradient: gradient.scale(t),
+        width: width,
+      );
 
   @override
   bool operator ==(Object other) => other is EzGradientBoxBorder && other.gradient == gradient;
 
   @override
-  int get hashCode => Object.hash(gradient, config.borderWidth);
+  int get hashCode => Object.hash(gradient, width);
 }
 
 class EzGradientBorderSide extends BorderSide {
