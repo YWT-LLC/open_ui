@@ -66,6 +66,11 @@ ThemeData ezThemeData(
                   width: width ?? design.borderWidth,
                 );
 
+  OutlineInputBorder buildOIBorder(EzSwitchColor fill) => OutlineInputBorder(
+        borderSide: buildBorder(fill),
+        gapPadding: 0,
+      );
+
   // Has a twin in EzCP (good to keep separate)
   BoxDecoration buildDecoration(
     EzSwitchColor fill, {
@@ -193,7 +198,7 @@ ThemeData ezThemeData(
             states.contains(WidgetState.selected) ? colors.onPrimary : null,
       ),
       overlayColor: WidgetStateProperty.all(focusColor),
-      side: buildBorder(colors.primary),
+      side: buildBorder(colors.primaryContainer),
       shape: design.buttonShape.shape,
     ),
 
@@ -231,30 +236,12 @@ ThemeData ezThemeData(
         helperStyle: textTheme.labelLarge,
         errorStyle: textTheme.labelLarge?.copyWith(color: colors.error.asColor),
         errorMaxLines: 1,
-        border: OutlineInputBorder(
-          borderSide: buildBorder(colors.primaryContainer),
-          gapPadding: 0,
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderSide: buildBorder(colors.outlineVariant),
-          gapPadding: 0,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: buildBorder(colors.primaryContainer),
-          gapPadding: 0,
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: buildBorder(colors.error),
-          gapPadding: 0,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: buildBorder(colors.secondaryContainer),
-          gapPadding: 0,
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: buildBorder(colors.error),
-          gapPadding: 0,
-        ),
+        border: buildOIBorder(colors.primaryContainer),
+        disabledBorder: buildOIBorder(colors.outlineVariant),
+        enabledBorder: buildOIBorder(colors.primaryContainer),
+        errorBorder: buildOIBorder(colors.errorContainer),
+        focusedBorder: buildOIBorder(colors.secondaryContainer),
+        focusedErrorBorder: buildOIBorder(colors.tertiaryContainer),
       ),
     ),
 
@@ -343,12 +330,12 @@ ThemeData ezThemeData(
       helperStyle: textTheme.labelLarge,
       errorStyle: textTheme.labelLarge!.copyWith(color: colors.error.asColor),
       errorMaxLines: 1,
-      border: UnderlineInputBorder(borderSide: buildBorder(colors.primary)),
-      disabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.outline)),
-      enabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.primary)),
-      errorBorder: UnderlineInputBorder(borderSide: buildBorder(colors.error)),
-      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(colors.secondary)),
-      focusedErrorBorder: UnderlineInputBorder(borderSide: buildBorder(colors.error)),
+      border: UnderlineInputBorder(borderSide: buildBorder(colors.primaryContainer)),
+      disabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.outlineVariant)),
+      enabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.primaryContainer)),
+      errorBorder: UnderlineInputBorder(borderSide: buildBorder(colors.errorContainer)),
+      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(colors.secondaryContainer)),
+      focusedErrorBorder: UnderlineInputBorder(borderSide: buildBorder(colors.tertiaryContainer)),
     ),
 
     // Menu
