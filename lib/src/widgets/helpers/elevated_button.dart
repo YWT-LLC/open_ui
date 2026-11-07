@@ -7,7 +7,7 @@ import '../../../open_ui.dart';
 
 import 'package:flutter/material.dart';
 
-class EzElevatedButton extends StatefulWidget {
+class EzElevatedButton extends StatelessWidget {
   final EzCP config;
 
   /// Easily disable the button
@@ -45,33 +45,28 @@ class EzElevatedButton extends StatefulWidget {
   });
 
   @override
-  State<EzElevatedButton> createState() => _EzElevatedButtonState();
-}
-
-class _EzElevatedButtonState extends State<EzElevatedButton> {
-  @override
   Widget build(BuildContext context) => ElevatedButton(
-        onPressed: widget.enabled ? widget.onPressed : doNothing,
-        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: (!widget.enabled || widget.fauxDisabled)
-            ? (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(widget.config.outlineFill.asColor),
+        onPressed: enabled ? onPressed : doNothing,
+        onLongPress: enabled ? onLongPress : doNothing,
+        style: (!enabled || fauxDisabled)
+            ? (style ?? config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(config.outlineFill.asColor),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               )
-            : widget.style,
+            : style,
         child: Text(
-          widget.text,
-          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: (!widget.enabled || widget.fauxDisabled)
-                ? widget.config.outlineFill.asColor
-                : widget.config.primaryFill.asColor,
+          text,
+          style: (textStyle ?? config.bodyStyle)?.copyWith(
+            decorationColor: (!enabled || fauxDisabled)
+                ? config.outlineFill.asColor
+                : config.primaryFill.asColor,
           ),
-          textAlign: widget.textAlign,
+          textAlign: textAlign,
         ),
       );
 }
 
-class EzElevatedIconButton extends StatefulWidget {
+class EzElevatedIconButton extends StatelessWidget {
   final EzCP config;
 
   /// Easily disable the button
@@ -114,30 +109,24 @@ class EzElevatedIconButton extends StatefulWidget {
   });
 
   @override
-  State<EzElevatedIconButton> createState() => _EzElevatedIconButtonState();
-}
-
-class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
-  @override
   Widget build(BuildContext context) => ElevatedButton.icon(
-        onPressed: widget.enabled ? widget.onPressed : doNothing,
-        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: (widget.enabled || widget.fauxDisabled)
-            ? widget.style
-            : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(widget.config.outlineFill.asColor),
+        onPressed: enabled ? onPressed : doNothing,
+        onLongPress: enabled ? onLongPress : doNothing,
+        style: (enabled || fauxDisabled)
+            ? style
+            : (style ?? config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(config.outlineFill.asColor),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
-        icon: widget.icon,
-        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+        icon: icon,
+        iconAlignment: config.isLefty ? IconAlignment.start : IconAlignment.end,
         label: Text(
-          widget.label,
-          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: (widget.enabled || widget.fauxDisabled)
-                ? widget.config.primaryFill.asColor
-                : widget.config.outlineFill.asColor,
+          label,
+          style: (textStyle ?? config.bodyStyle)?.copyWith(
+            decorationColor:
+                (enabled || fauxDisabled) ? config.primaryFill.asColor : config.outlineFill.asColor,
           ),
-          textAlign: widget.textAlign,
+          textAlign: textAlign,
         ),
       );
 }
