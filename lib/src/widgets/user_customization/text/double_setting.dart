@@ -126,13 +126,13 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                           },
                           tooltip:
                               '${widget.config.ezL10n.gDecrease} ${widget.tooltip.toLowerCase()}',
-                          icon: const Icon(Icons.remove),
+                          icon: EzIcon(widget.config, Icons.remove),
                         )
                       : EzIconButton(
                           widget.config,
                           enabled: false,
                           tooltip: widget.config.ezL10n.gMinimum,
-                          icon: const Icon(Icons.remove),
+                          icon: EzIcon(widget.config, Icons.remove),
                         ),
                   widget.config.rowMargin,
                 ],
@@ -212,13 +212,13 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                           },
                           tooltip:
                               '${widget.config.ezL10n.gIncrease} ${widget.tooltip.toLowerCase()}',
-                          icon: const Icon(Icons.add),
+                          icon: EzIcon(widget.config, Icons.add),
                         )
                       : EzIconButton(
                           widget.config,
                           enabled: false,
                           tooltip: widget.config.ezL10n.gMaximum,
-                          icon: const Icon(Icons.add),
+                          icon: EzIcon(widget.config, Icons.add),
                         ),
                 ],
               ],

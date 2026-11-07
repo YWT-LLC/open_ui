@@ -51,6 +51,6 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
           setState(() {});
         },
         tooltip: widget.config.ezL10n.tsBold,
-        icon: const Icon(Icons.format_bold_outlined),
+        icon: EzIcon(widget.config, Icons.format_bold_outlined),
       );
 }

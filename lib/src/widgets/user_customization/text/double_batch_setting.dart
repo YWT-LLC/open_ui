@@ -90,7 +90,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMinimum,
                     iconSize: _iconSize,
-                    icon: const Icon(Icons.remove),
+                    icon: EzIcon(config, Icons.remove),
                   )
                 : EzIconButton(
                     config,
@@ -143,7 +143,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     },
                     tooltip: '${config.ezL10n.gDecrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
                     iconSize: _iconSize,
-                    icon: const Icon(Icons.remove),
+                    icon: EzIcon(config, Icons.remove),
                   ),
             config.rowMargin,
 
@@ -172,7 +172,11 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                   config.pingRebuild(ezTextRebuildCheck(config, context: context));
                 }
               },
-              child: Icon(Icons.text_fields_sharp, size: _iconSize, color: config.onSurface),
+              child: Icon(
+                Icons.text_fields_sharp,
+                size: _iconSize,
+                color: config.onSurface,
+              ),
             ),
             config.rowMargin,
 
@@ -183,7 +187,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMaximum,
                     iconSize: _iconSize,
-                    icon: const Icon(Icons.add),
+                    icon: EzIcon(config, Icons.add),
                   )
                 : EzIconButton(
                     config,
@@ -236,7 +240,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     },
                     tooltip: '${config.ezL10n.gIncrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
                     iconSize: _iconSize,
-                    icon: const Icon(Icons.add),
+                    icon: EzIcon(config, Icons.add),
                   ),
           ],
         ),

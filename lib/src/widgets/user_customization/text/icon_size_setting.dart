@@ -102,14 +102,14 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         tooltip:
                             '${widget.config.ezL10n.gDecrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
                         iconSize: iconSize,
-                        icon: const Icon(Icons.remove),
+                        icon: EzIcon(widget.config, Icons.remove),
                       )
                     : EzIconButton(
                         widget.config,
                         enabled: false,
                         tooltip: widget.config.ezL10n.gMinimum,
                         iconSize: iconSize,
-                        icon: const Icon(Icons.remove),
+                        icon: EzIcon(widget.config, Icons.remove),
                       ),
                 widget.config.rowMargin,
 
@@ -135,7 +135,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       widget.config.pingRebuild(iconSize != widget.config.iconSize);
                     }
                   },
-                  child: Icon(Icons.sync_alt, size: iconSize, color: widget.config.onSurface),
+                  child: Icon(
+                    Icons.sync_alt,
+                    size: iconSize,
+                    color: widget.config.onSurface,
+                  ),
                 ),
                 widget.config.rowMargin,
 
@@ -167,14 +171,14 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         tooltip:
                             '${widget.config.ezL10n.gIncrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
                         iconSize: iconSize,
-                        icon: const Icon(Icons.add),
+                        icon: EzIcon(widget.config, Icons.add),
                       )
                     : EzIconButton(
                         widget.config,
                         enabled: false,
                         tooltip: widget.config.ezL10n.gMaximum,
                         iconSize: iconSize,
-                        icon: const Icon(Icons.add),
+                        icon: EzIcon(widget.config, Icons.add),
                       ),
               ],
             ),

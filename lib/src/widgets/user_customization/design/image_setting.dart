@@ -367,7 +367,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                         if (clipText != null) urlController.text = clipText;
                       },
                       tooltip: widget.config.ezL10n.gPaste,
-                      icon: const Icon(Icons.paste),
+                      icon: EzIcon(widget.config, Icons.paste),
                     ),
                   ],
                 ),

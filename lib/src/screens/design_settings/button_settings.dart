@@ -310,6 +310,6 @@ class _ButtonStyleSetting extends StatelessWidget {
           }
         },
         label: labelStyle ?? config.ezL10n.dsStyle,
-        icon: Icon(Icons.edit, size: iconSize),
+        icon: EzIcon(config, Icons.edit, size: iconSize),
       );
 }

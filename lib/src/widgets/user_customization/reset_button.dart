@@ -108,7 +108,8 @@ class EzResetButton extends StatelessWidget {
             );
           },
         ),
-        icon: Icon(
+        icon: EzIcon(
+          config,
           Icons.refresh,
           size: iconSize ?? config.iconSize,
         ),

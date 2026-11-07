@@ -146,7 +146,6 @@ ThemeData ezThemeData(
 
     iconTheme: iconData,
     primaryIconTheme: iconData,
-    // TODO: audit regular icons, everything should prolly be EzIcon now for gradient
 
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: colors.secondary.asColor,

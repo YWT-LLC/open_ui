@@ -382,7 +382,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       child: ExcludeSemantics(
                         child: EzIconButton(
                           config,
-                          icon: Icon(ezVisIcon(config, advancedEC.isExpanded)),
+                          icon: ezVisIcon(config, advancedEC.isExpanded),
                           onPressed: () =>
                               advancedEC.isExpanded ? advancedEC.collapse() : advancedEC.expand(),
                           tooltip:
@@ -433,7 +433,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             });
                           },
                           tooltip: l10n(config).csFileBrowser,
-                          icon: const Icon(Icons.folder_open),
+                          icon: EzIcon(config, Icons.folder_open),
                         ),
                       ],
                     ),
@@ -560,7 +560,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         });
                       },
                       tooltip: l10n(config).csFileBrowser,
-                      icon: const Icon(Icons.folder_open),
+                      icon: EzIcon(config, Icons.folder_open),
                     ),
                   ],
                 ),
@@ -1041,7 +1041,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
                     tooltip: widget.ec.isExpanded
                         ? widget.config.ezL10n.gClose
                         : widget.config.ezL10n.gOpen,
-                    icon: Icon(ezVisIcon(widget.config, widget.ec.isExpanded)),
+                    icon: ezVisIcon(widget.config, widget.ec.isExpanded),
                   ),
                 ),
               ),
@@ -1136,7 +1136,7 @@ class _LicensePickerState extends State<_LicensePicker> {
                     tooltip: widget.ec.isExpanded
                         ? widget.config.ezL10n.gClose
                         : widget.config.ezL10n.gOpen,
-                    icon: Icon(ezVisIcon(widget.config, widget.ec.isExpanded)),
+                    icon: ezVisIcon(widget.config, widget.ec.isExpanded),
                   ),
                 ),
               ),

@@ -328,7 +328,11 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
               tooltip: widget.config.ezL10n.gPlay,
               onPressed: () =>
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
-              icon: Icon(Icons.play_arrow, semanticLabel: widget.config.ezL10n.dsPlay),
+              icon: EzIcon(
+                widget.config,
+                Icons.play_arrow,
+                semanticLabel: widget.config.ezL10n.dsPlay,
+              ),
             ),
           ),
         ),

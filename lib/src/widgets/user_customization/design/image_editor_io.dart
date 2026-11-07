@@ -115,7 +115,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   _editorController.undo();
                   setState(() {});
                 },
-                icon: const Icon(Icons.undo),
+                icon: EzIcon(widget.config, Icons.undo),
               ),
               widget.config.rowSpacer,
 
@@ -128,7 +128,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   _editorController.redo();
                   setState(() {});
                 },
-                icon: const Icon(Icons.redo),
+                icon: EzIcon(widget.config, Icons.redo),
               ),
               widget.config.rowSpacer,
 
@@ -141,7 +141,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   _editorController.reset();
                   setState(() {});
                 },
-                icon: const Icon(Icons.refresh),
+                icon: EzIcon(widget.config, Icons.refresh),
               ),
               widget.config.rowSpacer,
 
@@ -150,7 +150,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                 widget.config,
                 tooltip: widget.config.ezL10n.gCancel,
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.delete),
+                icon: EzIcon(widget.config, Icons.delete),
               ),
             ],
           ),
@@ -198,7 +198,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
               EzIconButton(
                 widget.config,
                 fauxDisabled: !lockedAR,
-                icon: const Icon(Icons.aspect_ratio),
+                icon: EzIcon(widget.config, Icons.aspect_ratio),
                 tooltip: widget.config.ezL10n.gLock,
                 onPressed: () => setState(() => lockedAR = !lockedAR),
               ),
@@ -218,7 +218,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   );
                   setState(() {});
                 },
-                icon: const Icon(Icons.rotate_left),
+                icon: EzIcon(widget.config, Icons.rotate_left),
               ),
               widget.config.rowSpacer,
 
@@ -235,7 +235,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   );
                   setState(() {});
                 },
-                icon: const Icon(Icons.rotate_right),
+                icon: EzIcon(widget.config, Icons.rotate_right),
               ),
               widget.config.rowSpacer,
 
@@ -328,7 +328,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                         semantics: widget.config.ezL10n.gLoadingAnim,
                         colorScheme: widget.config.theme.colorScheme,
                       ))
-                    : const Icon(Icons.check),
+                    : EzIcon(widget.config, Icons.check),
               ),
             ],
           ),

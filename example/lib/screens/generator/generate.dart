@@ -332,10 +332,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                       config.rowMargin,
                       EzIconButton(
                         config,
-                        icon: Icon(
-                          ezVisIcon(config, ec.isExpanded),
-                          semanticLabel: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
-                        ),
+                        icon: ezVisIcon(config, ec.isExpanded),
                         onPressed: () => ec.isExpanded ? ec.collapse() : ec.expand(),
                         tooltip: ec.isExpanded ? config.ezL10n.gClose : config.ezL10n.gOpen,
                       ),

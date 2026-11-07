@@ -259,7 +259,7 @@ Future<String?> ezColorPicker(
   Widget dirMenu({
     required MenuController controller,
     required AlignmentGeometry selected,
-    required Icon icon,
+    required Widget icon,
     required String tooltip,
     required void Function(Alignment choice) onSelected,
   }) =>
@@ -424,7 +424,7 @@ Future<String?> ezColorPicker(
                       right: 0,
                       child: EzIconButton(
                         config,
-                        icon: const Icon(Icons.add),
+                        icon: EzIcon(config, Icons.add),
                         tooltip: config.ezL10n.csBuildGradient,
                         onPressed: () => setModal(() => gradients.add(preview.asColor)),
                       ),
@@ -504,7 +504,7 @@ Future<String?> ezColorPicker(
                             dirMenu(
                               controller: beginMenu,
                               selected: beginDir,
-                              icon: const Icon(Icons.start),
+                              icon: EzIcon(config, Icons.start),
                               tooltip: config.ezL10n.csStartDir,
                               onSelected: (Alignment choice) => setModal(() => beginDir = choice),
                             ),
@@ -516,7 +516,7 @@ Future<String?> ezColorPicker(
                             dirMenu(
                               controller: endMenu,
                               selected: endDir,
-                              icon: const Icon(Icons.flag),
+                              icon: EzIcon(config, Icons.flag),
                               tooltip: config.ezL10n.csEndDir,
                               onSelected: (Alignment choice) => setModal(() => endDir = choice),
                             ),
@@ -992,11 +992,15 @@ bool get ezRootIsMounted => (ezRootNav.currentContext != null) && ezRootNav.curr
 OverlayState? get ezRootOverlay => ezRootNav.currentState?.overlay;
 
 /// 'Smart' keyboard arrow
-IconData ezVisIcon(EzCP config, bool show) => show
-    ? Icons.keyboard_arrow_down
-    : config.isLefty
-        ? Icons.keyboard_arrow_right
-        : Icons.keyboard_arrow_left;
+Widget ezVisIcon(EzCP config, bool show) => EzIcon(
+      config,
+      show
+          ? Icons.keyboard_arrow_down
+          : config.isLefty
+              ? Icons.keyboard_arrow_right
+              : Icons.keyboard_arrow_left,
+      semanticLabel: show ? config.ezL10n.gClose : config.ezL10n.gOpen,
+    );
 
 /// Location of the owner of [context]
 Offset ezWya(BuildContext context) =>
