@@ -136,7 +136,7 @@ ThemeData ezThemeData(
     dividerColor: colors.secondary.asColor,
     hoverColor: focusColor,
     scaffoldBackgroundColor: colors.surfaceContainer.asColor,
-    // TODO: make sure ezscreen, ezmodal, ezalert, use gradients
+    // TODO: make sure EzScreen, EzModal, EzAlert, use gradients
 
     // Transitions //
 
@@ -170,7 +170,7 @@ ThemeData ezThemeData(
       centerTitle: true,
       titleSpacing: 0,
     ),
-    // TODO: make sure appbar can use gradients
+    // TODO: make sure AppBar can use gradients
 
     // Bottom sheet
     bottomSheetTheme: BottomSheetThemeData(
@@ -213,7 +213,6 @@ ThemeData ezThemeData(
     navigationDrawerTheme: NavigationDrawerThemeData(
       backgroundColor: colors.surfaceDim.asColor,
     ),
-    // TODO: make sure drawer can use gradients
 
     // Dropdown menu
     dropdownMenuTheme: DropdownMenuThemeData(

@@ -48,7 +48,7 @@ class EzConfigurableApp extends StatelessWidget {
           isDark: EzCM.get(isDarkThemeKey) ?? isDarkTheme(context),
           appCache: appCache,
         ),
-        child: _AppDrawer(
+        child: _TheMagic(
           localizationsDelegates: localizationsDelegates,
           supportedLocales: supportedLocales,
           routerConfig: routerConfig,
@@ -56,22 +56,22 @@ class EzConfigurableApp extends StatelessWidget {
       );
 }
 
-class _AppDrawer extends StatefulWidget {
+class _TheMagic extends StatefulWidget {
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Iterable<Locale> supportedLocales;
   final RouterConfig<Object>? routerConfig;
 
-  const _AppDrawer({
+  const _TheMagic({
     required this.localizationsDelegates,
     required this.supportedLocales,
     required this.routerConfig,
   });
 
   @override
-  State<_AppDrawer> createState() => _AppDrawerState();
+  State<_TheMagic> createState() => _TheMagicState();
 }
 
-class _AppDrawerState extends State<_AppDrawer> with WidgetsBindingObserver {
+class _TheMagicState extends State<_TheMagic> with WidgetsBindingObserver {
   // Init //
 
   @override

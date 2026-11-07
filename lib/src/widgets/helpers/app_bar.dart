@@ -8,20 +8,20 @@ import 'package:open_ui/open_ui.dart';
 
 class EzAppBar extends StatelessWidget {
   final EzCP config;
-  final double? height;
-  final Widget? leading;
-  final double? leadingWidth;
   final Widget? title;
   final List<Widget>? actions;
+  final Widget? leading;
+  final double? leadingWidth;
+  final double? height;
 
   const EzAppBar(
     this.config, {
     super.key,
-    this.height,
-    this.leading,
-    this.leadingWidth,
     this.title,
     this.actions,
+    this.leading,
+    this.leadingWidth,
+    this.height,
   }) : assert(
           (leading == null) == (leadingWidth == null),
           'If you provide leading you must provide leadingWidth, vice versa',
