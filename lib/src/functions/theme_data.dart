@@ -170,7 +170,6 @@ ThemeData ezThemeData(
       centerTitle: true,
       titleSpacing: 0,
     ),
-    // TODO: make sure AppBar can use gradients
 
     // Bottom sheet
     bottomSheetTheme: BottomSheetThemeData(
