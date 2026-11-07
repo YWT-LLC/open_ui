@@ -79,6 +79,7 @@ class EzFooter extends StatelessWidget {
     this.contributeMessage,
     this.translateMessage,
   });
+  // TODO: restore blank
 
   @override
   Widget build(BuildContext context) =>
