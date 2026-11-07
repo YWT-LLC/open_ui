@@ -384,7 +384,10 @@ class EzCP extends ChangeNotifier {
 
   // Has a twin in ezThemeData (good to keep separate)
   BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
-      ? EzGradientBoxBorder(this, gradient: fill.gradient!)
+      ? EzGradientBoxBorder(
+          gradient: fill.gradient!,
+          width: _design.borderWidth,
+        )
       : Border.all(
           color: fill.color!,
           width: _design.borderWidth,
@@ -394,6 +397,7 @@ class EzCP extends ChangeNotifier {
       ? EzGradientOutlinedBorder(this, shape: shape ?? buttonShape.shape, gradient: fill.gradient!)
       : shape ?? buttonShape.shape;
 
+  // Has a twin in ezThemeData (good to keep separate)
   BorderSide borderSide(
     EzSwitchColor fill, {
     double? width,
