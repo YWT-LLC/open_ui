@@ -46,9 +46,7 @@ const int ezSwipeV = 275;
 //* Theme Data *//
 
 /// Opacity for highlight effects; on hover, on focus, etc
-/// Doubles as opacity minimum for crucial elements
-/// Some things are too important to be broken by user settings
-/// 0.12
+/// 0.125
 const double focusOpacity = 0.125;
 
 /// One percent
