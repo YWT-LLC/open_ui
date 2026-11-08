@@ -60,7 +60,7 @@ class _Options extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => EzScrollView(config, children: <Widget>[
+  Widget build(BuildContext context) => ezModalScroll(config, children: <Widget>[
         EzWrap(children: <Widget>[
           ezWrap(config, child: EzBigButtonsConfig(config, updateBoth: false, extra: extraBig)),
           ezWrap(config, child: EzHighVisibilityConfig(config, updateBoth: false, extra: extraVis)),
