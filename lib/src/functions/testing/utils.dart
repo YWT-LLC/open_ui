@@ -3,7 +3,7 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// [debugPrint] alias; for permanent logging
 /// Reserving [debugPrint] for temporary logging makes them easier to remove when the time comes

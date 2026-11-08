@@ -3,11 +3,12 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'button_settings.dart';
-import 'page_settings.dart';
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'button_settings.dart';
+import 'page_settings.dart';
+
+import 'package:material_ui/material_ui.dart';
 
 class EzDesignSettings extends StatelessWidget {
   final EzCP config;

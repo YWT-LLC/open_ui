@@ -7,7 +7,7 @@ import '../../../open_ui.dart';
 import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ButtonDesign extends StatefulWidget {
   final EzCP config;
