@@ -9,9 +9,9 @@ import './image_editor_io.dart' if (dart.library.html) './image_editor_web.dart'
 
 import 'dart:io';
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EzImageSetting extends StatefulWidget {
