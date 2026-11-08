@@ -104,6 +104,8 @@ class _TheMagicState extends State<_TheMagic> with WidgetsBindingObserver {
           themeMode: config.themeMode,
           darkTheme: config.theme,
           theme: config.theme,
+          // Too many changes to animate!
+          themeAnimationStyle: AnimationStyle.noAnimation,
           routerConfig: widget.routerConfig,
         ),
       );

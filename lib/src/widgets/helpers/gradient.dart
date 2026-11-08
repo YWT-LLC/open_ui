@@ -109,7 +109,8 @@ class EzGradientBoxBorder extends BoxBorder {
       );
 
   @override
-  bool operator ==(Object other) => other is EzGradientBoxBorder && other.gradient == gradient;
+  bool operator ==(Object other) =>
+      other is EzGradientBoxBorder && other.gradient == gradient && other.width == width;
 
   @override
   int get hashCode => Object.hash(gradient, width);
