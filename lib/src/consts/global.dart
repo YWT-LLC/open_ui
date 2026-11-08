@@ -64,6 +64,9 @@ const Duration keyTime = Duration(milliseconds: 300);
 /// Allows for app images whose default is an asset to be "null"
 const String noImageValue = 'noImage';
 
+/// Allows for the [Scaffold.persistentFooterButtons] to properly disappear when not needed by [EzFooter]
+const SizedBox nullFooter = SizedBox.shrink(key: ValueKey<String>('begone-tarantino'));
+
 /// 'MaterialIcons'
 /// Useful for creating an [Icon] from an [IconData.codePoint] string
 const String matIcons = 'MaterialIcons';

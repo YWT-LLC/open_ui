@@ -44,7 +44,7 @@ class EzScaffold extends Scaffold {
               ? FloatingActionButtonLocation.startDocked
               : FloatingActionButtonLocation.endDocked,
           persistentFooterButtons:
-              (footer == null || footer == const SizedBox.shrink()) ? null : <Widget>[footer],
+              (footer == null || footer == nullFooter) ? null : <Widget>[footer],
           persistentFooterAlignment: footerAlign ?? AlignmentDirectional.bottomCenter,
           persistentFooterDecoration: const BoxDecoration(),
           resizeToAvoidBottomInset: false,
@@ -90,7 +90,7 @@ class EzFooter extends StatelessWidget {
   Widget build(BuildContext context) =>
       (human || (config.locale.languageCode == defaultLocale.languageCode))
           ? quiet
-              ? const SizedBox.shrink()
+              ? nullFooter
               : (contributeMessage ??
                   EzLink(
                     config,
