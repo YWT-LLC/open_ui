@@ -53,7 +53,7 @@ class EzScrollView extends StatefulWidget {
     this.scrollDirection = Axis.vertical,
     this.reverseHands = false,
     this.primary,
-    this.physics = const BouncingScrollPhysics(),
+    this.physics = const ClampingScrollPhysics(),
     this.child,
 
     // EzRow/Column parameters
