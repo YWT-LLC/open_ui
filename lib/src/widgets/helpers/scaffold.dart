@@ -43,7 +43,8 @@ class EzScaffold extends Scaffold {
           floatingActionButtonLocation: config.isLefty
               ? FloatingActionButtonLocation.startDocked
               : FloatingActionButtonLocation.endDocked,
-          persistentFooterButtons: footer == null ? null : <Widget>[footer],
+          persistentFooterButtons:
+              (footer == null || footer == const SizedBox.shrink()) ? null : <Widget>[footer],
           persistentFooterAlignment: footerAlign ?? AlignmentDirectional.bottomCenter,
           persistentFooterDecoration: const BoxDecoration(),
           resizeToAvoidBottomInset: false,
@@ -52,6 +53,10 @@ class EzScaffold extends Scaffold {
 
 class EzFooter extends StatelessWidget {
   final EzCP config;
+
+  /// Hide the [contributeMessage] in [defaultLocale]
+  /// [translateMessage]s are always present in other locales
+  final bool hide;
 
   /// Just [contributeMessage] for this locale
   final Locale defaultLocale;
@@ -72,6 +77,7 @@ class EzFooter extends StatelessWidget {
   const EzFooter(
     this.config, {
     super.key,
+    this.hide = false,
     this.defaultLocale = english,
     this.human = false,
     required this.a11howPath,
@@ -79,23 +85,24 @@ class EzFooter extends StatelessWidget {
     this.contributeMessage,
     this.translateMessage,
   });
-  // TODO: restore blank
 
   @override
   Widget build(BuildContext context) =>
       (human || (config.locale.languageCode == defaultLocale.languageCode))
-          ? contributeMessage ??
-              EzLink(
-                config,
-                text: config.ezL10n.gDevInfo,
-                style: config.labelStyle,
-                inline: true,
-                textAlign: textAlign,
-                url: Uri.parse(ywt.websiteContributeMula),
-                hint: config.ezL10n.gOpenLink,
-                tooltip: ywt.websiteContributeMula,
-              )
-          : translateMessage ??
+          ? hide
+              ? const SizedBox.shrink()
+              : (contributeMessage ??
+                  EzLink(
+                    config,
+                    text: config.ezL10n.gDevInfo,
+                    style: config.labelStyle,
+                    inline: true,
+                    textAlign: textAlign,
+                    url: Uri.parse(ywt.websiteContributeMula),
+                    hint: config.ezL10n.gOpenLink,
+                    tooltip: ywt.websiteContributeMula,
+                  ))
+          : (translateMessage ??
               EzRichText(
                 config,
                 children: <InlineSpan>[
@@ -126,5 +133,5 @@ class EzFooter extends StatelessWidget {
                 ],
                 style: config.labelStyle,
                 textAlign: textAlign,
-              );
+              ));
 }
