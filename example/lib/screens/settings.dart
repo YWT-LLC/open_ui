@@ -88,7 +88,11 @@ class SettingsHubScreen extends StatelessWidget {
             target: target,
           ),
         ),
-        footer: EzFooter(config, a11howPath: ywt.openUIContributeA11),
+        footer: EzFooter(
+          config,
+          quiet: true,
+          a11howPath: ywt.openUIContributeA11,
+        ),
         showSettings: false,
         fabs: <Widget>[
           // Rebuild (conditional)

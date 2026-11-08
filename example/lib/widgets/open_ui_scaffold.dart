@@ -97,7 +97,12 @@ class OpenUIScaffold extends StatelessWidget {
           if (fabs != null) ...fabs!,
           ...config.backFABs(isHome: isHome),
         ],
-        footer: footer ?? EzFooter(config, a11howPath: ywt.exampleContributeA11),
+        footer: footer ??
+            EzFooter(
+              config,
+              quiet: true,
+              a11howPath: ywt.exampleContributeA11,
+            ),
         footerAlign: footerAlign,
       ),
     );

@@ -708,6 +708,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
         title: l10n(config).csPageTitle,
         footer: EzFooter(
           config,
+          quiet: true,
           a11howPath: ywt.exampleContributeA11,
           textAlign: TextAlign.start,
         ),

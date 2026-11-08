@@ -56,7 +56,7 @@ class EzFooter extends StatelessWidget {
 
   /// Hide the [contributeMessage] in [defaultLocale]
   /// [translateMessage]s are always present in other locales
-  final bool hide;
+  final bool quiet;
 
   /// Just [contributeMessage] for this locale
   final Locale defaultLocale;
@@ -77,7 +77,7 @@ class EzFooter extends StatelessWidget {
   const EzFooter(
     this.config, {
     super.key,
-    this.hide = false,
+    this.quiet = false,
     this.defaultLocale = english,
     this.human = false,
     required this.a11howPath,
@@ -89,7 +89,7 @@ class EzFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       (human || (config.locale.languageCode == defaultLocale.languageCode))
-          ? hide
+          ? quiet
               ? const SizedBox.shrink()
               : (contributeMessage ??
                   EzLink(
