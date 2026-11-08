@@ -770,12 +770,13 @@ abstract class EzAppCache {
 //* Helpers *//
 
 EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
-  final dynamic value = EzCM.get(key);
-  final String color =
-      (value == null) ? getLiveColor(basic, key).toARGB32().toString() : value.toString();
+  late final EzSwitchColor backup = EzSwitchColor(color: getLiveColor(basic, key));
 
-  final EzSwitchColor backup = EzSwitchColor(color: Color(int.parse(color)));
-  final List<String> parts = color.split(colorSplit);
+  final dynamic stored = EzCM.get(key);
+  if (stored == null) return backup;
+
+  final String value = stored.toString();
+  final List<String> parts = value.split(colorSplit);
 
   if (parts.length > 1) {
     if (parts.length < 3) return backup;
@@ -790,9 +791,10 @@ EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
         colors: hexes.map((int? hex) => Color(hex!)).toList(),
       ),
     );
+  } else {
+    final int? hex = int.tryParse(value);
+    return (hex == null) ? backup : EzSwitchColor(color: Color(hex));
   }
-
-  return backup;
 }
 
 /// Safety net, not a crutch...
