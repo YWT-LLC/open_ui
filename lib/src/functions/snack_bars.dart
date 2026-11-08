@@ -6,7 +6,7 @@
 import '../../open_ui.dart';
 
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Standardized [SnackBar] with an [EzCountdownTimer]
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(

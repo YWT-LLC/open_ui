@@ -6,7 +6,7 @@
 import '../../open_ui.dart';
 import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Returns the guesstimated most readable text color (black/white) for [background]
 Color ezTextColor(Color background) {

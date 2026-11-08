@@ -7,7 +7,7 @@ import '../../open_ui.dart';
 
 import 'dart:io';
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:image_picker/image_picker.dart';
 
 /// Returns and [AssetImage], [NetworkImage], or [FileImage] based on the [path]
