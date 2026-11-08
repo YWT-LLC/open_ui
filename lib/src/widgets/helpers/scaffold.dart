@@ -44,9 +44,11 @@ class EzScaffold extends Scaffold {
               ? FloatingActionButtonLocation.startDocked
               : FloatingActionButtonLocation.endDocked,
           persistentFooterButtons:
-              (footer == null || footer == nullFooter) ? null : <Widget>[footer],
+              (footer == null || (footer is EzFooter && footer.isEmpty)) ? null : <Widget>[footer],
           persistentFooterAlignment: footerAlign ?? AlignmentDirectional.bottomCenter,
-          persistentFooterDecoration: const BoxDecoration(),
+          persistentFooterDecoration: (footer == null || (footer is EzFooter && footer.isEmpty))
+              ? null
+              : const BoxDecoration(),
           resizeToAvoidBottomInset: false,
         );
 }
@@ -86,22 +88,22 @@ class EzFooter extends StatelessWidget {
     this.translateMessage,
   });
 
+  bool get isEmpty => quiet && (human || config.locale.languageCode == defaultLocale.languageCode);
+
   @override
   Widget build(BuildContext context) =>
       (human || (config.locale.languageCode == defaultLocale.languageCode))
-          ? quiet
-              ? nullFooter
-              : (contributeMessage ??
-                  EzLink(
-                    config,
-                    text: config.ezL10n.gDevInfo,
-                    style: config.labelStyle,
-                    inline: true,
-                    textAlign: textAlign,
-                    url: Uri.parse(ywt.websiteContributeMula),
-                    hint: config.ezL10n.gOpenLink,
-                    tooltip: ywt.websiteContributeMula,
-                  ))
+          ? (contributeMessage ??
+              EzLink(
+                config,
+                text: config.ezL10n.gDevInfo,
+                style: config.labelStyle,
+                inline: true,
+                textAlign: textAlign,
+                url: Uri.parse(ywt.websiteContributeMula),
+                hint: config.ezL10n.gOpenLink,
+                tooltip: ywt.websiteContributeMula,
+              ))
           : (translateMessage ??
               EzRichText(
                 config,
