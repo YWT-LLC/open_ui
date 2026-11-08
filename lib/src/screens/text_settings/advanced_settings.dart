@@ -510,7 +510,8 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           menuStyle: widget.bodyProvider.value,
           dropdownMenuEntries: EzTextSettingType.values
               .map(
-                (EzTextSettingType type) => DropdownMenuEntry<EzTextSettingType>(
+                (EzTextSettingType type) => EzDropMenuEntry<EzTextSettingType>(
+                  widget.config,
                   value: type,
                   label: type.label(widget.config.ezL10n),
                 ),

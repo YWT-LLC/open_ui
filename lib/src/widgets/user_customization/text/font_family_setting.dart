@@ -52,10 +52,11 @@ class _FontSettingState extends State<EzFontSetting> {
           ),
           dropdownMenuEntries: googleStyles.entries
               .map(
-                (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
+                (MapEntry<String, TextStyle> entry) => EzDropMenuEntry<String>(
+                  widget.config,
                   value: entry.key,
                   label: ezCamelToTitle(entry.key),
-                  style: TextButton.styleFrom(textStyle: entry.value),
+                  textStyle: entry.value,
                 ),
               )
               .toList(),

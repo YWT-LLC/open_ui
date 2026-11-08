@@ -34,7 +34,7 @@ class EzDropdownMenu<T> extends StatelessWidget {
 
   final T? initialSelection;
   final ValueChanged<T?>? onSelected;
-  final List<DropdownMenuEntry<T>> dropdownMenuEntries;
+  final List<EzDropMenuEntry<T>> dropdownMenuEntries;
 
   /// [DropdownMenu] with custom styling
   const EzDropdownMenu(
@@ -102,4 +102,26 @@ class EzDropdownMenu<T> extends StatelessWidget {
           ),
         ],
       );
+}
+
+class EzDropMenuEntry<T> extends DropdownMenuEntry<T> {
+  /// [EzDropMenuEntry] wrapper that supports [Gradient]s via [EzSwitchColor]
+  EzDropMenuEntry(
+    EzCP config, {
+    required super.value,
+    required super.label,
+    super.labelWidget,
+    super.leadingIcon,
+    super.trailingIcon,
+    super.enabled,
+    EzSwitchColor? fill,
+    TextStyle? textStyle,
+  }) : super(
+          style: MenuItemButton.styleFrom(
+            backgroundColor: (fill ?? config.surfaceFill).color,
+            textStyle: textStyle,
+          ).copyWith(
+            backgroundBuilder: config.buttonLayer(fill ?? config.surfaceFill),
+          ),
+        );
 }
