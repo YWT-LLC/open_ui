@@ -50,54 +50,52 @@ class EzAlertDialog extends AlertDialog {
 
     // Return the build //
 
-    final AlertDialog alert = AlertDialog(
-      // Title
-      title: title,
-      titlePadding: title == null
-          ? null
-          : EdgeInsets.only(
-              top: config.marginVal,
-              left: config.marginVal,
-              right: config.marginVal,
-            ),
-
-      // Content
-      content: dialogContent,
-      contentPadding: dialogContent == null
-          ? null
-          : EdgeInsets.only(
-              top: (title == null) ? config.marginVal : config.spacing,
-              left: config.marginVal,
-              right: config.marginVal,
-            ),
-
-      // Actions
-      actions: (closedActions == null)
-          ? null
-          : closedActions.length <= 2
-              ? config.isLefty
-                  ? closedActions.reversed.toList()
-                  : closedActions
-              : <Widget>[
-                  EzCol(mainAxisAlignment: MainAxisAlignment.center, children: closedActions)
-                ],
-      actionsAlignment: (closedActions != null && closedActions.length > 2)
-          ? MainAxisAlignment.center
-          : config.isLefty
-              ? MainAxisAlignment.start
-              : MainAxisAlignment.end,
-
-      // General
-      iconPadding: EdgeInsets.zero,
-      buttonPadding: EdgeInsets.zero,
-      insetPadding: EdgeInsets.all(config.marginVal),
-      actionsPadding: EzInsets.wrap(config.spacing),
-    );
-
+    // TODO: regular dialog can use gradient in theory
     return SelectionArea(
-        child: (config.surfaceDimFill.gradient == null)
-            ? alert
-            : ezGradientBox(config.surfaceDimFill, child: alert));
+      child: AlertDialog(
+        // Title
+        title: title,
+        titlePadding: title == null
+            ? null
+            : EdgeInsets.only(
+                top: config.marginVal,
+                left: config.marginVal,
+                right: config.marginVal,
+              ),
+
+        // Content
+        content: dialogContent,
+        contentPadding: dialogContent == null
+            ? null
+            : EdgeInsets.only(
+                top: (title == null) ? config.marginVal : config.spacing,
+                left: config.marginVal,
+                right: config.marginVal,
+              ),
+
+        // Actions
+        actions: (closedActions == null)
+            ? null
+            : closedActions.length <= 2
+                ? config.isLefty
+                    ? closedActions.reversed.toList()
+                    : closedActions
+                : <Widget>[
+                    EzCol(mainAxisAlignment: MainAxisAlignment.center, children: closedActions)
+                  ],
+        actionsAlignment: (closedActions != null && closedActions.length > 2)
+            ? MainAxisAlignment.center
+            : config.isLefty
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
+
+        // General
+        iconPadding: EdgeInsets.zero,
+        buttonPadding: EdgeInsets.zero,
+        insetPadding: EdgeInsets.all(config.marginVal),
+        actionsPadding: EzInsets.wrap(config.spacing),
+      ),
+    );
   }
 }
 
