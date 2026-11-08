@@ -5,7 +5,7 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Mimics the [AppBar.leading] back button
 /// But can also be used in [AppBar.actions] for left handed layouts
