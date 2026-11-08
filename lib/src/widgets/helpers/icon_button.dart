@@ -75,7 +75,8 @@ class EzIconTouch extends StatelessWidget {
   final EzCP config;
   final IconData icon;
   final double? iconSize;
-  final EzSwitchColor? fill;
+  final EzSwitchColor? iconFill;
+  final EzSwitchColor? backgroundFill;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final bool enabled;
@@ -87,7 +88,8 @@ class EzIconTouch extends StatelessWidget {
     super.key,
     required this.icon,
     this.iconSize,
-    this.fill,
+    this.iconFill,
+    this.backgroundFill,
     this.onPressed,
     this.onLongPress,
     this.enabled = true,
@@ -104,8 +106,11 @@ class EzIconTouch extends StatelessWidget {
             onLongPress: onLongPress,
             child: Container(
               padding: EzInsets.wrap(config.padding),
-              decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: EzIcon(config, icon, fill: fill),
+              decoration: config.boxDecoration(
+                fill: backgroundFill ?? config.surfaceFill,
+                shape: BoxShape.circle,
+              ),
+              child: EzIcon(config, icon, fill: iconFill),
             ),
           ),
         )
@@ -117,7 +122,10 @@ class EzIconTouch extends StatelessWidget {
             onLongPress: doNothing,
             child: Container(
               padding: EzInsets.wrap(config.padding),
-              decoration: const BoxDecoration(shape: BoxShape.circle),
+              decoration: config.boxDecoration(
+                fill: backgroundFill ?? config.surfaceFill,
+                shape: BoxShape.circle,
+              ),
               child: EzIcon(config, icon, fill: config.outlineFill),
             ),
           ),
@@ -126,15 +134,14 @@ class EzIconTouch extends StatelessWidget {
 
 class EzIconButton extends StatelessWidget {
   final EzCP config;
-
   final Widget icon;
-
   final double? iconSize;
 
+  /// Optional override, defaults to [EzCP.surfaceFill]
+  final EzSwitchColor? backgroundFill;
+
   final VoidCallback? onPressed;
-
   final VoidCallback? onLongPress;
-
   final String tooltip;
 
   /// Uses disabled styling and sets [onPressed] and [onLongPress] to [doNothing] when false
@@ -144,15 +151,16 @@ class EzIconButton extends StatelessWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// Clobbers [enabled] and [fauxDisabled] style changes (style only)
+  /// Clobbers [enabled], [fauxDisabled], and [backgroundFill] style changes (style only)
   final ButtonStyle? style;
 
-  /// [IconButton] wrapper with custom styling
+  /// [IconButton] wrapper with custom styling and [Gradient] support
   const EzIconButton(
     this.config, {
     super.key,
     required this.icon,
     this.iconSize,
+    this.backgroundFill,
     this.onPressed,
     this.onLongPress,
     required this.tooltip,
@@ -169,13 +177,22 @@ class EzIconButton extends StatelessWidget {
         style: style ??
             ((!enabled || fauxDisabled)
                 ? IconButton.styleFrom(
+                    backgroundColor: config.surfaceFill.color,
                     foregroundColor: config.outlineFill.asColor,
                     side: config.borderSide(config.outlineVariantFill),
                     overlayColor: config.outlineFill.asColor,
                     shadowColor: Colors.transparent,
                     iconSize: iconSize ?? config.iconSize,
+                  ).copyWith(
+                    backgroundBuilder: config.buttonLayer(backgroundFill ?? config.surfaceFill),
                   )
-                : null),
+                : IconButton.styleFrom(
+                    backgroundColor: config.surfaceFill.color,
+                    foregroundColor: config.onSurface,
+                    iconSize: iconSize ?? config.iconSize,
+                  ).copyWith(
+                    backgroundBuilder: config.buttonLayer(backgroundFill ?? config.surfaceFill),
+                  )),
         icon: icon,
         iconSize: iconSize ?? config.iconSize,
       );
