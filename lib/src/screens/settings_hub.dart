@@ -44,7 +44,8 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             style: widget.config.labelStyle,
             textAlign: TextAlign.center,
           ),
-          SegmentedButton<EzSettingsSection>(
+          EzSegmentedButton<EzSettingsSection>(
+            widget.config,
             segments: widget.pages
                 .map((EzSettingsSection type) =>
                     ButtonSegment<EzSettingsSection>(value: type, icon: type.icon))
@@ -82,7 +83,8 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                         showScrollHint: true,
                         children: <Widget>[
                           // Subsection selector
-                          SegmentedButton<EzSubSetting>(
+                          EzSegmentedButton<EzSubSetting>(
+                            widget.config,
                             segments: (currSection.subSettings)
                                 .map((EzSubSetting sub) => ButtonSegment<EzSubSetting>(
                                       value: sub,
