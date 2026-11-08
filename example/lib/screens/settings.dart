@@ -7,8 +7,8 @@ import '../../widgets/export.dart';
 import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   final int? target;

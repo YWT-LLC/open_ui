@@ -279,9 +279,9 @@ import './screens/export.dart';
 import './utils/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Define the router //
@@ -433,7 +433,7 @@ const Map<String, Object> ${camelCaseAppName}Config = <String, Object>${configSt
 import './export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ${classCaseAppName}Cache extends EzAppCache {
   Locale _locale;
@@ -475,7 +475,7 @@ export '../l10n/${ezClassToSnake(l10nClass)}.dart';
     await File('$dir/lib/widgets/fabulous.dart').writeAsString("""$copyright
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CountFAB extends StatelessWidget {
   final EzCP config;
@@ -510,8 +510,8 @@ EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
 import '../screens/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SettingsButton extends StatelessWidget {
   final EzCP config;
@@ -563,7 +563,7 @@ import '../utils/export.dart';
 import './export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ${classCaseAppName}Scaffold extends StatelessWidget {
   final EzCP config;  
@@ -658,8 +658,8 @@ export '${config.appName}_scaffold.dart';
 import '../widgets/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key});
@@ -708,8 +708,8 @@ import '../utils/export.dart';
 import '../widgets/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -775,8 +775,8 @@ class _HomeScreenState extends State<HomeScreen> {
 import '../../widgets/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   final int? target;
