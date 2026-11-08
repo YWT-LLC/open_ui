@@ -68,7 +68,7 @@ class EzFooter extends StatelessWidget {
   final Widget? contributeMessage;
   final Widget? translateMessage;
 
-  /// Contribution/translation links, intended for [EzScaffold.persistentFooter]
+  /// Contribution/translation links, intended for [EzScaffold.footer]
   const EzFooter(
     this.config, {
     super.key,

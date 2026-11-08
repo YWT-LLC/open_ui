@@ -179,6 +179,7 @@ class _ColorSettingState extends State<EzColorSetting> {
         },
       );
 
+  // TODO: i broke regular colors lol
   EzSwitchColor _buildPreview(String value) => value.contains(colorSplit)
       ? EzSwitchColor(gradient: ezLGFromString(value))
       : EzSwitchColor(color: Color(int.parse(value)));
