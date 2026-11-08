@@ -4,7 +4,6 @@
  */
 
 import '../../open_ui.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:material_ui/material_ui.dart';
 
@@ -14,13 +13,14 @@ Color ezTextColor(Color background) {
   final int lumG = (background.g * 255.0 * 0.587).round();
   final int lumB = (background.b * 255.0 * 0.114).round();
 
-  return Color(((lumR + lumG + lumB) >= 150) ? ywt.blackHex : ywt.whiteHex);
+  return ((lumR + lumG + lumB) >= 150) ? Colors.black : Colors.white;
 }
 
 /// Given a color storage string, return the [Color] or [LinearGradient]'s first color
-Color ezFirstColor(String color) {
+Color? ezFirstColor(String color) {
   final List<String> parts = color.split(colorSplit);
-  return Color(int.parse(parts.length > 1 ? parts[2] : color));
+  final int? cv = int.tryParse(parts.length >= 3 ? parts[2] : color);
+  return cv == null ? null : Color(cv);
 }
 
 /// Generate a [ColorScheme] based on [EzCM]
@@ -30,7 +30,7 @@ ColorScheme ezColorScheme(Brightness brightness) {
 
     return switch (value.runtimeType) {
       int => Color(value),
-      String => Color(int.parse(value.contains(colorSplit) ? value.split(colorSplit)[2] : value)),
+      String => ezFirstColor(value),
       _ => null,
     };
   }

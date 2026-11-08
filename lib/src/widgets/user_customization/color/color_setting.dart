@@ -47,9 +47,7 @@ class _ColorSettingState extends State<EzColorSetting> {
       if (ezTextMirrors.containsKey(widget.configKey)) {
         await EzCM.setString(
           ezTextMirrors[widget.configKey]!,
-          ezTextColor(picked.contains(colorSplit) ? ezFirstColor(picked) : Color(int.parse(picked)))
-              .toARGB32()
-              .toString(),
+          ezTextColor(ezFirstColor(picked)!).toARGB32().toString(),
         );
       }
 
@@ -74,9 +72,8 @@ class _ColorSettingState extends State<EzColorSetting> {
     final String? backgroundColorValue = EzCM.get(backgroundKey);
     final Color backgroundColor = (backgroundColorValue == null)
         ? getLiveColor(widget.config.theme.colorScheme, backgroundKey)
-        : backgroundColorValue.contains(colorSplit)
-            ? ezFirstColor(backgroundColorValue)
-            : Color(int.parse(backgroundColorValue));
+        : ezFirstColor(backgroundColorValue) ??
+            (widget.config.isDark ? Colors.black : Colors.white);
 
     final int recommended = ezTextColor(backgroundColor).toARGB32();
 
@@ -179,7 +176,6 @@ class _ColorSettingState extends State<EzColorSetting> {
         },
       );
 
-  // TODO: i broke regular colors lol
   EzSwitchColor _buildPreview(String value) => value.contains(colorSplit)
       ? EzSwitchColor(gradient: ezLGFromString(value))
       : EzSwitchColor(color: Color(int.parse(value)));
