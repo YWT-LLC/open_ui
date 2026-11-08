@@ -774,15 +774,25 @@ EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
   final String color =
       (value == null) ? getLiveColor(basic, key).toARGB32().toString() : value.toString();
 
+  final EzSwitchColor backup = EzSwitchColor(color: Color(int.parse(color)));
   final List<String> parts = color.split(colorSplit);
-  return parts.length > 1
-      ? EzSwitchColor(
-          gradient: LinearGradient(
-          begin: alignLibrary[parts[0]] ?? Alignment.centerLeft,
-          end: alignLibrary[parts[1]] ?? Alignment.centerRight,
-          colors: parts.sublist(2).map((String color) => Color(int.parse(color))).toList(),
-        ))
-      : EzSwitchColor(color: Color(int.parse(color)));
+
+  if (parts.length > 1) {
+    if (parts.length < 3) return backup;
+
+    final List<int?> hexes = parts.sublist(2).map(int.tryParse).toList();
+    if (hexes.contains(null)) return backup;
+
+    return EzSwitchColor(
+      gradient: LinearGradient(
+        begin: alignLibrary[parts[0]] ?? Alignment.centerLeft,
+        end: alignLibrary[parts[1]] ?? Alignment.centerRight,
+        colors: hexes.map((int? hex) => Color(hex!)).toList(),
+      ),
+    );
+  }
+
+  return backup;
 }
 
 /// Safety net, not a crutch...

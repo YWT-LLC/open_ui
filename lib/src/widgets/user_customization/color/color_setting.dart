@@ -184,6 +184,7 @@ class _ColorSettingState extends State<EzColorSetting> {
 
   // Init //
 
+  // TODO: error handling?
   @override
   void initState() {
     super.initState();

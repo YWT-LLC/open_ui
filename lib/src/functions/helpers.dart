@@ -573,7 +573,7 @@ Future<String?> ezColorPicker(
               endDir.toString(),
               ...gradients.map((Color color) => color.toARGB32().toString()),
             ].join(colorSplit)
-          : preview.toString()
+          : preview.asColor.toARGB32().toString()
       : null;
 }
 
