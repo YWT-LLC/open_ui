@@ -9,9 +9,7 @@ import 'package:material_ui/material_ui.dart';
 
 class EzDropdownMenu<T> extends StatelessWidget {
   final EzCP config;
-
   final bool reverseHands;
-
   final bool showScrollHint;
 
   /// Will be used in an [EzText] widget
@@ -24,11 +22,8 @@ class EzDropdownMenu<T> extends StatelessWidget {
   final TextAlign labelAlign;
 
   final bool enabled;
-
   final String widthEntry;
-
   final bool enableSearch;
-
   final TextInputType? keyboardType;
 
   /// Defaults to [EzCP.bodyStyle]
@@ -38,9 +33,7 @@ class EzDropdownMenu<T> extends StatelessWidget {
   final TextAlign menuAlign;
 
   final T? initialSelection;
-
   final ValueChanged<T?>? onSelected;
-
   final List<DropdownMenuEntry<T>> dropdownMenuEntries;
 
   /// [DropdownMenu] with custom styling
@@ -90,19 +83,21 @@ class EzDropdownMenu<T> extends StatelessWidget {
 
           // Menu
           IconButtonTheme(
-            data: IconButtonThemeData(style: IconButton.styleFrom(side: (BorderSide.none))),
+            data: IconButtonThemeData(
+              style: IconButton.styleFrom(side: (BorderSide.none)),
+            ),
             child: DropdownMenu<T>(
+              dropdownMenuEntries: dropdownMenuEntries,
               enabled: enabled,
-              width: ezDropdownWidth(config, context: context, entry: widthEntry),
-              trailingIcon: EzIcon(config, Icons.arrow_drop_down),
-              selectedTrailingIcon: EzIcon(config, Icons.arrow_drop_up),
               enableSearch: enableSearch,
+              initialSelection: initialSelection,
               keyboardType: keyboardType,
+              onSelected: onSelected,
+              selectedTrailingIcon: EzIcon(config, Icons.arrow_drop_up),
               textStyle: (menuStyle ?? config.bodyStyle),
               textAlign: menuAlign,
-              initialSelection: initialSelection,
-              onSelected: onSelected,
-              dropdownMenuEntries: dropdownMenuEntries,
+              trailingIcon: EzIcon(config, Icons.arrow_drop_down),
+              width: ezDropdownWidth(config, context: context, entry: widthEntry),
             ),
           ),
         ],
