@@ -40,8 +40,26 @@ class EzMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
-        style:
-            enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.outlineFill.asColor),
+        style: enabled
+            ? MenuItemButton.styleFrom(
+                backgroundColor: config.surfaceFill.color,
+              ).copyWith(
+                backgroundBuilder: config.buttonLayer(
+                  config.surfaceFill,
+                  borderRadius: EzButtonShape.roundRect.radius,
+                ),
+                // TODO: don't I have a sharp/dull thing?
+                // if yes, here and drop down
+              )
+            : MenuItemButton.styleFrom(
+                backgroundColor: config.surfaceFill.color,
+                foregroundColor: config.outlineFill.asColor,
+              ).copyWith(
+                backgroundBuilder: config.buttonLayer(
+                  config.surfaceFill,
+                  borderRadius: EzButtonShape.roundRect.radius,
+                ),
+              ),
         onPressed: enabled ? onPressed : doNothing,
         leadingIcon: label == null ? null : (config.isLefty ? icon : null),
         trailingIcon: label == null ? null : (config.isLefty ? null : icon),
