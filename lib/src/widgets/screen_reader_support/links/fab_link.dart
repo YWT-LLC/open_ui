@@ -3,8 +3,8 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzFABLink extends StatelessWidget {
   final Uri uri;

@@ -5,8 +5,8 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzElevatedLink extends StatelessWidget {
   final EzCP config;

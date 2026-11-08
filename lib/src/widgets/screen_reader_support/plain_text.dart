@@ -5,7 +5,7 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzPlainText extends TextSpan {
   /// [TextSpan] extension with custom [Semantics] to pair with [EzInlineLink]s in [EzRichText] blocks
