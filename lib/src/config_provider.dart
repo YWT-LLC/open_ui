@@ -428,6 +428,7 @@ class EzCP extends ChangeNotifier {
   // Has a twin in ezThemeData
   ButtonLayerBuilder? buttonLayer(
     EzSwitchColor fill, {
+    BorderRadiusGeometry? borderRadius,
     BoxShape shape = BoxShape.rectangle,
   }) =>
       (fill.gradient == null)
@@ -435,7 +436,7 @@ class EzCP extends ChangeNotifier {
           : (_, __, Widget? child) => Ink(
                 decoration: BoxDecoration(
                   border: boxBorder(fill),
-                  borderRadius: buttonShape.radius,
+                  borderRadius: borderRadius ?? buttonShape.radius,
                   gradient: fill.gradient,
                   shape: shape,
                 ),
