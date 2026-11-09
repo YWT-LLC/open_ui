@@ -16,12 +16,13 @@ class EzBackAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => (ezRootNav.currentState?.canPop() ?? false)
-      ? EzIconButton(
+      ? EzIconTouch(
           config,
           onPressed: () => Navigator.of(context).maybePop(),
           tooltip: config.ezL10n.gBack,
+          icon: Icons.arrow_back,
           iconSize: config.titleStyle!.fontSize,
-          icon: EzIcon(config, Icons.arrow_back, semanticLabel: config.ezL10n.gBack),
+          backgroundFill: EzSwitchColor(color: config.surfaceDimFill.asColor),
         )
       : const SizedBox.shrink();
 }
