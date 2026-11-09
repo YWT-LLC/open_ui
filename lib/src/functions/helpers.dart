@@ -334,7 +334,7 @@ Future<String?> ezColorPicker(
   // Define modal functions //
 
   void initPreview() {
-    if (picking.contains(colorSplit)) {
+    if (allowGradient && picking.contains(colorSplit)) {
       preview = EzSwitchColor(gradient: ezLGFromString(picking));
       gradient = true;
 
@@ -342,7 +342,8 @@ Future<String?> ezColorPicker(
       beginDir = preview.gradient!.begin;
       endDir = preview.gradient!.end;
     } else {
-      preview = EzSwitchColor(color: Color(int.parse(picking)));
+      preview = EzSwitchColor(
+          color: Color(int.tryParse(picking) ?? (config.isDark ? ywt.blackHex : ywt.whiteHex)));
       gradient = false;
 
       gradients = <Color>[];
