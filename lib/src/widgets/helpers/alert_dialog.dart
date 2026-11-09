@@ -50,7 +50,6 @@ class EzAlertDialog extends AlertDialog {
 
     // Return the build //
 
-    // TODO: regular dialog can use gradient in theory
     return SelectionArea(
       child: AlertDialog(
         // Title
