@@ -9,16 +9,11 @@ import 'package:material_ui/material_ui.dart';
 
 class EzScreen extends StatelessWidget {
   final EzCP config;
-
-  /// Screen content
   final Widget child;
-
   final AlignmentGeometry? alignment;
-
-  /// Margin around the screen content
   final EdgeInsetsGeometry? margin;
 
-  /// Optional wrap [child] in a [SafeArea]
+  /// Optionally wrap [child] in a [SafeArea]
   final bool safeArea;
 
   /// Custom [Container] for the top layer of an (IRL) screen
@@ -31,30 +26,11 @@ class EzScreen extends StatelessWidget {
     this.safeArea = false,
   });
 
-  // TODO: more caching?
-  Decoration? buildDecoration() {
-    final String path = config.backgroundImagePath;
-    if (path == noImageValue) {
-      return (config.surfaceContainerFill.gradient == null)
-          ? null
-          : BoxDecoration(gradient: config.surfaceContainerFill.gradient);
-    }
-
-    final int? isColor = int.tryParse(path);
-    if (isColor != null) return BoxDecoration(color: Color(isColor));
-
-    final LinearGradient? isGradient =
-        (path.split(colorSplit).length >= 4) ? ezLGFromString(path) : null;
-    if (isGradient != null) return BoxDecoration(gradient: isGradient);
-
-    return BoxDecoration(image: config.backgroundImage);
-  }
-
   @override
   Widget build(BuildContext context) => safeArea
       ? Container(
           alignment: alignment,
-          decoration: buildDecoration(),
+          decoration: config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
           child: SafeArea(
@@ -70,7 +46,7 @@ class EzScreen extends StatelessWidget {
       : Container(
           alignment: alignment,
           padding: margin ?? EdgeInsets.all(config.marginVal),
-          decoration: buildDecoration(),
+          decoration: config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
           child: child,
