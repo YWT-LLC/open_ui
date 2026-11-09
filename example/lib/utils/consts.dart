@@ -41,11 +41,11 @@ const Map<String, Object> openUIDefaults = <String, Object>{
 };
 
 final Map<String, Object> desktopDefaults = <String, Object>{
-  ...ywtShinyDesktop, // TODO: switch back
+  ...ywtDesktopConfig,
   ...openUIDefaults,
 };
 
 final Map<String, Object> mobileDefaults = <String, Object>{
-  ...ywtShinyMobile, // TODO: switch back
+  ...ywtMobileConfig,
   ...openUIDefaults,
 };
