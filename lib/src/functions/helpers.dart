@@ -460,12 +460,14 @@ Future<String?> ezColorPicker(
                             ),
                             child: entry.value == Colors.transparent
                                 ? EzAvatar(
+                                    config,
                                     fill: config.surfaceFill,
                                     foregroundColor: config.onSurface,
                                     radius: iconRadius + config.padding,
                                     child: EzIcon(config, Icons.visibility_off),
                                   )
                                 : EzAvatar(
+                                    config,
                                     fill: EzSwitchColor(color: entry.value),
                                     radius: iconRadius + config.padding,
                                   ),

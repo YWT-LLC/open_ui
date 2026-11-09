@@ -79,7 +79,7 @@ class EzChalkboardConfig extends StatelessWidget {
         primaryContainer: chalkboardGreen,
         onPrimaryContainer: Colors.black,
 
-        secondary: ywt.halfWhite,
+        secondary: ywt.fadedWhite,
         onSecondary: Colors.black,
         secondaryContainer: chalkboardGreen,
         onSecondaryContainer: Colors.black,
@@ -92,10 +92,10 @@ class EzChalkboardConfig extends StatelessWidget {
         // Misc
         error: hcError,
         onError: Colors.white,
-        errorContainer: ywt.halfWhite,
+        errorContainer: ywt.fadedWhite,
         onErrorContainer: Colors.black,
 
-        outline: ywt.halfWhite,
+        outline: ywt.fadedWhite,
         outlineVariant: chalkboardGreen,
         surfaceTint: Colors.transparent,
         shadow: Colors.transparent,

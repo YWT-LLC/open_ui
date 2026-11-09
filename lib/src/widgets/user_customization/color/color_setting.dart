@@ -9,6 +9,9 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
+// TODO: gradient dots in horizontal reorderable scroll
+// on tap still removes, add an undo pop-up
+
 class EzColorSetting extends StatefulWidget {
   final EzCP config;
 
@@ -91,8 +94,8 @@ class _ColorSettingState extends State<EzColorSetting> {
         contents: <Widget>[
           Container(
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
               border: Border.all(color: backgroundColor, width: widget.config.borderWidth),
+              shape: BoxShape.circle,
             ),
             child: CircleAvatar(
               backgroundColor: Color(recommended),
@@ -225,12 +228,14 @@ class _ColorSettingState extends State<EzColorSetting> {
             ),
             child: currValue == ywt.transparentString
                 ? EzAvatar(
+                    widget.config,
                     fill: widget.config.surfaceFill,
                     foregroundColor: widget.config.onSurface,
                     radius: iconRadius + widget.config.padding,
                     child: EzIcon(widget.config, Icons.visibility_off),
                   )
                 : EzAvatar(
+                    widget.config,
                     fill: currPreview,
                     radius: iconRadius + widget.config.padding,
                   ),

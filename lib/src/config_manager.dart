@@ -494,7 +494,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
           // Text
           onSurface: Colors.white,
-          outline: ywt.halfWhite,
+          outline: ywt.fadedWhite,
 
           // Primary
           primary: primary,
@@ -630,7 +630,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
           // Text
           onSurface: Colors.black,
-          outline: ywt.halfBlack,
+          outline: ywt.fadedBlack,
 
           // Primary
           primary: primary,

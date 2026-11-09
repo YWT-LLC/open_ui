@@ -73,7 +73,7 @@ class EzNebulaConfig extends StatelessWidget {
 
         // Text
         onSurface: Colors.white,
-        outline: ywt.halfWhite,
+        outline: ywt.fadedWhite,
 
         // Primary
         primary: ywt.ywtSand,

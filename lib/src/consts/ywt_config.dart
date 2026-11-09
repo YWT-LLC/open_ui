@@ -88,7 +88,7 @@ final Map<String, Object> baseYWTConfig = <String, Object>{
   darkErrorContainerKey: halfRedHex,
   darkOnErrorContainerKey: whiteHex,
 
-  darkOutlineKey: halfWhiteHex,
+  darkOutlineKey: fadedWhiteHex,
   darkOutlineVariantKey: dimWhiteHex,
   darkSurfaceTintKey: transparentHex,
   darkScrimKey: blackHex,
@@ -122,7 +122,7 @@ final Map<String, Object> baseYWTConfig = <String, Object>{
   lightErrorContainerKey: halfRedHex,
   lightOnErrorContainerKey: whiteHex,
 
-  lightOutlineKey: halfBlackHex,
+  lightOutlineKey: fadedBlackHex,
   lightOutlineVariantKey: dimBlackHex,
   lightSurfaceTintKey: transparentHex,
   lightScrimKey: whiteHex,

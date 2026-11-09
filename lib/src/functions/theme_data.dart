@@ -76,18 +76,18 @@ ThemeData ezThemeData(
   }) =>
       (opacity == null)
           ? BoxDecoration(
+              border: border,
+              borderRadius: borderRadius,
               color: fill.color,
               gradient: fill.gradient,
               shape: shape,
-              border: border,
-              borderRadius: borderRadius,
             )
           : BoxDecoration(
+              border: border,
+              borderRadius: borderRadius,
               color: fill.color?.withValues(alpha: opacity),
               gradient: fill.gradient?.withOpacity(opacity),
               shape: shape,
-              border: border,
-              borderRadius: borderRadius,
             );
 
   // Has a twin in EzCp

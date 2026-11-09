@@ -8,6 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzAvatar extends StatelessWidget {
+  final EzCP config;
   final EzSwitchColor fill;
   final ImageProvider? backgroundImage;
   final ImageErrorListener? onBackgroundImageError;
@@ -20,7 +21,8 @@ class EzAvatar extends StatelessWidget {
   final Widget? child;
 
   /// [CircleAvatar] wrapper that supports [EzSwitchColor]
-  const EzAvatar({
+  const EzAvatar(
+    this.config, {
     super.key,
     required this.fill,
     this.backgroundImage,
@@ -49,11 +51,22 @@ class EzAvatar extends StatelessWidget {
       child: child,
     );
 
-    return (fill.gradient == null)
-        ? avatar
-        : DecoratedBox(
-            decoration: BoxDecoration(gradient: fill.gradient, shape: BoxShape.circle),
-            child: avatar,
-          );
+    return DecoratedBox(
+      // TODO: make it vurk
+      decoration: BoxDecoration(
+        color: config.surfaceContainerFill.color,
+        gradient: config.surfaceContainerFill.gradient,
+        shape: BoxShape.circle,
+      ),
+      child: (fill.gradient == null)
+          ? avatar
+          : DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: fill.gradient,
+                shape: BoxShape.circle,
+              ),
+              child: avatar,
+            ),
+    );
   }
 }

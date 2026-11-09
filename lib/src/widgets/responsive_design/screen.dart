@@ -31,6 +31,7 @@ class EzScreen extends StatelessWidget {
     this.safeArea = false,
   });
 
+  // TODO: more caching?
   Decoration? buildDecoration() {
     final String path = config.backgroundImagePath;
     if (path == noImageValue) {

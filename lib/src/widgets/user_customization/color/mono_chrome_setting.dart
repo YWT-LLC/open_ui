@@ -88,7 +88,7 @@ const ColorScheme ezMonoChromeDark = ColorScheme.highContrastDark(
   errorContainer: ywt.dimWhite,
   onErrorContainer: Colors.black,
 
-  outline: ywt.halfWhite,
+  outline: ywt.fadedWhite,
   outlineVariant: ywt.dimWhite,
   surfaceTint: Colors.transparent,
   shadow: Colors.transparent,
@@ -121,7 +121,7 @@ const ColorScheme ezMonoChromeLight = ColorScheme.highContrastLight(
   errorContainer: ywt.dimBlack,
   onErrorContainer: Colors.white,
 
-  outline: ywt.halfBlack,
+  outline: ywt.fadedBlack,
   outlineVariant: ywt.dimBlack,
   surfaceTint: Colors.transparent,
   shadow: Colors.transparent,

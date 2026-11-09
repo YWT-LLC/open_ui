@@ -40,7 +40,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 iconColor: hceGreen,
                 shadowColor: Colors.transparent,
                 overlayColor: hceGreen,
-                side: config.borderSide(const EzSwitchColor(color: ywt.halfWhite)),
+                side: config.borderSide(const EzSwitchColor(color: ywt.fadedWhite)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
@@ -49,7 +49,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 iconColor: hcePurple,
                 shadowColor: Colors.transparent,
                 overlayColor: hcePurple,
-                side: config.borderSide(const EzSwitchColor(color: ywt.halfBlack)),
+                side: config.borderSide(const EzSwitchColor(color: ywt.fadedBlack)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {
@@ -78,27 +78,27 @@ const ColorScheme ezHighContrastDark = ColorScheme(
   // Big three
   primary: hceGreen,
   onPrimary: Colors.black,
-  primaryContainer: ywt.halfWhite,
+  primaryContainer: ywt.fadedWhite,
   onPrimaryContainer: Colors.black,
 
   secondary: hceGold,
   onSecondary: Colors.black,
-  secondaryContainer: ywt.halfWhite,
+  secondaryContainer: ywt.fadedWhite,
   onSecondaryContainer: Colors.black,
 
   tertiary: hcePurple,
   onTertiary: Colors.white,
-  tertiaryContainer: ywt.halfWhite,
+  tertiaryContainer: ywt.fadedWhite,
   onTertiaryContainer: Colors.black,
 
   // Misc
   error: hcError,
   onError: Colors.white,
-  errorContainer: ywt.halfWhite,
+  errorContainer: ywt.fadedWhite,
   onErrorContainer: Colors.black,
 
   outline: Colors.white,
-  outlineVariant: ywt.halfWhite,
+  outlineVariant: ywt.fadedWhite,
   surfaceTint: Colors.transparent,
   shadow: Colors.transparent,
   scrim: Colors.black,
@@ -117,27 +117,27 @@ const ColorScheme ezHighContrastLight = ColorScheme(
   // Big three
   primary: hcePurple,
   onPrimary: Colors.white,
-  primaryContainer: ywt.halfBlack,
+  primaryContainer: ywt.fadedBlack,
   onPrimaryContainer: Colors.white,
 
   secondary: hceGold,
   onSecondary: Colors.black,
-  secondaryContainer: ywt.halfBlack,
+  secondaryContainer: ywt.fadedBlack,
   onSecondaryContainer: Colors.white,
 
   tertiary: hceGreen,
   onTertiary: Colors.black,
-  tertiaryContainer: ywt.halfBlack,
+  tertiaryContainer: ywt.fadedBlack,
   onTertiaryContainer: Colors.white,
 
   // Misc
   error: hcError,
   onError: Colors.white,
-  errorContainer: ywt.halfBlack,
+  errorContainer: ywt.fadedBlack,
   onErrorContainer: Colors.white,
 
   outline: Colors.black,
-  outlineVariant: ywt.halfBlack,
+  outlineVariant: ywt.fadedBlack,
   surfaceTint: Colors.transparent,
   shadow: Colors.transparent,
   scrim: Colors.white,

@@ -240,7 +240,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
 
     final SliderThemeData sliderTheme = SliderThemeData(
       activeTrackColor: widget.config.secondaryFill.asColor,
-      inactiveTrackColor: ywt.halfWhite,
+      inactiveTrackColor: ywt.fadedWhite,
       thumbColor: widget.config.primaryFill.asColor,
     );
 
@@ -375,7 +375,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
-                            backgroundColor: ywt.halfBlack,
+                            baseFill: _buttonBack,
                           ),
                         ],
                       ),
@@ -440,7 +440,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                               _ => labelStyle,
                             },
                             textAlign: TextAlign.center,
-                            backgroundColor: ywt.halfBlack,
+                            replaceFill: _buttonBack,
                           ),
                         ),
                       ],
@@ -460,7 +460,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                     forceType: EzTransitionType.none,
                     forceFade: true,
                     kid: Container(
-                      decoration: const BoxDecoration(color: ywt.halfBlack),
+                      decoration: const BoxDecoration(color: ywt.fadedBlack),
                       child: EzCol(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -768,3 +768,5 @@ String ezVideoTime(Duration duration, {bool showMili = false}) {
 
   return hours > 0 ? '$hourS:$minS:$secS$miliS' : '$minS:$secS$miliS';
 }
+
+const EzSwitchColor _buttonBack = EzSwitchColor(color: ywt.fadedBlack);

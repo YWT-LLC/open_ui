@@ -53,34 +53,22 @@ class EzCheckbox extends StatelessWidget {
 
 class EzCheckboxPair extends StatelessWidget {
   final EzCP config;
-
   final bool reverseHands;
-
   final MainAxisSize mainAxisSize;
-
   final MainAxisAlignment mainAxisAlignment;
-
   final CrossAxisAlignment crossAxisAlignment;
-
   final String text;
-
   final TextStyle? style;
-
   final TextAlign? textAlign;
-
   final String? semanticsLabel;
-
-  final Color? baseColor;
-
-  final Color? backgroundColor;
+  final EzSwitchColor? baseFill;
+  final EzSwitchColor? replaceFill;
 
   /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when scale > 1.1
   final EdgeInsetsGeometry? padding;
 
   final bool? value;
-
   final ValueChanged<bool?>? onChanged;
-
   final String? semanticLabel;
 
   const EzCheckboxPair(
@@ -97,8 +85,8 @@ class EzCheckboxPair extends StatelessWidget {
     this.style,
     this.textAlign,
     this.semanticsLabel,
-    this.baseColor,
-    this.backgroundColor,
+    this.baseFill,
+    this.replaceFill,
 
     // EzCheckbox
     this.padding,
@@ -122,8 +110,8 @@ class EzCheckboxPair extends StatelessWidget {
               style: style,
               textAlign: textAlign,
               semanticsLabel: semanticsLabel,
-              baseColor: baseColor,
-              backgroundColor: backgroundColor,
+              baseFill: baseFill,
+              replaceFill: replaceFill,
             ),
           ),
           EzCheckbox(

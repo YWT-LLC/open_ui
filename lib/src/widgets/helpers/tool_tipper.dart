@@ -88,7 +88,7 @@ class EzToolTipper extends StatelessWidget {
           child: EzIcon(config, Icons.help_outline, fill: config.outlineFill),
         ),
       ),
-      baseColor: config.surfaceFill.asColor,
+      baseFill: config.surfaceFill,
       borderRadius: config.textRadius,
     );
   }

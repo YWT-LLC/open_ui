@@ -33,9 +33,12 @@ class EzGradientBorderSide extends BorderSide {
   int get hashCode => Object.hash(gradient, width, style);
 }
 
-/// Paints [fill]'s gradient behind [child] (within [shape]), returns [child] as-is for solid fills
+/// When [fill] has a [Gradient], wrap [child] in a [DecoratedBox] (or [ShapeDecoration] based on [shape])
+// TODO: check these calls, should be using border n shit
 Widget ezGradientBox(
   EzSwitchColor fill, {
+  BoxBorder? border,
+  BorderRadiusGeometry? borderRadius,
   ShapeBorder? shape,
   required Widget child,
 }) =>
@@ -43,8 +46,15 @@ Widget ezGradientBox(
         ? child
         : DecoratedBox(
             decoration: (shape == null)
-                ? BoxDecoration(gradient: fill.gradient)
-                : ShapeDecoration(gradient: fill.gradient, shape: shape),
+                ? BoxDecoration(
+                    gradient: fill.gradient,
+                    border: border,
+                    borderRadius: borderRadius,
+                  )
+                : ShapeDecoration(
+                    gradient: fill.gradient,
+                    shape: shape,
+                  ),
             child: child,
           );
 

@@ -102,7 +102,7 @@ class EzWallHolesConfig extends StatelessWidget {
         onErrorContainer: Colors.white,
 
         // Misc
-        outline: ywt.halfBlack,
+        outline: ywt.fadedBlack,
         outlineVariant: ywt.dimBlack,
         surfaceTint: Colors.transparent,
         shadow: Colors.transparent,

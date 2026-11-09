@@ -743,11 +743,11 @@ class _ImageSettingState extends State<EzImageSetting> {
           onLongPress: inProgress ? doNothing : showCredits,
           icon: Container(
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
               border: Border.all(
                 color: widget.config.onSurface,
                 width: widget.config.borderWidth,
               ),
+              shape: BoxShape.circle,
             ),
             child: CircleAvatar(
               radius: widget.config.iconSize + widget.config.padding,

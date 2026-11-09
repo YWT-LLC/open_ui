@@ -29,33 +29,24 @@ class EzAppBar extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) {
-    final EzSwitchColor fill = config.surfaceDimFill;
-    final LinearGradient? gradient = fill.gradient;
-
-    return IconButtonTheme(
-      data: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          side: BorderSide.none,
-          padding: EzInsets.wrap(config.marginVal),
-          iconSize: config.headlineStyle!.fontSize,
-          backgroundColor: fill.color ?? Colors.transparent,
+  Widget build(BuildContext context) => IconButtonTheme(
+        data: IconButtonThemeData(
+          style: IconButton.styleFrom(
+            side: BorderSide.none,
+            padding: EzInsets.wrap(config.marginVal),
+            iconSize: config.headlineStyle!.fontSize,
+            backgroundColor: config.surfaceDimFill.asColor,
+          ),
         ),
-      ),
-      child: AppBar(
-        excludeHeaderSemantics: true,
-        backgroundColor: fill.color ?? Colors.transparent,
-        surfaceTintColor: (gradient == null) ? null : Colors.transparent,
-        flexibleSpace:
-            (gradient == null) ? null : DecoratedBox(decoration: BoxDecoration(gradient: gradient)),
-        toolbarHeight: height,
-        leading: leading,
-        leadingWidth: leadingWidth,
-        title: title,
-        centerTitle: true,
-        titleSpacing: 0,
-        actions: actions,
-      ),
-    );
-  }
+        child: AppBar(
+          excludeHeaderSemantics: true,
+          toolbarHeight: height,
+          leading: leading,
+          leadingWidth: leadingWidth,
+          title: title,
+          centerTitle: true,
+          titleSpacing: 0,
+          actions: actions,
+        ),
+      );
 }

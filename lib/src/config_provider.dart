@@ -353,7 +353,7 @@ class EzCP extends ChangeNotifier {
     double? opacity,
     BoxShape shape = BoxShape.rectangle,
     BoxBorder? border,
-    BorderRadius? borderRadius,
+    BorderRadiusGeometry? borderRadius,
   }) =>
       (opacity == null)
           ? BoxDecoration(

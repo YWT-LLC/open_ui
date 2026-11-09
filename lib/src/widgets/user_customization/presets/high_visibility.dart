@@ -214,7 +214,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
               foregroundColor: Colors.white,
               shadowColor: Colors.transparent,
               overlayColor: Colors.white,
-              side: const BorderSide(color: ywt.halfWhite, width: ywt.defaultBorderWidth),
+              side: const BorderSide(color: ywt.fadedWhite, width: ywt.defaultBorderWidth),
               shape: EzButtonShape.pill.shape,
               textStyle: localBody,
               padding: EdgeInsets.all(
@@ -225,7 +225,7 @@ class EzHighVisibilityConfig extends StatelessWidget {
               foregroundColor: Colors.black,
               shadowColor: Colors.transparent,
               overlayColor: Colors.black,
-              side: const BorderSide(color: ywt.halfBlack, width: ywt.defaultBorderWidth),
+              side: const BorderSide(color: ywt.fadedBlack, width: ywt.defaultBorderWidth),
               shape: EzButtonShape.pill.shape,
               textStyle: localBody,
               padding: EdgeInsets.all(

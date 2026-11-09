@@ -42,8 +42,8 @@ class EzText extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
   final EzButtonShape? shape;
-  final Color? baseColor;
-  final Color? backgroundColor;
+  final EzSwitchColor? baseFill;
+  final EzSwitchColor? replaceFill;
 
   /// Quick wrapper for creating [Text] with a default [EzTextBackground]
   const EzText(
@@ -56,8 +56,8 @@ class EzText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.shape,
-    this.baseColor,
-    this.backgroundColor,
+    this.baseFill,
+    this.replaceFill,
   });
 
   @override
@@ -72,8 +72,8 @@ class EzText extends StatelessWidget {
           overflow: overflow,
         ),
         shape: shape,
-        baseColor: baseColor,
-        backgroundColor: backgroundColor,
+        baseFill: baseFill,
+        replaceFill: replaceFill,
       );
 }
 
@@ -93,12 +93,11 @@ class EzTextBackground extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   /// Partial override, still responds to [EzCP.textBackgroundOpacity]
-  /// Defaults to [EzCP.surfaceContainerFill], as a [Color]
-  final Color? baseColor;
+  /// Defaults to [EzCP.surfaceContainerFill]
+  final EzSwitchColor? baseFill;
 
   /// Full override, ignores [EzCP.textBackgroundOpacity]
-  /// Defaults to (a responsive) [EzCP.surfaceContainerFill], as a [Color]
-  final Color? backgroundColor;
+  final EzSwitchColor? replaceFill;
 
   /// Create a [Container] for your [text]
   /// All [Gradient]s become [Color]s - this is for readability!
@@ -109,20 +108,19 @@ class EzTextBackground extends StatelessWidget {
     this.shape,
     this.padding,
     this.borderRadius,
-    this.baseColor,
-    this.backgroundColor,
+    this.baseFill,
+    this.replaceFill,
   });
 
   @override
   Widget build(BuildContext context) => Container(
         padding: padding ??
-            ((backgroundColor == null && config.textBackgroundOpacity < oneP)
+            ((replaceFill == null && config.textBackgroundOpacity < oneP)
                 ? EdgeInsets.zero
                 : EdgeInsets.all(config.marginVal)),
-        decoration: BoxDecoration(
-          color: backgroundColor ??
-              (baseColor ?? config.surfaceContainerFill.asColor)
-                  .withValues(alpha: config.textBackgroundOpacity),
+        decoration: config.boxDecoration(
+          fill: replaceFill ?? (baseFill ?? config.surfaceContainerFill),
+          opacity: config.textBackgroundOpacity,
           borderRadius: borderRadius ?? (shape ?? config.buttonShape).textRadius,
         ),
         child: text,
