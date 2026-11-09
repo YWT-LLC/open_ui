@@ -261,6 +261,35 @@ final Map<String, Object> baseYWTConfig = <String, Object>{
 /// You do NOT have permission to use this config in your app
 /// Reminder: YWT is trademarked
 /// Don't make us regret our transparency :)
+final Map<String, Object> ywtDesktopConfig = <String, Object>{
+  ...baseYWTConfig,
+
+  // Design //
+
+  // Dark button
+  darkPaddingKey: defaultDesktopPadding,
+
+  darkShowBackFABKey: false,
+  darkShowScrollKey: false,
+
+  // Dark page
+  darkMarginKey: defaultDesktopMargin,
+  darkSpacingKey: defaultDesktopSpacing,
+
+  // Light button
+  lightPaddingKey: defaultDesktopPadding,
+
+  lightShowBackFABKey: false,
+  lightShowScrollKey: false,
+
+  // Light page
+  lightMarginKey: defaultDesktopMargin,
+  lightSpacingKey: defaultDesktopSpacing,
+};
+
+/// You do NOT have permission to use this config in your app
+/// Reminder: YWT is trademarked
+/// Don't make us regret our transparency :)
 final Map<String, Object> ywtMobileConfig = <String, Object>{
   ...baseYWTConfig,
 
@@ -290,28 +319,90 @@ final Map<String, Object> ywtMobileConfig = <String, Object>{
 /// You do NOT have permission to use this config in your app
 /// Reminder: YWT is trademarked
 /// Don't make us regret our transparency :)
-final Map<String, Object> ywtDesktopConfig = <String, Object>{
-  ...baseYWTConfig,
+final Map<String, Object> ywtShinyColors = <String, Object>{
+  advancedColorsKey: false,
 
-  // Design //
+  // Dark surface
+  darkColorSchemeImageKey: noImageValue,
+  darkSurfaceKey: ezProgressString,
+  darkSurfaceDimKey: darkSurfaceDimHex,
+  darkSurfaceContainerKey: ezRainbowString,
+  darkOnSurfaceKey: blackHex,
 
-  // Dark button
-  darkPaddingKey: defaultDesktopPadding,
+  // Dark big three
+  darkPrimaryKey: ezYWTGradientString,
+  darkOnPrimaryKey: whiteHex,
+  darkPrimaryContainerKey: ezRainbowAccentString,
+  darkOnPrimaryContainerKey: blackHex,
 
-  darkShowBackFABKey: false,
-  darkShowScrollKey: false,
+  darkSecondaryKey: ezYWTGradientString,
+  darkOnSecondaryKey: whiteHex,
+  darkSecondaryContainerKey: ezRainbowAccentString,
+  darkOnSecondaryContainerKey: blackHex,
 
-  // Dark page
-  darkMarginKey: defaultDesktopMargin,
-  darkSpacingKey: defaultDesktopSpacing,
+  darkTertiaryKey: ezYWTGradientString,
+  darkOnTertiaryKey: whiteHex,
+  darkTertiaryContainerKey: ezRainbowAccentString,
+  darkOnTertiaryContainerKey: blackHex,
 
-  // Light button
-  lightPaddingKey: defaultDesktopPadding,
+  // Dark misc
+  darkErrorKey: ezErrorGradientString,
+  darkOnErrorKey: blackHex,
+  darkErrorContainerKey: ezRainbowAccentString,
+  darkOnErrorContainerKey: blackHex,
 
-  lightShowBackFABKey: false,
-  lightShowScrollKey: false,
+  darkOutlineKey: fadedWhiteHex,
+  darkOutlineVariantKey: ezProgressVariantString,
+  darkSurfaceTintKey: transparentHex,
+  darkScrimKey: blackHex,
 
-  // Light page
-  lightMarginKey: defaultDesktopMargin,
-  lightSpacingKey: defaultDesktopSpacing,
+  // Light surface
+  lightColorSchemeImageKey: noImageValue,
+  lightSurfaceKey: ezProgressString,
+  lightSurfaceDimKey: lightSurfaceDimHex,
+  lightSurfaceContainerKey: ezRainbowString,
+  lightOnSurfaceKey: whiteHex,
+
+  // Light big three
+  lightPrimaryKey: ezYWTGradientString,
+  lightOnPrimaryKey: whiteHex,
+  lightPrimaryContainerKey: ezRainbowAccentString,
+  lightOnPrimaryContainerKey: blackHex,
+
+  lightSecondaryKey: ezYWTGradientString,
+  lightOnSecondaryKey: whiteHex,
+  lightSecondaryContainerKey: ezRainbowAccentString,
+  lightOnSecondaryContainerKey: blackHex,
+
+  lightTertiaryKey: ezYWTGradientString,
+  lightOnTertiaryKey: whiteHex,
+  lightTertiaryContainerKey: ezRainbowAccentString,
+  lightOnTertiaryContainerKey: blackHex,
+
+  // Light misc
+  lightErrorKey: ezErrorGradientString,
+  lightOnErrorKey: blackHex,
+  lightErrorContainerKey: ezRainbowAccentString,
+  lightOnErrorContainerKey: blackHex,
+
+  lightOutlineKey: fadedBlackHex,
+  lightOutlineVariantKey: ezProgressVariantString,
+  lightSurfaceTintKey: transparentHex,
+  lightScrimKey: whiteHex,
+};
+
+/// You do NOT have permission to use this config in your app
+/// Reminder: YWT is trademarked
+/// Don't make us regret our transparency :)
+final Map<String, Object> ywtShinyDesktop = <String, Object>{
+  ...ywtDesktopConfig,
+  ...ywtShinyColors,
+};
+
+/// You do NOT have permission to use this config in your app
+/// Reminder: YWT is trademarked
+/// Don't make us regret our transparency :)
+final Map<String, Object> ywtShinyMobile = <String, Object>{
+  ...ywtMobileConfig,
+  ...ywtShinyColors,
 };
