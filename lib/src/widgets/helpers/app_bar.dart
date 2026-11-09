@@ -35,7 +35,7 @@ class EzAppBar extends StatelessWidget {
             side: BorderSide.none,
             padding: EzInsets.wrap(config.marginVal),
             iconSize: config.headlineStyle!.fontSize,
-            backgroundColor: config.surfaceDimFill.asColor,
+            backgroundColor: config.surfaceDim,
           ),
         ),
         child: AppBar(

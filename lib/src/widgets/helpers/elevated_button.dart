@@ -50,16 +50,15 @@ class EzElevatedButton extends StatelessWidget {
         onLongPress: enabled ? onLongPress : doNothing,
         style: (!enabled || fauxDisabled)
             ? (style ?? config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(config.outlineFill.asColor),
+                overlayColor: WidgetStateProperty.all(config.outline),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               )
             : style,
         child: Text(
           text,
           style: (textStyle ?? config.bodyStyle)?.copyWith(
-            decorationColor: (!enabled || fauxDisabled)
-                ? config.outlineFill.asColor
-                : config.primaryFill.asColor,
+            decorationColor:
+                (!enabled || fauxDisabled) ? config.outline : config.primaryFill.asColor,
           ),
           textAlign: textAlign,
         ),
@@ -115,7 +114,7 @@ class EzElevatedIconButton extends StatelessWidget {
         style: (enabled || fauxDisabled)
             ? style
             : (style ?? config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(config.outlineFill.asColor),
+                overlayColor: WidgetStateProperty.all(config.outline),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
         icon: icon,
@@ -124,7 +123,7 @@ class EzElevatedIconButton extends StatelessWidget {
           label,
           style: (textStyle ?? config.bodyStyle)?.copyWith(
             decorationColor:
-                (enabled || fauxDisabled) ? config.primaryFill.asColor : config.outlineFill.asColor,
+                (enabled || fauxDisabled) ? config.primaryFill.asColor : config.outline,
           ),
           textAlign: textAlign,
         ),

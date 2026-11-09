@@ -340,7 +340,7 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get surfaceContainerFill => _color.surfaceContainer;
   Color get onSurface => _color.onSurface;
 
-  EzSwitchColor get appBarFill => EzSwitchColor(color: surfaceDim);
+  EzSwitchColor get surfaceDimFiller => EzSwitchColor(color: surfaceDim);
 
   // Big three
   EzSwitchColor get primaryFill => _color.primary;
@@ -360,10 +360,13 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get errorContainerFill => _color.errorContainer;
   Color get onError => _color.onError;
 
-  Color get outlineFill => _color.outline;
+  Color get outline => _color.outline;
   EzSwitchColor get outlineVariantFill => _color.outlineVariant;
-  Color get surfaceTintFill => _color.surfaceTint;
+  Color get surfaceTint => _color.surfaceTint;
   EzSwitchColor get shadowFill => _color.shadow;
+
+  EzSwitchColor get outlineFiller => EzSwitchColor(color: outline);
+  EzSwitchColor get surfaceTintFiller => EzSwitchColor(color: surfaceTint);
 
   // Has a twin in ezThemeData (good to keep separate)
   BoxDecoration boxDecoration({

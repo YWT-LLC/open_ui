@@ -126,7 +126,7 @@ class EzIconTouch extends StatelessWidget {
                 fill: backgroundFill ?? config.surfaceFill,
                 shape: BoxShape.circle,
               ),
-              child: EzIcon(config, icon, fill: config.outlineFill),
+              child: EzIcon(config, icon, fill: config.outlineFiller),
             ),
           ),
         );
@@ -178,9 +178,9 @@ class EzIconButton extends StatelessWidget {
             ((!enabled || fauxDisabled)
                 ? IconButton.styleFrom(
                     backgroundColor: config.surfaceFill.color,
-                    foregroundColor: config.outlineFill.asColor,
+                    foregroundColor: config.outline,
                     side: config.borderSide(config.outlineVariantFill),
-                    overlayColor: config.outlineFill.asColor,
+                    overlayColor: config.outline,
                     shadowColor: Colors.transparent,
                     iconSize: iconSize ?? config.iconSize,
                   ).copyWith(

@@ -51,7 +51,7 @@ class EzMenuButton extends StatelessWidget {
               )
             : MenuItemButton.styleFrom(
                 backgroundColor: config.surfaceFill.color,
-                foregroundColor: config.outlineFill.asColor,
+                foregroundColor: config.outline,
               ).copyWith(
                 backgroundBuilder: config.buttonLayer(
                   config.surfaceFill,

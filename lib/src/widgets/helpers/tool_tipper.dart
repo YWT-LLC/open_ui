@@ -85,7 +85,7 @@ class EzToolTipper extends StatelessWidget {
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
-          child: EzIcon(config, Icons.help_outline, fill: config.outlineFill),
+          child: EzIcon(config, Icons.help_outline, fill: config.outlineFiller),
         ),
       ),
       baseFill: config.surfaceFill,

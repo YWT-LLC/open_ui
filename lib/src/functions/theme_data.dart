@@ -173,7 +173,7 @@ ThemeData ezThemeData(
 
     // App bar
     appBarTheme: AppBarTheme(
-      backgroundColor: colors.surfaceDim.asColor,
+      backgroundColor: colors.surfaceDim,
       foregroundColor: colors.onSurface,
       titleTextStyle: textTheme.headlineLarge,
       iconTheme: appBarIconData,
@@ -209,7 +209,7 @@ ThemeData ezThemeData(
     // Dialog
     dialogTheme: DialogThemeData(
       alignment: Alignment.center,
-      backgroundColor: colors.surfaceDim.asColor,
+      backgroundColor: colors.surfaceDim,
       clipBehavior: Clip.antiAlias,
       contentTextStyle: textTheme.bodyLarge,
       titleTextStyle: textTheme.titleLarge,
@@ -223,7 +223,7 @@ ThemeData ezThemeData(
 
     // Drawer
     navigationDrawerTheme: NavigationDrawerThemeData(
-      backgroundColor: colors.surfaceDim.asColor,
+      backgroundColor: colors.surfaceDim,
     ),
 
     // Dropdown menu
@@ -235,7 +235,7 @@ ThemeData ezThemeData(
         prefixIconColor: colors.primary.asColor,
         iconColor: colors.primary.asColor,
         suffixIconColor: colors.primary.asColor,
-        hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline.asColor),
+        hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline),
         labelStyle: textTheme.labelLarge,
         helperStyle: textTheme.labelLarge,
         errorStyle: textTheme.labelLarge?.copyWith(color: colors.error.asColor),
@@ -255,8 +255,8 @@ ThemeData ezThemeData(
         alignment: Alignment.center,
         backgroundBuilder: buttonLayer(colors.surface),
         backgroundColor: colors.surface.asColor,
-        disabledForegroundColor: colors.outline.asColor,
-        disabledIconColor: colors.outline.asColor,
+        disabledForegroundColor: colors.outline,
+        disabledIconColor: colors.outline,
         enabledMouseCursor: SystemMouseCursors.click,
         foregroundColor: colors.onSurface,
         iconColor: colors.primary.asColor,
@@ -311,7 +311,7 @@ ThemeData ezThemeData(
       style: IconButton.styleFrom(
         backgroundColor: colors.surface.asColor,
         foregroundColor: colors.primary.asColor,
-        disabledForegroundColor: colors.outline.asColor,
+        disabledForegroundColor: colors.outline,
         overlayColor: colors.primary.asColor,
         side: buildBorder(colors.primaryContainer),
         enabledMouseCursor: SystemMouseCursors.click,
@@ -330,7 +330,7 @@ ThemeData ezThemeData(
       prefixIconColor: colors.primary.asColor,
       iconColor: colors.primary.asColor,
       suffixIconColor: colors.primary.asColor,
-      hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline.asColor),
+      hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline),
       labelStyle: textTheme.labelLarge,
       helperStyle: textTheme.labelLarge,
       errorStyle: textTheme.labelLarge!.copyWith(color: colors.error.asColor),
@@ -358,9 +358,9 @@ ThemeData ezThemeData(
       style: TextButton.styleFrom(
         backgroundColor: colors.surface.asColor,
         foregroundColor: colors.onSurface,
-        disabledForegroundColor: colors.outline.asColor,
+        disabledForegroundColor: colors.outline,
         iconColor: colors.primary.asColor,
-        disabledIconColor: colors.outline.asColor,
+        disabledIconColor: colors.outline,
         enabledMouseCursor: SystemMouseCursors.click,
         overlayColor: colors.primary.asColor,
         textStyle: textTheme.bodyLarge,
@@ -396,7 +396,7 @@ ThemeData ezThemeData(
         enabledMouseCursor: SystemMouseCursors.click,
         foregroundColor: colors.primary.asColor,
         selectedForegroundColor: colors.onPrimary,
-        disabledForegroundColor: colors.outline.asColor,
+        disabledForegroundColor: colors.outline,
         side: buildBorder(colors.primaryContainer),
         shape: design.buttonShape.shape,
         textStyle: textTheme.bodyLarge,
@@ -408,7 +408,7 @@ ThemeData ezThemeData(
     // Snackbar
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: colors.surfaceDim.asColor,
+      backgroundColor: colors.surfaceDim,
       closeIconColor: colors.primary.asColor,
       shape: design.buttonShape.shape.copyWith(side: buildBorder(colors.secondary)),
       contentTextStyle: textTheme.bodyLarge,
@@ -420,12 +420,11 @@ ThemeData ezThemeData(
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            (states.contains(WidgetState.selected) ? colors.primary : colors.outline).asColor,
+            (states.contains(WidgetState.selected) ? colors.primary.asColor : colors.outline),
       ),
       trackColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            (states.contains(WidgetState.selected) ? colors.primary : colors.outline)
-                .asColor
+            (states.contains(WidgetState.selected) ? colors.primary.asColor : colors.outline)
                 .withValues(alpha: focusOpacity),
       ),
       trackOutlineColor: WidgetStateProperty.all(colors.surface.asColor),
@@ -437,9 +436,9 @@ ThemeData ezThemeData(
       style: TextButton.styleFrom(
         backgroundColor: colors.surface.asColor.withValues(alpha: text.backgroundOpacity),
         foregroundColor: colors.onSurface,
-        disabledForegroundColor: colors.outline.asColor,
+        disabledForegroundColor: colors.outline,
         iconColor: colors.primary.asColor,
-        disabledIconColor: colors.outline.asColor,
+        disabledIconColor: colors.outline,
         enabledMouseCursor: SystemMouseCursors.click,
         overlayColor: colors.primary.asColor,
         shape: design.buttonShape.shape,
@@ -452,7 +451,7 @@ ThemeData ezThemeData(
     // Tooltip
     tooltipTheme: TooltipThemeData(
       decoration: buildDecoration(
-        colors.surfaceDim,
+        EzSwitchColor(color: colors.surfaceDim),
         border: buildBox(colors.secondary),
         borderRadius: EzButtonShape.roundRect.radius,
       ),

@@ -107,7 +107,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 widget.config,
                 text: credits,
                 url: Uri.parse(credits),
-                backgroundColor: widget.config.surfaceDimFill.asColor,
+                backgroundColor: widget.config.surfaceDim,
                 hint: widget.config.ezL10n.gOpenLink,
               )
             : Text(credits, textAlign: TextAlign.center),

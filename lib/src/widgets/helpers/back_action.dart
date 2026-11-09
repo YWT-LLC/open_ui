@@ -22,7 +22,7 @@ class EzBackAction extends StatelessWidget {
           tooltip: config.ezL10n.gBack,
           icon: Icons.arrow_back,
           iconSize: config.titleStyle!.fontSize,
-          backgroundFill: config.appBarFill,
+          backgroundFill: config.surfaceDimFiller,
         )
       : const SizedBox.shrink();
 }

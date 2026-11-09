@@ -63,7 +63,7 @@ class OpenUIScaffold extends StatelessWidget {
         tooltip: config.ezL10n.gOptions,
         icon: Icons.more_vert,
         iconSize: config.titleStyle!.fontSize,
-        backgroundFill: config.appBarFill,
+        backgroundFill: config.surfaceDimFiller,
       ),
       menuChildren: <Widget>[
         if (showSettings) SettingsButton(config, parentContext: context),

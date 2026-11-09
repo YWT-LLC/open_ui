@@ -145,7 +145,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             : TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
                 backgroundBuilder: widget.config.buttonLayer(widget.config.surfaceFill),
-                overlayColor: widget.config.outlineFill.asColor,
+                overlayColor: widget.config.outline,
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
                 shadowColor: Colors.transparent,
                 side: widget.config.borderSide(widget.config.outlineVariantFill),
@@ -166,8 +166,8 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         icon: Transform.scale(
           scale: max(1.0, ezIconRatio(widget.config)),
           child: Switch(
-            activeThumbColor: widget.fauxDisabled ? widget.config.outlineFill.asColor : null,
-            inactiveThumbColor: widget.config.outlineFill.asColor,
+            activeThumbColor: widget.fauxDisabled ? widget.config.outline : null,
+            inactiveThumbColor: widget.config.outline,
             onChanged: onChanged,
             padding: EdgeInsets.zero,
             trackOutlineColor: (!widget.enabled || widget.fauxDisabled)

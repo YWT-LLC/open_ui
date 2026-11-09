@@ -490,7 +490,7 @@ Future<String?> ezColorPicker(
                             child: Container(
                               key: UniqueKey(),
                               decoration: BoxDecoration(
-                                border: config.boxBorder(config.outlineFill),
+                                border: config.boxBorder(config.outlineFiller),
                                 borderRadius: EzButtonShape.roundRect.radius,
                                 gradient: LinearGradient(
                                   begin: beginDir,

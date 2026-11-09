@@ -59,12 +59,12 @@ class _EzTextButtonState extends State<EzTextButton> {
             ? (widget.style == null
                 ? TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    iconColor: widget.enabled ? null : widget.config.outlineFill.asColor,
+                    iconColor: widget.enabled ? null : widget.config.outline,
                   )
                 : widget.style!.copyWith(
                     padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
                     iconColor: WidgetStatePropertyAll<Color?>(
-                        widget.enabled ? null : widget.config.outlineFill.asColor),
+                        widget.enabled ? null : widget.config.outline),
                   ))
             : widget.style,
         child: Text(
@@ -136,12 +136,12 @@ class _EzTextIconButtonState extends State<EzTextIconButton> {
             ? widget.style == null
                 ? TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    iconColor: widget.enabled ? null : widget.config.outlineFill.asColor,
+                    iconColor: widget.enabled ? null : widget.config.outline,
                   )
                 : widget.style!.copyWith(
                     padding: const WidgetStatePropertyAll<EdgeInsets>(EdgeInsets.zero),
                     iconColor: WidgetStatePropertyAll<Color?>(
-                        widget.enabled ? null : widget.config.outlineFill.asColor),
+                        widget.enabled ? null : widget.config.outline),
                   )
             : widget.style,
         icon: widget.icon,
