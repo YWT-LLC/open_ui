@@ -80,7 +80,7 @@ class EzCP extends ChangeNotifier {
 
         // Surface
         surface: surface,
-        surfaceDim: _colorOrGradient(darkSurfaceDimKey, basicColors),
+        surfaceDim: _colorOrGradient(darkSurfaceDimKey, basicColors).asColor,
         surfaceContainer: surfaceContainer,
         onSurface: ezTextColor(surface.asColor),
 
@@ -102,11 +102,10 @@ class EzCP extends ChangeNotifier {
         errorContainer: _colorOrGradient(darkErrorContainerKey, basicColors),
         onError: ezTextColor(error.asColor),
 
-        outline: _colorOrGradient(darkOutlineKey, basicColors),
+        outline: _colorOrGradient(darkOutlineKey, basicColors).asColor,
         outlineVariant: _colorOrGradient(darkOutlineVariantKey, basicColors),
-        surfaceTint: _colorOrGradient(darkSurfaceTintKey, basicColors),
         shadow: _colorOrGradient(darkShadowKey, basicColors),
-        scrim: _colorOrGradient(darkScrimKey, basicColors),
+        surfaceTint: _colorOrGradient(darkSurfaceTintKey, basicColors).asColor,
       );
 
       // Design //
@@ -200,7 +199,7 @@ class EzCP extends ChangeNotifier {
 
         // Surface
         surface: surface,
-        surfaceDim: _colorOrGradient(lightSurfaceDimKey, basicColors),
+        surfaceDim: _colorOrGradient(lightSurfaceDimKey, basicColors).asColor,
         surfaceContainer: surfaceContainer,
         onSurface: ezTextColor(surface.asColor),
 
@@ -222,11 +221,10 @@ class EzCP extends ChangeNotifier {
         errorContainer: _colorOrGradient(lightErrorContainerKey, basicColors),
         onError: ezTextColor(error.asColor),
 
-        outline: _colorOrGradient(lightOutlineKey, basicColors),
+        outline: _colorOrGradient(lightOutlineKey, basicColors).asColor,
         outlineVariant: _colorOrGradient(lightOutlineVariantKey, basicColors),
-        surfaceTint: _colorOrGradient(lightSurfaceTintKey, basicColors),
         shadow: _colorOrGradient(lightShadowKey, basicColors),
-        scrim: _colorOrGradient(lightScrimKey, basicColors),
+        surfaceTint: _colorOrGradient(lightSurfaceTintKey, basicColors).asColor,
       );
 
       // Design //
@@ -338,9 +336,11 @@ class EzCP extends ChangeNotifier {
 
   // Surface
   EzSwitchColor get surfaceFill => _color.surface;
-  EzSwitchColor get surfaceDimFill => _color.surfaceDim;
+  Color get surfaceDim => _color.surfaceDim;
   EzSwitchColor get surfaceContainerFill => _color.surfaceContainer;
   Color get onSurface => _color.onSurface;
+
+  EzSwitchColor get appBarFill => EzSwitchColor(color: surfaceDim);
 
   // Big three
   EzSwitchColor get primaryFill => _color.primary;
@@ -360,11 +360,10 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get errorContainerFill => _color.errorContainer;
   Color get onError => _color.onError;
 
-  EzSwitchColor get outlineFill => _color.outline;
+  Color get outlineFill => _color.outline;
   EzSwitchColor get outlineVariantFill => _color.outlineVariant;
-  EzSwitchColor get surfaceTintFill => _color.surfaceTint;
+  Color get surfaceTintFill => _color.surfaceTint;
   EzSwitchColor get shadowFill => _color.shadow;
-  EzSwitchColor get scrimFill => _color.scrim;
 
   // Has a twin in ezThemeData (good to keep separate)
   BoxDecoration boxDecoration({
@@ -626,7 +625,7 @@ class EzColorCache {
 
   // Backgrounds
   final EzSwitchColor surface;
-  final EzSwitchColor surfaceDim;
+  final Color surfaceDim;
   final EzSwitchColor surfaceContainer;
   final Color onSurface;
 
@@ -648,11 +647,10 @@ class EzColorCache {
   final EzSwitchColor errorContainer;
   final Color onError;
 
-  final EzSwitchColor outline;
+  final Color outline;
   final EzSwitchColor outlineVariant;
-  final EzSwitchColor surfaceTint;
   final EzSwitchColor shadow;
-  final EzSwitchColor scrim;
+  final Color surfaceTint;
 
   EzColorCache({
     required this.schemeImagePath,
@@ -688,7 +686,6 @@ class EzColorCache {
     required this.outlineVariant,
     required this.surfaceTint,
     required this.shadow,
-    required this.scrim,
   });
 }
 
