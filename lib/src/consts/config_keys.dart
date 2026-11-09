@@ -137,8 +137,34 @@ const List<String> darkColorOrder = <String>[
   darkOutlineVariantKey,
   darkShadowKey,
   darkSurfaceTintKey,
-  darkScrimKey,
 ];
+
+const Set<String> darkNoGradients = <String>{
+  // Text
+  darkOnPrimaryKey,
+  darkOnPrimaryContainerKey,
+  darkOnPrimaryFixedKey,
+  darkOnPrimaryFixedVariantKey,
+  darkOnSecondaryKey,
+  darkOnSecondaryContainerKey,
+  darkOnSecondaryFixedKey,
+  darkOnSecondaryFixedVariantKey,
+  darkOnTertiaryKey,
+  darkOnTertiaryContainerKey,
+  darkOnTertiaryFixedKey,
+  darkOnTertiaryFixedVariantKey,
+  darkOnErrorKey,
+  darkOnErrorContainerKey,
+  darkOnSurfaceKey,
+  darkOnSurfaceVariantKey,
+  darkOnInverseSurfaceKey,
+
+  // Other
+  darkSurfaceDimKey,
+  darkOutlineKey,
+  darkScrimKey,
+  darkSurfaceTintKey,
+};
 
 const String darkColorSchemeImageKey = 'darkColorSchemeImage';
 
@@ -280,8 +306,34 @@ const List<String> lightColorOrder = <String>[
   lightOutlineVariantKey,
   lightShadowKey,
   lightSurfaceTintKey,
-  lightScrimKey,
 ];
+
+const Set<String> lightNoGradients = <String>{
+  // Text
+  lightOnPrimaryKey,
+  lightOnPrimaryContainerKey,
+  lightOnPrimaryFixedKey,
+  lightOnPrimaryFixedVariantKey,
+  lightOnSecondaryKey,
+  lightOnSecondaryContainerKey,
+  lightOnSecondaryFixedKey,
+  lightOnSecondaryFixedVariantKey,
+  lightOnTertiaryKey,
+  lightOnTertiaryContainerKey,
+  lightOnTertiaryFixedKey,
+  lightOnTertiaryFixedVariantKey,
+  lightOnErrorKey,
+  lightOnErrorContainerKey,
+  lightOnSurfaceKey,
+  lightOnSurfaceVariantKey,
+  lightOnInverseSurfaceKey,
+
+  // Other
+  lightSurfaceDimKey,
+  lightOutlineKey,
+  lightScrimKey,
+  lightSurfaceTintKey,
+};
 
 const String lightColorSchemeImageKey = 'lightColorSchemeImage';
 
@@ -346,6 +398,11 @@ const Map<String, String> ezTextMirrors = <String, String>{
   lightPrimaryKey: lightOnPrimaryKey,
   lightSecondaryKey: lightOnSecondaryKey,
   lightTertiaryKey: lightOnTertiaryKey,
+};
+
+const Set<String> noGradientKeys = <String>{
+  ...darkNoGradients,
+  ...lightNoGradients,
 };
 
 const Map<String, Type> allColorKeys = <String, Type>{
