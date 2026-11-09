@@ -65,7 +65,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     if (!widget.configKey.contains(textColorPrefix)) {
       // Base color ...
       // Just open a color picker
-      return pickAColor();
+      return pickAColor(allowGradient: !noGradientKeys.contains(widget.configKey));
     }
     // 'on' (aka text) color...
     // Get its background pair
@@ -122,7 +122,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             widget.config,
             text: widget.config.ezL10n.csUseCustom,
             onPressed: () async {
-              await pickAColor();
+              await pickAColor(allowGradient: false);
               if (dCon.mounted) Navigator.of(dCon).pop();
             },
             isDestructiveAction: true,
