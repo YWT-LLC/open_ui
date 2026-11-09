@@ -48,8 +48,6 @@ class EzMenuButton extends StatelessWidget {
                   config.surfaceFill,
                   borderRadius: EzButtonShape.roundRect.radius,
                 ),
-                // TODO: don't I have a sharp/dull thing?
-                // if yes, here and drop down
               )
             : MenuItemButton.styleFrom(
                 backgroundColor: config.surfaceFill.color,
