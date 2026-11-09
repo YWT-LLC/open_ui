@@ -52,7 +52,7 @@ class EzAvatar extends StatelessWidget {
     );
 
     return DecoratedBox(
-      // TODO: make it vurk
+      // TODO: ABSOLUTE LAST (easy dessert, also don't wanna clear gradients atm): do the previews look as intended with this?
       decoration: BoxDecoration(
         color: config.surfaceContainerFill.color,
         gradient: config.surfaceContainerFill.gradient,
