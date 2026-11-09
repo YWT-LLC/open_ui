@@ -325,7 +325,7 @@ final Map<String, Object> ywtShinyColors = <String, Object>{
   // Dark surface
   darkColorSchemeImageKey: noImageValue,
   darkSurfaceKey: ezProgressString,
-  darkSurfaceDimKey: darkSurfaceDimHex,
+  darkSurfaceDimKey: lightSurfaceDimHex,
   darkSurfaceContainerKey: ezRainbowString,
   darkOnSurfaceKey: whiteHex,
 
@@ -359,7 +359,7 @@ final Map<String, Object> ywtShinyColors = <String, Object>{
   // Ditto surface
   lightColorSchemeImageKey: noImageValue,
   lightSurfaceKey: ezProgressString,
-  lightSurfaceDimKey: darkSurfaceDimHex,
+  lightSurfaceDimKey: lightSurfaceDimHex,
   lightSurfaceContainerKey: ezRainbowString,
   lightOnSurfaceKey: whiteHex,
 
