@@ -219,8 +219,8 @@ LinearGradient ezLGFromString(String value) {
 }
 
 const LinearGradient ezRainbowGradient = LinearGradient(
-  begin: Alignment.bottomLeft,
-  end: Alignment.topRight,
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
   colors: <Color>[
     Colors.red,
     Colors.orange,
@@ -235,8 +235,8 @@ const LinearGradient ezRainbowGradient = LinearGradient(
 const EzSwitchColor ezRainbowSwitch = EzSwitchColor(gradient: ezRainbowGradient);
 
 final String ezRainbowString = <String>[
-  Alignment.bottomLeft.toString(),
-  Alignment.topRight.toString(),
+  Alignment.topCenter.toString(),
+  Alignment.bottomCenter.toString(),
   Colors.red.toARGB32().toString(),
   Colors.orange.toARGB32().toString(),
   Colors.yellow.toARGB32().toString(),
@@ -293,17 +293,17 @@ final String ezProgressVariantString = <String>[
 ].join(colorSplit);
 
 final String ezYWTGradientString = <String>[
-  Alignment.topLeft.toString(),
-  Alignment.bottomRight.toString(),
+  Alignment.centerLeft.toString(),
+  Alignment.centerRight.toString(),
   ywt.ywtEucalyptusHex.toString(),
   ywt.ywtSandHex.toString(),
   ywt.ywtPurpleHex.toString(),
 ].join(colorSplit);
 
 final String ezErrorGradientString = <String>[
-  Alignment.centerLeft.toString(),
-  Alignment.centerRight.toString(),
-  Colors.red.toARGB32().toString(),
-  Colors.white.toARGB32().toString(),
+  Alignment.topLeft.toString(),
+  Alignment.bottomRight.toString(),
   Colors.blue.toARGB32().toString(),
+  Colors.white.toARGB32().toString(),
+  Colors.red.toARGB32().toString(),
 ].join(colorSplit);

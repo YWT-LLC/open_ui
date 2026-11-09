@@ -327,62 +327,62 @@ final Map<String, Object> ywtShinyColors = <String, Object>{
   darkSurfaceKey: ezProgressString,
   darkSurfaceDimKey: darkSurfaceDimHex,
   darkSurfaceContainerKey: ezRainbowString,
-  darkOnSurfaceKey: blackHex,
+  darkOnSurfaceKey: whiteHex,
 
   // Dark big three
   darkPrimaryKey: ezYWTGradientString,
   darkOnPrimaryKey: whiteHex,
-  darkPrimaryContainerKey: ezRainbowAccentString,
+  darkPrimaryContainerKey: ezYWTGradientString,
   darkOnPrimaryContainerKey: blackHex,
 
   darkSecondaryKey: ezYWTGradientString,
   darkOnSecondaryKey: whiteHex,
-  darkSecondaryContainerKey: ezRainbowAccentString,
+  darkSecondaryContainerKey: ezYWTGradientString,
   darkOnSecondaryContainerKey: blackHex,
 
   darkTertiaryKey: ezYWTGradientString,
   darkOnTertiaryKey: whiteHex,
-  darkTertiaryContainerKey: ezRainbowAccentString,
+  darkTertiaryContainerKey: ezYWTGradientString,
   darkOnTertiaryContainerKey: blackHex,
 
   // Dark misc
   darkErrorKey: ezErrorGradientString,
   darkOnErrorKey: blackHex,
-  darkErrorContainerKey: ezRainbowAccentString,
+  darkErrorContainerKey: ezErrorGradientString,
   darkOnErrorContainerKey: blackHex,
 
-  darkOutlineKey: fadedWhiteHex,
+  darkOutlineKey: fadedBlackHex,
   darkOutlineVariantKey: ezProgressVariantString,
   darkSurfaceTintKey: transparentHex,
   darkScrimKey: blackHex,
 
-  // Light surface
+  // Ditto surface
   lightColorSchemeImageKey: noImageValue,
   lightSurfaceKey: ezProgressString,
-  lightSurfaceDimKey: lightSurfaceDimHex,
+  lightSurfaceDimKey: darkSurfaceDimHex,
   lightSurfaceContainerKey: ezRainbowString,
   lightOnSurfaceKey: whiteHex,
 
-  // Light big three
+  // Ditto big three
   lightPrimaryKey: ezYWTGradientString,
   lightOnPrimaryKey: whiteHex,
-  lightPrimaryContainerKey: ezRainbowAccentString,
+  lightPrimaryContainerKey: ezYWTGradientString,
   lightOnPrimaryContainerKey: blackHex,
 
   lightSecondaryKey: ezYWTGradientString,
   lightOnSecondaryKey: whiteHex,
-  lightSecondaryContainerKey: ezRainbowAccentString,
+  lightSecondaryContainerKey: ezYWTGradientString,
   lightOnSecondaryContainerKey: blackHex,
 
   lightTertiaryKey: ezYWTGradientString,
   lightOnTertiaryKey: whiteHex,
-  lightTertiaryContainerKey: ezRainbowAccentString,
+  lightTertiaryContainerKey: ezYWTGradientString,
   lightOnTertiaryContainerKey: blackHex,
 
-  // Light misc
+  // Ditto misc
   lightErrorKey: ezErrorGradientString,
   lightOnErrorKey: blackHex,
-  lightErrorContainerKey: ezRainbowAccentString,
+  lightErrorContainerKey: ezErrorGradientString,
   lightOnErrorContainerKey: blackHex,
 
   lightOutlineKey: fadedBlackHex,
