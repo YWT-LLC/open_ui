@@ -114,6 +114,9 @@ class EzCP extends ChangeNotifier {
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
 
+      final String backgroundImagePath = EzCM.get(darkBackgroundImageKey) ?? noImageValue;
+      final BoxFit? backgroundImageFit = boxFitLib[EzCM.get(darkBackgroundFitKey)];
+
       final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(darkPaddingKey),
@@ -128,12 +131,17 @@ class EzCP extends ChangeNotifier {
         // Page
         margin: margin,
         spacing: spacing,
-        backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
-        backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
-        transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
-        fadedTransition: EzCM.get(darkTransitionFadeKey),
         animDur: EzCM.get(darkAnimationDurationKey),
         animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
+        transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
+        fadedTransition: EzCM.get(darkTransitionFadeKey),
+        backgroundImagePath: backgroundImagePath,
+        backgroundImageFit: backgroundImageFit,
+        screenDecoration: _buildScreenDeco(
+          _colorOrGradient(lightSurfaceContainerKey, basicColors),
+          backgroundImagePath,
+          backgroundImageFit,
+        ),
       );
 
       final EzLayoutCache layoutCache = EzLayoutCache(
@@ -224,6 +232,9 @@ class EzCP extends ChangeNotifier {
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
 
+      final String backgroundImagePath = EzCM.get(lightBackgroundImageKey) ?? noImageValue;
+      final BoxFit? backgroundImageFit = boxFitLib[EzCM.get(lightBackgroundFitKey)];
+
       final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(lightPaddingKey),
@@ -238,12 +249,17 @@ class EzCP extends ChangeNotifier {
         // Page
         margin: margin,
         spacing: spacing,
-        backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
-        backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
-        transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
-        fadedTransition: EzCM.get(lightTransitionFadeKey),
         animDur: EzCM.get(lightAnimationDurationKey),
         animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
+        transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
+        fadedTransition: EzCM.get(lightTransitionFadeKey),
+        backgroundImagePath: backgroundImagePath,
+        backgroundImageFit: backgroundImageFit,
+        screenDecoration: _buildScreenDeco(
+          _colorOrGradient(lightSurfaceContainerKey, basicColors),
+          backgroundImagePath,
+          backgroundImageFit,
+        ),
       );
 
       final EzLayoutCache layoutCache = EzLayoutCache(
@@ -465,11 +481,14 @@ class EzCP extends ChangeNotifier {
 
   String get backgroundImagePath => _design.backgroundImagePath;
   BoxFit? get backgroundImageFit => _design.backgroundImageFit;
+  BoxDecoration get screenDecoration => _design.screenDecoration;
 
-  DecorationImage get backgroundImage => DecorationImage(
-        image: ezImageProvider(backgroundImagePath),
-        fit: backgroundImageFit,
-      );
+  DecorationImage? get backgroundImage => (backgroundImagePath == noImageValue)
+      ? null
+      : DecorationImage(
+          image: ezImageProvider(backgroundImagePath),
+          fit: backgroundImageFit,
+        );
 
   // Layout cache (lil page design, lil text) //
 
@@ -697,6 +716,7 @@ class EzDesignCache {
 
   final String backgroundImagePath;
   final BoxFit? backgroundImageFit;
+  final BoxDecoration screenDecoration;
 
   EzDesignCache({
     // Button
@@ -718,6 +738,7 @@ class EzDesignCache {
     required this.fadedTransition,
     required this.backgroundImagePath,
     required this.backgroundImageFit,
+    required this.screenDecoration,
   });
 }
 
@@ -796,6 +817,19 @@ EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
     final int? hex = int.tryParse(value);
     return (hex == null) ? backup : EzSwitchColor(color: Color(hex));
   }
+}
+
+BoxDecoration _buildScreenDeco(EzSwitchColor fill, String imagePath, BoxFit? imageFit) {
+  if (imagePath == noImageValue) return BoxDecoration(color: fill.color, gradient: fill.gradient);
+
+  final int? isColor = int.tryParse(imagePath);
+  if (isColor != null) return BoxDecoration(color: Color(isColor));
+
+  final LinearGradient? isGradient =
+      (imagePath.split(colorSplit).length >= 4) ? ezLGFromString(imagePath) : null;
+  if (isGradient != null) return BoxDecoration(gradient: isGradient);
+
+  return BoxDecoration(image: DecorationImage(image: ezImageProvider(imagePath), fit: imageFit));
 }
 
 /// Safety net, not a crutch...
