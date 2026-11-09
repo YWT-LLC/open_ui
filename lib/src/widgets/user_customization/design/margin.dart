@@ -80,9 +80,7 @@ class EzMarginSetting extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: config.surfaceFill.color,
                               gradient: config.surfaceFill.gradient,
-                              image: (config.backgroundImagePath == noImageValue)
-                                  ? null
-                                  : config.backgroundImage,
+                              image: config.backgroundImage,
                             ),
                             margin: EdgeInsets.all(currValue * 0.25),
                           ),
