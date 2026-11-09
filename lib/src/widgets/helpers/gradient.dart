@@ -4,6 +4,7 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:material_ui/material_ui.dart';
 
@@ -243,4 +244,66 @@ final String ezRainbowString = <String>[
   Colors.blue.toARGB32().toString(),
   Colors.indigo.toARGB32().toString(),
   Colors.purple.toARGB32().toString(),
+].join(colorSplit);
+
+final String ezRainbowAccentString = <String>[
+  Alignment.bottomLeft.toString(),
+  Alignment.topRight.toString(),
+  Colors.redAccent.toARGB32().toString(),
+  Colors.orangeAccent.toARGB32().toString(),
+  Colors.yellowAccent.toARGB32().toString(),
+  Colors.greenAccent.toARGB32().toString(),
+  Colors.blueAccent.toARGB32().toString(),
+  Colors.indigoAccent.toARGB32().toString(),
+  Colors.purpleAccent.toARGB32().toString(),
+].join(colorSplit);
+
+const LinearGradient ezProgressGradient = LinearGradient(
+  // begin: Alignment.centerLeft,
+  // end: Alignment.centerRight,
+  colors: <Color>[
+    Colors.white,
+    Colors.pinkAccent,
+    Colors.lightBlueAccent,
+    Colors.brown,
+    Colors.black,
+  ],
+);
+
+const EzSwitchColor ezProgressSwitch = EzSwitchColor(gradient: ezProgressGradient);
+
+final String ezProgressString = <String>[
+  Alignment.centerLeft.toString(),
+  Alignment.centerRight.toString(),
+  Colors.white.toARGB32().toString(),
+  Colors.pinkAccent.toARGB32().toString(),
+  Colors.lightBlueAccent.toARGB32().toString(),
+  Colors.brown.toARGB32().toString(),
+  Colors.black.toARGB32().toString(),
+].join(colorSplit);
+
+final String ezProgressVariantString = <String>[
+  Alignment.centerLeft.toString(),
+  Alignment.centerRight.toString(),
+  Colors.grey.toARGB32().toString(),
+  Colors.pink.toARGB32().toString(),
+  Colors.blue.toARGB32().toString(),
+  Colors.brown.toARGB32().toString(),
+  Colors.grey.toARGB32().toString(),
+].join(colorSplit);
+
+final String ezYWTGradientString = <String>[
+  Alignment.topLeft.toString(),
+  Alignment.bottomRight.toString(),
+  ywt.ywtEucalyptusHex.toString(),
+  ywt.ywtSandHex.toString(),
+  ywt.ywtPurpleHex.toString(),
+].join(colorSplit);
+
+final String ezErrorGradientString = <String>[
+  Alignment.centerLeft.toString(),
+  Alignment.centerRight.toString(),
+  Colors.red.toARGB32().toString(),
+  Colors.white.toARGB32().toString(),
+  Colors.blue.toARGB32().toString(),
 ].join(colorSplit);
