@@ -10,6 +10,11 @@ import 'package:material_ui/material_ui.dart';
 class EzAvatar extends StatelessWidget {
   final EzCP config;
   final EzSwitchColor fill;
+
+  /// For when [fill] has opacity
+  /// Defaults to [EzCP.surfaceContainerFill]
+  final EzSwitchColor? base;
+
   final ImageProvider? backgroundImage;
   final ImageErrorListener? onBackgroundImageError;
   final Color? foregroundColor;
@@ -25,6 +30,7 @@ class EzAvatar extends StatelessWidget {
     this.config, {
     super.key,
     required this.fill,
+    this.base,
     this.backgroundImage,
     this.onBackgroundImageError,
     this.foregroundColor,
@@ -52,10 +58,9 @@ class EzAvatar extends StatelessWidget {
     );
 
     return DecoratedBox(
-      // TODO: ABSOLUTE LAST (easy dessert, also don't wanna clear gradients atm): do the previews look as intended with this?
       decoration: BoxDecoration(
-        color: config.surfaceContainerFill.color,
-        gradient: config.surfaceContainerFill.gradient,
+        color: (base ?? config.surfaceContainerFill).color,
+        gradient: (base ?? config.surfaceContainerFill).gradient,
         shape: BoxShape.circle,
       ),
       child: (fill.gradient == null)
