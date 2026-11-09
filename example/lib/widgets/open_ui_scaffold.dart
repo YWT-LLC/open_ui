@@ -57,12 +57,13 @@ class OpenUIScaffold extends StatelessWidget {
     // Define custom widgets //
 
     final Widget options = MenuAnchor(
-      builder: (_, MenuController controller, ___) => EzIconButton(
+      builder: (_, MenuController controller, ___) => EzIconTouch(
         config,
         onPressed: () => toggleMenu(controller),
         tooltip: config.ezL10n.gOptions,
+        icon: Icons.more_vert,
         iconSize: config.titleStyle!.fontSize,
-        icon: EzIcon(config, Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
+        backgroundFill: config.appBarFill,
       ),
       menuChildren: <Widget>[
         if (showSettings) SettingsButton(config, parentContext: context),
