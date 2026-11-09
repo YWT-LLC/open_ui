@@ -69,6 +69,7 @@ class EzCP extends ChangeNotifier {
       final ColorScheme basicColors = ezColorScheme(Brightness.dark);
 
       final EzSwitchColor surface = _colorOrGradient(darkSurfaceKey, basicColors);
+      final EzSwitchColor surfaceContainer = _colorOrGradient(darkSurfaceContainerKey, basicColors);
       final EzSwitchColor primary = _colorOrGradient(darkPrimaryKey, basicColors);
       final EzSwitchColor secondary = _colorOrGradient(darkSecondaryKey, basicColors);
       final EzSwitchColor tertiary = _colorOrGradient(darkTertiaryKey, basicColors);
@@ -80,7 +81,7 @@ class EzCP extends ChangeNotifier {
         // Surface
         surface: surface,
         surfaceDim: _colorOrGradient(darkSurfaceDimKey, basicColors),
-        surfaceContainer: _colorOrGradient(darkSurfaceContainerKey, basicColors),
+        surfaceContainer: surfaceContainer,
         onSurface: ezTextColor(surface.asColor),
 
         // Big three
@@ -138,7 +139,7 @@ class EzCP extends ChangeNotifier {
         backgroundImagePath: backgroundImagePath,
         backgroundImageFit: backgroundImageFit,
         screenDecoration: _buildScreenDeco(
-          _colorOrGradient(lightSurfaceContainerKey, basicColors),
+          surfaceContainer,
           backgroundImagePath,
           backgroundImageFit,
         ),
@@ -187,6 +188,8 @@ class EzCP extends ChangeNotifier {
       final ColorScheme basicColors = ezColorScheme(Brightness.light);
 
       final EzSwitchColor surface = _colorOrGradient(lightSurfaceKey, basicColors);
+      final EzSwitchColor surfaceContainer =
+          _colorOrGradient(lightSurfaceContainerKey, basicColors);
       final EzSwitchColor primary = _colorOrGradient(lightPrimaryKey, basicColors);
       final EzSwitchColor secondary = _colorOrGradient(lightSecondaryKey, basicColors);
       final EzSwitchColor tertiary = _colorOrGradient(lightTertiaryKey, basicColors);
@@ -198,7 +201,7 @@ class EzCP extends ChangeNotifier {
         // Surface
         surface: surface,
         surfaceDim: _colorOrGradient(lightSurfaceDimKey, basicColors),
-        surfaceContainer: _colorOrGradient(lightSurfaceContainerKey, basicColors),
+        surfaceContainer: surfaceContainer,
         onSurface: ezTextColor(surface.asColor),
 
         // Big three
@@ -256,7 +259,7 @@ class EzCP extends ChangeNotifier {
         backgroundImagePath: backgroundImagePath,
         backgroundImageFit: backgroundImageFit,
         screenDecoration: _buildScreenDeco(
-          _colorOrGradient(lightSurfaceContainerKey, basicColors),
+          surfaceContainer,
           backgroundImagePath,
           backgroundImageFit,
         ),
