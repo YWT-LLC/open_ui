@@ -521,8 +521,6 @@ Must be one of [int, bool, double, String, List<String>]''');
           onErrorContainer: Colors.white,
 
           // Misc
-          // outlineVariant
-          // shadow
           surfaceTint: Colors.transparent,
           scrim: Colors.black,
           brightness: Brightness.dark,
@@ -657,11 +655,9 @@ Must be one of [int, bool, double, String, List<String>]''');
           onErrorContainer: Colors.white,
 
           // Misc
-          // outlineVariant
-          // shadow
+
           surfaceTint: Colors.transparent,
           scrim: Colors.white,
-          // brightness: Brightness.light,
           seedColor: primary,
         ),
         Brightness.light,
