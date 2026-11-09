@@ -216,3 +216,31 @@ LinearGradient ezLGFromString(String value) {
     colors: parts.sublist(2).map((String color) => Color(int.parse(color))).toList(),
   );
 }
+
+const LinearGradient ezRainbowGradient = LinearGradient(
+  begin: Alignment.bottomLeft,
+  end: Alignment.topRight,
+  colors: <Color>[
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.indigo,
+    Colors.purple,
+  ],
+);
+
+const EzSwitchColor ezRainbowSwitch = EzSwitchColor(gradient: ezRainbowGradient);
+
+final String ezRainbowString = <String>[
+  Alignment.bottomLeft.toString(),
+  Alignment.topRight.toString(),
+  Colors.red.toARGB32().toString(),
+  Colors.orange.toARGB32().toString(),
+  Colors.yellow.toARGB32().toString(),
+  Colors.green.toARGB32().toString(),
+  Colors.blue.toARGB32().toString(),
+  Colors.indigo.toARGB32().toString(),
+  Colors.purple.toARGB32().toString(),
+].join(colorSplit);

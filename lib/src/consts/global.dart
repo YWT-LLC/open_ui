@@ -3,8 +3,6 @@
  * See LICENSE for distribution and usage details.
  */
 
-import '../../open_ui.dart';
-
 import 'package:material_ui/material_ui.dart';
 
 //* BTS *//
@@ -78,19 +76,3 @@ const String sampleString = '-55.55';
 /// Opacity for text selection highlighting
 /// 0.25
 const double selectionOpacity = 0.25;
-
-const LinearGradient ezRainbowGradient = LinearGradient(
-  begin: Alignment.bottomLeft,
-  end: Alignment.topRight,
-  colors: <Color>[
-    Colors.red,
-    Colors.orange,
-    Colors.yellow,
-    Colors.green,
-    Colors.blue,
-    Colors.indigo,
-    Colors.purple,
-  ],
-);
-
-const EzSwitchColor ezRainbowSwitch = EzSwitchColor(gradient: ezRainbowGradient);
