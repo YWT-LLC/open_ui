@@ -8,7 +8,6 @@ import '../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 // TODO: can't edit text color?!
-// TODO: hint outline (varient)'s gradient doesn't seem to be working
 
 /// Returns the guesstimated most readable text color (black/white) for [background]
 Color ezTextColor(Color background) {
