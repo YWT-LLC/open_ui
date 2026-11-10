@@ -934,6 +934,8 @@ ButtonLayerBuilder? ezButtonLayer(
               child: child,
             );
 
+ButtonLayerBuilder ezSelfBuilder = (_, __, Widget? child) => child!;
+
 // External //
 
 /// Safety net, not a crutch...

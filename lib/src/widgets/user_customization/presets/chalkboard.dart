@@ -20,7 +20,12 @@ class EzChalkboardConfig extends StatelessWidget {
   /// Dark theme only config; sets [ThemeMode.dark], resets it, and...
   /// Sets a [ColorScheme] similar to [ezHighContrastDark], but with a [chalkboardGreen] surface and [ywtSand] accents
   /// Has mostly default design settings, but a [fingerPaint] based [TextTheme]
-  const EzChalkboardConfig(this.config, {super.key, required this.autoConfirm, this.extra});
+  const EzChalkboardConfig(
+    this.config, {
+    super.key,
+    required this.autoConfirm,
+    this.extra,
+  });
 
   static Future<bool> onPressed(
     EzCP config,
@@ -168,6 +173,7 @@ class EzChalkboardConfig extends StatelessWidget {
     return EzElevatedButton(
       config,
       style: ElevatedButton.styleFrom(
+        backgroundBuilder: ezSelfBuilder,
         backgroundColor: chalkboardGreen,
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,

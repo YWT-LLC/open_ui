@@ -210,26 +210,28 @@ class EzHighVisibilityConfig extends StatelessWidget {
       config,
       style: config.isDark
           ? ElevatedButton.styleFrom(
+              backgroundBuilder: ezSelfBuilder,
               backgroundColor: ywt.darkSurface,
               foregroundColor: Colors.white,
-              shadowColor: Colors.transparent,
               overlayColor: Colors.white,
-              side: const BorderSide(color: ywt.fadedWhite, width: ywt.defaultBorderWidth),
-              shape: EzButtonShape.pill.shape,
-              textStyle: localBody,
               padding: EdgeInsets.all(
                   EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+              shadowColor: Colors.transparent,
+              shape: EzButtonShape.pill.shape,
+              side: const BorderSide(color: ywt.fadedWhite, width: ywt.defaultBorderWidth),
+              textStyle: localBody,
             )
           : ElevatedButton.styleFrom(
+              backgroundBuilder: ezSelfBuilder,
               backgroundColor: ywt.lightSurface,
               foregroundColor: Colors.black,
-              shadowColor: Colors.transparent,
               overlayColor: Colors.black,
-              side: const BorderSide(color: ywt.fadedBlack, width: ywt.defaultBorderWidth),
-              shape: EzButtonShape.pill.shape,
-              textStyle: localBody,
               padding: EdgeInsets.all(
                   EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+              shadowColor: Colors.transparent,
+              shape: EzButtonShape.pill.shape,
+              side: const BorderSide(color: ywt.fadedBlack, width: ywt.defaultBorderWidth),
+              textStyle: localBody,
             ),
       onPressed: () => config.rebuildUI(changes: () async {
         await onPressed(config, updateBoth);
