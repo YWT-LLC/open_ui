@@ -15,9 +15,7 @@ class EzRadio<T> extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   final T value;
-
   final bool toggleable;
-
   final double _scale;
 
   /// [Radio] with custom styling and scaling
@@ -27,10 +25,14 @@ class EzRadio<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
-        decoration: config.boxDeco(shape: BoxShape.circle),
+        decoration: config.boxDeco(
+          border: config.boxBorder(),
+          shape: BoxShape.circle,
+        ),
         child: Transform.scale(
           scale: max(1.0, _scale),
           child: Radio<T>(value: value, toggleable: toggleable),
         ),
       );
 }
+// TODO: check again after you fix the icon color(s)

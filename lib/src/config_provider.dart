@@ -451,7 +451,6 @@ class EzCP extends ChangeNotifier {
         opacity: opacity,
       );
 
-  // TODO: audit all these: border, or no border?
   /// Defaults to [EzCP.surfaceFill]
   BoxDecoration boxDeco({
     EzSwitchColor? fill,
@@ -891,7 +890,6 @@ UnderlineInputBorder ezUnderInBorder(
       borderRadius: borderRadius,
     );
 
-// TODO: audit all these: border, or no border?
 BoxDecoration ezBoxDeco(
   EzSwitchColor fill, {
   BoxBorder? border,
