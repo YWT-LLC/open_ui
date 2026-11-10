@@ -138,14 +138,25 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         style: (widget.enabled && !widget.fauxDisabled)
             ? TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
-                backgroundBuilder: widget.config.buttonLayer(fill: widget.config.surfaceFill),
+                backgroundBuilder: widget.config.buttonLayer(
+                  fill: widget.config.surfaceFill,
+                  border: widget.config.boxBorder(
+                    fill: widget.config.primaryFill,
+                    opacity: focusOpacity,
+                  ),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                side: widget.config
-                    .borderSide(fill: widget.config.primaryFill, opacity: focusOpacity),
+                side: widget.config.borderSide(
+                  fill: widget.config.primaryFill,
+                  opacity: focusOpacity,
+                ),
               )
             : TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
-                backgroundBuilder: widget.config.buttonLayer(fill: widget.config.surfaceFill),
+                backgroundBuilder: widget.config.buttonLayer(
+                  fill: widget.config.surfaceFill,
+                  border: widget.config.boxBorder(fill: widget.config.outlineVariantFill),
+                ),
                 overlayColor: widget.config.outline,
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
                 shadowColor: Colors.transparent,

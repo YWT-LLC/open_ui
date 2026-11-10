@@ -394,9 +394,15 @@ class EzCP extends ChangeNotifier {
         );
 
   /// Defaults to [EzCP.primaryContainerFill]
-  BoxBorder boxBorder({EzSwitchColor? fill, double? width}) => ezBoxBorder(
+  BoxBorder boxBorder({
+    EzSwitchColor? fill,
+    double? width,
+    double? opacity,
+  }) =>
+      ezBoxBorder(
         fill ?? primaryContainerFill,
         width: width ?? borderWidth,
+        opacity: opacity,
       );
 
   /// Defaults to [EzCP.primaryContainerFill]
@@ -455,8 +461,6 @@ class EzCP extends ChangeNotifier {
   BoxDecoration boxDeco({
     EzSwitchColor? fill,
     BoxBorder? border,
-    EzSwitchColor? borderFill,
-    double? borderWidth,
     BorderRadiusGeometry? borderRadius,
     BoxShape shape = BoxShape.rectangle,
     double? opacity,
@@ -469,13 +473,10 @@ class EzCP extends ChangeNotifier {
         opacity: opacity,
       );
 
-  // TODO: audit all these: border, or no border?
   /// Defaults to [EzCP.surfaceFill]
   ButtonLayerBuilder? buttonLayer({
     EzSwitchColor? fill,
     BoxBorder? border,
-    EzSwitchColor? borderFill,
-    double? borderWidth,
     BorderRadiusGeometry? borderRadius,
     BoxShape shape = BoxShape.rectangle,
     double? opacity,
@@ -830,14 +831,15 @@ BoxDecoration _buildScreenDeco(EzSwitchColor fill, String imagePath, BoxFit? ima
 BoxBorder ezBoxBorder(
   EzSwitchColor fill, {
   required double width,
+  double? opacity,
 }) =>
     fill.color == null
         ? EzGradientBoxBorder(
-            gradient: fill.gradient!,
+            gradient: (opacity == null) ? fill.gradient! : fill.gradient!.withOpacity(opacity),
             width: width,
           )
         : Border.all(
-            color: fill.color!,
+            color: (opacity == null) ? fill.color! : fill.color!.withValues(alpha: opacity),
             width: width,
           );
 
@@ -913,7 +915,6 @@ BoxDecoration ezBoxDeco(
             shape: shape,
           );
 
-// TODO: audit all these: border, or no border?
 ButtonLayerBuilder? ezButtonLayer(
   EzSwitchColor fill, {
   BoxBorder? border,
