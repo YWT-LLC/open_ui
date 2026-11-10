@@ -177,20 +177,14 @@ class EzIconButton extends StatelessWidget {
         style: style ??
             ((!enabled || fauxDisabled)
                 ? IconButton.styleFrom(
-                    backgroundColor: config.surfaceFill.color,
                     foregroundColor: config.outline,
                     side: config.borderSide(fill: config.outlineVariantFill),
                     overlayColor: config.outline,
                     shadowColor: Colors.transparent,
-                    iconSize: iconSize ?? config.iconSize,
                   ).copyWith(
                     backgroundBuilder: config.buttonLayer(fill: backgroundFill),
                   )
-                : IconButton.styleFrom(
-                    backgroundColor: config.surfaceFill.color,
-                    foregroundColor: config.onSurface,
-                    iconSize: iconSize ?? config.iconSize,
-                  ).copyWith(
+                : IconButton.styleFrom().copyWith(
                     backgroundBuilder: config.buttonLayer(fill: backgroundFill),
                   )),
         icon: icon,
