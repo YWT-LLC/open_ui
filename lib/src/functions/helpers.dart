@@ -463,40 +463,45 @@ Future<String?> ezColorPicker(
                   children: gradients
                       .asMap()
                       .entries
-                      .map((MapEntry<int, Color> entry) => InkWell(
+                      .map((MapEntry<int, Color> entry) => Tooltip(
                             key: ValueKey<int>(entry.key),
-                            onTap: () => localChange(entry.value),
-                            onLongPress: () async {
-                              setModal(() => gradients.removeAt(entry.key));
+                            message: 'Use handle to move\nLong press to remove',
+                            // TODO: l10n
+                            child: InkWell(
+                              onTap: () => localChange(entry.value),
+                              onLongPress: () async {
+                                setModal(() => gradients.removeAt(entry.key));
 
-                              await ezSnackBar(
-                                config,
-                                context: mCon,
-                                message:
-                                    'Removed: ${entry.value.toARGB32().toRadixString(16).toUpperCase()}', // TODO: l10n
-                                undo: () async =>
-                                    setModal(() => gradients.insert(entry.key, entry.value)),
-                              ).closed;
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                left: config.spacing / 2,
-                                right: config.spacing / 2,
-                                bottom: config.spacing,
+                                await ezSnackBar(
+                                  config,
+                                  context: mCon,
+                                  message:
+                                      'Removed: ${entry.value.toARGB32().toRadixString(16).toUpperCase()}',
+                                  // TODO: l10n
+                                  undo: () async =>
+                                      setModal(() => gradients.insert(entry.key, entry.value)),
+                                ).closed;
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: config.spacing / 2,
+                                  right: config.spacing / 2,
+                                  bottom: config.spacing,
+                                ),
+                                child: entry.value == Colors.transparent
+                                    ? EzAvatar(
+                                        config,
+                                        fill: config.surfaceFill,
+                                        foregroundColor: config.onSurface,
+                                        radius: iconRadius + config.padding,
+                                        child: EzIcon(config, Icons.visibility_off),
+                                      )
+                                    : EzAvatar(
+                                        config,
+                                        fill: EzSwitchColor(color: entry.value),
+                                        radius: iconRadius + config.padding,
+                                      ),
                               ),
-                              child: entry.value == Colors.transparent
-                                  ? EzAvatar(
-                                      config,
-                                      fill: config.surfaceFill,
-                                      foregroundColor: config.onSurface,
-                                      radius: iconRadius + config.padding,
-                                      child: EzIcon(config, Icons.visibility_off),
-                                    )
-                                  : EzAvatar(
-                                      config,
-                                      fill: EzSwitchColor(color: entry.value),
-                                      radius: iconRadius + config.padding,
-                                    ),
                             ),
                           ))
                       .toList(),
