@@ -9,9 +9,6 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
-// TODO: gradient dots in horizontal reorderable scroll
-// on tap still removes, add an undo pop-up
-
 class EzColorSetting extends StatefulWidget {
   final EzCP config;
 

@@ -446,57 +446,61 @@ Future<String?> ezColorPicker(
             forceType: EzTransitionType.zoom,
             kid: EzCol(children: <Widget>[
               // Curr colors
-              ReorderableListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                onReorderItem: (int oldIndex, int newIndex) {
-                  if (oldIndex == newIndex) return;
+              SizedBox(
+                height: (iconRadius + config.padding) * 2 + config.spacing,
+                child: ReorderableListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  onReorderItem: (int oldIndex, int newIndex) {
+                    if (oldIndex == newIndex) return;
 
-                  final List<Color> update = List<Color>.from(gradients);
-                  final Color element = update.removeAt(oldIndex);
-                  update.insert(newIndex, element);
+                    final List<Color> update = List<Color>.from(gradients);
+                    final Color element = update.removeAt(oldIndex);
+                    update.insert(newIndex, element);
 
-                  setModal(() => gradients = update);
-                },
-                children: gradients
-                    .asMap()
-                    .entries
-                    .map((MapEntry<int, Color> entry) => InkWell(
-                          key: ValueKey<int>(entry.key),
-                          onTap: () async {
-                            setModal(() => gradients.removeAt(entry.key));
+                    setModal(() => gradients = update);
+                  },
+                  children: gradients
+                      .asMap()
+                      .entries
+                      .map((MapEntry<int, Color> entry) => InkWell(
+                            key: ValueKey<int>(entry.key),
+                            onTap: () => localChange(entry.value),
+                            onLongPress: () async {
+                              setModal(() => gradients.removeAt(entry.key));
 
-                            await ezSnackBar(
-                              config,
-                              context: context,
-                              message:
-                                  'Removed: ${entry.value.toARGB32().toRadixString(16).toUpperCase()}', // TODO: l10n
-                              undo: () async =>
-                                  setModal(() => gradients.insert(entry.key, entry.value)),
-                            ).closed;
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: config.spacing / 2,
-                              right: config.spacing / 2,
-                              bottom: config.spacing,
+                              await ezSnackBar(
+                                config,
+                                context: mCon,
+                                message:
+                                    'Removed: ${entry.value.toARGB32().toRadixString(16).toUpperCase()}', // TODO: l10n
+                                undo: () async =>
+                                    setModal(() => gradients.insert(entry.key, entry.value)),
+                              ).closed;
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: config.spacing / 2,
+                                right: config.spacing / 2,
+                                bottom: config.spacing,
+                              ),
+                              child: entry.value == Colors.transparent
+                                  ? EzAvatar(
+                                      config,
+                                      fill: config.surfaceFill,
+                                      foregroundColor: config.onSurface,
+                                      radius: iconRadius + config.padding,
+                                      child: EzIcon(config, Icons.visibility_off),
+                                    )
+                                  : EzAvatar(
+                                      config,
+                                      fill: EzSwitchColor(color: entry.value),
+                                      radius: iconRadius + config.padding,
+                                    ),
                             ),
-                            child: entry.value == Colors.transparent
-                                ? EzAvatar(
-                                    config,
-                                    fill: config.surfaceFill,
-                                    foregroundColor: config.onSurface,
-                                    radius: iconRadius + config.padding,
-                                    child: EzIcon(config, Icons.visibility_off),
-                                  )
-                                : EzAvatar(
-                                    config,
-                                    fill: EzSwitchColor(color: entry.value),
-                                    radius: iconRadius + config.padding,
-                                  ),
-                          ),
-                        ))
-                    .toList(),
+                          ))
+                      .toList(),
+                ),
               ),
 
               // Preview
