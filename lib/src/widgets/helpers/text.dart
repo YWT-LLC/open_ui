@@ -120,8 +120,8 @@ class EzTextBackground extends StatelessWidget {
                 : EdgeInsets.all(config.marginVal)),
         decoration: config.boxDeco(
           fill: replaceFill ?? (baseFill ?? config.surfaceContainerFill),
-          opacity: config.textBackgroundOpacity,
           borderRadius: borderRadius ?? (shape ?? config.buttonShape).textRadius,
+          opacity: config.textBackgroundOpacity,
         ),
         child: text,
       );
