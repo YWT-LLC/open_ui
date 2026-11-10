@@ -9,8 +9,6 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
-// TODO: some of my icons are the wrong color - just eziconbutton?
-
 /// Creates a [ThemeData] from [EzCM] values
 ThemeData ezThemeData(
   Brightness brightness, {

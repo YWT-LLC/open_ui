@@ -35,4 +35,3 @@ class EzRadio<T> extends StatelessWidget {
         ),
       );
 }
-// TODO: check again after you fix the icon color(s)
