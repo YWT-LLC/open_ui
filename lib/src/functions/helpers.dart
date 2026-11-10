@@ -446,13 +446,35 @@ Future<String?> ezColorPicker(
             forceType: EzTransitionType.zoom,
             kid: EzCol(children: <Widget>[
               // Curr colors
-              EzWrap(
+              ReorderableListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                onReorderItem: (int oldIndex, int newIndex) {
+                  if (oldIndex == newIndex) return;
+
+                  final List<Color> update = List<Color>.from(gradients);
+                  final Color element = update.removeAt(oldIndex);
+                  update.insert(newIndex, element);
+
+                  setModal(() => gradients = update);
+                },
                 children: gradients
                     .asMap()
                     .entries
                     .map((MapEntry<int, Color> entry) => InkWell(
                           key: ValueKey<int>(entry.key),
-                          onTap: () => setModal(() => gradients.removeAt(entry.key)),
+                          onTap: () async {
+                            setModal(() => gradients.removeAt(entry.key));
+
+                            await ezSnackBar(
+                              config,
+                              context: context,
+                              message:
+                                  'Removed: ${entry.value.toARGB32().toRadixString(16).toUpperCase()}', // TODO: l10n
+                              undo: () async =>
+                                  setModal(() => gradients.insert(entry.key, entry.value)),
+                            ).closed;
+                          },
                           child: Padding(
                             padding: EdgeInsets.only(
                               left: config.spacing / 2,
