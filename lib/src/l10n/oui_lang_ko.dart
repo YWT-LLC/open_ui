@@ -33,6 +33,9 @@ class OUILangKo extends OUILang {
   String get csFromImage => '이미지에서 색상 구성표가 생성됩니다.';
 
   @override
+  String get csGradientHint => '핸들을 사용하여 이동\n길게 눌러 삭제';
+
+  @override
   String get csHighContrast => '고대비 구성표 사용';
 
   @override

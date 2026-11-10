@@ -33,6 +33,10 @@ class OUILangHt extends OUILang {
   String get csFromImage => 'Yon palèt koulè ap pwodwi soti nan imaj la.';
 
   @override
+  String get csGradientHint =>
+      'Sèvi ak manch lan pou deplase\nPeze lontan pou retire';
+
+  @override
   String get csHighContrast => 'Itilize palèt gwo kontras';
 
   @override

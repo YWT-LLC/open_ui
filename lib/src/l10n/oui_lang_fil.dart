@@ -33,6 +33,10 @@ class OUILangFil extends OUILang {
   String get csFromImage => 'Isang color scheme ang bubuuin mula sa larawan.';
 
   @override
+  String get csGradientHint =>
+      'Gamitin ang hawakan para ilipat\nPindutin nang matagal para alisin';
+
+  @override
   String get csHighContrast => 'Gumamit ng high contrast scheme';
 
   @override

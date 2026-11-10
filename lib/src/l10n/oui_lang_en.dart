@@ -33,6 +33,9 @@ class OUILangEn extends OUILang {
   String get csFromImage => 'A color scheme will be generated from the image.';
 
   @override
+  String get csGradientHint => 'Use handle to move\nLong press to remove';
+
+  @override
   String get csHighContrast => 'Use high contrast scheme';
 
   @override
@@ -873,6 +876,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get csFromImage => 'A color scheme will be generated from the image.';
+
+  @override
+  String get csGradientHint => 'Use handle to move\nLong press to remove';
 
   @override
   String get csHighContrast => 'Use high contrast scheme';

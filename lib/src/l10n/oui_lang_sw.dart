@@ -34,6 +34,10 @@ class OUILangSw extends OUILang {
       'Mpangilio wa rangi utatengenezwa kutoka kwenye picha.';
 
   @override
+  String get csGradientHint =>
+      'Tumia kishikio kusogeza\nBonyeza kwa muda mrefu kuondoa';
+
+  @override
   String get csHighContrast => 'Tumia mpangilio wa tofauti kubwa ya rangi';
 
   @override

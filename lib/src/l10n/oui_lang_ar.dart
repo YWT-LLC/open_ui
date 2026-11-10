@@ -33,6 +33,9 @@ class OUILangAr extends OUILang {
   String get csFromImage => 'سيتم إنشاء مخطط ألوان من الصورة.';
 
   @override
+  String get csGradientHint => 'استخدم المقبض للتحريك\nاضغط مطولاً للإزالة';
+
+  @override
   String get csHighContrast => 'استخدام مخطط عالي التباين';
 
   @override
@@ -872,6 +875,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get csFromImage => 'سيتم إنشاء مخطط ألوان من الصورة.';
+
+  @override
+  String get csGradientHint => 'استخدم المقبض للتحريك\nاضغط مطولاً للإزالة';
 
   @override
   String get csHighContrast => 'استخدام مخطط عالي التباين';

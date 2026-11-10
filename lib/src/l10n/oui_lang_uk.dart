@@ -33,6 +33,10 @@ class OUILangUk extends OUILang {
   String get csFromImage => 'Колірна схема буде згенерована із зображення.';
 
   @override
+  String get csGradientHint =>
+      'Переміщуйте за допомогою маркера\nНатисніть і утримуйте, щоб видалити';
+
+  @override
   String get csHighContrast => 'Використовувати схему з високим контрастом';
 
   @override

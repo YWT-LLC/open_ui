@@ -8,6 +8,7 @@
   "csError": "오류",
   "csErrorContainer": "오류\n윤곽선",
   "csFromImage": "이미지에서 색상 구성표가 생성됩니다.",
+  "csGradientHint": "핸들을 사용하여 이동\n길게 눌러 삭제",
   "csHighContrast": "고대비 구성표 사용",
   "csMonoChrome": "단색 구성표 사용",
   "csOnSurface": "텍스트",

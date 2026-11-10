@@ -171,6 +171,12 @@ abstract class OUILang {
   /// **'A color scheme will be generated from the image.'**
   String get csFromImage;
 
+  /// No description provided for @csGradientHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use handle to move\nLong press to remove'**
+  String get csGradientHint;
+
   /// No description provided for @csHighContrast.
   ///
   /// In en, this message translates to:

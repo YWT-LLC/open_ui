@@ -465,23 +465,10 @@ Future<String?> ezColorPicker(
                       .entries
                       .map((MapEntry<int, Color> entry) => Tooltip(
                             key: ValueKey<int>(entry.key),
-                            message: 'Use handle to move\nLong press to remove',
-                            // TODO: l10n
+                            message: config.ezL10n.csGradientHint,
                             child: InkWell(
                               onTap: () => localChange(entry.value),
-                              onLongPress: () async {
-                                setModal(() => gradients.removeAt(entry.key));
-
-                                await ezSnackBar(
-                                  config,
-                                  context: mCon,
-                                  message:
-                                      'Removed: ${entry.value.toARGB32().toRadixString(16).toUpperCase()}',
-                                  // TODO: l10n
-                                  undo: () async =>
-                                      setModal(() => gradients.insert(entry.key, entry.value)),
-                                ).closed;
-                              },
+                              onLongPress: () => setModal(() => gradients.removeAt(entry.key)),
                               child: Padding(
                                 padding: EdgeInsets.only(
                                   left: config.spacing / 2,

@@ -33,6 +33,10 @@ class OUILangDe extends OUILang {
   String get csFromImage => 'Ein Farbschema wird aus dem Bild generiert.';
 
   @override
+  String get csGradientHint =>
+      'Zum Verschieben den Griff verwenden\nZum Entfernen lange drücken';
+
+  @override
   String get csHighContrast => 'Kontrastreiches Schema verwenden';
 
   @override

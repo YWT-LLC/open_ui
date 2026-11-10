@@ -34,6 +34,10 @@ class OUILangFr extends OUILang {
       'Un schéma de couleurs sera généré à partir de l\'image.';
 
   @override
+  String get csGradientHint =>
+      'Utilisez la poignée pour déplacer\nAppui long pour supprimer';
+
+  @override
   String get csHighContrast => 'Utiliser un schéma à contraste élevé';
 
   @override

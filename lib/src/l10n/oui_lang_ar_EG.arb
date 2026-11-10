@@ -8,6 +8,7 @@
   "csError": "خطأ",
   "csErrorContainer": "إطار\nالخطأ",
   "csFromImage": "سيتم إنشاء مخطط ألوان من الصورة.",
+  "csGradientHint": "استخدم المقبض للتحريك\nاضغط مطولاً للإزالة",
   "csHighContrast": "استخدام مخطط عالي التباين",
   "csMonoChrome": "استخدام مخطط أحادي اللون",
   "csOnSurface": "نص",

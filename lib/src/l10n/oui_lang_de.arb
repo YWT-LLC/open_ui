@@ -8,6 +8,7 @@
   "csError": "Fehler",
   "csErrorContainer": "Fehler-\nKontur",
   "csFromImage": "Ein Farbschema wird aus dem Bild generiert.",
+  "csGradientHint": "Zum Verschieben den Griff verwenden\nZum Entfernen lange drücken",
   "csHighContrast": "Kontrastreiches Schema verwenden",
   "csMonoChrome": "Monochromes Schema verwenden",
   "csOnSurface": "Text",

@@ -8,6 +8,7 @@
   "csError": "错误",
   "csErrorContainer": "错误\n轮廓",
   "csFromImage": "配色方案将从图像中生成。",
+  "csGradientHint": "使用手柄移动\n长按删除",
   "csHighContrast": "使用高对比度方案",
   "csMonoChrome": "使用单色方案",
   "csOnSurface": "文本",

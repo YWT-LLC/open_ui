@@ -33,6 +33,9 @@ class OUILangZh extends OUILang {
   String get csFromImage => '配色方案将从图像中生成。';
 
   @override
+  String get csGradientHint => '使用手柄移动\n长按删除';
+
+  @override
   String get csHighContrast => '使用高对比度方案';
 
   @override
@@ -866,6 +869,9 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get csFromImage => '配色方案将从图像中生成。';
+
+  @override
+  String get csGradientHint => '使用手柄移动\n长按删除';
 
   @override
   String get csHighContrast => '使用高对比度方案';

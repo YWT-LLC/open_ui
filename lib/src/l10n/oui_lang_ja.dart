@@ -33,6 +33,9 @@ class OUILangJa extends OUILang {
   String get csFromImage => '画像からカラースキームが生成されます。';
 
   @override
+  String get csGradientHint => 'ハンドルで移動\n長押しで削除';
+
+  @override
   String get csHighContrast => 'ハイコントラストスキームを使用';
 
   @override

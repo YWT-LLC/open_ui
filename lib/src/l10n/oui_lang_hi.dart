@@ -34,6 +34,10 @@ class OUILangHi extends OUILang {
       'छवि से एक रंग योजना (color scheme) उत्पन्न की जाएगी।';
 
   @override
+  String get csGradientHint =>
+      'खिसकाने के लिए हैंडल का उपयोग करें\nनिकालने के लिए देर तक दबाएँ';
+
+  @override
   String get csHighContrast => 'उच्च कंट्रास्ट स्कीम का उपयोग करें';
 
   @override

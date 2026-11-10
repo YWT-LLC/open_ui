@@ -34,6 +34,10 @@ class OUILangEs extends OUILang {
       'Se generará un esquema de color a partir de la imagen.';
 
   @override
+  String get csGradientHint =>
+      'Usa el asa para mover\nMantén pulsado para eliminar';
+
+  @override
   String get csHighContrast => 'Usar esquema de alto contraste';
 
   @override

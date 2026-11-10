@@ -8,6 +8,7 @@
   "csError": "エラー",
   "csErrorContainer": "エラー\nアウトライン",
   "csFromImage": "画像からカラースキームが生成されます。",
+  "csGradientHint": "ハンドルで移動\n長押しで削除",
   "csHighContrast": "ハイコントラストスキームを使用",
   "csMonoChrome": "モノクロスキームを使用",
   "csOnSurface": "テキスト",

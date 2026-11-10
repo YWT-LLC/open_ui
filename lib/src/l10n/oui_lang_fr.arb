@@ -8,6 +8,7 @@
   "csError": "Erreur",
   "csErrorContainer": "Contour\nd'erreur",
   "csFromImage": "Un schéma de couleurs sera généré à partir de l'image.",
+  "csGradientHint": "Utilisez la poignée pour déplacer\nAppui long pour supprimer",
   "csHighContrast": "Utiliser un schéma à contraste élevé",
   "csMonoChrome": "Utiliser un schéma monochrome",
   "csOnSurface": "Texte",

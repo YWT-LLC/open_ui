@@ -34,6 +34,10 @@ class OUILangRu extends OUILang {
       'Цветовая схема будет сгенерирована из изображения.';
 
   @override
+  String get csGradientHint =>
+      'Перемещайте с помощью маркера\nНажмите и удерживайте, чтобы удалить';
+
+  @override
   String get csHighContrast => 'Использовать высококонтрастную схему';
 
   @override

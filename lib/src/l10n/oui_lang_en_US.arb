@@ -8,6 +8,7 @@
   "csError": "Error",
   "csErrorContainer": "Error\noutline",
   "csFromImage": "A color scheme will be generated from the image.",
+  "csGradientHint": "Use handle to move\nLong press to remove",
   "csHighContrast": "Use high contrast scheme",
   "csMonoChrome": "Use monochrome scheme",
   "csOnSurface": "Text",
