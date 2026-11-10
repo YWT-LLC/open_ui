@@ -89,7 +89,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: widget.config.textFieldRadius,
+        borderRadius: widget.config.buttonShape.textFieldRadius,
       );
 
   /// Font size setting
@@ -270,7 +270,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: widget.config.textFieldRadius,
+        borderRadius: widget.config.buttonShape.textFieldRadius,
       );
 
   /// Letter spacing setting
@@ -346,7 +346,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: widget.config.textFieldRadius,
+        borderRadius: widget.config.buttonShape.textFieldRadius,
       );
 
   /// Word spacing setting
@@ -422,7 +422,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           color: widget.config.onSurface,
           size: widget.labelProvider.value.fontSize,
         ),
-        borderRadius: widget.config.textFieldRadius,
+        borderRadius: widget.config.buttonShape.textFieldRadius,
       );
 
   /// Line height setting
@@ -589,7 +589,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.displayProvider.value,
           textAlign: TextAlign.center,
           baseFill: widget.config.surfaceFill,
-          borderRadius: widget.config.textRadius,
+          borderRadius: widget.config.buttonShape.textRadius,
         ),
         widget.config.centerLine,
 
@@ -611,7 +611,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.headlineProvider.value,
           textAlign: TextAlign.center,
           baseFill: widget.config.surfaceFill,
-          borderRadius: widget.config.textRadius,
+          borderRadius: widget.config.buttonShape.textRadius,
         ),
         widget.config.centerLine,
 
@@ -632,7 +632,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.titleProvider.value,
           textAlign: TextAlign.center,
           baseFill: widget.config.surfaceFill,
-          borderRadius: widget.config.textRadius,
+          borderRadius: widget.config.buttonShape.textRadius,
         ),
         widget.config.centerLine,
 
@@ -654,7 +654,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.bodyProvider.value,
           textAlign: TextAlign.center,
           baseFill: widget.config.surfaceFill,
-          borderRadius: widget.config.textRadius,
+          borderRadius: widget.config.buttonShape.textRadius,
         ),
         widget.config.centerLine,
 
@@ -676,7 +676,7 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
           style: widget.labelProvider.value,
           textAlign: TextAlign.center,
           baseFill: widget.config.surfaceFill,
-          borderRadius: widget.config.textRadius,
+          borderRadius: widget.config.buttonShape.textRadius,
         ),
 
         // Reset all

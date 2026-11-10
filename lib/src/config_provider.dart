@@ -110,7 +110,6 @@ class EzCP extends ChangeNotifier {
 
       // Design //
 
-      final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(darkButtonShapeKey));
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
 
@@ -120,10 +119,8 @@ class EzCP extends ChangeNotifier {
       final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(darkPaddingKey),
-        buttonShape: buttonShape,
+        buttonShape: EBSConfig.safeLookup(EzCM.get(darkButtonShapeKey)),
         borderWidth: EzCM.get(darkBorderWidthKey),
-        textRadius: buttonShape.radius,
-        textFieldRadius: buttonShape.textFieldRadius,
         lineLinks: EzCM.get(darkLineLinksKey),
         showBackFAB: EzCM.get(darkShowBackFABKey),
         showScroll: EzCM.get(darkShowScrollKey),
@@ -229,7 +226,6 @@ class EzCP extends ChangeNotifier {
 
       // Design //
 
-      final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(lightButtonShapeKey));
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
 
@@ -239,10 +235,8 @@ class EzCP extends ChangeNotifier {
       final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(lightPaddingKey),
-        buttonShape: buttonShape,
+        buttonShape: EBSConfig.safeLookup(EzCM.get(lightButtonShapeKey)),
         borderWidth: EzCM.get(lightBorderWidthKey),
-        textRadius: buttonShape.radius,
-        textFieldRadius: buttonShape.textFieldRadius,
         lineLinks: EzCM.get(lightLineLinksKey),
         showBackFAB: EzCM.get(lightShowBackFABKey),
         showScroll: EzCM.get(lightShowScrollKey),
@@ -305,10 +299,7 @@ class EzCP extends ChangeNotifier {
 
   //* Get *//
 
-  /// Current language for the app
   Locale get locale => _locale;
-
-  /// Open UI localizations for the [locale]
   OUILang get ezL10n => _l10n;
 
   /// Text direction for the [locale]
@@ -321,13 +312,8 @@ class EzCP extends ChangeNotifier {
   /// (vs start/end)
   bool get onLeft => isLefty == isLTR;
 
-  /// Current [ThemeMode]
   ThemeMode get themeMode => _themeMode;
-
-  /// Whether the current [themeMode] uses [Brightness.dark]
   bool get isDark => _isDark;
-
-  /// Current [ThemeData] to match the [themeMode]
   ThemeData get theme => _theme;
 
   // Color cache //
@@ -368,110 +354,16 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get outlineFiller => EzSwitchColor(color: outline);
   EzSwitchColor get surfaceTintFiller => EzSwitchColor(color: surfaceTint);
 
-  // Has a twin in ezThemeData (good to keep separate)
-  BoxDecoration boxDecoration({
-    EzSwitchColor? fill,
-    double? opacity,
-    BoxShape shape = BoxShape.rectangle,
-    BoxBorder? border,
-    BorderRadiusGeometry? borderRadius,
-  }) =>
-      (opacity == null)
-          ? BoxDecoration(
-              border: border,
-              borderRadius: borderRadius,
-              color: (fill ?? surfaceFill).color,
-              gradient: (fill ?? surfaceFill).gradient,
-              shape: shape,
-            )
-          : BoxDecoration(
-              border: border,
-              borderRadius: borderRadius,
-              color: (fill ?? surfaceFill).color?.withValues(alpha: opacity),
-              gradient: (fill ?? surfaceFill).gradient?.withOpacity(opacity),
-              shape: shape,
-            );
-
   // Design cache //
   // Button
-
   double get padding => _design.padding;
 
   EzButtonShape get buttonShape => _design.buttonShape;
-  BorderRadius get textRadius => _design.textRadius;
-  BorderRadius get textFieldRadius => _design.textFieldRadius;
-
   double get borderWidth => _design.borderWidth;
-
-  // Has a twin in ezThemeData
-  BoxBorder boxBorder(EzSwitchColor fill) => fill.color == null
-      ? EzGradientBoxBorder(
-          gradient: fill.gradient!,
-          width: borderWidth,
-        )
-      : Border.all(
-          color: fill.color!,
-          width: borderWidth,
-        );
-
-  // Has a twin in ezThemeData
-  OutlinedBorder outlinedBorder(
-    EzSwitchColor fill, {
-    double? width,
-    OutlinedBorder? shape,
-  }) =>
-      fill.color == null
-          ? EzGradientOutlinedBorder(
-              gradient: fill.gradient!,
-              width: width ?? borderWidth,
-              shape: shape ?? buttonShape.shape,
-            )
-          : shape ?? buttonShape.shape;
-
-  // Has a twin in ezThemeData
-  BorderSide borderSide(
-    EzSwitchColor fill, {
-    double? width,
-    double? opacity,
-  }) =>
-      (width ?? borderWidth) == 0
-          ? BorderSide.none
-          : fill.color == null
-              ? EzGradientBorderSide(
-                  gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
-                  width: width ?? borderWidth,
-                )
-              : BorderSide(
-                  color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
-                  width: width ?? borderWidth,
-                );
-
-  // Has a twin in ezThemeData
-  ButtonLayerBuilder? buttonLayer(
-    EzSwitchColor fill, {
-    BorderRadiusGeometry? borderRadius,
-    BoxShape shape = BoxShape.rectangle,
-  }) =>
-      (fill.gradient == null)
-          ? null
-          : (_, __, Widget? child) => Ink(
-                decoration: BoxDecoration(
-                  border: boxBorder(fill),
-                  borderRadius: borderRadius ?? buttonShape.radius,
-                  gradient: fill.gradient,
-                  shape: shape,
-                ),
-                child: child,
-              );
 
   bool get lineLinks => _design.lineLinks;
   bool get showScroll => _design.showScroll;
   bool get showBackFAB => _design.showBackFAB;
-
-  List<Widget> backFABs({bool isHome = false, bool override = false}) =>
-      (override || (showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
-          ? <Widget>[spacer, EzBackFAB(this)]
-          : <Widget>[];
 
   // Page
   double get marginVal => _design.margin;
@@ -488,12 +380,112 @@ class EzCP extends ChangeNotifier {
   BoxFit? get backgroundImageFit => _design.backgroundImageFit;
   BoxDecoration get screenDecoration => _design.screenDecoration;
 
+  // Helpers
+  List<Widget> backFABs({bool isHome = false, bool override = false}) =>
+      (override || (showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
+          ? <Widget>[spacer, EzBackFAB(this)]
+          : <Widget>[];
+
   DecorationImage? get backgroundImage => (backgroundImagePath == noImageValue)
       ? null
       : DecorationImage(
           image: ezImageProvider(backgroundImagePath),
           fit: backgroundImageFit,
         );
+
+  /// Defaults to [EzCP.primaryContainerFill]
+  BoxBorder boxBorder({EzSwitchColor? fill, double? width}) => ezBoxBorder(
+        fill ?? primaryContainerFill,
+        width: width ?? borderWidth,
+      );
+
+  /// Defaults to [EzCP.primaryContainerFill]
+  BorderSide borderSide({
+    EzSwitchColor? fill,
+    double? width,
+    double? opacity,
+  }) =>
+      ezBorderSide(
+        fill ?? primaryContainerFill,
+        width: width ?? borderWidth,
+        opacity: opacity,
+      );
+
+  /// Defaults to [EzCP.primaryContainerFill]
+  OutlinedBorder outlinedBorder({
+    EzSwitchColor? fill,
+    double? width,
+    OutlinedBorder? base,
+  }) =>
+      ezOutlinedBorder(
+        fill ?? primaryContainerFill,
+        width: width ?? borderWidth,
+        base: base ?? buttonShape.shape,
+      );
+
+  /// Defaults to [EzCP.primaryContainerFill]
+  OutlineInputBorder outInBorder({
+    EzSwitchColor? fill,
+    double? width,
+    BorderRadius? radius,
+    double? opacity,
+  }) =>
+      ezOutInBorder(
+        fill ?? primaryContainerFill,
+        borderWidth: width ?? borderWidth,
+        borderRadius: radius ?? buttonShape.textFieldRadius,
+        opacity: opacity,
+      );
+
+  /// Defaults to [EzCP.primaryContainerFill]
+  UnderlineInputBorder underInBorder({
+    EzSwitchColor? fill,
+    double? width,
+    BorderRadius? radius,
+    double? opacity,
+  }) =>
+      ezUnderInBorder(
+        fill ?? primaryContainerFill,
+        borderWidth: width ?? borderWidth,
+        borderRadius: radius ?? buttonShape.textFieldRadius,
+        opacity: opacity,
+      );
+
+  /// Defaults to [EzCP.surfaceFill]
+  BoxDecoration boxDeco({
+    EzSwitchColor? fill,
+    BoxBorder? border,
+    EzSwitchColor? borderFill,
+    double? borderWidth,
+    BorderRadiusGeometry? borderRadius,
+    BoxShape shape = BoxShape.rectangle,
+    double? opacity,
+  }) =>
+      ezBoxDeco(
+        fill ?? surfaceFill,
+        border: border ?? boxBorder(fill: borderFill, width: borderWidth),
+        borderRadius: borderRadius ?? buttonShape.radius,
+        shape: shape,
+        opacity: opacity,
+      );
+
+  /// Defaults to [EzCP.surfaceFill]
+  ButtonLayerBuilder? buttonLayer({
+    EzSwitchColor? fill,
+    BoxBorder? border,
+    EzSwitchColor? borderFill,
+    double? borderWidth,
+    BorderRadiusGeometry? borderRadius,
+    BoxShape shape = BoxShape.rectangle,
+    double? opacity,
+  }) =>
+      ezButtonLayer(
+        fill ?? surfaceFill,
+        border: border ?? boxBorder(fill: borderFill, width: borderWidth),
+        borderRadius: borderRadius ?? buttonShape.radius,
+        shape: shape,
+        opacity: opacity,
+      );
 
   // Layout cache (lil page design, lil text) //
 
@@ -700,9 +692,6 @@ class EzDesignCache {
   final EzButtonShape buttonShape;
   final double borderWidth;
 
-  final BorderRadius textRadius;
-  final BorderRadius textFieldRadius;
-
   final bool lineLinks;
   final bool showBackFAB;
   final bool showScroll;
@@ -726,8 +715,6 @@ class EzDesignCache {
     required this.padding,
     required this.buttonShape,
     required this.borderWidth,
-    required this.textRadius,
-    required this.textFieldRadius,
     required this.lineLinks,
     required this.showBackFAB,
     required this.showScroll,
@@ -794,6 +781,8 @@ abstract class EzAppCache {
 
 //* Helpers *//
 
+// Internal //
+
 EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
   late final EzSwitchColor backup = EzSwitchColor(color: getLiveColor(basic, key));
 
@@ -834,6 +823,115 @@ BoxDecoration _buildScreenDeco(EzSwitchColor fill, String imagePath, BoxFit? ima
 
   return BoxDecoration(image: DecorationImage(image: ezImageProvider(imagePath), fit: imageFit));
 }
+
+// Hybrid //
+
+BoxBorder ezBoxBorder(
+  EzSwitchColor fill, {
+  required double width,
+}) =>
+    fill.color == null
+        ? EzGradientBoxBorder(
+            gradient: fill.gradient!,
+            width: width,
+          )
+        : Border.all(
+            color: fill.color!,
+            width: width,
+          );
+
+BorderSide ezBorderSide(
+  EzSwitchColor fill, {
+  required double width,
+  double? opacity,
+}) =>
+    (width) == 0
+        ? BorderSide.none
+        : fill.color == null
+            ? EzGradientBorderSide(
+                gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
+                width: width,
+              )
+            : BorderSide(
+                color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
+                width: width,
+              );
+
+OutlinedBorder ezOutlinedBorder(
+  EzSwitchColor fill, {
+  required double width,
+  required OutlinedBorder base,
+}) =>
+    fill.color == null
+        ? EzGradientOutlinedBorder(gradient: fill.gradient!, width: width, base: base)
+        : base;
+
+OutlineInputBorder ezOutInBorder(
+  EzSwitchColor fill, {
+  required double borderWidth,
+  required BorderRadius borderRadius,
+  double? opacity,
+}) =>
+    OutlineInputBorder(
+      borderSide: ezBorderSide(fill, width: borderWidth, opacity: opacity),
+      borderRadius: borderRadius,
+      gapPadding: 0,
+    );
+
+UnderlineInputBorder ezUnderInBorder(
+  EzSwitchColor fill, {
+  required double borderWidth,
+  required BorderRadius borderRadius,
+  double? opacity,
+}) =>
+    UnderlineInputBorder(
+      borderSide: ezBorderSide(fill, width: borderWidth, opacity: opacity),
+      borderRadius: borderRadius,
+    );
+
+BoxDecoration ezBoxDeco(
+  EzSwitchColor fill, {
+  required BoxBorder border,
+  required BorderRadiusGeometry borderRadius,
+  BoxShape shape = BoxShape.rectangle,
+  double? opacity,
+}) =>
+    (opacity == null)
+        ? BoxDecoration(
+            border: border,
+            borderRadius: borderRadius,
+            color: fill.color,
+            gradient: fill.gradient,
+            shape: shape,
+          )
+        : BoxDecoration(
+            border: border,
+            borderRadius: borderRadius,
+            color: fill.color?.withValues(alpha: opacity),
+            gradient: fill.gradient?.withOpacity(opacity),
+            shape: shape,
+          );
+
+ButtonLayerBuilder? ezButtonLayer(
+  EzSwitchColor fill, {
+  required BoxBorder border,
+  required BorderRadiusGeometry borderRadius,
+  BoxShape shape = BoxShape.rectangle,
+  double? opacity,
+}) =>
+    (fill.gradient == null)
+        ? null
+        : (_, __, Widget? child) => Ink(
+              decoration: BoxDecoration(
+                border: border,
+                borderRadius: borderRadius,
+                gradient: opacity == null ? fill.gradient : fill.gradient?.withOpacity(opacity),
+                shape: shape,
+              ),
+              child: child,
+            );
+
+// External //
 
 /// Safety net, not a crutch...
 /// Only to be used when getting the proper Provider is unreasonably difficult

@@ -36,7 +36,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.white,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.white,
-                side: config.borderSide(const EzSwitchColor(color: ywt.dimWhite)),
+                side: config.borderSide(fill: const EzSwitchColor(color: ywt.dimWhite)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
@@ -45,7 +45,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 iconColor: Colors.black,
                 shadowColor: Colors.transparent,
                 overlayColor: Colors.black,
-                side: config.borderSide(const EzSwitchColor(color: ywt.dimBlack)),
+                side: config.borderSide(fill: const EzSwitchColor(color: ywt.dimBlack)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {

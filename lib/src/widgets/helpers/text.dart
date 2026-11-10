@@ -118,7 +118,7 @@ class EzTextBackground extends StatelessWidget {
             ((replaceFill == null && config.textBackgroundOpacity < oneP)
                 ? EdgeInsets.zero
                 : EdgeInsets.all(config.marginVal)),
-        decoration: config.boxDecoration(
+        decoration: config.boxDeco(
           fill: replaceFill ?? (baseFill ?? config.surfaceContainerFill),
           opacity: config.textBackgroundOpacity,
           borderRadius: borderRadius ?? (shape ?? config.buttonShape).textRadius,

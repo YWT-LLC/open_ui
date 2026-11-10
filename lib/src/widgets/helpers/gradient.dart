@@ -34,31 +34,6 @@ class EzGradientBorderSide extends BorderSide {
   int get hashCode => Object.hash(gradient, width, style);
 }
 
-/// When [fill] has a [Gradient], wrap [child] in a [DecoratedBox] (or [ShapeDecoration] based on [shape])
-// TODO: check these calls, should be using border n shit
-Widget ezGradientBox(
-  EzSwitchColor fill, {
-  BoxBorder? border,
-  BorderRadiusGeometry? borderRadius,
-  ShapeBorder? shape,
-  required Widget child,
-}) =>
-    (fill.gradient == null)
-        ? child
-        : DecoratedBox(
-            decoration: (shape == null)
-                ? BoxDecoration(
-                    gradient: fill.gradient,
-                    border: border,
-                    borderRadius: borderRadius,
-                  )
-                : ShapeDecoration(
-                    gradient: fill.gradient,
-                    shape: shape,
-                  ),
-            child: child,
-          );
-
 class EzGradientBoxBorder extends BoxBorder {
   final Gradient gradient;
   final double width;
@@ -69,16 +44,10 @@ class EzGradientBoxBorder extends BoxBorder {
   });
 
   @override
-  BorderSide get top => EzGradientBorderSide(
-        gradient: gradient,
-        width: width,
-      );
+  BorderSide get top => EzGradientBorderSide(gradient: gradient, width: width);
 
   @override
-  BorderSide get bottom => EzGradientBorderSide(
-        gradient: gradient,
-        width: width,
-      );
+  BorderSide get bottom => EzGradientBorderSide(gradient: gradient, width: width);
 
   @override
   bool get isUniform => true;
@@ -114,10 +83,7 @@ class EzGradientBoxBorder extends BoxBorder {
   }
 
   @override
-  ShapeBorder scale(double t) => EzGradientBoxBorder(
-        gradient: gradient.scale(t),
-        width: width,
-      );
+  ShapeBorder scale(double t) => EzGradientBoxBorder(gradient: gradient.scale(t), width: width);
 
   @override
   bool operator ==(Object other) =>
@@ -130,36 +96,31 @@ class EzGradientBoxBorder extends BoxBorder {
 class EzGradientOutlinedBorder extends OutlinedBorder {
   final Gradient gradient;
   final double width;
-  final OutlinedBorder shape;
+  final OutlinedBorder base;
 
-  /// Paints [shape]'s outline with a [gradient] instead of a solid [BorderSide]
   const EzGradientOutlinedBorder({
     required this.gradient,
     required this.width,
-    required this.shape,
+    required this.base,
   }) : super(side: BorderSide.none);
 
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(width);
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) => shape.getOuterPath(
-        rect,
-        textDirection: textDirection,
-      );
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
+      base.getOuterPath(rect, textDirection: textDirection);
 
   @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => shape.getOuterPath(
-        rect.deflate(width),
-        textDirection: textDirection,
-      );
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) =>
+      base.getOuterPath(rect.deflate(width), textDirection: textDirection);
 
   @override
   void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
     if (width <= 0) return;
 
     canvas.drawPath(
-      shape.getOuterPath(rect.deflate(width / 2), textDirection: textDirection),
+      base.getOuterPath(rect.deflate(width / 2), textDirection: textDirection),
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = width
@@ -174,7 +135,7 @@ class EzGradientOutlinedBorder extends OutlinedBorder {
   ShapeBorder scale(double t) => EzGradientOutlinedBorder(
         gradient: gradient.scale(t),
         width: width,
-        shape: shape.scale(t) as OutlinedBorder,
+        base: base.scale(t) as OutlinedBorder,
       );
 
   @override
@@ -182,10 +143,10 @@ class EzGradientOutlinedBorder extends OutlinedBorder {
       other is EzGradientOutlinedBorder &&
       other.gradient == gradient &&
       other.width == width &&
-      other.shape == shape;
+      other.base == base;
 
   @override
-  int get hashCode => Object.hash(gradient, width, shape);
+  int get hashCode => Object.hash(gradient, width, base);
 }
 
 // Storage //

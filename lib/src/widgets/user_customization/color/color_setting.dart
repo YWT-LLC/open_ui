@@ -222,9 +222,9 @@ class _ColorSettingState extends State<EzColorSetting> {
           onPressed: changeColor,
           onLongPress: reset,
           icon: Container(
-            decoration: widget.config.boxDecoration(
-              shape: BoxShape.circle,
+            decoration: widget.config.boxDeco(
               fill: widget.config.primaryContainerFill,
+              shape: BoxShape.circle,
             ),
             child: currValue == ywt.transparentString
                 ? EzAvatar(

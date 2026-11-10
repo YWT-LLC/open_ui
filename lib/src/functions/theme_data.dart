@@ -37,81 +37,6 @@ ThemeData ezThemeData(
     WidgetState.selected: SystemMouseCursors.click,
   });
 
-  // Has a twin in EzCP
-  BorderSide buildBorder(
-    EzSwitchColor fill, {
-    double? width,
-    double? opacity,
-  }) =>
-      (width ?? design.borderWidth) == 0
-          ? BorderSide.none
-          : fill.color == null
-              ? EzGradientBorderSide(
-                  gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
-                  width: width ?? design.borderWidth,
-                )
-              : BorderSide(
-                  color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
-                  width: width ?? design.borderWidth,
-                );
-
-  // Has a twin in EzCP
-  BoxBorder buildBox(EzSwitchColor fill) => fill.color == null
-      ? EzGradientBoxBorder(
-          gradient: fill.gradient!,
-          width: design.borderWidth,
-        )
-      : Border.all(
-          color: fill.color!,
-          width: design.borderWidth,
-        );
-
-  // Has a twin in EzCP
-  BoxDecoration buildDecoration(
-    EzSwitchColor fill, {
-    double? opacity,
-    BoxShape shape = BoxShape.rectangle,
-    BoxBorder? border,
-    BorderRadius? borderRadius,
-  }) =>
-      (opacity == null)
-          ? BoxDecoration(
-              border: border,
-              borderRadius: borderRadius,
-              color: fill.color,
-              gradient: fill.gradient,
-              shape: shape,
-            )
-          : BoxDecoration(
-              border: border,
-              borderRadius: borderRadius,
-              color: fill.color?.withValues(alpha: opacity),
-              gradient: fill.gradient?.withOpacity(opacity),
-              shape: shape,
-            );
-
-  // Has a twin in EzCp
-  ButtonLayerBuilder? buttonLayer(
-    EzSwitchColor fill, {
-    BoxShape shape = BoxShape.rectangle,
-  }) =>
-      (fill.gradient == null)
-          ? null
-          : (_, __, Widget? child) => Ink(
-                decoration: BoxDecoration(
-                  border: buildBox(fill),
-                  borderRadius: design.buttonShape.radius,
-                  gradient: fill.gradient,
-                  shape: shape,
-                ),
-                child: child,
-              );
-
-  OutlineInputBorder buildOIBorder(EzSwitchColor fill) => OutlineInputBorder(
-        borderSide: buildBorder(fill),
-        gapPadding: 0,
-      );
-
   // Design (page) //
 
   final int threeQAnim = (design.animDur * 0.75).toInt();
@@ -202,7 +127,7 @@ ThemeData ezThemeData(
             states.contains(WidgetState.selected) ? colors.onPrimary : null,
       ),
       overlayColor: WidgetStateProperty.all(focusColor),
-      side: buildBorder(colors.primaryContainer),
+      side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
       shape: design.buttonShape.shape,
     ),
 
@@ -240,12 +165,36 @@ ThemeData ezThemeData(
         helperStyle: textTheme.labelLarge,
         errorStyle: textTheme.labelLarge?.copyWith(color: colors.error.asColor),
         errorMaxLines: 1,
-        border: buildOIBorder(colors.primaryContainer),
-        disabledBorder: buildOIBorder(colors.outlineVariant),
-        enabledBorder: buildOIBorder(colors.primaryContainer),
-        errorBorder: buildOIBorder(colors.errorContainer),
-        focusedBorder: buildOIBorder(colors.secondaryContainer),
-        focusedErrorBorder: buildOIBorder(colors.tertiaryContainer),
+        border: ezOutInBorder(
+          colors.primaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
+        disabledBorder: ezOutInBorder(
+          colors.outlineVariant,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
+        enabledBorder: ezOutInBorder(
+          colors.primaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
+        errorBorder: ezOutInBorder(
+          colors.errorContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
+        focusedBorder: ezOutInBorder(
+          colors.secondaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
+        focusedErrorBorder: ezOutInBorder(
+          colors.tertiaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
       ),
     ),
 
@@ -253,7 +202,11 @@ ThemeData ezThemeData(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         alignment: Alignment.center,
-        backgroundBuilder: buttonLayer(colors.surface),
+        backgroundBuilder: ezButtonLayer(
+          colors.surface,
+          border: ezBoxBorder(colors.primaryContainer, width: design.borderWidth),
+          borderRadius: design.buttonShape.radius,
+        ),
         backgroundColor: colors.surface.asColor,
         disabledForegroundColor: colors.outline,
         disabledIconColor: colors.outline,
@@ -264,7 +217,7 @@ ThemeData ezThemeData(
         padding: EdgeInsets.all(design.padding),
         shadowColor: colors.shadow.asColor,
         shape: design.buttonShape.shape,
-        side: buildBorder(colors.primaryContainer),
+        side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
         textStyle: textTheme.bodyLarge,
       ),
     ),
@@ -313,7 +266,7 @@ ThemeData ezThemeData(
         foregroundColor: colors.primary.asColor,
         disabledForegroundColor: colors.outline,
         overlayColor: colors.primary.asColor,
-        side: buildBorder(colors.primaryContainer),
+        side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
         enabledMouseCursor: SystemMouseCursors.click,
         shape: design.buttonShape.shape,
         iconSize: text.iconSize,
@@ -335,12 +288,36 @@ ThemeData ezThemeData(
       helperStyle: textTheme.labelLarge,
       errorStyle: textTheme.labelLarge!.copyWith(color: colors.error.asColor),
       errorMaxLines: 1,
-      border: UnderlineInputBorder(borderSide: buildBorder(colors.primaryContainer)),
-      disabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.outlineVariant)),
-      enabledBorder: UnderlineInputBorder(borderSide: buildBorder(colors.primaryContainer)),
-      errorBorder: UnderlineInputBorder(borderSide: buildBorder(colors.errorContainer)),
-      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(colors.secondaryContainer)),
-      focusedErrorBorder: UnderlineInputBorder(borderSide: buildBorder(colors.tertiaryContainer)),
+      border: ezUnderInBorder(
+        colors.primaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      disabledBorder: ezUnderInBorder(
+        colors.outlineVariant,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      enabledBorder: ezUnderInBorder(
+        colors.primaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      errorBorder: ezUnderInBorder(
+        colors.errorContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      focusedBorder: ezUnderInBorder(
+        colors.secondaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      focusedErrorBorder: ezUnderInBorder(
+        colors.tertiaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
     ),
 
     // Menu
@@ -348,7 +325,10 @@ ThemeData ezThemeData(
       style: MenuStyle(
         backgroundColor: WidgetStateProperty.all(colors.surface.asColor),
         padding: WidgetStateProperty.all(EdgeInsets.zero),
-        side: WidgetStateProperty.all(buildBorder(colors.primaryContainer)),
+        side: WidgetStateProperty.all(ezBorderSide(
+          colors.primaryContainer,
+          width: design.borderWidth,
+        )),
         alignment: Alignment.center,
       ),
     ),
@@ -397,7 +377,7 @@ ThemeData ezThemeData(
         foregroundColor: colors.primary.asColor,
         selectedForegroundColor: colors.onPrimary,
         disabledForegroundColor: colors.outline,
-        side: buildBorder(colors.primaryContainer),
+        side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
         shape: design.buttonShape.shape,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
@@ -410,7 +390,9 @@ ThemeData ezThemeData(
       behavior: SnackBarBehavior.floating,
       backgroundColor: colors.surfaceDim,
       closeIconColor: colors.primary.asColor,
-      shape: design.buttonShape.shape.copyWith(side: buildBorder(colors.secondary)),
+      shape: design.buttonShape.shape.copyWith(
+        side: ezBorderSide(colors.secondary, width: design.borderWidth),
+      ),
       contentTextStyle: textTheme.bodyLarge,
       insetPadding: EdgeInsets.all(design.margin),
       dismissDirection: DismissDirection.down,
@@ -450,9 +432,9 @@ ThemeData ezThemeData(
 
     // Tooltip
     tooltipTheme: TooltipThemeData(
-      decoration: buildDecoration(
+      decoration: ezBoxDeco(
         EzSwitchColor(color: colors.surfaceDim),
-        border: buildBox(colors.secondary),
+        border: ezBoxBorder(colors.secondary, width: design.borderWidth),
         borderRadius: EzButtonShape.roundRect.radius,
       ),
       textStyle: textTheme.bodyLarge,

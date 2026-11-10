@@ -89,7 +89,7 @@ class EzToolTipper extends StatelessWidget {
         ),
       ),
       baseFill: config.surfaceFill,
-      borderRadius: config.textRadius,
+      borderRadius: config.buttonShape.textRadius,
     );
   }
 }

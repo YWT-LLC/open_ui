@@ -106,7 +106,7 @@ class EzIconTouch extends StatelessWidget {
             onLongPress: onLongPress,
             child: Container(
               padding: EzInsets.wrap(config.padding),
-              decoration: config.boxDecoration(
+              decoration: config.boxDeco(
                 fill: backgroundFill ?? config.surfaceFill,
                 shape: BoxShape.circle,
               ),
@@ -122,7 +122,7 @@ class EzIconTouch extends StatelessWidget {
             onLongPress: doNothing,
             child: Container(
               padding: EzInsets.wrap(config.padding),
-              decoration: config.boxDecoration(
+              decoration: config.boxDeco(
                 fill: backgroundFill ?? config.surfaceFill,
                 shape: BoxShape.circle,
               ),
@@ -179,19 +179,19 @@ class EzIconButton extends StatelessWidget {
                 ? IconButton.styleFrom(
                     backgroundColor: config.surfaceFill.color,
                     foregroundColor: config.outline,
-                    side: config.borderSide(config.outlineVariantFill),
+                    side: config.borderSide(fill: config.outlineVariantFill),
                     overlayColor: config.outline,
                     shadowColor: Colors.transparent,
                     iconSize: iconSize ?? config.iconSize,
                   ).copyWith(
-                    backgroundBuilder: config.buttonLayer(backgroundFill ?? config.surfaceFill),
+                    backgroundBuilder: config.buttonLayer(fill: backgroundFill),
                   )
                 : IconButton.styleFrom(
                     backgroundColor: config.surfaceFill.color,
                     foregroundColor: config.onSurface,
                     iconSize: iconSize ?? config.iconSize,
                   ).copyWith(
-                    backgroundBuilder: config.buttonLayer(backgroundFill ?? config.surfaceFill),
+                    backgroundBuilder: config.buttonLayer(fill: backgroundFill),
                   )),
         icon: icon,
         iconSize: iconSize ?? config.iconSize,

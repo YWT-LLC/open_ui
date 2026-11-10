@@ -122,7 +122,7 @@ class EzDropMenuEntry<T> extends DropdownMenuEntry<T> {
             textStyle: textStyle,
           ).copyWith(
             backgroundBuilder: config.buttonLayer(
-              fill ?? config.surfaceFill,
+              fill: fill ?? config.surfaceFill,
               borderRadius: EzButtonShape.roundRect.radius,
             ),
           ),

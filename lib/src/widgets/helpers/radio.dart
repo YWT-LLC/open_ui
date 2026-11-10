@@ -27,7 +27,7 @@ class EzRadio<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: _scale > 1.1 ? padding ?? EdgeInsets.all(config.marginVal) : EdgeInsets.zero,
-        decoration: config.boxDecoration(shape: BoxShape.circle),
+        decoration: config.boxDeco(shape: BoxShape.circle),
         child: Transform.scale(
           scale: max(1.0, _scale),
           child: Radio<T>(value: value, toggleable: toggleable),

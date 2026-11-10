@@ -219,10 +219,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                                     config,
                                     text: shape.name(config.ezL10n),
                                     style: ElevatedButton.styleFrom(
-                                      side: config.borderSide(
-                                        config.primaryContainerFill,
-                                        width: currWidth,
-                                      ),
+                                      side: config.borderSide(width: currWidth),
                                       shape: shape.shape,
                                     ),
                                     onPressed: () async {

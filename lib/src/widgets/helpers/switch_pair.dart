@@ -138,17 +138,18 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         style: (widget.enabled && !widget.fauxDisabled)
             ? TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
-                backgroundBuilder: widget.config.buttonLayer(widget.config.surfaceFill),
+                backgroundBuilder: widget.config.buttonLayer(fill: widget.config.surfaceFill),
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                side: widget.config.borderSide(widget.config.primaryFill, opacity: focusOpacity),
+                side: widget.config
+                    .borderSide(fill: widget.config.primaryFill, opacity: focusOpacity),
               )
             : TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
-                backgroundBuilder: widget.config.buttonLayer(widget.config.surfaceFill),
+                backgroundBuilder: widget.config.buttonLayer(fill: widget.config.surfaceFill),
                 overlayColor: widget.config.outline,
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
                 shadowColor: Colors.transparent,
-                side: widget.config.borderSide(widget.config.outlineVariantFill),
+                side: widget.config.borderSide(fill: widget.config.outlineVariantFill),
               ),
         onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
         label: Padding(
@@ -256,7 +257,8 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
             text: widget.offLabel,
             style: TextButton.styleFrom(
               backgroundColor: widget.config.surfaceContainerFill.color,
-              backgroundBuilder: widget.config.buttonLayer(widget.config.surfaceContainerFill),
+              backgroundBuilder:
+                  widget.config.buttonLayer(fill: widget.config.surfaceContainerFill),
             ),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
@@ -294,7 +296,8 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
             text: widget.onLabel,
             style: TextButton.styleFrom(
               backgroundColor: widget.config.surfaceContainerFill.color,
-              backgroundBuilder: widget.config.buttonLayer(widget.config.surfaceContainerFill),
+              backgroundBuilder:
+                  widget.config.buttonLayer(fill: widget.config.surfaceContainerFill),
             ),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,

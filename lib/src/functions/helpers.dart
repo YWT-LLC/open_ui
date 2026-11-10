@@ -490,7 +490,7 @@ Future<String?> ezColorPicker(
                             child: Container(
                               key: UniqueKey(),
                               decoration: BoxDecoration(
-                                border: config.boxBorder(config.outlineFiller),
+                                border: config.boxBorder(fill: config.outlineFiller),
                                 borderRadius: EzButtonShape.roundRect.radius,
                                 gradient: LinearGradient(
                                   begin: beginDir,
@@ -718,7 +718,7 @@ Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
               )
             : Container(
                 constraints: BoxConstraints.tight(Size.infinite),
-                decoration: config.boxDecoration(opacity: 0.5),
+                decoration: config.boxDeco(opacity: 0.5),
                 child: EzLoadingGlass(ywt.EzLoadingIndicator(
                   iconSize: config.iconSize,
                   padding: config.padding,
