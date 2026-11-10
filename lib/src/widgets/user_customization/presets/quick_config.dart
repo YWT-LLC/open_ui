@@ -7,6 +7,8 @@ import '../../../../open_ui.dart';
 
 import 'package:material_ui/material_ui.dart';
 
+// TODO: figure out how to disable the button layer builder
+
 class EzQuickConfig extends StatelessWidget {
   final EzCP config;
 
