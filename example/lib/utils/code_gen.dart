@@ -215,9 +215,11 @@ dependencies:
     sdk: flutter
 
   # Flutter (Google)
-  go_router: ^18.0.0
-  intl: ^0.20.2
-  shared_preferences: ^2.5.5
+  cupertino_ui: ^1.1.6
+  go_router: ^18.1.4
+  intl: ^0.20.3
+  material_ui: ^1.11.0
+  shared_preferences: ^2.5.6
 
   # Community
   provider: ^6.1.5+1
@@ -227,7 +229,7 @@ dependencies:
     path: ../open_ui
 
 dev_dependencies:
-  dependency_validator: ^5.0.5
+  dependency_validator: ^5.1.0
   flutter_lints: ^6.0.0
 
 flutter:
