@@ -16,6 +16,8 @@ class EzScreen extends StatelessWidget {
   /// Optionally wrap [child] in a [SafeArea]
   final bool safeArea;
 
+  final BoxDecoration? decoration;
+
   /// Custom [Container] for the top layer of an (IRL) screen
   const EzScreen(
     this.config, {
@@ -24,13 +26,14 @@ class EzScreen extends StatelessWidget {
     this.alignment,
     this.margin,
     this.safeArea = false,
+    this.decoration,
   });
 
   @override
   Widget build(BuildContext context) => safeArea
       ? Container(
           alignment: alignment,
-          decoration: config.screenDecoration,
+          decoration: decoration ?? config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
           child: SafeArea(
@@ -46,7 +49,7 @@ class EzScreen extends StatelessWidget {
       : Container(
           alignment: alignment,
           padding: margin ?? EdgeInsets.all(config.marginVal),
-          decoration: config.screenDecoration,
+          decoration: decoration ?? config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
           child: child,
