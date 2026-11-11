@@ -94,8 +94,9 @@ class _ColorSettingState extends State<EzColorSetting> {
               border: Border.all(color: backgroundColor, width: widget.config.borderWidth),
               shape: BoxShape.circle,
             ),
-            child: CircleAvatar(
-              backgroundColor: Color(recommended),
+            child: EzAvatar(
+              widget.config,
+              fill: EzSwitchColor(color: Color(recommended)),
               radius: (widget.config.iconSize / 2) + widget.config.padding,
             ),
           ),
