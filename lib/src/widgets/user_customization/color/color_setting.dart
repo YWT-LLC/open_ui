@@ -69,10 +69,10 @@ class _ColorSettingState extends State<EzColorSetting> {
     final String backgroundKey = widget.configKey.replaceAll(textColorPrefix, '');
 
     // Find the recommended contrast color for the background
-    final String? backgroundColorValue = EzCM.get(backgroundKey);
+    final dynamic backgroundColorValue = EzCM.get(backgroundKey);
     final Color backgroundColor = (backgroundColorValue == null)
         ? getLiveColor(widget.config.theme.colorScheme, backgroundKey)
-        : ezFirstColor(backgroundColorValue) ??
+        : ezFirstColor(backgroundColorValue.toString()) ??
             (widget.config.isDark ? Colors.black : Colors.white);
 
     final int recommended = ezTextColor(backgroundColor).toARGB32();
@@ -132,7 +132,7 @@ class _ColorSettingState extends State<EzColorSetting> {
   Future<dynamic> reset() => showDialog(
         context: context,
         builder: (BuildContext dCon) {
-          final int? resetValue = EzCM.getDefault(widget.configKey);
+          final dynamic resetValue = EzCM.getDefault(widget.configKey);
           final String currColorLabel =
               currPreview.asColor.toARGB32().toRadixString(16).toUpperCase();
 
