@@ -326,8 +326,6 @@ class EzCP extends ChangeNotifier {
   EzSwitchColor get surfaceContainerFill => _color.surfaceContainer;
   Color get onSurface => _color.onSurface;
 
-  EzSwitchColor get surfaceDimFiller => EzSwitchColor(color: surfaceDim);
-
   // Big three
   EzSwitchColor get primaryFill => _color.primary;
   EzSwitchColor get primaryContainerFill => _color.primaryContainer;
@@ -351,6 +349,13 @@ class EzCP extends ChangeNotifier {
   Color get surfaceTint => _color.surfaceTint;
   EzSwitchColor get shadowFill => _color.shadow;
 
+  // Helpers
+  EzSwitchColor get surfaceDimFiller => EzSwitchColor(color: surfaceDim);
+  EzSwitchColor get onSurfaceFiller => EzSwitchColor(color: onSurface);
+  EzSwitchColor get onPrimaryFiller => EzSwitchColor(color: onPrimary);
+  EzSwitchColor get onSecondaryFiller => EzSwitchColor(color: onSecondary);
+  EzSwitchColor get onTertiaryFiller => EzSwitchColor(color: onTertiary);
+  EzSwitchColor get onErrorFiller => EzSwitchColor(color: onError);
   EzSwitchColor get outlineFiller => EzSwitchColor(color: outline);
   EzSwitchColor get surfaceTintFiller => EzSwitchColor(color: surfaceTint);
 
