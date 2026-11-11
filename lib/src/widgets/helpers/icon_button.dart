@@ -15,10 +15,6 @@ class EzIcon extends StatelessWidget {
   /// Defaults to [EzCP.primaryFill]
   final EzSwitchColor? fill;
 
-  final double? iconFill;
-  final double? weight;
-  final double? grade;
-  final double? opticalSize;
   final List<Shadow>? shadows;
   final String? semanticLabel;
   final TextDirection? textDirection;
@@ -32,10 +28,6 @@ class EzIcon extends StatelessWidget {
     super.key,
     this.size,
     this.fill,
-    this.iconFill,
-    this.weight,
-    this.grade,
-    this.opticalSize,
     this.shadows,
     this.semanticLabel,
     this.textDirection,
@@ -48,10 +40,6 @@ class EzIcon extends StatelessWidget {
     final Icon toReturn = Icon(
       icon,
       size: size ?? config.iconSize,
-      fill: iconFill,
-      weight: weight,
-      grade: grade,
-      opticalSize: opticalSize,
       color: fill?.color,
       shadows: shadows,
       semanticLabel: semanticLabel,
