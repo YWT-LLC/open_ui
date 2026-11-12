@@ -95,7 +95,7 @@ class EzIconTouch extends StatelessWidget {
             child: Container(
               padding: EzInsets.wrap(config.padding),
               decoration: config.boxDeco(
-                fill: backgroundFill ?? config.surfaceFill,
+                fill: backgroundFill,
                 shape: BoxShape.circle,
               ),
               child: EzIcon(config, icon, fill: iconFill),
@@ -111,7 +111,7 @@ class EzIconTouch extends StatelessWidget {
             child: Container(
               padding: EzInsets.wrap(config.padding),
               decoration: config.boxDeco(
-                fill: backgroundFill ?? config.surfaceFill,
+                fill: backgroundFill,
                 shape: BoxShape.circle,
               ),
               child: EzIcon(config, icon, fill: config.outlineFiller),

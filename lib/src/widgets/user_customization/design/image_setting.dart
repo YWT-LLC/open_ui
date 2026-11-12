@@ -692,10 +692,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                             ).height +
                             (widget.config.marginVal * 0.25),
                         width: double.infinity,
-                        decoration: widget.config.boxDeco(
-                          fill: widget.config.surfaceFill,
-                          borderRadius: const BorderRadius.all(Radius.zero),
-                        ),
+                        decoration: widget.config
+                            .boxDeco(borderRadius: const BorderRadius.all(Radius.zero)),
                         child: Text(
                           fit.name,
                           style: widget.config.bodyStyle,

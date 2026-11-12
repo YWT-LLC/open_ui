@@ -68,44 +68,44 @@ class EzCP extends ChangeNotifier {
 
       final ColorScheme basicColors = ezColorScheme(Brightness.dark);
 
-      final EzSwitchColor surface = _colorOrGradient(darkSurfaceKey, basicColors);
-      final EzSwitchColor surfaceContainer = _colorOrGradient(darkSurfaceContainerKey, basicColors);
-      final EzSwitchColor primary = _colorOrGradient(darkPrimaryKey, basicColors);
-      final EzSwitchColor secondary = _colorOrGradient(darkSecondaryKey, basicColors);
-      final EzSwitchColor tertiary = _colorOrGradient(darkTertiaryKey, basicColors);
-      final EzSwitchColor error = _colorOrGradient(darkErrorKey, basicColors);
+      final EzSwitchColor surface = ezStoredCOG(darkSurfaceKey, basicColors);
+      final EzSwitchColor surfaceContainer = ezStoredCOG(darkSurfaceContainerKey, basicColors);
+      final EzSwitchColor primary = ezStoredCOG(darkPrimaryKey, basicColors);
+      final EzSwitchColor secondary = ezStoredCOG(darkSecondaryKey, basicColors);
+      final EzSwitchColor tertiary = ezStoredCOG(darkTertiaryKey, basicColors);
+      final EzSwitchColor error = ezStoredCOG(darkErrorKey, basicColors);
 
       final EzColorCache colorCache = EzColorCache(
         schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue,
 
         // Surface
         surface: surface,
-        surfaceDim: _colorOrGradient(darkSurfaceDimKey, basicColors).asColor,
+        surfaceDim: ezStoredCOG(darkSurfaceDimKey, basicColors).asColor,
         surfaceContainer: surfaceContainer,
         onSurface: ezTextColor(surface.asColor),
 
         // Big three
         primary: primary,
-        primaryContainer: _colorOrGradient(darkPrimaryContainerKey, basicColors),
+        primaryContainer: ezStoredCOG(darkPrimaryContainerKey, basicColors),
         onPrimary: ezTextColor(primary.asColor),
 
         secondary: secondary,
-        secondaryContainer: _colorOrGradient(darkSecondaryContainerKey, basicColors),
+        secondaryContainer: ezStoredCOG(darkSecondaryContainerKey, basicColors),
         onSecondary: ezTextColor(secondary.asColor),
 
         tertiary: tertiary,
-        tertiaryContainer: _colorOrGradient(darkTertiaryContainerKey, basicColors),
+        tertiaryContainer: ezStoredCOG(darkTertiaryContainerKey, basicColors),
         onTertiary: ezTextColor(tertiary.asColor),
 
         // Misc
         error: error,
-        errorContainer: _colorOrGradient(darkErrorContainerKey, basicColors),
+        errorContainer: ezStoredCOG(darkErrorContainerKey, basicColors),
         onError: ezTextColor(error.asColor),
 
-        outline: _colorOrGradient(darkOutlineKey, basicColors).asColor,
-        outlineVariant: _colorOrGradient(darkOutlineVariantKey, basicColors),
-        shadow: _colorOrGradient(darkShadowKey, basicColors),
-        surfaceTint: _colorOrGradient(darkSurfaceTintKey, basicColors).asColor,
+        outline: ezStoredCOG(darkOutlineKey, basicColors).asColor,
+        outlineVariant: ezStoredCOG(darkOutlineVariantKey, basicColors),
+        shadow: ezStoredCOG(darkShadowKey, basicColors),
+        surfaceTint: ezStoredCOG(darkSurfaceTintKey, basicColors).asColor,
       );
 
       // Design //
@@ -183,45 +183,44 @@ class EzCP extends ChangeNotifier {
 
       final ColorScheme basicColors = ezColorScheme(Brightness.light);
 
-      final EzSwitchColor surface = _colorOrGradient(lightSurfaceKey, basicColors);
-      final EzSwitchColor surfaceContainer =
-          _colorOrGradient(lightSurfaceContainerKey, basicColors);
-      final EzSwitchColor primary = _colorOrGradient(lightPrimaryKey, basicColors);
-      final EzSwitchColor secondary = _colorOrGradient(lightSecondaryKey, basicColors);
-      final EzSwitchColor tertiary = _colorOrGradient(lightTertiaryKey, basicColors);
-      final EzSwitchColor error = _colorOrGradient(lightErrorKey, basicColors);
+      final EzSwitchColor surface = ezStoredCOG(lightSurfaceKey, basicColors);
+      final EzSwitchColor surfaceContainer = ezStoredCOG(lightSurfaceContainerKey, basicColors);
+      final EzSwitchColor primary = ezStoredCOG(lightPrimaryKey, basicColors);
+      final EzSwitchColor secondary = ezStoredCOG(lightSecondaryKey, basicColors);
+      final EzSwitchColor tertiary = ezStoredCOG(lightTertiaryKey, basicColors);
+      final EzSwitchColor error = ezStoredCOG(lightErrorKey, basicColors);
 
       final EzColorCache colorCache = EzColorCache(
         schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue,
 
         // Surface
         surface: surface,
-        surfaceDim: _colorOrGradient(lightSurfaceDimKey, basicColors).asColor,
+        surfaceDim: ezStoredCOG(lightSurfaceDimKey, basicColors).asColor,
         surfaceContainer: surfaceContainer,
         onSurface: ezTextColor(surface.asColor),
 
         // Big three
         primary: primary,
-        primaryContainer: _colorOrGradient(lightPrimaryContainerKey, basicColors),
+        primaryContainer: ezStoredCOG(lightPrimaryContainerKey, basicColors),
         onPrimary: ezTextColor(primary.asColor),
 
         secondary: secondary,
-        secondaryContainer: _colorOrGradient(lightSecondaryContainerKey, basicColors),
+        secondaryContainer: ezStoredCOG(lightSecondaryContainerKey, basicColors),
         onSecondary: ezTextColor(secondary.asColor),
 
         tertiary: tertiary,
-        tertiaryContainer: _colorOrGradient(lightTertiaryContainerKey, basicColors),
+        tertiaryContainer: ezStoredCOG(lightTertiaryContainerKey, basicColors),
         onTertiary: ezTextColor(tertiary.asColor),
 
         // Misc
         error: error,
-        errorContainer: _colorOrGradient(lightErrorContainerKey, basicColors),
+        errorContainer: ezStoredCOG(lightErrorContainerKey, basicColors),
         onError: ezTextColor(error.asColor),
 
-        outline: _colorOrGradient(lightOutlineKey, basicColors).asColor,
-        outlineVariant: _colorOrGradient(lightOutlineVariantKey, basicColors),
-        shadow: _colorOrGradient(lightShadowKey, basicColors),
-        surfaceTint: _colorOrGradient(lightSurfaceTintKey, basicColors).asColor,
+        outline: ezStoredCOG(lightOutlineKey, basicColors).asColor,
+        outlineVariant: ezStoredCOG(lightOutlineVariantKey, basicColors),
+        shadow: ezStoredCOG(lightShadowKey, basicColors),
+        surfaceTint: ezStoredCOG(lightSurfaceTintKey, basicColors).asColor,
       );
 
       // Design //
@@ -477,7 +476,7 @@ class EzCP extends ChangeNotifier {
 
   /// (Hidden) Defaults:
   /// [fill] -> [EzCP.surfaceFill]
-  /// [border] -> [EzCP.buttonShape].radius
+  /// [borderRadius] -> [EzCP.buttonShape].radius
   BoxDecoration boxDeco({
     EzSwitchColor? fill,
     BoxBorder? border,
@@ -497,7 +496,7 @@ class EzCP extends ChangeNotifier {
 
   /// (Hidden) Defaults:
   /// [fill] -> [EzCP.surfaceFill]
-  /// [border] -> [EzCP.buttonShape].radius
+  /// [borderRadius] -> [EzCP.buttonShape].radius
   ButtonLayerBuilder? buttonLayer({
     EzSwitchColor? fill,
     BoxBorder? border,
@@ -807,22 +806,22 @@ abstract class EzAppCache {
 
 //* Helpers *//
 
-// Internal //
+/// [Color] or [Gradient] by key
+EzSwitchColor ezStoredCOG(String key, ColorScheme basic) =>
+    ezCOG(EzCM.get(key)) ?? EzSwitchColor(color: getLiveColor(basic, key));
 
-EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
-  late final EzSwitchColor backup = EzSwitchColor(color: getLiveColor(basic, key));
+/// [Color] or [Gradient] (or null) by value
+EzSwitchColor? ezCOG(dynamic value) {
+  if (value == null) return null;
 
-  final dynamic stored = EzCM.get(key);
-  if (stored == null) return backup;
-
-  final String value = stored.toString();
-  final List<String> parts = value.split(colorSplit);
+  final String sv = value.toString();
+  final List<String> parts = sv.split(colorSplit);
 
   if (parts.length > 1) {
-    if (parts.length < 3) return backup;
+    if (parts.length < 3) return null;
 
     final List<int?> hexes = parts.sublist(2).map(int.tryParse).toList();
-    if (hexes.contains(null)) return backup;
+    if (hexes.contains(null)) return null;
 
     return EzSwitchColor(
       gradient: LinearGradient(
@@ -832,8 +831,8 @@ EzSwitchColor _colorOrGradient(String key, ColorScheme basic) {
       ),
     );
   } else {
-    final int? hex = int.tryParse(value);
-    return (hex == null) ? backup : EzSwitchColor(color: Color(hex));
+    final int? hex = int.tryParse(sv);
+    return (hex == null) ? null : EzSwitchColor(color: Color(hex));
   }
 }
 
@@ -849,8 +848,6 @@ BoxDecoration _buildScreenDeco(EzSwitchColor fill, String imagePath, BoxFit? ima
 
   return BoxDecoration(image: DecorationImage(image: ezImageProvider(imagePath), fit: imageFit));
 }
-
-// Hybrid //
 
 BoxBorder ezBoxBorder(
   EzSwitchColor fill, {
@@ -962,8 +959,6 @@ ButtonLayerBuilder? ezButtonLayer(
             );
 
 ButtonLayerBuilder ezSelfBuilder = (_, __, Widget? child) => child!;
-
-// External //
 
 /// Safety net, not a crutch...
 /// Only to be used when getting the proper Provider is unreasonably difficult
