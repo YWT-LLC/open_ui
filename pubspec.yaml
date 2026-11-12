@@ -41,7 +41,7 @@ dependencies:
   package_info_plus: ^10.2.2
   permission_handler: ^13.0.2
   provider: ^6.1.5+1
-  window_manager: ^0.6.0
+  window_manager: ^0.7.0
 
   # YWT (local)
   ywt_private:
