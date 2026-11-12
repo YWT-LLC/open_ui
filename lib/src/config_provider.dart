@@ -638,6 +638,15 @@ class EzSwitchColor {
   Color get asColor => color ?? gradient!.colors.first;
 
   Gradient get asGradient => gradient ?? LinearGradient(colors: <Color>[color!]);
+
+  @override
+  String toString() => (color == null)
+      ? <String>[
+          gradient!.begin.toString(),
+          gradient!.end.toString(),
+          ...gradient!.colors.map((Color color) => color.toARGB32().toString())
+        ].join(colorSplit)
+      : color!.toARGB32().toString();
 }
 
 class EzColorCache {
