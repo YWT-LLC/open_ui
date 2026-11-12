@@ -398,7 +398,9 @@ class EzCP extends ChangeNotifier {
           fit: backgroundImageFit,
         );
 
-  /// Defaults to [EzCP.primaryContainerFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
   BoxBorder boxBorder({
     EzSwitchColor? fill,
     double? width,
@@ -410,7 +412,9 @@ class EzCP extends ChangeNotifier {
         opacity: opacity,
       );
 
-  /// Defaults to [EzCP.primaryContainerFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
   BorderSide borderSide({
     EzSwitchColor? fill,
     double? width,
@@ -422,7 +426,10 @@ class EzCP extends ChangeNotifier {
         opacity: opacity,
       );
 
-  /// Defaults to [EzCP.primaryContainerFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  /// [base] -> [EzCP.buttonShape]
   OutlinedBorder outlinedBorder({
     EzSwitchColor? fill,
     double? width,
@@ -434,7 +441,10 @@ class EzCP extends ChangeNotifier {
         base: base ?? buttonShape.shape,
       );
 
-  /// Defaults to [EzCP.primaryContainerFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  /// [radius] -> [EzCP.buttonShape].textFieldRadius
   OutlineInputBorder outInBorder({
     EzSwitchColor? fill,
     double? width,
@@ -448,7 +458,10 @@ class EzCP extends ChangeNotifier {
         opacity: opacity,
       );
 
-  /// Defaults to [EzCP.primaryContainerFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  /// [radius] -> [EzCP.buttonShape].textFieldRadius
   UnderlineInputBorder underInBorder({
     EzSwitchColor? fill,
     double? width,
@@ -462,11 +475,14 @@ class EzCP extends ChangeNotifier {
         opacity: opacity,
       );
 
-  /// Defaults to [EzCP.surfaceFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [border] -> [EzCP.buttonShape].radius
   BoxDecoration boxDeco({
     EzSwitchColor? fill,
     BoxBorder? border,
     BorderRadiusGeometry? borderRadius,
+    DecorationImage? image,
     BoxShape shape = BoxShape.rectangle,
     double? opacity,
   }) =>
@@ -474,11 +490,14 @@ class EzCP extends ChangeNotifier {
         fill ?? surfaceFill,
         border: border,
         borderRadius: borderRadius ?? buttonShape.radius,
+        image: image,
         shape: shape,
         opacity: opacity,
       );
 
-  /// Defaults to [EzCP.surfaceFill]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [border] -> [EzCP.buttonShape].radius
   ButtonLayerBuilder? buttonLayer({
     EzSwitchColor? fill,
     BoxBorder? border,
@@ -901,6 +920,7 @@ BoxDecoration ezBoxDeco(
   EzSwitchColor fill, {
   BoxBorder? border,
   required BorderRadiusGeometry borderRadius,
+  DecorationImage? image,
   BoxShape shape = BoxShape.rectangle,
   double? opacity,
 }) =>
@@ -910,6 +930,7 @@ BoxDecoration ezBoxDeco(
             borderRadius: (shape == BoxShape.circle) ? null : borderRadius,
             color: fill.color,
             gradient: fill.gradient,
+            image: image,
             shape: shape,
           )
         : BoxDecoration(
@@ -917,6 +938,7 @@ BoxDecoration ezBoxDeco(
             borderRadius: (shape == BoxShape.circle) ? null : borderRadius,
             color: fill.color?.withValues(alpha: opacity),
             gradient: fill.gradient?.withOpacity(opacity),
+            image: image,
             shape: shape,
           );
 
