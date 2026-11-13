@@ -298,6 +298,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
         return OpenUIScaffold(
           config,
+          title: l10n(config).gsPageTitle,
           body: EzScreen(
             config,
             child: EzScrollView(config, children: <Widget>[
@@ -353,7 +354,11 @@ class _GenerateScreenState extends State<GenerateScreen> {
               config.separator,
             ]),
           ),
-          title: l10n(config).gsPageTitle,
+          footer: EzFooter(
+            config,
+            quiet: true,
+            a11howPath: ywt.exampleContributeA11,
+          ),
           running: genState == GeneratorState.running,
         );
       },

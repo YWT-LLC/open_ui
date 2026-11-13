@@ -112,6 +112,11 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
             running: genState == GeneratorState.running,
             title: l10n(config).asPageTitle,
             body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
+            footer: EzFooter(
+              config,
+              quiet: true,
+              a11howPath: ywt.exampleContributeA11,
+            ),
           );
         },
       );

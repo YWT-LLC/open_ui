@@ -4,7 +4,6 @@
  */
 
 import '../../widgets/export.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'package:open_ui/open_ui.dart';
 import 'package:provider/provider.dart';
@@ -87,11 +86,6 @@ class SettingsHubScreen extends StatelessWidget {
             ],
             target: target,
           ),
-        ),
-        footer: EzFooter(
-          config,
-          quiet: true,
-          a11howPath: ywt.openUIContributeA11,
         ),
         showSettings: false,
         fabs: <Widget>[

@@ -102,7 +102,7 @@ class OpenUIScaffold extends StatelessWidget {
             EzFooter(
               config,
               quiet: true,
-              a11howPath: ywt.exampleContributeA11,
+              a11howPath: ywt.openUIContributeA11,
             ),
         footerAlign: footerAlign,
       ),
