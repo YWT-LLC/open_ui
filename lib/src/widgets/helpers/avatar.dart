@@ -58,9 +58,8 @@ class EzAvatar extends StatelessWidget {
     );
 
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: (base ?? config.surfaceContainerFill).color,
-        gradient: (base ?? config.surfaceContainerFill).gradient,
+      decoration: config.boxDeco(
+        fill: base ?? config.surfaceContainerFill,
         shape: BoxShape.circle,
       ),
       child: (fill.gradient == null)

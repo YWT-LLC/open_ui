@@ -77,9 +77,8 @@ class EzMarginSetting extends StatelessWidget {
                           height: heightOf(modalContext) * 0.25,
                           width: widthOf(modalContext) * 0.25,
                           child: Container(
-                            decoration: BoxDecoration(
-                              color: config.surfaceFill.color,
-                              gradient: config.surfaceFill.gradient,
+                            decoration: config.boxDeco(
+                              borderRadius: BorderRadius.zero,
                               image: config.backgroundImage,
                             ),
                             margin: EdgeInsets.all(currValue * 0.25),

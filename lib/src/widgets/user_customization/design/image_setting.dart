@@ -674,11 +674,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                 child: Container(
                   width: width,
                   height: height,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: widget.config.onSurface,
-                      width: widget.config.borderWidth,
-                    ),
+                  decoration: widget.config.boxDeco(
+                    border: widget.config.boxBorder(fill: widget.config.onSurfaceFiller),
                     borderRadius: const BorderRadius.all(Radius.zero),
                   ),
                   child: EzCol(
@@ -740,11 +737,8 @@ class _ImageSettingState extends State<EzImageSetting> {
           },
           onLongPress: inProgress ? doNothing : showCredits,
           icon: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: widget.config.onSurface,
-                width: widget.config.borderWidth,
-              ),
+            decoration: widget.config.boxDeco(
+              border: widget.config.boxBorder(fill: widget.config.onSurfaceFiller),
               shape: BoxShape.circle,
             ),
             child: CircleAvatar(
