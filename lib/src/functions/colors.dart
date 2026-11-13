@@ -19,7 +19,7 @@ Color ezTextColor(Color background) {
 /// Given a color storage string, return the [Color] or [LinearGradient]'s first color
 Color? ezFirstColor(String color) {
   final List<String> parts = color.split(colorSplit);
-  final int? cv = int.tryParse(parts.length >= 3 ? parts[2] : color);
+  final int? cv = int.tryParse(parts.length >= 4 ? parts[2] : color);
   return cv == null ? null : Color(cv);
 }
 
