@@ -19,6 +19,7 @@ class EzScreen extends StatelessWidget {
   final BoxDecoration? decoration;
 
   /// Custom [Container] for the top layer of an (IRL) screen
+  /// null [margin] => [EdgeInsets.all] w/ [EzCP.marginVal]
   const EzScreen(
     this.config, {
     required this.child,
