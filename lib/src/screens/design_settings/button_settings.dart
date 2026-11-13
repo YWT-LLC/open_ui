@@ -207,39 +207,37 @@ class _ButtonStyleSetting extends StatelessWidget {
                       thumbVisibility: false,
                       showScrollHint: true,
                       children: EzButtonShape.values
-                          .map(
-                            (EzButtonShape shape) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: config.spacing,
-                                horizontal: config.spacing / 2,
-                              ),
-                              child: EzCol(
-                                children: <Widget>[
-                                  EzElevatedButton(
-                                    config,
-                                    text: shape.name(config.ezL10n),
-                                    style: ElevatedButton.styleFrom(
-                                      side: config.borderSide(width: currWidth),
-                                      shape: shape.shape,
-                                    ),
-                                    onPressed: () async {
-                                      if (EzCM.updateBoth || config.isDark) {
-                                        await EzCM.setString(darkButtonShapeKey, shape.value);
-                                      }
-                                      if (EzCM.updateBoth || !config.isDark) {
-                                        await EzCM.setString(lightButtonShapeKey, shape.value);
-                                      }
+                          .map((EzButtonShape shape) => Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: config.spacing,
+                                  horizontal: config.spacing / 2,
+                                ),
+                                child: EzCol(
+                                  children: <Widget>[
+                                    EzElevatedButton(
+                                      config,
+                                      text: shape.name(config.ezL10n),
+                                      style: ElevatedButton.styleFrom(
+                                        side: config.borderSide(width: currWidth),
+                                        shape: shape.shape,
+                                      ),
+                                      onPressed: () async {
+                                        if (EzCM.updateBoth || config.isDark) {
+                                          await EzCM.setString(darkButtonShapeKey, shape.value);
+                                        }
+                                        if (EzCM.updateBoth || !config.isDark) {
+                                          await EzCM.setString(lightButtonShapeKey, shape.value);
+                                        }
 
-                                      setModal(() => currShape = shape);
-                                    },
-                                  ),
-                                  config.margin,
-                                  ExcludeSemantics(
-                                      child: EzRadio<EzButtonShape>(config, value: shape)),
-                                ],
-                              ),
-                            ),
-                          )
+                                        setModal(() => currShape = shape);
+                                      },
+                                    ),
+                                    config.margin,
+                                    ExcludeSemantics(
+                                        child: EzRadio<EzButtonShape>(config, value: shape)),
+                                  ],
+                                ),
+                              ))
                           .toList(),
                     ),
                   ),

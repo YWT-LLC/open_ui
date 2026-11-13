@@ -435,7 +435,7 @@ ThemeData ezThemeData(
       decoration: ezBoxDeco(
         EzSwitchColor(color: colors.surfaceDim),
         border: ezBoxBorder(colors.secondary, width: design.borderWidth),
-        borderRadius: EzButtonShape.roundRect.radius,
+        borderRadius: design.buttonShape.textRadius,
       ),
       textStyle: textTheme.bodyLarge,
       textAlign: TextAlign.center,
