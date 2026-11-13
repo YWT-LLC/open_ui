@@ -706,6 +706,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
           ),
         ),
         footerAlign: AlignmentDirectional.bottomStart,
+        footerTextAlign: TextAlign.start,
         onUpload: (EAGConfig toLoad) async {
           // Disable buttons
           setState(() => canGen = false);
