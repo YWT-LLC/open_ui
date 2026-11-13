@@ -225,8 +225,6 @@ Future<String?> ezColorPicker(
   // Define modal data //
 
   final double iconRadius = config.iconSize / 2;
-  final double qHeight = heightOf(context) / 4;
-  final double qWidth = widthOf(context) / 4;
 
   late EzSwitchColor preview;
   late bool gradient;
@@ -293,11 +291,17 @@ Future<String?> ezColorPicker(
         ),
       );
 
-  Positioned iconPosition(AlignmentGeometry align, Widget icon) => switch (align) {
+  Positioned iconPosition({
+    required AlignmentGeometry align,
+    required Widget icon,
+    required double height,
+    required double width,
+  }) =>
+      switch (align) {
         // Bottom
         Alignment.bottomCenter => Positioned(
             bottom: 0,
-            left: qWidth / 2 - config.padding,
+            left: width / 2 - config.padding,
             child: icon,
           ),
         Alignment.bottomLeft => Positioned(bottom: 0, left: 0, child: icon),
@@ -305,17 +309,17 @@ Future<String?> ezColorPicker(
 
         // Center
         Alignment.center => Positioned(
-            top: qHeight / 2 - config.padding,
-            left: qWidth / 2 - config.padding,
+            top: height / 2 - config.padding,
+            left: width / 2 - config.padding,
             child: icon,
           ),
         Alignment.centerLeft => Positioned(
-            top: qHeight / 2 - config.padding,
+            top: height / 2 - config.padding,
             left: 0,
             child: icon,
           ),
         Alignment.centerRight => Positioned(
-            top: qHeight / 2 - config.padding,
+            top: height / 2 - config.padding,
             right: 0,
             child: icon,
           ),
@@ -323,7 +327,7 @@ Future<String?> ezColorPicker(
         // Top
         Alignment.topCenter => Positioned(
             top: 0,
-            left: qWidth / 2 - config.padding,
+            left: width / 2 - config.padding,
             child: icon,
           ),
         Alignment.topLeft => Positioned(top: 0, left: 0, child: icon),
@@ -501,7 +505,10 @@ Future<String?> ezColorPicker(
                 mod: 0.75,
                 child: (gradients.length >= 2)
                     ? Container(
-                        constraints: BoxConstraints.tight(Size(qWidth, qHeight)),
+                        constraints: BoxConstraints.tight(Size(
+                          widthOf(context) / 3,
+                          heightOf(context) / 4,
+                        )),
                         child: Stack(children: <Widget>[
                           // Ze gradient
                           Positioned.fill(
@@ -521,26 +528,30 @@ Future<String?> ezColorPicker(
 
                           // Begin dir
                           iconPosition(
-                            beginDir,
-                            dirMenu(
+                            align: beginDir,
+                            icon: dirMenu(
                               controller: beginMenu,
                               selected: beginDir,
                               icon: EzIcon(config, Icons.start),
                               tooltip: config.ezL10n.csStartDir,
                               onSelected: (Alignment choice) => setModal(() => beginDir = choice),
                             ),
+                            height: heightOf(context) / 4,
+                            width: widthOf(context) / 3,
                           ),
 
                           // End dir
                           iconPosition(
-                            endDir,
-                            dirMenu(
+                            align: endDir,
+                            icon: dirMenu(
                               controller: endMenu,
                               selected: endDir,
                               icon: EzIcon(config, Icons.flag),
                               tooltip: config.ezL10n.csEndDir,
                               onSelected: (Alignment choice) => setModal(() => endDir = choice),
                             ),
+                            height: heightOf(context) / 4,
+                            width: widthOf(context) / 3,
                           ),
                         ]),
                       )
@@ -685,12 +696,13 @@ Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
   List<LocalizationsDelegate<dynamic>> local,
 ) =>
     <LocalizationsDelegate<dynamic>>{
-      const LocaleNamesLocalizationsDelegate(),
-      CreoleMaterialLocalizations.delegate,
       CreoleCupertinoLocalizations.delegate,
+      CreoleMaterialLocalizations.delegate,
       const CreoleWidgetsLocalizationsDelegate(),
-      ...OUILang.localizationsDelegates,
+      ...GlobalMaterialLocalizations.delegates,
       ...local,
+      const LocaleNamesLocalizationsDelegate(),
+      ...OUILang.localizationsDelegates,
     };
 
 /// [ezLog] the passed message and display an [EzAlertDialog] to notify the user
