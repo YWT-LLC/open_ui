@@ -43,7 +43,7 @@ class EzScreen extends StatelessWidget {
               padding: margin ?? EdgeInsets.all(config.marginVal),
               height: double.infinity,
               width: double.infinity,
-              child: child,
+              child: Material(type: MaterialType.transparency, child: child),
             ),
           ),
         )
@@ -53,6 +53,6 @@ class EzScreen extends StatelessWidget {
           decoration: decoration ?? config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
-          child: child,
+          child: Material(type: MaterialType.transparency, child: child),
         );
 }
