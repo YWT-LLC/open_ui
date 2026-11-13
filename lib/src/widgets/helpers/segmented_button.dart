@@ -67,8 +67,8 @@ class EzSegmentedButton<T> extends StatelessWidget {
     final bool gradientBorder = border.gradient != null;
 
     final ButtonStyle segmentStyle = SegmentedButton.styleFrom(
-      backgroundColor: gradientBackground ? Colors.transparent : background.color,
-      selectedBackgroundColor: gradientBackground ? Colors.transparent : selectedBackground.color,
+      backgroundColor: background.color,
+      selectedBackgroundColor: selectedBackground.color,
       side: gradientBorder ? BorderSide.none : config.borderSide(fill: border),
       shape: config.outlinedBorder(fill: border),
       tapTargetSize: gradientBackground || gradientBorder ? MaterialTapTargetSize.shrinkWrap : null,
