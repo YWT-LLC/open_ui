@@ -218,8 +218,10 @@ class _ButtonStyleSetting extends StatelessWidget {
                                       config,
                                       text: shape.name(config.ezL10n),
                                       style: ElevatedButton.styleFrom(
-                                        side: config.borderSide(width: currWidth),
+                                        backgroundBuilder:
+                                            config.buttonLayer(borderRadius: shape.radius),
                                         shape: shape.shape,
+                                        side: config.borderSide(width: currWidth),
                                       ),
                                       onPressed: () async {
                                         if (EzCM.updateBoth || config.isDark) {
