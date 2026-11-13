@@ -6,7 +6,6 @@
 import '../screens/export.dart';
 import '../utils/export.dart';
 import '../widgets/export.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:async';
@@ -182,6 +181,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
     return Consumer<EzCP>(
       builder: (_, EzCP config, __) => OpenUIScaffold(
         config,
+        title: l10n(config).csPageTitle,
         body: EzScreen(
           config,
           alignment: Alignment.topLeft,
@@ -704,13 +704,6 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               config.separator,
             ],
           ),
-        ),
-        title: l10n(config).csPageTitle,
-        footer: EzFooter(
-          config,
-          quiet: true,
-          a11howPath: ywt.exampleContributeA11,
-          textAlign: TextAlign.start,
         ),
         footerAlign: AlignmentDirectional.bottomStart,
         onUpload: (EAGConfig toLoad) async {

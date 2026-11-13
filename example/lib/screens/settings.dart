@@ -87,6 +87,7 @@ class SettingsHubScreen extends StatelessWidget {
             target: target,
           ),
         ),
+        settingsA11: true,
         showSettings: false,
         fabs: <Widget>[
           // Rebuild (conditional)

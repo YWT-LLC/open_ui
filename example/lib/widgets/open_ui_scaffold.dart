@@ -14,7 +14,6 @@ class OpenUIScaffold extends StatelessWidget {
   final EzCP config;
   final String title;
   final Widget body;
-  final Widget? footer;
   final AlignmentDirectional? footerAlign;
 
   /// Whether to include [SettingsButton] in the [MenuAnchor]
@@ -30,8 +29,8 @@ class OpenUIScaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzCP.backFABs]
   final bool isHome;
+  final bool settingsA11;
 
   /// Standardized [Scaffold] for all of the Open UI example app's screens
   const OpenUIScaffold(
@@ -39,13 +38,13 @@ class OpenUIScaffold extends StatelessWidget {
     super.key,
     this.title = thisAppName,
     required this.body,
-    this.footer,
     this.footerAlign,
     this.showSettings = true,
     this.onUpload,
     this.running = false,
     this.fabs,
     this.isHome = false,
+    this.settingsA11 = false,
   });
 
   @override
@@ -98,12 +97,11 @@ class OpenUIScaffold extends StatelessWidget {
           if (fabs != null) ...fabs!,
           ...config.backFABs(isHome: isHome),
         ],
-        footer: footer ??
-            EzFooter(
-              config,
-              quiet: true,
-              a11howPath: ywt.openUIContributeA11,
-            ),
+        footer: EzFooter(
+          config,
+          quiet: true,
+          a11howPath: settingsA11 ? ywt.openUIContributeA11 : ywt.exampleContributeA11,
+        ),
         footerAlign: footerAlign,
       ),
     );

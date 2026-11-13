@@ -354,11 +354,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
               config.separator,
             ]),
           ),
-          footer: EzFooter(
-            config,
-            quiet: true,
-            a11howPath: ywt.exampleContributeA11,
-          ),
           running: genState == GeneratorState.running,
         );
       },
