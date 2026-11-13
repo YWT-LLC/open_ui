@@ -604,7 +604,8 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
     // Define custom widgets //
 
     late final Widget options = MenuAnchor(
-      builder: (_, MenuController controller, ___) => EzIconButton(config, 
+      builder: (_, MenuController controller, ___) => EzIconButton(
+        config, 
         onPressed: () => toggleMenu(controller),
         tooltip: config.ezL10n.gOptions,
         iconSize: config.titleStyle!.fontSize,
