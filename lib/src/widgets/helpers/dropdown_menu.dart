@@ -83,9 +83,7 @@ class EzDropdownMenu<T> extends StatelessWidget {
 
           // Menu
           IconButtonTheme(
-            data: IconButtonThemeData(
-              style: IconButton.styleFrom(side: (BorderSide.none)),
-            ),
+            data: IconButtonThemeData(style: IconButton.styleFrom(side: (BorderSide.none))),
             child: DropdownMenu<T>(
               dropdownMenuEntries: dropdownMenuEntries,
               enabled: enabled,

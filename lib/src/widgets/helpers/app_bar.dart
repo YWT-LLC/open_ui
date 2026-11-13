@@ -32,10 +32,10 @@ class EzAppBar extends StatelessWidget {
   Widget build(BuildContext context) => IconButtonTheme(
         data: IconButtonThemeData(
           style: IconButton.styleFrom(
-            side: BorderSide.none,
-            padding: EzInsets.wrap(config.marginVal),
-            iconSize: config.headlineStyle!.fontSize,
             backgroundColor: config.surfaceDim,
+            iconSize: config.headlineStyle!.fontSize,
+            padding: EzInsets.wrap(config.marginVal),
+            side: BorderSide.none,
           ),
         ),
         child: AppBar(
