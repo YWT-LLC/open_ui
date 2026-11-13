@@ -9,20 +9,15 @@ import 'package:material_ui/material_ui.dart';
 
 class EzInlineLink extends WidgetSpan {
   final EzCP config;
-
   final String text;
-
   final Key? key;
-
   final Color? textColor;
 
   /// Defaults to [Colors.transparent]
   final Color backgroundColor;
 
   final TextAlign? textAlign;
-
   final void Function()? onTap;
-
   final Uri? url;
 
   /// Don't repeat [text] here, it is appended automatically
