@@ -11,10 +11,10 @@ class EzSettingsSection {
   /// Ordered position amongst the tabs ([ButtonSegment]s)
   final int position;
 
-  /// What to display above the [SegmentedButton] in [EzSettingsHub]
+  /// What to display above the [EzSegmentedButton] in [EzSettingsHub]
   final String title;
 
-  /// What to display on the [SegmentedButton] in [EzSettingsHub]
+  /// What to display on the [EzSegmentedButton] in [EzSettingsHub]
   final Widget icon;
 
   /// Quick/Advanced and the like
