@@ -27,6 +27,7 @@ class EzScaffold extends Scaffold {
     this.config, {
     super.key,
     super.appBar,
+    super.backgroundColor,
     super.drawer,
     super.endDrawer,
     required super.body,
