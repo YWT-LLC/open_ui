@@ -514,7 +514,7 @@ class EzCP extends ChangeNotifier {
 
   /// (Hidden) Defaults:
   /// [fill] -> [EzCP.surfaceFill]
-  /// [ShapeBorder] -> [EzCP.buttonShape].shape
+  /// [shape] -> [EzCP.buttonShape].shape
   ButtonLayerBuilder? shapeLayer({
     EzSwitchColor? fill,
     ShapeBorder? shape,
@@ -525,6 +525,31 @@ class EzCP extends ChangeNotifier {
         shape: shape ?? buttonShape.shape,
         opacity: opacity,
       );
+
+  /// Handles [boxLayer] vs [shapeLayer]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [borderRadius] => [EzCP.buttonShape].radius
+  /// [shape] => [EzCP.buttonShape].shape
+  ButtonLayerBuilder? smartLayer({
+    EzSwitchColor? fill,
+    BoxBorder? border,
+    BorderRadius? borderRadius,
+    ShapeBorder? shape,
+    double? opacity,
+  }) =>
+      buttonShape.isBox
+          ? ezBoxLayer(
+              fill ?? surfaceFill,
+              border: border,
+              borderRadius: borderRadius ?? buttonShape.radius,
+              opacity: opacity,
+            )
+          : ezShapeLayer(
+              fill ?? surfaceFill,
+              shape: shape ?? buttonShape.shape,
+              opacity: opacity,
+            );
 
   // Layout cache (lil page design, lil text) //
 
