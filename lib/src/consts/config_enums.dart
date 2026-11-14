@@ -138,12 +138,6 @@ const double ezRoundRadius = 4.0;
 /// 64.0
 const double ezPillRadius = 64.0;
 
-/// 12.0
-const double gramSlope = 12.0;
-
-/// 16.0
-const double jewelSlope = 16.0;
-
 // EzConfig values //
 
 /// enum [String] 'pill'
@@ -199,41 +193,36 @@ extension EBSConfig on EzButtonShape {
   BorderRadius get radius => switch (this) {
         EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
         EzButtonShape.rect => BorderRadius.zero,
-        EzButtonShape.roundRect => const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.roundRect || EzButtonShape.jewel => BorderRadius.circular(ezRoundRadius),
         EzButtonShape.leftGram || EzButtonShape.rightGram => BorderRadius.zero,
         EzButtonShape.gem => BorderRadius.zero,
-        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
       };
 
   BorderRadius get textRadius => switch (this) {
         EzButtonShape.pill ||
-        EzButtonShape.roundRect =>
-          const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.roundRect ||
+        EzButtonShape.jewel =>
+          BorderRadius.circular((ezRoundRadius)),
         EzButtonShape.rect ||
         EzButtonShape.leftGram ||
         EzButtonShape.rightGram ||
         EzButtonShape.gem =>
           BorderRadius.zero,
-        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
       };
 
   BorderRadius get textFieldRadius => switch (this) {
-        EzButtonShape.pill => const BorderRadius.only(
+        EzButtonShape.pill ||
+        EzButtonShape.roundRect ||
+        EzButtonShape.jewel =>
+          const BorderRadius.only(
             topLeft: Radius.circular(ezRoundRadius),
             topRight: Radius.circular(ezRoundRadius),
           ),
-        EzButtonShape.rect => BorderRadius.zero,
-        EzButtonShape.roundRect => const BorderRadius.only(
-            topLeft: Radius.circular(ezRoundRadius),
-            topRight: Radius.circular(ezRoundRadius),
-          ),
-        EzButtonShape.leftGram => BorderRadius.zero,
-        EzButtonShape.rightGram => BorderRadius.zero,
-        EzButtonShape.gem => BorderRadius.zero,
-        EzButtonShape.jewel => const BorderRadius.only(
-            topLeft: Radius.circular(jewelSlope),
-            topRight: Radius.circular(jewelSlope),
-          ),
+        EzButtonShape.rect ||
+        EzButtonShape.leftGram ||
+        EzButtonShape.rightGram ||
+        EzButtonShape.gem =>
+          BorderRadius.zero,
       };
 
   String name(OUILang l10n) => switch (this) {
