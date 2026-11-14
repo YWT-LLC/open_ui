@@ -43,7 +43,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
   void initState() {
     super.initState();
 
-    if (startingPos > widget.pages.length || startingPos < 0) startingPos = 0;
+    if (startingPos >= widget.pages.length || startingPos < 0) startingPos = 0;
     currSection = widget.pages[startingPos];
     currSubSec = currSection.fromStorage();
   }
