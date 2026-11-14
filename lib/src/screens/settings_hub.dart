@@ -29,9 +29,26 @@ class EzSettingsHub extends StatefulWidget {
 }
 
 class _EzSettingsHubState extends State<EzSettingsHub> {
-  late EzSettingsSection currSection = widget.pages[widget.target ?? EzCM.hubPos];
-  late EzSubSetting currSubSec = currSection.fromStorage();
+  // Define the build data //
+
   int delta = 0;
+
+  late int startingPos = widget.target ?? EzCM.hubPos;
+  late EzSettingsSection currSection;
+  late EzSubSetting currSubSec;
+
+  // Init //
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (startingPos > widget.pages.length || startingPos < 0) startingPos = 0;
+    currSection = widget.pages[startingPos];
+    currSubSec = currSection.fromStorage();
+  }
+
+  // Return the build //
 
   @override
   Widget build(BuildContext context) => EzScrollView(
