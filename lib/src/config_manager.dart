@@ -442,9 +442,46 @@ Must be one of [int, bool, double, String, List<String>]''');
   /// Create a pseudo-random config that follows the default vibe
   /// i.e. a triadic [ColorScheme] that should be legible
   static Future<void> randomize(bool isDark) async {
+    // Setup //
+
     final Random random = Random();
 
     double getScalar() => (random.nextDouble() * 1.5) + 0.5;
+
+    Future<void> randomGradients(List<String> keys) async {
+      if (random.nextInt(4) != 0) return;
+
+      final (Alignment begin, Alignment end) = switch (random.nextInt(3)) {
+        0 => (Alignment.centerLeft, Alignment.centerRight),
+        1 => (Alignment.topLeft, Alignment.bottomRight),
+        _ => (Alignment.bottomLeft, Alignment.topRight),
+      };
+
+      // Clockwise or counter-clockwise
+      final double step = random.nextBool() ? 10.0 : -10.0;
+
+      for (final String key in keys) {
+        final Color? base = ezFirstColor(get(key).toString());
+        if (base == null) continue;
+
+        final HSVColor baseHSV = HSVColor.fromColor(base);
+
+        await setString(
+          key,
+          EzSwitchColor(
+            gradient: LinearGradient(
+              begin: begin,
+              end: end,
+              colors: <Color>[
+                base,
+                baseHSV.withHue((baseHSV.hue + step) % 360).toColor(),
+                baseHSV.withHue((baseHSV.hue + (step * 2)) % 360).toColor(),
+              ],
+            ),
+          ).toString(),
+        );
+      }
+    }
 
     // Update global settings //
 
@@ -528,6 +565,14 @@ Must be one of [int, bool, double, String, List<String>]''');
         ),
         Brightness.dark,
       );
+
+      await randomGradients(<String>[
+        darkPrimaryKey,
+        darkSecondaryKey,
+        darkTertiaryKey,
+        darkSurfaceKey,
+        darkSurfaceContainerKey,
+      ]);
 
       // Update design settings //
 
@@ -662,6 +707,14 @@ Must be one of [int, bool, double, String, List<String>]''');
         ),
         Brightness.light,
       );
+
+      await randomGradients(<String>[
+        lightPrimaryKey,
+        lightSecondaryKey,
+        lightTertiaryKey,
+        lightSurfaceKey,
+        lightSurfaceContainerKey,
+      ]);
 
       // Update design settings //
 
