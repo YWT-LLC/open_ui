@@ -497,18 +497,32 @@ class EzCP extends ChangeNotifier {
   /// (Hidden) Defaults:
   /// [fill] -> [EzCP.surfaceFill]
   /// [borderRadius] -> [EzCP.buttonShape].radius
-  ButtonLayerBuilder? buttonLayer({
+  ButtonLayerBuilder? boxLayer({
     EzSwitchColor? fill,
     BoxBorder? border,
     BorderRadiusGeometry? borderRadius,
     BoxShape shape = BoxShape.rectangle,
     double? opacity,
   }) =>
-      ezButtonLayer(
+      ezBoxLayer(
         fill ?? surfaceFill,
         border: border,
         borderRadius: borderRadius ?? buttonShape.radius,
         shape: shape,
+        opacity: opacity,
+      );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [ShapeBorder] -> [EzCP.buttonShape].shape
+  ButtonLayerBuilder? shapeLayer({
+    EzSwitchColor? fill,
+    ShapeBorder? shape,
+    double? opacity,
+  }) =>
+      ezShapeLayer(
+        fill ?? surfaceFill,
+        shape: shape ?? buttonShape.shape,
         opacity: opacity,
       );
 
@@ -948,7 +962,7 @@ BoxDecoration ezBoxDeco(
             shape: shape,
           );
 
-ButtonLayerBuilder? ezButtonLayer(
+ButtonLayerBuilder? ezBoxLayer(
   EzSwitchColor fill, {
   BoxBorder? border,
   required BorderRadiusGeometry borderRadius,
@@ -961,6 +975,21 @@ ButtonLayerBuilder? ezButtonLayer(
               decoration: BoxDecoration(
                 border: border,
                 borderRadius: (shape == BoxShape.circle) ? null : borderRadius,
+                gradient: opacity == null ? fill.gradient : fill.gradient?.withOpacity(opacity),
+                shape: shape,
+              ),
+              child: child,
+            );
+
+ButtonLayerBuilder? ezShapeLayer(
+  EzSwitchColor fill, {
+  required ShapeBorder shape,
+  double? opacity,
+}) =>
+    (fill.gradient == null)
+        ? null
+        : (_, __, Widget? child) => Ink(
+              decoration: ShapeDecoration(
                 gradient: opacity == null ? fill.gradient : fill.gradient?.withOpacity(opacity),
                 shape: shape,
               ),
