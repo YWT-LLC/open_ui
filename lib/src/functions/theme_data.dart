@@ -116,6 +116,12 @@ ThemeData ezThemeData(
       showDragHandle: true,
     ),
 
+    // Card
+    cardTheme: CardThemeData(
+      color: colors.surface.asColor,
+      surfaceTintColor: Colors.transparent,
+    ),
+
     // Checkbox
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith(
