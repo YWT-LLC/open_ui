@@ -44,7 +44,7 @@ class EzMenuButton extends StatelessWidget {
             ? MenuItemButton.styleFrom(
                 backgroundColor: config.surfaceFill.color,
               ).copyWith(
-                backgroundBuilder: config.buttonLayer(
+                backgroundBuilder: config.smartLayer(
                   borderRadius: config.buttonShape.textRadius,
                 ),
               )
@@ -52,7 +52,7 @@ class EzMenuButton extends StatelessWidget {
                 backgroundColor: config.surfaceFill.color,
                 foregroundColor: config.outline,
               ).copyWith(
-                backgroundBuilder: config.buttonLayer(
+                backgroundBuilder: config.smartLayer(
                   borderRadius: config.buttonShape.textRadius,
                 ),
               ),

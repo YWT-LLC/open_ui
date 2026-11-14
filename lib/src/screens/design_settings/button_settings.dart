@@ -219,7 +219,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                                       text: shape.name(config.ezL10n),
                                       style: ElevatedButton.styleFrom(
                                         backgroundBuilder:
-                                            config.buttonLayer(borderRadius: shape.radius),
+                                            config.smartLayer(borderRadius: shape.radius),
                                         shape: shape.shape,
                                         side: config.borderSide(width: currWidth),
                                       ),

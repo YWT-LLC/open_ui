@@ -170,13 +170,13 @@ class EzIconButton extends StatelessWidget {
                     overlayColor: config.outline,
                     shadowColor: Colors.transparent,
                   ).copyWith(
-                    backgroundBuilder: config.buttonLayer(
+                    backgroundBuilder: config.smartLayer(
                       fill: backgroundFill,
                       border: config.boxBorder(fill: config.outlineVariantFill),
                     ),
                   )
                 : IconButton.styleFrom().copyWith(
-                    backgroundBuilder: config.buttonLayer(
+                    backgroundBuilder: config.smartLayer(
                       fill: backgroundFill,
                       border: config.boxBorder(),
                     ),

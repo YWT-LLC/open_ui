@@ -497,6 +497,7 @@ class EzCP extends ChangeNotifier {
   /// (Hidden) Defaults:
   /// [fill] -> [EzCP.surfaceFill]
   /// [borderRadius] -> [EzCP.buttonShape].radius
+  /// CAW! [smartLayer] is usually better
   ButtonLayerBuilder? boxLayer({
     EzSwitchColor? fill,
     BoxBorder? border,
@@ -515,6 +516,7 @@ class EzCP extends ChangeNotifier {
   /// (Hidden) Defaults:
   /// [fill] -> [EzCP.surfaceFill]
   /// [shape] -> [EzCP.buttonShape].shape
+  /// CAW! [smartLayer] is usually better
   ButtonLayerBuilder? shapeLayer({
     EzSwitchColor? fill,
     ShapeBorder? shape,

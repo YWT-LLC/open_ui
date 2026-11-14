@@ -138,7 +138,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         style: (widget.enabled && !widget.fauxDisabled)
             ? TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
-                backgroundBuilder: widget.config.buttonLayer(
+                backgroundBuilder: widget.config.smartLayer(
                   fill: widget.config.surfaceFill,
                   border: widget.config.boxBorder(
                     fill: widget.config.primaryFill,
@@ -153,7 +153,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
               )
             : TextButton.styleFrom(
                 backgroundColor: widget.config.surfaceFill.color,
-                backgroundBuilder: widget.config.buttonLayer(
+                backgroundBuilder: widget.config.smartLayer(
                   fill: widget.config.surfaceFill,
                   border: widget.config.boxBorder(fill: widget.config.outlineVariantFill),
                 ),
@@ -268,8 +268,7 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
             text: widget.offLabel,
             style: TextButton.styleFrom(
               backgroundColor: widget.config.surfaceContainerFill.color,
-              backgroundBuilder:
-                  widget.config.buttonLayer(fill: widget.config.surfaceContainerFill),
+              backgroundBuilder: widget.config.smartLayer(fill: widget.config.surfaceContainerFill),
             ),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
@@ -307,8 +306,7 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
             text: widget.onLabel,
             style: TextButton.styleFrom(
               backgroundColor: widget.config.surfaceContainerFill.color,
-              backgroundBuilder:
-                  widget.config.buttonLayer(fill: widget.config.surfaceContainerFill),
+              backgroundBuilder: widget.config.smartLayer(fill: widget.config.surfaceContainerFill),
             ),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
