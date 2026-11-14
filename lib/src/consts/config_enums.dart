@@ -135,6 +135,9 @@ enum EzButtonShape {
 /// 4.0
 const double ezRoundRadius = 4.0;
 
+/// 16.0
+const double ezJewelRadius = 16.0;
+
 /// 64.0
 const double ezPillRadius = 64.0;
 
@@ -193,9 +196,10 @@ extension EBSConfig on EzButtonShape {
   BorderRadius get radius => switch (this) {
         EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
         EzButtonShape.rect => BorderRadius.zero,
-        EzButtonShape.roundRect || EzButtonShape.jewel => BorderRadius.circular(ezRoundRadius),
+        EzButtonShape.roundRect => BorderRadius.circular(ezRoundRadius),
         EzButtonShape.leftGram || EzButtonShape.rightGram => BorderRadius.zero,
         EzButtonShape.gem => BorderRadius.zero,
+        EzButtonShape.jewel => BorderRadius.circular(ezJewelRadius),
       };
 
   BorderRadius get textRadius => switch (this) {

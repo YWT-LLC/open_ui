@@ -61,7 +61,7 @@ class ParallelogramBorder extends OutlinedBorder {
 class GemBorder extends OutlinedBorder {
   final double pointWidth;
 
-  const GemBorder({super.side, this.pointWidth = 16.0});
+  const GemBorder({super.side, this.pointWidth = ezJewelRadius});
 
   @override
   OutlinedBorder copyWith({BorderSide? side, double? pointWidth}) =>
