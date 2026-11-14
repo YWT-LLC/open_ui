@@ -202,11 +202,16 @@ ThemeData ezThemeData(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         alignment: Alignment.center,
-        backgroundBuilder: ezButtonLayer(
-          colors.surface,
-          border: ezBoxBorder(colors.primaryContainer, width: design.borderWidth),
-          borderRadius: design.buttonShape.radius,
-        ),
+        backgroundBuilder: design.buttonShape.isBox
+            ? ezBoxLayer(
+                colors.surface,
+                border: ezBoxBorder(colors.primaryContainer, width: design.borderWidth),
+                borderRadius: design.buttonShape.radius,
+              )
+            : ezShapeLayer(
+                colors.surface,
+                shape: design.buttonShape.shape,
+              ),
         backgroundColor: colors.surface.asColor,
         disabledForegroundColor: colors.outline,
         disabledIconColor: colors.outline,
