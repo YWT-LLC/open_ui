@@ -627,10 +627,10 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           child: EzAppBar(
             config,
             height: toolbarHeight,
-            leading: config.isLefty ? options : EzBackAction(config),
+            leading: config.isLefty ? options : EzBackAction(config, isHome: isHome),
             leadingWidth: toolbarHeight,
             title: Text(title, textAlign: TextAlign.center),
-            actions: <Widget>[config.isLefty ? EzBackAction(config) : options],
+            actions: <Widget>[config.isLefty ? EzBackAction(config, isHome: isHome) : options],
           ),
         ),
         body: body,
