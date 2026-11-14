@@ -451,15 +451,6 @@ Must be one of [int, bool, double, String, List<String>]''');
     Future<void> randomGradients(List<String> keys) async {
       if (random.nextInt(4) != 0) return;
 
-      final (Alignment begin, Alignment end) = switch (random.nextInt(3)) {
-        0 => (Alignment.centerLeft, Alignment.centerRight),
-        1 => (Alignment.topLeft, Alignment.bottomRight),
-        _ => (Alignment.bottomLeft, Alignment.topRight),
-      };
-
-      // Clockwise or counter-clockwise
-      final double step = random.nextBool() ? 10.0 : -10.0;
-
       for (final String key in keys) {
         final Color? base = ezFirstColor(get(key).toString());
         if (base == null) continue;
@@ -469,15 +460,11 @@ Must be one of [int, bool, double, String, List<String>]''');
         await setString(
           key,
           EzSwitchColor(
-            gradient: LinearGradient(
-              begin: begin,
-              end: end,
-              colors: <Color>[
-                base,
-                baseHSV.withHue((baseHSV.hue + step) % 360).toColor(),
-                baseHSV.withHue((baseHSV.hue + (step * 2)) % 360).toColor(),
-              ],
-            ),
+            gradient: LinearGradient(colors: <Color>[
+              base,
+              baseHSV.withHue((baseHSV.hue + 36) % 360).toColor(),
+              baseHSV.withHue((baseHSV.hue + 72) % 360).toColor(),
+            ]),
           ).toString(),
         );
       }
