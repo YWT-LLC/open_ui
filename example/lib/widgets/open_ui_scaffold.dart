@@ -85,13 +85,11 @@ class OpenUIScaffold extends StatelessWidget {
             height: toolbarHeight,
             leading: running
                 ? const SizedBox.shrink()
-                : (config.isLefty ? options : EzBackAction(config, isHome: isHome)),
+                : (config.isLefty ? options : EzBackAction(config)),
             leadingWidth: toolbarHeight,
             title: Text(title, textAlign: TextAlign.center),
             actions: <Widget>[
-              running
-                  ? const SizedBox.shrink()
-                  : (config.isLefty ? EzBackAction(config, isHome: isHome) : options),
+              running ? const SizedBox.shrink() : (config.isLefty ? EzBackAction(config) : options),
             ],
           ),
         ),
