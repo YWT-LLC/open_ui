@@ -449,6 +449,8 @@ Future<String?> ezColorPicker(
             forceFade: true,
             forceType: EzTransitionType.zoom,
             kid: EzCol(children: <Widget>[
+              config.margin,
+
               // Curr colors
               SizedBox(
                 height: (iconRadius + config.padding) * 2 + config.spacing,
