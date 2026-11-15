@@ -681,7 +681,7 @@ class EzSwitchColor {
   Gradient get asGradient => gradient ?? LinearGradient(colors: <Color>[color!]);
 
   @override
-  String toString() => (color == null)
+  String toString() => (gradient != null)
       ? <String>[
           gradient!.begin.toString(),
           gradient!.end.toString(),
@@ -862,7 +862,7 @@ EzSwitchColor ezStoredCOG(String key, ColorScheme basic) =>
 
 /// [Color] or [Gradient] (or null) by value
 EzSwitchColor? ezCOG(dynamic value) {
-  if (value == null) return null;
+  if (value == null || value == esSystem) return null;
 
   final String sv = value.toString();
   final List<String> parts = sv.split(colorSplit);
