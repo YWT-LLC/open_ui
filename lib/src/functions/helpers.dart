@@ -508,7 +508,7 @@ Future<String?> ezColorPicker(
                 child: (gradients.length >= 2)
                     ? Container(
                         constraints: BoxConstraints.tight(Size(
-                          widthOf(context) / 3,
+                          widthOf(context) / 2,
                           heightOf(context) / 4,
                         )),
                         child: Stack(children: <Widget>[
