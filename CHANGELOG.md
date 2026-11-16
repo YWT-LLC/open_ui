@@ -2,12 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [13.2.0] - 2026-11-??
+## [13.2.0] - 2026-11-15
 ### Added
 - Gradient colors
 
 ### Updated
 - ezThemeData to be built from EzCP caches rather than re-reading EzCM
+- Cached decorations
 
 ### Removed
 - A ton of comments
