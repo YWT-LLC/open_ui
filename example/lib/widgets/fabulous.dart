@@ -11,7 +11,7 @@ import 'package:material_ui/material_ui.dart';
 
 EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
       config,
-      appVersion: '4.1.0',
+      appVersion: '4.2.0',
       versionSource:
           'https://raw.githubusercontent.com/YWT-LLC/open_ui/refs/heads/main/example/APP_VERSION',
       gPlay: ywt.openUIGPlay,
