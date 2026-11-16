@@ -633,6 +633,7 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           ),
         ),
         body: body,
+        footer: null,
         fabs: <Widget>[
           updater(config),
           if (fabs != null) ...fabs!,
@@ -879,7 +880,7 @@ class SettingsHubScreen extends StatelessWidget {
             target: target,
           ),
         ),
-        settingsA11: true
+        settingsA11: true,
         showSettings: false,
         fabs: <Widget>[
           // Rebuild (conditional)
