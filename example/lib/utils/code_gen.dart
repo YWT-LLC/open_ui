@@ -580,7 +580,6 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzCP.backFABs]
   final bool isHome;
 
   /// Standardized [Scaffold] for all of the Open UI example app's screens
@@ -634,11 +633,6 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           ),
         ),
         body: body,
-        footer: EzFooter(
-          config,
-          a11howPath: settingsA11 ? ywt.openUIContributeA11 : ywt.openUIContributeA11, 
-          // TODO: replace false link
-        ),
         fabs: <Widget>[
           updater(config),
           if (fabs != null) ...fabs!,
