@@ -164,10 +164,12 @@ class EzCM {
             break;
 
           case const (String):
-            userPref = preferences.getString(key);
-            if (userPref == null) {
-              final int? oldColorTest = preferences.getInt(key);
-              if (oldColorTest != null) userPref = oldColorTest.toString();
+            final Object? raw = preferences.get(key);
+            if (raw is String) {
+              userPref = raw;
+            } else if (raw is int) {
+              // Legacy [int] based Color => Nuevo [String] based EzSwitchColor
+              userPref = raw.toString();
             }
             break;
 
