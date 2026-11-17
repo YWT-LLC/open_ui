@@ -423,8 +423,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         EzIconButton(
                           config,
                           onPressed: () async {
-                            final String? selectedDirectory = await FilePicker.getDirectoryPath();
-                            if (selectedDirectory == null) return;
+                            final Uri? selectedUri = await FilePicker.pickDirectory();
+                            if (selectedUri == null) return;
+
+                            // Convert to a path (Android returns a content:// tree URI)
+                            final String selectedDirectory = selectedUri.isScheme('file')
+                                ? selectedUri.toFilePath()
+                                : selectedUri.toString();
 
                             setState(() {
                               workPathTC.text = selectedDirectory.contains(homePath)
@@ -547,11 +552,16 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     EzIconButton(
                       config,
                       onPressed: () async {
-                        final String? selectedDirectory = await FilePicker.getDirectoryPath(
+                        final Uri? selectedUri = await FilePicker.pickDirectory(
                           dialogTitle: l10n(config).csFlutterPath,
                         );
 
-                        if (selectedDirectory == null) return;
+                        if (selectedUri == null) return;
+
+                        // Convert to a path (Android returns a content:// tree URI)
+                        final String selectedDirectory = selectedUri.isScheme('file')
+                            ? selectedUri.toFilePath()
+                            : selectedUri.toString();
 
                         setState(() {
                           flutterPathTC.text = selectedDirectory.contains(homePath)
