@@ -3,12 +3,12 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
+import '../../../../open_ui.dart';
+
 import 'package:url_launcher/link.dart';
-import 'package:open_ui/open_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzLink extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// The [TextButton.child] will be [Text] with [text] and all provided styling
@@ -20,13 +20,11 @@ class EzLink extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// Defaults to [ColorScheme.primary]
   final Color? textColor;
 
-  /// Optional override for [TextButton.style]
   final Color? backgroundColor;
 
   /// Destination function
@@ -45,7 +43,6 @@ class EzLink extends StatefulWidget {
   /// Don't repeat [text] here, it is appended automatically
   final String hint;
 
-  /// [Tooltip.message] passthrough
   /// On hover/focus hint
   /// Defaults to [hint]
   final String? tooltip;
@@ -83,9 +80,9 @@ class _EzLinkState extends State<EzLink> {
   late final String semantics = '${widget.text}; ${widget.hint}';
 
   late TextStyle? textStyle = (widget.style ?? widget.config.bodyStyle)?.copyWith(
-    color: widget.textColor ?? widget.config.colors.primary,
+    color: widget.textColor ?? widget.config.primaryFill.asColor,
     decoration: widget.config.lineLinks ? TextDecoration.underline : TextDecoration.none,
-    decorationColor: widget.config.colors.primary,
+    decorationColor: widget.config.primaryFill.asColor,
   );
 
   // Define custom functions //

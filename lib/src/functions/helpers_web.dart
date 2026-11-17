@@ -4,7 +4,7 @@
  */
 
 import 'package:web/web.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Checks the [window]'s userAgent for mobile devices
 bool mobileCheck() {

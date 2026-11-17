@@ -9,20 +9,33 @@ class OUILangSw extends OUILang {
   OUILangSw([String locale = 'sw']) : super(locale);
 
   @override
+  String get csAddMore => 'Ongeza rangi 2 au zaidi';
+
+  @override
+  String get csBuildGradient => 'Ongeza kwenye orodha ya gradienti';
+
+  @override
   String get csColorScheme => 'mpangilio wa rangi';
 
   @override
   String get csCurrVal => 'Thamani ya rangi ya sasa:';
 
   @override
+  String get csEndDir => 'Mwelekeo wa kumalizia';
+
+  @override
   String get csError => 'Hitilafu';
 
   @override
-  String get csErrorContainer => 'Muhtasari\nwa hitilafu';
+  String get csErrorContainer => 'Mpaka wa\nhitilafu';
 
   @override
   String get csFromImage =>
       'Mpangilio wa rangi utatengenezwa kutoka kwenye picha.';
+
+  @override
+  String get csGradientHint =>
+      'Tumia kishikio kusogeza\nBonyeza kwa muda mrefu kuondoa';
 
   @override
   String get csHighContrast => 'Tumia mpangilio wa tofauti kubwa ya rangi';
@@ -37,7 +50,7 @@ class OUILangSw extends OUILang {
   String get csOutline => 'Maandishi\nya dokezo';
 
   @override
-  String get csOutlineVariant => 'Muhtasari\nwa dokezo';
+  String get csOutlineVariant => 'Mpaka wa\ndokezo';
 
   @override
   String get csPageTitle => 'Mipangilio ya rangi';
@@ -53,7 +66,7 @@ class OUILangSw extends OUILang {
   String get csPrimary => 'Msingi';
 
   @override
-  String get csPrimaryContainer => 'Muhtasari\nwa msingi';
+  String get csPrimaryContainer => 'Mpaka\nwa msingi';
 
   @override
   String get csRecommended => 'Tumia pendekezo la utofauti wa rangi?';
@@ -64,7 +77,7 @@ class OUILangSw extends OUILang {
   }
 
   @override
-  String get csSchemeBase => 'Tengeneza mpangilio\nKutoka kwenye picha';
+  String get csSchemeBase => 'Tengeneza mpangilio\nkutoka kwenye picha';
 
   @override
   String get csScrim => 'Kifuniko\ncha modali';
@@ -73,28 +86,31 @@ class OUILangSw extends OUILang {
   String get csSecondary => 'Sekondari';
 
   @override
-  String get csSecondaryContainer => 'Muhtasari\nwa sekondari';
+  String get csSecondaryContainer => 'Mpaka\nwa sekondari';
 
   @override
   String get csShadow => 'Kivuli';
 
   @override
-  String get csSurface => 'Asili\nya kitufe';
+  String get csStartDir => 'Mwelekeo wa kuanzia';
 
   @override
-  String get csSurfaceContainer => 'Ukurasa && asili\nya modali';
+  String get csSurface => 'Usuli\nwa kitufe';
 
   @override
-  String get csSurfaceDim => 'Tahadhari && asili ya mwambaa\nwa programu';
+  String get csSurfaceContainer => 'Usuli wa ukurasa\n&& modali';
+
+  @override
+  String get csSurfaceDim => 'Usuli wa tahadhari\n&& mwambaa wa programu';
 
   @override
   String get csSurfaceTint => 'Rangi kuu\nya uso';
 
   @override
-  String get csTertiary => 'Tatu';
+  String get csTertiary => 'Ngazi ya tatu';
 
   @override
-  String get csTertiaryContainer => 'Muhtasari\nwa tatu';
+  String get csTertiaryContainer => 'Mpaka wa\nngazi ya tatu';
 
   @override
   String get csUseCustom => 'Tumia maalum';
@@ -106,7 +122,7 @@ class OUILangSw extends OUILang {
   String get dsAnimStyle => 'Mtindo wa uhuishaji';
 
   @override
-  String get dsBackgroundImg => 'Picha ya asili';
+  String get dsBackgroundImg => 'Picha ya usuli';
 
   @override
   String get dsBorderWidth => 'Upana wa mpaka';
@@ -315,6 +331,15 @@ class OUILangSw extends OUILang {
   String get gBothThemes => 'Mandhari zote mbili';
 
   @override
+  String get gBottomCenter => 'Chini katikati';
+
+  @override
+  String get gBottomLeft => 'Chini kushoto';
+
+  @override
+  String get gBottomRight => 'Chini kulia';
+
+  @override
   String get gCancel => 'Ghairi';
 
   @override
@@ -324,7 +349,16 @@ class OUILangSw extends OUILang {
   String get gCaptionsHint => 'Shikilia kwa fonti';
 
   @override
+  String get gCenter => 'Katikati';
+
+  @override
+  String get gCenterLeft => 'Katikati kushoto';
+
+  @override
   String get gCenterReset => 'Shikilia katikati ili kuweka upya';
+
+  @override
+  String get gCenterRight => 'Katikati kulia';
 
   @override
   String gClipboard(Object thing) {
@@ -359,6 +393,9 @@ class OUILangSw extends OUILang {
   String get gDesign => 'Muundo';
 
   @override
+  String get gDevInfo => 'Maelezo ya msanidi';
+
+  @override
   String get gDisabled => 'Imezimwa';
 
   @override
@@ -387,6 +424,9 @@ class OUILangSw extends OUILang {
 
   @override
   String get gGlobal => 'Jumla';
+
+  @override
+  String get gGradient => 'Gradienti';
 
   @override
   String get gHardRefresh =>
@@ -420,7 +460,7 @@ class OUILangSw extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Inapakia. Nembo ya YWT inasonga kama glasi ya saa inayozunguka.';
+      'Inapakia. Nembo ya YWT ya glasi ya saa inazunguka.';
 
   @override
   String get gLock => 'Funga';
@@ -432,7 +472,7 @@ class OUILangSw extends OUILang {
   String get gMadeBy => 'Imetengenezwa na';
 
   @override
-  String get gMaximum => 'Upeo';
+  String get gMaximum => 'Kiwango cha juu';
 
   @override
   String get gMinimum => 'Kiwango cha chini';
@@ -465,7 +505,7 @@ class OUILangSw extends OUILang {
   String get gOpenUISourceHint => 'Fungua ukurasa wa GitHub wa Open UI';
 
   @override
-  String get gOpenYWT => 'Fungua kiungo cha YWT LLC';
+  String get gOpenYWT => 'Fungua kiungo cha YWT';
 
   @override
   String get gOptional => 'hiari';
@@ -537,6 +577,9 @@ class OUILangSw extends OUILang {
   String get gSettings => 'Mipangilio';
 
   @override
+  String get gSingle => 'Moja';
+
+  @override
   String get gSkip => 'Ruka';
 
   @override
@@ -561,7 +604,16 @@ class OUILangSw extends OUILang {
   String get gText => 'Maandishi';
 
   @override
-  String get gThe => 'Hiyo';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Juu katikati';
+
+  @override
+  String get gTopLeft => 'Juu kushoto';
+
+  @override
+  String get gTopRight => 'Juu kulia';
 
   @override
   String get gUnMute => 'Acha kunyamazisha';
@@ -570,7 +622,7 @@ class OUILangSw extends OUILang {
   String get gUndo => 'Tendua';
 
   @override
-  String get gUndoWarn1 => 'Haziwezi kutenguliwa kiotomatiki.\n';
+  String get gUndoWarn1 => 'Haiwezi kutenduliwa kiotomatiki.\n';
 
   @override
   String get gUndoWarn2 => ' usanidi wako wa sasa ili kuurejesha kwa mikono.';
@@ -596,7 +648,7 @@ class OUILangSw extends OUILang {
   }
 
   @override
-  String get ssBigButtons => 'Vifungo vikubwa';
+  String get ssBigButtons => 'Vitufe vikubwa';
 
   @override
   String get ssChalkboard => 'Ubao';
@@ -662,10 +714,10 @@ class OUILangSw extends OUILang {
   }
 
   @override
-  String get ssResetAll => 'Kuweka upya mipangilio yote?';
+  String get ssResetAll => 'Weka upya mipangilio yote?';
 
   @override
-  String get ssResetAppearance => 'Kuweka upya mipangilio yote ya mwonekano?';
+  String get ssResetAppearance => 'Weka upya mipangilio yote ya mwonekano?';
 
   @override
   String get ssResetBoth => 'Weka upya hali zote mbili za mandhari';
@@ -782,7 +834,7 @@ class OUILangSw extends OUILang {
   }
 
   @override
-  String get tsTextBackground => 'Uangavu wa asili ya maandishi';
+  String get tsTextBackground => 'Uangavu wa usuli wa maandishi';
 
   @override
   String get tsTitle => 'Kichwa';

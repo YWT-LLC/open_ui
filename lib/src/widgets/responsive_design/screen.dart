@@ -5,25 +5,21 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzScreen extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// Screen content
   final Widget child;
-
-  /// [Container.alignment] passthrough
   final AlignmentGeometry? alignment;
-
-  /// Margin around the screen content
   final EdgeInsetsGeometry? margin;
 
-  /// Optional wrap [child] in a [SafeArea]
+  /// Optionally wrap [child] in a [SafeArea]
   final bool safeArea;
 
+  final BoxDecoration? decoration;
+
   /// Custom [Container] for the top layer of an (IRL) screen
+  /// null [margin] => [EdgeInsets.all] w/ [EzCP.marginVal]
   const EzScreen(
     this.config, {
     required this.child,
@@ -31,23 +27,14 @@ class EzScreen extends StatelessWidget {
     this.alignment,
     this.margin,
     this.safeArea = false,
+    this.decoration,
   });
-
-  Decoration? buildDecoration() {
-    final String path = config.backgroundImagePath;
-    if (path == noImageValue) return null;
-
-    final int? isColor = int.tryParse(path);
-    if (isColor != null) return BoxDecoration(color: Color(isColor));
-
-    return BoxDecoration(image: config.backgroundImage);
-  }
 
   @override
   Widget build(BuildContext context) => safeArea
       ? Container(
           alignment: alignment,
-          decoration: buildDecoration(),
+          decoration: decoration ?? config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
           child: SafeArea(
@@ -56,16 +43,16 @@ class EzScreen extends StatelessWidget {
               padding: margin ?? EdgeInsets.all(config.marginVal),
               height: double.infinity,
               width: double.infinity,
-              child: child,
+              child: Material(type: MaterialType.transparency, child: child),
             ),
           ),
         )
       : Container(
           alignment: alignment,
           padding: margin ?? EdgeInsets.all(config.marginVal),
-          decoration: buildDecoration(),
+          decoration: decoration ?? config.screenDecoration,
           height: double.infinity,
           width: double.infinity,
-          child: child,
+          child: Material(type: MaterialType.transparency, child: child),
         );
 }

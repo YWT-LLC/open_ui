@@ -5,10 +5,9 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzResetButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Set to false for a 'Reset' [ElevatedButton.icon] label rather than 'Reset all'
@@ -19,11 +18,9 @@ class EzResetButton extends StatelessWidget {
   /// [EzAlertDialog.title] that shows on click
   final String Function()? dynamicTitle;
 
-  /// [EzCM.reset] skip passthrough
   /// Moot if [onConfirm] is provided
   final Set<String>? resetSkip;
 
-  /// [ezRichUndoWarning] passthrough
   final Set<String>? saveSkip;
 
   /// Override what happens when the user choses to reset
@@ -54,11 +51,6 @@ class EzResetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
         config,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: config.colors.surface.a < focusOpacity
-              ? config.colors.surface.withValues(alpha: focusOpacity)
-              : config.colors.surface,
-        ),
         onPressed: () => showDialog(
           context: context,
           builder: (_) {
@@ -116,7 +108,8 @@ class EzResetButton extends StatelessWidget {
             );
           },
         ),
-        icon: Icon(
+        icon: EzIcon(
+          config,
           Icons.refresh,
           size: iconSize ?? config.iconSize,
         ),

@@ -40,12 +40,12 @@ const Map<String, Object> openUIDefaults = <String, Object>{
   domainBackupKey: '',
 };
 
-final Map<String, Object> mobileDefaults = <String, Object>{
+final Map<String, Object> desktopDefaults = <String, Object>{
+  ...ywtDesktopConfig,
   ...openUIDefaults,
-  ...ywtMobileConfig,
 };
 
-final Map<String, Object> desktopDefaults = <String, Object>{
+final Map<String, Object> mobileDefaults = <String, Object>{
+  ...ywtMobileConfig,
   ...openUIDefaults,
-  ...ywtDesktopConfig,
 };

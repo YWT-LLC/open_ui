@@ -5,7 +5,7 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzDominantHandSwitch extends StatelessWidget {
   final EzCP config;
@@ -20,9 +20,9 @@ class EzDominantHandSwitch extends StatelessWidget {
         config,
         label: config.ezL10n.ssDominantHand,
         widthEntry: config.ezL10n.gRight,
-        dropdownMenuEntries: <DropdownMenuEntry<bool>>[
-          DropdownMenuEntry<bool>(value: false, label: config.ezL10n.gRight),
-          DropdownMenuEntry<bool>(value: true, label: config.ezL10n.gLeft),
+        dropdownMenuEntries: <EzDropMenuEntry<bool>>[
+          EzDropMenuEntry<bool>(config, value: false, label: config.ezL10n.gRight),
+          EzDropMenuEntry<bool>(config, value: true, label: config.ezL10n.gLeft),
         ],
         enableSearch: false,
         initialSelection: config.isLefty,

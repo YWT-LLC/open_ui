@@ -5,22 +5,15 @@
 
 import '../utils/export.dart';
 import './export.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 class OpenUIScaffold extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Scaffold.body] passthrough
-  final Widget body;
-
-  /// [AppBar.title] passthrough (via [Text] widget)
   final String title;
-
-  /// For generator pages; whether there are things running
-  final bool running;
+  final Widget body;
 
   /// Whether to include [SettingsButton] in the [MenuAnchor]
   final bool showSettings;
@@ -28,24 +21,32 @@ class OpenUIScaffold extends StatelessWidget {
   /// Whether to include [UploadButton] in the [MenuAnchor]
   final Future<void> Function(EAGConfig)? onUpload;
 
+  /// For generator pages; whether there are things running
+  final bool running;
+
   /// [FloatingActionButton]s to add on top of the [EzUpdaterFAB]
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzCP.backFABs]
   final bool isHome;
+  final bool settingsA11;
+  final AlignmentDirectional? footerAlign;
+  final TextAlign? footerTextAlign;
 
   /// Standardized [Scaffold] for all of the Open UI example app's screens
   const OpenUIScaffold(
     this.config, {
     super.key,
     this.title = thisAppName,
-    this.running = false,
+    required this.body,
     this.showSettings = true,
     this.onUpload,
-    required this.body,
+    this.running = false,
     this.fabs,
     this.isHome = false,
+    this.settingsA11 = false,
+    this.footerAlign,
+    this.footerTextAlign,
   });
 
   @override
@@ -57,12 +58,13 @@ class OpenUIScaffold extends StatelessWidget {
     // Define custom widgets //
 
     final Widget options = MenuAnchor(
-      builder: (_, MenuController controller, ___) => EzIconButton(
+      builder: (_, MenuController controller, ___) => EzIconTouch(
         config,
         onPressed: () => toggleMenu(controller),
         tooltip: config.ezL10n.gOptions,
+        icon: Icons.more_vert,
         iconSize: config.titleStyle!.fontSize,
-        icon: Icon(Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
+        backgroundFill: config.surfaceDimFiller,
       ),
       menuChildren: <Widget>[
         if (showSettings) SettingsButton(config, parentContext: context),
@@ -92,7 +94,18 @@ class OpenUIScaffold extends StatelessWidget {
           ),
         ),
         body: body,
-        fabs: <Widget>[updater(config), if (fabs != null) ...fabs!, ...config.backFABs(isHome)],
+        fabs: <Widget>[
+          updater(config),
+          if (fabs != null) ...fabs!,
+          ...config.backFABs(isHome: isHome),
+        ],
+        footer: EzFooter(
+          config,
+          quiet: true,
+          textAlign: footerTextAlign ?? TextAlign.center,
+          a11howPath: settingsA11 ? ywt.openUIContributeA11 : ywt.exampleContributeA11,
+        ),
+        footerAlign: footerAlign,
       ),
     );
   }

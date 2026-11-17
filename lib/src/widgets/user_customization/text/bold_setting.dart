@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzBoldSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Which [TextStyle] to update
@@ -35,6 +34,7 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
   @override
   Widget build(BuildContext context) => EzIconButton(
         widget.config,
+        fauxDisabled: !isBold,
         onPressed: () async {
           isBold = !isBold;
 
@@ -51,9 +51,6 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
           setState(() {});
         },
         tooltip: widget.config.ezL10n.tsBold,
-        icon: Icon(
-          Icons.format_bold_outlined,
-          color: isBold ? widget.config.colors.primary : widget.config.colors.outline,
-        ),
+        icon: EzIcon(widget.config, Icons.format_bold_outlined),
       );
 }

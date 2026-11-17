@@ -57,7 +57,7 @@ class LangRu extends Lang {
 
   @override
   String csGenApp(Object app_name) {
-    return 'При генерации $app_name, текущий ';
+    return 'При генерации $app_name текущие ';
   }
 
   @override
@@ -120,7 +120,7 @@ class LangRu extends Lang {
   String get csPubName => 'Имя издателя';
 
   @override
-  String get csPubPreview => 'Пример Организации';
+  String get csPubPreview => 'Пример организации';
 
   @override
   String get csPubTip => 'Или имя разработчика';
@@ -150,7 +150,7 @@ class LangRu extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (кроме изображений) станет конфигурацией по умолчанию для $app_name.\n\nТребуется установить пользовательскую цветовую схему. Если вам нужна помощь в ее создании, попробуйте начать ';
+    return ' (кроме изображений) станут конфигурацией по умолчанию для $app_name.\n\nТребуется установить пользовательскую цветовую схему. Если вам нужна помощь в ее создании, попробуйте начать ';
   }
 
   @override
@@ -166,7 +166,7 @@ class LangRu extends Lang {
   String get gsConsole => 'Вывод консоли';
 
   @override
-  String get gsIsReadyIn => 'готово через';
+  String get gsIsReadyIn => 'готово в';
 
   @override
   String get gsNeedPermission =>

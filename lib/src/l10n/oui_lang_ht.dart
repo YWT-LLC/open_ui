@@ -9,10 +9,19 @@ class OUILangHt extends OUILang {
   OUILangHt([String locale = 'ht']) : super(locale);
 
   @override
+  String get csAddMore => 'Ajoute 2 koulè oswa plis';
+
+  @override
+  String get csBuildGradient => 'Ajoute nan lis degrade yo';
+
+  @override
   String get csColorScheme => 'palèt koulè';
 
   @override
   String get csCurrVal => 'Valè koulè kounye a:';
+
+  @override
+  String get csEndDir => 'Direksyon fen';
 
   @override
   String get csError => 'Erè';
@@ -22,6 +31,10 @@ class OUILangHt extends OUILang {
 
   @override
   String get csFromImage => 'Yon palèt koulè ap pwodwi soti nan imaj la.';
+
+  @override
+  String get csGradientHint =>
+      'Sèvi ak manch lan pou deplase\nPeze lontan pou retire';
 
   @override
   String get csHighContrast => 'Itilize palèt gwo kontras';
@@ -78,13 +91,16 @@ class OUILangHt extends OUILang {
   String get csShadow => 'Lonbraj';
 
   @override
+  String get csStartDir => 'Direksyon kòmansman';
+
+  @override
   String get csSurface => 'Fon\nbouton';
 
   @override
-  String get csSurfaceContainer => 'Paj && fon\nmodal';
+  String get csSurfaceContainer => 'Fon paj\n&& modal';
 
   @override
-  String get csSurfaceDim => 'Alet && fon ba\naplikasyon';
+  String get csSurfaceDim => 'Fon alèt &&\nba aplikasyon';
 
   @override
   String get csSurfaceTint => 'Tent\nsifas';
@@ -314,6 +330,15 @@ class OUILangHt extends OUILang {
   String get gBothThemes => 'Tou de tèm yo';
 
   @override
+  String get gBottomCenter => 'Anba nan mitan';
+
+  @override
+  String get gBottomLeft => 'Anba agoch';
+
+  @override
+  String get gBottomRight => 'Anba adwat';
+
+  @override
   String get gCancel => 'Anile';
 
   @override
@@ -323,7 +348,16 @@ class OUILangHt extends OUILang {
   String get gCaptionsHint => 'Kenbe pou polis yo';
 
   @override
+  String get gCenter => 'Mitan';
+
+  @override
+  String get gCenterLeft => 'Nan mitan agoch';
+
+  @override
   String get gCenterReset => 'Kenbe nan mitan pou reyajiste';
+
+  @override
+  String get gCenterRight => 'Nan mitan adwat';
 
   @override
   String gClipboard(Object thing) {
@@ -358,6 +392,9 @@ class OUILangHt extends OUILang {
   String get gDesign => 'Konsepsyon';
 
   @override
+  String get gDevInfo => 'Enfòmasyon devlopè';
+
+  @override
   String get gDisabled => 'Dezaktive';
 
   @override
@@ -386,6 +423,9 @@ class OUILangHt extends OUILang {
 
   @override
   String get gGlobal => 'Global';
+
+  @override
+  String get gGradient => 'Degrade';
 
   @override
   String get gHardRefresh => 'Tanpri fòse rafrechi paj la...\nCtrl + Shift + R';
@@ -417,8 +457,7 @@ class OUILangHt extends OUILang {
   String get gLightTheme => 'Tèm klè';
 
   @override
-  String get gLoadingAnim =>
-      'Ap chaje. Logo YWT la ap anime tankou yon sabliye k ap vire.';
+  String get gLoadingAnim => 'Ap chaje. Logo sabliye YWT la ap vire.';
 
   @override
   String get gLock => 'Bloke';
@@ -463,7 +502,7 @@ class OUILangHt extends OUILang {
   String get gOpenUISourceHint => 'Louvri paj GitHub pou Open UI';
 
   @override
-  String get gOpenYWT => 'Louvri yon lyen pou YWT LLC';
+  String get gOpenYWT => 'Louvri yon lyen pou YWT';
 
   @override
   String get gOptional => 'opsyonèl';
@@ -535,6 +574,9 @@ class OUILangHt extends OUILang {
   String get gSettings => 'Paramèt';
 
   @override
+  String get gSingle => 'Sèl';
+
+  @override
   String get gSkip => 'Sote';
 
   @override
@@ -559,7 +601,16 @@ class OUILangHt extends OUILang {
   String get gText => 'Tèks';
 
   @override
-  String get gThe => 'La';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Anwo nan mitan';
+
+  @override
+  String get gTopLeft => 'Anwo agoch';
+
+  @override
+  String get gTopRight => 'Anwo adwat';
 
   @override
   String get gUnMute => 'Remete son';
@@ -625,7 +676,7 @@ class OUILangHt extends OUILang {
   String get ssHighVisibility => 'Gwo vizibilite';
 
   @override
-  String get ssImageToo => 'Imaj background tou?';
+  String get ssImageToo => 'Imaj de fon tou?';
 
   @override
   String get ssLangHint => 'Aktive pou chanje lang aplikasyon an';

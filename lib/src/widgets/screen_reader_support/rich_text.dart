@@ -5,32 +5,20 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzRichText extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Text.rich] passthrough
   final List<InlineSpan> children;
 
   /// Whether a default [EzTextBackground] should be included
   final bool textBackground;
 
-  /// [Text.rich] passthrough
   final TextStyle? style;
-
-  /// [Text.rich] passthrough
   final TextAlign textAlign;
-
-  /// Optional [EzTextBackground.borderRadius] passthrough
   final BorderRadiusGeometry? borderRadius;
-
-  /// Optional [EzTextBackground.baseColor] passthrough
-  final Color? baseColor;
-
-  /// Optional [EzTextBackground.backgroundColor] passthrough
-  final Color? backgroundColor;
+  final EzSwitchColor? baseFill;
+  final EzSwitchColor? replaceFill;
 
   /// [Text.rich] wrapper with custom [Semantics] behavior
   /// Recommended to pair with [EzPlainText] and [EzInlineLink] rather than [TextSpan]s
@@ -42,8 +30,8 @@ class EzRichText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.textBackground = true,
     this.borderRadius,
-    this.baseColor,
-    this.backgroundColor,
+    this.baseFill,
+    this.replaceFill,
   });
 
   String _semanticsLabel() {
@@ -91,8 +79,8 @@ class EzRichText extends StatelessWidget {
                 config,
                 text: _text(),
                 borderRadius: borderRadius,
-                baseColor: baseColor,
-                backgroundColor: backgroundColor,
+                baseFill: baseFill,
+                replaceFill: replaceFill,
               )
             : _text(),
       );

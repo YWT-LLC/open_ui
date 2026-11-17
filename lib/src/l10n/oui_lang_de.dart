@@ -9,10 +9,19 @@ class OUILangDe extends OUILang {
   OUILangDe([String locale = 'de']) : super(locale);
 
   @override
+  String get csAddMore => 'Füge 2 oder mehr Farben hinzu';
+
+  @override
+  String get csBuildGradient => 'Zur Farbverlaufsliste hinzufügen';
+
+  @override
   String get csColorScheme => 'Farbschema';
 
   @override
   String get csCurrVal => 'Aktueller Farbwert:';
+
+  @override
+  String get csEndDir => 'Endrichtung';
 
   @override
   String get csError => 'Fehler';
@@ -22,6 +31,10 @@ class OUILangDe extends OUILang {
 
   @override
   String get csFromImage => 'Ein Farbschema wird aus dem Bild generiert.';
+
+  @override
+  String get csGradientHint =>
+      'Zum Verschieben den Griff verwenden\nZum Entfernen lange drücken';
 
   @override
   String get csHighContrast => 'Kontrastreiches Schema verwenden';
@@ -59,7 +72,7 @@ class OUILangDe extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return '$themeType Farben zurücksetzen?';
+    return 'Farben zurücksetzen ($themeType)?';
   }
 
   @override
@@ -78,13 +91,16 @@ class OUILangDe extends OUILang {
   String get csShadow => 'Schatten';
 
   @override
+  String get csStartDir => 'Startrichtung';
+
+  @override
   String get csSurface => 'Schaltflächen-\nHintergrund';
 
   @override
   String get csSurfaceContainer => 'Seiten- && Modal-\nHintergrund';
 
   @override
-  String get csSurfaceDim => 'Alarm && App-Leisten-\nHintergrund';
+  String get csSurfaceDim => 'Dialog- && App-Leisten-\nHintergrund';
 
   @override
   String get csSurfaceTint => 'Oberflächen-\nFärbung';
@@ -132,7 +148,7 @@ class OUILangDe extends OUILang {
   String get dsElastic => 'Elastisch';
 
   @override
-  String get dsFadeTransition => 'Verblassen';
+  String get dsFadeTransition => 'Überblendung';
 
   @override
   String get dsFit => 'Wie soll es eingepasst werden?';
@@ -211,7 +227,7 @@ class OUILangDe extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return '$themeType Schaltflächendesign zurücksetzen?';
+    return 'Schaltflächendesign zurücksetzen ($themeType)?';
   }
 
   @override
@@ -219,14 +235,14 @@ class OUILangDe extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return '$themeType Seitendesign zurücksetzen?';
+    return 'Seitendesign zurücksetzen ($themeType)?';
   }
 
   @override
   String get dsRightGram => 'Rechts parallel';
 
   @override
-  String get dsRotate => 'Rotieren';
+  String get dsRotate => 'Drehen';
 
   @override
   String get dsRotateLeft => 'Nach links drehen';
@@ -314,6 +330,15 @@ class OUILangDe extends OUILang {
   String get gBothThemes => 'Beide Designs';
 
   @override
+  String get gBottomCenter => 'Unten Mitte';
+
+  @override
+  String get gBottomLeft => 'Unten links';
+
+  @override
+  String get gBottomRight => 'Unten rechts';
+
+  @override
   String get gCancel => 'Abbrechen';
 
   @override
@@ -323,7 +348,16 @@ class OUILangDe extends OUILang {
   String get gCaptionsHint => 'Für Schriftarten gedrückt halten';
 
   @override
+  String get gCenter => 'Mitte';
+
+  @override
+  String get gCenterLeft => 'Mitte links';
+
+  @override
   String get gCenterReset => 'Mitte gedrückt halten zum Zurücksetzen';
+
+  @override
+  String get gCenterRight => 'Mitte rechts';
 
   @override
   String gClipboard(Object thing) {
@@ -358,6 +392,9 @@ class OUILangDe extends OUILang {
   String get gDesign => 'Design';
 
   @override
+  String get gDevInfo => 'Entwicklerinfo';
+
+  @override
   String get gDisabled => 'Deaktiviert';
 
   @override
@@ -386,6 +423,9 @@ class OUILangDe extends OUILang {
 
   @override
   String get gGlobal => 'Global';
+
+  @override
+  String get gGradient => 'Farbverlauf';
 
   @override
   String get gHardRefresh =>
@@ -417,7 +457,7 @@ class OUILangDe extends OUILang {
   String get gLightTheme => 'Helles Design';
 
   @override
-  String get gLoadingAnim => 'Lädt. Das YWT-Logo dreht sich wie eine Sanduhr.';
+  String get gLoadingAnim => 'Lädt. Das YWT-Sanduhr-Logo dreht sich.';
 
   @override
   String get gLock => 'Sperren';
@@ -438,7 +478,7 @@ class OUILangDe extends OUILang {
   String get gMute => 'Stummschalten';
 
   @override
-  String get gNA => 'N/A';
+  String get gNA => 'k. A.';
 
   @override
   String get gNAHint => 'Nicht zutreffend';
@@ -462,7 +502,7 @@ class OUILangDe extends OUILang {
   String get gOpenUISourceHint => 'GitHub-Seite für Open UI öffnen';
 
   @override
-  String get gOpenYWT => 'Link zu YWT LLC öffnen';
+  String get gOpenYWT => 'Link zu YWT öffnen';
 
   @override
   String get gOptional => 'optional';
@@ -535,6 +575,9 @@ class OUILangDe extends OUILang {
   String get gSettings => 'Einstellungen';
 
   @override
+  String get gSingle => 'Einzeln';
+
+  @override
   String get gSkip => 'Überspringen';
 
   @override
@@ -559,7 +602,16 @@ class OUILangDe extends OUILang {
   String get gText => 'Text';
 
   @override
-  String get gThe => 'Das';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Oben Mitte';
+
+  @override
+  String get gTopLeft => 'Oben links';
+
+  @override
+  String get gTopRight => 'Oben rechts';
 
   @override
   String get gUnMute => 'Stummschaltung aufheben';
@@ -611,7 +663,7 @@ class OUILangDe extends OUILang {
 
   @override
   String get ssDarkOnly =>
-      'Dies ist eine Voreinstellung für das dunkle Design.\nDer Design-Modus wird auf dunkel gesetzt und aktualisiert.\n\nWeiter?';
+      'Dies ist eine Voreinstellung für das dunkle Design.\nDer Design-Modus wird auf dunkel gesetzt und das dunkle Design aktualisiert.\n\nWeiter?';
 
   @override
   String get ssDewIt => 'Beide aktualisieren/automatisch bestätigen';
@@ -636,7 +688,7 @@ class OUILangDe extends OUILang {
 
   @override
   String get ssLightOnly =>
-      'Dies ist eine Voreinstellung für das helle Design.\nDer Design-Modus wird auf hell gesetzt und aktualisiert.\n\nWeiter?';
+      'Dies ist eine Voreinstellung für das helle Design.\nDer Design-Modus wird auf hell gesetzt und das helle Design aktualisiert.\n\nWeiter?';
 
   @override
   String get ssLoadConfig => 'Konfiguration laden';
@@ -658,7 +710,7 @@ class OUILangDe extends OUILang {
 
   @override
   String ssRandomize(Object themeType) {
-    return '$themeType Design zufällig generieren?';
+    return 'Design zufällig generieren ($themeType)?';
   }
 
   @override
@@ -743,7 +795,7 @@ class OUILangDe extends OUILang {
   String get tsHeadlineP1 => 'Sind ';
 
   @override
-  String get tsHeadlineP2 => ' deutlich...';
+  String get tsHeadlineP2 => ' unterscheidbar...';
 
   @override
   String get tsIconSize => 'Symbolgröße';
@@ -779,7 +831,7 @@ class OUILangDe extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return '$themeType Textstile zurücksetzen?';
+    return 'Textstile zurücksetzen ($themeType)?';
   }
 
   @override

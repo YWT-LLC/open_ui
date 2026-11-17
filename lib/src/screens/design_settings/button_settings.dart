@@ -4,36 +4,24 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ButtonDesign extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// Extra settings at the beginning
   final List<Widget>? prepend;
-
-  /// Extra settings at the end
   final List<Widget>? append;
 
-  /// Optional style setting label override
-  final String? styleLabel;
+  final String? labelStyle;
 
   /// Defaults to [EzCP.separator]
   final Widget? resetSpacer;
 
-  /// Extra keys for [EzCM.reset]
   final Set<String>? resetExtraDark;
-
-  /// Extra keys for [EzCM.reset]
   final Set<String>? resetExtraLight;
-
-  /// Extra keys for [EzCM.reset]
   final Set<String>? resetSkip;
-
-  /// Extra keys for [EzCM.reset]
   final Set<String>? saveSkip;
 
   const ButtonDesign(
@@ -41,7 +29,7 @@ class ButtonDesign extends StatefulWidget {
     super.key,
     required this.prepend,
     required this.append,
-    this.styleLabel,
+    this.labelStyle,
     this.resetSpacer,
     required this.resetExtraDark,
     required this.resetExtraLight,
@@ -81,7 +69,7 @@ class _ButtonDesignState extends State<ButtonDesign> {
           // Button style
           _ButtonStyleSetting(
             widget.config,
-            styleLabel: widget.styleLabel,
+            labelStyle: widget.labelStyle,
             iconSize: iconSize,
           ),
           widget.config.separator,
@@ -179,10 +167,10 @@ class _ButtonDesignState extends State<ButtonDesign> {
 
 class _ButtonStyleSetting extends StatelessWidget {
   final EzCP config;
-  final String? styleLabel;
+  final String? labelStyle;
   final double iconSize;
 
-  const _ButtonStyleSetting(this.config, {this.styleLabel, required this.iconSize});
+  const _ButtonStyleSetting(this.config, {this.labelStyle, required this.iconSize});
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
@@ -219,25 +207,22 @@ class _ButtonStyleSetting extends StatelessWidget {
                       thumbVisibility: false,
                       showScrollHint: true,
                       children: EzButtonShape.values
-                          .map(
-                            (EzButtonShape shape) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: config.spacing,
-                                horizontal: config.spacing / 2,
-                              ),
-                              child: EzCol(
-                                children: <Widget>[
+                          .map((EzButtonShape shape) => Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: config.spacing,
+                                  horizontal: config.spacing / 2,
+                                ),
+                                child: EzCol(children: <Widget>[
                                   EzElevatedButton(
                                     config,
                                     text: shape.name(config.ezL10n),
                                     style: ElevatedButton.styleFrom(
-                                      side: currWidth == 0
-                                          ? BorderSide.none
-                                          : BorderSide(
-                                              color: config.colors.primaryContainer,
-                                              width: currWidth,
-                                            ),
+                                      backgroundBuilder: config.smartLayer(
+                                        borderRadius: shape.radius,
+                                        shape: shape.shape,
+                                      ),
                                       shape: shape.shape,
+                                      side: config.borderSide(width: currWidth),
                                     ),
                                     onPressed: () async {
                                       if (EzCM.updateBoth || config.isDark) {
@@ -253,10 +238,8 @@ class _ButtonStyleSetting extends StatelessWidget {
                                   config.margin,
                                   ExcludeSemantics(
                                       child: EzRadio<EzButtonShape>(config, value: shape)),
-                                ],
-                              ),
-                            ),
-                          )
+                                ]),
+                              ))
                           .toList(),
                     ),
                   ),
@@ -269,7 +252,7 @@ class _ButtonStyleSetting extends StatelessWidget {
                     child: Slider(
                       // Slider values
                       value: currWidth,
-                      max: maxBorderWidth,
+                      max: ywt.maxBorderWidth,
                       divisions: 30,
                       label: currWidth.toStringAsFixed(2),
 
@@ -323,7 +306,7 @@ class _ButtonStyleSetting extends StatelessWidget {
             await config.rebuildUI();
           }
         },
-        label: styleLabel ?? config.ezL10n.dsStyle,
-        icon: Icon(Icons.edit, size: iconSize),
+        label: labelStyle ?? config.ezL10n.dsStyle,
+        icon: EzIcon(config, Icons.edit, size: iconSize),
       );
 }

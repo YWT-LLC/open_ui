@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzFontFamilyBatchSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Requires the provider to be in the widget tree/context
@@ -110,10 +109,11 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
           menuStyle: widget.bodyProvider.value,
           dropdownMenuEntries: googleStyles.entries
               .map(
-                (MapEntry<String, TextStyle> entry) => DropdownMenuEntry<String>(
+                (MapEntry<String, TextStyle> entry) => EzDropMenuEntry<String>(
+                  widget.config,
                   value: entry.key,
                   label: ezCamelToTitle(entry.key),
-                  style: TextButton.styleFrom(textStyle: entry.value),
+                  textStyle: entry.value,
                 ),
               )
               .toList(),

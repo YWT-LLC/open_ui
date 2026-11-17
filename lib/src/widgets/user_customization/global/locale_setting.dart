@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzLocaleSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [Locale]s to [skip]
@@ -64,8 +63,8 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
                   EzWrap(
                     children: locales
                         .map(
-                          (Locale locale) => Padding(
-                            padding: EzInsets.wrap(widget.config.spacing),
+                          (Locale locale) => ezWrap(
+                            widget.config,
                             child: EzElevatedIconButton(
                               widget.config,
                               onPressed: () async {

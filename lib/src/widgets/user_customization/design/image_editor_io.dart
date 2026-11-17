@@ -4,33 +4,30 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:math';
-import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/foundation.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [File] path of the image being edited
   final String path;
 
-  /// [ExtendedImageMode.editor] cropAspectRatio passthrough
   /// If null, it will mirror the window's aspect ratio
   /// Use [CropAspectRatios.custom] for freeform
   final double? cropAspectRatio;
 
-  /// [ExtendedImageMode.editor] initialCropAspectRatio passthrough
   /// If null, it will mirror the window's aspect ratio
   /// Use [CropAspectRatios.custom] for freeform
   final double? initialCropAspectRatio;
 
-  /// [ExtendedImageMode.editor] initCropRectType passthrough
   final InitCropRectType initCropRectType;
 
   /// Allows the user to crop/zoom/rotate the image
@@ -71,30 +68,6 @@ class _EzImageEditorState extends State<EzImageEditor> {
     final Size size = MediaQuery.of(context).size;
     return size.width / size.height;
   }
-
-  Widget keyIcon(
-    EzCP config, {
-    required IconData icon,
-    required Color color,
-    required String name,
-    required String tooltip,
-  }) =>
-      Tooltip(
-        message: tooltip,
-        excludeFromSemantics: false,
-        child: ExcludeSemantics(
-          child: EzCol(children: <Widget>[
-            EzIcon(config, icon, color: color),
-            widget.config.margin,
-            EzText(
-              widget.config,
-              text: name,
-              textAlign: TextAlign.center,
-              style: widget.config.labelStyle?.copyWith(color: color),
-            ),
-          ]),
-        ),
-      );
 
   // Init //
 
@@ -142,7 +115,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   _editorController.undo();
                   setState(() {});
                 },
-                icon: const Icon(Icons.undo),
+                icon: EzIcon(widget.config, Icons.undo),
               ),
               widget.config.rowSpacer,
 
@@ -155,7 +128,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   _editorController.redo();
                   setState(() {});
                 },
-                icon: const Icon(Icons.redo),
+                icon: EzIcon(widget.config, Icons.redo),
               ),
               widget.config.rowSpacer,
 
@@ -168,7 +141,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   _editorController.reset();
                   setState(() {});
                 },
-                icon: const Icon(Icons.refresh),
+                icon: EzIcon(widget.config, Icons.refresh),
               ),
               widget.config.rowSpacer,
 
@@ -177,7 +150,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                 widget.config,
                 tooltip: widget.config.ezL10n.gCancel,
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.delete),
+                icon: EzIcon(widget.config, Icons.delete),
               ),
             ],
           ),
@@ -225,7 +198,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
               EzIconButton(
                 widget.config,
                 fauxDisabled: !lockedAR,
-                icon: const Icon(Icons.aspect_ratio),
+                icon: EzIcon(widget.config, Icons.aspect_ratio),
                 tooltip: widget.config.ezL10n.gLock,
                 onPressed: () => setState(() => lockedAR = !lockedAR),
               ),
@@ -245,7 +218,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   );
                   setState(() {});
                 },
-                icon: const Icon(Icons.rotate_left),
+                icon: EzIcon(widget.config, Icons.rotate_left),
               ),
               widget.config.rowSpacer,
 
@@ -262,7 +235,7 @@ class _EzImageEditorState extends State<EzImageEditor> {
                   );
                   setState(() {});
                 },
-                icon: const Icon(Icons.rotate_right),
+                icon: EzIcon(widget.config, Icons.rotate_right),
               ),
               widget.config.rowSpacer,
 
@@ -348,7 +321,14 @@ class _EzImageEditorState extends State<EzImageEditor> {
                     setState(() => processing = false);
                   }
                 },
-                icon: processing ? EzLoadingGlass(widget.config) : const Icon(Icons.check),
+                icon: processing
+                    ? EzLoadingGlass(ywt.EzLoadingIndicator(
+                        iconSize: widget.config.iconSize,
+                        padding: widget.config.padding,
+                        semantics: widget.config.ezL10n.gLoadingAnim,
+                        colorScheme: widget.config.theme.colorScheme,
+                      ))
+                    : EzIcon(widget.config, Icons.check),
               ),
             ],
           ),

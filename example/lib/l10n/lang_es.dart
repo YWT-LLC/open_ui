@@ -17,10 +17,10 @@ class LangEs extends Lang {
   }
 
   @override
-  String get asUseIt => '\n\nÚselo en ';
+  String get asUseIt => '\n\nÚsalo en ';
 
   @override
-  String get csAdvanced => 'Configuraciones avanzadas';
+  String get csAdvanced => 'Configuración avanzada';
 
   @override
   String get csAppName => 'Nombre de la aplicación';
@@ -48,17 +48,17 @@ class LangEs extends Lang {
   String get csDomainName => 'Nombre de dominio';
 
   @override
-  String get csDomainTip => 'Revés, esta al';
+  String get csDomainTip => 'Al revés, es';
 
   @override
   String get csFileBrowser => 'Abrir explorador de archivos';
 
   @override
-  String get csFlutterPath => 'Flutter ruta';
+  String get csFlutterPath => 'Ruta de Flutter';
 
   @override
   String csGenApp(Object app_name) {
-    return 'Cuando generas $app_name, el actual ';
+    return 'Cuando generes $app_name, los ';
   }
 
   @override
@@ -68,7 +68,7 @@ class LangEs extends Lang {
   String get csHere => 'aquí.';
 
   @override
-  String get csHereHint => 'Abra un generador de esquemas de color en línea';
+  String get csHereHint => 'Abrir un generador de esquemas de color en línea';
 
   @override
   String get csInvalidDomain =>
@@ -152,7 +152,7 @@ class LangEs extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (excepto imágenes) se convertirá en la configuración predeterminada para $app_name.\n\nEs necesario establecer un esquema de colores personalizado. Si necesitas ayuda para construir uno, intenta comenzar ';
+    return ' actuales (excepto imágenes) se convertirán en la configuración predeterminada para $app_name.\n\nEs necesario establecer un esquema de colores personalizado. Si necesitas ayuda para construir uno, intenta comenzar ';
   }
 
   @override
@@ -172,7 +172,7 @@ class LangEs extends Lang {
 
   @override
   String get gsNeedPermission =>
-      'Open UI necesita Acceso Completo al Disco.\n\nPor favor, vaya a...\nConfiguración del Sistema > Privacidad y Seguridad > Acceso Completo al Disco > Habilite Open UI; entonces inténtalo de nuevo.';
+      'Open UI necesita acceso total al disco.\n\nVe a...\nAjustes del Sistema > Privacidad y seguridad > Acceso total al disco > Activa Open UI; luego inténtalo de nuevo.';
 
   @override
   String get gsNotInstalled => 'Flutter no está instalado';
@@ -199,7 +199,7 @@ class LangEs extends Lang {
   String get rsInstall => 'Instalarlo';
 
   @override
-  String get rsInstallHint => 'Abra la guía de instalación de Flutter';
+  String get rsInstallHint => 'Abrir la guía de instalación de Flutter';
 
   @override
   String get rsLeave => 'Dejarlo';
@@ -214,5 +214,5 @@ class LangEs extends Lang {
   String get rsWipe => 'Borrarlo';
 
   @override
-  String get rsWouldYou => 'Te gustaría...';
+  String get rsWouldYou => '¿Te gustaría...?';
 }

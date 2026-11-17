@@ -4,11 +4,11 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzMarginSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   final int _steps;
@@ -73,15 +73,13 @@ class EzMarginSetting extends StatelessWidget {
                           padding: EdgeInsets.all(currValue),
                         ),
                         Container(
-                          color: config.colors.onSurface,
+                          color: config.onSurface,
                           height: heightOf(modalContext) * 0.25,
                           width: widthOf(modalContext) * 0.25,
                           child: Container(
-                            decoration: BoxDecoration(
-                              color: config.colors.surface,
-                              image: (config.backgroundImagePath == noImageValue)
-                                  ? null
-                                  : config.backgroundImage,
+                            decoration: config.boxDeco(
+                              borderRadius: BorderRadius.zero,
+                              image: config.backgroundImage,
                             ),
                             margin: EdgeInsets.all(currValue * 0.25),
                           ),
@@ -98,8 +96,8 @@ class EzMarginSetting extends StatelessWidget {
                   child: Slider(
                     // Slider values
                     value: currValue,
-                    min: minMargin,
-                    max: maxMargin,
+                    min: ywt.minMargin,
+                    max: ywt.maxMargin,
                     divisions: _steps,
 
                     // Slider functions

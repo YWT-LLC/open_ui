@@ -48,7 +48,7 @@
   "csTheConfig": "ang config",
   "csYourApp": "iyong app",
   "gsConsole": "Output sa console",
-  "gsIsReadyIn": "ay handa na sa loob ng",
+  "gsIsReadyIn": "ay handa na sa",
   "gsNeedPermission": "Kailangan ng Open UI ng Full Disk Access.\n\nMangyaring pumunta sa...\nSystem Settings > Privacy & Security > Full Disk Access > I-enable ang Open UI; pagkatapos ay subukang muli.",
   "gsNotInstalled": "Hindi naka-install ang Flutter",
   "gsPageTitle": "Generator",

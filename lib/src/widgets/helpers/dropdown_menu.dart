@@ -5,16 +5,11 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzDropdownMenu<T> extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [EzScrollView.reverseHands] passthrough
   final bool reverseHands;
-
-  /// [EzScrollView.showScrollHint] passthrough
   final bool showScrollHint;
 
   /// Will be used in an [EzText] widget
@@ -26,16 +21,9 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// Defaults to [TextAlign.center]
   final TextAlign labelAlign;
 
-  /// [DropdownMenu.enabled] passthrough
   final bool enabled;
-
-  /// [ezDropdownWidth] passthrough
   final String widthEntry;
-
-  /// [DropdownMenu.enableSearch] passthrough
   final bool enableSearch;
-
-  /// [DropdownMenu.keyboardType] passthrough
   final TextInputType? keyboardType;
 
   /// Defaults to [EzCP.bodyStyle]
@@ -44,14 +32,9 @@ class EzDropdownMenu<T> extends StatelessWidget {
   /// Defaults to [TextAlign.start]
   final TextAlign menuAlign;
 
-  /// [DropdownMenu.initialSelection] passthrough
   final T? initialSelection;
-
-  /// [DropdownMenu.onSelected] passthrough
   final ValueChanged<T?>? onSelected;
-
-  /// [DropdownMenu.dropdownMenuEntries] passthrough
-  final List<DropdownMenuEntry<T>> dropdownMenuEntries;
+  final List<EzDropMenuEntry<T>> dropdownMenuEntries;
 
   /// [DropdownMenu] with custom styling
   const EzDropdownMenu(
@@ -102,19 +85,44 @@ class EzDropdownMenu<T> extends StatelessWidget {
           IconButtonTheme(
             data: IconButtonThemeData(style: IconButton.styleFrom(side: (BorderSide.none))),
             child: DropdownMenu<T>(
+              dropdownMenuEntries: dropdownMenuEntries,
               enabled: enabled,
-              width: ezDropdownWidth(config, context: context, entry: widthEntry),
-              trailingIcon: EzIcon(config, Icons.arrow_drop_down),
-              selectedTrailingIcon: EzIcon(config, Icons.arrow_drop_up),
               enableSearch: enableSearch,
+              initialSelection: initialSelection,
               keyboardType: keyboardType,
+              onSelected: onSelected,
+              selectedTrailingIcon: EzIcon(config, Icons.arrow_drop_up),
               textStyle: (menuStyle ?? config.bodyStyle),
               textAlign: menuAlign,
-              initialSelection: initialSelection,
-              onSelected: onSelected,
-              dropdownMenuEntries: dropdownMenuEntries,
+              trailingIcon: EzIcon(config, Icons.arrow_drop_down),
+              width: ezDropdownWidth(config, context: context, entry: widthEntry),
             ),
           ),
         ],
       );
+}
+
+class EzDropMenuEntry<T> extends DropdownMenuEntry<T> {
+  /// [EzDropMenuEntry] wrapper that supports [Gradient]s via [EzSwitchColor]
+  EzDropMenuEntry(
+    EzCP config, {
+    required super.value,
+    required super.label,
+    super.labelWidget,
+    super.leadingIcon,
+    super.trailingIcon,
+    super.enabled,
+    EzSwitchColor? fill,
+    TextStyle? textStyle,
+  }) : super(
+          style: MenuItemButton.styleFrom(
+            backgroundColor: (fill ?? config.surfaceFill).color,
+            textStyle: textStyle,
+          ).copyWith(
+            backgroundBuilder: config.boxLayer(
+              fill: fill ?? config.surfaceFill,
+              borderRadius: config.buttonShape.textRadius,
+            ),
+          ),
+        );
 }

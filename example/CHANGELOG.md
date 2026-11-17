@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.0] - 2026-11-15
+### Updated
+- Open UI
+  - Gradients!
+
 ## [4.1.0] - 2026-09-27
 ### Updated
 - Open UI

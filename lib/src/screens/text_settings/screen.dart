@@ -3,15 +3,15 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'advanced_settings.dart';
-import 'quick_settings.dart';
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'advanced_settings.dart';
+import 'quick_settings.dart';
+
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzTextSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Current sub-page
@@ -25,11 +25,9 @@ class EzTextSettings extends StatelessWidget {
   /// [allTextKeys] and [lightOnSurfaceKey] are included by default
   final Set<String>? resetExtraLight;
 
-  /// [EzResetButton.resetSkip] passthrough
   /// Shared for both themes
   final Set<String>? resetSkip;
 
-  /// [EzResetButton.saveSkip] passthrough
   /// Shared for both themes
   final Set<String>? saveSkip;
 

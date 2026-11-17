@@ -3,28 +3,26 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
-import 'package:open_ui/open_ui.dart';
+import '../../../open_ui.dart';
+
+import 'package:material_ui/material_ui.dart';
 
 class EzAppBar extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  final double? height;
-  final Widget? leading;
-  final double? leadingWidth;
   final Widget? title;
   final List<Widget>? actions;
+  final Widget? leading;
+  final double? leadingWidth;
+  final double? height;
 
-  /// [AppBar] wrapped in a [PreferredSize] and local [IconButtonTheme]
   const EzAppBar(
     this.config, {
     super.key,
-    this.height,
-    this.leading,
-    this.leadingWidth,
     this.title,
     this.actions,
+    this.leading,
+    this.leadingWidth,
+    this.height,
   }) : assert(
           (leading == null) == (leadingWidth == null),
           'If you provide leading you must provide leadingWidth, vice versa',
@@ -34,10 +32,10 @@ class EzAppBar extends StatelessWidget {
   Widget build(BuildContext context) => IconButtonTheme(
         data: IconButtonThemeData(
           style: IconButton.styleFrom(
-            side: BorderSide.none,
-            padding: EzInsets.wrap(config.marginVal),
+            backgroundColor: config.surfaceDim,
             iconSize: config.headlineStyle!.fontSize,
-            backgroundColor: config.colors.surfaceDim,
+            padding: EzInsets.wrap(config.marginVal),
+            side: BorderSide.none,
           ),
         ),
         child: AppBar(

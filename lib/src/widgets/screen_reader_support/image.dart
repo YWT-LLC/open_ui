@@ -3,30 +3,30 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzImage extends Image {
   /// [Image] wrapper that makes [semanticLabel] required
   const EzImage({
     super.key,
     required super.image,
-    super.frameBuilder,
-    super.loadingBuilder,
-    super.errorBuilder,
-    required super.semanticLabel,
-    super.excludeFromSemantics = false,
-    super.width,
-    super.height,
-    super.color,
-    super.opacity,
-    super.colorBlendMode,
-    super.fit,
     super.alignment = Alignment.center,
-    super.repeat = ImageRepeat.noRepeat,
     super.centerSlice,
-    super.matchTextDirection = false,
-    super.gaplessPlayback = false,
-    super.isAntiAlias = false,
+    super.color,
+    super.colorBlendMode,
+    super.errorBuilder,
+    super.excludeFromSemantics = false,
+    super.fit,
     super.filterQuality = FilterQuality.low,
+    super.frameBuilder,
+    super.gaplessPlayback = false,
+    super.height,
+    super.isAntiAlias = false,
+    super.loadingBuilder,
+    super.matchTextDirection = false,
+    super.opacity,
+    super.repeat = ImageRepeat.noRepeat,
+    required super.semanticLabel,
+    super.width,
   });
 }

@@ -147,14 +147,14 @@ class LangAr extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (باستثناء الصور) ستصبح الإعدادات الافتراضية لـ $app_name.\n\nيلزم تعيين نظام ألوان مخصص. وإذا كنت بحاجة إلى مساعدة في إنشائه، فحاول البدء';
+    return ' (باستثناء الصور) ستصبح الإعدادات الافتراضية لـ $app_name.\n\nيلزم تعيين نظام ألوان مخصص. وإذا كنت بحاجة إلى مساعدة في إنشائه، فحاول البدء من ';
   }
 
   @override
-  String get csTheApp => 'التطبيق الحالي';
+  String get csTheApp => 'التطبيق';
 
   @override
-  String get csTheConfig => 'الإعدادات الحالية';
+  String get csTheConfig => 'الإعدادات';
 
   @override
   String get csYourApp => 'تطبيقك';
@@ -353,14 +353,14 @@ class LangArEg extends LangAr {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (باستثناء الصور) ستصبح الإعدادات الافتراضية لـ $app_name.\n\nيلزم تعيين نظام ألوان مخصص. وإذا كنت بحاجة إلى مساعدة في إنشائه، فحاول البدء';
+    return ' (باستثناء الصور) ستصبح الإعدادات الافتراضية لـ $app_name.\n\nيلزم تعيين نظام ألوان مخصص. وإذا كنت بحاجة إلى مساعدة في إنشائه، فحاول البدء من ';
   }
 
   @override
-  String get csTheApp => 'التطبيق الحالي';
+  String get csTheApp => 'التطبيق';
 
   @override
-  String get csTheConfig => 'الإعدادات الحالية';
+  String get csTheConfig => 'الإعدادات';
 
   @override
   String get csYourApp => 'تطبيقك';

@@ -5,7 +5,7 @@
 
 import '../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 //* Shared *//
 
@@ -135,14 +135,11 @@ enum EzButtonShape {
 /// 4.0
 const double ezRoundRadius = 4.0;
 
+/// 16.0
+const double ezJewelRadius = 16.0;
+
 /// 64.0
 const double ezPillRadius = 64.0;
-
-/// 12.0
-const double gramSlope = 12.0;
-
-/// 16.0
-const double jewelSlope = 16.0;
 
 // EzConfig values //
 
@@ -191,44 +188,45 @@ extension EBSConfig on EzButtonShape {
         EzButtonShape.jewel => BeveledRectangleBorder(borderRadius: radius),
       };
 
+  bool get isBox => switch (this) {
+        EzButtonShape.pill || EzButtonShape.rect || EzButtonShape.roundRect => true,
+        _ => false,
+      };
+
   BorderRadius get radius => switch (this) {
         EzButtonShape.pill => const BorderRadius.all(Radius.circular(ezPillRadius)),
         EzButtonShape.rect => BorderRadius.zero,
-        EzButtonShape.roundRect => const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.roundRect => BorderRadius.circular(ezRoundRadius),
         EzButtonShape.leftGram || EzButtonShape.rightGram => BorderRadius.zero,
         EzButtonShape.gem => BorderRadius.zero,
-        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
+        EzButtonShape.jewel => BorderRadius.circular(ezJewelRadius),
       };
 
   BorderRadius get textRadius => switch (this) {
         EzButtonShape.pill ||
-        EzButtonShape.roundRect =>
-          const BorderRadius.all(Radius.circular(ezRoundRadius)),
+        EzButtonShape.roundRect ||
+        EzButtonShape.jewel =>
+          BorderRadius.circular((ezRoundRadius)),
         EzButtonShape.rect ||
         EzButtonShape.leftGram ||
         EzButtonShape.rightGram ||
         EzButtonShape.gem =>
           BorderRadius.zero,
-        EzButtonShape.jewel => BorderRadius.circular(jewelSlope),
       };
 
   BorderRadius get textFieldRadius => switch (this) {
-        EzButtonShape.pill => const BorderRadius.only(
+        EzButtonShape.pill ||
+        EzButtonShape.roundRect ||
+        EzButtonShape.jewel =>
+          const BorderRadius.only(
             topLeft: Radius.circular(ezRoundRadius),
             topRight: Radius.circular(ezRoundRadius),
           ),
-        EzButtonShape.rect => BorderRadius.zero,
-        EzButtonShape.roundRect => const BorderRadius.only(
-            topLeft: Radius.circular(ezRoundRadius),
-            topRight: Radius.circular(ezRoundRadius),
-          ),
-        EzButtonShape.leftGram => BorderRadius.zero,
-        EzButtonShape.rightGram => BorderRadius.zero,
-        EzButtonShape.gem => BorderRadius.zero,
-        EzButtonShape.jewel => const BorderRadius.only(
-            topLeft: Radius.circular(jewelSlope),
-            topRight: Radius.circular(jewelSlope),
-          ),
+        EzButtonShape.rect ||
+        EzButtonShape.leftGram ||
+        EzButtonShape.rightGram ||
+        EzButtonShape.gem =>
+          BorderRadius.zero,
       };
 
   String name(OUILang l10n) => switch (this) {
@@ -316,25 +314,43 @@ extension ETTConfig on EzTransitionType {
       }
           .replaceAll(' ', '\n');
 
-  Icon icon(EzCP config) => switch (this) {
-        EzTransitionType.none => EzIcon(config, Icons.cancel),
+  Widget icon(EzCP config) => switch (this) {
+        EzTransitionType.none => EzIcon(
+            config,
+            Icons.cancel,
+          ),
         EzTransitionType.system => EzIcon(
             config,
             EzCM.onMobile
-                ? EzCM.platform == TargetPlatform.iOS
+                ? (EzCM.platform == TargetPlatform.iOS)
                     ? Icons.phone_iphone
                     : Icons.phone_android
                 : Icons.computer,
           ),
-        EzTransitionType.turnX => EzIcon(config, Icons.flip),
-        EzTransitionType.turnY => EzIcon(config, Icons.u_turn_left),
-        EzTransitionType.rotate => EzIcon(config, Icons.rotate_90_degrees_cw),
+        EzTransitionType.turnX => EzIcon(
+            config,
+            Icons.flip,
+          ),
+        EzTransitionType.turnY => EzIcon(
+            config,
+            Icons.u_turn_left,
+          ),
+        EzTransitionType.rotate => EzIcon(
+            config,
+            Icons.rotate_90_degrees_cw,
+          ),
         EzTransitionType.slideX => EzIcon(
             config,
             config.isLTR ? Icons.keyboard_double_arrow_left : Icons.keyboard_double_arrow_right,
           ),
-        EzTransitionType.slideY => EzIcon(config, Icons.keyboard_double_arrow_up),
-        EzTransitionType.zoom => EzIcon(config, Icons.zoom_in),
+        EzTransitionType.slideY => EzIcon(
+            config,
+            Icons.keyboard_double_arrow_up,
+          ),
+        EzTransitionType.zoom => EzIcon(
+            config,
+            Icons.zoom_in,
+          ),
       };
 
   /// Defaults to [EzTransitionType.system]

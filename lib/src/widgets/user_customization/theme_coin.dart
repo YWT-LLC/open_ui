@@ -5,7 +5,7 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EzThemeCoin extends StatefulWidget {
@@ -45,7 +45,10 @@ class _EzThemeCoinState extends State<EzThemeCoin> {
           enabled: widget.enabled,
           icon: (widget.enabled && both)
               ? const FaIcon(FontAwesomeIcons.yinYang)
-              : Icon(widget.config.isDark ? Icons.dark_mode : Icons.light_mode),
+              : EzIcon(
+                  widget.config,
+                  widget.config.isDark ? Icons.dark_mode : Icons.light_mode,
+                ),
           onPressed: () async {
             await EzCM.setBool(updateBothKey, !both);
             setState(() => both = !both);

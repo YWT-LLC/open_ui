@@ -4,11 +4,11 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzHighVisibilityConfig extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Whether both themes should be updated
@@ -20,7 +20,12 @@ class EzHighVisibilityConfig extends StatelessWidget {
   /// Resets the current config and applies the [ezHighContrastLight] | [ezHighContrastDark] color scheme
   /// With text theme built with [atkinsonHyperlegible] and is slightly larger than the default
   /// Spacing is also increased, but not as much as [EzBigButtonsConfig]
-  const EzHighVisibilityConfig(this.config, {super.key, required this.updateBoth, this.extra});
+  const EzHighVisibilityConfig(
+    this.config, {
+    super.key,
+    required this.updateBoth,
+    this.extra,
+  });
 
   static Future<void> onPressed(EzCP config, bool updateBoth, {bool monoChrome = false}) async {
     if (updateBoth || config.isDark) {
@@ -30,29 +35,22 @@ class EzHighVisibilityConfig extends StatelessWidget {
       await EzCM.removeKeys(darkDesignKeys.keys.toSet());
       await EzCM.removeKeys(darkTextKeys.keys.toSet());
 
-      // Default global settings //
-
       // Color settings //
 
       await loadColorScheme(monoChrome ? ezMonoChromeDark : ezHighContrastDark, Brightness.dark);
 
       // Design settings //
 
-      // Default padding
-
-      // Default button shape && border width
-
+      // Button
       await EzCM.setBool(darkLineLinksKey, true);
       await EzCM.setBool(darkShowBackFABKey, false);
+      await EzCM.setBool(darkShowScrollKey, false);
 
-      // Default margin
+      // Page
       await EzCM.setDouble(darkSpacingKey, EzCM.onMobile ? 27.5 : 33.0);
 
-      // Default anim duration and page fade
       await EzCM.setString(darkTransitionTypeKey, EzTransitionType.system.value);
       await EzCM.setBool(darkTransitionFadeKey, false);
-
-      await EzCM.setBool(darkShowScrollKey, false);
 
       // Text settings //
 
@@ -107,7 +105,6 @@ class EzHighVisibilityConfig extends StatelessWidget {
       await EzCM.setDouble(darkLabelWordSpacingKey, 1.25);
 
       // etc
-      // Default text backgrounds
       await EzCM.setDouble(darkIconSizeKey, 22.0);
     }
 
@@ -118,29 +115,22 @@ class EzHighVisibilityConfig extends StatelessWidget {
       await EzCM.removeKeys(lightDesignKeys.keys.toSet());
       await EzCM.removeKeys(lightTextKeys.keys.toSet());
 
-      // Default global settings //
-
       // Color settings //
 
       await loadColorScheme(monoChrome ? ezMonoChromeLight : ezHighContrastLight, Brightness.light);
 
       // Design settings //
 
-      // Default padding
-
-      // Default button shape && border width
-
+      // Button
       await EzCM.setBool(lightLineLinksKey, true);
       await EzCM.setBool(lightShowBackFABKey, false);
+      await EzCM.setBool(lightShowScrollKey, false);
 
-      // Default margin
+      // Page
       await EzCM.setDouble(lightSpacingKey, EzCM.onMobile ? 27.5 : 33.0);
 
-      // Default anim duration and page fade
       await EzCM.setString(lightTransitionTypeKey, EzTransitionType.system.value);
       await EzCM.setBool(lightTransitionFadeKey, false);
-
-      await EzCM.setBool(lightShowScrollKey, false);
 
       // Text settings //
 
@@ -195,7 +185,6 @@ class EzHighVisibilityConfig extends StatelessWidget {
       await EzCM.setDouble(lightLabelWordSpacingKey, 1.25);
 
       // etc
-      // Default text backgrounds
       await EzCM.setDouble(lightIconSizeKey, 22.0);
     }
   }
@@ -221,24 +210,28 @@ class EzHighVisibilityConfig extends StatelessWidget {
       config,
       style: config.isDark
           ? ElevatedButton.styleFrom(
-              backgroundColor: darkSurface,
+              backgroundBuilder: ezSelfBuilder,
+              backgroundColor: ywt.darkSurface,
               foregroundColor: Colors.white,
-              shadowColor: Colors.transparent,
               overlayColor: Colors.white,
-              side: const BorderSide(color: halfWhite, width: defaultBorderWidth),
+              padding: EdgeInsets.all(
+                  EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+              shadowColor: Colors.transparent,
               shape: EzButtonShape.pill.shape,
+              side: const BorderSide(color: ywt.fadedWhite, width: ywt.defaultBorderWidth),
               textStyle: localBody,
-              padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
             )
           : ElevatedButton.styleFrom(
-              backgroundColor: lightSurface,
+              backgroundBuilder: ezSelfBuilder,
+              backgroundColor: ywt.lightSurface,
               foregroundColor: Colors.black,
-              shadowColor: Colors.transparent,
               overlayColor: Colors.black,
-              side: const BorderSide(color: halfBlack, width: defaultBorderWidth),
+              padding: EdgeInsets.all(
+                  EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+              shadowColor: Colors.transparent,
               shape: EzButtonShape.pill.shape,
+              side: const BorderSide(color: ywt.fadedBlack, width: ywt.defaultBorderWidth),
               textStyle: localBody,
-              padding: EdgeInsets.all(EzCM.onMobile ? defaultMobilePadding : defaultDesktopPadding),
             ),
       onPressed: () => config.rebuildUI(changes: () async {
         await onPressed(config, updateBoth);

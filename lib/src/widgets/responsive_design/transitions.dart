@@ -3,8 +3,8 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Disables transitions when [kIsWeb]
 /// Source => https://medium.com/flutter/improving-perceived-performance-with-image-placeholders-precaching-and-disabled-navigation-6b3601087a2b
@@ -28,5 +28,6 @@ class EzNoTransitions extends PageTransitionsTheme {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
     Widget child,
-  ) => child;
+  ) =>
+      child;
 }

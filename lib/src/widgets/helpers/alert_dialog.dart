@@ -5,11 +5,9 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
+import 'package:material_ui/material_ui.dart';
 
 class EzAlertDialog extends AlertDialog {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Dialog content becomes [contents] in an [EzScrollView]
@@ -18,7 +16,6 @@ class EzAlertDialog extends AlertDialog {
   /// Whether a "Close" [Action] should be included
   final bool needsClose;
 
-  /// [AlertDialog] wrapper with custom styling
   const EzAlertDialog(
     this.config, {
     super.key,
@@ -102,16 +99,9 @@ class EzAlertDialog extends AlertDialog {
 }
 
 class EzAction extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [EzTextButton.text] passthrough
   final String text;
-
-  /// Optional [Semantics] override for [text]
   final String? semantics;
-
-  /// [EzTextButton.onPressed] passthrough
   final void Function() onPressed;
 
   /// Will add [FontWeight.bold] to [style]
@@ -123,7 +113,6 @@ class EzAction extends StatelessWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? style;
 
-  /// [EzTextButton] wrapper with custom styling for an [AlertDialog]
   const EzAction(
     this.config, {
     super.key,
@@ -142,14 +131,14 @@ class EzAction extends StatelessWidget {
     final TextStyle? textStyle = isDefaultAction
         ? baseStyle?.copyWith(fontWeight: FontWeight.bold)
         : isDestructiveAction
-            ? baseStyle?.copyWith(color: config.colors.error)
+            ? baseStyle?.copyWith(color: config.errorFill.asColor)
             : baseStyle;
 
     return EzTextButton(
       config,
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: config.colors.surfaceDim,
+        backgroundColor: config.surfaceDim,
         padding: EzInsets.wrap(config.spacing),
       ),
       text: text,
@@ -192,17 +181,10 @@ List<EzAction> ezActionPair(
     ];
 
 class EzLoadingGlass extends StatelessWidget {
-  final EzCP? config;
+  final Widget? piece;
 
-  const EzLoadingGlass(this.config, {super.key});
+  const EzLoadingGlass(this.piece, {super.key});
 
   @override
-  Widget build(BuildContext context) => (config == null)
-      ? const CircularProgressIndicator()
-      : ywt.EzLoadingIndicator(
-          iconSize: config!.iconSize,
-          padding: config!.padding,
-          semantics: config!.ezL10n.gLoadingAnim,
-          colorScheme: config!.colors,
-        );
+  Widget build(BuildContext context) => piece ?? const CircularProgressIndicator();
 }

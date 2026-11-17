@@ -3,18 +3,18 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
-
 import '../../open_ui.dart';
+
+import 'package:material_ui/material_ui.dart';
 
 class EzSettingsSection {
   /// Ordered position amongst the tabs ([ButtonSegment]s)
   final int position;
 
-  /// What to display above the [SegmentedButton] in [EzSettingsHub]
+  /// What to display above the [EzSegmentedButton] in [EzSettingsHub]
   final String title;
 
-  /// What to display on the [SegmentedButton] in [EzSettingsHub]
+  /// What to display on the [EzSegmentedButton] in [EzSettingsHub]
   final Widget icon;
 
   /// Quick/Advanced and the like
@@ -46,6 +46,10 @@ enum EzSubSetting {
   // null
   blank(path: '', isFirst: true, bothable: false, write: ('nullTab!Key', false)),
 
+  // Audio
+  qckAudio(path: _quick, isFirst: true, bothable: true, write: (advancedColorsKey, false)),
+  advAudio(path: _advanced, isFirst: false, bothable: false, write: (advancedColorsKey, true)),
+
   // Color
   qckColor(path: _quick, isFirst: true, bothable: true, write: (advancedColorsKey, false)),
   advColor(path: _advanced, isFirst: false, bothable: false, write: (advancedColorsKey, true)),
@@ -75,9 +79,9 @@ enum EzSubSetting {
 extension ESSLookup on EzSubSetting {
   String label(OUILang l10n) => switch (this) {
         EzSubSetting.blank => 'null',
-        EzSubSetting.qckText || EzSubSetting.qckColor => l10n.gQuick,
-        EzSubSetting.advText || EzSubSetting.advColor => l10n.gAdvanced,
         EzSubSetting.butDesign => l10n.dsButton,
         EzSubSetting.pagDesign => l10n.dsPage,
+        EzSubSetting.qckAudio || EzSubSetting.qckColor || EzSubSetting.qckText => l10n.gQuick,
+        _ => l10n.gAdvanced,
       };
 }

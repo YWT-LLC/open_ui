@@ -4,21 +4,25 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+
+//* Setup *//
+
+const Color hceGreen = Color(0xFF00FFB4);
+const Color hceGold = Color(0xFFFFB400);
+const Color hcePurple = Color(0xFFB400FF);
+const Color hcError = Color(0xFFFF6700);
+
+//* Make it so *//
 
 class EzHighContrastColorsSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [ThemeData.colorScheme] for [Brightness.dark]
   final ColorScheme dark;
-
-  /// [ThemeData.colorScheme] for [Brightness.light]
   final ColorScheme light;
 
-  /// Easily store a custom mono chrome [ColorScheme] to [EzCM]
-  /// [ezHighContrastDark] and [ezHighContrastLight] by default
+  /// Defaults to [ezHighContrastDark] and [ezHighContrastLight]
   const EzHighContrastColorsSetting(
     this.config, {
     super.key,
@@ -31,12 +35,12 @@ class EzHighContrastColorsSetting extends StatelessWidget {
         config,
         style: config.isDark
             ? ElevatedButton.styleFrom(
-                backgroundColor: darkSurfaceDim,
+                backgroundColor: ywt.darkSurfaceDim,
                 foregroundColor: Colors.white,
                 iconColor: hceGreen,
                 shadowColor: Colors.transparent,
                 overlayColor: hceGreen,
-                side: config.borderSide(color: halfWhite),
+                side: config.borderSide(fill: const EzSwitchColor(color: ywt.fadedWhite)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.white),
               )
             : ElevatedButton.styleFrom(
@@ -45,7 +49,7 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 iconColor: hcePurple,
                 shadowColor: Colors.transparent,
                 overlayColor: hcePurple,
-                side: config.borderSide(color: halfBlack),
+                side: config.borderSide(fill: const EzSwitchColor(color: ywt.fadedBlack)),
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {
@@ -61,100 +65,80 @@ class EzHighContrastColorsSetting extends StatelessWidget {
       );
 }
 
-/// 0xFF00FFB4
-const Color hceGreen = Color(0xFF00FFB4);
-
-/// 0xFFFFB400
-const Color hceGold = Color(0xFFFFB400);
-
-/// 0xFFB400FF
-const Color hcePurple = Color(0xFFB400FF);
-
-/// 0xFFFF6700
-const Color hcError = Color(0xFFFF6700);
-
 /// Custom [ColorScheme.highContrastDark]
 const ColorScheme ezHighContrastDark = ColorScheme(
-  // Backgrounds
-  surface: darkSurfaceDim,
-  surfaceDim: darkSurfaceContainer,
+  brightness: Brightness.dark,
+
+  // Surface
+  surface: ywt.darkSurfaceDim,
+  surfaceDim: ywt.darkSurfaceContainer,
   surfaceContainer: Colors.black,
-
-  // Text
   onSurface: Colors.white,
-  outline: Colors.white,
 
-  // Primary
+  // Big three
   primary: hceGreen,
   onPrimary: Colors.black,
-  primaryContainer: halfWhite,
+  primaryContainer: ywt.fadedWhite,
   onPrimaryContainer: Colors.black,
 
-  // Secondary
   secondary: hceGold,
   onSecondary: Colors.black,
-  secondaryContainer: halfWhite,
+  secondaryContainer: ywt.fadedWhite,
   onSecondaryContainer: Colors.black,
 
-  // Tertiary
   tertiary: hcePurple,
   onTertiary: Colors.white,
-  tertiaryContainer: halfWhite,
+  tertiaryContainer: ywt.fadedWhite,
   onTertiaryContainer: Colors.black,
 
-  // Erriary
+  // Misc
   error: hcError,
   onError: Colors.white,
-  errorContainer: halfWhite,
+  errorContainer: ywt.fadedWhite,
   onErrorContainer: Colors.black,
 
-  // Misc
-  outlineVariant: halfWhite,
-  shadow: Colors.transparent,
+  outline: Colors.white,
+  outlineVariant: ywt.fadedWhite,
   surfaceTint: Colors.transparent,
+  shadow: Colors.transparent,
   scrim: Colors.black,
-  brightness: Brightness.dark,
 );
 
 /// Custom [ColorScheme.highContrastLight]
 const ColorScheme ezHighContrastLight = ColorScheme(
-  // Backgrounds
+  brightness: Brightness.light,
+
+  // Surface
   surface: Colors.white,
-  surfaceDim: lightSurfaceDim,
-  surfaceContainer: lightSurfaceContainer,
-
-  // Text
+  surfaceDim: ywt.lightSurfaceDim,
+  surfaceContainer: ywt.lightSurfaceContainer,
   onSurface: Colors.black,
-  outline: Colors.black,
 
-  // Primary
+  // Big three
   primary: hcePurple,
   onPrimary: Colors.white,
-  primaryContainer: halfBlack,
+  primaryContainer: ywt.fadedBlack,
   onPrimaryContainer: Colors.white,
 
-  // Secondary
   secondary: hceGold,
   onSecondary: Colors.black,
-  secondaryContainer: halfBlack,
+  secondaryContainer: ywt.fadedBlack,
   onSecondaryContainer: Colors.white,
 
-  // Tertiary
   tertiary: hceGreen,
   onTertiary: Colors.black,
-  tertiaryContainer: halfBlack,
+  tertiaryContainer: ywt.fadedBlack,
   onTertiaryContainer: Colors.white,
 
-  // Error
+  // Misc
   error: hcError,
   onError: Colors.white,
-  errorContainer: halfBlack,
+  errorContainer: ywt.fadedBlack,
   onErrorContainer: Colors.white,
 
-  // Misc
-  outlineVariant: halfBlack,
-  shadow: Colors.transparent,
+  outline: Colors.black,
+  outlineVariant: ywt.fadedBlack,
   surfaceTint: Colors.transparent,
+  shadow: Colors.transparent,
   scrim: Colors.white,
-  brightness: Brightness.light,
 );

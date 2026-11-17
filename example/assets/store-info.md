@@ -1,9 +1,11 @@
-# global
 ## Keywords
-Accessibility, UI, User Interface, UX, User Experience, Design, User Customization, Open Source
+Accessibility, UI, User Interface, UX, User Experience, Design, User Customization, Open Source, Sandbox
 
+### Notes
+- Sometimes the Play Console doesn't re-validate on copy/paste, so everything has a trailing space
+  - Paste + backspace = happy form
 
-
+____  ____  ____
 # ar
 ## Promotional text
 صُمم من أجلك، وبواسطتك
@@ -19,8 +21,7 @@ Accessibility, UI, User Interface, UX, User Experience, Design, User Customizati
 
 بعد ذلك، عندما تصبح واجهة المستخدم بالشكل الذي يعجبك تماماً: انقر على "إنشاء" (Generate) واجعل حلم هذا (التطبيق) حقيقة.
 
-
-
+____
 # de
 ## Promotional text
 Für dich gemacht, von dir gemacht 
@@ -36,8 +37,7 @@ Benötigst du kontrastreiche Layouts, große Touch-Bereiche und Screenreader-Unt
 
 Wenn die Benutzeroberfläche dann genau so ist, wie sie dir gefällt: Klicke auf „Generieren“ und lass diesen (App-)Traum wahr werden. 
 
-
-
+____
 # en
 ## Promotional text
 Built for you, by you 
@@ -53,8 +53,7 @@ Do you need high contrast layouts, large touch points, and screen reader support
 
 Then, when the UI is just how you like it: click “Generate” and make that (app) dream come true. 
 
-
-
+____
 # es
 ## Promotional text
 Creado para ti, por ti 
@@ -70,8 +69,7 @@ Open UI es un entorno de pruebas donde tú puedes controlar cada aspecto de la a
 
 Después, cuando la interfaz de usuario (UI) esté tal y como te gusta: haz clic en "Generar" y haz ese sueño (de aplicación) realidad. 
 
-
-
+____
 # fil
 ## Promotional text
 Binuo para sa iyo, na gawa mo mismo 
@@ -87,8 +85,7 @@ Kailangan mo ba ng mga layout na may mataas na contrast, malalaking touch point,
 
 Pagkatapos, kapag eksakto na sa gusto mo ang UI: i-click ang “Generate” at tuparin ang pangarap (na app) na iyon. 
 
-
-
+____
 # fr
 ## Promotional text
 Conçu pour vous, par vous 
@@ -104,8 +101,7 @@ Vous avez besoin de mises en page à contraste élevé, de grandes zones tactile
 
 Ensuite, lorsque l'interface utilisateur est exactement comme vous le souhaitez : cliquez sur « Générer » et faites de ce rêve (d'application) une réalité. 
 
-
-
+____
 # hi
 ## Promotional text
 आपके लिए, आपके द्वारा बनाया गया 
@@ -121,8 +117,7 @@ Open UI एक सैंडबॉक्स है जहां ऐप की द
 
 और फिर, जब UI बिल्कुल वैसा बन जाए जैसा आप चाहते हैं: “Generate” पर क्लिक करें और अपने उस (ऐप के) सपने को सच कर दिखाएं। 
 
-
-
+____
 # ht
 ## Promotional text
 Bati pou ou, pa ou 
@@ -138,8 +133,7 @@ Ou bezwen aranjman ki gen gwo kontras, gwo zòn pou touche, ak sipò pou lektè 
 
 Apre sa, lè entèfas itilizatè a (UI) egzakteman jan ou renmen l lan: klike sou "Jenere" epi fè rèv (aplikasyon) sa a tounen reyalite. 
 
-
-
+____
 # ja
 ## Promotional text
 あなたの手で、あなたのために 
@@ -155,8 +149,7 @@ Open UIは、アプリの外観のあらゆる要素をあなた自身でコン�
 
 そして、UIがあなたの思い通りに仕上がったら、「Generate（生成）」をクリックして、その（アプリの）夢を実現させましょう。 
 
-
-
+____
 # ko
 ## Promotional text
 당신을 위해, 당신이 직접 만들었습니다 
@@ -172,8 +165,7 @@ Open UI는 앱 디자인의 모든 요소를 사용자가 직접 제어할 수 �
 
 원하는 대로 UI를 완성했다면 '생성(Generate)'을 클릭하여 나만의 앱을 향한 꿈을 현실로 만들어 보세요. 
 
-
-
+____
 # ru
 ## Promotional text
 Создано для вас, вами 
@@ -189,8 +181,7 @@ Open UI — это песочница, в которой вы можете уп�
 
 Затем, когда интерфейс станет именно таким, как вам нравится: нажмите «Сгенерировать» и воплотите эту мечту (о приложении) в реальность. 
 
-
-
+____
 # sw
 ## Promotional text
 Imeundwa kwa ajili yako, na wewe 
@@ -206,8 +197,7 @@ Je, unahitaji miundo yenye utofauti mkubwa wa rangi, sehemu kubwa za kugusa, na 
 
 Kisha, mwonekano wa programu (UI) ukiwa vile unavyopenda: bofya “Tengeneza” na ufanye ndoto hiyo ya (programu) kuwa kweli. 
 
-
-
+____
 # uk
 ## Promotional text
 Створено для вас, створено вами 
@@ -223,8 +213,7 @@ Open UI — це пісочниця, де ви можете контролюва
 
 Тоді, коли інтерфейс стане саме таким, як вам подобається: натисніть «Згенерувати» і втіліть цю мрію (про застосунок) у життя. 
 
-
-
+____
 # zh
 ## Promotional text
 为您打造，由您创造 

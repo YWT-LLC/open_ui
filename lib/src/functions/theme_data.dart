@@ -4,37 +4,26 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Creates a [ThemeData] from [EzCM] values
-ThemeData ezThemeData(Brightness brightness, bool ltr) {
+ThemeData ezThemeData(
+  Brightness brightness, {
+  required bool ltr,
+  required ColorScheme basicColors,
+  required EzColorCache colors,
+  required EzDesignCache design,
+  required EzLayoutCache layout,
+  required EzTextCache text,
+}) {
   //* Setup *//
-
-  final bool isDark = Brightness.dark == brightness;
 
   // Color //
 
-  final ColorScheme colorScheme = ezColorScheme(brightness);
-
-  final Color focusColor = colorScheme.primary.withValues(alpha: focusOpacity);
-
-  final Color crucialButtonBackground = colorScheme.surface.withValues(
-    alpha: max(colorScheme.surface.a, focusOpacity),
-  );
-  final Color crucialPrimaryBackground = colorScheme.primary.withValues(
-    alpha: max(colorScheme.primary.a, focusOpacity),
-  );
-  final Color crucialPrimaryBorder = colorScheme.primaryContainer.withValues(
-    alpha: max(colorScheme.primaryContainer.a, focusOpacity),
-  );
-  final Color crucialSecondaryBorder = colorScheme.secondaryContainer.withValues(
-    alpha: max(colorScheme.secondaryContainer.a, focusOpacity),
-  );
-  final Color crucialDisabledBorder = colorScheme.outlineVariant.withValues(
-    alpha: max(colorScheme.outlineVariant.a, focusOpacity),
-  );
+  final Color focusColor = colors.primary.asColor.withValues(alpha: focusOpacity);
 
   // Design (button) //
 
@@ -48,57 +37,24 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     WidgetState.selected: SystemMouseCursors.click,
   });
 
-  final double padding = isDark ? EzCM.get(darkPaddingKey) : EzCM.get(lightPaddingKey);
-
-  final EzButtonShape ezButtonShape = EBSConfig.safeLookup(
-    EzCM.get(isDark ? darkButtonShapeKey : lightButtonShapeKey),
-  );
-  final OutlinedBorder buttonShape = ezButtonShape.shape;
-
-  final double borderWidth = EzCM.get(isDark ? darkBorderWidthKey : lightBorderWidthKey);
-  BorderSide buildBorder(Color color) =>
-      borderWidth == 0 ? BorderSide.none : BorderSide(color: color, width: borderWidth);
-
   // Design (page) //
 
-  final double margin = EzCM.get(isDark ? darkMarginKey : lightMarginKey);
-  final double spacing = EzCM.get(isDark ? darkSpacingKey : lightSpacingKey);
-
-  final int animDuration = EzCM.get(isDark ? darkAnimationDurationKey : lightAnimationDurationKey);
-  final int threeQAnim = (animDuration * 0.75).toInt();
-
-  final Curve animCurve = EACConfig.translate(
-    EzCM.get(isDark ? darkAnimationCurveKey : lightAnimationCurveKey),
-  );
+  final int threeQAnim = (design.animDur * 0.75).toInt();
 
   // Text //
 
-  final TextTheme textTheme = ezTextTheme(colorScheme.onSurface, isDark: isDark);
+  final TextTheme textTheme = ezTextTheme(colors.onSurface, isDark: brightness == Brightness.dark);
 
-  final double textOpacity = EzCM.get(
-    isDark ? darkTextBackgroundOpacityKey : lightTextBackgroundOpacityKey,
-  );
-  final double crucialTextOpacity = max(textOpacity, focusOpacity);
-
-  final Color linkTextBackground = colorScheme.surface.withValues(alpha: textOpacity);
-  final Color richTextBackground = colorScheme.surfaceContainer.withValues(alpha: textOpacity);
-
-  final Color inputBackground = colorScheme.surface.withValues(
-    alpha: max(colorScheme.surface.a, crucialTextOpacity),
-  );
-  final Color crucialTextShadow = crucialTextOpacity < 1.0
-      ? colorScheme.shadow.withValues(alpha: crucialTextOpacity * shadowMod)
-      : colorScheme.shadow;
-
-  final double iconSize = EzCM.get(isDark ? darkIconSizeKey : lightIconSizeKey);
+  final Color inputBackground =
+      colors.surface.asColor.withValues(alpha: max(colors.surface.asColor.a, focusOpacity));
 
   final IconThemeData iconData = IconThemeData(
-    color: colorScheme.primary,
-    size: iconSize,
+    color: colors.primary.asColor,
+    size: text.iconSize,
     applyTextScaling: true,
   );
   final IconThemeData appBarIconData = IconThemeData(
-    color: colorScheme.primary,
+    color: colors.primary.asColor,
     size: textTheme.headlineLarge!.fontSize,
     applyTextScaling: true,
   );
@@ -107,38 +63,43 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
   return ThemeData(
     // UX //
+
     materialTapTargetSize: MaterialTapTargetSize.padded,
 
     // Color scheme //
-    brightness: brightness,
-    colorScheme: colorScheme,
 
-    dividerColor: colorScheme.secondary,
+    brightness: brightness,
+    colorScheme: basicColors,
+
+    dividerColor: colors.secondary.asColor,
     hoverColor: focusColor,
-    scaffoldBackgroundColor: colorScheme.surfaceContainer,
+    scaffoldBackgroundColor: colors.surfaceContainer.asColor,
 
     // Transitions //
-    pageTransitionsTheme: animDuration > minAnimationDuration ? EzTransitions() : EzNoTransitions(),
+
+    pageTransitionsTheme:
+        design.animDur > ywt.minAnimationDuration ? EzTransitions() : EzNoTransitions(),
 
     // Typography //
-    textTheme: textTheme,
-    primaryTextTheme: textTheme,
 
     iconTheme: iconData,
     primaryIconTheme: iconData,
 
+    textTheme: textTheme,
+    primaryTextTheme: textTheme,
+
     textSelectionTheme: TextSelectionThemeData(
-      cursorColor: colorScheme.secondary,
-      selectionColor: colorScheme.secondary.withValues(alpha: selectionOpacity),
-      selectionHandleColor: colorScheme.primary,
+      cursorColor: colors.secondary.asColor,
+      selectionColor: colors.secondary.asColor.withValues(alpha: selectionOpacity),
+      selectionHandleColor: colors.primary.asColor,
     ),
 
     // Widgets //
 
     // App bar
     appBarTheme: AppBarTheme(
-      backgroundColor: colorScheme.surfaceDim,
-      foregroundColor: colorScheme.onSurface,
+      backgroundColor: colors.surfaceDim,
+      foregroundColor: colors.onSurface,
       titleTextStyle: textTheme.headlineLarge,
       iconTheme: appBarIconData,
       actionsIconTheme: appBarIconData,
@@ -148,82 +109,97 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
     // Bottom sheet
     bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: colorScheme.surfaceContainer,
-      modalBackgroundColor: colorScheme.surfaceContainer,
+      backgroundColor: colors.surfaceContainer.asColor,
+      clipBehavior: Clip.antiAlias,
+      dragHandleColor: colors.onSurface,
+      modalBackgroundColor: colors.surfaceContainer.asColor,
       showDragHandle: true,
-      dragHandleColor: colorScheme.onSurface,
     ),
 
     // Card
     cardTheme: CardThemeData(
-      color: colorScheme.surfaceDim.withValues(alpha: crucialTextOpacity),
-      shadowColor: crucialTextShadow,
-      margin: EdgeInsets.zero,
+      color: colors.surface.asColor,
+      surfaceTintColor: Colors.transparent,
     ),
 
     // Checkbox
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            (states.contains(WidgetState.selected)) ? colorScheme.primary : colorScheme.surface,
+            (states.contains(WidgetState.selected) ? colors.primary : colors.surface).asColor,
       ),
       checkColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            (states.contains(WidgetState.selected)) ? colorScheme.onPrimary : null,
+            states.contains(WidgetState.selected) ? colors.onPrimary : null,
       ),
       overlayColor: WidgetStateProperty.all(focusColor),
-      side: buildBorder(colorScheme.primary),
-      shape: buttonShape,
+      side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
+      shape: design.buttonShape.shape,
     ),
 
     // Dialog
     dialogTheme: DialogThemeData(
-      backgroundColor: colorScheme.surfaceDim,
-      titleTextStyle: textTheme.titleLarge,
-      contentTextStyle: textTheme.bodyLarge,
       alignment: Alignment.center,
+      backgroundColor: colors.surfaceDim,
+      clipBehavior: Clip.antiAlias,
+      contentTextStyle: textTheme.bodyLarge,
+      titleTextStyle: textTheme.titleLarge,
     ),
 
     // Divider
-    dividerTheme: DividerThemeData(color: colorScheme.secondary, space: spacing * 3),
+    dividerTheme: DividerThemeData(
+      color: colors.secondary.asColor,
+      space: design.spacing * 3,
+    ),
 
     // Drawer
-    navigationDrawerTheme: NavigationDrawerThemeData(backgroundColor: colorScheme.surfaceDim),
+    navigationDrawerTheme: NavigationDrawerThemeData(
+      backgroundColor: colors.surfaceDim,
+    ),
 
     // Dropdown menu
     dropdownMenuTheme: DropdownMenuThemeData(
       textStyle: textTheme.bodyLarge,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: colorScheme.surface,
-        prefixIconColor: colorScheme.primary,
-        iconColor: colorScheme.primary,
-        suffixIconColor: colorScheme.primary,
-        hintStyle: textTheme.bodyLarge?.copyWith(color: colorScheme.outline),
+        fillColor: colors.surface.asColor,
+        prefixIconColor: colors.primary.asColor,
+        iconColor: colors.primary.asColor,
+        suffixIconColor: colors.primary.asColor,
+        hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline),
         labelStyle: textTheme.labelLarge,
         helperStyle: textTheme.labelLarge,
-        errorStyle: textTheme.labelLarge?.copyWith(color: colorScheme.error),
+        errorStyle: textTheme.labelLarge?.copyWith(color: colors.error.asColor),
         errorMaxLines: 1,
-        border: OutlineInputBorder(
-          borderSide: buildBorder(colorScheme.primaryContainer),
-          gapPadding: 0,
+        border: ezOutInBorder(
+          colors.primaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
         ),
-        disabledBorder: OutlineInputBorder(
-          borderSide: buildBorder(colorScheme.outlineVariant),
-          gapPadding: 0,
+        disabledBorder: ezOutInBorder(
+          colors.outlineVariant,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: buildBorder(colorScheme.primaryContainer),
-          gapPadding: 0,
+        enabledBorder: ezOutInBorder(
+          colors.primaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
         ),
-        errorBorder: OutlineInputBorder(borderSide: buildBorder(colorScheme.error), gapPadding: 0),
-        focusedBorder: OutlineInputBorder(
-          borderSide: buildBorder(colorScheme.secondaryContainer),
-          gapPadding: 0,
+        errorBorder: ezOutInBorder(
+          colors.errorContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
         ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: buildBorder(colorScheme.error),
-          gapPadding: 0,
+        focusedBorder: ezOutInBorder(
+          colors.secondaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
+        ),
+        focusedErrorBorder: ezOutInBorder(
+          colors.tertiaryContainer,
+          borderWidth: design.borderWidth,
+          borderRadius: design.buttonShape.textRadius,
         ),
       ),
     ),
@@ -231,34 +207,47 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     // Elevated button
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.onSurface,
-        shadowColor: colorScheme.shadow,
-        disabledForegroundColor: colorScheme.outline,
-        iconColor: colorScheme.primary,
-        disabledIconColor: colorScheme.outline,
-        overlayColor: colorScheme.primary,
-        side: buildBorder(colorScheme.primaryContainer),
-        enabledMouseCursor: SystemMouseCursors.click,
-        shape: buttonShape,
-        textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(padding),
+        backgroundBuilder: design.buttonShape.isBox
+            ? ezBoxLayer(
+                colors.surface,
+                border: ezBoxBorder(colors.primaryContainer, width: design.borderWidth),
+                borderRadius: design.buttonShape.radius,
+              )
+            : ezShapeLayer(
+                colors.surface,
+                shape: design.buttonShape.shape,
+              ),
+        backgroundColor: colors.surface.asColor,
+        disabledForegroundColor: colors.outline,
+        disabledIconColor: colors.outline,
+        enabledMouseCursor: SystemMouseCursors.click,
+        foregroundColor: colors.onSurface,
+        iconColor: colors.primary.asColor,
+        overlayColor: colors.primary.asColor,
+        padding: EdgeInsets.all(design.padding),
+        shadowColor: colors.shadow.asColor,
+        shape: design.buttonShape.shape,
+        side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
+        textStyle: textTheme.bodyLarge,
       ),
     ),
 
     // Expansion tile
     expansionTileTheme: ExpansionTileThemeData(
-      backgroundColor: richTextBackground,
-      collapsedBackgroundColor: richTextBackground,
-      iconColor: colorScheme.primary,
-      collapsedIconColor: colorScheme.primary,
+      backgroundColor: Colors.transparent,
+      collapsedBackgroundColor: Colors.transparent,
+      iconColor: colors.primary.asColor,
+      collapsedIconColor: colors.primary.asColor,
       tilePadding: EdgeInsets.zero,
-      childrenPadding: EdgeInsets.only(left: ltr ? margin * 2 : 0, right: ltr ? 0 : margin * 2),
+      childrenPadding: EdgeInsets.only(
+        left: ltr ? design.margin * 2 : 0,
+        right: ltr ? 0 : design.margin * 2,
+      ),
       expandedAlignment: ltr ? Alignment.centerLeft : Alignment.centerRight,
       expansionAnimationStyle: AnimationStyle(
-        curve: animCurve,
-        reverseCurve: animCurve,
+        curve: design.animCurve,
+        reverseCurve: design.animCurve,
         duration: Duration(milliseconds: threeQAnim),
         reverseDuration: Duration(milliseconds: threeQAnim),
       ),
@@ -266,64 +255,91 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
 
     // Floating action button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: crucialPrimaryBackground,
-      foregroundColor: colorScheme.onPrimary,
+      backgroundColor: colors.primary.asColor,
+      foregroundColor: colors.onPrimary,
       hoverColor: focusColor,
       extendedPadding: EdgeInsets.zero,
-      shape: buttonShape,
+      shape: design.buttonShape.shape,
       mouseCursor: enabledClicks,
-      iconSize: iconSize,
+      iconSize: text.iconSize,
       sizeConstraints: BoxConstraints(
-        minWidth: iconSize + (padding * 1.1),
-        maxWidth: iconSize + (padding * 1.1),
-        minHeight: iconSize + (padding * 1.1),
-        maxHeight: iconSize + (padding * 1.1),
+        minWidth: text.iconSize + (design.padding * 1.1),
+        maxWidth: text.iconSize + (design.padding * 1.1),
+        minHeight: text.iconSize + (design.padding * 1.1),
+        maxHeight: text.iconSize + (design.padding * 1.1),
       ),
     ),
 
     // Icon button
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.primary,
-        disabledForegroundColor: colorScheme.outline,
-        overlayColor: colorScheme.primary,
-        side: buildBorder(colorScheme.primaryContainer),
+        backgroundColor: colors.surface.asColor,
+        foregroundColor: colors.primary.asColor,
+        disabledForegroundColor: colors.outline,
+        overlayColor: colors.primary.asColor,
+        side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
         enabledMouseCursor: SystemMouseCursors.click,
-        shape: buttonShape,
-        iconSize: iconSize,
+        shape: design.buttonShape.shape,
+        iconSize: text.iconSize,
         alignment: Alignment.center,
-        padding: EzInsets.wrap(padding),
+        padding: EzInsets.wrap(design.padding),
       ),
     ),
 
     // Input decoration
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      contentPadding: EdgeInsets.all(margin),
+      contentPadding: EdgeInsets.all(design.margin),
       fillColor: inputBackground,
-      prefixIconColor: colorScheme.primary,
-      iconColor: colorScheme.primary,
-      suffixIconColor: colorScheme.primary,
-      hintStyle: textTheme.bodyLarge?.copyWith(color: colorScheme.outline),
+      prefixIconColor: colors.primary.asColor,
+      iconColor: colors.primary.asColor,
+      suffixIconColor: colors.primary.asColor,
+      hintStyle: textTheme.bodyLarge?.copyWith(color: colors.outline),
       labelStyle: textTheme.labelLarge,
       helperStyle: textTheme.labelLarge,
-      errorStyle: textTheme.labelLarge!.copyWith(color: colorScheme.error),
+      errorStyle: textTheme.labelLarge!.copyWith(color: colors.error.asColor),
       errorMaxLines: 1,
-      border: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
-      disabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialDisabledBorder)),
-      enabledBorder: UnderlineInputBorder(borderSide: buildBorder(crucialPrimaryBorder)),
-      errorBorder: UnderlineInputBorder(borderSide: buildBorder(colorScheme.error)),
-      focusedBorder: UnderlineInputBorder(borderSide: buildBorder(crucialSecondaryBorder)),
-      focusedErrorBorder: UnderlineInputBorder(borderSide: buildBorder(colorScheme.error)),
+      border: ezUnderInBorder(
+        colors.primaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      disabledBorder: ezUnderInBorder(
+        colors.outlineVariant,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      enabledBorder: ezUnderInBorder(
+        colors.primaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      errorBorder: ezUnderInBorder(
+        colors.errorContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      focusedBorder: ezUnderInBorder(
+        colors.secondaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
+      focusedErrorBorder: ezUnderInBorder(
+        colors.tertiaryContainer,
+        borderWidth: design.borderWidth,
+        borderRadius: design.buttonShape.textFieldRadius,
+      ),
     ),
 
     // Menu
     menuTheme: MenuThemeData(
       style: MenuStyle(
-        backgroundColor: WidgetStateProperty.all(crucialButtonBackground),
+        backgroundColor: WidgetStateProperty.all(colors.surface.asColor),
         padding: WidgetStateProperty.all(EdgeInsets.zero),
-        side: WidgetStateProperty.all(buildBorder(colorScheme.primaryContainer)),
+        side: WidgetStateProperty.all(ezBorderSide(
+          colors.primaryContainer,
+          width: design.borderWidth,
+        )),
         alignment: Alignment.center,
       ),
     ),
@@ -331,21 +347,23 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     // Menu button
     menuButtonTheme: MenuButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: crucialButtonBackground,
-        foregroundColor: colorScheme.onSurface,
-        disabledForegroundColor: colorScheme.outline,
-        iconColor: colorScheme.primary,
-        disabledIconColor: colorScheme.outline,
+        backgroundColor: colors.surface.asColor,
+        foregroundColor: colors.onSurface,
+        disabledForegroundColor: colors.outline,
+        iconColor: colors.primary.asColor,
+        disabledIconColor: colors.outline,
         enabledMouseCursor: SystemMouseCursors.click,
-        overlayColor: colorScheme.primary,
+        overlayColor: colors.primary.asColor,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(padding),
+        padding: EdgeInsets.all(design.padding),
       ),
     ),
 
     // Progress indicator
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: colorScheme.secondary),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: colors.secondary.asColor,
+    ),
 
     // Radio button
     radioTheme: RadioThemeData(
@@ -356,36 +374,38 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     // Slider
     sliderTheme: SliderThemeData(
       thumbShape: RoundSliderThumbShape(
-        enabledThumbRadius: iconSize / 2,
-        disabledThumbRadius: iconSize / 2,
+        enabledThumbRadius: text.iconSize / 2,
+        disabledThumbRadius: text.iconSize / 2,
       ),
     ),
 
     // Segmented button
     segmentedButtonTheme: SegmentedButtonThemeData(
       style: SegmentedButton.styleFrom(
-        backgroundColor: colorScheme.surface,
-        selectedBackgroundColor: colorScheme.primary,
+        backgroundColor: colors.surface.asColor,
+        selectedBackgroundColor: colors.primary.asColor,
         enabledMouseCursor: SystemMouseCursors.click,
-        foregroundColor: colorScheme.primary,
-        selectedForegroundColor: colorScheme.onPrimary,
-        disabledForegroundColor: colorScheme.outline,
-        side: buildBorder(colorScheme.primaryContainer),
-        shape: buttonShape,
+        foregroundColor: colors.primary.asColor,
+        selectedForegroundColor: colors.onPrimary,
+        disabledForegroundColor: colors.outline,
+        side: ezBorderSide(colors.primaryContainer, width: design.borderWidth),
+        shape: design.buttonShape.shape,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(padding),
+        padding: EdgeInsets.all(design.padding),
       ),
     ),
 
     // Snackbar
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: colorScheme.surfaceDim,
-      closeIconColor: colorScheme.primary,
-      shape: buttonShape.copyWith(side: buildBorder(colorScheme.secondary)),
+      backgroundColor: colors.surfaceDim,
+      closeIconColor: colors.primary.asColor,
+      shape: design.buttonShape.shape.copyWith(
+        side: ezBorderSide(colors.secondary, width: design.borderWidth),
+      ),
       contentTextStyle: textTheme.bodyLarge,
-      insetPadding: EdgeInsets.all(margin),
+      insetPadding: EdgeInsets.all(design.margin),
       dismissDirection: DismissDirection.down,
     ),
 
@@ -393,45 +413,45 @@ ThemeData ezThemeData(Brightness brightness, bool ltr) {
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            (states.contains(WidgetState.selected)) ? colorScheme.primary : colorScheme.outline,
+            (states.contains(WidgetState.selected) ? colors.primary.asColor : colors.outline),
       ),
       trackColor: WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) =>
-            ((states.contains(WidgetState.selected)) ? colorScheme.primary : colorScheme.outline)
+            (states.contains(WidgetState.selected) ? colors.primary.asColor : colors.outline)
                 .withValues(alpha: focusOpacity),
       ),
-      trackOutlineColor: WidgetStateProperty.all(colorScheme.surface),
+      trackOutlineColor: WidgetStateProperty.all(colors.surface.asColor),
       overlayColor: WidgetStateProperty.all(focusColor),
     ),
 
     // Text button
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: linkTextBackground,
-        foregroundColor: colorScheme.onSurface,
-        disabledForegroundColor: colorScheme.outline,
-        iconColor: colorScheme.primary,
-        disabledIconColor: colorScheme.outline,
+        backgroundColor: colors.surface.asColor.withValues(alpha: text.backgroundOpacity),
+        foregroundColor: colors.onSurface,
+        disabledForegroundColor: colors.outline,
+        iconColor: colors.primary.asColor,
+        disabledIconColor: colors.outline,
         enabledMouseCursor: SystemMouseCursors.click,
-        overlayColor: colorScheme.primary,
-        shape: buttonShape,
+        overlayColor: colors.primary.asColor,
+        shape: design.buttonShape.shape,
         textStyle: textTheme.bodyLarge,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(margin),
+        padding: EdgeInsets.all(design.margin),
       ),
     ),
 
     // Tooltip
     tooltipTheme: TooltipThemeData(
-      decoration: BoxDecoration(
-        color: colorScheme.surfaceDim,
-        border: Border.all(color: colorScheme.secondary, width: borderWidth),
-        borderRadius: EzButtonShape.roundRect.radius,
+      decoration: ezBoxDeco(
+        EzSwitchColor(color: colors.surfaceDim),
+        border: ezBoxBorder(colors.secondary, width: design.borderWidth),
+        borderRadius: design.buttonShape.textRadius,
       ),
       textStyle: textTheme.bodyLarge,
       textAlign: TextAlign.center,
-      margin: EdgeInsets.all(margin),
-      padding: EdgeInsets.all(padding),
+      margin: EdgeInsets.all(design.margin),
+      padding: EdgeInsets.all(design.padding),
       waitDuration: const Duration(milliseconds: 750),
     ),
   );

@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzBigButtonsConfig extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Whether both themes should be updated
@@ -19,7 +18,12 @@ class EzBigButtonsConfig extends StatelessWidget {
 
   /// Doesn't replace, only modifies: larger touch points from default
   /// Slight bump to all layout values, for easier tapping
-  const EzBigButtonsConfig(this.config, {super.key, required this.updateBoth, this.extra});
+  const EzBigButtonsConfig(
+    this.config, {
+    super.key,
+    required this.updateBoth,
+    this.extra,
+  });
 
   static Future<void> onPressed(EzCP config, bool updateBoth) async {
     // Don't reset //
@@ -79,8 +83,9 @@ class EzBigButtonsConfig extends StatelessWidget {
   Widget build(BuildContext context) => EzElevatedButton(
         config,
         style: ElevatedButton.styleFrom(
-          shape: EzButtonShape.roundRect.shape,
+          backgroundBuilder: ezSelfBuilder,
           padding: EdgeInsets.all(EzCM.onMobile ? 22.5 : 25.0),
+          shape: EzButtonShape.roundRect.shape,
         ),
         onPressed: () => config.rebuildUI(changes: () async {
           await onPressed(config, updateBoth);

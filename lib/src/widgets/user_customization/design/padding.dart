@@ -4,16 +4,13 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzPaddingSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// Optional override
   final double? iconSize;
-
   final int _steps;
   final int _decimals;
 
@@ -98,8 +95,8 @@ class EzPaddingSetting extends StatelessWidget {
                   child: Slider(
                     // Slider values
                     value: currValue,
-                    min: minPadding,
-                    max: maxPadding,
+                    min: ywt.minPadding,
+                    max: ywt.maxPadding,
                     divisions: _steps,
 
                     // Slider functions
@@ -141,7 +138,11 @@ class EzPaddingSetting extends StatelessWidget {
 
         if (currValue != backup) await config.rebuildUI();
       },
-      icon: Icon(Icons.padding, size: iconSize ?? config.iconSize),
+      icon: EzIcon(
+        config,
+        Icons.padding,
+        size: iconSize ?? config.iconSize,
+      ),
       label: config.ezL10n.dsPadding,
     );
   }

@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzUnderlineSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Which [TextStyle] to update
@@ -35,6 +34,7 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
   @override
   Widget build(BuildContext context) => EzIconButton(
         widget.config,
+        fauxDisabled: !isUnderlined,
         onPressed: () async {
           isUnderlined = !isUnderlined;
 
@@ -51,9 +51,6 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
           setState(() {});
         },
         tooltip: widget.config.ezL10n.tsUnderline,
-        icon: Icon(
-          Icons.format_underline,
-          color: isUnderlined ? widget.config.colors.primary : widget.config.colors.outline,
-        ),
+        icon: EzIcon(widget.config, Icons.format_underline),
       );
 }

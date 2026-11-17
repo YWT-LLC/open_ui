@@ -5,14 +5,11 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzImageLink extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Image.image] passthrough
   final ImageProvider<Object> image;
 
   /// Destination function
@@ -32,16 +29,9 @@ class EzImageLink extends StatelessWidget {
   /// [Tooltip.message] for on hover/focus
   final String tooltip;
 
-  /// [Image.width] passthrough
   final double? width;
-
-  /// [Image.height] passthrough
   final double? height;
-
-  /// [Image.fit] passthrough
   final BoxFit? fit;
-
-  /// [Image.alignment] passthrough
   final AlignmentGeometry alignment;
 
   /// [Image] wrapper that either opens an internal link via [onTap]
@@ -68,7 +58,7 @@ class EzImageLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color focusColor = config.colors.primary.withValues(alpha: focusOpacity);
+    final Color focusColor = config.primaryFill.asColor.withValues(alpha: focusOpacity);
 
     final Image child = Image(
       image: image,

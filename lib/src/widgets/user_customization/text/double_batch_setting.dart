@@ -5,7 +5,7 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// 0.1
 const double _delta = 0.1;
@@ -27,22 +27,12 @@ const List<String> _lightKeys = <String>[
 ];
 
 class EzFontDoubleBatchSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
-  /// Required for max/min awareness
   final EzDisplayStyleProvider displayProvider;
-
-  /// Required for max/min awareness
   final EzHeadlineStyleProvider headlineProvider;
-
-  /// Required for max/min awareness
   final EzTitleStyleProvider titleProvider;
-
-  /// Required for max/min awareness
   final EzBodyStyleProvider bodyProvider;
-
-  /// Required for max/min awareness
   final EzLabelStyleProvider labelProvider;
 
   /// Amount to scale (relative to the default value) on each click
@@ -52,7 +42,6 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
 
   /// Must have each iteration of [EzTextStyleProvider] in this parent's widget tree
   /// Updates all [TextStyle.fontSize]s at once by [delta], calculated individually based on each [TextStyle.fontSize]s default value
-  /// Follows [EzCM] limits: [minDisplay], [minHeadline], [maxTitle], etc.
   EzFontDoubleBatchSetting(
     this.config, {
     super.key,
@@ -101,7 +90,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMinimum,
                     iconSize: _iconSize,
-                    icon: Icon(Icons.remove, color: config.colors.outline),
+                    icon: EzIcon(config, Icons.remove),
                   )
                 : EzIconButton(
                     config,
@@ -154,7 +143,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     },
                     tooltip: '${config.ezL10n.gDecrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
                     iconSize: _iconSize,
-                    icon: const Icon(Icons.remove),
+                    icon: EzIcon(config, Icons.remove),
                   ),
             config.rowMargin,
 
@@ -183,7 +172,11 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                   config.pingRebuild(ezTextRebuildCheck(config, context: context));
                 }
               },
-              child: Icon(Icons.text_fields_sharp, size: _iconSize, color: config.colors.onSurface),
+              child: Icon(
+                Icons.text_fields_sharp,
+                size: _iconSize,
+                color: config.onSurface,
+              ),
             ),
             config.rowMargin,
 
@@ -194,7 +187,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     enabled: false,
                     tooltip: config.ezL10n.gMaximum,
                     iconSize: _iconSize,
-                    icon: Icon(Icons.add, color: config.colors.outline),
+                    icon: EzIcon(config, Icons.add),
                   )
                 : EzIconButton(
                     config,
@@ -247,7 +240,7 @@ class EzFontDoubleBatchSetting extends StatelessWidget {
                     },
                     tooltip: '${config.ezL10n.gIncrease} ${config.ezL10n.tsFontSize.toLowerCase()}',
                     iconSize: _iconSize,
-                    icon: const Icon(Icons.add),
+                    icon: EzIcon(config, Icons.add),
                   ),
           ],
         ),

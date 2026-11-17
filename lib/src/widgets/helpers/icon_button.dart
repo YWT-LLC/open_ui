@@ -5,36 +5,66 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-class EzIcon extends Icon {
-  /// EzConfig Provider
+class EzIcon extends StatelessWidget {
   final EzCP config;
+  final IconData? icon;
+  final double? size;
 
-  /// [Icon] wrapper that responds to [EzCP.iconSize]
-  /// [ThemeData.iconTheme] does not seem to be consumed properly
-  EzIcon(
+  /// Defaults to [EzCP.primaryFill]
+  final EzSwitchColor? fill;
+
+  final List<Shadow>? shadows;
+  final String? semanticLabel;
+  final TextDirection? textDirection;
+  final bool? applyTextScaling;
+  final BlendMode? blendMode;
+
+  /// [Icon] wrapper that responds to [EzCP.iconSize] and supports [Gradient]s
+  const EzIcon(
     this.config,
-    super.icon, {
+    this.icon, {
     super.key,
-    super.fill,
-    super.weight,
-    super.grade,
-    super.opticalSize,
-    super.color,
-    super.shadows,
-    super.semanticLabel,
-    super.textDirection,
-    super.applyTextScaling,
-    super.blendMode,
-  }) : super(size: config.iconSize);
+    this.size,
+    this.fill,
+    this.shadows,
+    this.semanticLabel,
+    this.textDirection,
+    this.applyTextScaling,
+    this.blendMode,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Icon toReturn = Icon(
+      icon,
+      size: size ?? config.iconSize,
+      color: fill?.color,
+      shadows: shadows,
+      semanticLabel: semanticLabel,
+      textDirection: textDirection,
+      applyTextScaling: applyTextScaling,
+      blendMode: blendMode,
+    );
+    final Gradient? gradient = (fill ?? config.primaryFill).gradient;
+
+    return (gradient == null)
+        ? toReturn
+        : ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (Rect bounds) => gradient.createShader(bounds),
+            child: toReturn,
+          );
+  }
 }
 
 class EzIconTouch extends StatelessWidget {
   final EzCP config;
   final IconData icon;
   final double? iconSize;
-  final Color? color;
+  final EzSwitchColor? iconFill;
+  final EzSwitchColor? backgroundFill;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final bool enabled;
@@ -46,7 +76,8 @@ class EzIconTouch extends StatelessWidget {
     super.key,
     required this.icon,
     this.iconSize,
-    this.color,
+    this.iconFill,
+    this.backgroundFill,
     this.onPressed,
     this.onLongPress,
     this.enabled = true,
@@ -63,8 +94,11 @@ class EzIconTouch extends StatelessWidget {
             onLongPress: onLongPress,
             child: Container(
               padding: EzInsets.wrap(config.padding),
-              decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: EzIcon(config, icon, color: color),
+              decoration: config.boxDeco(
+                fill: backgroundFill,
+                shape: BoxShape.circle,
+              ),
+              child: EzIcon(config, icon, fill: iconFill),
             ),
           ),
         )
@@ -76,30 +110,26 @@ class EzIconTouch extends StatelessWidget {
             onLongPress: doNothing,
             child: Container(
               padding: EzInsets.wrap(config.padding),
-              decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: EzIcon(config, icon, color: config.colors.outline),
+              decoration: config.boxDeco(
+                fill: backgroundFill,
+                shape: BoxShape.circle,
+              ),
+              child: EzIcon(config, icon, fill: config.outlineFiller),
             ),
           ),
         );
 }
 
 class EzIconButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [IconButton.icon] passthrough
   final Widget icon;
-
-  /// Optional [IconButton.iconSize] passthrough
   final double? iconSize;
 
-  /// [IconButton.onPressed] passthrough
+  /// Optional override, defaults to [EzCP.surfaceFill]
+  final EzSwitchColor? backgroundFill;
+
   final VoidCallback? onPressed;
-
-  /// [IconButton.onLongPress] passthrough
   final VoidCallback? onLongPress;
-
-  /// [IconButton.tooltip] passthrough
   final String tooltip;
 
   /// Uses disabled styling and sets [onPressed] and [onLongPress] to [doNothing] when false
@@ -109,16 +139,16 @@ class EzIconButton extends StatelessWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// Optional [IconButton.style] passthrough
-  /// Clobbers [enabled] and [fauxDisabled] style changes (style only)
+  /// Clobbers [enabled], [fauxDisabled], and [backgroundFill] style changes (style only)
   final ButtonStyle? style;
 
-  /// [IconButton] wrapper with custom styling
+  /// [IconButton] wrapper with custom styling and [Gradient] support
   const EzIconButton(
     this.config, {
     super.key,
     required this.icon,
     this.iconSize,
+    this.backgroundFill,
     this.onPressed,
     this.onLongPress,
     required this.tooltip,
@@ -135,13 +165,22 @@ class EzIconButton extends StatelessWidget {
         style: style ??
             ((!enabled || fauxDisabled)
                 ? IconButton.styleFrom(
-                    foregroundColor: config.colors.outline,
-                    side: config.borderSide(color: config.colors.outlineVariant),
-                    overlayColor: config.colors.outline,
+                    foregroundColor: config.outline,
+                    side: config.borderSide(fill: config.outlineVariantFill),
+                    overlayColor: config.outline,
                     shadowColor: Colors.transparent,
-                    iconSize: iconSize ?? config.iconSize,
+                  ).copyWith(
+                    backgroundBuilder: config.smartLayer(
+                      fill: backgroundFill,
+                      border: config.boxBorder(fill: config.outlineVariantFill),
+                    ),
                   )
-                : null),
+                : IconButton.styleFrom().copyWith(
+                    backgroundBuilder: config.smartLayer(
+                      fill: backgroundFill,
+                      border: config.boxBorder(),
+                    ),
+                  )),
         icon: icon,
         iconSize: iconSize ?? config.iconSize,
       );

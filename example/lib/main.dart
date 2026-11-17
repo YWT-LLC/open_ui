@@ -7,38 +7,48 @@ import './screens/export.dart';
 import './utils/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
-  // Configure the app //
+// Define the router //
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-
-  EzCM.init(
-    appName: thisAppName,
-    androidPackage: thisPackageName,
-    assetPaths: <String>{},
-    defaults: isMobile() ? mobileDefaults : desktopDefaults,
-    localeFallback: americanEnglish,
-    l10nFallback: await OUILang.delegate.load(americanEnglish),
-    preferences: await SharedPreferencesWithCache.create(
-      cacheOptions: SharedPreferencesWithCacheOptions(allowList: allEZConfigKeys.keys.toSet()),
+final List<RouteBase> routes = <RouteBase>[
+  // Archive
+  GoRoute(
+    path: archiveScreenPath,
+    name: archiveScreenName,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+      configWatcher(pbc),
+      pbc,
+      pbs,
+      ArchiveScreen((pbs.extra as EAGConfig)),
     ),
-    orientations: DeviceOrientation.values,
-  );
+  ),
 
-  await setMinWindow();
+  // Generate
+  GoRoute(
+    path: generateScreenPath,
+    name: generateScreenName,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
+      configWatcher(pbc),
+      pbc,
+      pbs,
+      GenerateScreen((pbs.extra as EAGConfig)),
+    ),
+  ),
 
-  // Run the app //
+  // Settings
+  GoRoute(
+    path: settingsScreenPath,
+    name: settingsScreenName,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+        ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
+  ),
+];
 
-  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
-
-  runApp(OpenUI(storedLocale, storedOUILang, await Lang.delegate.load(storedLocale)));
-}
+// Define the app //
 
 class OpenUI extends StatelessWidget {
   final Locale storedLocale;
@@ -62,44 +72,46 @@ class OpenUI extends StatelessWidget {
             // Home
             GoRoute(
               path: homePath,
-              name: homePath,
+              name: homeName,
               pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
                   ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
-              routes: <RouteBase>[
-                // Archive
-                GoRoute(
-                  path: archiveScreenPath,
-                  name: archiveScreenPath,
-                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                    configWatcher(pbc),
-                    pbc,
-                    pbs,
-                    ArchiveScreen((pbs.extra as EAGConfig)),
-                  ),
-                ),
-
-                // Generate
-                GoRoute(
-                  path: generateScreenPath,
-                  name: generateScreenPath,
-                  pageBuilder: (BuildContext pbc, GoRouterState pbs) => ezPageBuilder(
-                    configWatcher(pbc),
-                    pbc,
-                    pbs,
-                    GenerateScreen((pbs.extra as EAGConfig)),
-                  ),
-                ),
-
-                // Settings
-                GoRoute(
-                  path: settingsHubPath,
-                  name: settingsHubPath,
-                  pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-                      ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
-                ),
-              ],
+              routes: routes,
             ),
           ],
         ),
       );
+}
+
+void main() async {
+  // Configure the environment //
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+
+  EzCM.init(
+    appName: thisAppName,
+    androidPackage: thisPackageName,
+    assetPaths: <String>{},
+    defaults: isMobile() ? mobileDefaults : desktopDefaults,
+    localeFallback: americanEnglish,
+    l10nFallback: await OUILang.delegate.load(americanEnglish),
+    preferences: await SharedPreferencesWithCache.create(
+      cacheOptions: SharedPreferencesWithCacheOptions(
+        allowList: allEZConfigKeys.keys.toSet(),
+      ),
+    ),
+    orientations: DeviceOrientation.values,
+  );
+
+  await setMinWindow();
+
+  // Run the app //
+
+  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
+
+  runApp(OpenUI(
+    storedLocale,
+    storedOUILang,
+    await Lang.delegate.load(storedLocale),
+  ));
 }

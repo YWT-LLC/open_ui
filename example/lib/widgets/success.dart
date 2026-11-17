@@ -3,11 +3,10 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SuccessHeader extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Core message to display... under 'Success'
@@ -48,7 +47,7 @@ class SuccessHeader extends StatelessWidget {
                   child: EzText(
                     config,
                     text: message!,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -9,10 +9,19 @@ class OUILangRu extends OUILang {
   OUILangRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get csAddMore => 'Добавьте 2 или более цветов';
+
+  @override
+  String get csBuildGradient => 'Добавить в список градиентов';
+
+  @override
   String get csColorScheme => 'цветовая схема';
 
   @override
   String get csCurrVal => 'Текущее значение цвета:';
+
+  @override
+  String get csEndDir => 'Конечное направление';
 
   @override
   String get csError => 'Ошибка';
@@ -23,6 +32,10 @@ class OUILangRu extends OUILang {
   @override
   String get csFromImage =>
       'Цветовая схема будет сгенерирована из изображения.';
+
+  @override
+  String get csGradientHint =>
+      'Перемещайте с помощью маркера\nНажмите и удерживайте, чтобы удалить';
 
   @override
   String get csHighContrast => 'Использовать высококонтрастную схему';
@@ -60,7 +73,7 @@ class OUILangRu extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return 'Сбросить $themeType цвета?';
+    return 'Сбросить цвета ($themeType)?';
   }
 
   @override
@@ -77,6 +90,9 @@ class OUILangRu extends OUILang {
 
   @override
   String get csShadow => 'Тень';
+
+  @override
+  String get csStartDir => 'Начальное направление';
 
   @override
   String get csSurface => 'Фон\nкнопки';
@@ -213,7 +229,7 @@ class OUILangRu extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'Сбросить дизайн кнопки для $themeType темы?';
+    return 'Сбросить дизайн кнопок ($themeType)?';
   }
 
   @override
@@ -221,7 +237,7 @@ class OUILangRu extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'Сбросить дизайн страницы для $themeType темы?';
+    return 'Сбросить дизайн страницы ($themeType)?';
   }
 
   @override
@@ -317,6 +333,15 @@ class OUILangRu extends OUILang {
   String get gBothThemes => 'Обе темы';
 
   @override
+  String get gBottomCenter => 'Снизу по центру';
+
+  @override
+  String get gBottomLeft => 'Снизу слева';
+
+  @override
+  String get gBottomRight => 'Снизу справа';
+
+  @override
   String get gCancel => 'Отмена';
 
   @override
@@ -326,7 +351,16 @@ class OUILangRu extends OUILang {
   String get gCaptionsHint => 'Удерживайте для выбора шрифтов';
 
   @override
+  String get gCenter => 'По центру';
+
+  @override
+  String get gCenterLeft => 'По центру слева';
+
+  @override
   String get gCenterReset => 'Удерживайте центр для сброса';
+
+  @override
+  String get gCenterRight => 'По центру справа';
 
   @override
   String gClipboard(Object thing) {
@@ -361,6 +395,9 @@ class OUILangRu extends OUILang {
   String get gDesign => 'Дизайн';
 
   @override
+  String get gDevInfo => 'Информация о разработчике';
+
+  @override
   String get gDisabled => 'Отключено';
 
   @override
@@ -389,6 +426,9 @@ class OUILangRu extends OUILang {
 
   @override
   String get gGlobal => 'Глобальные';
+
+  @override
+  String get gGradient => 'Градиент';
 
   @override
   String get gHardRefresh =>
@@ -422,7 +462,7 @@ class OUILangRu extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Загрузка. Логотип YWT анимирован в виде вращающихся песочных часов.';
+      'Загрузка. Логотип YWT в виде песочных часов вращается.';
 
   @override
   String get gLock => 'Заблокировать';
@@ -467,7 +507,7 @@ class OUILangRu extends OUILang {
   String get gOpenUISourceHint => 'Открыть страницу GitHub для Open UI';
 
   @override
-  String get gOpenYWT => 'Открыть ссылку на YWT LLC';
+  String get gOpenYWT => 'Открыть ссылку на YWT';
 
   @override
   String get gOptional => 'необязательно';
@@ -497,7 +537,7 @@ class OUILangRu extends OUILang {
   String get gRemove => 'Удалить';
 
   @override
-  String get gReplay => 'Повторить';
+  String get gReplay => 'Воспроизвести снова';
 
   @override
   String get gRequired => 'Обязательно';
@@ -540,6 +580,9 @@ class OUILangRu extends OUILang {
   String get gSettings => 'Настройки';
 
   @override
+  String get gSingle => 'Один';
+
+  @override
   String get gSkip => 'Пропустить';
 
   @override
@@ -564,7 +607,16 @@ class OUILangRu extends OUILang {
   String get gText => 'Текст';
 
   @override
-  String get gThe => 'Этот';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Сверху по центру';
+
+  @override
+  String get gTopLeft => 'Сверху слева';
+
+  @override
+  String get gTopRight => 'Сверху справа';
 
   @override
   String get gUnMute => 'Включить звук';
@@ -662,7 +714,7 @@ class OUILangRu extends OUILang {
 
   @override
   String ssRandomize(Object themeType) {
-    return 'Случайный выбор для $themeType темы?';
+    return 'Сгенерировать случайную тему ($themeType)?';
   }
 
   @override
@@ -782,7 +834,7 @@ class OUILangRu extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return 'Сбросить стили текста для $themeType темы?';
+    return 'Сбросить стили текста ($themeType)?';
   }
 
   @override

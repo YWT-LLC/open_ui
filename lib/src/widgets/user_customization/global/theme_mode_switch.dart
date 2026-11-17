@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzThemeModeSwitch extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Standardized tool for changing the [ThemeMode]
@@ -19,10 +18,10 @@ class EzThemeModeSwitch extends StatelessWidget {
         config,
         label: config.ezL10n.ssThemeMode,
         widthEntry: config.ezL10n.gSystem,
-        dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
-          DropdownMenuEntry<ThemeMode>(value: ThemeMode.system, label: config.ezL10n.gSystem),
-          DropdownMenuEntry<ThemeMode>(value: ThemeMode.light, label: config.ezL10n.gLight),
-          DropdownMenuEntry<ThemeMode>(value: ThemeMode.dark, label: config.ezL10n.gDark),
+        dropdownMenuEntries: <EzDropMenuEntry<ThemeMode>>[
+          EzDropMenuEntry<ThemeMode>(config, value: ThemeMode.system, label: config.ezL10n.gSystem),
+          EzDropMenuEntry<ThemeMode>(config, value: ThemeMode.light, label: config.ezL10n.gLight),
+          EzDropMenuEntry<ThemeMode>(config, value: ThemeMode.dark, label: config.ezL10n.gDark),
         ],
         enableSearch: false,
         initialSelection: config.themeMode,

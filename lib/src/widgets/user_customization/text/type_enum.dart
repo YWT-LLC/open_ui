@@ -5,7 +5,7 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Enumerator for selecting which [TextStyle] is being updated
 enum EzTextSettingType { display, headline, title, body, label }

@@ -4,11 +4,11 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzSpacingSetting extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   final int _steps;
@@ -66,7 +66,7 @@ class EzSpacingSetting extends StatelessWidget {
                         EzElevatedButton(config, enabled: false, text: config.ezL10n.gValue),
 
                         // Divider preview
-                        EzDivider(height: currValue * 3),
+                        EzDivider(config, height: currValue * 3),
 
                         // Horizontal preview
                         EzScrollView(
@@ -99,8 +99,8 @@ class EzSpacingSetting extends StatelessWidget {
                   child: Slider(
                     // Slider values
                     value: currValue,
-                    min: minSpacing,
-                    max: maxSpacing,
+                    min: ywt.minSpacing,
+                    max: ywt.maxSpacing,
                     divisions: _steps,
 
                     // Slider functions

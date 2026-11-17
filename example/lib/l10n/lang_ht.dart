@@ -57,7 +57,7 @@ class LangHt extends Lang {
 
   @override
   String csGenApp(Object app_name) {
-    return 'Lè w jenere $app_name, sa k kounye a ';
+    return 'Lè w jenere $app_name, ';
   }
 
   @override
@@ -71,7 +71,7 @@ class LangHt extends Lang {
 
   @override
   String get csInvalidDomain =>
-      '\'domèn.non\' sèlman; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
+      '\'domain.name\' sèlman; RegExp(r\'^[a-z0-9_]+\\.[a-z]+\$\')';
 
   @override
   String get csInvalidFields => 'Gen kèk chan ki pa valab';
@@ -148,7 +148,7 @@ class LangHt extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (eksepte imaj yo) ap vin tounen konfigirasyon defo pou $app_name.\n\nLi nesesè pou mete yon konbinezon koulè pèsonalize. Si w bezwen èd pou kreye youn, eseye kòmanse ';
+    return ' aktyèl yo (eksepte imaj yo) ap vin tounen konfigirasyon defo pou $app_name.\n\nLi nesesè pou mete yon konbinezon koulè pèsonalize. Si w bezwen èd pou kreye youn, eseye kòmanse ';
   }
 
   @override

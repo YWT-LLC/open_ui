@@ -4,14 +4,15 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:math';
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:country_flags/country_flags.dart';
@@ -81,15 +82,11 @@ double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom
 /// Set a min [size] for the application window
 Future<void> setMinWindow({Size size = const Size(500, 500)}) async {
   if (!kIsWeb && !isMobile()) {
-    await windowManager.ensureInitialized();
+    final Window window = WindowManager.instance.getCurrent()!;
 
-    await windowManager.waitUntilReadyToShow(
-      const WindowOptions(minimumSize: Size(500, 500)),
-      () async {
-        await windowManager.show();
-        await windowManager.focus();
-      },
-    );
+    window.minimumSize = const Size(500, 500).toNative();
+    window.show();
+    window.focus();
   }
 }
 
@@ -218,63 +215,360 @@ void ezCloseAll() {
 }
 
 /// Wraps a [ColorPicker] in an [EzAlertDialog]
-Future<void> ezColorPicker(
+Future<String?> ezColorPicker(
   EzCP config, {
   required BuildContext context,
   String? title,
-  required Color startColor,
-  required void Function(Color chosenColor) onColorChange,
-  String? confirmMsg,
-  required void Function() onConfirm,
-  String? denyMsg,
-  required void Function() onDeny,
-}) =>
-    ezModal(
-      config,
-      enableDrag: false,
-      isDismissible: false,
-      showDragHandle: false,
-      context: context,
-      builder: (BuildContext mCon) => ezModalScroll(
+  required String picking,
+  bool allowGradient = true,
+}) async {
+  // Define modal data //
+
+  final double iconRadius = config.iconSize / 2;
+
+  late EzSwitchColor preview;
+  late bool gradient;
+
+  late List<Color> gradients;
+  late AlignmentGeometry beginDir;
+  late AlignmentGeometry endDir;
+
+  final MenuController beginMenu = MenuController();
+  final MenuController endMenu = MenuController();
+
+  final List<List<(Alignment, String)>> dirGrid = <List<(Alignment, String)>>[
+    <(Alignment, String)>[
+      (Alignment.topLeft, config.ezL10n.gTopLeft),
+      (Alignment.topCenter, config.ezL10n.gTopCenter),
+      (Alignment.topRight, config.ezL10n.gTopRight),
+    ],
+    <(Alignment, String)>[
+      (Alignment.centerLeft, config.ezL10n.gCenterLeft),
+      (Alignment.center, config.ezL10n.gCenter),
+      (Alignment.centerRight, config.ezL10n.gCenterRight),
+    ],
+    <(Alignment, String)>[
+      (Alignment.bottomLeft, config.ezL10n.gBottomLeft),
+      (Alignment.bottomCenter, config.ezL10n.gBottomCenter),
+      (Alignment.bottomRight, config.ezL10n.gBottomRight),
+    ],
+  ];
+
+  Widget dirMenu({
+    required MenuController controller,
+    required AlignmentGeometry selected,
+    required Widget icon,
+    required String tooltip,
+    required void Function(Alignment choice) onSelected,
+  }) =>
+      MenuAnchor(
+        controller: controller,
+        style: MenuStyle(
+          padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.all(config.spacing / 2)),
+        ),
+        menuChildren: <Widget>[
+          for (final List<(Alignment, String)> row in dirGrid)
+            EzRow(config, reverseHands: false, children: <Widget>[
+              for (final (Alignment align, String label) in row)
+                IconButton(
+                  icon: EzIcon(
+                    config,
+                    align == selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                  ),
+                  tooltip: label,
+                  onPressed: () {
+                    onSelected(align);
+                    controller.close();
+                  },
+                ),
+            ]),
+        ],
+        builder: (_, __, ___) => EzIconButton(
+          config,
+          icon: icon,
+          tooltip: tooltip,
+          onPressed: () => toggleMenu(controller),
+        ),
+      );
+
+  Positioned iconPosition({
+    required AlignmentGeometry align,
+    required Widget icon,
+    required double height,
+    required double width,
+  }) =>
+      switch (align) {
+        // Bottom
+        Alignment.bottomCenter => Positioned(
+            bottom: 0,
+            left: width / 2 - config.padding,
+            child: icon,
+          ),
+        Alignment.bottomLeft => Positioned(bottom: 0, left: 0, child: icon),
+        Alignment.bottomRight => Positioned(bottom: 0, right: 0, child: icon),
+
+        // Center
+        Alignment.center => Positioned(
+            top: height / 2 - config.padding,
+            left: width / 2 - config.padding,
+            child: icon,
+          ),
+        Alignment.centerLeft => Positioned(
+            top: height / 2 - config.padding,
+            left: 0,
+            child: icon,
+          ),
+        Alignment.centerRight => Positioned(
+            top: height / 2 - config.padding,
+            right: 0,
+            child: icon,
+          ),
+
+        // Top
+        Alignment.topCenter => Positioned(
+            top: 0,
+            left: width / 2 - config.padding,
+            child: icon,
+          ),
+        Alignment.topLeft => Positioned(top: 0, left: 0, child: icon),
+        Alignment.topRight => Positioned(top: 0, right: 0, child: icon),
+        AlignmentGeometry() => Positioned(top: 0, child: icon),
+      };
+
+  // Define modal functions //
+
+  void initPreview() {
+    if (allowGradient && picking.contains(colorSplit)) {
+      preview = EzSwitchColor(gradient: ezLGFromString(picking));
+      gradient = true;
+
+      gradients = preview.gradient!.colors;
+      beginDir = preview.gradient!.begin;
+      endDir = preview.gradient!.end;
+    } else {
+      preview = EzSwitchColor(
+          color: Color(int.tryParse(picking) ?? (config.isDark ? ywt.blackHex : ywt.whiteHex)));
+      gradient = false;
+
+      gradients = <Color>[];
+      beginDir = Alignment.centerLeft;
+      endDir = Alignment.centerRight;
+    }
+  }
+
+  initPreview();
+
+  final bool? confirmed = await ezModal<bool>(
+    config,
+    enableDrag: false,
+    isDismissible: false,
+    showDragHandle: false,
+    context: context,
+    builder: (BuildContext mCon) => StatefulBuilder(builder: (_, StateSetter setModal) {
+      void localChange(Color color) => setModal(() => preview = EzSwitchColor(color: color));
+
+      // Return the modal //
+
+      Widget colorPicker() => ColorPicker(
+            color: preview.asColor,
+            columnSpacing: config.spacing,
+            copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+              pasteButton: true,
+            ),
+            enableOpacity: true,
+            mainAxisSize: MainAxisSize.min,
+            onColorChanged: localChange,
+            onColorChangeEnd: localChange,
+            opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
+            opacityTrackHeight: min(config.padding * 2, 50.0),
+            padding: EdgeInsets.zero,
+            pickersEnabled: const <ColorPickerType, bool>{
+              ColorPickerType.both: false,
+              ColorPickerType.primary: false,
+              ColorPickerType.accent: false,
+              ColorPickerType.bw: false,
+              ColorPickerType.custom: false,
+              ColorPickerType.customSecondary: false,
+              ColorPickerType.wheel: true,
+            },
+            runSpacing: config.spacing / 2,
+            showColorCode: true,
+            spacing: config.spacing / 2,
+            toolbarSpacing: config.spacing / 2,
+          );
+
+      return ezModalScroll(
         config,
         children: <Widget>[
+          // Gradient flip
           EzHeader(config),
+          if (allowGradient) ...<Widget>[
+            EzFlipFlop(
+              config,
+              init: gradient,
+              onLabel: config.ezL10n.gGradient,
+              offLabel: config.ezL10n.gSingle,
+              onChanged: (bool choice) => setModal(() => gradient = choice),
+            ),
+            config.spacer,
+          ],
 
           // The magic
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
-            child: ColorPicker(
-              color: startColor,
-              columnSpacing: config.spacing,
-              copyPasteBehavior: const ColorPickerCopyPasteBehavior(
-                pasteButton: true,
-              ),
-              enableOpacity: true,
-              mainAxisSize: MainAxisSize.min,
-              onColorChanged: onColorChange,
-              onColorChangeEnd: onColorChange,
-              opacityThumbRadius: max(12.0, min(config.padding, 30.0)),
-              opacityTrackHeight: min(config.padding * 2, 50.0),
-              padding: EdgeInsets.zero,
-              pickersEnabled: const <ColorPickerType, bool>{
-                ColorPickerType.both: false,
-                ColorPickerType.primary: false,
-                ColorPickerType.accent: false,
-                ColorPickerType.bw: false,
-                ColorPickerType.custom: false,
-                ColorPickerType.customSecondary: false,
-                ColorPickerType.wheel: true,
-              },
-              runSpacing: config.spacing / 2,
-              showColorCode: true,
-              showRecentColors: true,
-              spacing: config.spacing / 2,
-              toolbarSpacing: config.spacing / 2,
-            ),
-          ),
-          config.margin,
+          gradient
+              ? Container(
+                  constraints: BoxConstraints.tight(Size(
+                    ScreenSize.small.size,
+                    330 + config.padding + config.iconSize + (config.spacing * 5),
+                  )),
+                  child: Stack(children: <Widget>[
+                    Positioned.fill(child: EzScrollView(config, child: colorPicker())),
 
-          // The choice(s)
+                    // Add gradient color
+                    Positioned(
+                      top: config.spacing + config.padding + config.iconSize,
+                      right: 0,
+                      child: EzIconButton(
+                        config,
+                        icon: EzIcon(config, Icons.add),
+                        tooltip: config.ezL10n.csBuildGradient,
+                        onPressed: () => setModal(() => gradients.add(preview.asColor)),
+                      ),
+                    ),
+                  ]),
+                )
+              : Container(
+                  constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
+                  child: colorPicker(),
+                ),
+
+          // Gradient settings
+          EzAnimVis(
+            config,
+            visible: gradient,
+            mod: 0.75,
+            forceFade: true,
+            forceType: EzTransitionType.zoom,
+            kid: EzCol(children: <Widget>[
+              config.margin,
+
+              // Curr colors
+              SizedBox(
+                height: (iconRadius + config.padding) * 2 + config.spacing,
+                child: ReorderableListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  onReorderItem: (int oldIndex, int newIndex) {
+                    if (oldIndex == newIndex) return;
+
+                    final List<Color> update = List<Color>.from(gradients);
+                    final Color element = update.removeAt(oldIndex);
+                    update.insert(newIndex, element);
+
+                    setModal(() => gradients = update);
+                  },
+                  children: gradients
+                      .asMap()
+                      .entries
+                      .map((MapEntry<int, Color> entry) => Tooltip(
+                            key: ValueKey<int>(entry.key),
+                            message: config.ezL10n.csGradientHint,
+                            child: InkWell(
+                              onTap: () => localChange(entry.value),
+                              onLongPress: () => setModal(() => gradients.removeAt(entry.key)),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  left: config.spacing / 2,
+                                  right: config.spacing / 2,
+                                  bottom: config.spacing,
+                                ),
+                                child: entry.value == Colors.transparent
+                                    ? EzAvatar(
+                                        config,
+                                        fill: config.surfaceFill,
+                                        foregroundColor: config.onSurface,
+                                        radius: iconRadius + config.padding,
+                                        child: EzIcon(config, Icons.visibility_off),
+                                      )
+                                    : EzAvatar(
+                                        config,
+                                        fill: EzSwitchColor(color: entry.value),
+                                        radius: iconRadius + config.padding,
+                                      ),
+                              ),
+                            ),
+                          ))
+                      .toList(),
+                ),
+              ),
+
+              // Preview
+              EzAnimSwitch(
+                config,
+                mod: 0.75,
+                child: (gradients.length >= 2)
+                    ? Container(
+                        constraints: BoxConstraints.tight(Size(
+                          widthOf(context) / 2,
+                          heightOf(context) / 4,
+                        )),
+                        child: Stack(children: <Widget>[
+                          // Ze gradient
+                          Positioned.fill(
+                            child: Container(
+                              key: UniqueKey(),
+                              decoration: BoxDecoration(
+                                border: config.boxBorder(fill: config.outlineFiller),
+                                borderRadius: EzButtonShape.roundRect.radius,
+                                gradient: LinearGradient(
+                                  begin: beginDir,
+                                  end: endDir,
+                                  colors: gradients,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // Begin dir
+                          iconPosition(
+                            align: beginDir,
+                            icon: dirMenu(
+                              controller: beginMenu,
+                              selected: beginDir,
+                              icon: EzIcon(config, Icons.start),
+                              tooltip: config.ezL10n.csStartDir,
+                              onSelected: (Alignment choice) => setModal(() => beginDir = choice),
+                            ),
+                            height: heightOf(context) / 4,
+                            width: widthOf(context) / 3,
+                          ),
+
+                          // End dir
+                          iconPosition(
+                            align: endDir,
+                            icon: dirMenu(
+                              controller: endMenu,
+                              selected: endDir,
+                              icon: EzIcon(config, Icons.flag),
+                              tooltip: config.ezL10n.csEndDir,
+                              onSelected: (Alignment choice) => setModal(() => endDir = choice),
+                            ),
+                            height: heightOf(context) / 4,
+                            width: widthOf(context) / 3,
+                          ),
+                        ]),
+                      )
+                    : EzText(
+                        config,
+                        text: config.ezL10n.csAddMore,
+                        style: config.bodyStyle,
+                        textAlign: TextAlign.center,
+                      ),
+              ),
+            ]),
+          ),
+          config.spacer,
+
+          // Exit options
           EzRow(
             config,
             mainAxisSize: MainAxisSize.max,
@@ -283,28 +577,39 @@ Future<void> ezColorPicker(
               EzTextIconButton(
                 config,
                 icon: EzIcon(config, Icons.cancel),
-                label: denyMsg ?? config.ezL10n.gCancel,
+                label: config.ezL10n.gCancel,
                 onPressed: () {
-                  onDeny();
-                  if (mCon.mounted) Navigator.of(mCon).pop();
+                  initPreview();
+                  setModal(() {});
+                  if (mCon.mounted) Navigator.of(mCon).pop(false);
                 },
               ),
               config.rowSpacer,
               EzTextIconButton(
                 config,
+                enabled: !gradient || (gradients.length > 2),
                 icon: EzIcon(config, Icons.check),
-                label: confirmMsg ?? config.ezL10n.gApply,
-                onPressed: () {
-                  onConfirm();
-                  if (mCon.mounted) Navigator.of(mCon).pop();
-                },
+                label: config.ezL10n.gApply,
+                onPressed: () => Navigator.of(mCon).pop(true),
               ),
             ],
           ),
           EzKeyboardSpacer(config.spacing * 2),
         ],
-      ),
-    );
+      );
+    }),
+  );
+
+  return (confirmed == true)
+      ? gradient
+          ? <String>[
+              beginDir.toString(),
+              endDir.toString(),
+              ...gradients.map((Color color) => color.toARGB32().toString()),
+            ].join(colorSplit)
+          : preview.asColor.toARGB32().toString()
+      : null;
+}
 
 /// Returns an appropriate width for a [DropdownMenu]
 double ezDropdownWidth(EzCP config, {required BuildContext context, required String entry}) =>
@@ -393,12 +698,13 @@ Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
   List<LocalizationsDelegate<dynamic>> local,
 ) =>
     <LocalizationsDelegate<dynamic>>{
-      const LocaleNamesLocalizationsDelegate(),
-      CreoleMaterialLocalizations.delegate,
       CreoleCupertinoLocalizations.delegate,
+      CreoleMaterialLocalizations.delegate,
       const CreoleWidgetsLocalizationsDelegate(),
-      ...OUILang.localizationsDelegates,
+      ...GlobalMaterialLocalizations.delegates,
       ...local,
+      const LocaleNamesLocalizationsDelegate(),
+      ...OUILang.localizationsDelegates,
     };
 
 /// [ezLog] the passed message and display an [EzAlertDialog] to notify the user
@@ -436,11 +742,22 @@ Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
         transitionsBuilder: (_, __, ___, Widget child) => child,
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
-        pageBuilder: (_, __, ___) => Container(
-          constraints: BoxConstraints.tight(Size.infinite),
-          color: (config?.colors.surface ?? Colors.black).withValues(alpha: 0.5),
-          child: EzLoadingGlass(config),
-        ),
+        pageBuilder: (_, __, ___) => config == null
+            ? Container(
+                constraints: BoxConstraints.tight(Size.infinite),
+                color: Colors.black.withValues(alpha: 0.5),
+                child: const CircularProgressIndicator(),
+              )
+            : Container(
+                constraints: BoxConstraints.tight(Size.infinite),
+                decoration: config.boxDeco(opacity: 0.5),
+                child: EzLoadingGlass(ywt.EzLoadingIndicator(
+                  iconSize: config.iconSize,
+                  padding: config.padding,
+                  semantics: config.ezL10n.gLoadingAnim,
+                  colorScheme: config.theme.colorScheme,
+                )),
+              ),
       ),
     ),
   );
@@ -693,7 +1010,7 @@ Widget ezTransitionBuilder(
 Duration ezReadingTime(EzCP config, String passage) {
   if (passage.trim().isEmpty) return Duration.zero;
 
-  final int words = picLanguageCodes.contains(config.locale.languageCode)
+  final int words = cjkCodes.contains(config.locale.languageCode)
       ? passage.replaceAll(RegExp(r'\s+'), '').length
       : passage.split(RegExp(r'\s+')).where((String w) => w.isNotEmpty).length;
 
@@ -710,11 +1027,15 @@ bool get ezRootIsMounted => (ezRootNav.currentContext != null) && ezRootNav.curr
 OverlayState? get ezRootOverlay => ezRootNav.currentState?.overlay;
 
 /// 'Smart' keyboard arrow
-IconData ezVisIcon(EzCP config, bool show) => show
-    ? Icons.keyboard_arrow_down
-    : config.isLefty
-        ? Icons.keyboard_arrow_right
-        : Icons.keyboard_arrow_left;
+Widget ezVisIcon(EzCP config, bool show) => EzIcon(
+      config,
+      show
+          ? Icons.keyboard_arrow_down
+          : config.isLefty
+              ? Icons.keyboard_arrow_right
+              : Icons.keyboard_arrow_left,
+      semanticLabel: show ? config.ezL10n.gClose : config.ezL10n.gOpen,
+    );
 
 /// Location of the owner of [context]
 Offset ezWya(BuildContext context) =>

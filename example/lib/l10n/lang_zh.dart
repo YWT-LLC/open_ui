@@ -128,7 +128,7 @@ class LangZh extends Lang {
   String get csResetApp => '应用设置';
 
   @override
-  String get csResetBoth => '全部';
+  String get csResetBoth => '两者';
 
   @override
   String get csResetBuilder => '构建器值';
@@ -162,7 +162,7 @@ class LangZh extends Lang {
   String get gsConsole => '控制台输出';
 
   @override
-  String get gsIsReadyIn => '已准备就绪，用时';
+  String get gsIsReadyIn => '已就绪，位于';
 
   @override
   String get gsNeedPermission =>
@@ -332,7 +332,7 @@ class LangZhCn extends LangZh {
   String get csResetApp => '应用设置';
 
   @override
-  String get csResetBoth => '全部';
+  String get csResetBoth => '两者';
 
   @override
   String get csResetBuilder => '构建器值';
@@ -366,7 +366,7 @@ class LangZhCn extends LangZh {
   String get gsConsole => '控制台输出';
 
   @override
-  String get gsIsReadyIn => '已准备就绪，用时';
+  String get gsIsReadyIn => '已就绪，位于';
 
   @override
   String get gsNeedPermission =>

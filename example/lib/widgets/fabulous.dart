@@ -6,17 +6,17 @@
 import '../utils/export.dart';
 import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
 import 'package:open_ui/open_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
       config,
-      appVersion: '4.1.0',
+      appVersion: '4.2.0',
       versionSource:
           'https://raw.githubusercontent.com/YWT-LLC/open_ui/refs/heads/main/example/APP_VERSION',
-      gPlay: 'https://play.google.com/store/apps/details?id=net.empathetech.open_ui',
-      appStore: 'https://apps.apple.com/us/app/open-ui/id6499560244',
-      github: 'https://github.com/YWT-LLC/open_ui/releases',
+      gPlay: ywt.openUIGPlay,
+      appStore: ywt.openUIAppStore,
+      github: ywt.openUIReleases,
     );
 
 class ResetFAB extends StatelessWidget {
@@ -95,44 +95,5 @@ class ResetFAB extends StatelessWidget {
             ),
           ),
         ),
-      );
-}
-
-/// When needed, add this an modify the main router
-class MacStoreFAB extends StatelessWidget {
-  final EzCP config;
-
-  /// Opens an [EzAlertDialog] for resetting the form fields, app settings, both, or none
-  const MacStoreFAB(this.config, {super.key});
-
-  @override
-  Widget build(BuildContext context) => FloatingActionButton(
-        heroTag: 'mac_store_FAB',
-        tooltip: 'EoL',
-        onPressed: () => showDialog(
-          context: context,
-          builder: (BuildContext dCon) => EzAlertDialog(
-            config,
-            contents: <Widget>[
-              const Text(
-                '''Good news: Open UI is now an app generator!
-
-Bad news: the new features cannot be supported on the App Store.
-
-The full (free and open source) app generator can be downloaded from the ''',
-                textAlign: TextAlign.center,
-              ),
-              EzLink(
-                config,
-                text: 'GitHub releases',
-                url: Uri.parse(ywt.openUIReleases),
-                hint: ywt.openUIReleases,
-              ),
-            ],
-          ),
-        ),
-        backgroundColor: config.colors.secondary,
-        foregroundColor: config.colors.onSecondary,
-        child: EzIcon(config, Icons.update),
       );
 }

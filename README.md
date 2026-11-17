@@ -10,7 +10,7 @@
 ### **Open UI**
 Is a (non-AI) code generator, for [Flutter](https://flutter.dev/) apps. It is available on all platforms...
 
-&nbsp;&nbsp;&nbsp;[Android (Google Play)](https://play.google.com/store/apps/details?id=net.empathetech.open_ui)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Android (.apk)](https://github.com/YWT-LLC/open_ui/releases/download/13.1.0/open-ui-android.apk)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[iOS](https://apps.apple.com/us/app/open-ui/id6499560244)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Linux (deb)](https://github.com/YWT-LLC/open_ui/releases/download/13.1.0/open-ui-linux.deb)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Linux (rpm)](https://github.com/YWT-LLC/open_ui/releases/download/13.1.0/open-ui-linux.rpm)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[macOS](https://github.com/YWT-LLC/open_ui/releases/download/13.1.0/open-ui-mac.zip)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Windows](https://github.com/YWT-LLC/open_ui/releases/download/13.1.0/open-ui-windows.exe)
+&nbsp;&nbsp;&nbsp;[Android (Google Play)](https://play.google.com/store/apps/details?id=net.empathetech.open_ui)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Android (.apk)](https://github.com/YWT-LLC/open_ui/releases/download/13.2.0/open-ui-android.apk)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[iOS](https://apps.apple.com/us/app/open-ui/id6499560244)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Linux (deb)](https://github.com/YWT-LLC/open_ui/releases/download/13.2.0/open-ui-linux.deb)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Linux (rpm)](https://github.com/YWT-LLC/open_ui/releases/download/13.2.0/open-ui-linux.rpm)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[macOS](https://github.com/YWT-LLC/open_ui/releases/download/13.2.0/open-ui-mac.zip)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Windows](https://github.com/YWT-LLC/open_ui/releases/download/13.2.0/open-ui-windows.exe)
 
 <br>Note: Mobile platforms simply save a configuration file that can be used on Desktop.<br>For code generation to work on Desktop, Flutter must be [installed](https://docs.flutter.dev/get-started/install).
 
@@ -25,7 +25,7 @@ To accommodate the reduced wiggle room, 11.1 also reduced the number of external
 # <br>Contributing
 ## To the UIniverse
 
-If you build something with Open UI, let us know!
+If you build something with Open UI, share it!
 
 ## <br>Time
 
@@ -33,9 +33,9 @@ Please reach out to the [community](mailto:community@ywt.llc?subject=Becoming%20
 
 ### <br>Translations
 
-If you speak English and a currently unsupported language, please reach out! The more the merrier.
+If you speak a language Open UI doesn't support yet, or see a mistake in one it does, please [contribute](https://ywt.llc/a11how/#/).
 
-If you speak English and a currently supported language, and see something wrong, please reach out! It takes a village.
+As long as you have a GitHub account, you can commit your fixes with one paste & click.
 
 ## <br>Money
 

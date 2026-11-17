@@ -4,10 +4,11 @@
  */
 
 import '../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 // Helpers //
 
@@ -80,8 +81,8 @@ void ezWindowNamer(String title) => SystemChrome.setApplicationSwitcherDescripti
       ApplicationSwitcherDescription(
         label: title,
         primaryColor: ezRootIsMounted
-            ? Provider.of<EzCP>(ezRootContext, listen: false).colors.primary.toARGB32()
-            : ywtPurpleHex,
+            ? Provider.of<EzCP>(ezRootContext, listen: false).primaryFill.asColor.toARGB32()
+            : ywt.ywtPurpleHex,
       ),
     );
 
@@ -141,16 +142,6 @@ String ezTitleToCamel(String name) =>
 
 /// Title Case -> ClassCase
 String ezTitleToClass(String name) => name.replaceAll(RegExp(r'\s'), '');
-
-// Getters //
-
-/// [TextTheme.headlineLarge] w/ the [TextStyle.fontSize] of [TextTheme.titleLarge]
-TextStyle? ezSubHeadingStyle(TextTheme styles) =>
-    styles.headlineLarge?.copyWith(fontSize: styles.titleLarge?.fontSize);
-
-/// [TextTheme.bodyLarge] w/ the [TextStyle.fontSize] of [TextTheme.titleLarge]
-TextStyle? ezSubTitleStyle(TextTheme styles) =>
-    styles.bodyLarge?.copyWith(fontSize: styles.titleLarge?.fontSize);
 
 // Setters //
 

@@ -150,7 +150,7 @@ class LangHi extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (छवियों को छोड़कर) $app_name के लिए डिफ़ॉल्ट कॉन्फ़िगरेशन बन जाएगा।\n\nएक कस्टम रंग योजना सेट करना आवश्यक है। यदि आपको इसे बनाने में सहायता चाहिए, तो यहां से शुरू करने का प्रयास करें ';
+    return ' (छवियों को छोड़कर) $app_name के लिए डिफ़ॉल्ट कॉन्फ़िगरेशन बन जाएँगी।\n\nएक कस्टम रंग योजना सेट करना आवश्यक है। यदि आपको इसे बनाने में सहायता चाहिए, तो शुरुआत करें ';
   }
 
   @override
@@ -166,7 +166,7 @@ class LangHi extends Lang {
   String get gsConsole => 'कंसोल आउटपुट';
 
   @override
-  String get gsIsReadyIn => 'में तैयार है';
+  String get gsIsReadyIn => 'तैयार है, यहाँ:';
 
   @override
   String get gsNeedPermission =>

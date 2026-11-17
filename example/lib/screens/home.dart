@@ -6,15 +6,14 @@
 import '../screens/export.dart';
 import '../utils/export.dart';
 import '../widgets/export.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:io';
 import 'dart:async';
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:after_layout/after_layout.dart';
 
@@ -182,6 +181,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
     return Consumer<EzCP>(
       builder: (_, EzCP config, __) => OpenUIScaffold(
         config,
+        title: l10n(config).csPageTitle,
         body: EzScreen(
           config,
           alignment: Alignment.topLeft,
@@ -336,9 +336,9 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   EzInlineLink(
                     config,
                     text: config.ezL10n.gSettings.toLowerCase(),
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.start,
-                    onTap: () => context.goNamed(settingsHubPath),
+                    onTap: () => context.goNamed(settingsScreenName),
                     hint: config.ezL10n.ssNavHint,
                   ),
                   EzPlainText(
@@ -349,13 +349,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   EzInlineLink(
                     config,
                     text: l10n(config).csHere,
-                    style: ezSubTitleStyle(config.styles),
+                    style: config.subTitleStyle,
                     textAlign: TextAlign.start,
                     url: Uri.parse('https://www.canva.com/colors/color-wheel/'),
                     hint: l10n(config).csHereHint,
                   ),
                 ],
-                style: ezSubTitleStyle(config.styles),
+                style: config.subTitleStyle,
               ),
               config.separator,
 
@@ -382,7 +382,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                       child: ExcludeSemantics(
                         child: EzIconButton(
                           config,
-                          icon: Icon(ezVisIcon(config, advancedEC.isExpanded)),
+                          icon: ezVisIcon(config, advancedEC.isExpanded),
                           onPressed: () =>
                               advancedEC.isExpanded ? advancedEC.collapse() : advancedEC.expand(),
                           tooltip:
@@ -423,8 +423,13 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         EzIconButton(
                           config,
                           onPressed: () async {
-                            final String? selectedDirectory = await FilePicker.getDirectoryPath();
-                            if (selectedDirectory == null) return;
+                            final Uri? selectedUri = await FilePicker.pickDirectory();
+                            if (selectedUri == null) return;
+
+                            // Convert to a path (Android returns a content:// tree URI)
+                            final String selectedDirectory = selectedUri.isScheme('file')
+                                ? selectedUri.toFilePath()
+                                : selectedUri.toString();
 
                             setState(() {
                               workPathTC.text = selectedDirectory.contains(homePath)
@@ -433,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             });
                           },
                           tooltip: l10n(config).csFileBrowser,
-                          icon: const Icon(Icons.folder_open),
+                          icon: EzIcon(config, Icons.folder_open),
                         ),
                       ],
                     ),
@@ -500,6 +505,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
               advancedEC.isExpanded
                   ? config.separator
                   : EzDivider(
+                      config,
                       height: config.spacing * 3,
                       width: ezTextFieldConstraints(context, prop: 0.333).maxWidth,
                     ),
@@ -546,11 +552,16 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                     EzIconButton(
                       config,
                       onPressed: () async {
-                        final String? selectedDirectory = await FilePicker.getDirectoryPath(
+                        final Uri? selectedUri = await FilePicker.pickDirectory(
                           dialogTitle: l10n(config).csFlutterPath,
                         );
 
-                        if (selectedDirectory == null) return;
+                        if (selectedUri == null) return;
+
+                        // Convert to a path (Android returns a content:// tree URI)
+                        final String selectedDirectory = selectedUri.isScheme('file')
+                            ? selectedUri.toFilePath()
+                            : selectedUri.toString();
 
                         setState(() {
                           flutterPathTC.text = selectedDirectory.contains(homePath)
@@ -559,7 +570,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         });
                       },
                       tooltip: l10n(config).csFileBrowser,
-                      icon: const Icon(Icons.folder_open),
+                      icon: EzIcon(config, Icons.folder_open),
                     ),
                   ],
                 ),
@@ -602,7 +613,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                                   await checkPath(config, workPathTC))) &&
                           context.mounted) {
                         context.goNamed(
-                          archiveScreenPath,
+                          archiveScreenName,
                           extra: EAGConfig(
                             appName: nameTC.text,
                             publisherName: publisherTC.text,
@@ -657,7 +668,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             await checkPath(config, workPathTC) &&
                             context.mounted) {
                           context.goNamed(
-                            generateScreenPath,
+                            generateScreenName,
                             extra: EAGConfig(
                               appName: nameTC.text,
                               publisherName: publisherTC.text,
@@ -700,15 +711,12 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   ],
                 ],
               ),
-              EzFooter(
-                config,
-                a11howPath: ywt.exampleContributeA11,
-                textAlign: TextAlign.start,
-              ),
+              config.separator,
             ],
           ),
         ),
-        title: l10n(config).csPageTitle,
+        footerAlign: AlignmentDirectional.bottomStart,
+        footerTextAlign: TextAlign.start,
         onUpload: (EAGConfig toLoad) async {
           // Disable buttons
           setState(() => canGen = false);
@@ -872,7 +880,7 @@ suppress-warnings: false''';
   static const String analysisDefault = '''include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [lib/l10n/**]
+  exclude: [lib/l10n/**, build/**, android/**, ios/**, web/**, windows/**, macos/**, linux/**]
 
 linter:
   rules:
@@ -913,7 +921,8 @@ linter:
     unnecessary_library_name: true
     unnecessary_new: true
     use_build_context_synchronously: true
-    use_full_hex_values_for_flutter_colors: true''';
+    use_full_hex_values_for_flutter_colors: true
+''';
 
   /// Gets copied to the top of every dart file
   /// Includes the app name, publisher, and year of generation
@@ -958,7 +967,7 @@ class _BasicField extends StatelessWidget {
                 ),
               ),
               if (tip != null)
-                tip.runtimeType == String
+                (tip is String)
                     ? EzToolTipper(config, message: tip)
                     : EzToolTipper(config, richMessage: tip),
             ],
@@ -1005,9 +1014,9 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
   @override
   Widget build(BuildContext context) => Theme(
         data: widget.config.theme.copyWith(
-          dividerColor: widget.config.colors.surfaceContainer,
+          dividerColor: widget.config.surfaceContainerFill.asColor,
           dividerTheme: DividerThemeData(
-            color: widget.config.colors.surfaceContainer,
+            color: widget.config.surfaceContainerFill.asColor,
             space: 0,
             thickness: 0,
           ),
@@ -1037,12 +1046,12 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
                     tooltip: widget.ec.isExpanded
                         ? widget.config.ezL10n.gClose
                         : widget.config.ezL10n.gOpen,
-                    icon: Icon(ezVisIcon(widget.config, widget.ec.isExpanded)),
+                    icon: ezVisIcon(widget.config, widget.ec.isExpanded),
                   ),
                 ),
               ),
               if (widget.tip != null) ...<Widget>[
-                widget.tip.runtimeType == String
+                widget.tip is String
                     ? EzToolTipper(widget.config, message: widget.tip)
                     : EzToolTipper(widget.config, richMessage: widget.tip),
               ],
@@ -1097,9 +1106,9 @@ class _LicensePickerState extends State<_LicensePicker> {
   @override
   Widget build(BuildContext context) => Theme(
         data: widget.config.theme.copyWith(
-          dividerColor: widget.config.colors.surfaceContainer,
+          dividerColor: widget.config.surfaceContainerFill.asColor,
           dividerTheme: DividerThemeData(
-            color: widget.config.colors.surfaceContainer,
+            color: widget.config.surfaceContainerFill.asColor,
             space: 0,
             thickness: 0,
           ),
@@ -1113,7 +1122,11 @@ class _LicensePickerState extends State<_LicensePicker> {
             widget.config,
             children: <Widget>[
               Flexible(
-                child: Text('LICENSE', textAlign: TextAlign.start, style: widget.config.bodyStyle),
+                child: Text(
+                  'LICENSE',
+                  textAlign: TextAlign.start,
+                  style: widget.config.bodyStyle,
+                ),
               ),
               widget.config.rowMargin,
               Semantics(
@@ -1128,7 +1141,7 @@ class _LicensePickerState extends State<_LicensePicker> {
                     tooltip: widget.ec.isExpanded
                         ? widget.config.ezL10n.gClose
                         : widget.config.ezL10n.gOpen,
-                    icon: Icon(ezVisIcon(widget.config, widget.ec.isExpanded)),
+                    icon: ezVisIcon(widget.config, widget.ec.isExpanded),
                   ),
                 ),
               ),

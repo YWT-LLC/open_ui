@@ -9,9 +9,9 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 
 import 'dart:convert';
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:file_saver/file_saver.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ArchiveScreen extends StatefulWidget {
   final EAGConfig archive;
@@ -62,7 +62,10 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
         GeneratorState.running => SizedBox(
             height: heightOf(context) / 3,
             width: double.infinity,
-            child: ywt.YWTime(semantics: config.ezL10n.gLoadingAnim, colorScheme: config.colors),
+            child: ywt.YWTime(
+              semantics: config.ezL10n.gLoadingAnim,
+              colorScheme: config.theme.colorScheme,
+            ),
           ),
         GeneratorState.successful => Center(
             child: SuccessHeader(
@@ -76,7 +79,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                     EzInlineLink(
                       config,
                       text: thisAppName,
-                      style: ezSubTitleStyle(config.styles),
+                      style: config.subTitleStyle,
                       textAlign: TextAlign.center,
                       url: Uri.parse(ywt.openUIReleases),
                       hint: config.ezL10n.gOpenUIReleases,
@@ -84,7 +87,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                     EzPlainText(text: l10n(config).asToGen(widget.archive.appName)),
                   ],
                 ],
-                style: ezSubTitleStyle(config.styles),
+                style: config.subTitleStyle,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -106,9 +109,9 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
 
           return OpenUIScaffold(
             config,
-            body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
-            title: l10n(config).asPageTitle,
             running: genState == GeneratorState.running,
+            title: l10n(config).asPageTitle,
+            body: EzScreen(config, alignment: Alignment.topCenter, child: header(config)),
           );
         },
       );

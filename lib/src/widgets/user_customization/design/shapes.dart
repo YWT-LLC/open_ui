@@ -5,14 +5,14 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// For [EzButtonShape.leftGram] && [EzButtonShape.rightGram]
 class ParallelogramBorder extends OutlinedBorder {
   final bool lefty;
   final double slope;
 
-  const ParallelogramBorder({super.side, required this.lefty, this.slope = gramSlope});
+  const ParallelogramBorder({super.side, required this.lefty, this.slope = 12.0});
 
   @override
   OutlinedBorder copyWith({BorderSide? side, double? slope, bool? lefty}) => ParallelogramBorder(
@@ -61,7 +61,7 @@ class ParallelogramBorder extends OutlinedBorder {
 class GemBorder extends OutlinedBorder {
   final double pointWidth;
 
-  const GemBorder({super.side, this.pointWidth = jewelSlope});
+  const GemBorder({super.side, this.pointWidth = ezJewelRadius});
 
   @override
   OutlinedBorder copyWith({BorderSide? side, double? pointWidth}) =>

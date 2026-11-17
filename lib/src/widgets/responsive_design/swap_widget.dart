@@ -5,10 +5,9 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzSwapWidget extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Which [ScreenSize] the Widget should respond to
@@ -23,7 +22,6 @@ class EzSwapWidget extends StatelessWidget {
   /// Whether the [Widget] should be animated via [EzAnimSwitch]
   final bool animate;
 
-  /// [EzAnimSwitch.mod] passthrough
   final double mod;
 
   /// [ScreenSize] > [breakpoint] => [expanded]

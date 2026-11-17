@@ -168,7 +168,7 @@ class LangFil extends Lang {
   String get gsConsole => 'Output sa console';
 
   @override
-  String get gsIsReadyIn => 'ay handa na sa loob ng';
+  String get gsIsReadyIn => 'ay handa na sa';
 
   @override
   String get gsNeedPermission =>

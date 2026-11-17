@@ -5,7 +5,7 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Remind the user that reset/randomize/etc cannot be undone automatically
 /// Includes and [EzInlineLink] to save current config to JSON

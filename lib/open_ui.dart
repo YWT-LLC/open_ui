@@ -20,7 +20,7 @@ export 'src/consts/custom_delegates/creole.dart';
 export 'src/consts/config_enums.dart';
 export 'src/consts/config_keys.dart';
 export 'src/consts/google_fonts.dart';
-export 'src/consts/shared.dart';
+export 'src/consts/global.dart';
 export 'src/consts/ywt_config.dart';
 
 //* Functions *//
@@ -32,6 +32,7 @@ export 'src/functions/testing/utils.dart';
 
 // Core //
 
+export 'src/functions/animation.dart';
 export 'src/functions/cmd.dart';
 export 'src/functions/colors.dart';
 export 'src/functions/helpers.dart';
@@ -45,15 +46,20 @@ export 'src/functions/theme_data.dart';
 
 export 'src/l10n/oui_lang.dart';
 
-//* Sample screens *//
+//* Models *//
 
-export 'src/sample_screens/color_settings/screen.dart';
-export 'src/sample_screens/design_settings/screen.dart';
-export 'src/sample_screens/text_settings/screen.dart';
-export 'src/sample_screens/global_settings.dart';
+export 'src/models/hybrid_action.dart';
 
-export 'src/sample_screens/setting_section.dart';
-export 'src/sample_screens/settings_hub.dart';
+//* Screens *//
+
+export 'src/screens/audio_settings/screen.dart';
+export 'src/screens/color_settings/screen.dart';
+export 'src/screens/design_settings/screen.dart';
+export 'src/screens/text_settings/screen.dart';
+export 'src/screens/global_settings.dart';
+
+export 'src/screens/setting_section.dart';
+export 'src/screens/settings_hub.dart';
 
 //* Widgets *//
 
@@ -63,6 +69,7 @@ export 'src/widgets/helpers/alert_dialog.dart';
 export 'src/widgets/helpers/alignment.dart';
 export 'src/widgets/helpers/animations.dart';
 export 'src/widgets/helpers/app_bar.dart';
+export 'src/widgets/helpers/avatar.dart';
 export 'src/widgets/helpers/back_action.dart';
 export 'src/widgets/helpers/checkbox.dart';
 export 'src/widgets/helpers/cli.dart';
@@ -71,10 +78,13 @@ export 'src/widgets/helpers/dropdown_menu.dart';
 export 'src/widgets/helpers/elevated_button.dart';
 export 'src/widgets/helpers/fabulous.dart';
 export 'src/widgets/helpers/gestures.dart';
+export 'src/widgets/helpers/gradient.dart';
 export 'src/widgets/helpers/icon_button.dart';
 export 'src/widgets/helpers/menu_button.dart';
+export 'src/widgets/helpers/overlay.dart';
 export 'src/widgets/helpers/radio.dart';
 export 'src/widgets/helpers/scaffold.dart';
+export 'src/widgets/helpers/segmented_button.dart';
 export 'src/widgets/helpers/sizing.dart';
 export 'src/widgets/helpers/spacers.dart';
 export 'src/widgets/helpers/switch_pair.dart';
@@ -84,7 +94,6 @@ export 'src/widgets/helpers/tool_tipper.dart';
 export 'src/widgets/helpers/tutorial.dart';
 export 'src/widgets/helpers/undo_text.dart';
 export 'src/widgets/helpers/video_player.dart';
-export 'src/widgets/helpers/warning.dart';
 
 // Responsive design //
 
@@ -128,6 +137,9 @@ export 'src/widgets/user_customization/presets/high_visibility.dart';
 export 'src/widgets/user_customization/presets/nebula.dart';
 export 'src/widgets/user_customization/presets/quick_config.dart';
 export 'src/widgets/user_customization/presets/wall_holes.dart';
+
+// Audio
+export 'src/widgets/user_customization/audio/volume_slider.dart';
 
 // Color
 export 'src/widgets/user_customization/color/color_setting.dart';

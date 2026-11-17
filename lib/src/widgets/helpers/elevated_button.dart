@@ -5,10 +5,9 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-class EzElevatedButton extends StatefulWidget {
-  /// EzConfig Provider
+class EzElevatedButton extends StatelessWidget {
   final EzCP config;
 
   /// Easily disable the button
@@ -19,13 +18,8 @@ class EzElevatedButton extends StatefulWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// [ElevatedButton.onPressed] passthrough
   final void Function()? onPressed;
-
-  /// [ElevatedButton.onLongPress] passthrough
   final void Function()? onLongPress;
-
-  /// [ElevatedButton.style] passthrough
   final ButtonStyle? style;
 
   /// [ElevatedButton.child] will be [Text] with [text], [textStyle], and [textAlign]
@@ -34,7 +28,6 @@ class EzElevatedButton extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [ElevatedButton] with custom styling and an off switch
@@ -52,34 +45,27 @@ class EzElevatedButton extends StatefulWidget {
   });
 
   @override
-  State<EzElevatedButton> createState() => _EzElevatedButtonState();
-}
-
-class _EzElevatedButtonState extends State<EzElevatedButton> {
-  @override
   Widget build(BuildContext context) => ElevatedButton(
-        onPressed: widget.enabled ? widget.onPressed : doNothing,
-        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: (!widget.enabled || widget.fauxDisabled)
-            ? (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+        onPressed: enabled ? onPressed : doNothing,
+        onLongPress: enabled ? onLongPress : doNothing,
+        style: (!enabled || fauxDisabled)
+            ? (style ?? config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(config.outline),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               )
-            : widget.style,
+            : style,
         child: Text(
-          widget.text,
-          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: (!widget.enabled || widget.fauxDisabled)
-                ? widget.config.colors.outline
-                : widget.config.colors.primary,
+          text,
+          style: (textStyle ?? config.bodyStyle)?.copyWith(
+            decorationColor:
+                (!enabled || fauxDisabled) ? config.outline : config.primaryFill.asColor,
           ),
-          textAlign: widget.textAlign,
+          textAlign: textAlign,
         ),
       );
 }
 
-class EzElevatedIconButton extends StatefulWidget {
-  /// EzConfig Provider
+class EzElevatedIconButton extends StatelessWidget {
   final EzCP config;
 
   /// Easily disable the button
@@ -90,16 +76,12 @@ class EzElevatedIconButton extends StatefulWidget {
   /// [onPressed] is unchanged
   final bool fauxDisabled;
 
-  /// [ElevatedButton.onPressed] passthrough
   final void Function()? onPressed;
 
-  /// [ElevatedButton.onLongPress] passthrough
   final void Function()? onLongPress;
 
-  /// [ElevatedButton.style] passthrough
   final ButtonStyle? style;
 
-  /// [ElevatedButton.icon] passthrough
   final Widget icon;
 
   /// [ElevatedButton.icon]'s label will be [Text] with [label], [textStyle], and [textAlign]
@@ -108,7 +90,6 @@ class EzElevatedIconButton extends StatefulWidget {
   /// Defaults to [TextTheme.bodyLarge]
   final TextStyle? textStyle;
 
-  /// [Text.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
@@ -127,30 +108,24 @@ class EzElevatedIconButton extends StatefulWidget {
   });
 
   @override
-  State<EzElevatedIconButton> createState() => _EzElevatedIconButtonState();
-}
-
-class _EzElevatedIconButtonState extends State<EzElevatedIconButton> {
-  @override
   Widget build(BuildContext context) => ElevatedButton.icon(
-        onPressed: widget.enabled ? widget.onPressed : doNothing,
-        onLongPress: widget.enabled ? widget.onLongPress : doNothing,
-        style: (widget.enabled || widget.fauxDisabled)
-            ? widget.style
-            : (widget.style ?? widget.config.theme.elevatedButtonTheme.style)?.copyWith(
-                overlayColor: WidgetStateProperty.all(widget.config.colors.outline),
+        onPressed: enabled ? onPressed : doNothing,
+        onLongPress: enabled ? onLongPress : doNothing,
+        style: (enabled || fauxDisabled)
+            ? style
+            : (style ?? config.theme.elevatedButtonTheme.style)?.copyWith(
+                overlayColor: WidgetStateProperty.all(config.outline),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),
               ),
-        icon: widget.icon,
-        iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
+        icon: icon,
+        iconAlignment: config.isLefty ? IconAlignment.start : IconAlignment.end,
         label: Text(
-          widget.label,
-          style: (widget.textStyle ?? widget.config.bodyStyle)?.copyWith(
-            decorationColor: (widget.enabled || widget.fauxDisabled)
-                ? widget.config.colors.primary
-                : widget.config.colors.outline,
+          label,
+          style: (textStyle ?? config.bodyStyle)?.copyWith(
+            decorationColor:
+                (enabled || fauxDisabled) ? config.primaryFill.asColor : config.outline,
           ),
-          textAlign: widget.textAlign,
+          textAlign: textAlign,
         ),
       );
 }

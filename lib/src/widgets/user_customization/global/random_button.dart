@@ -5,18 +5,16 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzConfigRandomizer extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [EzAlertDialog.title] that shows on click
   /// Defaults to [OUILang.ssRandomize]
   final String? dialogTitle;
 
-  /// [ezRichUndoWarning] passthrough
   final Set<String>? saveSkip;
 
   /// [EzElevatedIconButton] for [EzCM.randomize]
@@ -48,7 +46,8 @@ class EzConfigRandomizer extends StatelessWidget {
             needsClose: false,
           ),
         ),
-        icon: EzIcon(config, LineIcons.diceD6),
+        style: ElevatedButton.styleFrom(shape: config.outlinedBorder(fill: ezRainbowSwitch)),
+        icon: EzIcon(config, LineIcons.diceD6, fill: ezRainbowSwitch),
         label: config.ezL10n.ssRandom,
       );
 }

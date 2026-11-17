@@ -9,7 +9,7 @@ class LangFr extends Lang {
   LangFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get asPageTitle => 'Archiviste';
+  String get asPageTitle => 'Archiveur';
 
   @override
   String asToGen(Object app_name) {
@@ -53,11 +53,11 @@ class LangFr extends Lang {
   String get csFileBrowser => 'Ouvrir l\'explorateur de fichiers';
 
   @override
-  String get csFlutterPath => 'Flutter chemin';
+  String get csFlutterPath => 'Chemin de Flutter';
 
   @override
   String csGenApp(Object app_name) {
-    return 'Lorsque vous générez $app_name, l\'actuel ';
+    return 'Lorsque vous générez $app_name, les ';
   }
 
   @override
@@ -106,7 +106,7 @@ class LangFr extends Lang {
   String get csNoSpaces => 'Le chemin ne peut pas contenir d\'espaces';
 
   @override
-  String get csNotInstalled => 'N\'est pas installé?';
+  String get csNotInstalled => 'Pas installé ?';
 
   @override
   String get csOutputPath => 'Chemin de sortie';
@@ -153,7 +153,7 @@ class LangFr extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (sauf les images) deviendra la configuration par défaut pour $app_name.\n\nIl est requis de définir un schéma de couleurs personnalisé. Si vous avez besoin d\'aide pour en construire un, essayez de commencer ';
+    return ' actuels (sauf les images) deviendront la configuration par défaut pour $app_name.\n\nIl est requis de définir un schéma de couleurs personnalisé. Si vous avez besoin d\'aide pour en construire un, essayez de commencer ';
   }
 
   @override
@@ -173,7 +173,7 @@ class LangFr extends Lang {
 
   @override
   String get gsNeedPermission =>
-      'Open UI nécessite un accès complet au disque. S\'il vous plaît, allez à...\nParamètres système > Confidentialité et sécurité > Accès complet au disque > Open UI activé, puis réessayez.';
+      'Open UI nécessite un accès complet au disque.\n\nVeuillez aller dans...\nRéglages Système > Confidentialité et sécurité > Accès complet au disque > Activez Open UI ; puis réessayez.';
 
   @override
   String get gsNotInstalled => 'Flutter n\'est pas installé';

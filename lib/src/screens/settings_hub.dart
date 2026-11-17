@@ -4,12 +4,10 @@
  */
 
 import '../../open_ui.dart';
-import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzSettingsHub extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Where the magic happens
@@ -18,16 +16,12 @@ class EzSettingsHub extends StatefulWidget {
   /// Optional starting point (default 0/last visited)
   final int? target;
 
-  /// Optional override, defaults to [EzFooter]
-  final Widget? footer;
-
   /// Settings landing page
   const EzSettingsHub(
     this.config, {
     super.key,
     required this.pages,
     this.target,
-    this.footer,
   });
 
   @override
@@ -35,9 +29,26 @@ class EzSettingsHub extends StatefulWidget {
 }
 
 class _EzSettingsHubState extends State<EzSettingsHub> {
-  late EzSettingsSection currSection = widget.pages[widget.target ?? EzCM.hubPos];
-  late EzSubSetting currSubSec = currSection.fromStorage();
+  // Define the build data //
+
   int delta = 0;
+
+  late int startingPos = widget.target ?? EzCM.hubPos;
+  late EzSettingsSection currSection;
+  late EzSubSetting currSubSec;
+
+  // Init //
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (startingPos >= widget.pages.length || startingPos < 0) startingPos = 0;
+    currSection = widget.pages[startingPos];
+    currSubSec = currSection.fromStorage();
+  }
+
+  // Return the build //
 
   @override
   Widget build(BuildContext context) => EzScrollView(
@@ -50,7 +61,8 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             style: widget.config.labelStyle,
             textAlign: TextAlign.center,
           ),
-          SegmentedButton<EzSettingsSection>(
+          EzSegmentedButton<EzSettingsSection>(
+            widget.config,
             segments: widget.pages
                 .map((EzSettingsSection type) =>
                     ButtonSegment<EzSettingsSection>(value: type, icon: type.icon))
@@ -88,14 +100,13 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                         showScrollHint: true,
                         children: <Widget>[
                           // Subsection selector
-                          SegmentedButton<EzSubSetting>(
+                          EzSegmentedButton<EzSubSetting>(
+                            widget.config,
                             segments: (currSection.subSettings)
-                                .map(
-                                  (EzSubSetting sub) => ButtonSegment<EzSubSetting>(
-                                    value: sub,
-                                    label: Text(sub.label(widget.config.ezL10n)),
-                                  ),
-                                )
+                                .map((EzSubSetting sub) => ButtonSegment<EzSubSetting>(
+                                      value: sub,
+                                      label: Text(sub.label(widget.config.ezL10n)),
+                                    ))
                                 .toList(),
                             selected: <EzSubSetting>{currSubSec},
                             showSelectedIcon: false,
@@ -112,7 +123,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                           EzThemeCoin(widget.config, enabled: currSubSec.bothable),
                         ],
                       ),
-                      EzDivider(height: widget.config.spacing),
+                      EzDivider(widget.config, height: widget.config.spacing),
                       widget.config.spacer,
                     ],
                   )
@@ -126,7 +137,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
             delta: delta,
             child: currSection.build(currSubSec),
           ),
-          widget.footer ?? EzFooter(widget.config, a11howPath: ywt.openUIContributeA11),
+          widget.config.separator,
         ],
       );
 }

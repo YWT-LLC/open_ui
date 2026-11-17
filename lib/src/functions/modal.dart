@@ -5,7 +5,7 @@
 
 import '../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// [showModalBottomSheet] wrapper with custom defaults and uses [EzCP] based animations
 Future<T?> ezModal<T>(
@@ -58,6 +58,7 @@ Future<T?> ezFullScreenModal<T>(
         config,
         body: EzScreen(config, child: child),
         fabs: fabs,
+        footer: null,
       ),
     );
 

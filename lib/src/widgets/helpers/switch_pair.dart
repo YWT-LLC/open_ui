@@ -6,10 +6,9 @@
 import '../../../open_ui.dart';
 
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzSwitchPair extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Easily disable the button
@@ -20,25 +19,12 @@ class EzSwitchPair extends StatefulWidget {
   /// The switch is unchanged
   final bool fauxDisabled;
 
-  /// [EzRow.reverseHands] passthrough
   final bool reverseHands;
-
-  /// [EzRow.mainAxisSize] passthrough
   final MainAxisSize mainAxisSize;
-
-  /// [EzRow.mainAxisAlignment] passthrough
   final MainAxisAlignment mainAxisAlignment;
-
-  /// [EzRow.crossAxisAlignment] passthrough
   final CrossAxisAlignment crossAxisAlignment;
-
-  /// [EzText.text] passthrough
   final String text;
-
-  /// [Text.semanticsLabel] passthrough
   final String? textFix;
-
-  /// [EzText.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// If provided, an [EzToolTipper] will appear next to the [Switch]
@@ -47,7 +33,6 @@ class EzSwitchPair extends StatefulWidget {
   /// If provided, an [EzToolTipper] will appear next to the [Switch]
   final InlineSpan? bigTipper;
 
-  /// [Switch.value] passthrough
   /// Provide [value] OR [valueKey]
   /// Must pair with [onChanged]
   final bool? value;
@@ -62,7 +47,6 @@ class EzSwitchPair extends StatefulWidget {
   /// Optionally provide [afterChanged]
   final String? valueKey;
 
-  /// [Switch.onChanged] passthrough
   /// Provide [onChanged] OR [afterChanged]
   /// Pairs with [value]
   final void Function(bool?)? onChanged;
@@ -72,7 +56,6 @@ class EzSwitchPair extends StatefulWidget {
   /// Pairs with [valueKey]
   final void Function(bool?)? afterChanged;
 
-  /// [Switch.trackOutlineWidth] passthrough
   final WidgetStateProperty<double?>? trackOutlineWidth;
 
   /// [EzRow] with flexible [EzText] and a [Switch]
@@ -154,17 +137,30 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
   TextButton core() => TextButton.icon(
         style: (widget.enabled && !widget.fauxDisabled)
             ? TextButton.styleFrom(
+                backgroundColor: widget.config.surfaceFill.color,
+                backgroundBuilder: widget.config.smartLayer(
+                  fill: widget.config.surfaceFill,
+                  border: widget.config.boxBorder(
+                    fill: widget.config.primaryFill,
+                    opacity: focusOpacity,
+                  ),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                backgroundColor: widget.config.colors.surface,
                 side: widget.config.borderSide(
-                    color: widget.config.colors.primary.withValues(alpha: focusOpacity)),
+                  fill: widget.config.primaryFill,
+                  opacity: focusOpacity,
+                ),
               )
             : TextButton.styleFrom(
+                backgroundColor: widget.config.surfaceFill.color,
+                backgroundBuilder: widget.config.smartLayer(
+                  fill: widget.config.surfaceFill,
+                  border: widget.config.boxBorder(fill: widget.config.outlineVariantFill),
+                ),
+                overlayColor: widget.config.outline,
                 padding: EdgeInsets.symmetric(horizontal: widget.config.marginVal),
-                backgroundColor: widget.config.colors.surface,
-                side: widget.config.borderSide(color: widget.config.colors.outlineVariant),
-                overlayColor: widget.config.colors.outline,
                 shadowColor: Colors.transparent,
+                side: widget.config.borderSide(fill: widget.config.outlineVariantFill),
               ),
         onPressed: () => widget.enabled ? onChanged(!value) : doNothing(),
         label: Padding(
@@ -174,7 +170,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
             textAlign: widget.textAlign,
             semanticsLabel: widget.textFix,
             style: widget.config.bodyStyle?.copyWith(
-              decorationColor: widget.config.colors.primary,
+              decorationColor: widget.config.primaryFill.asColor,
               decoration: widget.config.lineLinks ? TextDecoration.underline : null,
             ),
           ),
@@ -182,15 +178,15 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
         icon: Transform.scale(
           scale: max(1.0, ezIconRatio(widget.config)),
           child: Switch(
-            value: value,
+            activeThumbColor: widget.fauxDisabled ? widget.config.outline : null,
+            inactiveThumbColor: widget.config.outline,
             onChanged: onChanged,
-            activeThumbColor: widget.fauxDisabled ? widget.config.colors.outline : null,
-            inactiveThumbColor: widget.config.colors.outline,
+            padding: EdgeInsets.zero,
             trackOutlineColor: (!widget.enabled || widget.fauxDisabled)
-                ? WidgetStatePropertyAll<Color>(widget.config.colors.outlineVariant)
+                ? WidgetStatePropertyAll<Color>(widget.config.outlineVariantFill.asColor)
                 : null,
             trackOutlineWidth: widget.trackOutlineWidth,
-            padding: EdgeInsets.zero,
+            value: value,
           ),
         ),
         iconAlignment: widget.config.isLefty ? IconAlignment.start : IconAlignment.end,
@@ -222,7 +218,6 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 }
 
 class EzFlipFlop extends StatefulWidget {
-  /// EzConfig provider
   final EzCP config;
 
   /// Initial state
@@ -271,7 +266,10 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
           EzTextButton(
             widget.config,
             text: widget.offLabel,
-            style: TextButton.styleFrom(backgroundColor: widget.config.colors.surfaceContainer),
+            style: TextButton.styleFrom(
+              backgroundColor: widget.config.surfaceContainerFill.color,
+              backgroundBuilder: widget.config.smartLayer(fill: widget.config.surfaceContainerFill),
+            ),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {
@@ -292,10 +290,10 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
                   setState(() => curr = choice);
                   widget.onChanged(choice);
                 },
-                thumbColor: WidgetStatePropertyAll<Color>(widget.config.colors.primary),
-                trackColor: WidgetStatePropertyAll<Color>(widget.config.colors.surface),
+                thumbColor: WidgetStatePropertyAll<Color>(widget.config.primaryFill.asColor),
+                trackColor: WidgetStatePropertyAll<Color>(widget.config.surfaceFill.asColor),
                 trackOutlineColor: WidgetStatePropertyAll<Color>(
-                    widget.config.colors.primary.withValues(alpha: focusOpacity)),
+                    widget.config.primaryFill.asColor.withValues(alpha: focusOpacity)),
                 padding: EdgeInsets.zero,
               ),
             ),
@@ -306,7 +304,10 @@ class _EzFlipFlopState extends State<EzFlipFlop> {
           EzTextButton(
             widget.config,
             text: widget.onLabel,
-            style: TextButton.styleFrom(backgroundColor: widget.config.colors.surfaceContainer),
+            style: TextButton.styleFrom(
+              backgroundColor: widget.config.surfaceContainerFill.color,
+              backgroundBuilder: widget.config.smartLayer(fill: widget.config.surfaceContainerFill),
+            ),
             textAlign: TextAlign.center,
             textStyle: widget.style ?? widget.config.bodyStyle,
             onPressed: () {

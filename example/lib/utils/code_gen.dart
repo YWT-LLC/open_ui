@@ -10,14 +10,12 @@ import 'dart:io';
 import 'package:open_ui/open_ui.dart';
 import 'package:flutter/foundation.dart';
 
-//* Consts *//
-
-const String openUIProdPage = 'https://ywt.llc/#/products/open-ui';
-
 // Defaults taken from...
 // https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization#configuring-the-l10n-yaml-file
 
 //* Sub-string getters *//
+
+String appDashName(EAGConfig config) => config.appName.replaceAll('_', '-');
 
 /// Returns the .arb file directory
 String getArbDir(EAGConfig config) {
@@ -125,7 +123,7 @@ to generate the new aliases.
 
 ## <br>Credits
 
-$appName began with [Open UI]($openUIProdPage)'s app generation service.
+$appName began with [Open UI](${ywt.openUIProduct})'s app generation service.
 
 It is free and open source, maintained by [YWT](https://ywt.llc/).
 
@@ -165,7 +163,7 @@ All notable changes to this project will be documented in this file.
 
 ## [0.0.0] - ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}
 ### Added
-- ${config.appName} foundation generated via [Open UI]($openUIProdPage)
+- ${config.appName} foundation generated via [Open UI](${ywt.openUIProduct})
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ''');
@@ -217,16 +215,21 @@ dependencies:
     sdk: flutter
 
   # Flutter (Google)
-  go_router: ^18.0.0
-  intl: ^0.20.2
-  shared_preferences: ^2.5.5
+  cupertino_ui: ^1.1.6
+  go_router: ^18.1.4
+  intl: ^0.20.3
+  material_ui: ^1.11.0
+  shared_preferences: ^2.5.6
 
   # Community
-  open_ui: ^13.0.0
   provider: ^6.1.5+1
 
+  # Local
+  open_ui:
+    path: ../open_ui
+
 dev_dependencies:
-  dependency_validator: ^5.0.5
+  dependency_validator: ^5.1.0
   flutter_lints: ^6.0.0
 
 flutter:
@@ -278,42 +281,24 @@ import './screens/export.dart';
 import './utils/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
-  // Configure the app //
+// Define the router //
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+final List<RouteBase> routes = <RouteBase>[
+  // Settings
+  GoRoute(
+    path: settingsScreenPath,
+    name: settingsScreenName,
+    pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
+        ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
+  ),
+];
 
-  EzCM.init(
-    appName: appName,
-    androidPackage: androidPackage,
-    assetPaths: <String>{},
-    orientations: DeviceOrientation.values,
-    localeFallback: americanEnglish,
-    l10nFallback: await OUILang.delegate.load(americanEnglish),
-    preferences: await SharedPreferencesWithCache.create(
-      cacheOptions: SharedPreferencesWithCacheOptions(
-        allowList: allEZConfigKeys.keys.toSet(),
-      ),
-    ),
-    defaults: ${camelCaseAppName}Config,
-  );
-
-  // Run the app //
-  
-  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
-
-  runApp($classCaseAppName(
-    storedLocale,
-    storedOUILang,
-    await $l10nClass.delegate.load(storedLocale),
-  ));
-}
+// Define the app //
 
 class $classCaseAppName extends StatelessWidget {
   final Locale storedLocale;
@@ -342,22 +327,46 @@ class $classCaseAppName extends StatelessWidget {
           // Home
           GoRoute(
             path: homePath,
-            name: homePath,
+            name: homeName,
             pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
                 ezPageBuilder(configWatcher(pbc), pbc, pbs, const HomeScreen()),
-            routes: <RouteBase>[
-              // Settings
-              GoRoute(
-                path: settingsHubPath,
-                name: settingsHubPath,
-                pageBuilder: (BuildContext pbc, GoRouterState pbs) =>
-                    ezPageBuilder(configWatcher(pbc), pbc, pbs, const SettingsHubScreen()),
-              ),
-            ],
+            routes:routes,
           ),
         ],
       ),
     );
+}
+
+void main() async {
+  // Configure the environment //
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+
+  EzCM.init(
+    appName: appName,
+    androidPackage: androidPackage,
+    assetPaths: <String>{},
+    orientations: DeviceOrientation.values,
+    localeFallback: americanEnglish,
+    l10nFallback: await OUILang.delegate.load(americanEnglish),
+    preferences: await SharedPreferencesWithCache.create(
+      cacheOptions: SharedPreferencesWithCacheOptions(
+        allowList: allEZConfigKeys.keys.toSet(),
+      ),
+    ),
+    defaults: ${camelCaseAppName}Config,
+  );
+
+  // Run the app //
+  
+  final (Locale storedLocale, OUILang storedOUILang) = await ezStoredL10n();
+
+  runApp($classCaseAppName(
+    storedLocale,
+    storedOUILang,
+    await $l10nClass.delegate.load(storedLocale),
+  ));
 }
 """);
 
@@ -426,7 +435,7 @@ const Map<String, Object> ${camelCaseAppName}Config = <String, Object>${configSt
 import './export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ${classCaseAppName}Cache extends EzAppCache {
   Locale _locale;
@@ -468,16 +477,12 @@ export '../l10n/${ezClassToSnake(l10nClass)}.dart';
     await File('$dir/lib/widgets/fabulous.dart').writeAsString("""$copyright
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CountFAB extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [FloatingActionButton.onPressed] passthrough
   final void Function() count;
 
-  /// Increases the count (for the home screen)
   const CountFAB(this.config, this.count, {super.key});
 
   @override
@@ -496,7 +501,7 @@ EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
         'https://raw.githubusercontent.com/USER_PH/REPO_PH/refs/heads/main/APP_VERSION',
     gPlay:
         'https://play.google.com/store/apps/details?id=${config.domainName}.${config.appName}',
-    appStore: 'https://apps.apple.com/us/app/${config.appName.replaceAll('_', '-')}/APP_ID_PH',
+    appStore: 'https://apps.apple.com/us/app/${appDashName(config)}/APP_ID_PH',
     github: 'https://github.com/USER_PH/REPO_PH/releases',
   );
 """);
@@ -507,11 +512,10 @@ EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
 import '../screens/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SettingsButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [BuildContext] to call [GoRouter.goNamed] with
@@ -523,16 +527,14 @@ class SettingsButton extends StatelessWidget {
   @override
   Widget build(_) => EzMenuButton(
         config,
-        onPressed: () => parentContext.goNamed(settingsHubPath),
+        onPressed: () => parentContext.goNamed(settingsScreenName),
         icon: EzIcon(config, Icons.settings),
         label: config.ezL10n.gSettings,
       );
 }
 
 class OUICredits extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
   final String _label;
 
   /// [EzMenuButton] for opening Open UI's product page
@@ -563,36 +565,33 @@ import '../utils/export.dart';
 import './export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ${classCaseAppName}Scaffold extends StatelessWidget {
-  /// EzConfig Provider
-  final EzCP config;
-
-  /// [AppBar.title] passthrough (via [Text] widget)
+  final EzCP config;  
   final String title;
+  final Widget body;
+  final Widget? footer;
 
   /// Whether to include [SettingsButton] in the [MenuAnchor]
   final bool showSettings;
-
-  /// [Scaffold.body] passthrough
-  final Widget body;
 
   /// [FloatingActionButton]s to add on top of the [EzUpdaterFAB]
   /// BYO spacing widgets
   final List<Widget>? fabs;
 
-  /// For [EzCP.backFABs]
   final bool isHome;
 
   /// Standardized [Scaffold] for all of the Open UI example app's screens
   const ${classCaseAppName}Scaffold(this.config, {
     super.key,
     this.title = appName,
-    this.showSettings = true,
     required this.body,
+    this.footer,
+    this.showSettings = true,
     this.fabs,
     this.isHome = false,
+    this.settingsA11 = false,
   });
 
   @override
@@ -605,11 +604,12 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
     // Define custom widgets //
 
     late final Widget options = MenuAnchor(
-      builder: (_, MenuController controller, ___) => EzIconButton(config, 
+      builder: (_, MenuController controller, ___) => EzIconButton(
+        config, 
         onPressed: () => toggleMenu(controller),
         tooltip: config.ezL10n.gOptions,
         iconSize: config.titleStyle!.fontSize,
-        icon: Icon(Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
+        icon: EzIcon(config, Icons.more_vert, semanticLabel: config.ezL10n.gOptions),
       ),
       menuChildren: <Widget>[
         (showSettings) ? SettingsButton(config, parentContext: context) : OUICredits(config),
@@ -633,10 +633,11 @@ class ${classCaseAppName}Scaffold extends StatelessWidget {
           ),
         ),
         body: body,
+        footer: null,
         fabs: <Widget>[
           updater(config),
           if (fabs != null) ...fabs!,
-          ...config.backFABs(isHome),
+          ...config.backFABs(isHome: isHome),
         ],
       ),
     );
@@ -660,8 +661,8 @@ export '${config.appName}_scaffold.dart';
 import '../widgets/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key});
@@ -684,7 +685,7 @@ class ErrorScreen extends StatelessWidget {
               EzText(
                 config,
                 text: config.ezL10n.g404,
-                style: ezSubTitleStyle(config.styles),
+                style: config.subTitleStyle,
                 textAlign: TextAlign.center,
               ),
               config.separator,
@@ -694,7 +695,6 @@ class ErrorScreen extends StatelessWidget {
                 style: config.labelStyle,
                 textAlign: TextAlign.center,
               ),
-              EzFooter(config, spacing: 0, a11howPath: null),
             ]),
           ),
         ),
@@ -711,8 +711,8 @@ import '../utils/export.dart';
 import '../widgets/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -749,7 +749,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 Text(
                   l10n(config).hsCounterLabel,
-                  style: ezSubTitleStyle(config.styles),
+                  style: config.subTitleStyle,
                   textAlign: TextAlign.center,
                 ),
                 Text(
@@ -778,8 +778,8 @@ class _HomeScreenState extends State<HomeScreen> {
 import '../../widgets/export.dart';
 
 import 'package:open_ui/open_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SettingsHubScreen extends StatelessWidget {
   final int? target;
@@ -792,92 +792,95 @@ class SettingsHubScreen extends StatelessWidget {
     return Consumer<EzCP>(
       builder: (_, EzCP config, __) => ${classCaseAppName}Scaffold(
         config,
-        body: EzScreen(config,
-            child: EzSettingsHub(
-              config,
-              pages: <EzSettingsSection>[
-                // Global //
-
-                EzSettingsSection(
-                  position: 0,
-                  title: config.ezL10n.gGlobal,
-                  icon: EzIcon(
-                    config,
-                    EzCM.onMobile
-                        ? EzCM.platform == TargetPlatform.iOS
-                            ? Icons.phone_iphone
-                            : Icons.phone_android
-                        : Icons.computer,
-                    semanticLabel: config.ezL10n.gGlobal,
-                  ),
-                  subSettings: <EzSubSetting>[],
-                  fromStorage: () => EzSubSetting.blank,
-                  build: (_) => EzGlobalSettings(config),
-                ),
-
-                // Color //
-
-                EzSettingsSection(
-                  position: 1,
-                  title: config.ezL10n.gColor,
-                  icon: EzIcon(
-                    config,
-                    Icons.palette,
-                    semanticLabel: config.ezL10n.gColor,
-                  ),
-                  subSettings: <EzSubSetting>[
-                    EzSubSetting.qckColor,
-                    EzSubSetting.advColor,
-                  ],
-                  fromStorage: () => (secondary ?? EzCM.get(advancedColorsKey) == true)
-                      ? EzSubSetting.advColor
-                      : EzSubSetting.qckColor,
-                  build: (EzSubSetting subSec) => EzColorSettings(config, target: subSec),
-                ),
-
-                // Design //
-
-                EzSettingsSection(
-                  position: 2,
-                  title: config.ezL10n.gDesign,
-                  icon: EzIcon(
-                    config,
-                    Icons.design_services,
-                    semanticLabel: config.ezL10n.gDesign,
-                  ),
-                  subSettings: <EzSubSetting>[
-                    EzSubSetting.butDesign,
-                    EzSubSetting.pagDesign,
-                  ],
-                  fromStorage: () => (secondary ?? EzCM.get(pageTabKey) == true)
-                      ? EzSubSetting.pagDesign
-                      : EzSubSetting.butDesign,
-                  build: (EzSubSetting subSec) => EzDesignSettings(config, target: subSec),
-                ),
-
-                // Text //
-
-                EzSettingsSection(
-                  position: 3,
-                  title: config.ezL10n.gText,
-                  icon: EzIcon(
-                    config,
-                    Icons.text_format,
-                    semanticLabel: config.ezL10n.gText,
-                  ),
-                  subSettings: <EzSubSetting>[
-                    EzSubSetting.qckText,
-                    EzSubSetting.advText,
-                  ],
-                  fromStorage: () => (secondary ?? EzCM.get(advancedTextKey) == true)
-                      ? EzSubSetting.advText
-                      : EzSubSetting.qckText,
-                  build: (EzSubSetting subSec) => EzTextSettings(config, target: subSec),
-                ),
-              ],
-              target: target,
-            )),
         title: config.ezL10n.gSettings,
+        body: EzScreen(
+          config,
+          child: EzSettingsHub(
+            config,
+            pages: <EzSettingsSection>[
+              // Global //
+
+              EzSettingsSection(
+                position: 0,
+                title: config.ezL10n.gGlobal,
+                icon: EzIcon(
+                  config,
+                  EzCM.onMobile
+                      ? EzCM.platform == TargetPlatform.iOS
+                          ? Icons.phone_iphone
+                          : Icons.phone_android
+                      : Icons.computer,
+                  semanticLabel: config.ezL10n.gGlobal,
+                ),
+                subSettings: <EzSubSetting>[],
+                fromStorage: () => EzSubSetting.blank,
+                build: (_) => EzGlobalSettings(config),
+              ),
+
+              // Color //
+
+              EzSettingsSection(
+                position: 1,
+                title: config.ezL10n.gColor,
+                icon: EzIcon(
+                  config,
+                  Icons.palette,
+                  semanticLabel: config.ezL10n.gColor,
+                ),
+                subSettings: <EzSubSetting>[
+                  EzSubSetting.qckColor,
+                  EzSubSetting.advColor,
+                ],
+                fromStorage: () => (secondary ?? EzCM.get(advancedColorsKey) == true)
+                    ? EzSubSetting.advColor
+                    : EzSubSetting.qckColor,
+                build: (EzSubSetting subSec) => EzColorSettings(config, target: subSec),
+              ),
+
+              // Design //
+
+              EzSettingsSection(
+                position: 2,
+                title: config.ezL10n.gDesign,
+                icon: EzIcon(
+                  config,
+                  Icons.design_services,
+                  semanticLabel: config.ezL10n.gDesign,
+                ),
+                subSettings: <EzSubSetting>[
+                  EzSubSetting.butDesign,
+                  EzSubSetting.pagDesign,
+                ],
+                fromStorage: () => (secondary ?? EzCM.get(pageTabKey) == true)
+                    ? EzSubSetting.pagDesign
+                    : EzSubSetting.butDesign,
+                build: (EzSubSetting subSec) => EzDesignSettings(config, target: subSec),
+              ),
+
+              // Text //
+
+              EzSettingsSection(
+                position: 3,
+                title: config.ezL10n.gText,
+                icon: EzIcon(
+                  config,
+                  Icons.text_format,
+                  semanticLabel: config.ezL10n.gText,
+                ),
+                subSettings: <EzSubSetting>[
+                  EzSubSetting.qckText,
+                  EzSubSetting.advText,
+                ],
+                fromStorage: () => (secondary ?? EzCM.get(advancedTextKey) == true)
+                    ? EzSubSetting.advText
+                    : EzSubSetting.qckText,
+                build: (EzSubSetting subSec) => EzTextSettings(config, target: subSec),
+              ),
+            ],
+            target: target,
+          ),
+        ),
+        settingsA11: true,
         showSettings: false,
         fabs: <Widget>[
           // Rebuild (conditional)
@@ -907,8 +910,11 @@ export 'settings.dart';
 
 // Route names //
 
-/// settings-hub
-const String settingsHubPath = 'settings-hub';
+const String homePath = '/';
+const String homeName = '${appDashName(config)}-home';
+
+const String settingsScreenPath = 'settings';
+const String settingsScreenName = '${appDashName(config)}-settings';
 """);
   } catch (e) {
     onFailure(e.toString());

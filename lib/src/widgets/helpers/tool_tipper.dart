@@ -5,17 +5,12 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzToolTipper extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
-
-  /// [Tooltip.message] passthrough
   final String? message;
-
-  /// [Tooltip.richMessage] passthrough
   final InlineSpan? richMessage;
 
   /// Classic question mark tool tip
@@ -48,9 +43,9 @@ class EzToolTipper extends StatelessWidget {
             String message = this.message ?? '';
 
             if (richMessage != null) {
-              if (richMessage.runtimeType == EzInlineLink) {
+              if (richMessage is EzInlineLink) {
                 message = (richMessage as EzInlineLink).hint;
-              } else if (richMessage.runtimeType == TextSpan) {
+              } else if (richMessage is TextSpan) {
                 for (final InlineSpan child in (richMessage as TextSpan).children!) {
                   switch (child.runtimeType) {
                     case const (TextSpan):
@@ -90,11 +85,11 @@ class EzToolTipper extends StatelessWidget {
           excludeFromSemantics: true,
           message: message,
           richMessage: richMessage,
-          child: EzIcon(config, Icons.help_outline, color: config.colors.outline),
+          child: EzIcon(config, Icons.help_outline, fill: config.outlineFiller),
         ),
       ),
-      baseColor: config.colors.surface,
-      borderRadius: config.textRadius,
+      baseFill: config.surfaceFill,
+      borderRadius: config.buttonShape.textRadius,
     );
   }
 }

@@ -13,11 +13,11 @@ class LangJa extends Lang {
 
   @override
   String asToGen(Object app_name) {
-    return ' (デスクトップ版) を使用して $app_name のコードを生成します';
+    return ' のデスクトップ版で使用して、$app_name のコードを生成してください';
   }
 
   @override
-  String get asUseIt => '\n\n以下で使用してください: ';
+  String get asUseIt => '\n\n';
 
   @override
   String get csAdvanced => '詳細設定';
@@ -116,7 +116,7 @@ class LangJa extends Lang {
   String get csPubName => 'パブリッシャー名';
 
   @override
-  String get csPubPreview => 'Example Organization';
+  String get csPubPreview => 'サンプル組織';
 
   @override
   String get csPubTip => 'または、個人の名前';
@@ -150,7 +150,7 @@ class LangJa extends Lang {
   }
 
   @override
-  String get csTheApp => 'アプリの';
+  String get csTheApp => 'アプリ';
 
   @override
   String get csTheConfig => '設定';
@@ -162,7 +162,7 @@ class LangJa extends Lang {
   String get gsConsole => 'コンソール出力';
 
   @override
-  String get gsIsReadyIn => 'で準備完了';
+  String get gsIsReadyIn => 'の準備ができました:';
 
   @override
   String get gsNeedPermission =>

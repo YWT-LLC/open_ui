@@ -9,10 +9,19 @@ class OUILangAr extends OUILang {
   OUILangAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get csAddMore => 'أضف لونين أو أكثر';
+
+  @override
+  String get csBuildGradient => 'أضف إلى قائمة التدرجات';
+
+  @override
   String get csColorScheme => 'مخطط الألوان';
 
   @override
   String get csCurrVal => 'قيمة اللون الحالية:';
+
+  @override
+  String get csEndDir => 'اتجاه النهاية';
 
   @override
   String get csError => 'خطأ';
@@ -22,6 +31,9 @@ class OUILangAr extends OUILang {
 
   @override
   String get csFromImage => 'سيتم إنشاء مخطط ألوان من الصورة.';
+
+  @override
+  String get csGradientHint => 'استخدم المقبض للتحريك\nاضغط مطولاً للإزالة';
 
   @override
   String get csHighContrast => 'استخدام مخطط عالي التباين';
@@ -58,7 +70,7 @@ class OUILangAr extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return 'إعادة ضبط ألوان مظهر $themeType؟';
+    return 'إعادة ضبط ألوان $themeType؟';
   }
 
   @override
@@ -75,6 +87,9 @@ class OUILangAr extends OUILang {
 
   @override
   String get csShadow => 'ظل';
+
+  @override
+  String get csStartDir => 'اتجاه البداية';
 
   @override
   String get csSurface => 'خلفية\nالزر';
@@ -125,7 +140,7 @@ class OUILangAr extends OUILang {
   String get dsCurve => 'منحنى';
 
   @override
-  String get dsEase => 'سهولة';
+  String get dsEase => 'تخفيف';
 
   @override
   String get dsElastic => 'مرن';
@@ -176,7 +191,7 @@ class OUILangAr extends OUILang {
   String get dsMargin => 'هامش';
 
   @override
-  String get dsMilliseconds => 'أجزاء من الألف من الثانية';
+  String get dsMilliseconds => 'ملّي ثانية';
 
   @override
   String get dsNoWeb => 'تعديل الصور غير مدعوم على الويب';
@@ -210,7 +225,7 @@ class OUILangAr extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'إعادة ضبط تصميم زر مظهر $themeType؟';
+    return 'إعادة ضبط تصميم زر $themeType؟';
   }
 
   @override
@@ -218,7 +233,7 @@ class OUILangAr extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'إعادة ضبط تصميم صفحة مظهر $themeType؟';
+    return 'إعادة ضبط تصميم صفحة $themeType؟';
   }
 
   @override
@@ -234,7 +249,7 @@ class OUILangAr extends OUILang {
   String get dsRotateRight => 'تدوير لليمين';
 
   @override
-  String get dsRoundRectangle => 'مستطيل دائري';
+  String get dsRoundRectangle => 'مستطيل بزوايا مستديرة';
 
   @override
   String get dsShowBack => 'إظهار زر الرجوع';
@@ -313,6 +328,15 @@ class OUILangAr extends OUILang {
   String get gBothThemes => 'كلا المظهرين';
 
   @override
+  String get gBottomCenter => 'أسفل المنتصف';
+
+  @override
+  String get gBottomLeft => 'أسفل اليسار';
+
+  @override
+  String get gBottomRight => 'أسفل اليمين';
+
+  @override
   String get gCancel => 'إلغاء';
 
   @override
@@ -322,7 +346,16 @@ class OUILangAr extends OUILang {
   String get gCaptionsHint => 'اضغط باستمرار لاختيار الخطوط';
 
   @override
+  String get gCenter => 'المنتصف';
+
+  @override
+  String get gCenterLeft => 'وسط اليسار';
+
+  @override
   String get gCenterReset => 'اضغط باستمرار في المنتصف لإعادة الضبط';
+
+  @override
+  String get gCenterRight => 'وسط اليمين';
 
   @override
   String gClipboard(Object thing) {
@@ -357,10 +390,13 @@ class OUILangAr extends OUILang {
   String get gDesign => 'التصميم';
 
   @override
+  String get gDevInfo => 'معلومات المطور';
+
+  @override
   String get gDisabled => 'معطل';
 
   @override
-  String get gEditing => 'التحرير:';
+  String get gEditing => 'التحرير: ';
 
   @override
   String get gEditingHint => 'تفعيل للتعديل';
@@ -385,6 +421,9 @@ class OUILangAr extends OUILang {
 
   @override
   String get gGlobal => 'عام';
+
+  @override
+  String get gGradient => 'تدرج';
 
   @override
   String get gHardRefresh =>
@@ -416,7 +455,8 @@ class OUILangAr extends OUILang {
   String get gLightTheme => 'مظهر فاتح';
 
   @override
-  String get gLoadingAnim => 'جارٍ التحميل. شعار YWT يتحرك كساعة رملية دوارة.';
+  String get gLoadingAnim =>
+      'جارٍ التحميل. شعار الساعة الرملية الخاص بـ YWT يدور.';
 
   @override
   String get gLock => 'قفل';
@@ -437,7 +477,7 @@ class OUILangAr extends OUILang {
   String get gMute => 'كتم الصوت';
 
   @override
-  String get gNA => 'غير متاح';
+  String get gNA => 'غير منطبق';
 
   @override
   String get gNAHint => 'لا ينطبق';
@@ -461,7 +501,7 @@ class OUILangAr extends OUILang {
   String get gOpenUISourceHint => 'فتح صفحة GitHub لـ Open UI';
 
   @override
-  String get gOpenYWT => 'فتح رابط إلى YWT LLC';
+  String get gOpenYWT => 'فتح رابط إلى YWT';
 
   @override
   String get gOptional => 'اختياري';
@@ -533,6 +573,9 @@ class OUILangAr extends OUILang {
   String get gSettings => 'الإعدادات';
 
   @override
+  String get gSingle => 'مفرد';
+
+  @override
   String get gSkip => 'تخطي';
 
   @override
@@ -557,7 +600,16 @@ class OUILangAr extends OUILang {
   String get gText => 'النص';
 
   @override
-  String get gThe => 'ال';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'أعلى المنتصف';
+
+  @override
+  String get gTopLeft => 'أعلى اليسار';
+
+  @override
+  String get gTopRight => 'أعلى اليمين';
 
   @override
   String get gUnMute => 'إلغاء كتم الصوت';
@@ -584,7 +636,7 @@ class OUILangAr extends OUILang {
   String get gYes => 'نعم';
 
   @override
-  String get gYou => 'تم تعيينه بواسطتك';
+  String get gYou => 'عيّنته أنت';
 
   @override
   String ssApplied(Object config) {
@@ -738,7 +790,7 @@ class OUILangAr extends OUILang {
   String get tsHeadlineP1 => 'هل ';
 
   @override
-  String get tsHeadlineP2 => ' واضحة...';
+  String get tsHeadlineP2 => ' متميزة...';
 
   @override
   String get tsIconSize => 'حجم الرمز';
@@ -774,7 +826,7 @@ class OUILangAr extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return 'إعادة ضبط أنماط نصوص مظهر $themeType؟';
+    return 'إعادة ضبط أنماط نصوص $themeType؟';
   }
 
   @override
@@ -801,10 +853,19 @@ class OUILangArEg extends OUILangAr {
   OUILangArEg() : super('ar_EG');
 
   @override
+  String get csAddMore => 'أضف لونين أو أكثر';
+
+  @override
+  String get csBuildGradient => 'أضف إلى قائمة التدرجات';
+
+  @override
   String get csColorScheme => 'مخطط الألوان';
 
   @override
   String get csCurrVal => 'قيمة اللون الحالية:';
+
+  @override
+  String get csEndDir => 'اتجاه النهاية';
 
   @override
   String get csError => 'خطأ';
@@ -814,6 +875,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get csFromImage => 'سيتم إنشاء مخطط ألوان من الصورة.';
+
+  @override
+  String get csGradientHint => 'استخدم المقبض للتحريك\nاضغط مطولاً للإزالة';
 
   @override
   String get csHighContrast => 'استخدام مخطط عالي التباين';
@@ -850,7 +914,7 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String csReset(Object themeType) {
-    return 'إعادة ضبط ألوان مظهر $themeType؟';
+    return 'إعادة ضبط ألوان $themeType؟';
   }
 
   @override
@@ -867,6 +931,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get csShadow => 'ظل';
+
+  @override
+  String get csStartDir => 'اتجاه البداية';
 
   @override
   String get csSurface => 'خلفية\nالزر';
@@ -917,7 +984,7 @@ class OUILangArEg extends OUILangAr {
   String get dsCurve => 'منحنى';
 
   @override
-  String get dsEase => 'سهولة';
+  String get dsEase => 'تخفيف';
 
   @override
   String get dsElastic => 'مرن';
@@ -968,7 +1035,7 @@ class OUILangArEg extends OUILangAr {
   String get dsMargin => 'هامش';
 
   @override
-  String get dsMilliseconds => 'أجزاء من الألف من الثانية';
+  String get dsMilliseconds => 'ملّي ثانية';
 
   @override
   String get dsNoWeb => 'تعديل الصور غير مدعوم على الويب';
@@ -1002,7 +1069,7 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'إعادة ضبط تصميم زر مظهر $themeType؟';
+    return 'إعادة ضبط تصميم زر $themeType؟';
   }
 
   @override
@@ -1010,7 +1077,7 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'إعادة ضبط تصميم صفحة مظهر $themeType؟';
+    return 'إعادة ضبط تصميم صفحة $themeType؟';
   }
 
   @override
@@ -1026,7 +1093,7 @@ class OUILangArEg extends OUILangAr {
   String get dsRotateRight => 'تدوير لليمين';
 
   @override
-  String get dsRoundRectangle => 'مستطيل دائري';
+  String get dsRoundRectangle => 'مستطيل بزوايا مستديرة';
 
   @override
   String get dsShowBack => 'إظهار زر الرجوع';
@@ -1105,6 +1172,15 @@ class OUILangArEg extends OUILangAr {
   String get gBothThemes => 'كلا المظهرين';
 
   @override
+  String get gBottomCenter => 'أسفل المنتصف';
+
+  @override
+  String get gBottomLeft => 'أسفل اليسار';
+
+  @override
+  String get gBottomRight => 'أسفل اليمين';
+
+  @override
   String get gCancel => 'إلغاء';
 
   @override
@@ -1114,7 +1190,16 @@ class OUILangArEg extends OUILangAr {
   String get gCaptionsHint => 'اضغط باستمرار لاختيار الخطوط';
 
   @override
+  String get gCenter => 'المنتصف';
+
+  @override
+  String get gCenterLeft => 'وسط اليسار';
+
+  @override
   String get gCenterReset => 'اضغط باستمرار في المنتصف لإعادة الضبط';
+
+  @override
+  String get gCenterRight => 'وسط اليمين';
 
   @override
   String gClipboard(Object thing) {
@@ -1149,10 +1234,13 @@ class OUILangArEg extends OUILangAr {
   String get gDesign => 'التصميم';
 
   @override
+  String get gDevInfo => 'معلومات المطور';
+
+  @override
   String get gDisabled => 'معطل';
 
   @override
-  String get gEditing => 'التحرير:';
+  String get gEditing => 'التحرير: ';
 
   @override
   String get gEditingHint => 'تفعيل للتعديل';
@@ -1177,6 +1265,9 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gGlobal => 'عام';
+
+  @override
+  String get gGradient => 'تدرج';
 
   @override
   String get gHardRefresh =>
@@ -1208,7 +1299,8 @@ class OUILangArEg extends OUILangAr {
   String get gLightTheme => 'مظهر فاتح';
 
   @override
-  String get gLoadingAnim => 'جارٍ التحميل. شعار YWT يتحرك كساعة رملية دوارة.';
+  String get gLoadingAnim =>
+      'جارٍ التحميل. شعار الساعة الرملية الخاص بـ YWT يدور.';
 
   @override
   String get gLock => 'قفل';
@@ -1229,7 +1321,7 @@ class OUILangArEg extends OUILangAr {
   String get gMute => 'كتم الصوت';
 
   @override
-  String get gNA => 'غير متاح';
+  String get gNA => 'غير منطبق';
 
   @override
   String get gNAHint => 'لا ينطبق';
@@ -1253,7 +1345,7 @@ class OUILangArEg extends OUILangAr {
   String get gOpenUISourceHint => 'فتح صفحة GitHub لـ Open UI';
 
   @override
-  String get gOpenYWT => 'فتح رابط إلى YWT LLC';
+  String get gOpenYWT => 'فتح رابط إلى YWT';
 
   @override
   String get gOptional => 'اختياري';
@@ -1325,6 +1417,9 @@ class OUILangArEg extends OUILangAr {
   String get gSettings => 'الإعدادات';
 
   @override
+  String get gSingle => 'مفرد';
+
+  @override
   String get gSkip => 'تخطي';
 
   @override
@@ -1349,7 +1444,16 @@ class OUILangArEg extends OUILangAr {
   String get gText => 'النص';
 
   @override
-  String get gThe => 'ال';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'أعلى المنتصف';
+
+  @override
+  String get gTopLeft => 'أعلى اليسار';
+
+  @override
+  String get gTopRight => 'أعلى اليمين';
 
   @override
   String get gUnMute => 'إلغاء كتم الصوت';
@@ -1376,7 +1480,7 @@ class OUILangArEg extends OUILangAr {
   String get gYes => 'نعم';
 
   @override
-  String get gYou => 'تم تعيينه بواسطتك';
+  String get gYou => 'عيّنته أنت';
 
   @override
   String ssApplied(Object config) {
@@ -1530,7 +1634,7 @@ class OUILangArEg extends OUILangAr {
   String get tsHeadlineP1 => 'هل ';
 
   @override
-  String get tsHeadlineP2 => ' واضحة...';
+  String get tsHeadlineP2 => ' متميزة...';
 
   @override
   String get tsIconSize => 'حجم الرمز';
@@ -1566,7 +1670,7 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String tsReset(Object themeType) {
-    return 'إعادة ضبط أنماط نصوص مظهر $themeType؟';
+    return 'إعادة ضبط أنماط نصوص $themeType؟';
   }
 
   @override

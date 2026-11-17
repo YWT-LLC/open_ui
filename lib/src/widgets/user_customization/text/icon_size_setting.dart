@@ -3,11 +3,12 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'package:flutter/material.dart';
-import 'package:open_ui/open_ui.dart';
+import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
+
+import 'package:material_ui/material_ui.dart';
 
 class EzIconSizeSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// If you want to track the iconSize changes externally
@@ -16,15 +17,14 @@ class EzIconSizeSetting extends StatefulWidget {
   /// Set to false when using this outside of [EzTextSettings]
   final bool fullCheck;
 
-  /// [EzTextBackground.backgroundColor] passthrough
-  final Color? backgroundColor;
+  final EzSwitchColor? backgroundFill;
 
   const EzIconSizeSetting(
     this.config, {
     required super.key,
     required this.onChanged,
     this.fullCheck = true,
-    this.backgroundColor,
+    this.backgroundFill,
   });
 
   @override
@@ -48,8 +48,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                   await EzCM.remove(lightIconSizeKey);
                 }
 
-                setState(() => iconSize = defaultIconSize);
-                widget.onChanged?.call(defaultIconSize);
+                setState(() => iconSize = ywt.defaultIconSize);
+                widget.onChanged?.call(ywt.defaultIconSize);
 
                 if (widget.fullCheck && context.mounted) {
                   widget.config.pingRebuild(
@@ -64,7 +64,7 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                 widget.config,
                 text: widget.config.ezL10n.tsIconSize,
                 style: widget.config.bodyStyle,
-                backgroundColor: widget.backgroundColor,
+                replaceFill: widget.backgroundFill,
               ),
             ),
           ),
@@ -75,11 +75,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
               reverseHands: false,
               children: <Widget>[
                 // Minus
-                (iconSize > minIconSize)
+                (iconSize > ywt.minIconSize)
                     ? EzIconButton(
                         widget.config,
                         onPressed: () async {
-                          iconSize -= iconDelta;
+                          iconSize -= ywt.iconDelta;
                           if (EzCM.updateBoth || widget.config.isDark) {
                             await EzCM.setDouble(darkIconSizeKey, iconSize);
                           }
@@ -102,14 +102,14 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         tooltip:
                             '${widget.config.ezL10n.gDecrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
                         iconSize: iconSize,
-                        icon: const Icon(Icons.remove),
+                        icon: EzIcon(widget.config, Icons.remove),
                       )
                     : EzIconButton(
                         widget.config,
                         enabled: false,
                         tooltip: widget.config.ezL10n.gMinimum,
                         iconSize: iconSize,
-                        icon: Icon(Icons.remove, color: widget.config.colors.outline),
+                        icon: EzIcon(widget.config, Icons.remove),
                       ),
                 widget.config.rowMargin,
 
@@ -123,8 +123,8 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       await EzCM.remove(lightIconSizeKey);
                     }
 
-                    setState(() => iconSize = defaultIconSize);
-                    widget.onChanged?.call(defaultIconSize);
+                    setState(() => iconSize = ywt.defaultIconSize);
+                    widget.onChanged?.call(ywt.defaultIconSize);
 
                     if (widget.fullCheck && context.mounted) {
                       widget.config.pingRebuild(
@@ -135,17 +135,20 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                       widget.config.pingRebuild(iconSize != widget.config.iconSize);
                     }
                   },
-                  child:
-                      Icon(Icons.sync_alt, size: iconSize, color: widget.config.colors.onSurface),
+                  child: Icon(
+                    Icons.sync_alt,
+                    size: iconSize,
+                    color: widget.config.onSurface,
+                  ),
                 ),
                 widget.config.rowMargin,
 
                 // Plus
-                (iconSize < maxIconSize)
+                (iconSize < ywt.maxIconSize)
                     ? EzIconButton(
                         widget.config,
                         onPressed: () async {
-                          iconSize += iconDelta;
+                          iconSize += ywt.iconDelta;
                           if (EzCM.updateBoth || widget.config.isDark) {
                             await EzCM.setDouble(darkIconSizeKey, iconSize);
                           }
@@ -168,22 +171,22 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         tooltip:
                             '${widget.config.ezL10n.gIncrease} ${widget.config.ezL10n.tsIconSize.toLowerCase()}',
                         iconSize: iconSize,
-                        icon: const Icon(Icons.add),
+                        icon: EzIcon(widget.config, Icons.add),
                       )
                     : EzIconButton(
                         widget.config,
                         enabled: false,
                         tooltip: widget.config.ezL10n.gMaximum,
                         iconSize: iconSize,
-                        icon: Icon(Icons.add, color: widget.config.colors.outline),
+                        icon: EzIcon(widget.config, Icons.add),
                       ),
               ],
             ),
             shape: widget.config.buttonShape,
             borderRadius: widget.config.buttonShape.radius,
             padding: EdgeInsets.zero,
-            baseColor: widget.config.colors.surface,
-            backgroundColor: widget.backgroundColor,
+            baseFill: widget.config.surfaceFill,
+            replaceFill: widget.backgroundFill,
           ),
         ],
       );

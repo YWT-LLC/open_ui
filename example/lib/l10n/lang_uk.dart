@@ -57,7 +57,7 @@ class LangUk extends Lang {
 
   @override
   String csGenApp(Object app_name) {
-    return 'Коли ви генеруєте $app_name, поточний ';
+    return 'Коли ви генеруєте $app_name, поточні ';
   }
 
   @override
@@ -120,7 +120,7 @@ class LangUk extends Lang {
   String get csPubName => 'Назва видавця';
 
   @override
-  String get csPubPreview => 'Приклад Організації';
+  String get csPubPreview => 'Приклад організації';
 
   @override
   String get csPubTip => 'Або ім\'я особи';
@@ -151,7 +151,7 @@ class LangUk extends Lang {
 
   @override
   String csSetColors(Object app_name) {
-    return ' (окрім зображень) стане конфігурацією за замовчуванням для $app_name.\n\nПотрібно встановити власну колірну схему.. Якщо вам потрібна допомога у її створенні, спробуйте почати ';
+    return ' (окрім зображень) стануть конфігурацією за замовчуванням для $app_name.\n\nПотрібно встановити власну колірну схему. Якщо вам потрібна допомога у її створенні, спробуйте почати ';
   }
 
   @override
@@ -167,7 +167,7 @@ class LangUk extends Lang {
   String get gsConsole => 'Вивід консолі';
 
   @override
-  String get gsIsReadyIn => 'готово за';
+  String get gsIsReadyIn => 'готово в';
 
   @override
   String get gsNeedPermission =>

@@ -9,10 +9,19 @@ class OUILangHi extends OUILang {
   OUILangHi([String locale = 'hi']) : super(locale);
 
   @override
+  String get csAddMore => '2 या अधिक रंग जोड़ें';
+
+  @override
+  String get csBuildGradient => 'ग्रेडिएंट सूची में जोड़ें';
+
+  @override
   String get csColorScheme => 'रंग योजना (color scheme)';
 
   @override
   String get csCurrVal => 'वर्तमान रंग का मान:';
+
+  @override
+  String get csEndDir => 'अंत दिशा';
 
   @override
   String get csError => 'त्रुटि';
@@ -23,6 +32,10 @@ class OUILangHi extends OUILang {
   @override
   String get csFromImage =>
       'छवि से एक रंग योजना (color scheme) उत्पन्न की जाएगी।';
+
+  @override
+  String get csGradientHint =>
+      'खिसकाने के लिए हैंडल का उपयोग करें\nनिकालने के लिए देर तक दबाएँ';
 
   @override
   String get csHighContrast => 'उच्च कंट्रास्ट स्कीम का उपयोग करें';
@@ -77,6 +90,9 @@ class OUILangHi extends OUILang {
 
   @override
   String get csShadow => 'छाया';
+
+  @override
+  String get csStartDir => 'प्रारंभ दिशा';
 
   @override
   String get csSurface => 'बटन\nपृष्ठभूमि';
@@ -315,6 +331,15 @@ class OUILangHi extends OUILang {
   String get gBothThemes => 'दोनों थीम';
 
   @override
+  String get gBottomCenter => 'नीचे बीच में';
+
+  @override
+  String get gBottomLeft => 'नीचे बाएँ';
+
+  @override
+  String get gBottomRight => 'नीचे दाएँ';
+
+  @override
   String get gCancel => 'रद्द करें';
 
   @override
@@ -324,7 +349,16 @@ class OUILangHi extends OUILang {
   String get gCaptionsHint => 'फ़ॉन्ट के लिए दबाकर रखें';
 
   @override
+  String get gCenter => 'बीच में';
+
+  @override
+  String get gCenterLeft => 'बीच में बाएँ';
+
+  @override
   String get gCenterReset => 'रीसेट करने के लिए बीच में दबाकर रखें';
+
+  @override
+  String get gCenterRight => 'बीच में दाएँ';
 
   @override
   String gClipboard(Object thing) {
@@ -359,6 +393,9 @@ class OUILangHi extends OUILang {
   String get gDesign => 'डिज़ाइन';
 
   @override
+  String get gDevInfo => 'डेवलपर जानकारी';
+
+  @override
   String get gDisabled => 'अक्षम';
 
   @override
@@ -387,6 +424,9 @@ class OUILangHi extends OUILang {
 
   @override
   String get gGlobal => 'ग्लोबल';
+
+  @override
+  String get gGradient => 'ग्रेडिएंट';
 
   @override
   String get gHardRefresh =>
@@ -419,8 +459,7 @@ class OUILangHi extends OUILang {
   String get gLightTheme => 'लाइट थीम';
 
   @override
-  String get gLoadingAnim =>
-      'लोड हो रहा है। एम्पैथेटिक लोगो एक घूमते हुए घंटे के चश्मे (hourglass) के रूप में एनिमेटेड है।';
+  String get gLoadingAnim => 'लोड हो रहा है। YWT का रेतघड़ी लोगो घूम रहा है।';
 
   @override
   String get gLock => 'लॉक';
@@ -465,7 +504,7 @@ class OUILangHi extends OUILang {
   String get gOpenUISourceHint => 'Open UI के लिए GitHub पेज खोलें';
 
   @override
-  String get gOpenYWT => 'YWT LLC का लिंक खोलें';
+  String get gOpenYWT => 'YWT का लिंक खोलें';
 
   @override
   String get gOptional => 'वैकल्पिक';
@@ -537,6 +576,9 @@ class OUILangHi extends OUILang {
   String get gSettings => 'सेटिंग्स';
 
   @override
+  String get gSingle => 'एकल';
+
+  @override
   String get gSkip => 'छोड़ें';
 
   @override
@@ -561,7 +603,16 @@ class OUILangHi extends OUILang {
   String get gText => 'टेक्स्ट';
 
   @override
-  String get gThe => 'द';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'ऊपर बीच में';
+
+  @override
+  String get gTopLeft => 'ऊपर बाएँ';
+
+  @override
+  String get gTopRight => 'ऊपर दाएँ';
 
   @override
   String get gUnMute => 'अन-म्यूट करें';
@@ -574,7 +625,7 @@ class OUILangHi extends OUILang {
 
   @override
   String get gUndoWarn2 =>
-      ' अपनी वर्तमान कॉन्फ़िग को मैन्युअल रूप से पुनर्स्थापित करने के लिए।';
+      ' अपनी वर्तमान कॉन्फ़िग, ताकि बाद में उसे मैन्युअल रूप से पुनर्स्थापित कर सकें।';
 
   @override
   String get gUpdates => 'अपडेट उपलब्ध हैं';
@@ -744,7 +795,7 @@ class OUILangHi extends OUILang {
   String get tsHeadlineP1 => 'क्या ';
 
   @override
-  String get tsHeadlineP2 => ' अलग हैं...';
+  String get tsHeadlineP2 => ' अलग दिखती हैं...';
 
   @override
   String get tsIconSize => 'आइकन का आकार';
@@ -790,10 +841,10 @@ class OUILangHi extends OUILang {
   String get tsTitle => 'शीर्षक';
 
   @override
-  String get tsTitleLink => 'अलग?';
+  String get tsTitleLink => 'शीर्षकों से?';
 
   @override
-  String get tsTitleP1 => 'शीर्षकों से ';
+  String get tsTitleP1 => '';
 
   @override
   String get tsUnderline => 'अंडरलाइन';

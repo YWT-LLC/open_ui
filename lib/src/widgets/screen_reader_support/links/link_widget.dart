@@ -5,11 +5,10 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzLinkWidget extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Destination function
@@ -21,18 +20,14 @@ class EzLinkWidget extends StatelessWidget {
   final Uri? url;
 
   /// [Semantics] label; What is it?
-  final String label;
+  final String? label;
 
-  /// Is this an image?
   final bool isImage;
 
   /// [Semantics] hint; what does it do?
   final String hint;
 
-  /// [Tooltip.message] passthrough
   final String tooltip;
-
-  /// [InkWell.child] passthrough
   final Widget child;
 
   /// [InkWell] wrapper that either opens an internal link via [onTap]
@@ -43,7 +38,7 @@ class EzLinkWidget extends StatelessWidget {
     this.onTap,
     this.url,
     required this.tooltip,
-    required this.label,
+    this.label,
     this.isImage = false,
     required this.hint,
     required this.child,
@@ -64,14 +59,14 @@ class EzLinkWidget extends StatelessWidget {
           child: ExcludeSemantics(
             child: onTap != null
                 ? InkWell(
-                    focusColor: config.colors.primary.withValues(alpha: focusOpacity),
+                    focusColor: config.primaryFill.asColor.withValues(alpha: focusOpacity),
                     onTap: onTap,
                     child: child,
                   )
                 : Link(
                     uri: url,
                     builder: (_, FollowLink? followLink) => InkWell(
-                      focusColor: config.colors.primary.withValues(alpha: focusOpacity),
+                      focusColor: config.primaryFill.asColor.withValues(alpha: focusOpacity),
                       onTap: followLink,
                       child: child,
                     ),

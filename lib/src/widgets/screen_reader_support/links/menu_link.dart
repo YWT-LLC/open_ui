@@ -5,30 +5,24 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EzMenuLink extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [Link.uri] to open
   final Uri uri;
 
-  /// [EzMenuButton.semanticsLabel] passthrough
   final String? semanticsLabel;
 
-  /// [EzMenuButton.icon] passthrough
   final Widget? icon;
 
-  /// [EzMenuButton.label] passthrough
   final String? label;
 
-  /// [EzMenuButton.textStyle] passthrough
   final TextStyle? textStyle;
 
-  /// [EzMenuButton.textAlign] passthrough
   final TextAlign? textAlign;
 
   /// [EzMenuButton] wrapped in a [Link]

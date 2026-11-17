@@ -4,12 +4,12 @@
  */
 
 import '../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PageDesign extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Optional settings to add to the start of the sub-page
@@ -75,14 +75,14 @@ class PageDesign extends StatelessWidget {
                       config,
                       pathKey: darkBackgroundImageKey,
                       fitKey: darkBackgroundFitKey,
-                      sourceKey: darkBackgroundSourceKey,
+                      creditsKey: darkBackgroundSourceKey,
                       label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                     )
                   : EzImageSetting(
                       config,
                       pathKey: lightBackgroundImageKey,
                       fitKey: lightBackgroundFitKey,
-                      sourceKey: lightBackgroundSourceKey,
+                      creditsKey: lightBackgroundSourceKey,
                       label: config.ezL10n.dsBackgroundImg.replaceAll(' ', '\n'),
                     ),
             ),
@@ -173,8 +173,8 @@ class _AnimDurSetting extends StatelessWidget {
                     constraints: BoxConstraints(maxWidth: ScreenSize.small.size),
                     child: Slider(
                       value: animDuration,
-                      min: minAnimationDuration.toDouble(),
-                      max: maxAnimationDuration.toDouble(),
+                      min: ywt.minAnimationDuration.toDouble(),
+                      max: ywt.maxAnimationDuration.toDouble(),
                       divisions: 20,
                       label: animDuration.toStringAsFixed(0),
                       onChanged: (double value) => setModal(() => animDuration = value),
@@ -195,7 +195,8 @@ class _AnimDurSetting extends StatelessWidget {
                     label: config.ezL10n.dsCurve,
                     widthEntry: EzAnimationCurve.elastic.name(config.ezL10n),
                     dropdownMenuEntries: EzAnimationCurve.values
-                        .map((EzAnimationCurve type) => DropdownMenuEntry<EzAnimationCurve>(
+                        .map((EzAnimationCurve type) => EzDropMenuEntry<EzAnimationCurve>(
+                              config,
                               value: type,
                               label: type.name(config.ezL10n),
                             ))
@@ -328,7 +329,11 @@ class _AnimationPreviewState extends State<_AnimationPreview> with SingleTickerP
               tooltip: widget.config.ezL10n.gPlay,
               onPressed: () =>
                   _controller.isAnimating ? _controller.stop() : _controller.forward(from: 0.0),
-              icon: Icon(Icons.play_arrow, semanticLabel: widget.config.ezL10n.dsPlay),
+              icon: EzIcon(
+                widget.config,
+                Icons.play_arrow,
+                semanticLabel: widget.config.ezL10n.dsPlay,
+              ),
             ),
           ),
         ),
@@ -395,7 +400,7 @@ class _PageTransitionSetting extends StatelessWidget {
                                     textStyle: config.labelStyle,
                                     textAlign: TextAlign.center,
                                     style: TextButton.styleFrom(
-                                      backgroundColor: config.colors.surfaceContainer,
+                                      backgroundColor: config.surfaceContainerFill.asColor,
                                       padding: EdgeInsets.all(config.marginVal),
                                     ),
                                     onPressed: () async {

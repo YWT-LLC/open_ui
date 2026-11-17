@@ -9,10 +9,19 @@ class OUILangUk extends OUILang {
   OUILangUk([String locale = 'uk']) : super(locale);
 
   @override
+  String get csAddMore => 'Додайте 2 або більше кольорів';
+
+  @override
+  String get csBuildGradient => 'Додати до списку градієнтів';
+
+  @override
   String get csColorScheme => 'колірна схема';
 
   @override
   String get csCurrVal => 'Поточне значення кольору:';
+
+  @override
+  String get csEndDir => 'Кінцевий напрямок';
 
   @override
   String get csError => 'Помилка';
@@ -22,6 +31,10 @@ class OUILangUk extends OUILang {
 
   @override
   String get csFromImage => 'Колірна схема буде згенерована із зображення.';
+
+  @override
+  String get csGradientHint =>
+      'Переміщуйте за допомогою маркера\nНатисніть і утримуйте, щоб видалити';
 
   @override
   String get csHighContrast => 'Використовувати схему з високим контрастом';
@@ -59,7 +72,7 @@ class OUILangUk extends OUILang {
 
   @override
   String csReset(Object themeType) {
-    return 'Скинути $themeType кольори?';
+    return 'Скинути кольори ($themeType)?';
   }
 
   @override
@@ -76,6 +89,9 @@ class OUILangUk extends OUILang {
 
   @override
   String get csShadow => 'Тінь';
+
+  @override
+  String get csStartDir => 'Початковий напрямок';
 
   @override
   String get csSurface => 'Фон\nкнопки';
@@ -168,7 +184,7 @@ class OUILangUk extends OUILang {
   String get dsJewel => 'Дорогоцінний камінь';
 
   @override
-  String get dsLeftGram => 'Ліва паралель';
+  String get dsLeftGram => 'Лівий паралелограм';
 
   @override
   String get dsLinear => 'Лінійна';
@@ -211,7 +227,7 @@ class OUILangUk extends OUILang {
 
   @override
   String dsResetButton(Object themeType) {
-    return 'Скинути дизайн $themeType кнопки?';
+    return 'Скинути дизайн кнопок ($themeType)?';
   }
 
   @override
@@ -219,11 +235,11 @@ class OUILangUk extends OUILang {
 
   @override
   String dsResetPage(Object themeType) {
-    return 'Скинути дизайн $themeType сторінки?';
+    return 'Скинути дизайн сторінки ($themeType)?';
   }
 
   @override
-  String get dsRightGram => 'Права паралель';
+  String get dsRightGram => 'Правий паралелограм';
 
   @override
   String get dsRotate => 'Обертання';
@@ -315,6 +331,15 @@ class OUILangUk extends OUILang {
   String get gBothThemes => 'Обидві теми';
 
   @override
+  String get gBottomCenter => 'Унизу по центру';
+
+  @override
+  String get gBottomLeft => 'Унизу ліворуч';
+
+  @override
+  String get gBottomRight => 'Унизу праворуч';
+
+  @override
   String get gCancel => 'Скасувати';
 
   @override
@@ -324,7 +349,16 @@ class OUILangUk extends OUILang {
   String get gCaptionsHint => 'Утримуйте для вибору шрифтів';
 
   @override
+  String get gCenter => 'По центру';
+
+  @override
+  String get gCenterLeft => 'По центру ліворуч';
+
+  @override
   String get gCenterReset => 'Утримуйте центр для скидання';
+
+  @override
+  String get gCenterRight => 'По центру праворуч';
 
   @override
   String gClipboard(Object thing) {
@@ -359,6 +393,9 @@ class OUILangUk extends OUILang {
   String get gDesign => 'Дизайн';
 
   @override
+  String get gDevInfo => 'Інформація про розробника';
+
+  @override
   String get gDisabled => 'Вимкнено';
 
   @override
@@ -387,6 +424,9 @@ class OUILangUk extends OUILang {
 
   @override
   String get gGlobal => 'Глобальні';
+
+  @override
+  String get gGradient => 'Градієнт';
 
   @override
   String get gHardRefresh =>
@@ -420,7 +460,7 @@ class OUILangUk extends OUILang {
 
   @override
   String get gLoadingAnim =>
-      'Завантаження. Логотип YWT анімований як пісочний годинник, що обертається.';
+      'Завантаження. Логотип YWT у вигляді пісочного годинника обертається.';
 
   @override
   String get gLock => 'Заблокувати';
@@ -465,7 +505,7 @@ class OUILangUk extends OUILang {
   String get gOpenUISourceHint => 'Відкрити сторінку GitHub для Open UI';
 
   @override
-  String get gOpenYWT => 'Відкрити посилання на YWT LLC';
+  String get gOpenYWT => 'Відкрити посилання на YWT';
 
   @override
   String get gOptional => 'необов\'язково';
@@ -537,6 +577,9 @@ class OUILangUk extends OUILang {
   String get gSettings => 'Налаштування';
 
   @override
+  String get gSingle => 'Один';
+
+  @override
   String get gSkip => 'Пропустити';
 
   @override
@@ -561,7 +604,16 @@ class OUILangUk extends OUILang {
   String get gText => 'Текст';
 
   @override
-  String get gThe => 'Цей';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => 'Угорі по центру';
+
+  @override
+  String get gTopLeft => 'Угорі ліворуч';
+
+  @override
+  String get gTopRight => 'Угорі праворуч';
 
   @override
   String get gUnMute => 'Увімкнути звук';
@@ -659,7 +711,7 @@ class OUILangUk extends OUILang {
 
   @override
   String ssRandomize(Object themeType) {
-    return 'Рандомізувати $themeType тему?';
+    return 'Згенерувати випадкову тему ($themeType)?';
   }
 
   @override
@@ -780,7 +832,7 @@ class OUILangUk extends OUILang {
 
   @override
   String tsReset(Object themeType) {
-    return 'Скинути стилі $themeType тексту?';
+    return 'Скинути стилі тексту ($themeType)?';
   }
 
   @override

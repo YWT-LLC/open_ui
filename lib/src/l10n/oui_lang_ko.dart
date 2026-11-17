@@ -9,10 +9,19 @@ class OUILangKo extends OUILang {
   OUILangKo([String locale = 'ko']) : super(locale);
 
   @override
+  String get csAddMore => '2개 이상의 색상을 추가하세요';
+
+  @override
+  String get csBuildGradient => '그라데이션 목록에 추가';
+
+  @override
   String get csColorScheme => '색상 구성표';
 
   @override
   String get csCurrVal => '현재 색상 값:';
+
+  @override
+  String get csEndDir => '끝 방향';
 
   @override
   String get csError => '오류';
@@ -22,6 +31,9 @@ class OUILangKo extends OUILang {
 
   @override
   String get csFromImage => '이미지에서 색상 구성표가 생성됩니다.';
+
+  @override
+  String get csGradientHint => '핸들을 사용하여 이동\n길게 눌러 삭제';
 
   @override
   String get csHighContrast => '고대비 구성표 사용';
@@ -75,6 +87,9 @@ class OUILangKo extends OUILang {
 
   @override
   String get csShadow => '그림자';
+
+  @override
+  String get csStartDir => '시작 방향';
 
   @override
   String get csSurface => '버튼\n배경';
@@ -313,6 +328,15 @@ class OUILangKo extends OUILang {
   String get gBothThemes => '두 테마 모두';
 
   @override
+  String get gBottomCenter => '아래쪽 가운데';
+
+  @override
+  String get gBottomLeft => '왼쪽 아래';
+
+  @override
+  String get gBottomRight => '오른쪽 아래';
+
+  @override
   String get gCancel => '취소';
 
   @override
@@ -322,7 +346,16 @@ class OUILangKo extends OUILang {
   String get gCaptionsHint => '글꼴을 보려면 길게 누르세요';
 
   @override
+  String get gCenter => '가운데';
+
+  @override
+  String get gCenterLeft => '왼쪽 가운데';
+
+  @override
   String get gCenterReset => '가운데를 길게 누르면 초기화됩니다';
+
+  @override
+  String get gCenterRight => '오른쪽 가운데';
 
   @override
   String gClipboard(Object thing) {
@@ -357,6 +390,9 @@ class OUILangKo extends OUILang {
   String get gDesign => '디자인';
 
   @override
+  String get gDevInfo => '개발자 정보';
+
+  @override
   String get gDisabled => '비활성화됨';
 
   @override
@@ -387,6 +423,9 @@ class OUILangKo extends OUILang {
   String get gGlobal => '글로벌';
 
   @override
+  String get gGradient => '그라데이션';
+
+  @override
   String get gHardRefresh => '페이지를 강력 새로고침하세요...\nCtrl + Shift + R';
 
   @override
@@ -414,7 +453,7 @@ class OUILangKo extends OUILang {
   String get gLightTheme => '라이트 테마';
 
   @override
-  String get gLoadingAnim => '로딩 중. YWT 로고가 회전하는 모래시계처럼 애니메이션 처리됩니다.';
+  String get gLoadingAnim => '로딩 중. YWT 모래시계 로고가 회전하고 있습니다.';
 
   @override
   String get gLock => '잠금';
@@ -456,10 +495,10 @@ class OUILangKo extends OUILang {
   String get gOpenUIReleases => 'Open UI의 릴리스 페이지 열기';
 
   @override
-  String get gOpenUISourceHint => 'OpenUI용 GitHub 페이지 열기';
+  String get gOpenUISourceHint => 'Open UI의 GitHub 페이지 열기';
 
   @override
-  String get gOpenYWT => 'YWT LLC 링크 열기';
+  String get gOpenYWT => 'YWT 링크 열기';
 
   @override
   String get gOptional => '선택 사항';
@@ -531,6 +570,9 @@ class OUILangKo extends OUILang {
   String get gSettings => '설정';
 
   @override
+  String get gSingle => '단일';
+
+  @override
   String get gSkip => '건너뛰기';
 
   @override
@@ -555,7 +597,16 @@ class OUILangKo extends OUILang {
   String get gText => '텍스트';
 
   @override
-  String get gThe => '그';
+  String get gThe => '';
+
+  @override
+  String get gTopCenter => '위쪽 가운데';
+
+  @override
+  String get gTopLeft => '왼쪽 위';
+
+  @override
+  String get gTopRight => '오른쪽 위';
 
   @override
   String get gUnMute => '음소거 해제';
@@ -567,7 +618,7 @@ class OUILangKo extends OUILang {
   String get gUndoWarn1 => '자동으로 실행 취소할 수 없습니다.\n';
 
   @override
-  String get gUndoWarn2 => ' 하여 수동으로 복원할 수 있도록 현재 구성을 저장하세요.';
+  String get gUndoWarn2 => ': 현재 구성을 저장해 두면 수동으로 복원할 수 있습니다.';
 
   @override
   String get gUpdates => '업데이트 가능';
@@ -697,13 +748,13 @@ class OUILangKo extends OUILang {
   String get tsBody => '본문';
 
   @override
-  String get tsBodyLink => '은 어떤가요?';
+  String get tsBodyLink => '본문';
 
   @override
-  String get tsBodyP1 => '본문';
+  String get tsBodyP1 => '';
 
   @override
-  String get tsBodyP2 => ' 읽기 편한가요?';
+  String get tsBodyP2 => '은 어떤가요? 읽기 편한가요?';
 
   @override
   String get tsBold => '굵게';
@@ -730,13 +781,13 @@ class OUILangKo extends OUILang {
   String get tsHeadline => '헤드라인';
 
   @override
-  String get tsHeadlineLink => '제목과';
+  String get tsHeadlineLink => '헤드라인';
 
   @override
-  String get tsHeadlineP1 => '헤드라인이 ';
+  String get tsHeadlineP1 => '';
 
   @override
-  String get tsHeadlineP2 => ' 명확히 구분되나요...';
+  String get tsHeadlineP2 => '이 뚜렷이 구분되나요...';
 
   @override
   String get tsIconSize => '아이콘 크기';
@@ -791,5 +842,5 @@ class OUILangKo extends OUILang {
   String get tsUnderline => '밑줄';
 
   @override
-  String get tsWordSpacing => '어간';
+  String get tsWordSpacing => '단어 간격';
 }

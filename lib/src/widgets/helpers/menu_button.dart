@@ -5,10 +5,9 @@
 
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzMenuButton extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// When false, disables [onPressed] and switches the color theme
@@ -20,19 +19,13 @@ class EzMenuButton extends StatelessWidget {
   /// [MenuItemButton.child] will be a [Text] Widget with [label]
   final String? label;
 
-  /// [MenuItemButton.onPressed] passthrough
   final void Function()? onPressed;
-
-  /// [MenuItemButton.semanticsLabel] passthrough
   final String? semanticsLabel;
-
-  /// [Text] passthrough
   final TextAlign? textAlign;
 
-  /// Defaults to [TextTheme.bodyLarge]
+  /// Defaults to [EzCP.bodyStyle]
   final TextStyle? textStyle;
 
-  /// [ElevatedButton.icon] wrapper that responds to [isLeftyKey]
   const EzMenuButton(
     this.config, {
     super.key,
@@ -47,7 +40,22 @@ class EzMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MenuItemButton(
-        style: enabled ? null : MenuItemButton.styleFrom(foregroundColor: config.colors.outline),
+        style: enabled
+            ? MenuItemButton.styleFrom(
+                backgroundColor: config.surfaceFill.color,
+              ).copyWith(
+                backgroundBuilder: config.boxLayer(
+                  borderRadius: config.buttonShape.textRadius,
+                ),
+              )
+            : MenuItemButton.styleFrom(
+                backgroundColor: config.surfaceFill.color,
+                foregroundColor: config.outline,
+              ).copyWith(
+                backgroundBuilder: config.boxLayer(
+                  borderRadius: config.buttonShape.textRadius,
+                ),
+              ),
         onPressed: enabled ? onPressed : doNothing,
         leadingIcon: label == null ? null : (config.isLefty ? icon : null),
         trailingIcon: label == null ? null : (config.isLefty ? null : icon),

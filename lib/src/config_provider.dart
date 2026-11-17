@@ -6,11 +6,13 @@
 import '../open_ui.dart';
 
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzCP extends ChangeNotifier {
-  //* Construct *//
+  late Locale _locale;
+  late OUILang _l10n;
+  bool _ltr;
 
   late bool _isLefty;
 
@@ -18,28 +20,23 @@ class EzCP extends ChangeNotifier {
   late bool _isDark;
   late ThemeData _theme;
 
-  late Locale _locale;
-  late OUILang _l10n;
-  bool _ltr;
-
   late EzColorCache _color;
   late EzDesignCache _design;
   late EzLayoutCache _layout;
   late EzTextCache _text;
 
-  final EzAppCache _appCache;
+  EzAppCache _appCache;
   bool _needsRebuild;
 
-  /// EzConfig Provider
   EzCP({
     required bool isDark,
     required Locale locale,
     required OUILang el10n,
     required EzAppCache appCache,
-  })  : _isDark = isDark,
-        _locale = locale,
+  })  : _locale = locale,
         _l10n = el10n,
-        _ltr = !rtlLanguageCodes.contains(locale.languageCode),
+        _ltr = !rtlCodes.contains(locale.languageCode),
+        _isDark = isDark,
         _appCache = appCache,
         _needsRebuild = false {
     _isLefty = EzCM.get(isLeftyKey);
@@ -67,24 +64,63 @@ class EzCP extends ChangeNotifier {
     _isLefty = EzCM.get(isLeftyKey);
 
     if (_isDark) {
-      _theme = ezThemeData(Brightness.dark, _ltr);
+      // Color //
 
-      // Setup
-      final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(darkButtonShapeKey));
+      final ColorScheme basicColors = ezColorScheme(Brightness.dark);
+
+      final EzSwitchColor surface = ezStoredCOG(darkSurfaceKey, basicColors);
+      final EzSwitchColor surfaceContainer = ezStoredCOG(darkSurfaceContainerKey, basicColors);
+      final EzSwitchColor primary = ezStoredCOG(darkPrimaryKey, basicColors);
+      final EzSwitchColor secondary = ezStoredCOG(darkSecondaryKey, basicColors);
+      final EzSwitchColor tertiary = ezStoredCOG(darkTertiaryKey, basicColors);
+      final EzSwitchColor error = ezStoredCOG(darkErrorKey, basicColors);
+
+      final EzColorCache colorCache = EzColorCache(
+        schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue,
+
+        // Surface
+        surface: surface,
+        surfaceDim: ezStoredCOG(darkSurfaceDimKey, basicColors).asColor,
+        surfaceContainer: surfaceContainer,
+        onSurface: ezTextColor(surface.asColor),
+
+        // Big three
+        primary: primary,
+        primaryContainer: ezStoredCOG(darkPrimaryContainerKey, basicColors),
+        onPrimary: ezTextColor(primary.asColor),
+
+        secondary: secondary,
+        secondaryContainer: ezStoredCOG(darkSecondaryContainerKey, basicColors),
+        onSecondary: ezTextColor(secondary.asColor),
+
+        tertiary: tertiary,
+        tertiaryContainer: ezStoredCOG(darkTertiaryContainerKey, basicColors),
+        onTertiary: ezTextColor(tertiary.asColor),
+
+        // Misc
+        error: error,
+        errorContainer: ezStoredCOG(darkErrorContainerKey, basicColors),
+        onError: ezTextColor(error.asColor),
+
+        outline: ezStoredCOG(darkOutlineKey, basicColors).asColor,
+        outlineVariant: ezStoredCOG(darkOutlineVariantKey, basicColors),
+        shadow: ezStoredCOG(darkShadowKey, basicColors),
+        surfaceTint: ezStoredCOG(darkSurfaceTintKey, basicColors).asColor,
+      );
+
+      // Design //
+
       final double margin = EzCM.get(darkMarginKey);
       final double spacing = EzCM.get(darkSpacingKey);
-      final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
-      // Make them so
-      _color = EzColorCache(schemeImagePath: EzCM.get(darkColorSchemeImageKey) ?? noImageValue);
+      final String backgroundImagePath = EzCM.get(darkBackgroundImageKey) ?? noImageValue;
+      final BoxFit? backgroundImageFit = boxFitLib[EzCM.get(darkBackgroundFitKey)];
 
-      _design = EzDesignCache(
+      final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(darkPaddingKey),
-        buttonShape: buttonShape,
+        buttonShape: EBSConfig.safeLookup(EzCM.get(darkButtonShapeKey)),
         borderWidth: EzCM.get(darkBorderWidthKey),
-        textRadius: buttonShape.radius,
-        textFieldRadius: buttonShape.textFieldRadius,
         lineLinks: EzCM.get(darkLineLinksKey),
         showBackFAB: EzCM.get(darkShowBackFABKey),
         showScroll: EzCM.get(darkShowScrollKey),
@@ -92,51 +128,114 @@ class EzCP extends ChangeNotifier {
         // Page
         margin: margin,
         spacing: spacing,
-        backgroundImagePath: EzCM.get(darkBackgroundImageKey) ?? noImageValue,
-        backgroundImageFit: boxFitLib[EzCM.get(darkBackgroundFitKey)],
-        transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
-        fadedTransition: EzCM.get(darkTransitionFadeKey),
         animDur: EzCM.get(darkAnimationDurationKey),
         animCurve: EACConfig.translate(EzCM.get(darkAnimationCurveKey)),
+        transitionType: ETTConfig.safeLookup(EzCM.get(darkTransitionTypeKey)),
+        fadedTransition: EzCM.get(darkTransitionFadeKey),
+        backgroundImagePath: backgroundImagePath,
+        backgroundImageFit: backgroundImageFit,
+        screenDecoration: _buildScreenDeco(
+          surfaceContainer,
+          backgroundImagePath,
+          backgroundImageFit,
+        ),
       );
 
-      _layout = EzLayoutCache(
+      final EzLayoutCache layoutCache = EzLayoutCache(
         margin: EzSpacer(margin),
         rowMargin: EzSpacer(margin, vertical: false),
         spacer: EzSpacer(spacing),
-        rowSpacer: EzSpacer(spacing, vertical: false),
-        swapSpacer: EzSwapSpacer(spacing),
         separator: EzSpacer(spacing * 2),
-        divider: EzDivider(height: spacing * 3),
+        rowSpacer: EzSpacer(spacing, vertical: false),
+        halfSpacer: EzSpacer(spacing / 2),
+        swapSpacer: EzSwapSpacer(spacing),
+      );
+
+      // Text //
+
+      final TextStyle bodyStyle = ezBodyStyle(basicColors.onSurface, isDark: true);
+
+      final EzTextCache textCache = EzTextCache(
+        iconSize: EzCM.get(darkIconSizeKey),
+        backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
         centerLine: EzNewLine(bodyStyle),
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
         richLine: const EzRichLine(),
       );
 
-      _text = EzTextCache(
-        backgroundOpacity: EzCM.get(darkTextBackgroundOpacityKey),
-        iconSize: EzCM.get(darkIconSizeKey),
+      _color = colorCache;
+      _design = designCache;
+      _layout = layoutCache;
+      _text = textCache;
+
+      _theme = ezThemeData(
+        Brightness.dark,
+        ltr: _ltr,
+        basicColors: basicColors,
+        colors: colorCache,
+        design: designCache,
+        layout: layoutCache,
+        text: textCache,
       );
     } else {
-      _theme = ezThemeData(Brightness.light, _ltr);
+      // Color //
 
-      // Setup
-      final EzButtonShape buttonShape = EBSConfig.safeLookup(EzCM.get(lightButtonShapeKey));
+      final ColorScheme basicColors = ezColorScheme(Brightness.light);
+
+      final EzSwitchColor surface = ezStoredCOG(lightSurfaceKey, basicColors);
+      final EzSwitchColor surfaceContainer = ezStoredCOG(lightSurfaceContainerKey, basicColors);
+      final EzSwitchColor primary = ezStoredCOG(lightPrimaryKey, basicColors);
+      final EzSwitchColor secondary = ezStoredCOG(lightSecondaryKey, basicColors);
+      final EzSwitchColor tertiary = ezStoredCOG(lightTertiaryKey, basicColors);
+      final EzSwitchColor error = ezStoredCOG(lightErrorKey, basicColors);
+
+      final EzColorCache colorCache = EzColorCache(
+        schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue,
+
+        // Surface
+        surface: surface,
+        surfaceDim: ezStoredCOG(lightSurfaceDimKey, basicColors).asColor,
+        surfaceContainer: surfaceContainer,
+        onSurface: ezTextColor(surface.asColor),
+
+        // Big three
+        primary: primary,
+        primaryContainer: ezStoredCOG(lightPrimaryContainerKey, basicColors),
+        onPrimary: ezTextColor(primary.asColor),
+
+        secondary: secondary,
+        secondaryContainer: ezStoredCOG(lightSecondaryContainerKey, basicColors),
+        onSecondary: ezTextColor(secondary.asColor),
+
+        tertiary: tertiary,
+        tertiaryContainer: ezStoredCOG(lightTertiaryContainerKey, basicColors),
+        onTertiary: ezTextColor(tertiary.asColor),
+
+        // Misc
+        error: error,
+        errorContainer: ezStoredCOG(lightErrorContainerKey, basicColors),
+        onError: ezTextColor(error.asColor),
+
+        outline: ezStoredCOG(lightOutlineKey, basicColors).asColor,
+        outlineVariant: ezStoredCOG(lightOutlineVariantKey, basicColors),
+        shadow: ezStoredCOG(lightShadowKey, basicColors),
+        surfaceTint: ezStoredCOG(lightSurfaceTintKey, basicColors).asColor,
+      );
+
+      // Design //
+
       final double margin = EzCM.get(lightMarginKey);
       final double spacing = EzCM.get(lightSpacingKey);
-      final TextStyle? bodyStyle = _theme.textTheme.bodyLarge;
 
-      // Make them so
-      _color = EzColorCache(schemeImagePath: EzCM.get(lightColorSchemeImageKey) ?? noImageValue);
+      final String backgroundImagePath = EzCM.get(lightBackgroundImageKey) ?? noImageValue;
+      final BoxFit? backgroundImageFit = boxFitLib[EzCM.get(lightBackgroundFitKey)];
 
-      _design = EzDesignCache(
+      final EzDesignCache designCache = EzDesignCache(
         // Button
         padding: EzCM.get(lightPaddingKey),
-        buttonShape: buttonShape,
+        buttonShape: EBSConfig.safeLookup(EzCM.get(lightButtonShapeKey)),
         borderWidth: EzCM.get(lightBorderWidthKey),
-        textRadius: buttonShape.radius,
-        textFieldRadius: buttonShape.textFieldRadius,
         lineLinks: EzCM.get(lightLineLinksKey),
         showBackFAB: EzCM.get(lightShowBackFABKey),
         showScroll: EzCM.get(lightShowScrollKey),
@@ -144,36 +243,66 @@ class EzCP extends ChangeNotifier {
         // Page
         margin: margin,
         spacing: spacing,
-        backgroundImagePath: EzCM.get(lightBackgroundImageKey) ?? noImageValue,
-        backgroundImageFit: boxFitLib[EzCM.get(lightBackgroundFitKey)],
-        transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
-        fadedTransition: EzCM.get(lightTransitionFadeKey),
         animDur: EzCM.get(lightAnimationDurationKey),
         animCurve: EACConfig.translate(EzCM.get(lightAnimationCurveKey)),
+        transitionType: ETTConfig.safeLookup(EzCM.get(lightTransitionTypeKey)),
+        fadedTransition: EzCM.get(lightTransitionFadeKey),
+        backgroundImagePath: backgroundImagePath,
+        backgroundImageFit: backgroundImageFit,
+        screenDecoration: _buildScreenDeco(
+          surfaceContainer,
+          backgroundImagePath,
+          backgroundImageFit,
+        ),
       );
 
-      _layout = EzLayoutCache(
+      final EzLayoutCache layoutCache = EzLayoutCache(
         margin: EzSpacer(margin),
         rowMargin: EzSpacer(margin, vertical: false),
         spacer: EzSpacer(spacing),
-        rowSpacer: EzSpacer(spacing, vertical: false),
-        swapSpacer: EzSwapSpacer(spacing),
         separator: EzSpacer(spacing * 2),
-        divider: EzDivider(height: spacing * 3),
+        rowSpacer: EzSpacer(spacing, vertical: false),
+        halfSpacer: EzSpacer(spacing / 2),
+        swapSpacer: EzSwapSpacer(spacing),
+      );
+
+      // Text //
+
+      final TextStyle bodyStyle = ezBodyStyle(basicColors.onSurface, isDark: false);
+
+      final EzTextCache textCache = EzTextCache(
+        iconSize: EzCM.get(lightIconSizeKey),
+        backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
         startLine: EzNewLine(bodyStyle, textAlign: TextAlign.start),
         centerLine: EzNewLine(bodyStyle),
         endLine: EzNewLine(bodyStyle, textAlign: TextAlign.end),
         richLine: const EzRichLine(),
       );
 
-      _text = EzTextCache(
-        backgroundOpacity: EzCM.get(lightTextBackgroundOpacityKey),
-        iconSize: EzCM.get(lightIconSizeKey),
+      _color = colorCache;
+      _design = designCache;
+      _layout = layoutCache;
+      _text = textCache;
+
+      _theme = ezThemeData(
+        Brightness.light,
+        ltr: _ltr,
+        basicColors: basicColors,
+        colors: colorCache,
+        design: designCache,
+        layout: layoutCache,
+        text: textCache,
       );
     }
   }
 
   //* Get *//
+
+  Locale get locale => _locale;
+  OUILang get ezL10n => _l10n;
+
+  /// Text direction for the [locale]
+  bool get isLTR => _ltr;
 
   /// Whether the layout should favor left handed users
   bool get isLefty => _isLefty;
@@ -182,55 +311,63 @@ class EzCP extends ChangeNotifier {
   /// (vs start/end)
   bool get onLeft => isLefty == isLTR;
 
-  /// Current [ThemeMode]
   ThemeMode get themeMode => _themeMode;
-
-  /// Whether the current [themeMode] uses [Brightness.dark]
   bool get isDark => _isDark;
-
-  /// Current [ThemeData] to match the [themeMode]
   ThemeData get theme => _theme;
-
-  /// Current language for the app
-  Locale get locale => _locale;
-
-  /// Open UI localizations for the [locale]
-  OUILang get ezL10n => _l10n;
-
-  /// Text direction for the [locale]
-  bool get isLTR => _ltr;
 
   // Color cache //
 
-  EzColorCache get color => _color;
-
   String get schemeImagePath => _color.schemeImagePath;
 
+  // Surface
+  EzSwitchColor get surfaceFill => _color.surface;
+  Color get surfaceDim => _color.surfaceDim;
+  EzSwitchColor get surfaceContainerFill => _color.surfaceContainer;
+  Color get onSurface => _color.onSurface;
+
+  // Big three
+  EzSwitchColor get primaryFill => _color.primary;
+  EzSwitchColor get primaryContainerFill => _color.primaryContainer;
+  Color get onPrimary => _color.onPrimary;
+
+  EzSwitchColor get secondaryFill => _color.secondary;
+  EzSwitchColor get secondaryContainerFill => _color.secondaryContainer;
+  Color get onSecondary => _color.onSecondary;
+
+  EzSwitchColor get tertiaryFill => _color.tertiary;
+  EzSwitchColor get tertiaryContainerFill => _color.tertiaryContainer;
+  Color get onTertiary => _color.onTertiary;
+
+  // Misc
+  EzSwitchColor get errorFill => _color.error;
+  EzSwitchColor get errorContainerFill => _color.errorContainer;
+  Color get onError => _color.onError;
+
+  Color get outline => _color.outline;
+  EzSwitchColor get outlineVariantFill => _color.outlineVariant;
+  Color get surfaceTint => _color.surfaceTint;
+  EzSwitchColor get shadowFill => _color.shadow;
+
+  // Helpers
+  EzSwitchColor get surfaceDimFiller => EzSwitchColor(color: surfaceDim);
+  EzSwitchColor get onSurfaceFiller => EzSwitchColor(color: onSurface);
+  EzSwitchColor get onPrimaryFiller => EzSwitchColor(color: onPrimary);
+  EzSwitchColor get onSecondaryFiller => EzSwitchColor(color: onSecondary);
+  EzSwitchColor get onTertiaryFiller => EzSwitchColor(color: onTertiary);
+  EzSwitchColor get onErrorFiller => EzSwitchColor(color: onError);
+  EzSwitchColor get outlineFiller => EzSwitchColor(color: outline);
+  EzSwitchColor get surfaceTintFiller => EzSwitchColor(color: surfaceTint);
+
   // Design cache //
-
-  EzDesignCache get design => _design;
-
   // Button
   double get padding => _design.padding;
 
   EzButtonShape get buttonShape => _design.buttonShape;
   double get borderWidth => _design.borderWidth;
 
-  BorderRadius get textRadius => _design.textRadius;
-  BorderRadius get textFieldRadius => _design.textFieldRadius;
-
-  BorderSide borderSide({Color? color}) => _design.borderWidth == 0
-      ? BorderSide.none
-      : BorderSide(color: color ?? _theme.colorScheme.primaryContainer, width: _design.borderWidth);
-
   bool get lineLinks => _design.lineLinks;
-  bool get showBackFAB => _design.showBackFAB;
   bool get showScroll => _design.showScroll;
-
-  List<Widget> backFABs(bool isHome) =>
-      (_design.showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false))
-          ? <Widget>[spacer, EzBackFAB(this)]
-          : <Widget>[];
+  bool get showBackFAB => _design.showBackFAB;
 
   // Page
   double get marginVal => _design.margin;
@@ -245,48 +382,211 @@ class EzCP extends ChangeNotifier {
 
   String get backgroundImagePath => _design.backgroundImagePath;
   BoxFit? get backgroundImageFit => _design.backgroundImageFit;
+  BoxDecoration get screenDecoration => _design.screenDecoration;
 
-  DecorationImage get backgroundImage => DecorationImage(
-        image: ezImageProvider(_design.backgroundImagePath),
-        fit: _design.backgroundImageFit,
+  // Helpers
+  List<Widget> backFABs({bool isHome = false, bool override = false}) =>
+      (override || (showBackFAB && !isHome && (ezRootNav.currentState?.canPop() ?? false)))
+          ? <Widget>[spacer, EzBackFAB(this)]
+          : <Widget>[];
+
+  DecorationImage? get backgroundImage => (backgroundImagePath == noImageValue)
+      ? null
+      : DecorationImage(
+          image: ezImageProvider(backgroundImagePath),
+          fit: backgroundImageFit,
+        );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  BoxBorder boxBorder({
+    EzSwitchColor? fill,
+    double? width,
+    double? opacity,
+  }) =>
+      ezBoxBorder(
+        fill ?? primaryContainerFill,
+        width: width ?? borderWidth,
+        opacity: opacity,
       );
 
-  // Layout cache (lil page design, lil text) //
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  BorderSide borderSide({
+    EzSwitchColor? fill,
+    double? width,
+    double? opacity,
+  }) =>
+      ezBorderSide(
+        fill ?? primaryContainerFill,
+        width: width ?? borderWidth,
+        opacity: opacity,
+      );
 
-  EzLayoutCache get layout => _layout;
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  /// [base] -> [EzCP.buttonShape]
+  OutlinedBorder outlinedBorder({
+    EzSwitchColor? fill,
+    double? width,
+    OutlinedBorder? base,
+  }) =>
+      ezOutlinedBorder(
+        fill ?? primaryContainerFill,
+        width: width ?? borderWidth,
+        base: base ?? buttonShape.shape,
+      );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  /// [radius] -> [EzCP.buttonShape].textFieldRadius
+  OutlineInputBorder outInBorder({
+    EzSwitchColor? fill,
+    double? width,
+    BorderRadius? radius,
+    double? opacity,
+  }) =>
+      ezOutInBorder(
+        fill ?? primaryContainerFill,
+        borderWidth: width ?? borderWidth,
+        borderRadius: radius ?? buttonShape.textFieldRadius,
+        opacity: opacity,
+      );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.primaryContainerFill]
+  /// [width] -> [EzCP.borderWidth]
+  /// [radius] -> [EzCP.buttonShape].textFieldRadius
+  UnderlineInputBorder underInBorder({
+    EzSwitchColor? fill,
+    double? width,
+    BorderRadius? radius,
+    double? opacity,
+  }) =>
+      ezUnderInBorder(
+        fill ?? primaryContainerFill,
+        borderWidth: width ?? borderWidth,
+        borderRadius: radius ?? buttonShape.textFieldRadius,
+        opacity: opacity,
+      );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [borderRadius] -> [EzCP.buttonShape].radius
+  BoxDecoration boxDeco({
+    EzSwitchColor? fill,
+    BoxBorder? border,
+    BorderRadiusGeometry? borderRadius,
+    DecorationImage? image,
+    BoxShape shape = BoxShape.rectangle,
+    double? opacity,
+  }) =>
+      ezBoxDeco(
+        fill ?? surfaceFill,
+        border: border,
+        borderRadius: borderRadius ?? buttonShape.radius,
+        image: image,
+        shape: shape,
+        opacity: opacity,
+      );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [borderRadius] -> [EzCP.buttonShape].radius
+  /// CAW! [smartLayer] is usually better
+  ButtonLayerBuilder? boxLayer({
+    EzSwitchColor? fill,
+    BoxBorder? border,
+    BorderRadiusGeometry? borderRadius,
+    BoxShape shape = BoxShape.rectangle,
+    double? opacity,
+  }) =>
+      ezBoxLayer(
+        fill ?? surfaceFill,
+        border: border,
+        borderRadius: borderRadius ?? buttonShape.radius,
+        shape: shape,
+        opacity: opacity,
+      );
+
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [shape] -> [EzCP.buttonShape].shape
+  /// CAW! [smartLayer] is usually better
+  ButtonLayerBuilder? shapeLayer({
+    EzSwitchColor? fill,
+    ShapeBorder? shape,
+    double? opacity,
+  }) =>
+      ezShapeLayer(
+        fill ?? surfaceFill,
+        shape: shape ?? buttonShape.shape,
+        opacity: opacity,
+      );
+
+  /// Handles [boxLayer] vs [shapeLayer]
+  /// (Hidden) Defaults:
+  /// [fill] -> [EzCP.surfaceFill]
+  /// [borderRadius] => [EzCP.buttonShape].radius
+  /// [shape] => [EzCP.buttonShape].shape
+  ButtonLayerBuilder? smartLayer({
+    EzSwitchColor? fill,
+    BoxBorder? border,
+    BorderRadius? borderRadius,
+    ShapeBorder? shape,
+    double? opacity,
+  }) =>
+      buttonShape.isBox
+          ? ezBoxLayer(
+              fill ?? surfaceFill,
+              border: border,
+              borderRadius: borderRadius ?? buttonShape.radius,
+              opacity: opacity,
+            )
+          : ezShapeLayer(
+              fill ?? surfaceFill,
+              shape: shape ?? buttonShape.shape,
+              opacity: opacity,
+            );
+
+  // Layout cache (lil page design, lil text) //
 
   EzSpacer get margin => _layout.margin;
   EzSpacer get rowMargin => _layout.rowMargin;
 
   EzSpacer get spacer => _layout.spacer;
-  EzSpacer get rowSpacer => _layout.rowSpacer;
-  EzSwapSpacer get swapSpacer => _layout.swapSpacer;
-
   EzSpacer get separator => _layout.separator;
-  EzDivider get divider => _layout.divider;
-
-  EzNewLine get startLine => _layout.startLine;
-  EzNewLine get centerLine => _layout.centerLine;
-  EzNewLine get endLine => _layout.endLine;
-  EzRichLine get richLine => _layout.richLine;
+  EzSpacer get rowSpacer => _layout.rowSpacer;
+  EzSpacer get halfSpacer => _layout.halfSpacer;
+  EzSwapSpacer get swapSpacer => _layout.swapSpacer;
 
   // Text cache //
 
-  EzTextCache get text => _text;
-
-  double get textBackgroundOpacity => _text.backgroundOpacity;
   double get iconSize => _text.iconSize;
+  double get textBackgroundOpacity => _text.backgroundOpacity;
+
+  EzNewLine get startLine => _text.startLine;
+  EzNewLine get centerLine => _text.centerLine;
+  EzNewLine get endLine => _text.endLine;
+  EzRichLine get richLine => _text.richLine;
 
   // Theme sub-pointers //
 
-  ColorScheme get colors => _theme.colorScheme;
-
-  TextTheme get styles => _theme.textTheme;
   TextStyle? get displayStyle => _theme.textTheme.displayLarge;
   TextStyle? get headlineStyle => _theme.textTheme.headlineLarge;
   TextStyle? get titleStyle => _theme.textTheme.titleLarge;
   TextStyle? get bodyStyle => _theme.textTheme.bodyLarge;
   TextStyle? get labelStyle => _theme.textTheme.labelLarge;
+
+  TextStyle? get subHeadingStyle =>
+      _theme.textTheme.headlineLarge?.copyWith(fontSize: _theme.textTheme.titleLarge?.fontSize);
+
+  TextStyle? get subTitleStyle =>
+      _theme.textTheme.bodyLarge?.copyWith(fontSize: _theme.textTheme.titleLarge?.fontSize);
 
   /// Toggleable bool for alerting the user to rebuild the UI
   /// Some settings would be too expensive to rebuild on every change, so they update locally and [pingRebuild]
@@ -297,6 +597,14 @@ class EzCP extends ChangeNotifier {
   EzAppCache? get appCache => _appCache;
 
   //* Set *//
+
+  /// SuperCache
+  void swapCache(EzAppCache newCache) {
+    if (_appCache != newCache) {
+      _appCache = newCache;
+      notifyListeners();
+    }
+  }
 
   /// Set [needsRebuild] to [status]
   void pingRebuild(bool status) {
@@ -311,7 +619,7 @@ class EzCP extends ChangeNotifier {
     final (Locale, OUILang) result = await ezStoredL10n();
     _locale = result.$1;
     _l10n = result.$2;
-    _ltr = !rtlLanguageCodes.contains(_locale.languageCode);
+    _ltr = !rtlCodes.contains(_locale.languageCode);
 
     await rebuildUI();
   }
@@ -334,7 +642,7 @@ class EzCP extends ChangeNotifier {
   /// If you are making known [changes] prior to the rebuild, it is recommended to provide them here
   /// A fullscreen [CircularProgressIndicator] will prevent user input while the [changes] are awaited
   Future<void> rebuildUI({Future<dynamic> Function()? changes}) async {
-    await ezNoTouch(null, () async {
+    await ezNoTouch(this, () async {
       if (changes != null) await changes();
       final ThemeMode newMode = _getThemeMode();
 
@@ -359,12 +667,96 @@ class EzCP extends ChangeNotifier {
 
 //* Cache *//
 
+class EzSwitchColor {
+  final Color? color;
+  final LinearGradient? gradient;
+
+  const EzSwitchColor({
+    this.gradient,
+    this.color,
+  }) : assert((gradient == null) != (color == null), 'One must be provided');
+
+  Color get asColor => color ?? gradient!.colors.first;
+
+  Gradient get asGradient => gradient ?? LinearGradient(colors: <Color>[color!]);
+
+  @override
+  String toString() => (gradient != null)
+      ? <String>[
+          gradient!.begin.toString(),
+          gradient!.end.toString(),
+          ...gradient!.colors.map((Color color) => color.toARGB32().toString())
+        ].join(colorSplit)
+      : color!.toARGB32().toString();
+}
+
 class EzColorCache {
   final String schemeImagePath;
 
-  /// Theme aware tracker for frequently used color values...
-  /// Color scheme image(s)
-  EzColorCache({required this.schemeImagePath});
+  // Backgrounds
+  final EzSwitchColor surface;
+  final Color surfaceDim;
+  final EzSwitchColor surfaceContainer;
+  final Color onSurface;
+
+  // Big three
+  final EzSwitchColor primary;
+  final EzSwitchColor primaryContainer;
+  final Color onPrimary;
+
+  final EzSwitchColor secondary;
+  final EzSwitchColor secondaryContainer;
+  final Color onSecondary;
+
+  final EzSwitchColor tertiary;
+  final EzSwitchColor tertiaryContainer;
+  final Color onTertiary;
+
+  // Misc
+  final EzSwitchColor error;
+  final EzSwitchColor errorContainer;
+  final Color onError;
+
+  final Color outline;
+  final EzSwitchColor outlineVariant;
+  final EzSwitchColor shadow;
+  final Color surfaceTint;
+
+  EzColorCache({
+    required this.schemeImagePath,
+
+    // Backgrounds
+    required this.surface,
+    required this.surfaceDim,
+    required this.surfaceContainer,
+    required this.onSurface,
+
+    // Primary
+    required this.primary,
+    required this.primaryContainer,
+    required this.onPrimary,
+
+    // Secondary
+    required this.secondary,
+    required this.secondaryContainer,
+    required this.onSecondary,
+
+    // Tertiary
+    required this.tertiary,
+    required this.tertiaryContainer,
+    required this.onTertiary,
+
+    // Erriary
+    required this.error,
+    required this.errorContainer,
+    required this.onError,
+
+    // Misc
+    required this.outline,
+    required this.outlineVariant,
+    required this.surfaceTint,
+    required this.shadow,
+  });
 }
 
 class EzDesignCache {
@@ -374,9 +766,6 @@ class EzDesignCache {
 
   final EzButtonShape buttonShape;
   final double borderWidth;
-
-  final BorderRadius textRadius;
-  final BorderRadius textFieldRadius;
 
   final bool lineLinks;
   final bool showBackFAB;
@@ -394,16 +783,13 @@ class EzDesignCache {
 
   final String backgroundImagePath;
   final BoxFit? backgroundImageFit;
+  final BoxDecoration screenDecoration;
 
-  /// Theme aware tracker for frequently used design values...
-  /// Animation duration
   EzDesignCache({
     // Button
     required this.padding,
     required this.buttonShape,
     required this.borderWidth,
-    required this.textRadius,
-    required this.textFieldRadius,
     required this.lineLinks,
     required this.showBackFAB,
     required this.showScroll,
@@ -417,6 +803,7 @@ class EzDesignCache {
     required this.fadedTransition,
     required this.backgroundImagePath,
     required this.backgroundImageFit,
+    required this.screenDecoration,
   });
 }
 
@@ -424,40 +811,39 @@ class EzLayoutCache {
   final EzSpacer margin;
   final EzSpacer rowMargin;
   final EzSpacer spacer;
-  final EzSpacer rowSpacer;
-  final EzSwapSpacer swapSpacer;
   final EzSpacer separator;
-  final EzDivider divider;
+  final EzSpacer rowSpacer;
+  final EzSpacer halfSpacer;
+  final EzSwapSpacer swapSpacer;
+
+  EzLayoutCache({
+    required this.margin,
+    required this.rowMargin,
+    required this.spacer,
+    required this.separator,
+    required this.rowSpacer,
+    required this.halfSpacer,
+    required this.swapSpacer,
+  });
+}
+
+class EzTextCache {
+  final double iconSize;
+  final double backgroundOpacity;
 
   final EzNewLine startLine;
   final EzNewLine centerLine;
   final EzNewLine endLine;
   final EzRichLine richLine;
 
-  /// Theme aware tracker for frequently used layout [Widget]s
-  /// Spacers and new lines
-  EzLayoutCache({
-    required this.margin,
-    required this.rowMargin,
-    required this.spacer,
-    required this.rowSpacer,
-    required this.swapSpacer,
-    required this.separator,
-    required this.divider,
+  EzTextCache({
+    required this.iconSize,
+    required this.backgroundOpacity,
     required this.startLine,
     required this.centerLine,
     required this.endLine,
     required this.richLine,
   });
-}
-
-class EzTextCache {
-  final double backgroundOpacity;
-  final double iconSize;
-
-  /// Theme aware tracker for frequently used text values...
-  /// Background opacity, icon size
-  EzTextCache({required this.backgroundOpacity, required this.iconSize});
 }
 
 abstract class EzAppCache {
@@ -467,6 +853,177 @@ abstract class EzAppCache {
   /// Will run on every call to [EzCP.rebuildUI]
   Future<void> rebuild(EzCP config);
 }
+
+//* Helpers *//
+
+/// [Color] or [Gradient] by key
+EzSwitchColor ezStoredCOG(String key, ColorScheme basic) =>
+    ezCOG(EzCM.get(key)) ?? EzSwitchColor(color: getLiveColor(basic, key));
+
+/// [Color] or [Gradient] (or null) by value
+EzSwitchColor? ezCOG(dynamic value) {
+  if (value == null || value == esSystem) return null;
+
+  final String sv = value.toString();
+  final List<String> parts = sv.split(colorSplit);
+
+  if (parts.length > 1) {
+    if (parts.length < 3) return null;
+
+    final List<int?> hexes = parts.sublist(2).map(int.tryParse).toList();
+    if (hexes.contains(null)) return null;
+
+    return EzSwitchColor(
+      gradient: LinearGradient(
+        begin: alignLibrary[parts[0]] ?? Alignment.centerLeft,
+        end: alignLibrary[parts[1]] ?? Alignment.centerRight,
+        colors: hexes.map((int? hex) => Color(hex!)).toList(),
+      ),
+    );
+  } else {
+    final int? hex = int.tryParse(sv);
+    return (hex == null) ? null : EzSwitchColor(color: Color(hex));
+  }
+}
+
+BoxDecoration _buildScreenDeco(EzSwitchColor fill, String imagePath, BoxFit? imageFit) {
+  if (imagePath == noImageValue) return BoxDecoration(color: fill.color, gradient: fill.gradient);
+
+  final int? isColor = int.tryParse(imagePath);
+  if (isColor != null) return BoxDecoration(color: Color(isColor));
+
+  final LinearGradient? isGradient =
+      (imagePath.split(colorSplit).length >= 4) ? ezLGFromString(imagePath) : null;
+  if (isGradient != null) return BoxDecoration(gradient: isGradient);
+
+  return BoxDecoration(image: DecorationImage(image: ezImageProvider(imagePath), fit: imageFit));
+}
+
+BoxBorder ezBoxBorder(
+  EzSwitchColor fill, {
+  required double width,
+  double? opacity,
+}) =>
+    fill.color == null
+        ? EzGradientBoxBorder(
+            gradient: (opacity == null) ? fill.gradient! : fill.gradient!.withOpacity(opacity),
+            width: width,
+          )
+        : Border.all(
+            color: (opacity == null) ? fill.color! : fill.color!.withValues(alpha: opacity),
+            width: width,
+          );
+
+BorderSide ezBorderSide(
+  EzSwitchColor fill, {
+  required double width,
+  double? opacity,
+}) =>
+    (width) == 0
+        ? BorderSide.none
+        : fill.color == null
+            ? EzGradientBorderSide(
+                gradient: opacity == null ? fill.gradient! : fill.gradient!.withOpacity(opacity),
+                width: width,
+              )
+            : BorderSide(
+                color: opacity == null ? fill.color! : fill.color!.withValues(alpha: opacity),
+                width: width,
+              );
+
+OutlinedBorder ezOutlinedBorder(
+  EzSwitchColor fill, {
+  required double width,
+  required OutlinedBorder base,
+}) =>
+    fill.color == null
+        ? EzGradientOutlinedBorder(gradient: fill.gradient!, width: width, base: base)
+        : base;
+
+OutlineInputBorder ezOutInBorder(
+  EzSwitchColor fill, {
+  required double borderWidth,
+  required BorderRadius borderRadius,
+  double? opacity,
+}) =>
+    OutlineInputBorder(
+      borderSide: ezBorderSide(fill, width: borderWidth, opacity: opacity),
+      borderRadius: borderRadius,
+      gapPadding: 0,
+    );
+
+UnderlineInputBorder ezUnderInBorder(
+  EzSwitchColor fill, {
+  required double borderWidth,
+  required BorderRadius borderRadius,
+  double? opacity,
+}) =>
+    UnderlineInputBorder(
+      borderSide: ezBorderSide(fill, width: borderWidth, opacity: opacity),
+      borderRadius: borderRadius,
+    );
+
+BoxDecoration ezBoxDeco(
+  EzSwitchColor fill, {
+  BoxBorder? border,
+  required BorderRadiusGeometry borderRadius,
+  DecorationImage? image,
+  BoxShape shape = BoxShape.rectangle,
+  double? opacity,
+}) =>
+    (opacity == null)
+        ? BoxDecoration(
+            border: border,
+            borderRadius: (shape == BoxShape.circle) ? null : borderRadius,
+            color: fill.color,
+            gradient: fill.gradient,
+            image: image,
+            shape: shape,
+          )
+        : BoxDecoration(
+            border: border,
+            borderRadius: (shape == BoxShape.circle) ? null : borderRadius,
+            color: fill.color?.withValues(alpha: opacity),
+            gradient: fill.gradient?.withOpacity(opacity),
+            image: image,
+            shape: shape,
+          );
+
+ButtonLayerBuilder? ezBoxLayer(
+  EzSwitchColor fill, {
+  BoxBorder? border,
+  required BorderRadiusGeometry borderRadius,
+  BoxShape shape = BoxShape.rectangle,
+  double? opacity,
+}) =>
+    (fill.gradient == null)
+        ? null
+        : (_, __, Widget? child) => Ink(
+              decoration: BoxDecoration(
+                border: border,
+                borderRadius: (shape == BoxShape.circle) ? null : borderRadius,
+                gradient: opacity == null ? fill.gradient : fill.gradient?.withOpacity(opacity),
+                shape: shape,
+              ),
+              child: child,
+            );
+
+ButtonLayerBuilder? ezShapeLayer(
+  EzSwitchColor fill, {
+  required ShapeBorder shape,
+  double? opacity,
+}) =>
+    (fill.gradient == null)
+        ? null
+        : (_, __, Widget? child) => Ink(
+              decoration: ShapeDecoration(
+                gradient: opacity == null ? fill.gradient : fill.gradient?.withOpacity(opacity),
+                shape: shape,
+              ),
+              child: child,
+            );
+
+ButtonLayerBuilder ezSelfBuilder = (_, __, Widget? child) => child!;
 
 /// Safety net, not a crutch...
 /// Only to be used when getting the proper Provider is unreasonably difficult

@@ -3,14 +3,14 @@
  * See LICENSE for distribution and usage details.
  */
 
-import 'button_settings.dart';
-import 'page_settings.dart';
 import '../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'button_settings.dart';
+import 'page_settings.dart';
+
+import 'package:material_ui/material_ui.dart';
 
 class EzDesignSettings extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Current sub-page
@@ -24,11 +24,7 @@ class EzDesignSettings extends StatelessWidget {
   /// BYO tailing spacer(s)
   final List<Widget>? prependPage;
 
-  /// Optionally re-label the button style button
-  final String? styleLabel;
-
-  /// Whether to include the background image setting
-  /// When true, pairs well with [EzScreen], specifically [EzScreen.useImageDecoration]
+  final String? labelStyle;
   final bool includeBackgroundImage;
 
   /// Optional additional settings at the bottom of the button design tab (above the reset button)
@@ -63,19 +59,12 @@ class EzDesignSettings extends StatelessWidget {
   /// [lightPageDesignKeys] by default
   final Set<String>? resetExtraLightPage;
 
-  /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkipButton;
-
-  /// [EzResetButton.saveSkip] passthrough
   final Set<String>? saveSkipButton;
-
-  /// [EzResetButton.resetSkip] passthrough
   final Set<String>? resetSkipPage;
-
-  /// [EzResetButton.saveSkip] passthrough
   final Set<String>? saveSkipPage;
 
-  /// Ez to use image settings
+  /// Ez2Use design settings
   /// Recommended to use as a [Scaffold.body]
   const EzDesignSettings(
     this.config, {
@@ -85,7 +74,7 @@ class EzDesignSettings extends StatelessWidget {
     // Button
     this.prependButton,
     this.appendButton,
-    this.styleLabel,
+    this.labelStyle,
     this.resetSpacerButton,
     this.resetExtraDarkButton,
     this.resetExtraLightButton,
@@ -114,7 +103,7 @@ class EzDesignSettings extends StatelessWidget {
                 config,
                 prepend: prependButton,
                 append: appendButton,
-                styleLabel: styleLabel,
+                labelStyle: labelStyle,
                 resetSpacer: resetSpacerButton ?? config.separator,
                 resetExtraDark: resetExtraDarkButton,
                 resetExtraLight: resetExtraLightButton,

@@ -5,10 +5,9 @@
 
 import '../../../../open_ui.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EzQuickConfig extends StatelessWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// Extra changes for [EzBigButtonsConfig]
@@ -20,12 +19,6 @@ class EzQuickConfig extends StatelessWidget {
   /// Extra changes for [EzChalkboardConfig]
   final Future<void> Function(bool)? extraChalk;
 
-  /// Extra changes for [EzNebulaConfig]
-  final Future<void> Function(bool)? extraNebula;
-
-  /// Extra changes for [EzWallHolesConfig]
-  final Future<void> Function(bool)? extraWall;
-
   /// Opens a [BottomSheet] with [EzElevatedIconButton]s for different presets
   const EzQuickConfig(
     this.config, {
@@ -33,11 +26,7 @@ class EzQuickConfig extends StatelessWidget {
     this.extraBig,
     this.extraVis,
     this.extraChalk,
-    this.extraNebula,
-    this.extraWall,
   });
-
-  Widget wrapIt(Widget child) => Padding(padding: EzInsets.wrap(config.spacing), child: child);
 
   @override
   Widget build(BuildContext context) => EzElevatedIconButton(
@@ -45,43 +34,38 @@ class EzQuickConfig extends StatelessWidget {
         onPressed: () => ezModal(
           config,
           context: context,
-          builder: (_) {
-            bool dewIt = EzCM.updateBoth;
-
-            return StatefulBuilder(
-              builder: (_, StateSetter setModal) => ezModalScroll(
-                config,
-                children: <Widget>[
-                  // Update both/auto confirm toggle
-                  EzSwitchPair(
-                    config,
-                    key: ValueKey<String>('dis-$dewIt'),
-                    value: dewIt,
-                    text: config.ezL10n.ssDewIt,
-                    onChanged: (bool? value) {
-                      if (value == null) return;
-                      setModal(() => dewIt = value);
-                    },
-                  ),
-                  EzSpacer(config.spacing * 0.5),
-
-                  // Choices
-                  EzWrap(
-                    children: <Widget>[
-                      wrapIt(EzBigButtonsConfig(config, updateBoth: dewIt, extra: extraBig)),
-                      wrapIt(EzHighVisibilityConfig(config, updateBoth: dewIt, extra: extraVis)),
-                      wrapIt(EzChalkboardConfig(config, autoConfirm: dewIt, extra: extraChalk)),
-                      wrapIt(EzNebulaConfig(config, autoConfirm: dewIt, extra: extraNebula)),
-                      wrapIt(EzWallHolesConfig(config, autoConfirm: dewIt, extra: extraWall)),
-                    ],
-                  ),
-                  EzSpacer(config.spacing * 1.5),
-                ],
-              ),
-            );
-          },
+          builder: (_) => _Options(
+            config,
+            extraBig: extraBig,
+            extraVis: extraVis,
+            extraChalk: extraChalk,
+          ),
         ),
         icon: EzIcon(config, Icons.edit),
         label: config.ezL10n.ssLoadPreset,
       );
+}
+
+class _Options extends StatelessWidget {
+  final EzCP config;
+  final Future<void> Function(bool)? extraBig;
+  final Future<void> Function(bool)? extraVis;
+  final Future<void> Function(bool)? extraChalk;
+
+  const _Options(
+    this.config, {
+    required this.extraBig,
+    required this.extraVis,
+    required this.extraChalk,
+  });
+
+  @override
+  Widget build(BuildContext context) => ezModalScroll(config, children: <Widget>[
+        EzWrap(children: <Widget>[
+          ezWrap(config, child: EzBigButtonsConfig(config, updateBoth: false, extra: extraBig)),
+          ezWrap(config, child: EzHighVisibilityConfig(config, updateBoth: false, extra: extraVis)),
+          ezWrap(config, child: EzChalkboardConfig(config, autoConfirm: false, extra: extraChalk)),
+        ]),
+        EzSpacer(config.spacing * 1.5),
+      ]);
 }

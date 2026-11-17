@@ -4,17 +4,17 @@
  */
 
 import '../../../../open_ui.dart';
+import 'package:ywt_private/ywt_private.dart' as ywt;
 import './image_editor_io.dart' if (dart.library.html) './image_editor_web.dart';
 
 import 'dart:io';
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EzImageSetting extends StatefulWidget {
-  /// EzConfig Provider
   final EzCP config;
 
   /// [config] key for the path
@@ -25,9 +25,8 @@ class EzImageSetting extends StatefulWidget {
   final String? fitKey;
 
   /// Optional [config] key for the image source
-  final String? sourceKey;
+  final String? creditsKey;
 
-  /// [EzElevatedIconButton.label] passthrough
   final String label;
 
   /// If true, opens an [ezColorPicker] for the user, and saves the hex value (string) as the image path
@@ -58,7 +57,7 @@ class EzImageSetting extends StatefulWidget {
     super.key,
     required this.pathKey,
     required this.fitKey,
-    this.sourceKey,
+    this.creditsKey,
     required this.label,
     this.allowSolidColor = false,
     this.allowClear = true,
@@ -87,12 +86,16 @@ class _ImageSettingState extends State<EzImageSetting> {
 
   // Define custom widgets && functions //
 
+  bool storedIsColor(String? stored) => (stored == null)
+      ? false
+      : (stored.split(colorSplit).length >= 4 || int.tryParse(stored) != null);
+
   /// Open an [EzAlertDialog] with the [Image]s source information
-  Future<void> showSource() async {
+  Future<void> showCredits() async {
     if (currPath == null || currPath == noImageValue) return;
 
     final String credits =
-        (widget.sourceKey == null) ? currPath : (EzCM.get(widget.sourceKey!) ?? currPath);
+        (widget.creditsKey == null) ? currPath : (EzCM.get(widget.creditsKey!) ?? currPath);
 
     return showDialog(
       context: context,
@@ -104,7 +107,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 widget.config,
                 text: credits,
                 url: Uri.parse(credits),
-                backgroundColor: widget.config.colors.surfaceDim,
+                backgroundColor: widget.config.surfaceDim,
                 hint: widget.config.ezL10n.gOpenLink,
               )
             : Text(credits, textAlign: TextAlign.center),
@@ -147,10 +150,10 @@ class _ImageSettingState extends State<EzImageSetting> {
     if (newPath == null || newPath.isEmpty) return false;
 
     // Check if a color was chosen
-    final bool isInt = (int.tryParse(newPath) != null);
+    final bool isColor = storedIsColor(newPath);
 
     // Edit image (when applicable)
-    if (!isInt && fromLocal && widget.showEditor && !kIsWeb && !EzCM.isPathAsset(newPath)) {
+    if (!isColor && fromLocal && widget.showEditor && !kIsWeb && !EzCM.isPathAsset(newPath)) {
       if (mounted) {
         final Future<dynamic> Function(String path) toDo = await showDialog(
           context: context,
@@ -196,7 +199,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     }
 
     // Choose fit (when applicable)
-    if (!isInt && widget.showFitOption && widget.fitKey != null) {
+    if (!isColor && widget.showFitOption && widget.fitKey != null) {
       final bool canceled = (await chooseFit(newPath) == null);
       if (canceled) return false;
     }
@@ -216,7 +219,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     currPath = newPath;
 
     // Update the theme (conditionally)
-    if (!isInt && updateTheme) {
+    if (!isColor && updateTheme) {
       if (EzCM.updateBoth || widget.config.isDark) {
         // If there is little/no text background opacity, set it to 50%
         // Better to have to turn it down than up, they'll be a lot of images where people suddenly won't be able to read
@@ -277,14 +280,12 @@ class _ImageSettingState extends State<EzImageSetting> {
     final List<Widget> options = <Widget>[];
     final String? defaultPath = EzCM.getDefault(widget.pathKey);
 
-    final EdgeInsets wrapPadding = EzInsets.wrap(widget.config.spacing);
-
     // From camera
     // Only works on mobile
     if (!kIsWeb && EzCM.onMobile) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -308,8 +309,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Doesn't work on Web
     if (!kIsWeb) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -332,8 +333,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // From network
     // Works everywhere
     options.add(
-      Padding(
-        padding: wrapPadding,
+      ezWrap(
+        widget.config,
         child: EzElevatedIconButton(
           widget.config,
           onPressed: () => showDialog(
@@ -366,7 +367,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                         if (clipText != null) urlController.text = clipText;
                       },
                       tooltip: widget.config.ezL10n.gPaste,
-                      icon: const Icon(Icons.paste),
+                      icon: EzIcon(widget.config, Icons.paste),
                     ),
                   ],
                 ),
@@ -445,29 +446,21 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Solid color (optional)
     if (widget.allowSolidColor) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
-              final int? pathARGB = (currPath == null) ? null : int.tryParse(currPath!);
-              Color currColor =
-                  pathARGB == null ? widget.config.colors.surfaceContainer : Color(pathARGB);
+              final String cleaned = storedIsColor(currPath)
+                  ? currPath!
+                  : widget.config.surfaceContainerFill.asColor.toARGB32().toString();
 
-              await ezColorPicker(
+              final String? chosen = await ezColorPicker(
                 widget.config,
                 context: context,
-                startColor: currColor,
-                onColorChange: (Color color) => setModal(() => currColor = color),
-                onConfirm: () async {
-                  await EzCM.setString(widget.pathKey, currColor.toARGB32().toString());
-
-                  if (mCon.mounted) {
-                    Navigator.of(mCon).pop(currColor.toARGB32().toString());
-                  }
-                },
-                onDeny: doNothing,
+                picking: cleaned,
               );
+              if (chosen != null) await EzCM.setString(widget.pathKey, chosen);
             },
             icon: EzIcon(widget.config, Icons.color_lens),
             label: widget.config.ezL10n.dsSolidColor,
@@ -479,8 +472,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Reset
     if (defaultPath != null && defaultPath != noImageValue) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -501,8 +494,8 @@ class _ImageSettingState extends State<EzImageSetting> {
     // Clear (optional)
     if (widget.allowClear && currPath != noImageValue) {
       options.add(
-        Padding(
-          padding: wrapPadding,
+        ezWrap(
+          widget.config,
           child: EzElevatedIconButton(
             widget.config,
             onPressed: () async {
@@ -645,7 +638,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                     }
                   },
                   text: currFit == null ? widget.config.ezL10n.gSkip : widget.config.ezL10n.gApply,
-                  textStyle: widget.config.bodyStyle?.copyWith(color: widget.config.colors.primary),
+                  textStyle:
+                      widget.config.bodyStyle?.copyWith(color: widget.config.primaryFill.asColor),
                   textAlign: TextAlign.center,
                 ),
                 widget.config.rowSpacer,
@@ -680,11 +674,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                 child: Container(
                   width: width,
                   height: height,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: widget.config.colors.onSurface,
-                      width: widget.config.borderWidth,
-                    ),
+                  decoration: widget.config.boxDeco(
+                    border: widget.config.boxBorder(fill: widget.config.onSurfaceFiller),
                     borderRadius: const BorderRadius.all(Radius.zero),
                   ),
                   child: EzCol(
@@ -698,10 +689,8 @@ class _ImageSettingState extends State<EzImageSetting> {
                             ).height +
                             (widget.config.marginVal * 0.25),
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: widget.config.colors.surface,
-                          borderRadius: const BorderRadius.all(Radius.zero),
-                        ),
+                        decoration: widget.config
+                            .boxDeco(borderRadius: const BorderRadius.all(Radius.zero)),
                         child: Text(
                           fit.name,
                           style: widget.config.bodyStyle,
@@ -746,14 +735,11 @@ class _ImageSettingState extends State<EzImageSetting> {
             if (changed) await widget.config.rebuildUI();
             setState(() => inProgress = false);
           },
-          onLongPress: inProgress ? doNothing : showSource,
+          onLongPress: inProgress ? doNothing : showCredits,
           icon: Container(
-            decoration: BoxDecoration(
+            decoration: widget.config.boxDeco(
+              border: widget.config.boxBorder(fill: widget.config.onSurfaceFiller),
               shape: BoxShape.circle,
-              border: Border.all(
-                color: widget.config.colors.onSurface,
-                width: widget.config.borderWidth,
-              ),
             ),
             child: CircleAvatar(
               radius: widget.config.iconSize + widget.config.padding,
@@ -762,14 +748,19 @@ class _ImageSettingState extends State<EzImageSetting> {
                       ? null
                       : ezImageProvider(currPath!),
               backgroundColor: (pathARGB != null) ? Color(pathARGB) : Colors.transparent,
-              foregroundColor: widget.config.colors.onSurface,
+              foregroundColor: widget.config.onSurface,
               child: inProgress
-                  ? EzLoadingGlass(widget.config)
+                  ? EzLoadingGlass(ywt.EzLoadingIndicator(
+                      iconSize: widget.config.iconSize,
+                      padding: widget.config.padding,
+                      semantics: widget.config.ezL10n.gLoadingAnim,
+                      colorScheme: widget.config.theme.colorScheme,
+                    ))
                   : (currPath == null || currPath == noImageValue)
                       ? EzIcon(
                           widget.config,
                           Icons.image_search,
-                          color: widget.config.colors.primary,
+                          fill: widget.config.primaryFill,
                         )
                       : null,
             ),

@@ -9,10 +9,19 @@ class OUILangEn extends OUILang {
   OUILangEn([String locale = 'en']) : super(locale);
 
   @override
+  String get csAddMore => 'Add 2 or more colors';
+
+  @override
+  String get csBuildGradient => 'Add to gradients list';
+
+  @override
   String get csColorScheme => 'color scheme';
 
   @override
   String get csCurrVal => 'Current color value:';
+
+  @override
+  String get csEndDir => 'End direction';
 
   @override
   String get csError => 'Error';
@@ -22,6 +31,9 @@ class OUILangEn extends OUILang {
 
   @override
   String get csFromImage => 'A color scheme will be generated from the image.';
+
+  @override
+  String get csGradientHint => 'Use handle to move\nLong press to remove';
 
   @override
   String get csHighContrast => 'Use high contrast scheme';
@@ -76,6 +88,9 @@ class OUILangEn extends OUILang {
 
   @override
   String get csShadow => 'Shadow';
+
+  @override
+  String get csStartDir => 'Start direction';
 
   @override
   String get csSurface => 'Button\nbackground';
@@ -314,6 +329,15 @@ class OUILangEn extends OUILang {
   String get gBothThemes => 'Both themes';
 
   @override
+  String get gBottomCenter => 'Bottom center';
+
+  @override
+  String get gBottomLeft => 'Bottom left';
+
+  @override
+  String get gBottomRight => 'Bottom right';
+
+  @override
   String get gCancel => 'Cancel';
 
   @override
@@ -323,7 +347,16 @@ class OUILangEn extends OUILang {
   String get gCaptionsHint => 'Hold for fonts';
 
   @override
+  String get gCenter => 'Center';
+
+  @override
+  String get gCenterLeft => 'Center left';
+
+  @override
   String get gCenterReset => 'Hold center to reset';
+
+  @override
+  String get gCenterRight => 'Center right';
 
   @override
   String gClipboard(Object thing) {
@@ -358,6 +391,9 @@ class OUILangEn extends OUILang {
   String get gDesign => 'Design';
 
   @override
+  String get gDevInfo => 'Developer info';
+
+  @override
   String get gDisabled => 'Disabled';
 
   @override
@@ -386,6 +422,9 @@ class OUILangEn extends OUILang {
 
   @override
   String get gGlobal => 'Global';
+
+  @override
+  String get gGradient => 'Gradient';
 
   @override
   String get gHardRefresh =>
@@ -535,6 +574,9 @@ class OUILangEn extends OUILang {
   String get gSettings => 'Settings';
 
   @override
+  String get gSingle => 'Single';
+
+  @override
   String get gSkip => 'Skip';
 
   @override
@@ -560,6 +602,15 @@ class OUILangEn extends OUILang {
 
   @override
   String get gThe => 'The';
+
+  @override
+  String get gTopCenter => 'Top center';
+
+  @override
+  String get gTopLeft => 'Top left';
+
+  @override
+  String get gTopRight => 'Top right';
 
   @override
   String get gUnMute => 'Un-mute';
@@ -803,10 +854,19 @@ class OUILangEnUs extends OUILangEn {
   OUILangEnUs() : super('en_US');
 
   @override
+  String get csAddMore => 'Add 2 or more colors';
+
+  @override
+  String get csBuildGradient => 'Add to gradients list';
+
+  @override
   String get csColorScheme => 'color scheme';
 
   @override
   String get csCurrVal => 'Current color value:';
+
+  @override
+  String get csEndDir => 'End direction';
 
   @override
   String get csError => 'Error';
@@ -816,6 +876,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get csFromImage => 'A color scheme will be generated from the image.';
+
+  @override
+  String get csGradientHint => 'Use handle to move\nLong press to remove';
 
   @override
   String get csHighContrast => 'Use high contrast scheme';
@@ -870,6 +933,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get csShadow => 'Shadow';
+
+  @override
+  String get csStartDir => 'Start direction';
 
   @override
   String get csSurface => 'Button\nbackground';
@@ -1108,6 +1174,15 @@ class OUILangEnUs extends OUILangEn {
   String get gBothThemes => 'Both themes';
 
   @override
+  String get gBottomCenter => 'Bottom center';
+
+  @override
+  String get gBottomLeft => 'Bottom left';
+
+  @override
+  String get gBottomRight => 'Bottom right';
+
+  @override
   String get gCancel => 'Cancel';
 
   @override
@@ -1117,7 +1192,16 @@ class OUILangEnUs extends OUILangEn {
   String get gCaptionsHint => 'Hold for fonts';
 
   @override
+  String get gCenter => 'Center';
+
+  @override
+  String get gCenterLeft => 'Center left';
+
+  @override
   String get gCenterReset => 'Hold center to reset';
+
+  @override
+  String get gCenterRight => 'Center right';
 
   @override
   String gClipboard(Object thing) {
@@ -1152,6 +1236,9 @@ class OUILangEnUs extends OUILangEn {
   String get gDesign => 'Design';
 
   @override
+  String get gDevInfo => 'Developer info';
+
+  @override
   String get gDisabled => 'Disabled';
 
   @override
@@ -1180,6 +1267,9 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get gGlobal => 'Global';
+
+  @override
+  String get gGradient => 'Gradient';
 
   @override
   String get gHardRefresh =>
@@ -1329,6 +1419,9 @@ class OUILangEnUs extends OUILangEn {
   String get gSettings => 'Settings';
 
   @override
+  String get gSingle => 'Single';
+
+  @override
   String get gSkip => 'Skip';
 
   @override
@@ -1354,6 +1447,15 @@ class OUILangEnUs extends OUILangEn {
 
   @override
   String get gThe => 'The';
+
+  @override
+  String get gTopCenter => 'Top center';
+
+  @override
+  String get gTopLeft => 'Top left';
+
+  @override
+  String get gTopRight => 'Top right';
 
   @override
   String get gUnMute => 'Un-mute';
