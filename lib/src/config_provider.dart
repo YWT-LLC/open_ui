@@ -601,6 +601,7 @@ class EzCP extends ChangeNotifier {
   /// SuperCache
   void swapCache(EzAppCache newCache) {
     if (_appCache != newCache) {
+      newCache.init(_isDark);
       _appCache = newCache;
       notifyListeners();
     }
