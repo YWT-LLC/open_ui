@@ -74,7 +74,7 @@ class QuickColorSettings extends StatelessWidget {
             resetSkip: resetSkip,
             onConfirm: () async {
               if (EzCM.updateBoth) {
-                await EzCM.removeKeys(allColorKeys.keys.toSet());
+                await EzCM.removeKeys(allColorPairs.keys.toSet());
                 if (resetExtraDark != null) {
                   await EzCM.removeKeys(resetExtraDark!);
                 }

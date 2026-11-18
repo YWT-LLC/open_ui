@@ -620,7 +620,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             appDescription: descriptionTC.text,
                             domainName: exampleDomain ? 'com.example' : domainTC.text,
                             appDefaults: Map<String, dynamic>.fromEntries(
-                              allEZConfigKeys.keys.map(
+                              allEzConfigPairs.keys.map(
                                 (String key) => MapEntry<String, dynamic>(key, EzCM.get(key)),
                               ),
                             ),
@@ -675,7 +675,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                               appDescription: descriptionTC.text,
                               domainName: exampleDomain ? 'com.example' : domainTC.text,
                               appDefaults: Map<String, dynamic>.fromEntries(
-                                allEZConfigKeys.keys.map(
+                                allEzConfigPairs.keys.map(
                                   (String key) => MapEntry<String, dynamic>(key, EzCM.get(key)),
                                 ),
                               ),

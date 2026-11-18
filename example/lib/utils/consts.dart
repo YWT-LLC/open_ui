@@ -33,7 +33,19 @@ const String publisherBackupKey = 'publisherBackup';
 const String descriptionBackupKey = 'descriptionBackup';
 const String domainBackupKey = 'domainBackup';
 
-const Map<String, Object> openUIDefaults = <String, Object>{
+final Map<String, Type> uniquePairs = <String, Type>{
+  nameBackupKey: String,
+  publisherBackupKey: String,
+  descriptionBackupKey: String,
+  domainBackupKey: String,
+};
+
+final Map<String, Type> allOpenUIPairs = <String, Type>{
+  ...allEzConfigPairs,
+  ...uniquePairs,
+};
+
+const Map<String, Object> _openUIDefaults = <String, Object>{
   nameBackupKey: '',
   publisherBackupKey: '',
   descriptionBackupKey: '',
@@ -42,10 +54,10 @@ const Map<String, Object> openUIDefaults = <String, Object>{
 
 final Map<String, Object> desktopDefaults = <String, Object>{
   ...ywtDesktopConfig,
-  ...openUIDefaults,
+  ..._openUIDefaults,
 };
 
 final Map<String, Object> mobileDefaults = <String, Object>{
   ...ywtMobileConfig,
-  ...openUIDefaults,
+  ..._openUIDefaults,
 };

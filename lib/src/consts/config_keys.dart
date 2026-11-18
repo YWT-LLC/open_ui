@@ -9,7 +9,7 @@ const String hubPositionKey = 'hubPosition';
 const String updateBothKey = 'updateBoth';
 
 /// [hubPositionKey], [updateBothKey]
-const Map<String, Type> allBTSKeys = <String, Type>{
+const Map<String, Type> allBTSPairs = <String, Type>{
   hubPositionKey: int,
   updateBothKey: bool,
 };
@@ -21,7 +21,7 @@ const String isDarkThemeKey = 'isDarkTheme';
 const String appLocaleKey = 'appLocale';
 
 /// [isLeftyKey], [isDarkThemeKey], [appLocaleKey]
-const Map<String, Type> allGlobalKeys = <String, Type>{
+const Map<String, Type> allGlobalPairs = <String, Type>{
   isLeftyKey: bool,
   isDarkThemeKey: bool,
   appLocaleKey: List<String>,
@@ -39,7 +39,7 @@ const String mainVolumeKey = 'mainVolume';
 
 const String advancedAudioKey = 'advancedAudio';
 
-const Map<String, Type> allAudioKeys = <String, Type>{
+const Map<String, Type> allAudioPairs = <String, Type>{
   mainVolumeKey: int,
   advancedAudioKey: bool,
 };
@@ -405,7 +405,7 @@ const Set<String> noGradientKeys = <String>{
   ...lightNoGradients,
 };
 
-const Map<String, Type> allColorKeys = <String, Type>{
+const Map<String, Type> allColorPairs = <String, Type>{
   advancedColorsKey: bool,
   ...darkColorKeys,
   ...lightColorKeys,
@@ -507,7 +507,7 @@ const Map<String, Type> lightDesignKeys = <String, Type>{
   ...lightPageDesignKeys,
 };
 
-const Map<String, Type> allDesignKeys = <String, Type>{
+const Map<String, Type> allDesignPairs = <String, Type>{
   pageTabKey: bool,
   ...darkDesignKeys,
   ...lightDesignKeys,
@@ -743,7 +743,7 @@ const Map<String, Type> lightTextKeys = <String, Type>{
 
 const String advancedTextKey = 'advancedText';
 
-const Map<String, Type> allTextKeys = <String, Type>{
+const Map<String, Type> allTextPairs = <String, Type>{
   advancedTextKey: bool,
   ...darkTextKeys,
   ...lightTextKeys,
@@ -751,11 +751,11 @@ const Map<String, Type> allTextKeys = <String, Type>{
 
 //* Trackers *//
 
-const Map<String, Type> allEZConfigKeys = <String, Type>{
-  ...allBTSKeys,
-  ...allGlobalKeys,
-  ...allAudioKeys,
-  ...allColorKeys,
-  ...allDesignKeys,
-  ...allTextKeys,
+const Map<String, Type> allEzConfigPairs = <String, Type>{
+  ...allBTSPairs,
+  ...allGlobalPairs,
+  ...allAudioPairs,
+  ...allColorPairs,
+  ...allDesignPairs,
+  ...allTextPairs,
 };

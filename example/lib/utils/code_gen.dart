@@ -352,7 +352,7 @@ void main() async {
     l10nFallback: await OUILang.delegate.load(americanEnglish),
     preferences: await SharedPreferencesWithCache.create(
       cacheOptions: SharedPreferencesWithCacheOptions(
-        allowList: allEZConfigKeys.keys.toSet(),
+        allowList: allEzConfigPairs.keys.toSet(),
       ),
     ),
     defaults: ${camelCaseAppName}Config,

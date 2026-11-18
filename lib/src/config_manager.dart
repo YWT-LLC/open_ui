@@ -128,7 +128,7 @@ class EzCM {
       // Get the value type for each key //
 
       // Start with the known EzConfigverse
-      final Map<String, Type> typeMap = Map<String, Type>.from(allEZConfigKeys);
+      final Map<String, Type> typeMap = Map<String, Type>.from(allEzConfigPairs);
 
       // Include defaults
       final Set<String> uniqueDefaults = defaults.keys.toSet().difference(typeMap.keys.toSet());

@@ -18,11 +18,11 @@ class EzTextSettings extends StatelessWidget {
   final EzSubSetting target;
 
   /// Optional additional reset keys for the dark theme
-  /// [allTextKeys] and [darkOnSurfaceKey] are included by default
+  /// [allTextPairs] and [darkOnSurfaceKey] are included by default
   final Set<String>? resetExtraDark;
 
   /// Optional additional reset keys for the light theme
-  /// [allTextKeys] and [lightOnSurfaceKey] are included by default
+  /// [allTextPairs] and [lightOnSurfaceKey] are included by default
   final Set<String>? resetExtraLight;
 
   /// Shared for both themes
