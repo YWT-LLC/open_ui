@@ -45,7 +45,7 @@ final Map<String, Type> allOpenUIPairs = <String, Type>{
   ...uniquePairs,
 };
 
-const Map<String, Object> _openUIDefaults = <String, Object>{
+const Map<String, Object> uniqueDefaults = <String, Object>{
   nameBackupKey: '',
   publisherBackupKey: '',
   descriptionBackupKey: '',
@@ -54,10 +54,10 @@ const Map<String, Object> _openUIDefaults = <String, Object>{
 
 final Map<String, Object> desktopDefaults = <String, Object>{
   ...ywtDesktopConfig,
-  ..._openUIDefaults,
+  ...uniqueDefaults,
 };
 
 final Map<String, Object> mobileDefaults = <String, Object>{
   ...ywtMobileConfig,
-  ..._openUIDefaults,
+  ...uniqueDefaults,
 };
