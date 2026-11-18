@@ -1,6 +1,6 @@
 {
-    "name": "open_ui",
-    "short_name": "open_ui",
+    "name": "Open UI",
+    "short_name": "Open UI",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#A520DA",
