@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Будь ласка, виконайте жорстке оновлення сторінки...\nCommand + Shift + R",
   "gHardRefreshMobile": "Будь ласка, оновіть сторінку в меню браузера.",
   "gHelp": "Довідка",
+  "gIgnoreUpdate": "{latest} — останнє оновлення.\nУ вас версія {current}\n\nПропустити {latest}?",
   "gIncrease": "Збільшити",
   "gLayout": "Макет",
   "gLeft": "Ліворуч",

@@ -438,6 +438,11 @@ class OUILangJa extends OUILang {
   String get gHelp => 'ヘルプ';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest が最新のアップデートです。\n現在のバージョンは $current です\n\n$latest を無視しますか？';
+  }
+
+  @override
   String get gIncrease => '増やす';
 
   @override

@@ -444,6 +444,11 @@ class OUILangHi extends OUILang {
   String get gHelp => 'मदद';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest नवीनतम अपडेट है।\nआप संस्करण $current पर हैं\n\nक्या आप $latest को अनदेखा करना चाहते हैं?';
+  }
+
+  @override
   String get gIncrease => 'बढ़ाएं';
 
   @override

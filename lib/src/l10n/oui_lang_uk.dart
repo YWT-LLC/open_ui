@@ -444,6 +444,11 @@ class OUILangUk extends OUILang {
   String get gHelp => 'Довідка';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest — останнє оновлення.\nУ вас версія $current\n\nПропустити $latest?';
+  }
+
+  @override
   String get gIncrease => 'Збільшити';
 
   @override

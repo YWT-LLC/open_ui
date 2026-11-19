@@ -139,6 +139,7 @@
   "gHardRefreshMac": "कृपया पेज को हार्ड रिफ्रेश करें...\nCommand + Shift + R",
   "gHardRefreshMobile": "कृपया ब्राउज़र मेनू में पेज को रीफ्रेश करें।",
   "gHelp": "मदद",
+  "gIgnoreUpdate": "{latest} नवीनतम अपडेट है।\nआप संस्करण {current} पर हैं\n\nक्या आप {latest} को अनदेखा करना चाहते हैं?",
   "gIncrease": "बढ़ाएं",
   "gLayout": "लेआउट",
   "gLeft": "बाएँ",

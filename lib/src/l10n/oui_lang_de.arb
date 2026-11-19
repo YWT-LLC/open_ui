@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Bitte die Seite komplett neu laden...\nCmd + Umschalt + R",
   "gHardRefreshMobile": "Bitte die Seite im Browser-Menü neu laden.",
   "gHelp": "Hilfe",
+  "gIgnoreUpdate": "{latest} ist das neueste Update.\nAktuelle Version: {current}\n\n{latest} ignorieren?",
   "gIncrease": "Erhöhen",
   "gLayout": "Layout",
   "gLeft": "Links",

@@ -440,6 +440,11 @@ class OUILangAr extends OUILang {
   String get gHelp => 'مساعدة';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest هو أحدث تحديث.\nأنت تستخدم الإصدار $current\n\nهل تريد تجاهل $latest؟';
+  }
+
+  @override
   String get gIncrease => 'زيادة';
 
   @override
@@ -1282,6 +1287,11 @@ class OUILangArEg extends OUILangAr {
 
   @override
   String get gHelp => 'مساعدة';
+
+  @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest هو أحدث تحديث.\nأنت تستخدم الإصدار $current\n\nهل تريد تجاهل $latest؟';
+  }
 
   @override
   String get gIncrease => 'زيادة';

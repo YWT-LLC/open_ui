@@ -442,6 +442,11 @@ class OUILangHt extends OUILang {
   String get gHelp => 'Èd';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest se dènye mizajou a.\nOu sou vèsyon $current\n\nÈske ou vle inyore $latest?';
+  }
+
+  @override
   String get gIncrease => 'Ogmante';
 
   @override

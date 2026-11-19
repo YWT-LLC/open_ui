@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Tanpri fòse rafrechi paj la...\nCommand + Shift + R",
   "gHardRefreshMobile": "Tanpri rafrechi paj la nan meni navigatè a.",
   "gHelp": "Èd",
+  "gIgnoreUpdate": "{latest} se dènye mizajou a.\nOu sou vèsyon {current}\n\nÈske ou vle inyore {latest}?",
   "gIncrease": "Ogmante",
   "gLayout": "Aranjman",
   "gLeft": "Goch",

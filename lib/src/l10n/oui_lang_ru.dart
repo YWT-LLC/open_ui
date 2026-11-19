@@ -446,6 +446,11 @@ class OUILangRu extends OUILang {
   String get gHelp => 'Справка';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest — последнее обновление.\nУ вас версия $current\n\nПропустить $latest?';
+  }
+
+  @override
   String get gIncrease => 'Увеличить';
 
   @override

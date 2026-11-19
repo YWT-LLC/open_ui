@@ -189,12 +189,9 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
       context: context,
       builder: (BuildContext dCon) => EzAlertDialog(
         widget.config,
-        title: const Text(
-          'Updates available', // TODO: l10n
-          textAlign: TextAlign.center,
-        ),
+        title: Text(widget.config.ezL10n.gUpdates, textAlign: TextAlign.center),
         content: Text(
-          '$version is the latest update.\nYou are on version ${widget.appVersion}\n\nWould you like to ignore $version?',
+          widget.config.ezL10n.gIgnoreUpdate(widget.appVersion, version),
           textAlign: TextAlign.center,
         ),
         actions: ezActionPair(

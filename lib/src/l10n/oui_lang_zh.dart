@@ -437,6 +437,11 @@ class OUILangZh extends OUILang {
   String get gHelp => '帮助';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest 是最新版本。\n您当前的版本是 $current\n\n是否忽略 $latest？';
+  }
+
+  @override
   String get gIncrease => '增加';
 
   @override
@@ -1273,6 +1278,11 @@ class OUILangZhCn extends OUILangZh {
 
   @override
   String get gHelp => '帮助';
+
+  @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest 是最新版本。\n您当前的版本是 $current\n\n是否忽略 $latest？';
+  }
 
   @override
   String get gIncrease => '增加';

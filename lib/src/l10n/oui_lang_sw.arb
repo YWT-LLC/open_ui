@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Tafadhali onyesha upya ukurasa kwa lazima...\nCommand + Shift + R",
   "gHardRefreshMobile": "Tafadhali onyesha upya ukurasa kwenye menyu ya kivinjari.",
   "gHelp": "Msaada",
+  "gIgnoreUpdate": "{latest} ndilo sasisho jipya zaidi.\nUnatumia toleo {current}\n\nJe, ungependa kupuuza {latest}?",
   "gIncrease": "Ongeza",
   "gLayout": "Mpangilio",
   "gLeft": "Kushoto",

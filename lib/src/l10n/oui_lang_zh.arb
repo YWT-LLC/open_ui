@@ -139,6 +139,7 @@
   "gHardRefreshMac": "请硬刷新页面...\nCommand + Shift + R",
   "gHardRefreshMobile": "请在浏览器菜单中刷新页面。",
   "gHelp": "帮助",
+  "gIgnoreUpdate": "{latest} 是最新版本。\n您当前的版本是 {current}\n\n是否忽略 {latest}？",
   "gIncrease": "增加",
   "gLayout": "布局",
   "gLeft": "左",

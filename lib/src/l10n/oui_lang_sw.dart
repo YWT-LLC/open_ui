@@ -444,6 +444,11 @@ class OUILangSw extends OUILang {
   String get gHelp => 'Msaada';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest ndilo sasisho jipya zaidi.\nUnatumia toleo $current\n\nJe, ungependa kupuuza $latest?';
+  }
+
+  @override
   String get gIncrease => 'Ongeza';
 
   @override

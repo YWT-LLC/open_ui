@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Mangyaring i-hard refresh ang page...\nCommand + Shift + R",
   "gHardRefreshMobile": "Mangyaring i-refresh ang page sa menu ng browser.",
   "gHelp": "Tulong",
+  "gIgnoreUpdate": "Ang {latest} ang pinakabagong update.\nNasa bersyon {current} ka\n\nGusto mo bang i-ignore ang {latest}?",
   "gIncrease": "Dagdagan",
   "gLayout": "Layout",
   "gLeft": "Kaliwa",

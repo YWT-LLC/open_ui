@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Пожалуйста, выполните жесткую перезагрузку страницы...\nCommand + Shift + R",
   "gHardRefreshMobile": "Пожалуйста, обновите страницу в меню браузера.",
   "gHelp": "Справка",
+  "gIgnoreUpdate": "{latest} — последнее обновление.\nУ вас версия {current}\n\nПропустить {latest}?",
   "gIncrease": "Увеличить",
   "gLayout": "Макет",
   "gLeft": "Слева",

@@ -438,6 +438,11 @@ class OUILangKo extends OUILang {
   String get gHelp => '도움말';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest이(가) 최신 업데이트입니다.\n현재 버전은 $current입니다\n\n$latest을(를) 무시하시겠습니까?';
+  }
+
+  @override
   String get gIncrease => '증가';
 
   @override

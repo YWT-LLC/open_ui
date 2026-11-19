@@ -957,6 +957,12 @@ abstract class OUILang {
   /// **'Help'**
   String get gHelp;
 
+  /// No description provided for @gIgnoreUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'{latest} is the latest update.\nYou are on version {current}\n\nWould you like to ignore {latest}?'**
+  String gIgnoreUpdate(Object current, Object latest);
+
   /// No description provided for @gIncrease.
   ///
   /// In en, this message translates to:

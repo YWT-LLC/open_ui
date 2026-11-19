@@ -445,6 +445,11 @@ class OUILangEs extends OUILang {
   String get gHelp => 'Ayuda';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return '$latest es la actualización más reciente.\nEstás en la versión $current\n\n¿Quieres ignorar $latest?';
+  }
+
+  @override
   String get gIncrease => 'Aumentar';
 
   @override

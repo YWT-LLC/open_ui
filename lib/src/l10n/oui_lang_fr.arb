@@ -139,6 +139,7 @@
   "gHardRefreshMac": "Veuillez forcer l'actualisation de la page...\nCommand + Maj + R",
   "gHardRefreshMobile": "Veuillez actualiser la page dans le menu du navigateur.",
   "gHelp": "Aide",
+  "gIgnoreUpdate": "{latest} est la dernière mise à jour.\nVous utilisez la version {current}\n\nVoulez-vous ignorer {latest} ?",
   "gIncrease": "Augmenter",
   "gLayout": "Mise en page",
   "gLeft": "Gauche",

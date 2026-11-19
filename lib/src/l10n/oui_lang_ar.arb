@@ -139,6 +139,7 @@
   "gHardRefreshMac": "يرجى إعادة تحميل الصفحة بالكامل...\nCommand + Shift + R",
   "gHardRefreshMobile": "يرجى تحديث الصفحة من قائمة المتصفح.",
   "gHelp": "مساعدة",
+  "gIgnoreUpdate": "{latest} هو أحدث تحديث.\nأنت تستخدم الإصدار {current}\n\nهل تريد تجاهل {latest}؟",
   "gIncrease": "زيادة",
   "gLayout": "التخطيط",
   "gLeft": "يسار",

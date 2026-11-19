@@ -444,6 +444,11 @@ class OUILangFil extends OUILang {
   String get gHelp => 'Tulong';
 
   @override
+  String gIgnoreUpdate(Object current, Object latest) {
+    return 'Ang $latest ang pinakabagong update.\nNasa bersyon $current ka\n\nGusto mo bang i-ignore ang $latest?';
+  }
+
+  @override
   String get gIncrease => 'Dagdagan';
 
   @override
