@@ -7,11 +7,13 @@
 
 const String hubPositionKey = 'hubPosition';
 const String updateBothKey = 'updateBoth';
+const String ignoreVersionKey = 'ignoreVersion';
 
-/// [hubPositionKey], [updateBothKey]
+/// [hubPositionKey], [updateBothKey], [ignoreVersionKey]
 const Map<String, Type> allBTSPairs = <String, Type>{
   hubPositionKey: int,
   updateBothKey: bool,
+  ignoreVersionKey: String,
 };
 
 //* Global settings *//

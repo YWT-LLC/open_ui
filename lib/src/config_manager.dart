@@ -863,6 +863,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
   static int get hubPos => get(hubPositionKey);
   static bool get updateBoth => get(updateBothKey);
+  static String? get ignoreVersion => get(ignoreVersionKey);
 
   static Future<bool> setHubPos(int pos) => setInt(hubPositionKey, pos);
 }
