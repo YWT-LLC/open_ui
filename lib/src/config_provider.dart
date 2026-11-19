@@ -42,7 +42,7 @@ class EzCP extends ChangeNotifier {
     _isLefty = EzCM.get(isLeftyKey);
     _getThemeMode();
     _buildThemeData();
-    _appCache.init(isDark);
+    _appCache.init(this);
   }
 
   /// Gather and set [_themeMode] from storage
@@ -601,7 +601,7 @@ class EzCP extends ChangeNotifier {
   /// SuperCache
   void swapCache(EzAppCache newCache) {
     if (_appCache != newCache) {
-      newCache.init(_isDark);
+      newCache.init(this);
       _appCache = newCache;
       notifyListeners();
     }
@@ -682,8 +682,7 @@ class EzSwitchColor {
   Gradient get asGradient => gradient ?? LinearGradient(colors: <Color>[color!]);
 
   @override
-  String toString() =>
-      (gradient != null) ? ezLGToString(gradient!) : color!.toARGB32().toString();
+  String toString() => (gradient != null) ? ezLGToString(gradient!) : color!.toARGB32().toString();
 }
 
 class EzColorCache {
@@ -844,7 +843,7 @@ class EzTextCache {
 
 abstract class EzAppCache {
   /// Will run on app setup
-  void init(bool isDark);
+  void init(EzCP config);
 
   /// Will run on every call to [EzCP.rebuildUI]
   Future<void> rebuild(EzCP config);
