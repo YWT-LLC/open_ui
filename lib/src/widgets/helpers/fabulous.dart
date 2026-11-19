@@ -103,9 +103,9 @@ class EzUpdaterFAB extends StatefulWidget {
 class _EzUpdaterState extends State<EzUpdaterFAB> {
   // Define the build data //
 
-  bool isLatest = true; // True to start to prevent flickering
-
   String? url;
+  String? latestVersion;
+  bool isLatest = true; // True to start to prevent flickering
 
   /// Platform aware instructions
   String hardRefresh() => switch (EzCM.platform) {
@@ -113,6 +113,21 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
         TargetPlatform.macOS => widget.config.ezL10n.gHardRefreshMac,
         _ => widget.config.ezL10n.gHardRefresh,
       };
+
+  List<int>? parseVersion(String version) {
+    final List<int?> digits = version.trim().split('.').map(int.tryParse).toList();
+    if (digits.length != 3 || digits.contains(null)) return null;
+    return digits.cast<int>();
+  }
+
+  /// is [a] higher than [b]?
+  bool isNewer(List<int> a, List<int> b) {
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] > b[i]) return true;
+      if (a[i] < b[i]) return false;
+    } // else, continue
+    return false;
+  }
 
   // Init //
 
@@ -135,22 +150,18 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
     if (response.statusCode != 200) return;
     // Skip on failure - otherwise no internet would return a false positive
 
-    final String latestVersion = response.body;
-    if (latestVersion != widget.appVersion) {
-      final List<int> latestDigits = latestVersion.split('.').map(int.parse).toList();
+    final String latest = response.body.trim();
+    final List<int>? latestDigits = parseVersion(latest);
+    if (latestDigits == null) return; // Ditto
 
-      if (latestDigits.length != 3) return; // Ditto
+    final List<int>? appDigits = parseVersion(widget.appVersion);
+    if (appDigits == null || !isNewer(latestDigits, appDigits)) return;
 
-      final List<int> appDigits = widget.appVersion.split('.').map(int.parse).toList();
-
-      for (int i = 0; i < latestDigits.length; i++) {
-        if (latestDigits[i] > appDigits[i]) {
-          setState(() => isLatest = false);
-          return;
-        } else if (latestDigits[i] < appDigits[i]) {
-          return;
-        } // else, continue
-      }
+    // Respect the user's ignored version (if any)
+    final String? ignored = EzCM.ignoreVersion;
+    if (ignored != null) {
+      final List<int>? ignoredDigits = parseVersion(ignored);
+      if (ignoredDigits != null && !isNewer(latestDigits, ignoredDigits)) return;
     }
 
     switch (EzCM.platform) {
@@ -161,6 +172,45 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
       default:
         url = widget.github;
     }
+
+    if (!mounted) return;
+    setState(() {
+      latestVersion = latest;
+      isLatest = false;
+    });
+  }
+
+  /// Offer to ignore [latestVersion]
+  Future<void> ignoreDialog() async {
+    if (latestVersion == null) return;
+    final String version = latestVersion!;
+
+    final bool? ignore = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext dCon) => EzAlertDialog(
+        widget.config,
+        title: const Text(
+          'Updates available', // TODO: l10n
+          textAlign: TextAlign.center,
+        ),
+        content: Text(
+          '$version is the latest update.\nYou are on version ${widget.appVersion}\n\nWould you like to ignore $version?',
+          textAlign: TextAlign.center,
+        ),
+        actions: ezActionPair(
+          widget.config,
+          confirmMsg: widget.config.ezL10n.gYes,
+          onConfirm: () => Navigator.of(dCon).pop(true),
+          denyMsg: widget.config.ezL10n.gCancel,
+          onDeny: () => Navigator.of(dCon).pop(false),
+        ),
+        needsClose: false,
+      ),
+    );
+    if (ignore != true) return;
+
+    await EzCM.setString(ignoreVersionKey, version);
+    if (mounted) setState(() => isLatest = true);
   }
 
   // Return the build //
@@ -171,30 +221,35 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
         forceFade: true,
         forceType: EzTransitionType.none,
         visible: !isLatest,
-        kid: widget.isWeb // Trinary required, if/else breaks iOS web links
-            ? FloatingActionButton(
-                heroTag: 'updater_FAB',
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (_) => EzAlertDialog(
-                    widget.config,
-                    title: Text(widget.config.ezL10n.gUpdates, textAlign: TextAlign.center),
-                    content: Text(hardRefresh(), textAlign: TextAlign.center),
+        kid: Tooltip(
+          message: widget.config.ezL10n.gUpdates,
+          triggerMode: TooltipTriggerMode.manual,
+          child: GestureDetector(
+            onLongPress: ignoreDialog,
+            child: widget.isWeb // Trinary required, if/else breaks iOS web links
+                ? FloatingActionButton(
+                    heroTag: 'updater_FAB',
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (_) => EzAlertDialog(
+                        widget.config,
+                        title: Text(widget.config.ezL10n.gUpdates, textAlign: TextAlign.center),
+                        content: Text(hardRefresh(), textAlign: TextAlign.center),
+                      ),
+                    ),
+                    backgroundColor: widget.config.secondaryFill.asColor,
+                    foregroundColor: widget.config.onSecondary,
+                    child: EzIcon(widget.config, Icons.update),
+                  )
+                : FloatingActionButton(
+                    heroTag: 'updater_FAB',
+                    onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
+                    backgroundColor: widget.config.secondaryFill.asColor,
+                    foregroundColor: widget.config.onSecondary,
+                    child: EzIcon(widget.config, Icons.update),
                   ),
-                ),
-                tooltip: widget.config.ezL10n.gUpdates,
-                backgroundColor: widget.config.secondaryFill.asColor,
-                foregroundColor: widget.config.onSecondary,
-                child: EzIcon(widget.config, Icons.update),
-              )
-            : FloatingActionButton(
-                heroTag: 'updater_FAB',
-                onPressed: () => launchUrl(Uri.parse(url ?? widget.github!)),
-                tooltip: widget.config.ezL10n.gUpdates,
-                backgroundColor: widget.config.secondaryFill.asColor,
-                foregroundColor: widget.config.onSecondary,
-                child: EzIcon(widget.config, Icons.update),
-              ),
+          ),
+        ),
       );
 }
 
