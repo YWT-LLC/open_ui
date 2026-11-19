@@ -602,11 +602,11 @@ Future<String?> ezColorPicker(
 
   return (confirmed == true)
       ? gradient
-          ? <String>[
-              beginDir.toString(),
-              endDir.toString(),
-              ...gradients.map((Color color) => color.toARGB32().toString()),
-            ].join(colorSplit)
+          ? ezLGToString(LinearGradient(
+              begin: beginDir,
+              end: endDir,
+              colors: gradients,
+            ))
           : preview.asColor.toARGB32().toString()
       : null;
 }

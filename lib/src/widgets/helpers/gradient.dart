@@ -151,22 +151,45 @@ class EzGradientOutlinedBorder extends OutlinedBorder {
 
 // Storage //
 
-final Map<String, AlignmentGeometry> alignLibrary = <String, AlignmentGeometry>{
+/// CAW! Do NOT build these with [Alignment.toString]
+/// That produces different results on dev vs release... for some reason
+const Map<String, AlignmentGeometry> alignLibrary = <String, AlignmentGeometry>{
   // Bottom
-  Alignment.bottomLeft.toString(): Alignment.bottomLeft,
-  Alignment.bottomCenter.toString(): Alignment.bottomCenter,
-  Alignment.bottomRight.toString(): Alignment.bottomRight,
+  'Alignment.bottomLeft': Alignment.bottomLeft,
+  'Alignment.bottomCenter': Alignment.bottomCenter,
+  'Alignment.bottomRight': Alignment.bottomRight,
 
   // Center
-  Alignment.centerLeft.toString(): Alignment.centerLeft,
-  Alignment.center.toString(): Alignment.center,
-  Alignment.centerRight.toString(): Alignment.centerRight,
+  'Alignment.centerLeft': Alignment.centerLeft,
+  'Alignment.center': Alignment.center,
+  'Alignment.centerRight': Alignment.centerRight,
 
   // Top
-  Alignment.topLeft.toString(): Alignment.topLeft,
-  Alignment.topCenter.toString(): Alignment.topCenter,
-  Alignment.topRight.toString(): Alignment.topRight,
+  'Alignment.topLeft': Alignment.topLeft,
+  'Alignment.topCenter': Alignment.topCenter,
+  'Alignment.topRight': Alignment.topRight,
 };
+
+/// Reverse, reverse!
+final Map<AlignmentGeometry, String> _alignNames = <AlignmentGeometry, String>{
+  for (final MapEntry<String, AlignmentGeometry> entry in alignLibrary.entries)
+    entry.value: entry.key,
+};
+
+/// Fails to [Alignment.centerLeft] for when [start] is true
+/// [Alignment.centerRight] when false
+String ezAlignString(
+  AlignmentGeometry align, {
+  bool start = true,
+}) =>
+    _alignNames[align] ?? (start ? 'Alignment.centerLeft' : 'Alignment.centerRight');
+
+/// Storage string for [gradient], parsable by [ezLGFromString] and [ezCOG]
+String ezLGToString(LinearGradient gradient) => <String>[
+      ezAlignString(gradient.begin),
+      ezAlignString(gradient.end, start: false),
+      ...gradient.colors.map((Color color) => color.toARGB32().toString()),
+    ].join(colorSplit);
 
 /// No checks, assumes a valid gradient entry's value is being sent
 LinearGradient ezLGFromString(String value) {
@@ -196,8 +219,8 @@ const LinearGradient ezRainbowGradient = LinearGradient(
 const EzSwitchColor ezRainbowSwitch = EzSwitchColor(gradient: ezRainbowGradient);
 
 final String ezRainbowString = <String>[
-  Alignment.topCenter.toString(),
-  Alignment.bottomCenter.toString(),
+  ezAlignString(Alignment.topCenter),
+  ezAlignString(Alignment.bottomCenter),
   Colors.red.toARGB32().toString(),
   Colors.orange.toARGB32().toString(),
   Colors.yellow.toARGB32().toString(),
@@ -208,8 +231,8 @@ final String ezRainbowString = <String>[
 ].join(colorSplit);
 
 final String ezRainbowAccentString = <String>[
-  Alignment.bottomLeft.toString(),
-  Alignment.topRight.toString(),
+  ezAlignString(Alignment.bottomLeft),
+  ezAlignString(Alignment.topRight),
   Colors.redAccent.toARGB32().toString(),
   Colors.orangeAccent.toARGB32().toString(),
   Colors.yellowAccent.toARGB32().toString(),
@@ -234,8 +257,8 @@ const LinearGradient ezProgressGradient = LinearGradient(
 const EzSwitchColor ezProgressSwitch = EzSwitchColor(gradient: ezProgressGradient);
 
 final String ezProgressString = <String>[
-  Alignment.centerLeft.toString(),
-  Alignment.centerRight.toString(),
+  ezAlignString(Alignment.centerLeft),
+  ezAlignString(Alignment.centerRight),
   Colors.white.toARGB32().toString(),
   Colors.pinkAccent.toARGB32().toString(),
   Colors.lightBlueAccent.toARGB32().toString(),
@@ -244,8 +267,8 @@ final String ezProgressString = <String>[
 ].join(colorSplit);
 
 final String ezProgressVariantString = <String>[
-  Alignment.centerLeft.toString(),
-  Alignment.centerRight.toString(),
+  ezAlignString(Alignment.centerLeft),
+  ezAlignString(Alignment.centerRight),
   Colors.grey.toARGB32().toString(),
   Colors.pink.toARGB32().toString(),
   Colors.blue.toARGB32().toString(),
@@ -254,16 +277,16 @@ final String ezProgressVariantString = <String>[
 ].join(colorSplit);
 
 final String ezYWTGradientString = <String>[
-  Alignment.centerLeft.toString(),
-  Alignment.centerRight.toString(),
+  ezAlignString(Alignment.centerLeft),
+  ezAlignString(Alignment.centerRight),
   ywt.ywtEucalyptusHex.toString(),
   ywt.ywtSandHex.toString(),
   ywt.ywtPurpleHex.toString(),
 ].join(colorSplit);
 
 final String ezErrorGradientString = <String>[
-  Alignment.topLeft.toString(),
-  Alignment.bottomRight.toString(),
+  ezAlignString(Alignment.topLeft),
+  ezAlignString(Alignment.bottomRight),
   Colors.blue.toARGB32().toString(),
   Colors.white.toARGB32().toString(),
   Colors.red.toARGB32().toString(),
