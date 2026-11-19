@@ -587,7 +587,7 @@ Future<String?> ezColorPicker(
               config.rowSpacer,
               EzTextIconButton(
                 config,
-                enabled: !gradient || (gradients.length > 2),
+                enabled: (gradients.length >= 2) || !gradient,
                 icon: EzIcon(config, Icons.check),
                 label: config.ezL10n.gApply,
                 onPressed: () => Navigator.of(mCon).pop(true),
