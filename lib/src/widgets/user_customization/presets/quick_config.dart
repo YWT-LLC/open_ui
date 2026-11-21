@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzQuickConfig extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Extra changes for [EzBigButtonsConfig]
   final Future<void> Function(bool)? extraBig;
@@ -47,7 +47,7 @@ class EzQuickConfig extends StatelessWidget {
 }
 
 class _Options extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final Future<void> Function(bool)? extraBig;
   final Future<void> Function(bool)? extraVis;
   final Future<void> Function(bool)? extraChalk;

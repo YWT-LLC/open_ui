@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzColorSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [config] key whose [Color] will be updated
   final String configKey;
@@ -42,10 +42,10 @@ class _ColorSettingState extends State<EzColorSetting> {
     );
 
     if (picked != null) {
-      await EzCM.setString(widget.configKey, picked);
+      await EzManager.setString(widget.configKey, picked);
 
       if (ezTextMirrors.containsKey(widget.configKey)) {
-        await EzCM.setString(
+        await EzManager.setString(
           ezTextMirrors[widget.configKey]!,
           ezTextColor(ezFirstColor(picked)!).toARGB32().toString(),
         );
@@ -69,7 +69,7 @@ class _ColorSettingState extends State<EzColorSetting> {
     final String backgroundKey = widget.configKey.replaceAll(textColorPrefix, '');
 
     // Find the recommended contrast color for the background
-    final dynamic backgroundColorValue = EzCM.get(backgroundKey);
+    final dynamic backgroundColorValue = EzManager.get(backgroundKey);
     final Color backgroundColor = (backgroundColorValue == null)
         ? getLiveColor(widget.config.theme.colorScheme, backgroundKey)
         : ezFirstColor(backgroundColorValue.toString()) ??
@@ -107,7 +107,7 @@ class _ColorSettingState extends State<EzColorSetting> {
             text: widget.config.ezL10n.gYes,
             onPressed: () async {
               // Update the user's configKey
-              await EzCM.setString(widget.configKey, recommended.toString());
+              await EzManager.setString(widget.configKey, recommended.toString());
 
               currValue = recommended.toString();
               updatePreview(recommended.toString());
@@ -133,7 +133,7 @@ class _ColorSettingState extends State<EzColorSetting> {
   Future<dynamic> reset() => showDialog(
         context: context,
         builder: (BuildContext dCon) {
-          final dynamic resetValue = EzCM.getDefault(widget.configKey);
+          final dynamic resetValue = EzManager.getDefault(widget.configKey);
           final String currColorLabel =
               currPreview.asColor.toARGB32().toRadixString(16).toUpperCase();
 
@@ -162,7 +162,7 @@ class _ColorSettingState extends State<EzColorSetting> {
               widget.config,
               onConfirm: () async {
                 // Remove the user's configKey and reset the current state
-                await EzCM.remove(widget.configKey);
+                await EzManager.remove(widget.configKey);
                 if (resetValue != null) {
                   currValue = resetValue.toString();
                   updatePreview(resetValue.toString());
@@ -189,7 +189,7 @@ class _ColorSettingState extends State<EzColorSetting> {
   void initState() {
     super.initState();
 
-    final dynamic stored = EzCM.get(widget.configKey);
+    final dynamic stored = EzManager.get(widget.configKey);
 
     if (stored == null) {
       final Color liveColor = getLiveColor(widget.config.theme.colorScheme, widget.configKey);

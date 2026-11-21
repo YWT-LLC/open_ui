@@ -10,7 +10,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EzBackFAB extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [FloatingActionButton] that goes back; [Navigator.pop]
   const EzBackFAB(this.config, {super.key});
@@ -25,7 +25,7 @@ class EzBackFAB extends StatelessWidget {
 }
 
 class EzConfigFAB extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Dumps everything (except the current [Locale]) by default
   final Set<String>? skip;
@@ -46,7 +46,7 @@ class EzConfigFAB extends StatelessWidget {
             config,
             label: config.ezL10n.ssSaveConfig,
             icon: EzIcon(config, Icons.download),
-            onPressed: () => EzCM.saveConfig(config, context: context, skip: skip),
+            onPressed: () => EzManager.saveConfig(config, context: context, skip: skip),
           ),
           EzMenuButton(
             config,
@@ -59,7 +59,7 @@ class EzConfigFAB extends StatelessWidget {
 }
 
 class EzUpdaterFAB extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Local app version
   final String appVersion;
@@ -108,7 +108,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   bool isLatest = true; // True to start to prevent flickering
 
   /// Platform aware instructions
-  String hardRefresh() => switch (EzCM.platform) {
+  String hardRefresh() => switch (EzManager.platform) {
         TargetPlatform.android || TargetPlatform.iOS => widget.config.ezL10n.gHardRefreshMobile,
         TargetPlatform.macOS => widget.config.ezL10n.gHardRefreshMac,
         _ => widget.config.ezL10n.gHardRefresh,
@@ -141,7 +141,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
   Future<void> asyncInit() async {
     final bool isGPlay = await isGPlayInstall();
 
-    if (EzCM.onMobile && (isGPlay || EzCM.platform == TargetPlatform.iOS)) {
+    if (EzManager.onMobile && (isGPlay || EzManager.platform == TargetPlatform.iOS)) {
       return; // Don't show for store installs, they will auto-update
     }
 
@@ -158,13 +158,13 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
     if (appDigits == null || !isNewer(latestDigits, appDigits)) return;
 
     // Respect the user's ignored version (if any)
-    final String? ignored = EzCM.ignoreVersion;
+    final String? ignored = EzManager.ignoreVersion;
     if (ignored != null) {
       final List<int>? ignoredDigits = parseVersion(ignored);
       if (ignoredDigits != null && !isNewer(latestDigits, ignoredDigits)) return;
     }
 
-    switch (EzCM.platform) {
+    switch (EzManager.platform) {
       case TargetPlatform.android:
         url = isGPlay ? (widget.gPlay ?? widget.github) : widget.github;
       case TargetPlatform.iOS:
@@ -206,7 +206,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
     );
     if (ignore != true) return;
 
-    await EzCM.setString(ignoreVersionKey, version);
+    await EzManager.setString(ignoreVersionKey, version);
     if (mounted) setState(() => isLatest = true);
   }
 
@@ -251,7 +251,7 @@ class _EzUpdaterState extends State<EzUpdaterFAB> {
 }
 
 class EzRebuildFAB extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [FloatingActionButton] that rebuilds the app when pressed
   const EzRebuildFAB(this.config, {super.key});

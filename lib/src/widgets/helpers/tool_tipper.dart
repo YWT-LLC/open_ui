@@ -9,7 +9,7 @@ import 'package:flutter/semantics.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzToolTipper extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final String? message;
   final InlineSpan? richMessage;
 

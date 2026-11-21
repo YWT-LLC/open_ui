@@ -9,7 +9,7 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
 class EzCountdownTimer extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// How long is the countdown
   final Duration duration;
@@ -17,7 +17,7 @@ class EzCountdownTimer extends StatefulWidget {
   /// Defaults to a [SnackBar] appropriate value
   final double? radius;
 
-  /// Defaults to [EzCP.secondaryFill]
+  /// Defaults to [EzProvider.secondaryFill]
   final EzSwitchColor? fill;
 
   /// An animated circle/pie countdown timer

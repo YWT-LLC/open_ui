@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzThemeModeSwitch extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Standardized tool for changing the [ThemeMode]
   const EzThemeModeSwitch(this.config, {super.key});
@@ -30,13 +30,13 @@ class EzThemeModeSwitch extends StatelessWidget {
 
           switch (choice) {
             case ThemeMode.dark:
-              await EzCM.setBool(isDarkThemeKey, true);
+              await EzManager.setBool(isDarkThemeKey, true);
               break;
             case ThemeMode.light:
-              await EzCM.setBool(isDarkThemeKey, false);
+              await EzManager.setBool(isDarkThemeKey, false);
               break;
             case ThemeMode.system:
-              await EzCM.remove(isDarkThemeKey);
+              await EzManager.remove(isDarkThemeKey);
               break;
           }
           await config.rebuildThemeMode();

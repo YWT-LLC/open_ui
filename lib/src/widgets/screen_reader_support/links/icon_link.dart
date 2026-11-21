@@ -9,7 +9,7 @@ import 'package:url_launcher/link.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzIconLink extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// The [TextButton.icon] label will be [Text] with [label] and all provided styling
   final String label;

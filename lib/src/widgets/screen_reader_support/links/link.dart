@@ -9,7 +9,7 @@ import 'package:url_launcher/link.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzLink extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// The [TextButton.child] will be [Text] with [text] and all provided styling
   final String text;

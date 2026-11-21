@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzItalicSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Which [TextStyle] to update
   final EzTextSettingType type;
@@ -29,7 +29,7 @@ class EzItalicSetting extends StatefulWidget {
 }
 
 class _EzItalicSettingState extends State<EzItalicSetting> {
-  late bool isItalic = EzCM.get(widget.type.italicKey(widget.config.isDark)) ?? false;
+  late bool isItalic = EzManager.get(widget.type.italicKey(widget.config.isDark)) ?? false;
 
   @override
   Widget build(BuildContext context) => EzIconButton(
@@ -38,9 +38,9 @@ class _EzItalicSettingState extends State<EzItalicSetting> {
         onPressed: () async {
           isItalic = !isItalic;
 
-          await EzCM.setBool(widget.type.italicKey(widget.config.isDark), isItalic);
-          if (EzCM.updateBoth) {
-            await EzCM.setBool(widget.type.italicMirror(widget.config.isDark), isItalic);
+          await EzManager.setBool(widget.type.italicKey(widget.config.isDark), isItalic);
+          if (EzManager.updateBoth) {
+            await EzManager.setBool(widget.type.italicMirror(widget.config.isDark), isItalic);
           }
 
           widget.notifierCallback(isItalic);

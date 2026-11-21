@@ -8,7 +8,7 @@ import '../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzSettingsHub extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Where the magic happens
   final List<EzSettingsSection> pages;
@@ -33,7 +33,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
 
   int delta = 0;
 
-  late int startingPos = widget.target ?? EzCM.hubPos;
+  late int startingPos = widget.target ?? EzManager.hubPos;
   late EzSettingsSection currSection;
   late EzSubSetting currSubSec;
 
@@ -73,7 +73,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
               final EzSettingsSection choice = selected.first;
               delta = choice.position - currSection.position;
 
-              await EzCM.setHubPos(choice.position);
+              await EzManager.setHubPos(choice.position);
 
               currSection = choice;
               currSubSec = choice.fromStorage();
@@ -113,7 +113,7 @@ class _EzSettingsHubState extends State<EzSettingsHub> {
                             onSelectionChanged: (Set<EzSubSetting> selected) async {
                               final EzSubSetting choice = selected.first;
 
-                              await EzCM.setBool(choice.write.$1, choice.write.$2);
+                              await EzManager.setBool(choice.write.$1, choice.write.$2);
                               setState(() => currSubSec = choice);
                             },
                           ),

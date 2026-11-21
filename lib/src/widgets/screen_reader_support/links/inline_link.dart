@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzInlineLink extends WidgetSpan {
-  final EzCP config;
+  final EzProvider config;
   final String text;
   final Key? key;
   final Color? textColor;

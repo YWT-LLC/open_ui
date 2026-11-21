@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzScreen extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final Widget child;
   final AlignmentGeometry? alignment;
   final EdgeInsetsGeometry? margin;
@@ -19,7 +19,7 @@ class EzScreen extends StatelessWidget {
   final BoxDecoration? decoration;
 
   /// Custom [Container] for the top layer of an (IRL) screen
-  /// null [margin] => [EdgeInsets.all] w/ [EzCP.marginVal]
+  /// null [margin] => [EdgeInsets.all] w/ [EzProvider.marginVal]
   const EzScreen(
     this.config, {
     required this.child,

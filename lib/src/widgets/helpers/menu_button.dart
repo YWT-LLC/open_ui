@@ -8,12 +8,12 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzMenuButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// When false, disables [onPressed] and switches the color theme
   final bool enabled;
 
-  /// iconAlignment: [EzCM.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
+  /// iconAlignment: [EzManager.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget? icon;
 
   /// [MenuItemButton.child] will be a [Text] Widget with [label]
@@ -23,7 +23,7 @@ class EzMenuButton extends StatelessWidget {
   final String? semanticsLabel;
   final TextAlign? textAlign;
 
-  /// Defaults to [EzCP.bodyStyle]
+  /// Defaults to [EzProvider.bodyStyle]
   final TextStyle? textStyle;
 
   const EzMenuButton(

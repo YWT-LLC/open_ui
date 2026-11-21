@@ -28,14 +28,14 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   GeneratorState genState = GeneratorState.running;
   String failureMessage = '';
 
-  final bool isDesktop = EzCM.platform == TargetPlatform.linux ||
-      EzCM.platform == TargetPlatform.macOS ||
-      EzCM.platform == TargetPlatform.windows;
+  final bool isDesktop = EzManager.platform == TargetPlatform.linux ||
+      EzManager.platform == TargetPlatform.macOS ||
+      EzManager.platform == TargetPlatform.windows;
 
   // Define custom functions //
 
   /// Save the EAGConfig
-  Future<void> archive(EzCP config) async {
+  Future<void> archive(EzProvider config) async {
     late final String? savedConfig;
     try {
       savedConfig = await FileSaver.instance.saveAs(
@@ -58,7 +58,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
           });
   }
 
-  Widget header(EzCP config) => switch (genState) {
+  Widget header(EzProvider config) => switch (genState) {
         GeneratorState.running => SizedBox(
             height: heightOf(context) / 3,
             width: double.infinity,
@@ -100,8 +100,8 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   bool ran = false;
 
   @override
-  Widget build(BuildContext context) => Consumer<EzCP>(
-        builder: (_, EzCP config, __) {
+  Widget build(BuildContext context) => Consumer<EzProvider>(
+        builder: (_, EzProvider config, __) {
           if (!ran) {
             ran = true;
             archive(config);

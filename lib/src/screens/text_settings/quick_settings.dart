@@ -9,7 +9,7 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
 class QuickTextSettings extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   // Providers
   final EzDisplayStyleProvider displayProvider;
@@ -202,11 +202,11 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
               });
             },
             onChangeEnd: (double value) async {
-              if (EzCM.updateBoth || widget.config.isDark) {
-                await EzCM.setDouble(darkTextBackgroundOpacityKey, value);
+              if (EzManager.updateBoth || widget.config.isDark) {
+                await EzManager.setDouble(darkTextBackgroundOpacityKey, value);
               }
-              if (EzCM.updateBoth || !widget.config.isDark) {
-                await EzCM.setDouble(lightTextBackgroundOpacityKey, value);
+              if (EzManager.updateBoth || !widget.config.isDark) {
+                await EzManager.setDouble(lightTextBackgroundOpacityKey, value);
               }
 
               if (context.mounted) {
@@ -232,19 +232,19 @@ class _QuickTextSettingsState extends State<QuickTextSettings> {
           dynamicTitle: () =>
               widget.config.ezL10n.tsReset(ezThemeString(widget.config, bothable: true)),
           onConfirm: () async {
-            if (EzCM.updateBoth || widget.config.isDark) {
-              await EzCM.removeKeys(darkTextKeys.keys.toSet());
-              await EzCM.remove(darkOnSurfaceKey);
+            if (EzManager.updateBoth || widget.config.isDark) {
+              await EzManager.removeKeys(darkTextKeys.keys.toSet());
+              await EzManager.remove(darkOnSurfaceKey);
             }
 
-            if (EzCM.updateBoth || !widget.config.isDark) {
-              await EzCM.removeKeys(lightTextKeys.keys.toSet());
-              await EzCM.remove(lightOnSurfaceKey);
+            if (EzManager.updateBoth || !widget.config.isDark) {
+              await EzManager.removeKeys(lightTextKeys.keys.toSet());
+              await EzManager.remove(lightOnSurfaceKey);
             }
 
             resetKey = random.nextInt(rMax);
             setState(() => iconSize =
-                EzCM.getDefault(widget.config.isDark ? darkIconSizeKey : lightIconSizeKey));
+                EzManager.getDefault(widget.config.isDark ? darkIconSizeKey : lightIconSizeKey));
           },
         ),
       ],

@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzWallHolesConfig extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Like updateBoth, but smaller
   final bool autoConfirm;
@@ -26,7 +26,7 @@ class EzWallHolesConfig extends StatelessWidget {
   });
 
   static Future<bool> onPressed(
-    EzCP config,
+    EzProvider config,
     bool autoConfirm, {
     required BuildContext context,
   }) async {
@@ -40,7 +40,7 @@ class EzWallHolesConfig extends StatelessWidget {
     return true;
   }
 
-  static Future<bool?> _confirm(EzCP config, {required BuildContext context}) => showDialog(
+  static Future<bool?> _confirm(EzProvider config, {required BuildContext context}) => showDialog(
         context: context,
         builder: (BuildContext dCon) => EzAlertDialog(
           config,
@@ -59,13 +59,13 @@ class EzWallHolesConfig extends StatelessWidget {
   static Future<void> _makeItSo() async {
     // Reset //
 
-    await EzCM.removeKeys(lightColorKeys.keys.toSet());
-    await EzCM.removeKeys(lightDesignKeys.keys.toSet());
-    await EzCM.removeKeys(lightTextKeys.keys.toSet());
+    await EzManager.removeKeys(lightColorKeys.keys.toSet());
+    await EzManager.removeKeys(lightDesignKeys.keys.toSet());
+    await EzManager.removeKeys(lightTextKeys.keys.toSet());
 
     // Global settings //
 
-    await EzCM.setBool(isDarkThemeKey, false);
+    await EzManager.setBool(isDarkThemeKey, false);
 
     // Color settings //
 
@@ -113,26 +113,27 @@ class EzWallHolesConfig extends StatelessWidget {
 
     // Design settings //
 
-    await EzCM.setString(lightButtonShapeKey, EzButtonShape.rect.value);
-    await EzCM.setDouble(lightBorderWidthKey, 2.0);
+    await EzManager.setString(lightButtonShapeKey, EzButtonShape.rect.value);
+    await EzManager.setDouble(lightBorderWidthKey, 2.0);
 
-    await EzCM.setBool(lightLineLinksKey, true);
-    await EzCM.setBool(lightShowBackFABKey, true);
+    await EzManager.setBool(lightLineLinksKey, true);
+    await EzManager.setBool(lightShowBackFABKey, true);
 
     // PRESENTS PLACEHOLDER
-    await EzCM.setString(lightBackgroundFitKey, BoxFit.cover.name);
-    await EzCM.setString(lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
+    await EzManager.setString(lightBackgroundFitKey, BoxFit.cover.name);
+    await EzManager.setString(
+        lightBackgroundSourceKey, 'https://www.pexels.com/@carl-wyatt-654792/');
 
-    await EzCM.setString(lightTransitionTypeKey, EzTransitionType.zoom.value);
-    await EzCM.setBool(lightTransitionFadeKey, false);
+    await EzManager.setString(lightTransitionTypeKey, EzTransitionType.zoom.value);
+    await EzManager.setBool(lightTransitionFadeKey, false);
 
-    await EzCM.setInt(lightAnimationDurationKey, 500);
+    await EzManager.setInt(lightAnimationDurationKey, 500);
 
-    await EzCM.setBool(lightShowScrollKey, true);
+    await EzManager.setBool(lightShowScrollKey, true);
 
     // Text settings //
 
-    await EzCM.setDouble(lightTextBackgroundOpacityKey, 0.80);
+    await EzManager.setDouble(lightTextBackgroundOpacityKey, 0.80);
   }
 
   @override
@@ -148,8 +149,8 @@ class EzWallHolesConfig extends StatelessWidget {
         side: const BorderSide(width: 2.0),
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
-        padding:
-            EdgeInsets.all(EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+        padding: EdgeInsets.all(
+            EzManager.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
       ),
       onPressed: () async {
         final bool uSure = autoConfirm ||

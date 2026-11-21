@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzAnimSwitch extends AnimatedSwitcher {
-  final EzCP config;
+  final EzProvider config;
 
   final double mod;
 
@@ -18,7 +18,7 @@ class EzAnimSwitch extends AnimatedSwitcher {
 
   final bool reverse;
 
-  /// An [EzCP] controlled [AnimatedSwitcher]
+  /// An [EzProvider] controlled [AnimatedSwitcher]
   EzAnimSwitch(
     this.config, {
     super.key,
@@ -101,7 +101,7 @@ class EzAnimHide extends EzAnimSwitch {
 }
 
 class EzFauxCarousel extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final double animMod;
 

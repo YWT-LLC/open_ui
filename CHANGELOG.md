@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - Gradient colors
 
 ### Updated
-- ezThemeData to be built from EzCP caches rather than re-reading EzCM
+- ezThemeData to be built from EzProvider caches rather than re-reading EzManager
 - Cached decorations
 
 ### Removed
@@ -33,11 +33,11 @@ All notable changes to this project will be documented in this file.
 ## [12.1.0] - 2026-06-06
 ### Updated
 - EzConfig && Provider - names and logic
-  - EzCM (Ez Config Manager) is all things per-run-permanent (appName, platform, onMobile) and config management (get, set, reset, etc)
-  - EzCP (Ez Config Provider) is pretty much the same as the previous provider, but with a shorter name and the permanent stuff (platform, onMobile) moved to EzCM
-    - Seed has been removed. To get live updates, all that is required is every screen/pages top level widget should be a `Consumer<EzCP>`. That is all (it's that Ez!)
+  - EzManager (Ez Config Manager) is all things per-run-permanent (appName, platform, onMobile) and config management (get, set, reset, etc)
+  - EzProvider (Ez Config Provider) is pretty much the same as the previous provider, but with a shorter name and the permanent stuff (platform, onMobile) moved to EzManager
+    - Seed has been removed. To get live updates, all that is required is every screen/pages top level widget should be a `Consumer<EzProvider>`. That is all (it's that Ez!)
       - The two are no longer interlinked (interlinked)
-        - To access EzCP outside a `Consumer`, use `configWatcher`
+        - To access EzProvider outside a `Consumer`, use `configWatcher`
           - Safety net, not a crutch
 - Tempting to make this minor version bump a major version bump. Technically, most things are broken...
   - But, it's all fixed with a couple rounds of project-wide find && replace, so minor version bump it is

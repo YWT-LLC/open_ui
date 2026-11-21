@@ -7,9 +7,9 @@ import '../../open_ui.dart';
 
 import 'package:material_ui/material_ui.dart';
 
-/// [showModalBottomSheet] wrapper with custom defaults and uses [EzCP] based animations
+/// [showModalBottomSheet] wrapper with custom defaults and uses [EzProvider] based animations
 Future<T?> ezModal<T>(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   required WidgetBuilder builder,
   Color? backgroundColor,
@@ -42,7 +42,7 @@ Future<T?> ezModal<T>(
     );
 
 Future<T?> ezFullScreenModal<T>(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   List<Widget>? fabs,
   required Widget child,
@@ -63,7 +63,7 @@ Future<T?> ezFullScreenModal<T>(
     );
 
 Widget ezModalScroll(
-  EzCP config, {
+  EzProvider config, {
   ScrollController? controller,
   MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,

@@ -33,10 +33,10 @@ bool allowedPermCheck(PermissionStatus? status) => switch (status) {
     };
 
 /// Where to find saved files on the current [TargetPlatform]
-String archivePath() => switch (EzCM.platform) {
+String archivePath() => switch (EzManager.platform) {
       TargetPlatform.android =>
-        'Root > Android > Data > ${EzCM.androidPackage ?? 'com.example.app'} > files',
-      TargetPlatform.iOS => 'Files > Browse > ${EzCM.appName}',
+        'Root > Android > Data > ${EzManager.androidPackage ?? 'com.example.app'} > files',
+      TargetPlatform.iOS => 'Files > Browse > ${EzManager.appName}',
       _ => 'Downloads',
     };
 
@@ -92,7 +92,7 @@ Future<void> setMinWindow({Size size = const Size(500, 500)}) async {
 
 /// Button combo for taking a screenshot on the current (desktop) [TargetPlatform]
 /// Defaults to an empty string on mobile (and unknown) platforms
-String screenshotHint() => switch (EzCM.platform) {
+String screenshotHint() => switch (EzManager.platform) {
       TargetPlatform.linux ||
       TargetPlatform.fuchsia ||
       TargetPlatform.windows =>
@@ -114,7 +114,7 @@ double widthOf(BuildContext context) => MediaQuery.of(context).size.width;
 //* Custom functions *//
 
 Future<void> ezConfigLoader(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   Future<void> Function()? extra,
 }) async {
@@ -129,12 +129,12 @@ Future<void> ezConfigLoader(
         final Uint8List fileBytes = await result.readAsBytes();
 
         final String fileContent = utf8.decode(fileBytes);
-        await EzCM.loadConfig(config, toLoad: jsonDecode(fileContent));
+        await EzManager.loadConfig(config, toLoad: jsonDecode(fileContent));
       } else {
         final String filePath = result.path!;
         final String fileContent = await File(filePath).readAsString();
 
-        await EzCM.loadConfig(config, toLoad: jsonDecode(fileContent));
+        await EzManager.loadConfig(config, toLoad: jsonDecode(fileContent));
 
         if (context.mounted) {
           String? darkPath;
@@ -189,8 +189,8 @@ Future<void> ezConfigLoader(
           );
 
           if (save == true) {
-            if (darkPath != null) await EzCM.setString(darkBackgroundImageKey, darkPath!);
-            if (lightPath != null) await EzCM.setString(lightBackgroundImageKey, lightPath!);
+            if (darkPath != null) await EzManager.setString(darkBackgroundImageKey, darkPath!);
+            if (lightPath != null) await EzManager.setString(lightBackgroundImageKey, lightPath!);
           }
         }
       }
@@ -206,7 +206,7 @@ Future<void> ezConfigLoader(
 }
 
 /// Close any open modals or dialogs
-/// Automatically consumed by [EzCP.rebuildUI]
+/// Automatically consumed by [EzProvider.rebuildUI]
 void ezCloseAll() {
   final NavigatorState? state = ezRootNav.currentState;
   if (state == null) return;
@@ -216,7 +216,7 @@ void ezCloseAll() {
 
 /// Wraps a [ColorPicker] in an [EzAlertDialog]
 Future<String?> ezColorPicker(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   String? title,
   required String picking,
@@ -612,7 +612,7 @@ Future<String?> ezColorPicker(
 }
 
 /// Returns an appropriate width for a [DropdownMenu]
-double ezDropdownWidth(EzCP config, {required BuildContext context, required String entry}) =>
+double ezDropdownWidth(EzProvider config, {required BuildContext context, required String entry}) =>
     2 * config.marginVal +
     ezTextSize(
       config,
@@ -633,7 +633,7 @@ Duration ezDuration(
 }) =>
     Duration(milliseconds: max((base * mod).toInt(), nonZero ? 1 : 0));
 
-Widget ezFlag(EzCP config, {required Locale locale, bool inDistress = false}) {
+Widget ezFlag(EzProvider config, {required Locale locale, bool inDistress = false}) {
   // Fix language code != flag code
   switch (locale.languageCode) {
     case 'fil':
@@ -660,15 +660,15 @@ Widget ezFlag(EzCP config, {required Locale locale, bool inDistress = false}) {
 
 /// Scale Widgets based on IconSize
 /// For Widgets that don't do it automatically, like [Radio] and [Checkbox]
-double ezIconRatio(EzCP config) => max(
-      config.iconSize / EzCM.getDefault(config.isDark ? darkIconSizeKey : lightIconSizeKey),
-      config.padding / EzCM.getDefault(config.isDark ? darkPaddingKey : lightPaddingKey),
+double ezIconRatio(EzProvider config) => max(
+      config.iconSize / EzManager.getDefault(config.isDark ? darkIconSizeKey : lightIconSizeKey),
+      config.padding / EzManager.getDefault(config.isDark ? darkPaddingKey : lightPaddingKey),
     );
 
 /// Recommended size for an image
 /// Starts with 160.0, chosen by visual inspection
 /// Then, applies [MediaQuery] and/or [ezIconRatio] based scaling
-double ezImageSize(EzCP config, {required BuildContext context}) =>
+double ezImageSize(EzProvider config, {required BuildContext context}) =>
     MediaQuery.textScalerOf(context).scale(160.0) * ezIconRatio(config);
 
 /// Get a locale from a locale code [String]
@@ -709,7 +709,7 @@ Set<LocalizationsDelegate<dynamic>> ezLocalizationsDelegates(
 
 /// [ezLog] the passed message and display an [EzAlertDialog] to notify the user
 void ezLogAlert(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   String? title,
   required String message,
@@ -733,7 +733,7 @@ void ezLogAlert(
 }
 
 /// Disable screen interaction while [changes] are taking place
-Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
+Future<void> ezNoTouch(EzProvider? config, Future<dynamic> Function() changes) async {
   unawaited(
     ezRootNav.currentState!.push(
       // Open progress layer
@@ -766,9 +766,9 @@ Future<void> ezNoTouch(EzCP? config, Future<dynamic> Function() changes) async {
   ezRootNav.currentState!.pop();
 }
 
-/// A [Page] animator based on [EzCP]
+/// A [Page] animator based on [EzProvider]
 Page<dynamic> ezPageBuilder(
-  EzCP config,
+  EzProvider config,
   BuildContext context,
   GoRouterState state,
   Widget child, {
@@ -781,7 +781,7 @@ Page<dynamic> ezPageBuilder(
               ezTransitionsBuilder(config, c, a, aa, w),
       transitionDuration: ezDuration(config.animDur),
       reverseTransitionDuration: ezDuration(config.animDur),
-      child: switch (EzCM.platform) {
+      child: switch (EzManager.platform) {
         TargetPlatform.iOS || TargetPlatform.macOS => GestureDetector(
             behavior: HitTestBehavior.translucent,
             onHorizontalDragEnd: (DragEndDetails details) {
@@ -799,9 +799,9 @@ Page<dynamic> ezPageBuilder(
 
 /// Returns the app's current [Locale] and it's corresponding [OUILang]
 Future<(Locale, OUILang)> ezStoredL10n() async {
-  final List<String>? localeData = EzCM.get(appLocaleKey);
+  final List<String>? localeData = EzManager.get(appLocaleKey);
   if (localeData == null || localeData.isEmpty) {
-    return (EzCM.localeFallback, EzCM.l10nFallback);
+    return (EzManager.localeFallback, EzManager.l10nFallback);
   }
 
   final String languageCode = localeData[0];
@@ -813,7 +813,7 @@ Future<(Locale, OUILang)> ezStoredL10n() async {
   try {
     el10n = await OUILang.delegate.load(locale);
   } catch (_) {
-    el10n = EzCM.l10nFallback;
+    el10n = EzManager.l10nFallback;
   }
 
   return (locale, el10n);
@@ -831,18 +831,20 @@ BoxConstraints ezTextFieldConstraints(BuildContext bc, {double prop = 0.75}) {
 }
 
 /// [OUILang.gBothThemes], [OUILang.gDarkTheme], or [OUILang.gLightTheme]
-/// Based on [EzCM.updateBoth] && [EzCP.isDark]
-String ezThemeString(EzCP config, {required bool bothable}) => ((bothable && EzCM.updateBoth)
-        ? (config.locale.languageCode == english.languageCode
-            ? "${config.ezL10n.gBothThemes}'"
-            : config.ezL10n.gBothThemes)
-        : (config.isDark ? config.ezL10n.gDarkTheme : config.ezL10n.gLightTheme))
-    .toLowerCase();
+/// Based on [EzManager.updateBoth] && [EzProvider.isDark]
+String ezThemeString(EzProvider config,
+        {required bool bothable}) =>
+    ((bothable && EzManager.updateBoth)
+            ? (config.locale.languageCode == english.languageCode
+                ? "${config.ezL10n.gBothThemes}'"
+                : config.ezL10n.gBothThemes)
+            : (config.isDark ? config.ezL10n.gDarkTheme : config.ezL10n.gLightTheme))
+        .toLowerCase();
 
 /// Calculate a recommended [AppBar.toolbarHeight]
-/// max([ezTextSize] + 2 * [EzCM.get]marginKey, [kMinInteractiveDimension])
+/// max([ezTextSize] + 2 * [EzManager.get]marginKey, [kMinInteractiveDimension])
 double ezToolbarHeight(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   required String title,
   bool includeIconButton = true,
@@ -861,9 +863,9 @@ double ezToolbarHeight(
     ) +
     config.marginVal;
 
-/// [Page] animator based on [EzCP]
+/// [Page] animator based on [EzProvider]
 Widget ezTransitionsBuilder(
-  EzCP config,
+  EzProvider config,
   BuildContext context,
   Animation<double> animation,
   Animation<double> secondaryAnimation,
@@ -881,9 +883,9 @@ Widget ezTransitionsBuilder(
       reverse: reverse,
     );
 
-/// Animator based on [EzCP]
+/// Animator based on [EzProvider]
 Widget ezTransitionBuilder(
-  EzCP config,
+  EzProvider config,
   Animation<double> animation,
   Widget child, {
   EzTransitionType? forceType,
@@ -901,7 +903,7 @@ Widget ezTransitionBuilder(
   switch (forceType ?? config.transitionType) {
     // System
     case EzTransitionType.system:
-      switch (EzCM.platform) {
+      switch (EzManager.platform) {
         // Android -> Zoom
         case TargetPlatform.android:
           return ScaleTransition(
@@ -1007,7 +1009,7 @@ Widget ezTransitionBuilder(
 
 /// Relaxed reading time (in ms) for a US tween...
 /// 100 words per minute
-Duration ezReadingTime(EzCP config, String passage) {
+Duration ezReadingTime(EzProvider config, String passage) {
   if (passage.trim().isEmpty) return Duration.zero;
 
   final int words = cjkCodes.contains(config.locale.languageCode)
@@ -1027,7 +1029,7 @@ bool get ezRootIsMounted => (ezRootNav.currentContext != null) && ezRootNav.curr
 OverlayState? get ezRootOverlay => ezRootNav.currentState?.overlay;
 
 /// 'Smart' keyboard arrow
-Widget ezVisIcon(EzCP config, bool show) => EzIcon(
+Widget ezVisIcon(EzProvider config, bool show) => EzIcon(
       config,
       show
           ? Icons.keyboard_arrow_down

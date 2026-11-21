@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzMonoChromeColorsSetting extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [ThemeData.colorScheme] for [Brightness.dark]
   final ColorScheme dark;
@@ -17,7 +17,7 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
   /// [ThemeData.colorScheme] for [Brightness.light]
   final ColorScheme light;
 
-  /// Easily store a custom mono chrome [ColorScheme] to [EzCM]
+  /// Easily store a custom mono chrome [ColorScheme] to [EzManager]
   /// [ezHighContrastDark] and [ezHighContrastLight] by default
   const EzMonoChromeColorsSetting(
     this.config, {
@@ -49,10 +49,10 @@ class EzMonoChromeColorsSetting extends StatelessWidget {
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {
-          if (EzCM.updateBoth || config.isDark) {
+          if (EzManager.updateBoth || config.isDark) {
             await loadColorScheme(dark, Brightness.dark);
           }
-          if (EzCM.updateBoth || !config.isDark) {
+          if (EzManager.updateBoth || !config.isDark) {
             await loadColorScheme(light, Brightness.light);
           }
         }),

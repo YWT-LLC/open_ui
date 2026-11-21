@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzChalkboardConfig extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Like updateBoth, but smaller
   final bool autoConfirm;
@@ -28,7 +28,7 @@ class EzChalkboardConfig extends StatelessWidget {
   });
 
   static Future<bool> onPressed(
-    EzCP config,
+    EzProvider config,
     bool autoConfirm, {
     required BuildContext context,
   }) async {
@@ -41,7 +41,8 @@ class EzChalkboardConfig extends StatelessWidget {
     return true;
   }
 
-  static Future<bool?> _confirm(EzCP config, {required BuildContext context}) => showDialog<bool>(
+  static Future<bool?> _confirm(EzProvider config, {required BuildContext context}) =>
+      showDialog<bool>(
         context: context,
         builder: (BuildContext dCon) => EzAlertDialog(
           config,
@@ -60,13 +61,13 @@ class EzChalkboardConfig extends StatelessWidget {
   static Future<void> _makeItSo() async {
     // Reset //
 
-    await EzCM.removeKeys(darkColorKeys.keys.toSet());
-    await EzCM.removeKeys(darkDesignKeys.keys.toSet());
-    await EzCM.removeKeys(darkTextKeys.keys.toSet());
+    await EzManager.removeKeys(darkColorKeys.keys.toSet());
+    await EzManager.removeKeys(darkDesignKeys.keys.toSet());
+    await EzManager.removeKeys(darkTextKeys.keys.toSet());
 
     // Global settings //
 
-    await EzCM.setBool(isDarkThemeKey, true);
+    await EzManager.setBool(isDarkThemeKey, true);
 
     // Color settings //
 
@@ -120,37 +121,37 @@ class EzChalkboardConfig extends StatelessWidget {
     // Design settings //
 
     // Button
-    await EzCM.setString(darkButtonShapeKey, EzButtonShape.rect.value);
+    await EzManager.setString(darkButtonShapeKey, EzButtonShape.rect.value);
 
-    await EzCM.setBool(darkShowBackFABKey, false);
-    await EzCM.setBool(darkShowScrollKey, false);
+    await EzManager.setBool(darkShowBackFABKey, false);
+    await EzManager.setBool(darkShowScrollKey, false);
 
     // Page
-    await EzCM.setInt(darkAnimationDurationKey, 450);
+    await EzManager.setInt(darkAnimationDurationKey, 450);
 
-    await EzCM.setString(darkTransitionTypeKey, EzTransitionType.turnY.value);
-    await EzCM.setBool(darkTransitionFadeKey, false);
+    await EzManager.setString(darkTransitionTypeKey, EzTransitionType.turnY.value);
+    await EzManager.setBool(darkTransitionFadeKey, false);
 
-    await EzCM.setString(darkBackgroundImageKey, chalkboardGreen.toARGB32().toString());
+    await EzManager.setString(darkBackgroundImageKey, chalkboardGreen.toARGB32().toString());
 
     // Text settings //
 
-    await EzCM.setString(darkDisplayFontFamilyKey, fingerPaint);
-    await EzCM.setBool(darkDisplayItalicizedKey, false);
+    await EzManager.setString(darkDisplayFontFamilyKey, fingerPaint);
+    await EzManager.setBool(darkDisplayItalicizedKey, false);
 
-    await EzCM.setString(darkHeadlineFontFamilyKey, fingerPaint);
-    await EzCM.setBool(darkHeadlineItalicizedKey, false);
+    await EzManager.setString(darkHeadlineFontFamilyKey, fingerPaint);
+    await EzManager.setBool(darkHeadlineItalicizedKey, false);
 
-    await EzCM.setString(darkTitleFontFamilyKey, fingerPaint);
-    await EzCM.setBool(darkTitleItalicizedKey, false);
+    await EzManager.setString(darkTitleFontFamilyKey, fingerPaint);
+    await EzManager.setBool(darkTitleItalicizedKey, false);
 
-    await EzCM.setString(darkBodyFontFamilyKey, fingerPaint);
-    await EzCM.setBool(darkBodyItalicizedKey, false);
+    await EzManager.setString(darkBodyFontFamilyKey, fingerPaint);
+    await EzManager.setBool(darkBodyItalicizedKey, false);
 
-    await EzCM.setString(darkLabelFontFamilyKey, fingerPaint);
-    await EzCM.setBool(darkLabelItalicizedKey, false);
+    await EzManager.setString(darkLabelFontFamilyKey, fingerPaint);
+    await EzManager.setBool(darkLabelItalicizedKey, false);
 
-    await EzCM.setDouble(darkTextBackgroundOpacityKey, 0.0);
+    await EzManager.setDouble(darkTextBackgroundOpacityKey, 0.0);
   }
 
   @override
@@ -181,8 +182,8 @@ class EzChalkboardConfig extends StatelessWidget {
         side: BorderSide.none,
         shape: EzButtonShape.rect.shape,
         textStyle: localBody,
-        padding:
-            EdgeInsets.all(EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+        padding: EdgeInsets.all(
+            EzManager.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
       ),
       onPressed: () async {
         final bool uSure = autoConfirm ||

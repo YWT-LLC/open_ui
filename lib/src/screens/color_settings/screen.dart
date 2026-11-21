@@ -11,20 +11,20 @@ import 'quick_settings.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzColorSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Current sub-page
   final EzSubSetting target;
 
   /// Spacer above the [EzResetButton], on both sub-screens
-  /// Defaults to [EzCP.separator]
+  /// Defaults to [EzProvider.separator]
   final Widget? resetSpacer;
 
-  /// Additional [EzCM] keys for the local [EzResetButton]
+  /// Additional [EzManager] keys for the local [EzResetButton]
   /// [darkColorKeys] are included by default
   final Set<String>? resetExtraDark;
 
-  /// Additional [EzCM] keys for the local [EzResetButton]
+  /// Additional [EzManager] keys for the local [EzResetButton]
   /// [lightColorKeys] are included by default
   final Set<String>? resetExtraLight;
 

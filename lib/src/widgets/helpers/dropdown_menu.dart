@@ -8,14 +8,14 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzDropdownMenu<T> extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final bool reverseHands;
   final bool showScrollHint;
 
   /// Will be used in an [EzText] widget
   final String? label;
 
-  /// Defaults to [EzCP.labelStyle]
+  /// Defaults to [EzProvider.labelStyle]
   final TextStyle? labelStyle;
 
   /// Defaults to [TextAlign.center]
@@ -26,7 +26,7 @@ class EzDropdownMenu<T> extends StatelessWidget {
   final bool enableSearch;
   final TextInputType? keyboardType;
 
-  /// Defaults to [EzCP.bodyStyle]
+  /// Defaults to [EzProvider.bodyStyle]
   final TextStyle? menuStyle;
 
   /// Defaults to [TextAlign.start]
@@ -105,7 +105,7 @@ class EzDropdownMenu<T> extends StatelessWidget {
 class EzDropMenuEntry<T> extends DropdownMenuEntry<T> {
   /// [EzDropMenuEntry] wrapper that supports [Gradient]s via [EzSwitchColor]
   EzDropMenuEntry(
-    EzCP config, {
+    EzProvider config, {
     required super.value,
     required super.label,
     super.labelWidget,

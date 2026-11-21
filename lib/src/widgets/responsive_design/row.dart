@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzRow extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final MainAxisAlignment mainAxisAlignment;
 

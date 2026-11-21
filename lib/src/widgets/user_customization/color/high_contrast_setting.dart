@@ -18,7 +18,7 @@ const Color hcError = Color(0xFFFF6700);
 //* Make it so *//
 
 class EzHighContrastColorsSetting extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final ColorScheme dark;
   final ColorScheme light;
 
@@ -53,10 +53,10 @@ class EzHighContrastColorsSetting extends StatelessWidget {
                 textStyle: config.bodyStyle?.copyWith(color: Colors.black),
               ),
         onPressed: () => config.rebuildUI(changes: () async {
-          if (EzCM.updateBoth || config.isDark) {
+          if (EzManager.updateBoth || config.isDark) {
             await loadColorScheme(dark, Brightness.dark);
           }
-          if (EzCM.updateBoth || !config.isDark) {
+          if (EzManager.updateBoth || !config.isDark) {
             await loadColorScheme(light, Brightness.light);
           }
         }),

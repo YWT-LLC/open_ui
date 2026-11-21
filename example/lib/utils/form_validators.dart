@@ -8,7 +8,8 @@ import './export.dart';
 import 'package:open_ui/open_ui.dart';
 
 /// Allows letters (upper and lower case) and underscores
-String? validateAppName(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
+String? validateAppName(EzProvider config, String? value,
+    {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
     return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName.toLowerCase()}';
@@ -21,7 +22,8 @@ String? validateAppName(EzCP config, String? value, {Function? onSuccess, Functi
   }
 }
 
-String? validatePublisher(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
+String? validatePublisher(EzProvider config, String? value,
+    {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
     return config.ezL10n.gRequired;
@@ -32,7 +34,7 @@ String? validatePublisher(EzCP config, String? value, {Function? onSuccess, Func
 }
 
 String? validateDescription(
-  EzCP config,
+  EzProvider config,
   String? value, {
   Function? onSuccess,
   Function? onFailure,
@@ -47,7 +49,8 @@ String? validateDescription(
 }
 
 /// Validates name.extension domains
-String? validateDomain(EzCP config, String? value, {Function? onSuccess, Function? onFailure}) {
+String? validateDomain(EzProvider config, String? value,
+    {Function? onSuccess, Function? onFailure}) {
   if (value == null || value.isEmpty) {
     onFailure?.call();
     return '${config.ezL10n.gRequired}; ${l10n(config).csInvalidName}';

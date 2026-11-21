@@ -25,7 +25,7 @@ class GenerateScreen extends StatefulWidget {
 class _GenerateScreenState extends State<GenerateScreen> {
   // Define the build data //
 
-  final bool isWindows = EzCM.platform == TargetPlatform.windows;
+  final bool isWindows = EzManager.platform == TargetPlatform.windows;
   GeneratorState genState = GeneratorState.running;
 
   String? failureMessage;
@@ -34,7 +34,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
   /// Quantum supremacy achieved
   bool? showDelete = true;
 
-  String device() => switch (EzCM.platform) {
+  String device() => switch (EzManager.platform) {
         TargetPlatform.linux => 'linux',
         TargetPlatform.macOS => 'macos',
         TargetPlatform.windows => 'windows',
@@ -64,12 +64,12 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
   /// The only way to begin
   /// Is by beginning
-  Future<void> genStuff(EzCP config) => ezCmd(
+  Future<void> genStuff(EzProvider config) => ezCmd(
         '${flutterPath}flutter create --org ${widget.gen.domainName} ${widget.gen.appName}',
         dir: workDir,
         onSuccess: () => rmUnused(config),
         onFailure: (String message) {
-          if (message.contains('not permitted') && EzCM.platform == TargetPlatform.macOS) {
+          if (message.contains('not permitted') && EzManager.platform == TargetPlatform.macOS) {
             setState(() {
               showDelete = false;
               richFailureMessage = EzRichText(
@@ -107,7 +107,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
       );
 
   /// Runs immediately after a successful [genStuff]
-  Future<void> rmUnused(EzCP config) async {
+  Future<void> rmUnused(EzProvider config) async {
     const String files = 'analysis_options.yaml pubspec.lock pubspec.yaml README.md';
     const String dirs = 'lib test';
 
@@ -130,7 +130,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
   }
 
   /// Runs immediately after a successful [rmUnused]
-  Future<void> addStuff(EzCP config) async {
+  Future<void> addStuff(EzProvider config) async {
     await genREADME(config: widget.gen, dir: projDir, onFailure: onFailure, readout: readout);
 
     await genVersionTracking(
@@ -157,7 +157,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
   /// Runs immediately after a successful [addStuff]
   /// Last method before completion
-  Future<void> runStuff(EzCP config) async {
+  Future<void> runStuff(EzProvider config) async {
     late ProcessResult? runResult;
     try {
       // Update entitlements //
@@ -251,7 +251,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
         : onFailure(l10n(config).gsPartialSuccess);
   }
 
-  Widget header(EzCP config) => switch (genState) {
+  Widget header(EzProvider config) => switch (genState) {
         GeneratorState.running => ywt.YWTime(
             semantics: config.ezL10n.gLoadingAnim,
             colorScheme: config.theme.colorScheme,
@@ -289,8 +289,8 @@ class _GenerateScreenState extends State<GenerateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(
-      builder: (_, EzCP config, __) {
+    return Consumer<EzProvider>(
+      builder: (_, EzProvider config, __) {
         if (!ran) {
           ran = true;
           genStuff(config);

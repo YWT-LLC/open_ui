@@ -12,7 +12,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:video_player/video_player.dart';
 
 class EzVideoPlayer extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
   final VideoPlayerController controller;
   final String semantics;
   final double aspectRatio;
@@ -76,7 +76,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
   // Define custom functions //
 
   void handleMobileHover() {
-    if (!EzCM.onMobile) return;
+    if (!EzManager.onMobile) return;
 
     mobileHover?.cancel();
     if (!hovering) setState(() => hovering = true);
@@ -201,7 +201,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
-    await SystemChrome.setPreferredOrientations(EzCM.orientations);
+    await SystemChrome.setPreferredOrientations(EzManager.orientations);
   }
 
   Future<void> exitFullscreen() async {
@@ -392,7 +392,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                   child: ExcludeSemantics(
                     child: GestureDetector(
                       onTap: () async {
-                        if (EzCM.onMobile) {
+                        if (EzManager.onMobile) {
                           mobileHover?.cancel();
 
                           hovering ? setState(() => hovering = false) : handleMobileHover();
@@ -476,7 +476,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                 value: pComplete(value.position),
                                 onChangeStart: (_) async {
                                   await pause();
-                                  if (EzCM.onMobile) {
+                                  if (EzManager.onMobile) {
                                     mobileHover?.cancel();
                                   }
                                 },
@@ -551,7 +551,7 @@ class _EzVideoPlayerState extends State<EzVideoPlayer> {
                                         child: Slider(
                                           value: value.volume,
                                           onChangeStart: (_) {
-                                            if (EzCM.onMobile) {
+                                            if (EzManager.onMobile) {
                                               mobileHover?.cancel();
                                             }
                                           },

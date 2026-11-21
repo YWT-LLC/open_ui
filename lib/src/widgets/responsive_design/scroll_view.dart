@@ -9,7 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzScrollView extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
   final ScrollController? controller;
   final bool? thumbVisibility;
 

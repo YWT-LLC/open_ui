@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzDominantHandSwitch extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Standardized tool for updating [isLeftyKey]
   const EzDominantHandSwitch(this.config, {super.key});
@@ -28,7 +28,7 @@ class EzDominantHandSwitch extends StatelessWidget {
         initialSelection: config.isLefty,
         onSelected: (bool? makeLeft) async {
           if (makeLeft == null || makeLeft == config.isLefty) return;
-          await EzCM.setBool(isLeftyKey, makeLeft);
+          await EzManager.setBool(isLeftyKey, makeLeft);
           await config.rebuildUI();
         },
       );

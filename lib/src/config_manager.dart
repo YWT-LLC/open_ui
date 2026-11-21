@@ -17,7 +17,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 //* Config constructor(s) *//
 
-class EzCM {
+class EzManager {
   /// Name of the app
   final String _appName;
 
@@ -60,15 +60,15 @@ class EzCM {
   /// Live values in use
   final Map<String, dynamic> _prefs;
 
-  /// [EzCM] key : value runtime [Type] map
+  /// [EzManager] key : value runtime [Type] map
   final Map<String, Type> _typeMap;
 
   /// Private instance
-  static EzCM? _instance;
+  static EzManager? _instance;
 
   /// EzConfig Manager
   /// Private/internal constructor
-  EzCM._({
+  EzManager._({
     // External (factory parameters)
     required String appName,
     required String? androidPackage,
@@ -112,7 +112,7 @@ class EzCM {
   /// [securePreferences] => Optional [FlutterSecureStorage] instance
   /// [defaults] => Default config; brand colors, text styles, design settings, etc.
   /// [neverReset] => Optional protected keys
-  factory EzCM.init({
+  factory EzManager.init({
     required String appName,
     required String? androidPackage,
     required Set<String> assetPaths,
@@ -186,9 +186,9 @@ Must be one of [int, bool, double, String, List<String>]''');
         if (userPref != null) prefs[key] = userPref;
       }
 
-      // Build the EzCM instance //
+      // Build the EzManager instance //
 
-      _instance = EzCM._(
+      _instance = EzManager._(
         appName: appName,
         androidPackage: androidPackage,
         assetPaths: assetPaths,
@@ -259,7 +259,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   static dynamic getDefault(String key) => _instance!._defaults[key];
 
   /// [FlutterSecureStorage] only stores Strings
-  /// No null or error checking, assumes the proper instance was provided in [EzCM.init]
+  /// No null or error checking, assumes the proper instance was provided in [EzManager.init]
   /// Returns empty [String] on failure (not null)
   static Future<String> secGet(String key) async =>
       await _instance!._securePreferences!.read(key: key) ?? Future<String>.value('');
@@ -358,9 +358,9 @@ Must be one of [int, bool, double, String, List<String>]''');
     }
   }
 
-  /// Save the current [EzCM] to local storage
+  /// Save the current [EzManager] to local storage
   static Future<void> saveConfig(
-    EzCP config, {
+    EzProvider config, {
     required BuildContext context,
     Set<String>? skip,
   }) async {
@@ -387,7 +387,7 @@ Must be one of [int, bool, double, String, List<String>]''');
 
   /// Defaults to both the live and [SharedPreferencesAsync] values
   static Future<void> loadConfig(
-    EzCP config, {
+    EzProvider config, {
     required Map<String, dynamic> toLoad,
     Set<String>? filter,
   }) async {
@@ -832,7 +832,7 @@ Must be one of [int, bool, double, String, List<String>]''');
   }
 
   /// [removeKeys], all (except those in [skip])
-  /// The neverReset keys from [EzCM.init] will always be [skip]ed, provided keys will be appended
+  /// The neverReset keys from [EzManager.init] will always be [skip]ed, provided keys will be appended
   /// Obviously, [forceOne] and [forceBoth] are not meant to be true at the same time
   /// If they are, forceOne takes precedence
   static Future<bool> reset(

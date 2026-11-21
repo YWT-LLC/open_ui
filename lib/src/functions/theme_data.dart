@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
-/// Creates a [ThemeData] from [EzCM] values
+/// Creates a [ThemeData] from [EzManager] values
 ThemeData ezThemeData(
   Brightness brightness, {
   required bool ltr,

@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzBigButtonsConfig extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Whether both themes should be updated
   final bool updateBoth;
@@ -25,56 +25,56 @@ class EzBigButtonsConfig extends StatelessWidget {
     this.extra,
   });
 
-  static Future<void> onPressed(EzCP config, bool updateBoth) async {
+  static Future<void> onPressed(EzProvider config, bool updateBoth) async {
     // Don't reset //
 
     if (updateBoth || config.isDark) {
       // Design settings //
 
-      await EzCM.setDouble(darkMarginKey, 12.0);
-      if (EzCM.onMobile) {
-        await EzCM.setDouble(darkPaddingKey, 21.0);
-        await EzCM.setDouble(darkSpacingKey, 30.0);
+      await EzManager.setDouble(darkMarginKey, 12.0);
+      if (EzManager.onMobile) {
+        await EzManager.setDouble(darkPaddingKey, 21.0);
+        await EzManager.setDouble(darkSpacingKey, 30.0);
       } else {
-        await EzCM.setDouble(darkPaddingKey, 24.0);
-        await EzCM.setDouble(darkSpacingKey, 36.0);
+        await EzManager.setDouble(darkPaddingKey, 24.0);
+        await EzManager.setDouble(darkSpacingKey, 36.0);
       }
 
-      await EzCM.setBool(darkShowBackFABKey, true);
+      await EzManager.setBool(darkShowBackFABKey, true);
 
-      await EzCM.setString(darkButtonShapeKey, EzButtonShape.roundRect.value);
+      await EzManager.setString(darkButtonShapeKey, EzButtonShape.roundRect.value);
 
-      await EzCM.setBool(darkShowScrollKey, true);
+      await EzManager.setBool(darkShowScrollKey, true);
 
       // Text settings //
 
       if (config.iconSize < 25.0) {
-        await EzCM.setDouble(darkIconSizeKey, 25.0);
+        await EzManager.setDouble(darkIconSizeKey, 25.0);
       }
     }
 
     if (updateBoth || !config.isDark) {
       // Design settings //
 
-      await EzCM.setDouble(lightMarginKey, 12.0);
-      if (EzCM.onMobile) {
-        await EzCM.setDouble(lightPaddingKey, 21.0);
-        await EzCM.setDouble(lightSpacingKey, 30.0);
+      await EzManager.setDouble(lightMarginKey, 12.0);
+      if (EzManager.onMobile) {
+        await EzManager.setDouble(lightPaddingKey, 21.0);
+        await EzManager.setDouble(lightSpacingKey, 30.0);
       } else {
-        await EzCM.setDouble(lightPaddingKey, 24.0);
-        await EzCM.setDouble(lightSpacingKey, 36.0);
+        await EzManager.setDouble(lightPaddingKey, 24.0);
+        await EzManager.setDouble(lightSpacingKey, 36.0);
       }
 
-      await EzCM.setBool(lightShowBackFABKey, true);
+      await EzManager.setBool(lightShowBackFABKey, true);
 
-      await EzCM.setString(lightButtonShapeKey, EzButtonShape.roundRect.value);
+      await EzManager.setString(lightButtonShapeKey, EzButtonShape.roundRect.value);
 
-      await EzCM.setBool(lightShowScrollKey, true);
+      await EzManager.setBool(lightShowScrollKey, true);
 
       // Text settings //
 
       if (config.iconSize < 25.0) {
-        await EzCM.setDouble(lightIconSizeKey, 25.0);
+        await EzManager.setDouble(lightIconSizeKey, 25.0);
       }
     }
   }
@@ -84,7 +84,7 @@ class EzBigButtonsConfig extends StatelessWidget {
         config,
         style: ElevatedButton.styleFrom(
           backgroundBuilder: ezSelfBuilder,
-          padding: EdgeInsets.all(EzCM.onMobile ? 22.5 : 25.0),
+          padding: EdgeInsets.all(EzManager.onMobile ? 22.5 : 25.0),
           shape: EzButtonShape.roundRect.shape,
         ),
         onPressed: () => config.rebuildUI(changes: () async {

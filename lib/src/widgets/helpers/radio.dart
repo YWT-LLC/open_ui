@@ -9,9 +9,9 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
 class EzRadio<T> extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
-  /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when [ezIconRatio] > 1.1
+  /// Defaults to [EdgeInsets.all] with [EzProvider.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
   final T value;

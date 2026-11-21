@@ -8,11 +8,11 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzResetButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Set to false for a 'Reset' [ElevatedButton.icon] label rather than 'Reset all'
   /// Also, when true there will be a local 'Reset all' switch
-  /// When false, the current [EzCM.updateBoth] value is used
+  /// When false, the current [EzManager.updateBoth] value is used
   final bool all;
 
   /// [EzAlertDialog.title] that shows on click
@@ -24,8 +24,8 @@ class EzResetButton extends StatelessWidget {
   final Set<String>? saveSkip;
 
   /// Override what happens when the user choses to reset
-  /// Defaults to [EzCM.reset]
-  /// DO NOT include an [EzCP.rebuildUI] or [Navigator.pop], these are included automatically
+  /// Defaults to [EzManager.reset]
+  /// DO NOT include an [EzProvider.rebuildUI] or [Navigator.pop], these are included automatically
   final Future<void> Function()? onConfirm;
 
   /// Override what happens when the user choses not to reset
@@ -83,7 +83,7 @@ class EzResetButton extends StatelessWidget {
                   config,
                   onConfirm: () => config.rebuildUI(changes: () async {
                     if (onConfirm == null) {
-                      await EzCM.reset(
+                      await EzManager.reset(
                         config.isDark,
                         skip: resetSkip,
                         forceOne: !updateBoth,

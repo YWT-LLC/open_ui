@@ -9,9 +9,9 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
 class EzFontDoubleSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
-  /// The [EzCM] key being edited
+  /// The [EzManager] key being edited
   final String configKey;
 
   /// An alt to updateBoth
@@ -110,9 +110,9 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                             currValue -= widget.delta;
                             controller.text = currValue.toString();
 
-                            await EzCM.setDouble(widget.configKey, currValue);
+                            await EzManager.setDouble(widget.configKey, currValue);
                             if (widget.mirrorKey != null) {
-                              await EzCM.setDouble(widget.mirrorKey!, currValue);
+                              await EzManager.setDouble(widget.mirrorKey!, currValue);
                             }
 
                             widget.notifierCallback(currValue);
@@ -170,9 +170,9 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                     }
                     currValue = doubleVal;
 
-                    await EzCM.setDouble(widget.configKey, doubleVal);
+                    await EzManager.setDouble(widget.configKey, doubleVal);
                     if (widget.mirrorKey != null) {
-                      await EzCM.setDouble(widget.mirrorKey!, doubleVal);
+                      await EzManager.setDouble(widget.mirrorKey!, doubleVal);
                     }
 
                     widget.notifierCallback(doubleVal);
@@ -196,9 +196,9 @@ class _FontDoubleSettingState extends State<EzFontDoubleSetting> {
                             currValue += widget.delta;
                             controller.text = currValue.toString();
 
-                            await EzCM.setDouble(widget.configKey, currValue);
+                            await EzManager.setDouble(widget.configKey, currValue);
                             if (widget.mirrorKey != null) {
-                              await EzCM.setDouble(widget.mirrorKey!, currValue);
+                              await EzManager.setDouble(widget.mirrorKey!, currValue);
                             }
 
                             widget.notifierCallback(currValue);

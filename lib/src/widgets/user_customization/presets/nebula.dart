@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzNebulaConfig extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Like updateBoth, but smaller
   final bool autoConfirm;
@@ -22,7 +22,7 @@ class EzNebulaConfig extends StatelessWidget {
 
   /// When true, skips the "This is a dark theme only..." dialog
   static Future<bool> onPressed(
-    EzCP config,
+    EzProvider config,
     bool autoConfirm, {
     required BuildContext context,
   }) async {
@@ -35,7 +35,7 @@ class EzNebulaConfig extends StatelessWidget {
     return true;
   }
 
-  static Future<bool?> _confirm(EzCP config, {required BuildContext context}) => showDialog(
+  static Future<bool?> _confirm(EzProvider config, {required BuildContext context}) => showDialog(
         context: context,
         builder: (BuildContext dCon) => EzAlertDialog(
           config,
@@ -54,13 +54,13 @@ class EzNebulaConfig extends StatelessWidget {
   static Future<void> _makeItSo() async {
     // Reset //
 
-    await EzCM.removeKeys(darkColorKeys.keys.toSet());
-    await EzCM.removeKeys(darkDesignKeys.keys.toSet());
-    await EzCM.removeKeys(darkTextKeys.keys.toSet());
+    await EzManager.removeKeys(darkColorKeys.keys.toSet());
+    await EzManager.removeKeys(darkDesignKeys.keys.toSet());
+    await EzManager.removeKeys(darkTextKeys.keys.toSet());
 
     // Global settings //
 
-    await EzCM.setBool(isDarkThemeKey, true);
+    await EzManager.setBool(isDarkThemeKey, true);
 
     // Color settings //
 
@@ -111,24 +111,24 @@ class EzNebulaConfig extends StatelessWidget {
 
     // Design settings //
 
-    await EzCM.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
-    await EzCM.setDouble(darkBorderWidthKey, 1.0);
+    await EzManager.setString(darkButtonShapeKey, EzButtonShape.jewel.value);
+    await EzManager.setDouble(darkBorderWidthKey, 1.0);
 
     // PRESENTS PLACEHOLDER
-    await EzCM.setString(darkBackgroundFitKey, BoxFit.cover.name);
-    await EzCM.setString(darkBackgroundSourceKey, 'https://www.pexels.com/@jmueller/');
+    await EzManager.setString(darkBackgroundFitKey, BoxFit.cover.name);
+    await EzManager.setString(darkBackgroundSourceKey, 'https://www.pexels.com/@jmueller/');
 
     // Text settings //
 
     // Font
-    await EzCM.setString(darkDisplayFontFamilyKey, sourceCodePro);
-    await EzCM.setString(darkHeadlineFontFamilyKey, sourceCodePro);
-    await EzCM.setString(darkTitleFontFamilyKey, sourceCodePro);
-    await EzCM.setString(darkBodyFontFamilyKey, sourceCodePro);
-    await EzCM.setString(darkLabelFontFamilyKey, sourceCodePro);
+    await EzManager.setString(darkDisplayFontFamilyKey, sourceCodePro);
+    await EzManager.setString(darkHeadlineFontFamilyKey, sourceCodePro);
+    await EzManager.setString(darkTitleFontFamilyKey, sourceCodePro);
+    await EzManager.setString(darkBodyFontFamilyKey, sourceCodePro);
+    await EzManager.setString(darkLabelFontFamilyKey, sourceCodePro);
 
     // Background opacity
-    await EzCM.setDouble(darkTextBackgroundOpacityKey, 0.333);
+    await EzManager.setDouble(darkTextBackgroundOpacityKey, 0.333);
   }
 
   @override
@@ -160,8 +160,8 @@ class EzNebulaConfig extends StatelessWidget {
           side: BorderSide(color: ywt.ywtSand.withValues(alpha: 0.5)),
           shape: EzButtonShape.jewel.shape,
           textStyle: localBody,
-          padding:
-              EdgeInsets.all(EzCM.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
+          padding: EdgeInsets.all(
+              EzManager.onMobile ? ywt.defaultMobilePadding : ywt.defaultDesktopPadding),
         ),
         onPressed: () async {
           final bool uSure = autoConfirm ||

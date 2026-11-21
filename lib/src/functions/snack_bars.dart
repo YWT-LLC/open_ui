@@ -10,7 +10,7 @@ import 'package:material_ui/material_ui.dart';
 
 /// Standardized [SnackBar] with an [EzCountdownTimer]
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   required String message,
   Color? backgroundColor,
@@ -76,7 +76,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> ezSnackBar(
 }
 
 double _snackWidth(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   required String message,
   required bool showCloseIcon,

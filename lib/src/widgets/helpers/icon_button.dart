@@ -8,11 +8,11 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzIcon extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final IconData? icon;
   final double? size;
 
-  /// Defaults to [EzCP.primaryFill]
+  /// Defaults to [EzProvider.primaryFill]
   final EzSwitchColor? fill;
 
   final List<Shadow>? shadows;
@@ -21,7 +21,7 @@ class EzIcon extends StatelessWidget {
   final bool? applyTextScaling;
   final BlendMode? blendMode;
 
-  /// [Icon] wrapper that responds to [EzCP.iconSize] and supports [Gradient]s
+  /// [Icon] wrapper that responds to [EzProvider.iconSize] and supports [Gradient]s
   const EzIcon(
     this.config,
     this.icon, {
@@ -60,7 +60,7 @@ class EzIcon extends StatelessWidget {
 }
 
 class EzIconTouch extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final IconData icon;
   final double? iconSize;
   final EzSwitchColor? iconFill;
@@ -121,11 +121,11 @@ class EzIconTouch extends StatelessWidget {
 }
 
 class EzIconButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final Widget icon;
   final double? iconSize;
 
-  /// Optional override, defaults to [EzCP.surfaceFill]
+  /// Optional override, defaults to [EzProvider.surfaceFill]
   final EzSwitchColor? backgroundFill;
 
   final VoidCallback? onPressed;

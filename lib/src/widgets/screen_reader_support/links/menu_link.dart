@@ -10,7 +10,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EzMenuLink extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [Link.uri] to open
   final Uri uri;

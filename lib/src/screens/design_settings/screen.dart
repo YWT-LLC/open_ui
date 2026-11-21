@@ -11,7 +11,7 @@ import 'page_settings.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzDesignSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Current sub-page
   final EzSubSetting target;
@@ -36,26 +36,26 @@ class EzDesignSettings extends StatelessWidget {
   final List<Widget>? appendPage;
 
   /// Spacer before the [EzResetButton]
-  /// Defaults to [EzCP.separator]
+  /// Defaults to [EzProvider.separator]
   final Widget? resetSpacerButton;
 
   /// Spacer before the [EzResetButton]
-  /// Defaults to [EzCP.separator]
+  /// Defaults to [EzProvider.separator]
   final Widget? resetSpacerPage;
 
-  /// Additional [EzCM] keys for the local [EzResetButton]
+  /// Additional [EzManager] keys for the local [EzResetButton]
   /// [darkButtonDesignKeys] by default
   final Set<String>? resetExtraDarkButton;
 
-  /// Additional [EzCM] keys for the local [EzResetButton]
+  /// Additional [EzManager] keys for the local [EzResetButton]
   /// [lightButtonDesignKeys] by default
   final Set<String>? resetExtraLightButton;
 
-  /// Additional [EzCM] keys for the local [EzResetButton]
+  /// Additional [EzManager] keys for the local [EzResetButton]
   /// [darkPageDesignKeys] by default
   final Set<String>? resetExtraDarkPage;
 
-  /// Additional [EzCM] keys for the local [EzResetButton]
+  /// Additional [EzManager] keys for the local [EzResetButton]
   /// [lightPageDesignKeys] by default
   final Set<String>? resetExtraLightPage;
 

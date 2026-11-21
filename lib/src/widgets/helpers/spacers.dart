@@ -86,15 +86,15 @@ Widget _ezDividerFill(EzSwitchColor fill, Widget divider) => (fill.gradient == n
       );
 
 class EzDivider extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
-  /// Defaults to [EzCP.spacing] * 3
+  /// Defaults to [EzProvider.spacing] * 3
   final double? height;
 
   final double width;
   final double? thickness;
 
-  /// Defaults to [EzCP.secondaryFill]
+  /// Defaults to [EzProvider.secondaryFill]
   final EzSwitchColor? fill;
 
   final BorderRadius? radius;
@@ -125,12 +125,12 @@ class EzDivider extends StatelessWidget {
 }
 
 class EzVerticalDivider extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final double width;
   final double height;
   final double? thickness;
 
-  /// Defaults to [EzCP.secondaryFill]
+  /// Defaults to [EzProvider.secondaryFill]
   final EzSwitchColor? fill;
 
   final BorderRadius? radius;
@@ -161,7 +161,7 @@ class EzVerticalDivider extends StatelessWidget {
 }
 
 class EzTitledDivider extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final Widget title;
 
   /// When true, [title] is above the [Divider] line
@@ -174,7 +174,7 @@ class EzTitledDivider extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// Defaults to [EzCP.secondaryFill]
+  /// Defaults to [EzProvider.secondaryFill]
   final EzSwitchColor? fill;
 
   final BorderRadius? radius;
@@ -218,9 +218,9 @@ class EzTitledDivider extends StatelessWidget {
 // Trimming //
 
 class EzHeader extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
-  /// [EzCP.spacing] - [EzCP.marginVal], unless margin is larger
+  /// [EzProvider.spacing] - [EzProvider.marginVal], unless margin is larger
   const EzHeader(this.config, {super.key});
 
   @override

@@ -23,7 +23,7 @@ class EzConfigurableApp extends StatelessWidget {
   /// Recommended to use [ezStoredL10n]
   final OUILang el10n;
 
-  /// Sets [EzCP.appCache]
+  /// Sets [EzProvider.appCache]
   final EzAppCache appCache;
 
   /// Router/page config
@@ -41,11 +41,11 @@ class EzConfigurableApp extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider<EzCP>(
-        create: (_) => EzCP(
+  Widget build(BuildContext context) => ChangeNotifierProvider<EzProvider>(
+        create: (_) => EzProvider(
           locale: locale,
           el10n: el10n,
-          isDark: EzCM.get(isDarkThemeKey) ?? isDarkTheme(context),
+          isDark: EzManager.get(isDarkThemeKey) ?? isDarkTheme(context),
           appCache: appCache,
         ),
         child: _TheMagic(
@@ -84,7 +84,7 @@ class _TheMagicState extends State<_TheMagic> with WidgetsBindingObserver {
   Future<void> didChangePlatformBrightness() async {
     super.didChangePlatformBrightness();
 
-    final EzCP config = configWatcher(context);
+    final EzProvider config = configWatcher(context);
     if ((WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark) !=
         config.isDark) {
       await config.rebuildUI();
@@ -94,13 +94,13 @@ class _TheMagicState extends State<_TheMagic> with WidgetsBindingObserver {
   // Return the build //
 
   @override
-  Widget build(BuildContext context) => Consumer<EzCP>(
-        builder: (_, EzCP config, __) => MaterialApp.router(
+  Widget build(BuildContext context) => Consumer<EzProvider>(
+        builder: (_, EzProvider config, __) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: widget.localizationsDelegates,
           supportedLocales: widget.supportedLocales,
           locale: config.locale,
-          title: EzCM.appName,
+          title: EzManager.appName,
           themeMode: config.themeMode,
           darkTheme: config.theme,
           theme: config.theme,

@@ -21,8 +21,8 @@ class SettingsHubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(
-      builder: (_, EzCP config, __) => OpenUIScaffold(
+    return Consumer<EzProvider>(
+      builder: (_, EzProvider config, __) => OpenUIScaffold(
         config,
         title: config.ezL10n.gSettings,
         body: EzScreen(
@@ -36,8 +36,8 @@ class SettingsHubScreen extends StatelessWidget {
                 title: config.ezL10n.gGlobal,
                 icon: EzIcon(
                   config,
-                  EzCM.onMobile
-                      ? EzCM.platform == TargetPlatform.iOS
+                  EzManager.onMobile
+                      ? EzManager.platform == TargetPlatform.iOS
                           ? Icons.phone_iphone
                           : Icons.phone_android
                       : Icons.computer,
@@ -54,7 +54,7 @@ class SettingsHubScreen extends StatelessWidget {
                 title: config.ezL10n.gColor,
                 icon: EzIcon(config, Icons.palette, semanticLabel: config.ezL10n.gColor),
                 subSettings: <EzSubSetting>[EzSubSetting.qckColor, EzSubSetting.advColor],
-                fromStorage: () => (secondary ?? EzCM.get(advancedColorsKey) == true)
+                fromStorage: () => (secondary ?? EzManager.get(advancedColorsKey) == true)
                     ? EzSubSetting.advColor
                     : EzSubSetting.qckColor,
                 build: (EzSubSetting subSec) => EzColorSettings(config, target: subSec),
@@ -66,7 +66,7 @@ class SettingsHubScreen extends StatelessWidget {
                 title: config.ezL10n.gDesign,
                 icon: EzIcon(config, Icons.design_services, semanticLabel: config.ezL10n.gDesign),
                 subSettings: <EzSubSetting>[EzSubSetting.butDesign, EzSubSetting.pagDesign],
-                fromStorage: () => (secondary ?? EzCM.get(pageTabKey) == true)
+                fromStorage: () => (secondary ?? EzManager.get(pageTabKey) == true)
                     ? EzSubSetting.pagDesign
                     : EzSubSetting.butDesign,
                 build: (EzSubSetting subSec) => EzDesignSettings(config, target: subSec),
@@ -78,7 +78,7 @@ class SettingsHubScreen extends StatelessWidget {
                 title: config.ezL10n.gText,
                 icon: EzIcon(config, Icons.text_format, semanticLabel: config.ezL10n.gText),
                 subSettings: <EzSubSetting>[EzSubSetting.qckText, EzSubSetting.advText],
-                fromStorage: () => (secondary ?? EzCM.get(advancedTextKey) == true)
+                fromStorage: () => (secondary ?? EzManager.get(advancedTextKey) == true)
                     ? EzSubSetting.advText
                     : EzSubSetting.qckText,
                 build: (EzSubSetting subSec) => EzTextSettings(config, target: subSec),

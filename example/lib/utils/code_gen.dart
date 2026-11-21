@@ -263,7 +263,7 @@ Future<void> genLib({
   // Create directories //
 
   await ezCmd(
-    EzCM.platform == TargetPlatform.windows
+    EzManager.platform == TargetPlatform.windows
         ? 'mkdir -p lib lib\\utils lib\\widgets lib\\screens'
         : 'mkdir -p lib lib/utils lib/widgets lib/screens',
     dir: dir,
@@ -343,7 +343,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(DeviceOrientation.values);
 
-  EzCM.init(
+  EzManager.init(
     appName: appName,
     androidPackage: androidPackage,
     assetPaths: <String>{},
@@ -425,7 +425,7 @@ const String appName = '$titleCaseAppName';
 /// ${config.domainName}.${config.appName}
 const String androidPackage = '${config.domainName}.${config.appName}';
 
-/// Default [EzCM] values
+/// Default [EzManager] values
 const Map<String, Object> ${camelCaseAppName}Config = <String, Object>${configString()};
 """);
 
@@ -449,7 +449,7 @@ class ${classCaseAppName}Cache extends EzAppCache {
   void init(_) {}
 
   @override
-  Future<void> rebuild(EzCP config) async {
+  Future<void> rebuild(EzProvider config) async {
     if (_locale != config.locale) {
       _l10n = await $l10nClass.delegate.load(config.locale);
       _locale = config.locale;
@@ -457,9 +457,9 @@ class ${classCaseAppName}Cache extends EzAppCache {
   }
 }
 
-${classCaseAppName}Cache _cache(EzCP config) => config.appCache! as ${classCaseAppName}Cache;
+${classCaseAppName}Cache _cache(EzProvider config) => config.appCache! as ${classCaseAppName}Cache;
 
-Lang l10n(EzCP config) => _cache(config)._l10n;
+Lang l10n(EzProvider config) => _cache(config)._l10n;
 """);
 
     // export.dart
@@ -480,7 +480,7 @@ import 'package:open_ui/open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class CountFAB extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final void Function() count;
 
   const CountFAB(this.config, this.count, {super.key});
@@ -494,7 +494,7 @@ class CountFAB extends StatelessWidget {
 }
 
 // TODO: Complete link placeholders (_PH)
-EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
+EzUpdaterFAB updater(EzProvider config) => EzUpdaterFAB(
     config,
     appVersion: '1.0.0', // TODO: (recommended to) include a check for this in your release scripts
     versionSource:
@@ -516,7 +516,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 class SettingsButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [BuildContext] to call [GoRouter.goNamed] with
   final BuildContext parentContext;
@@ -534,7 +534,7 @@ class SettingsButton extends StatelessWidget {
 }
 
 class OUICredits extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final String _label;
 
   /// [EzMenuButton] for opening Open UI's product page
@@ -568,7 +568,7 @@ import 'package:open_ui/open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class ${classCaseAppName}Scaffold extends StatelessWidget {
-  final EzCP config;  
+  final EzProvider config;  
   final String title;
   final Widget body;
   final Widget? footer;
@@ -669,7 +669,7 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(builder: (_, EzCP config, __) => ${classCaseAppName}Scaffold(
+    return Consumer<EzProvider>(builder: (_, EzProvider config, __) => ${classCaseAppName}Scaffold(
         config,
         body: EzScreen(
           config,
@@ -738,7 +738,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(builder: (_, EzCP config, __) => ${classCaseAppName}Scaffold(
+    return Consumer<EzProvider>(builder: (_, EzProvider config, __) => ${classCaseAppName}Scaffold(
         config,
         body: EzScreen(
           config,
@@ -789,8 +789,8 @@ class SettingsHubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(
-      builder: (_, EzCP config, __) => ${classCaseAppName}Scaffold(
+    return Consumer<EzProvider>(
+      builder: (_, EzProvider config, __) => ${classCaseAppName}Scaffold(
         config,
         title: config.ezL10n.gSettings,
         body: EzScreen(
@@ -805,8 +805,8 @@ class SettingsHubScreen extends StatelessWidget {
                 title: config.ezL10n.gGlobal,
                 icon: EzIcon(
                   config,
-                  EzCM.onMobile
-                      ? EzCM.platform == TargetPlatform.iOS
+                  EzManager.onMobile
+                      ? EzManager.platform == TargetPlatform.iOS
                           ? Icons.phone_iphone
                           : Icons.phone_android
                       : Icons.computer,
@@ -831,7 +831,7 @@ class SettingsHubScreen extends StatelessWidget {
                   EzSubSetting.qckColor,
                   EzSubSetting.advColor,
                 ],
-                fromStorage: () => (secondary ?? EzCM.get(advancedColorsKey) == true)
+                fromStorage: () => (secondary ?? EzManager.get(advancedColorsKey) == true)
                     ? EzSubSetting.advColor
                     : EzSubSetting.qckColor,
                 build: (EzSubSetting subSec) => EzColorSettings(config, target: subSec),
@@ -851,7 +851,7 @@ class SettingsHubScreen extends StatelessWidget {
                   EzSubSetting.butDesign,
                   EzSubSetting.pagDesign,
                 ],
-                fromStorage: () => (secondary ?? EzCM.get(pageTabKey) == true)
+                fromStorage: () => (secondary ?? EzManager.get(pageTabKey) == true)
                     ? EzSubSetting.pagDesign
                     : EzSubSetting.butDesign,
                 build: (EzSubSetting subSec) => EzDesignSettings(config, target: subSec),
@@ -871,7 +871,7 @@ class SettingsHubScreen extends StatelessWidget {
                   EzSubSetting.qckText,
                   EzSubSetting.advText,
                 ],
-                fromStorage: () => (secondary ?? EzCM.get(advancedTextKey) == true)
+                fromStorage: () => (secondary ?? EzManager.get(advancedTextKey) == true)
                     ? EzSubSetting.advText
                     : EzSubSetting.qckText,
                 build: (EzSubSetting subSec) => EzTextSettings(config, target: subSec),
@@ -932,7 +932,7 @@ Future<void> genL10n({
   // Gather setup //
 
   final String snakeName = ezClassToSnake(l10nClassName(config));
-  final String arbPath = EzCM.platform == TargetPlatform.windows
+  final String arbPath = EzManager.platform == TargetPlatform.windows
       ? getArbDir(config).replaceAll('/', '\\')
       : getArbDir(config);
 

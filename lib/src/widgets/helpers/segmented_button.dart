@@ -9,7 +9,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/foundation.dart' show listEquals;
 
 class EzSegmentedButton<T> extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final List<ButtonSegment<T>> segments;
   final Set<T> selected;
@@ -23,15 +23,15 @@ class EzSegmentedButton<T> extends StatelessWidget {
   final EdgeInsets? expandedInsets;
 
   /// Unselected segment background
-  /// Defaults to [EzCP.surfaceFill]
+  /// Defaults to [EzProvider.surfaceFill]
   final EzSwitchColor? fill;
 
   /// Selected segment background
-  /// Defaults to [EzCP.primaryFill]
+  /// Defaults to [EzProvider.primaryFill]
   final EzSwitchColor? selectedFill;
 
   /// Outline (and divider) color
-  /// Defaults to [EzCP.primaryContainerFill]
+  /// Defaults to [EzProvider.primaryContainerFill]
   final EzSwitchColor? borderFill;
 
   /// Merged under the fill/border styling, so it can't clobber [fill], [selectedFill], or [borderFill]

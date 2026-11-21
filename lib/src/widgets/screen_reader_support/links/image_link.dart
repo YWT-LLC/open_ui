@@ -9,7 +9,7 @@ import 'package:url_launcher/link.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzImageLink extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final ImageProvider<Object> image;
 
   /// Destination function

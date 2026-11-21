@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class QuickColorSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final List<Widget>? quickHeader;
   final List<Widget>? quickFooter;
@@ -73,24 +73,24 @@ class QuickColorSettings extends StatelessWidget {
             dynamicTitle: () => config.ezL10n.csReset(ezThemeString(config, bothable: true)),
             resetSkip: resetSkip,
             onConfirm: () async {
-              if (EzCM.updateBoth) {
-                await EzCM.removeKeys(allColorPairs.keys.toSet());
+              if (EzManager.updateBoth) {
+                await EzManager.removeKeys(allColorPairs.keys.toSet());
                 if (resetExtraDark != null) {
-                  await EzCM.removeKeys(resetExtraDark!);
+                  await EzManager.removeKeys(resetExtraDark!);
                 }
                 if (resetExtraLight != null) {
-                  await EzCM.removeKeys(resetExtraLight!);
+                  await EzManager.removeKeys(resetExtraLight!);
                 }
               } else {
                 if (config.isDark) {
-                  await EzCM.removeKeys(darkColorKeys.keys.toSet());
+                  await EzManager.removeKeys(darkColorKeys.keys.toSet());
                   if (resetExtraDark != null) {
-                    await EzCM.removeKeys(resetExtraDark!);
+                    await EzManager.removeKeys(resetExtraDark!);
                   }
                 } else {
-                  await EzCM.removeKeys(lightColorKeys.keys.toSet());
+                  await EzManager.removeKeys(lightColorKeys.keys.toSet());
                   if (resetExtraLight != null) {
-                    await EzCM.removeKeys(resetExtraLight!);
+                    await EzManager.removeKeys(resetExtraLight!);
                   }
                 }
               }

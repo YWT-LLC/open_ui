@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzFontSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Which [TextStyle] to update
   final EzTextSettingType type;
@@ -35,9 +35,9 @@ class EzFontSetting extends StatefulWidget {
 }
 
 class _FontSettingState extends State<EzFontSetting> {
-  late String? currFont = EzCM.get(widget.type.fontKey(widget.config.isDark)) == null
+  late String? currFont = EzManager.get(widget.type.fontKey(widget.config.isDark)) == null
       ? null
-      : ezClassToCamel(ezFirstWord(EzCM.get(widget.type.fontKey(widget.config.isDark))));
+      : ezClassToCamel(ezFirstWord(EzManager.get(widget.type.fontKey(widget.config.isDark))));
 
   @override
   Widget build(BuildContext context) => Tooltip(
@@ -48,7 +48,7 @@ class _FontSettingState extends State<EzFontSetting> {
           widthEntry: fingerPaint,
           menuStyle: fuseWithGFont(
             starter: widget.baseStyle,
-            gFont: currFont ?? EzCM.get(widget.type.fontKey(widget.config.isDark)),
+            gFont: currFont ?? EzManager.get(widget.type.fontKey(widget.config.isDark)),
           ),
           dropdownMenuEntries: googleStyles.entries
               .map(
@@ -66,9 +66,9 @@ class _FontSettingState extends State<EzFontSetting> {
             if (font == null) return;
             currFont = font;
 
-            await EzCM.setString(widget.type.fontKey(widget.config.isDark), font);
-            if (EzCM.updateBoth) {
-              await EzCM.setString(widget.type.fontMirror(widget.config.isDark), font);
+            await EzManager.setString(widget.type.fontKey(widget.config.isDark), font);
+            if (EzManager.updateBoth) {
+              await EzManager.setString(widget.type.fontMirror(widget.config.isDark), font);
             }
             widget.notifierCallback(font);
 

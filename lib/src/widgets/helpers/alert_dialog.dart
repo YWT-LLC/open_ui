@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzAlertDialog extends AlertDialog {
-  final EzCP config;
+  final EzProvider config;
 
   /// Dialog content becomes [contents] in an [EzScrollView]
   final List<Widget>? contents;
@@ -99,7 +99,7 @@ class EzAlertDialog extends AlertDialog {
 }
 
 class EzAction extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final String text;
   final String? semantics;
   final void Function() onPressed;
@@ -150,7 +150,7 @@ class EzAction extends StatelessWidget {
 
 /// Pairs with [EzAlertDialog]
 List<EzAction> ezActionPair(
-  EzCP config, {
+  EzProvider config, {
   String? confirmMsg,
   required void Function() onConfirm,
   bool confirmIsDefault = false,

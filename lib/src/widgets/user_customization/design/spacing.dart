@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzSpacingSetting extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final int _steps;
   final int _decimals;
@@ -24,9 +24,9 @@ class EzSpacingSetting extends StatelessWidget {
     // Gather the contextual theme data //
 
     final String configKey = config.isDark ? darkSpacingKey : lightSpacingKey;
-    final double defaultValue = EzCM.getDefault(configKey);
+    final double defaultValue = EzManager.getDefault(configKey);
 
-    double currValue = EzCM.get(configKey);
+    double currValue = EzManager.get(configKey);
 
     // Return the build //
 
@@ -106,10 +106,10 @@ class EzSpacingSetting extends StatelessWidget {
                     // Slider functions
                     onChanged: (double value) => setModal(() => currValue = value),
                     onChangeEnd: (double value) async {
-                      await EzCM.setDouble(configKey, value);
+                      await EzManager.setDouble(configKey, value);
 
-                      if (EzCM.updateBoth) {
-                        await EzCM.setDouble(
+                      if (EzManager.updateBoth) {
+                        await EzManager.setDouble(
                           config.isDark ? lightSpacingKey : darkSpacingKey,
                           value,
                         );
@@ -126,9 +126,9 @@ class EzSpacingSetting extends StatelessWidget {
                 EzElevatedIconButton(
                   config,
                   onPressed: () async {
-                    await EzCM.remove(configKey);
-                    if (EzCM.updateBoth) {
-                      await EzCM.remove(config.isDark ? lightSpacingKey : darkSpacingKey);
+                    await EzManager.remove(configKey);
+                    if (EzManager.updateBoth) {
+                      await EzManager.remove(config.isDark ? lightSpacingKey : darkSpacingKey);
                     }
                     setModal(() => currValue = defaultValue);
                   },

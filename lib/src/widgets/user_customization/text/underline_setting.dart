@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzUnderlineSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Which [TextStyle] to update
   final EzTextSettingType type;
@@ -29,7 +29,7 @@ class EzUnderlineSetting extends StatefulWidget {
 }
 
 class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
-  late bool isUnderlined = EzCM.get(widget.type.underlineKey(widget.config.isDark)) ?? false;
+  late bool isUnderlined = EzManager.get(widget.type.underlineKey(widget.config.isDark)) ?? false;
 
   @override
   Widget build(BuildContext context) => EzIconButton(
@@ -38,9 +38,10 @@ class _EzUnderlineSettingState extends State<EzUnderlineSetting> {
         onPressed: () async {
           isUnderlined = !isUnderlined;
 
-          await EzCM.setBool(widget.type.underlineKey(widget.config.isDark), isUnderlined);
-          if (EzCM.updateBoth) {
-            await EzCM.setBool(widget.type.underlineMirror(widget.config.isDark), isUnderlined);
+          await EzManager.setBool(widget.type.underlineKey(widget.config.isDark), isUnderlined);
+          if (EzManager.updateBoth) {
+            await EzManager.setBool(
+                widget.type.underlineMirror(widget.config.isDark), isUnderlined);
           }
 
           widget.notifierCallback(isUnderlined);

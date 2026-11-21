@@ -31,12 +31,12 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   final bool isDesktop = kIsWeb
       ? false
-      : (EzCM.platform == TargetPlatform.linux ||
-          EzCM.platform == TargetPlatform.macOS ||
-          EzCM.platform == TargetPlatform.windows);
+      : (EzManager.platform == TargetPlatform.linux ||
+          EzManager.platform == TargetPlatform.macOS ||
+          EzManager.platform == TargetPlatform.windows);
 
-  final bool isMac = !kIsWeb && EzCM.platform == TargetPlatform.macOS;
-  final bool isWindows = !kIsWeb && EzCM.platform == TargetPlatform.windows;
+  final bool isMac = !kIsWeb && EzManager.platform == TargetPlatform.macOS;
+  final bool isWindows = !kIsWeb && EzManager.platform == TargetPlatform.windows;
 
   late final String homePath = isDesktop
       ? isWindows
@@ -52,20 +52,21 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   // Form data //
 
-  final TextEditingController nameTC = TextEditingController(text: EzCM.get(nameBackupKey));
+  final TextEditingController nameTC = TextEditingController(text: EzManager.get(nameBackupKey));
   late String namePreview = l10n(configWatcher(context)).csNamePreview;
   bool validName = false;
 
   final TextEditingController publisherTC = TextEditingController(
-    text: EzCM.get(publisherBackupKey),
+    text: EzManager.get(publisherBackupKey),
   );
   late String pubPreview = l10n(configWatcher(context)).csPubPreview;
 
   final TextEditingController descriptionTC = TextEditingController(
-    text: EzCM.get(descriptionBackupKey),
+    text: EzManager.get(descriptionBackupKey),
   );
 
-  final TextEditingController domainTC = TextEditingController(text: EzCM.get(domainBackupKey));
+  final TextEditingController domainTC =
+      TextEditingController(text: EzManager.get(domainBackupKey));
   bool exampleDomain = false;
 
   late final int currYear = DateTime.now().year;
@@ -116,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   }
 
   /// Validate the code gen file path (Desktop only)
-  Future<bool> checkPath(EzCP config, TextEditingController controller) async {
+  Future<bool> checkPath(EzProvider config, TextEditingController controller) async {
     if (await Directory(controller.text).exists()) return true;
 
     final String badPath = l10n(config).csBadPath;
@@ -148,8 +149,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) async {
     // Shared changes from relevant backups
-    final String? bName = EzCM.get(nameBackupKey);
-    final String? bPub = EzCM.get(publisherBackupKey);
+    final String? bName = EzManager.get(nameBackupKey);
+    final String? bPub = EzManager.get(publisherBackupKey);
 
     if (bName != null && bName.isNotEmpty) {
       updateName(bName);
@@ -178,8 +179,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(
-      builder: (_, EzCP config, __) => OpenUIScaffold(
+    return Consumer<EzProvider>(
+      builder: (_, EzProvider config, __) => OpenUIScaffold(
         config,
         title: l10n(config).csPageTitle,
         body: EzScreen(
@@ -208,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   config,
                   entry,
                   onSuccess: () async {
-                    await EzCM.setString(nameBackupKey, nameTC.text);
+                    await EzManager.setString(nameBackupKey, nameTC.text);
                     updateName(nameTC.text);
                   },
                   onFailure: () => setState(() => validName = false),
@@ -227,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   config,
                   value,
                   onSuccess: () async {
-                    await EzCM.setString(publisherBackupKey, publisherTC.text);
+                    await EzManager.setString(publisherBackupKey, publisherTC.text);
                     updatePublisher(publisherTC.text);
                   },
                 ),
@@ -244,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                   config,
                   value,
                   onSuccess: () async {
-                    await EzCM.setString(descriptionBackupKey, descriptionTC.text);
+                    await EzManager.setString(descriptionBackupKey, descriptionTC.text);
                     setState(() {});
                   },
                 ),
@@ -286,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                         config,
                         text,
                         onSuccess: () async {
-                          await EzCM.setString(domainBackupKey, domainTC.text);
+                          await EzManager.setString(domainBackupKey, domainTC.text);
                           setState(() {});
                         },
                       ),
@@ -621,7 +622,7 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                             domainName: exampleDomain ? 'com.example' : domainTC.text,
                             appDefaults: Map<String, dynamic>.fromEntries(
                               allEzConfigPairs.keys.map(
-                                (String key) => MapEntry<String, dynamic>(key, EzCM.get(key)),
+                                (String key) => MapEntry<String, dynamic>(key, EzManager.get(key)),
                               ),
                             ),
                             flutterPath: isMac ? flutterPathTC.text : null,
@@ -676,7 +677,8 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
                               domainName: exampleDomain ? 'com.example' : domainTC.text,
                               appDefaults: Map<String, dynamic>.fromEntries(
                                 allEzConfigPairs.keys.map(
-                                  (String key) => MapEntry<String, dynamic>(key, EzCM.get(key)),
+                                  (String key) =>
+                                      MapEntry<String, dynamic>(key, EzManager.get(key)),
                                 ),
                               ),
                               flutterPath: isMac ? flutterPathTC.text : null,
@@ -723,25 +725,25 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
 
           // Gather everything
           nameTC.text = toLoad.appName;
-          await EzCM.setString(nameBackupKey, toLoad.appName);
+          await EzManager.setString(nameBackupKey, toLoad.appName);
           namePreview = toLoad.appName;
           validName = true;
 
           publisherTC.text = toLoad.publisherName;
-          await EzCM.setString(publisherBackupKey, toLoad.publisherName);
+          await EzManager.setString(publisherBackupKey, toLoad.publisherName);
           pubPreview = toLoad.publisherName;
 
           descriptionTC.text = toLoad.appDescription;
-          await EzCM.setString(descriptionBackupKey, toLoad.appDescription);
+          await EzManager.setString(descriptionBackupKey, toLoad.appDescription);
 
           domainTC.text = toLoad.domainName;
           if (toLoad.domainName == 'com.example') {
             exampleDomain = true;
           } else {
-            await EzCM.setString(domainBackupKey, toLoad.domainName);
+            await EzManager.setString(domainBackupKey, toLoad.domainName);
           }
 
-          await EzCM.loadConfig(config, toLoad: toLoad.appDefaults);
+          await EzManager.loadConfig(config, toLoad: toLoad.appDefaults);
 
           if (toLoad.flutterPath != null &&
               isMac &&
@@ -786,19 +788,19 @@ class _HomeScreenState extends State<HomeScreen> with AfterLayoutMixin<HomeScree
             config,
             clear: () async {
               nameTC.clear();
-              await EzCM.remove(nameBackupKey);
+              await EzManager.remove(nameBackupKey);
               namePreview = l10n(config).csNamePreview;
               validName = false;
 
               publisherTC.clear();
-              await EzCM.remove(publisherBackupKey);
+              await EzManager.remove(publisherBackupKey);
               pubPreview = l10n(config).csPubPreview;
 
               descriptionTC.clear();
-              await EzCM.remove(descriptionBackupKey);
+              await EzManager.remove(descriptionBackupKey);
 
               domainTC.clear();
-              await EzCM.remove(domainBackupKey);
+              await EzManager.remove(domainBackupKey);
               exampleDomain = false;
 
               flutterPathTC.clear();
@@ -933,7 +935,7 @@ linter:
 }
 
 class _BasicField extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final String title;
   final dynamic tip;
   final TextEditingController controller;
@@ -986,7 +988,7 @@ class _BasicField extends StatelessWidget {
 }
 
 class _AdvancedSettingsField extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final ExpansibleController ec;
   final String title;
@@ -1074,7 +1076,7 @@ class _AdvancedSettingsFieldState extends State<_AdvancedSettingsField> {
 }
 
 class _LicensePicker extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
   final ExpansibleController ec;
   final String groupValue;
   final void Function(String?) onChanged;

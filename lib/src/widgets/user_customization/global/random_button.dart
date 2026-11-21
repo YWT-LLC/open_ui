@@ -9,7 +9,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzConfigRandomizer extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [EzAlertDialog.title] that shows on click
   /// Defaults to [OUILang.ssRandomize]
@@ -17,7 +17,7 @@ class EzConfigRandomizer extends StatelessWidget {
 
   final Set<String>? saveSkip;
 
-  /// [EzElevatedIconButton] for [EzCM.randomize]
+  /// [EzElevatedIconButton] for [EzManager.randomize]
   const EzConfigRandomizer(this.config, {super.key, this.dialogTitle, this.saveSkip});
 
   @override
@@ -39,7 +39,7 @@ class EzConfigRandomizer extends StatelessWidget {
             contents: <Widget>[ezRichUndoWarning(config, context: context, skip: saveSkip)],
             actions: ezActionPair(
               config,
-              onConfirm: () => config.rebuildUI(changes: () => EzCM.randomize(config.isDark)),
+              onConfirm: () => config.rebuildUI(changes: () => EzManager.randomize(config.isDark)),
               confirmIsDestructive: true,
               onDeny: () => Navigator.of(dCon).pop(),
             ),

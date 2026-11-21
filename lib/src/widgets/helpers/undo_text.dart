@@ -10,7 +10,7 @@ import 'package:material_ui/material_ui.dart';
 /// Remind the user that reset/randomize/etc cannot be undone automatically
 /// Includes and [EzInlineLink] to save current config to JSON
 Widget ezRichUndoWarning(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   Set<String>? skip,
 }) =>
@@ -24,7 +24,7 @@ Widget ezRichUndoWarning(
         EzInlineLink(
           config,
           text: config.ezL10n.gSave,
-          onTap: () => EzCM.saveConfig(config, context: context, skip: skip),
+          onTap: () => EzManager.saveConfig(config, context: context, skip: skip),
           hint: config.ezL10n.gSaveHint,
           style: config.bodyStyle,
           textAlign: TextAlign.center,

@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzIconSizeSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// If you want to track the iconSize changes externally
   final void Function(double iconSize)? onChanged;
@@ -41,11 +41,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
             message: widget.config.ezL10n.gCenterReset,
             child: GestureDetector(
               onLongPress: () async {
-                if (EzCM.updateBoth || widget.config.isDark) {
-                  await EzCM.remove(darkIconSizeKey);
+                if (EzManager.updateBoth || widget.config.isDark) {
+                  await EzManager.remove(darkIconSizeKey);
                 }
-                if (EzCM.updateBoth || !widget.config.isDark) {
-                  await EzCM.remove(lightIconSizeKey);
+                if (EzManager.updateBoth || !widget.config.isDark) {
+                  await EzManager.remove(lightIconSizeKey);
                 }
 
                 setState(() => iconSize = ywt.defaultIconSize);
@@ -80,11 +80,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         widget.config,
                         onPressed: () async {
                           iconSize -= ywt.iconDelta;
-                          if (EzCM.updateBoth || widget.config.isDark) {
-                            await EzCM.setDouble(darkIconSizeKey, iconSize);
+                          if (EzManager.updateBoth || widget.config.isDark) {
+                            await EzManager.setDouble(darkIconSizeKey, iconSize);
                           }
-                          if (EzCM.updateBoth || !widget.config.isDark) {
-                            await EzCM.setDouble(lightIconSizeKey, iconSize);
+                          if (EzManager.updateBoth || !widget.config.isDark) {
+                            await EzManager.setDouble(lightIconSizeKey, iconSize);
                           }
 
                           setState(() {});
@@ -116,11 +116,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                 // Preview
                 GestureDetector(
                   onLongPress: () async {
-                    if (EzCM.updateBoth || widget.config.isDark) {
-                      await EzCM.remove(darkIconSizeKey);
+                    if (EzManager.updateBoth || widget.config.isDark) {
+                      await EzManager.remove(darkIconSizeKey);
                     }
-                    if (EzCM.updateBoth || !widget.config.isDark) {
-                      await EzCM.remove(lightIconSizeKey);
+                    if (EzManager.updateBoth || !widget.config.isDark) {
+                      await EzManager.remove(lightIconSizeKey);
                     }
 
                     setState(() => iconSize = ywt.defaultIconSize);
@@ -149,11 +149,11 @@ class _EzIconSizeSettingState extends State<EzIconSizeSetting> {
                         widget.config,
                         onPressed: () async {
                           iconSize += ywt.iconDelta;
-                          if (EzCM.updateBoth || widget.config.isDark) {
-                            await EzCM.setDouble(darkIconSizeKey, iconSize);
+                          if (EzManager.updateBoth || widget.config.isDark) {
+                            await EzManager.setDouble(darkIconSizeKey, iconSize);
                           }
-                          if (EzCM.updateBoth || !widget.config.isDark) {
-                            await EzCM.setDouble(lightIconSizeKey, iconSize);
+                          if (EzManager.updateBoth || !widget.config.isDark) {
+                            await EzManager.setDouble(lightIconSizeKey, iconSize);
                           }
 
                           setState(() {});

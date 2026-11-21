@@ -31,10 +31,10 @@ class EzRichLine extends EzPlainText {
 }
 
 class EzText extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final String text;
 
-  /// Defaults to [EzCP.bodyStyle]
+  /// Defaults to [EzProvider.bodyStyle]
   final TextStyle? style;
 
   final TextAlign? textAlign;
@@ -78,7 +78,7 @@ class EzText extends StatelessWidget {
 }
 
 class EzTextBackground extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// The [Widget] that needs a background
   /// [Text] is merely the recommended widget
@@ -86,17 +86,17 @@ class EzTextBackground extends StatelessWidget {
 
   final EzButtonShape? shape;
 
-  /// Full override, ignores [EzCP.textBackgroundOpacity]
-  /// Defaults to (a responsive) [EdgeInsets.all] w/ [EzCP.marginVal]
+  /// Full override, ignores [EzProvider.textBackgroundOpacity]
+  /// Defaults to (a responsive) [EdgeInsets.all] w/ [EzProvider.marginVal]
   final EdgeInsets? padding;
 
   final BorderRadiusGeometry? borderRadius;
 
-  /// Partial override, still responds to [EzCP.textBackgroundOpacity]
-  /// Defaults to [EzCP.surfaceContainerFill]
+  /// Partial override, still responds to [EzProvider.textBackgroundOpacity]
+  /// Defaults to [EzProvider.surfaceContainerFill]
   final EzSwitchColor? baseFill;
 
-  /// Full override, ignores [EzCP.textBackgroundOpacity]
+  /// Full override, ignores [EzProvider.textBackgroundOpacity]
   final EzSwitchColor? replaceFill;
 
   /// Create a [Container] for your [text]

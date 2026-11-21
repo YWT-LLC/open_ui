@@ -8,26 +8,26 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzFontFamilyBatchSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzProvider.rebuildUI] calls
   final EzDisplayStyleProvider displayProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzProvider.rebuildUI] calls
   final EzHeadlineStyleProvider headlineProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzProvider.rebuildUI] calls
   final EzTitleStyleProvider titleProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzProvider.rebuildUI] calls
   final EzBodyStyleProvider bodyProvider;
 
   /// Requires the provider to be in the widget tree/context
-  /// Allows for efficient (local) live updates, to avoid constant [EzCP.rebuildUI] calls
+  /// Allows for efficient (local) live updates, to avoid constant [EzProvider.rebuildUI] calls
   final EzLabelStyleProvider labelProvider;
 
   /// Standardized tool for updating the 5 [TextStyle.fontFamily]s
@@ -127,12 +127,12 @@ class _FontFamilyBatchSettingState extends State<EzFontFamilyBatchSetting> {
             }
             currFont = fontFamily;
 
-            final Map<String, String?> currFonts = EzCM.updateBoth
+            final Map<String, String?> currFonts = EzManager.updateBoth
                 ? <String, String?>{...darkFonts, ...lightFonts}
                 : (widget.config.isDark ? darkFonts : lightFonts);
 
             for (final String key in currFonts.keys) {
-              await EzCM.setString(key, fontFamily);
+              await EzManager.setString(key, fontFamily);
             }
             widget.displayProvider.fuse(fontFamily);
             widget.headlineProvider.fuse(fontFamily);

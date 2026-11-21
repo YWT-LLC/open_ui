@@ -11,7 +11,7 @@ import 'quick_settings.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzAudioSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Current sub-page
   final EzSubSetting target;

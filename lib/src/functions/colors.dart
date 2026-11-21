@@ -23,10 +23,10 @@ Color? ezFirstColor(String color) {
   return cv == null ? null : Color(cv);
 }
 
-/// Generate a [ColorScheme] based on [EzCM]
+/// Generate a [ColorScheme] based on [EzManager]
 ColorScheme ezColorScheme(Brightness brightness) {
   Color? getFirstColor(String key) {
-    final dynamic value = EzCM.get(key);
+    final dynamic value = EzManager.get(key);
 
     return switch (value.runtimeType) {
       int => Color(value),
@@ -138,195 +138,195 @@ ColorScheme ezColorScheme(Brightness brightness) {
         );
 }
 
-/// Store the passed [ColorScheme] in [EzCM]
+/// Store the passed [ColorScheme] in [EzManager]
 /// When [brightness] is null, both dark and light color schemes are updated
 Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) async {
   if (brightness == null || brightness == Brightness.dark) {
     // Reset
-    await EzCM.removeKeys(darkColorKeys.keys.toSet());
+    await EzManager.removeKeys(darkColorKeys.keys.toSet());
 
     // Rebuild
-    await EzCM.setString(
+    await EzManager.setString(
       darkPrimaryKey,
       colorScheme.primary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnPrimaryKey,
       colorScheme.onPrimary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkPrimaryContainerKey,
       colorScheme.primaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnPrimaryContainerKey,
       colorScheme.onPrimaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkPrimaryFixedKey,
       colorScheme.primaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkPrimaryFixedDimKey,
       colorScheme.primaryFixedDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnPrimaryFixedKey,
       colorScheme.onPrimaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnPrimaryFixedVariantKey,
       colorScheme.onPrimaryFixedVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSecondaryKey,
       colorScheme.secondary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnSecondaryKey,
       colorScheme.onSecondary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSecondaryContainerKey,
       colorScheme.secondaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnSecondaryContainerKey,
       colorScheme.onSecondaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSecondaryFixedKey,
       colorScheme.secondaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSecondaryFixedDimKey,
       colorScheme.secondaryFixedDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnSecondaryFixedKey,
       colorScheme.onSecondaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnSecondaryFixedVariantKey,
       colorScheme.onSecondaryFixedVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkTertiaryKey,
       colorScheme.tertiary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnTertiaryKey,
       colorScheme.onTertiary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkTertiaryContainerKey,
       colorScheme.tertiaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnTertiaryContainerKey,
       colorScheme.onTertiaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkTertiaryFixedKey,
       colorScheme.tertiaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkTertiaryFixedDimKey,
       colorScheme.tertiaryFixedDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnTertiaryFixedKey,
       colorScheme.onTertiaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnTertiaryFixedVariantKey,
       colorScheme.onTertiaryFixedVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkErrorKey,
       colorScheme.error.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnErrorKey,
       colorScheme.onError.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkErrorContainerKey,
       colorScheme.errorContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnErrorContainerKey,
       colorScheme.onErrorContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOutlineKey,
       colorScheme.outline.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOutlineVariantKey,
       colorScheme.outlineVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceKey,
       colorScheme.surface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnSurfaceKey,
       colorScheme.onSurface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceDimKey,
       colorScheme.surfaceDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceBrightKey,
       colorScheme.surfaceBright.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceContainerLowestKey,
       colorScheme.surfaceContainerLowest.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceContainerLowKey,
       colorScheme.surfaceContainerLow.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceContainerKey,
       colorScheme.surfaceContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceContainerHighKey,
       colorScheme.surfaceContainerHigh.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceContainerHighestKey,
       colorScheme.surfaceContainerHighest.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnSurfaceVariantKey,
       colorScheme.onSurfaceVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkInverseSurfaceKey,
       colorScheme.inverseSurface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkOnInverseSurfaceKey,
       colorScheme.onInverseSurface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkInversePrimaryKey,
       colorScheme.inversePrimary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkShadowKey,
       colorScheme.shadow.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkScrimKey,
       colorScheme.scrim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       darkSurfaceTintKey,
       colorScheme.surfaceTint.toARGB32().toString(),
     );
@@ -334,190 +334,190 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
 
   if (brightness == null || brightness == Brightness.light) {
     // Reset
-    await EzCM.removeKeys(lightColorKeys.keys.toSet());
+    await EzManager.removeKeys(lightColorKeys.keys.toSet());
 
     // Rebuild
-    await EzCM.setString(
+    await EzManager.setString(
       lightPrimaryKey,
       colorScheme.primary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnPrimaryKey,
       colorScheme.onPrimary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightPrimaryContainerKey,
       colorScheme.primaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnPrimaryContainerKey,
       colorScheme.onPrimaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightPrimaryFixedKey,
       colorScheme.primaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightPrimaryFixedDimKey,
       colorScheme.primaryFixedDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnPrimaryFixedKey,
       colorScheme.onPrimaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnPrimaryFixedVariantKey,
       colorScheme.onPrimaryFixedVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSecondaryKey,
       colorScheme.secondary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnSecondaryKey,
       colorScheme.onSecondary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSecondaryContainerKey,
       colorScheme.secondaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnSecondaryContainerKey,
       colorScheme.onSecondaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSecondaryFixedKey,
       colorScheme.secondaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSecondaryFixedDimKey,
       colorScheme.secondaryFixedDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnSecondaryFixedKey,
       colorScheme.onSecondaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnSecondaryFixedVariantKey,
       colorScheme.onSecondaryFixedVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightTertiaryKey,
       colorScheme.tertiary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnTertiaryKey,
       colorScheme.onTertiary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightTertiaryContainerKey,
       colorScheme.tertiaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnTertiaryContainerKey,
       colorScheme.onTertiaryContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightTertiaryFixedKey,
       colorScheme.tertiaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightTertiaryFixedDimKey,
       colorScheme.tertiaryFixedDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnTertiaryFixedKey,
       colorScheme.onTertiaryFixed.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnTertiaryFixedVariantKey,
       colorScheme.onTertiaryFixedVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightErrorKey,
       colorScheme.error.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnErrorKey,
       colorScheme.onError.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightErrorContainerKey,
       colorScheme.errorContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnErrorContainerKey,
       colorScheme.onErrorContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOutlineKey,
       colorScheme.outline.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOutlineVariantKey,
       colorScheme.outlineVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceKey,
       colorScheme.surface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnSurfaceKey,
       colorScheme.onSurface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceDimKey,
       colorScheme.surfaceDim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceBrightKey,
       colorScheme.surfaceBright.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceContainerLowestKey,
       colorScheme.surfaceContainerLowest.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceContainerLowKey,
       colorScheme.surfaceContainerLow.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceContainerKey,
       colorScheme.surfaceContainer.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceContainerHighKey,
       colorScheme.surfaceContainerHigh.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceContainerHighestKey,
       colorScheme.surfaceContainerHighest.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnSurfaceVariantKey,
       colorScheme.onSurfaceVariant.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightInverseSurfaceKey,
       colorScheme.inverseSurface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightOnInverseSurfaceKey,
       colorScheme.onInverseSurface.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightInversePrimaryKey,
       colorScheme.inversePrimary.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightShadowKey,
       colorScheme.shadow.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightScrimKey,
       colorScheme.scrim.toARGB32().toString(),
     );
-    await EzCM.setString(
+    await EzManager.setString(
       lightSurfaceTintKey,
       colorScheme.surfaceTint.toARGB32().toString(),
     );
@@ -525,7 +525,7 @@ Future<void> loadColorScheme(ColorScheme colorScheme, Brightness? brightness) as
 }
 
 /// Generates a [ColorScheme] based on the image found at [path],
-/// Stores it in [EzCM], and loads it to [EzCP]
+/// Stores it in [EzManager], and loads it to [EzProvider]
 /// When [brightness] is null, both dark and light color schemes are updated
 Future<String> loadImageColorScheme(String path, Brightness? brightness) async {
   try {

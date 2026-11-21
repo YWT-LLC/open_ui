@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzBoldSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Which [TextStyle] to update
   final EzTextSettingType type;
@@ -29,7 +29,7 @@ class EzBoldSetting extends StatefulWidget {
 }
 
 class _EzBoldSettingState extends State<EzBoldSetting> {
-  late bool isBold = EzCM.get(widget.type.boldKey(widget.config.isDark)) ?? false;
+  late bool isBold = EzManager.get(widget.type.boldKey(widget.config.isDark)) ?? false;
 
   @override
   Widget build(BuildContext context) => EzIconButton(
@@ -38,9 +38,9 @@ class _EzBoldSettingState extends State<EzBoldSetting> {
         onPressed: () async {
           isBold = !isBold;
 
-          await EzCM.setBool(widget.type.boldKey(widget.config.isDark), isBold);
-          if (EzCM.updateBoth) {
-            await EzCM.setBool(widget.type.boldMirror(widget.config.isDark), isBold);
+          await EzManager.setBool(widget.type.boldKey(widget.config.isDark), isBold);
+          if (EzManager.updateBoth) {
+            await EzManager.setBool(widget.type.boldMirror(widget.config.isDark), isBold);
           }
 
           widget.notifierCallback(isBold);

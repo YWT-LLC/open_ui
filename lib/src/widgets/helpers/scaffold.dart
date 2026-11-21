@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class EzScaffold extends Scaffold {
-  final EzCP config;
+  final EzProvider config;
 
   /// [List] of (preferably) [FloatingActionButton]s
   final List<Widget>? fabs;
@@ -57,7 +57,7 @@ class EzScaffold extends Scaffold {
 }
 
 class EzFooter extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Hide the [contributeMessage] in [defaultLocale]
   /// [translateMessage]s are always present in other locales

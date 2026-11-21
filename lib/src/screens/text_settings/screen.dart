@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzTextSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Current sub-page
   final EzSubSetting target;
@@ -69,7 +69,7 @@ class EzTextSettings extends StatelessWidget {
 }
 
 class _TextSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final EzSubSetting target;
 
   const _TextSettings(this.config, this.target);

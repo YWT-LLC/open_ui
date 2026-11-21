@@ -9,9 +9,9 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
 class EzCheckbox extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
-  /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when [ezIconRatio] > 1.1
+  /// Defaults to [EdgeInsets.all] with [EzProvider.marginVal] when [ezIconRatio] > 1.1
   final EdgeInsetsGeometry? padding;
 
   final bool? value;
@@ -52,7 +52,7 @@ class EzCheckbox extends StatelessWidget {
 }
 
 class EzCheckboxPair extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final bool reverseHands;
   final MainAxisSize mainAxisSize;
   final MainAxisAlignment mainAxisAlignment;
@@ -64,7 +64,7 @@ class EzCheckboxPair extends StatelessWidget {
   final EzSwitchColor? baseFill;
   final EzSwitchColor? replaceFill;
 
-  /// Defaults to [EdgeInsets.all] with [EzCP.marginVal] when scale > 1.1
+  /// Defaults to [EdgeInsets.all] with [EzProvider.marginVal] when scale > 1.1
   final EdgeInsetsGeometry? padding;
 
   final bool? value;

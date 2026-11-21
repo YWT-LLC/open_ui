@@ -9,7 +9,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Unsupported in web
   final String path;

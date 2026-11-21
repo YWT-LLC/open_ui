@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:open_ui/open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
-EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
+EzUpdaterFAB updater(EzProvider config) => EzUpdaterFAB(
       config,
       appVersion: '4.2.0',
       versionSource:
@@ -20,7 +20,7 @@ EzUpdaterFAB updater(EzCP config) => EzUpdaterFAB(
     );
 
 class ResetFAB extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final void Function() clear;
   final void Function() state;
 
@@ -60,7 +60,7 @@ class ResetFAB extends StatelessWidget {
                       config,
                       onPressed: () async {
                         await config.rebuildUI(
-                            changes: () => EzCM.reset(config.isDark, forceBoth: true));
+                            changes: () => EzManager.reset(config.isDark, forceBoth: true));
                         state();
                       },
                       text: l10n(config).csResetApp,
@@ -73,7 +73,7 @@ class ResetFAB extends StatelessWidget {
                       onPressed: () async {
                         await config.rebuildUI(changes: () async {
                           clear();
-                          await EzCM.reset(config.isDark, forceBoth: true);
+                          await EzManager.reset(config.isDark, forceBoth: true);
                         });
                         state();
                       },

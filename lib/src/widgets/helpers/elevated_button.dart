@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzElevatedButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Easily disable the button
   /// Useful if the functionality is async
@@ -66,7 +66,7 @@ class EzElevatedButton extends StatelessWidget {
 }
 
 class EzElevatedIconButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Easily disable the button
   /// Useful if the functionality is async

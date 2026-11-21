@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzRichText extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final List<InlineSpan> children;
 
   /// Whether a default [EzTextBackground] should be included

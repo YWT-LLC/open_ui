@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 
 /// Returns and [AssetImage], [NetworkImage], or [FileImage] based on the [path]
 ImageProvider ezImageProvider(String path, {double? scale}) {
-  if (EzCM.isPathAsset(path)) {
+  if (EzManager.isPathAsset(path)) {
     return AssetImage(path);
   } else if (ezUrlCheck(path)) {
     return NetworkImage(path, scale: scale ?? 1.0);
@@ -24,7 +24,7 @@ ImageProvider ezImageProvider(String path, {double? scale}) {
 /// Wraps an [ImagePicker] in a try/catch
 /// Provide [prefsPath] to auto save successful results to [config]
 Future<String?> ezImagePicker(
-  EzCP config, {
+  EzProvider config, {
   required BuildContext context,
   required ImageSource source,
   String? prefsPath,
@@ -33,7 +33,7 @@ Future<String?> ezImagePicker(
     final XFile? picked = await ImagePicker().pickImage(source: source);
     if (picked == null) return null;
 
-    if (prefsPath != null) await EzCM.setString(prefsPath, picked.path);
+    if (prefsPath != null) await EzManager.setString(prefsPath, picked.path);
     return picked.path;
   } on Exception catch (e) {
     final String errorMsg = '${config.ezL10n.dsImgSetFailed}\n${e.toString()}';

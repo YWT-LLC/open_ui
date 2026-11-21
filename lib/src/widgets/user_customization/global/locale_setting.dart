@@ -8,7 +8,7 @@ import '../../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzLocaleSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [Locale]s to [skip]
   final Set<Locale>? skip;
@@ -79,7 +79,7 @@ class _LocaleSettingState extends State<EzLocaleSetting> {
                                 if (locale.countryCode != null) {
                                   localeData.add(locale.countryCode!);
                                 }
-                                await EzCM.setStringList(appLocaleKey, localeData);
+                                await EzManager.setStringList(appLocaleKey, localeData);
 
                                 // Refresh the UI
                                 await widget.config.rebuildLocale();

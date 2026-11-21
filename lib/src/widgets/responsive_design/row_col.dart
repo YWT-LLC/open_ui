@@ -42,7 +42,7 @@ class EzRowCol extends StatelessWidget {
   /// Horizontal [EzScrollView] that will switch to a [Column] based on [breakpoint]
   /// Alignment, size, and direction values will be shared (symmetric)
   EzRowCol.sym(
-    EzCP config, {
+    EzProvider config, {
     super.key,
     this.breakpoint = ScreenSize.small,
     bool reverseHands = false,

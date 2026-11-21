@@ -8,11 +8,11 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzAvatar extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final EzSwitchColor fill;
 
   /// For when [fill] has opacity
-  /// Defaults to [EzCP.surfaceContainerFill]
+  /// Defaults to [EzProvider.surfaceContainerFill]
   final EzSwitchColor? base;
 
   final ImageProvider? backgroundImage;

@@ -9,7 +9,7 @@ import 'package:ywt_private/ywt_private.dart' as ywt;
 import 'package:material_ui/material_ui.dart';
 
 class AdvancedTextSettings extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   // Providers
   final EzDisplayStyleProvider displayProvider;
@@ -688,11 +688,11 @@ class _AdvancedTextSettingsState extends State<AdvancedTextSettings> {
               widget.config.ezL10n.tsReset(ezThemeString(widget.config, bothable: false)),
           onConfirm: () async {
             if (widget.config.isDark) {
-              await EzCM.removeKeys(darkTextKeys.keys.toSet());
-              await EzCM.remove(darkOnSurfaceKey);
+              await EzManager.removeKeys(darkTextKeys.keys.toSet());
+              await EzManager.remove(darkOnSurfaceKey);
             } else {
-              await EzCM.removeKeys(lightTextKeys.keys.toSet());
-              await EzCM.remove(lightOnSurfaceKey);
+              await EzManager.removeKeys(lightTextKeys.keys.toSet());
+              await EzManager.remove(lightOnSurfaceKey);
             }
 
             setState(() => editing = EzTextSettingType.display);

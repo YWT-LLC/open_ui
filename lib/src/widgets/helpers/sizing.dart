@@ -21,7 +21,7 @@ class EzInsets extends EdgeInsets {
 
 /// Ezly add (override-able) [EzInsets.wrap] padding to [child]
 Widget ezWrap(
-  EzCP config, {
+  EzProvider config, {
   Key? key,
   required Widget child,
   EdgeInsets? padding,

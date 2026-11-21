@@ -9,7 +9,7 @@ import 'package:open_ui/open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class FailureHeader extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Core [Text] to display... under 'Failure'
   /// Provide [message] OR [richMessage]
@@ -56,7 +56,7 @@ class FailureHeader extends StatelessWidget {
 }
 
 class DeleteOption extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Directory that will be rm -rf'd
   final String appName;
@@ -91,7 +91,9 @@ class DeleteOption extends StatelessWidget {
           EzElevatedIconButton(
             config,
             onPressed: () => ezCmd(
-              EzCM.platform == TargetPlatform.windows ? 'rmdir /s /q $appName' : 'rm -rf $appName',
+              EzManager.platform == TargetPlatform.windows
+                  ? 'rmdir /s /q $appName'
+                  : 'rm -rf $appName',
               dir: dir,
               onSuccess: () async {
                 await ezSnackBar(config, context: context, message: l10n(config).rsNextTime).closed;
@@ -121,7 +123,7 @@ class DeleteOption extends StatelessWidget {
 }
 
 class LinkOption extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Iterable [Widget] containing a [EzElevatedIconButton] for wiping the partial build
   const LinkOption(this.config, {super.key});

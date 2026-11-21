@@ -15,7 +15,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:extended_image/extended_image.dart';
 
 class EzImageEditor extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [File] path of the image being edited
   final String path;

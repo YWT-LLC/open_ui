@@ -9,7 +9,7 @@ import 'package:url_launcher/link.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzElevatedLink extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// On hover/focus hint
   /// Defaults to [hint]
@@ -56,7 +56,7 @@ class EzElevatedLink extends StatelessWidget {
 }
 
 class EzElevatedIconLink extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// On hover/focus hint
   /// Defaults to [hint]

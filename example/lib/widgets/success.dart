@@ -7,7 +7,7 @@ import 'package:open_ui/open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class SuccessHeader extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Core message to display... under 'Success'
   /// Used in an [Flexible] wrapped [EzText]

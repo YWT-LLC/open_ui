@@ -15,7 +15,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EzImageSetting extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [config] key for the path
   final String pathKey;
@@ -74,8 +74,8 @@ class EzImageSetting extends StatefulWidget {
 class _ImageSettingState extends State<EzImageSetting> {
   // Define the build data //
 
-  late String? currPath = EzCM.get(widget.pathKey);
-  late BoxFit? currFit = (widget.fitKey == null) ? null : boxFitLib[EzCM.get(widget.fitKey!)];
+  late String? currPath = EzManager.get(widget.pathKey);
+  late BoxFit? currFit = (widget.fitKey == null) ? null : boxFitLib[EzManager.get(widget.fitKey!)];
 
   bool fromLocal = false;
 
@@ -95,7 +95,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     if (currPath == null || currPath == noImageValue) return;
 
     final String credits =
-        (widget.creditsKey == null) ? currPath : (EzCM.get(widget.creditsKey!) ?? currPath);
+        (widget.creditsKey == null) ? currPath : (EzManager.get(widget.creditsKey!) ?? currPath);
 
     return showDialog(
       context: context,
@@ -117,7 +117,7 @@ class _ImageSettingState extends State<EzImageSetting> {
 
   /// Cleanup any custom [File]s
   Future<void> fileCleanup() async {
-    if (!EzCM.isKeyAsset(widget.pathKey)) {
+    if (!EzManager.isKeyAsset(widget.pathKey)) {
       try {
         final File toDelete = File(widget.pathKey);
         await toDelete.delete();
@@ -153,7 +153,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     final bool isColor = storedIsColor(newPath);
 
     // Edit image (when applicable)
-    if (!isColor && fromLocal && widget.showEditor && !kIsWeb && !EzCM.isPathAsset(newPath)) {
+    if (!isColor && fromLocal && widget.showEditor && !kIsWeb && !EzManager.isPathAsset(newPath)) {
       if (mounted) {
         final Future<dynamic> Function(String path) toDo = await showDialog(
           context: context,
@@ -205,7 +205,7 @@ class _ImageSettingState extends State<EzImageSetting> {
     }
 
     // Set the new path
-    final bool setPath = await EzCM.setString(widget.pathKey, newPath);
+    final bool setPath = await EzManager.setString(widget.pathKey, newPath);
     if (!setPath) {
       (mounted)
           ? ezLogAlert(
@@ -220,18 +220,18 @@ class _ImageSettingState extends State<EzImageSetting> {
 
     // Update the theme (conditionally)
     if (!isColor && updateTheme) {
-      if (EzCM.updateBoth || widget.config.isDark) {
+      if (EzManager.updateBoth || widget.config.isDark) {
         // If there is little/no text background opacity, set it to 50%
         // Better to have to turn it down than up, they'll be a lot of images where people suddenly won't be able to read
-        final double? opacity = EzCM.get(darkTextBackgroundOpacityKey);
+        final double? opacity = EzManager.get(darkTextBackgroundOpacityKey);
         if (opacity == null || opacity <= 0.05) {
-          await EzCM.setDouble(darkTextBackgroundOpacityKey, 0.50);
+          await EzManager.setDouble(darkTextBackgroundOpacityKey, 0.50);
         }
 
         final String result = await loadImageColorScheme(newPath, Brightness.dark);
 
         if (result == success) {
-          await EzCM.setString(darkColorSchemeImageKey, newPath);
+          await EzManager.setString(darkColorSchemeImageKey, newPath);
         } else {
           final String errorMsg =
               '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
@@ -246,18 +246,18 @@ class _ImageSettingState extends State<EzImageSetting> {
         }
       }
 
-      if (EzCM.updateBoth || !widget.config.isDark) {
+      if (EzManager.updateBoth || !widget.config.isDark) {
         // If there is little/no text background opacity, set it to 50%
         // Better to have to turn it down than up, they'll be a lot of images where people suddenly won't be able to read
-        final double? opacity = EzCM.get(lightTextBackgroundOpacityKey);
+        final double? opacity = EzManager.get(lightTextBackgroundOpacityKey);
         if (opacity == null || opacity <= 0.05) {
-          await EzCM.setDouble(lightTextBackgroundOpacityKey, 0.50);
+          await EzManager.setDouble(lightTextBackgroundOpacityKey, 0.50);
         }
 
         final String result = await loadImageColorScheme(newPath, Brightness.light);
 
         if (result == success) {
-          await EzCM.setString(lightColorSchemeImageKey, newPath);
+          await EzManager.setString(lightColorSchemeImageKey, newPath);
         } else {
           final String errorMsg =
               '$result${ezUrlCheck(newPath) ? '\n\n${widget.config.ezL10n.dsImgPermission}' : ''}';
@@ -278,11 +278,11 @@ class _ImageSettingState extends State<EzImageSetting> {
   /// Build the list of [ImageSource] options
   List<Widget> sourceOptions(BuildContext mCon, StateSetter setModal) {
     final List<Widget> options = <Widget>[];
-    final String? defaultPath = EzCM.getDefault(widget.pathKey);
+    final String? defaultPath = EzManager.getDefault(widget.pathKey);
 
     // From camera
     // Only works on mobile
-    if (!kIsWeb && EzCM.onMobile) {
+    if (!kIsWeb && EzManager.onMobile) {
       options.add(
         ezWrap(
           widget.config,
@@ -460,7 +460,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                 context: context,
                 picking: cleaned,
               );
-              if (chosen != null) await EzCM.setString(widget.pathKey, chosen);
+              if (chosen != null) await EzManager.setString(widget.pathKey, chosen);
             },
             icon: EzIcon(widget.config, Icons.color_lens),
             label: widget.config.ezL10n.dsSolidColor,
@@ -478,7 +478,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             widget.config,
             onPressed: () async {
               await fileCleanup();
-              await EzCM.remove(widget.pathKey);
+              await EzManager.remove(widget.pathKey);
 
               if (mCon.mounted) {
                 Navigator.of(mCon).pop(defaultPath);
@@ -500,7 +500,7 @@ class _ImageSettingState extends State<EzImageSetting> {
             widget.config,
             onPressed: () async {
               await fileCleanup();
-              await EzCM.setString(widget.pathKey, noImageValue);
+              await EzManager.setString(widget.pathKey, noImageValue);
 
               if (mCon.mounted) Navigator.of(mCon).pop(noImageValue);
             },
@@ -631,7 +631,7 @@ class _ImageSettingState extends State<EzImageSetting> {
                   widget.config,
                   onPressed: () async {
                     if (currFit != null && widget.fitKey != null) {
-                      await EzCM.setString(widget.fitKey!, currFit!.name);
+                      await EzManager.setString(widget.fitKey!, currFit!.name);
                     }
                     if (fitContext.mounted) {
                       Navigator.of(fitContext).pop(true);

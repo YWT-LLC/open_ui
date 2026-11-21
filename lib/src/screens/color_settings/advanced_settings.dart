@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class AdvancedColorSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final List<String>? extraDark;
   final List<String>? extraLight;
@@ -66,14 +66,14 @@ class AdvancedColorSettings extends StatelessWidget {
             resetSkip: resetSkip,
             onConfirm: () async {
               if (config.isDark) {
-                await EzCM.removeKeys(darkColorKeys.keys.toSet());
+                await EzManager.removeKeys(darkColorKeys.keys.toSet());
                 if (extraDark != null) {
-                  await EzCM.removeKeys(extraDark!.toSet());
+                  await EzManager.removeKeys(extraDark!.toSet());
                 }
               } else {
-                await EzCM.removeKeys(lightColorKeys.keys.toSet());
+                await EzManager.removeKeys(lightColorKeys.keys.toSet());
                 if (extraLight != null) {
-                  await EzCM.removeKeys(extraLight!.toSet());
+                  await EzManager.removeKeys(extraLight!.toSet());
                 }
               }
             },

@@ -8,7 +8,7 @@ import '../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzGlobalSettings extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Optionally remove the locale setting
   final bool excludeLocaleSetting;
@@ -25,7 +25,7 @@ class EzGlobalSettings extends StatelessWidget {
 
   final Set<String>? saveSkip;
 
-  /// Defaults to [EzCP.separator]
+  /// Defaults to [EzProvider.separator]
   final Widget? quickConfigSpacer;
 
   final Future<void> Function(bool)? extraBig;

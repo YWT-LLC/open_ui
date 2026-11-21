@@ -314,15 +314,15 @@ extension ETTConfig on EzTransitionType {
       }
           .replaceAll(' ', '\n');
 
-  Widget icon(EzCP config) => switch (this) {
+  Widget icon(EzProvider config) => switch (this) {
         EzTransitionType.none => EzIcon(
             config,
             Icons.cancel,
           ),
         EzTransitionType.system => EzIcon(
             config,
-            EzCM.onMobile
-                ? (EzCM.platform == TargetPlatform.iOS)
+            EzManager.onMobile
+                ? (EzManager.platform == TargetPlatform.iOS)
                     ? Icons.phone_iphone
                     : Icons.phone_android
                 : Icons.computer,

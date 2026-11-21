@@ -16,7 +16,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:file_picker/file_picker.dart';
 
 class SettingsButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
   final BuildContext parentContext;
 
   /// [EzMenuButton] for opening the settings
@@ -32,7 +32,7 @@ class SettingsButton extends StatelessWidget {
 }
 
 class UploadButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   final Future<void> Function(EAGConfig) onUpload;
 
@@ -70,7 +70,7 @@ class UploadButton extends StatelessWidget {
 }
 
 class OpenSourceButton extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// [EzMenuButton] for opening the Open UI GitHub repo
   const OpenSourceButton(this.config, {super.key});

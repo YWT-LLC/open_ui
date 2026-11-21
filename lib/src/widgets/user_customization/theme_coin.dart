@@ -9,10 +9,10 @@ import 'package:material_ui/material_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EzThemeCoin extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
   final bool enabled;
 
-  /// [EzIconButton] for toggling [EzCM.updateBoth]
+  /// [EzIconButton] for toggling [EzManager.updateBoth]
   const EzThemeCoin(this.config, {super.key, this.enabled = true});
 
   @override
@@ -20,7 +20,7 @@ class EzThemeCoin extends StatefulWidget {
 }
 
 class _EzThemeCoinState extends State<EzThemeCoin> {
-  bool both = EzCM.updateBoth;
+  bool both = EzManager.updateBoth;
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +50,11 @@ class _EzThemeCoinState extends State<EzThemeCoin> {
                   widget.config.isDark ? Icons.dark_mode : Icons.light_mode,
                 ),
           onPressed: () async {
-            await EzCM.setBool(updateBothKey, !both);
+            await EzManager.setBool(updateBothKey, !both);
             setState(() => both = !both);
           },
           onLongPress: () async {
-            await EzCM.setBool(isDarkThemeKey, !widget.config.isDark);
+            await EzManager.setBool(isDarkThemeKey, !widget.config.isDark);
             await widget.config.rebuildThemeMode();
           },
           tooltip: editing,

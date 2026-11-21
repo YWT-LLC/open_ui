@@ -14,8 +14,8 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<EzCP>(
-      builder: (_, EzCP config, __) => OpenUIScaffold(
+    return Consumer<EzProvider>(
+      builder: (_, EzProvider config, __) => OpenUIScaffold(
         config,
         body: EzScreen(
           config,

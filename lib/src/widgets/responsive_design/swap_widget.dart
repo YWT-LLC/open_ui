@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzSwapWidget extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Which [ScreenSize] the Widget should respond to
   final ScreenSize breakpoint;

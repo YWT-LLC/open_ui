@@ -8,7 +8,7 @@ import '../../../open_ui.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzTextButton extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Easily disable the button
   /// Useful if the functionality is async
@@ -79,7 +79,7 @@ class _EzTextButtonState extends State<EzTextButton> {
 }
 
 class EzTextIconButton extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Easily disable the button
   /// Useful if the functionality is async
@@ -88,7 +88,7 @@ class EzTextIconButton extends StatefulWidget {
   /// [TextButton.icon] label will be [Text] with [label], [textStyle], and [textAlign]
   final String label;
 
-  /// iconAlignment: [EzCM.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
+  /// iconAlignment: [EzManager.get] -> [isLeftyKey] ? [IconAlignment.start] : [IconAlignment.end]
   final Widget icon;
 
   final void Function()? onPressed;

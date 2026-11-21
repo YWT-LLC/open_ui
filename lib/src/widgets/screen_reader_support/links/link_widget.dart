@@ -9,7 +9,7 @@ import 'package:url_launcher/link.dart';
 import 'package:material_ui/material_ui.dart';
 
 class EzLinkWidget extends StatelessWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Destination function
   /// Provide [onTap] or [url], but not both

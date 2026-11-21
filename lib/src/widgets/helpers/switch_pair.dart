@@ -9,7 +9,7 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 
 class EzSwitchPair extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Easily disable the button
   /// Useful if the functionality is async
@@ -41,7 +41,7 @@ class EzSwitchPair extends StatefulWidget {
   /// Only for when using [valueKey]
   final Future<bool> Function(bool)? canChange;
 
-  /// [EzCM] key to provide to [Switch.value]
+  /// [EzManager] key to provide to [Switch.value]
   /// And update in [Switch.onChanged]
   /// Provide [valueKey] OR [value]
   /// Optionally provide [afterChanged]
@@ -118,7 +118,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
       if (!(await widget.canChange!(choice))) return;
     }
 
-    await EzCM.setBool(widget.valueKey!, choice);
+    await EzManager.setBool(widget.valueKey!, choice);
     setState(() => value = choice);
 
     widget.afterChanged?.call(choice);
@@ -129,7 +129,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
   @override
   void initState() {
     super.initState();
-    if (widget.value == null) setState(() => value = EzCM.get(widget.valueKey!));
+    if (widget.value == null) setState(() => value = EzManager.get(widget.valueKey!));
   }
 
   // Return the build //
@@ -218,7 +218,7 @@ class _EzSwitchPairState extends State<EzSwitchPair> {
 }
 
 class EzFlipFlop extends StatefulWidget {
-  final EzCP config;
+  final EzProvider config;
 
   /// Initial state
   final bool init;
