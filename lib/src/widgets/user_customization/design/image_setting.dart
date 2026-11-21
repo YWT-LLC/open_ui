@@ -44,6 +44,10 @@ class EzImageSetting extends StatefulWidget {
   /// null will display a choice to the user
   final bool? setColors;
 
+  /// Which theme's [ColorScheme] [setColors] updates
+  /// null follows [EzManager.updateBoth] and [EzProvider.isDark]
+  final Brightness? brightness;
+
   /// Whether the [EzImageEditor] should be displayed upon successful image selection
   /// [AssetImage]s cannot be edited/will be skipped
   final bool showEditor;
@@ -63,6 +67,7 @@ class EzImageSetting extends StatefulWidget {
     this.allowClear = true,
     this.clearLabel,
     this.setColors,
+    this.brightness,
     this.showEditor = true,
     this.showFitOption = true,
   });
@@ -220,7 +225,14 @@ class _ImageSettingState extends State<EzImageSetting> {
 
     // Update the theme (conditionally)
     if (!isColor && updateTheme) {
-      if (EzManager.updateBoth || widget.config.isDark) {
+      final bool updateDark = (widget.brightness == null)
+          ? (EzManager.updateBoth || widget.config.isDark)
+          : widget.brightness == Brightness.dark;
+      final bool updateLight = (widget.brightness == null)
+          ? (EzManager.updateBoth || !widget.config.isDark)
+          : widget.brightness == Brightness.light;
+
+      if (updateDark) {
         // If there is little/no text background opacity, set it to 50%
         // Better to have to turn it down than up, they'll be a lot of images where people suddenly won't be able to read
         final double? opacity = EzManager.get(darkTextBackgroundOpacityKey);
@@ -246,7 +258,7 @@ class _ImageSettingState extends State<EzImageSetting> {
         }
       }
 
-      if (EzManager.updateBoth || !widget.config.isDark) {
+      if (updateLight) {
         // If there is little/no text background opacity, set it to 50%
         // Better to have to turn it down than up, they'll be a lot of images where people suddenly won't be able to read
         final double? opacity = EzManager.get(lightTextBackgroundOpacityKey);
