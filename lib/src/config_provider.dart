@@ -147,6 +147,7 @@ class EzProvider extends ChangeNotifier {
         spacer: EzSpacer(spacing),
         separator: EzSpacer(spacing * 2),
         rowSpacer: EzSpacer(spacing, vertical: false),
+        rowSeparator: EzSpacer(spacing * 2, vertical: false),
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
       );
@@ -262,6 +263,7 @@ class EzProvider extends ChangeNotifier {
         spacer: EzSpacer(spacing),
         separator: EzSpacer(spacing * 2),
         rowSpacer: EzSpacer(spacing, vertical: false),
+        rowSeparator: EzSpacer(spacing * 2, vertical: false),
         halfSpacer: EzSpacer(spacing / 2),
         swapSpacer: EzSwapSpacer(spacing),
       );
@@ -561,6 +563,8 @@ class EzProvider extends ChangeNotifier {
   EzSpacer get spacer => _layout.spacer;
   EzSpacer get separator => _layout.separator;
   EzSpacer get rowSpacer => _layout.rowSpacer;
+  EzSpacer get rowSeparator => _layout.rowSeparator;
+
   EzSpacer get halfSpacer => _layout.halfSpacer;
   EzSwapSpacer get swapSpacer => _layout.swapSpacer;
 
@@ -808,6 +812,7 @@ class EzLayoutCache {
   final EzSpacer spacer;
   final EzSpacer separator;
   final EzSpacer rowSpacer;
+  final EzSpacer rowSeparator;
   final EzSpacer halfSpacer;
   final EzSwapSpacer swapSpacer;
 
@@ -817,6 +822,7 @@ class EzLayoutCache {
     required this.spacer,
     required this.separator,
     required this.rowSpacer,
+    required this.rowSeparator,
     required this.halfSpacer,
     required this.swapSpacer,
   });
