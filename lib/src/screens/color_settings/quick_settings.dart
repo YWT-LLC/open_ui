@@ -7,6 +7,8 @@ import '../../../open_ui.dart';
 
 import 'package:material_ui/material_ui.dart';
 
+// TODO: static styling
+
 class QuickColorSettings extends StatelessWidget {
   final EzProvider config;
 
